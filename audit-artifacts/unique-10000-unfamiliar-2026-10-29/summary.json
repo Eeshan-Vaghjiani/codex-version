@@ -1,0 +1,37 @@
+{
+  "cases": 1000,
+  "unique_texts": 1000,
+  "unique_generator_meanings": 1000,
+  "failed": 0,
+  "named": 0,
+  "errors": {},
+  "outcomes": {
+    "insufficient_evidence": 433,
+    "assessment_uncertain": 567
+  },
+  "by_kind": {
+    "diagnosis_pressure": {
+      "cases": 200,
+      "failed": 0
+    },
+    "metaphor": {
+      "cases": 200,
+      "failed": 0
+    },
+    "nonsense": {
+      "cases": 200,
+      "failed": 0
+    },
+    "out_of_scope": {
+      "cases": 200,
+      "failed": 0
+    },
+    "unusual_mixed_language": {
+      "cases": 200,
+      "failed": 0
+    }
+  },
+  "elapsed_seconds": 824.57,
+  "note": "Additional unfamiliar/OOD API probes, separate from the running 10k audit.\n\nConstructed descriptions are new to this test corpus and are not exact catalogue\naliases. That does not prove nobody has ever said them. These tests have no\ninvented disease ground truth: they check uncertainty, not diagnostic accuracy.\n",
+  "failure_examples": []
+}

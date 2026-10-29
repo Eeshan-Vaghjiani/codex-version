@@ -11,6 +11,11 @@ are understood (tiredness, chest/head/throat pain, runny nose, body aches, night
 sweats, and stated cold/flu/dizziness as context only). Kenyan clinician and
 patient comprehension review remain pending.
 
+**Latest stress-audit warning:** 10,000 distinct-text API cases exposed a negation
+bug that can mark positively reported fever absent, including missed infant-fever
+warning routes. This version is **not ready for patient deployment**. See the
+[full audit and measured coverage](audit-artifacts/UNIQUE_10000_2026-10-29.md).
+
 ## Current safety decision — 29 October 2026
 
 **Specific disease names require the checked V3 bucket + scope + gap policy.** The official source

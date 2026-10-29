@@ -4,6 +4,20 @@ Starting point: `c04aca7`. Work confined to this repository; no external organis
 repo accessed. Push authorised to `codex-respiracare-improvements-2026-10-29`;
 `main` and deployment untouched.
 
+## Subsequent 10,000-case audit (application left unchanged)
+
+Real API audit: **7,045/10,000** distinct descriptions passed every declared
+software check; **2,955** had mapping failures, including **10** missed immediate
+infant-fever bypasses. “No sense of smell” leaks negation to other reported
+symptoms. An additional **1,000 unfamiliar inputs** produced no forced diagnoses.
+A strict **10,000-distinct-effective-input** simulated-source check measured
+95.19% specific-name accuracy **at 26.17% coverage**, not clinical accuracy.
+These results supersede any implication that passing the smaller suites made
+the system patient-ready. No model/threshold/application fixes were made during
+the audit. [Full report](audit-artifacts/UNIQUE_10000_2026-10-29.md).
+
+## Earlier implementation and verification
+
 | Change | Main files | Checks |
 |---|---|---|
 | V3 whole-percent model-match contract; no legacy probability conversion; honest conditional HomePage wording | backend `primary_assessment.py`; frontend `patientResult.js`, `PossibleExplanations.jsx`, `PredictionPage.jsx`, `HomePage.jsx` | `test_patient_safety_v4.py`, `PatientSafety.test.jsx`; existing single-primary/history tests |

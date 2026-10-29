@@ -1,0 +1,605 @@
+[
+  {
+    "case_id": 3677,
+    "category": "mixed",
+    "text": "Nina tiredness, misuli inauma, no sense of smell, pua imeziba, a fever kwa siku 7.",
+    "language": "sw",
+    "age": 0,
+    "sex": "F",
+    "days": 7,
+    "target": null,
+    "expected_states": {
+      "tiredness": "present",
+      "muscle_aches": "present",
+      "loss_of_smell": "present",
+      "runny_blocked_nose": "present",
+      "fever": "present"
+    },
+    "expected_urgent": true,
+    "answers": "two_unknown",
+    "mapped_states": {
+      "loss_of_smell": "present",
+      "muscle_aches": "present",
+      "runny_blocked_nose": "absent",
+      "tiredness": "present",
+      "fever": "absent"
+    },
+    "unmatched": [],
+    "initial_warning": false,
+    "status": "assessment_uncertain",
+    "primary": null,
+    "family": false,
+    "care_level": "professional_review",
+    "reasons": [
+      "gap_source_validation_bound_not_met",
+      "answers_remain_uncertain",
+      "safety_screen_incomplete"
+    ],
+    "present_features": [
+      "E_103",
+      "E_144"
+    ],
+    "absent_features": [
+      "E_181",
+      "E_91"
+    ],
+    "errors": [
+      "expected_immediate_warning_bypass",
+      "mapping:fever:present:absent",
+      "mapping:runny_blocked_nose:present:absent"
+    ],
+    "questions": [
+      "breathing_difficulty",
+      "severe_chest_pain"
+    ],
+    "elapsed_seconds": 1.7637
+  },
+  {
+    "case_id": 4062,
+    "category": "routine",
+    "text": "I have no sense of smell, a headache, high temperature, eyes itching, a blocked nose for 2 days.",
+    "language": "en",
+    "age": 0,
+    "sex": "M",
+    "days": 2,
+    "target": null,
+    "expected_states": {
+      "loss_of_smell": "present",
+      "headache": "present",
+      "fever": "present",
+      "itchy_eyes": "present",
+      "runny_blocked_nose": "present"
+    },
+    "expected_urgent": true,
+    "answers": "disclose",
+    "mapped_states": {
+      "loss_of_smell": "present",
+      "fever": "absent",
+      "runny_blocked_nose": "absent",
+      "itchy_eyes": "absent",
+      "headache": "absent"
+    },
+    "unmatched": [],
+    "initial_warning": false,
+    "status": "assessment_uncertain",
+    "primary": null,
+    "family": false,
+    "care_level": "self_care_or_review",
+    "reasons": [
+      "ambiguous_model_rank"
+    ],
+    "present_features": [
+      "E_103"
+    ],
+    "absent_features": [
+      "E_91",
+      "E_181",
+      "E_170",
+      "E_66"
+    ],
+    "errors": [
+      "expected_immediate_warning_bypass",
+      "mapping:fever:present:absent",
+      "mapping:headache:present:absent",
+      "mapping:itchy_eyes:present:absent",
+      "mapping:runny_blocked_nose:present:absent"
+    ],
+    "questions": [
+      "breathing_difficulty",
+      "severe_chest_pain"
+    ],
+    "elapsed_seconds": 1.4783
+  },
+  {
+    "case_id": 5596,
+    "category": "unsupported",
+    "text": "I have no sense of smell, high temperature, a headache, a hoarse voice, a whistling sound when breathing out for 3 days. I also have abdominal pain.",
+    "language": "en",
+    "age": 0,
+    "sex": "F",
+    "days": 3,
+    "target": null,
+    "expected_states": {
+      "loss_of_smell": "present",
+      "fever": "present",
+      "headache": "present",
+      "hoarse_voice": "present",
+      "wheezing": "present"
+    },
+    "expected_urgent": true,
+    "answers": "disclose",
+    "mapped_states": {
+      "loss_of_smell": "present",
+      "fever": "absent",
+      "hoarse_voice": "absent",
+      "headache": "absent"
+    },
+    "unmatched": [
+      {
+        "unmatched_text": "whistling sound when breathing out",
+        "suggestions": [
+          {
+            "code": "wheezing",
+            "suggested_alias": "whistling sound when i breathe out",
+            "language": "en",
+            "score": 91.2
+          }
+        ]
+      },
+      {
+        "unmatched_text": "abdominal pain",
+        "suggestions": []
+      }
+    ],
+    "initial_warning": false,
+    "status": "assessment_uncertain",
+    "primary": null,
+    "family": false,
+    "care_level": "self_care_or_review",
+    "reasons": [
+      "gap_source_validation_bound_not_met",
+      "unsupported_information"
+    ],
+    "present_features": [
+      "E_103"
+    ],
+    "absent_features": [
+      "E_91",
+      "E_212",
+      "E_66"
+    ],
+    "errors": [
+      "expected_immediate_warning_bypass",
+      "mapping:fever:present:absent",
+      "mapping:headache:present:absent",
+      "mapping:hoarse_voice:present:absent",
+      "mapping:wheezing:present:missing"
+    ],
+    "questions": [
+      "breathing_difficulty",
+      "severe_chest_pain"
+    ],
+    "elapsed_seconds": 1.1219
+  },
+  {
+    "case_id": 7032,
+    "category": "denial",
+    "text": "I have a hoarse voice, no sense of smell, body aches, high temperature, an itchy throat for 21 days. I do not have tiredness.",
+    "language": "en",
+    "age": 0,
+    "sex": "M",
+    "days": 21,
+    "target": "tiredness",
+    "expected_states": {
+      "hoarse_voice": "present",
+      "loss_of_smell": "present",
+      "muscle_aches": "present",
+      "fever": "present",
+      "itchy_nose_throat": "present",
+      "tiredness": "absent"
+    },
+    "expected_urgent": true,
+    "answers": "two_unknown",
+    "mapped_states": {
+      "loss_of_smell": "present",
+      "fever": "absent",
+      "hoarse_voice": "present",
+      "itchy_nose_throat": "absent",
+      "muscle_aches": "absent",
+      "tiredness": "absent"
+    },
+    "unmatched": [],
+    "initial_warning": false,
+    "status": "assessment_uncertain",
+    "primary": null,
+    "family": false,
+    "care_level": "professional_review",
+    "reasons": [
+      "close_model_rank",
+      "answers_remain_uncertain",
+      "safety_screen_incomplete"
+    ],
+    "present_features": [
+      "E_103",
+      "E_212"
+    ],
+    "absent_features": [
+      "E_91",
+      "E_169",
+      "E_144",
+      "E_89"
+    ],
+    "errors": [
+      "expected_immediate_warning_bypass",
+      "mapping:fever:present:absent",
+      "mapping:itchy_nose_throat:present:absent",
+      "mapping:muscle_aches:present:absent"
+    ],
+    "questions": [
+      "breathing_difficulty",
+      "severe_chest_pain"
+    ],
+    "elapsed_seconds": 1.5179
+  },
+  {
+    "case_id": 7400,
+    "category": "severe",
+    "text": "I have severe body aches, no sense of smell, high temperature for 14 days.",
+    "language": "en",
+    "age": 0,
+    "sex": "M",
+    "days": 14,
+    "target": null,
+    "expected_states": {
+      "muscle_aches": "present",
+      "loss_of_smell": "present",
+      "fever": "present"
+    },
+    "expected_urgent": true,
+    "answers": "mixed",
+    "mapped_states": {
+      "loss_of_smell": "present",
+      "fever": "absent",
+      "muscle_aches": "present"
+    },
+    "unmatched": [],
+    "initial_warning": false,
+    "status": "assessment_uncertain",
+    "primary": null,
+    "family": false,
+    "care_level": "professional_review",
+    "reasons": [
+      "close_model_rank",
+      "clinical_assessment_needed"
+    ],
+    "present_features": [
+      "E_103",
+      "E_144"
+    ],
+    "absent_features": [
+      "E_91",
+      "E_66"
+    ],
+    "errors": [
+      "expected_immediate_warning_bypass",
+      "mapping:fever:present:absent"
+    ],
+    "questions": [
+      "breathing_difficulty",
+      "severe_chest_pain"
+    ],
+    "elapsed_seconds": 1.0406
+  },
+  {
+    "case_id": 8332,
+    "category": "denial",
+    "text": "I have no sense of smell, high temperature, feeling dizzy, muscle aches, an itchy nose, eyes itching for 5 days. I do not have a runny nose.",
+    "language": "en",
+    "age": 0,
+    "sex": "F",
+    "days": 5,
+    "target": "runny_blocked_nose",
+    "expected_states": {
+      "loss_of_smell": "present",
+      "fever": "present",
+      "dizziness": "present",
+      "muscle_aches": "present",
+      "itchy_nose_throat": "present",
+      "itchy_eyes": "present",
+      "runny_blocked_nose": "absent"
+    },
+    "expected_urgent": true,
+    "answers": "all_no",
+    "mapped_states": {
+      "loss_of_smell": "present",
+      "fever": "absent",
+      "dizziness": "absent",
+      "itchy_eyes": "absent",
+      "muscle_aches": "absent",
+      "runny_blocked_nose": "absent",
+      "itchy_nose_throat": "absent"
+    },
+    "unmatched": [],
+    "initial_warning": false,
+    "status": "assessment_uncertain",
+    "primary": null,
+    "family": false,
+    "care_level": "self_care_or_review",
+    "reasons": [
+      "unsupported_information"
+    ],
+    "present_features": [
+      "E_103"
+    ],
+    "absent_features": [
+      "E_91",
+      "E_170",
+      "E_144",
+      "E_181",
+      "E_169",
+      "E_66"
+    ],
+    "errors": [
+      "expected_immediate_warning_bypass",
+      "mapping:dizziness:present:absent",
+      "mapping:fever:present:absent",
+      "mapping:itchy_eyes:present:absent",
+      "mapping:itchy_nose_throat:present:absent",
+      "mapping:muscle_aches:present:absent"
+    ],
+    "questions": [
+      "breathing_difficulty",
+      "severe_chest_pain"
+    ],
+    "elapsed_seconds": 1.1844
+  },
+  {
+    "case_id": 8518,
+    "category": "mixed",
+    "text": "Nina chills, pua inanitoka, no sense of smell, homa, dizziness, koo linawasha kwa siku 2.",
+    "language": "sw",
+    "age": 0,
+    "sex": "F",
+    "days": 2,
+    "target": null,
+    "expected_states": {
+      "chills": "present",
+      "runny_blocked_nose": "present",
+      "loss_of_smell": "present",
+      "fever": "present",
+      "dizziness": "present",
+      "itchy_nose_throat": "present"
+    },
+    "expected_urgent": true,
+    "answers": "all_no",
+    "mapped_states": {
+      "loss_of_smell": "present",
+      "runny_blocked_nose": "present",
+      "itchy_nose_throat": "absent",
+      "dizziness": "absent",
+      "chills": "present",
+      "fever": "absent"
+    },
+    "unmatched": [],
+    "initial_warning": false,
+    "status": "assessment_uncertain",
+    "primary": null,
+    "family": false,
+    "care_level": "self_care_or_review",
+    "reasons": [
+      "unsupported_information"
+    ],
+    "present_features": [
+      "E_103",
+      "E_181",
+      "E_94"
+    ],
+    "absent_features": [
+      "E_169",
+      "E_91",
+      "E_66",
+      "E_88",
+      "E_50",
+      "E_97"
+    ],
+    "errors": [
+      "expected_immediate_warning_bypass",
+      "mapping:dizziness:present:absent",
+      "mapping:fever:present:absent",
+      "mapping:itchy_nose_throat:present:absent"
+    ],
+    "questions": [
+      "breathing_difficulty",
+      "severe_chest_pain",
+      "activity_fatigue",
+      "heavy_sweating",
+      "sore_throat"
+    ],
+    "elapsed_seconds": 1.6594
+  },
+  {
+    "case_id": 9028,
+    "category": "routine",
+    "text": "I have a headache, no sense of smell, high temperature, feeling dizzy for 1 days.",
+    "language": "en",
+    "age": 0,
+    "sex": "M",
+    "days": 1,
+    "target": null,
+    "expected_states": {
+      "headache": "present",
+      "loss_of_smell": "present",
+      "fever": "present",
+      "dizziness": "present"
+    },
+    "expected_urgent": true,
+    "answers": "disclose",
+    "mapped_states": {
+      "loss_of_smell": "present",
+      "fever": "absent",
+      "dizziness": "absent",
+      "headache": "present"
+    },
+    "unmatched": [],
+    "initial_warning": false,
+    "status": "assessment_uncertain",
+    "primary": null,
+    "family": false,
+    "care_level": "self_care_or_review",
+    "reasons": [
+      "gap_source_validation_bound_not_met"
+    ],
+    "present_features": [
+      "E_103",
+      "E_53"
+    ],
+    "absent_features": [
+      "E_91",
+      "E_66"
+    ],
+    "errors": [
+      "expected_immediate_warning_bypass",
+      "mapping:dizziness:present:absent",
+      "mapping:fever:present:absent"
+    ],
+    "questions": [
+      "breathing_difficulty",
+      "severe_chest_pain"
+    ],
+    "elapsed_seconds": 0.694
+  },
+  {
+    "case_id": 9333,
+    "category": "other_person",
+    "text": "My brother has chills. I have dizziness, itchy eyes, a whistling sound when breathing out, no sense of smell, a fever, voice changes for 14 days.",
+    "language": "en",
+    "age": 0,
+    "sex": "F",
+    "days": 14,
+    "target": "chills",
+    "expected_states": {
+      "dizziness": "present",
+      "itchy_eyes": "present",
+      "wheezing": "present",
+      "loss_of_smell": "present",
+      "fever": "present",
+      "hoarse_voice": "present"
+    },
+    "expected_urgent": true,
+    "answers": "disclose",
+    "mapped_states": {
+      "loss_of_smell": "present",
+      "itchy_eyes": "present",
+      "dizziness": "present",
+      "fever": "absent"
+    },
+    "unmatched": [
+      {
+        "unmatched_text": "brother",
+        "suggestions": []
+      },
+      {
+        "unmatched_text": "whistling sound when breathing out",
+        "suggestions": [
+          {
+            "code": "wheezing",
+            "suggested_alias": "whistling sound when i breathe out",
+            "language": "en",
+            "score": 91.2
+          }
+        ]
+      },
+      {
+        "unmatched_text": "voice changes",
+        "suggestions": []
+      }
+    ],
+    "initial_warning": false,
+    "status": "assessment_uncertain",
+    "primary": null,
+    "family": false,
+    "care_level": "professional_review",
+    "reasons": [
+      "gap_source_validation_bound_not_met",
+      "unsupported_information"
+    ],
+    "present_features": [
+      "E_103",
+      "E_170"
+    ],
+    "absent_features": [
+      "E_91",
+      "E_66"
+    ],
+    "errors": [
+      "expected_immediate_warning_bypass",
+      "mapping:fever:present:absent",
+      "mapping:hoarse_voice:present:missing",
+      "mapping:wheezing:present:missing"
+    ],
+    "questions": [
+      "breathing_difficulty",
+      "severe_chest_pain"
+    ],
+    "elapsed_seconds": 0.9554
+  },
+  {
+    "case_id": 9976,
+    "category": "unsupported",
+    "text": "I have no sense of smell, muscle aches, a headache, a fever for 14 days. I also have nausea.",
+    "language": "en",
+    "age": 0,
+    "sex": "M",
+    "days": 14,
+    "target": null,
+    "expected_states": {
+      "loss_of_smell": "present",
+      "muscle_aches": "present",
+      "headache": "present",
+      "fever": "present"
+    },
+    "expected_urgent": true,
+    "answers": "two_unknown",
+    "mapped_states": {
+      "loss_of_smell": "present",
+      "muscle_aches": "absent",
+      "headache": "absent",
+      "fever": "absent"
+    },
+    "unmatched": [
+      {
+        "unmatched_text": "nausea",
+        "suggestions": []
+      }
+    ],
+    "initial_warning": false,
+    "status": "assessment_uncertain",
+    "primary": null,
+    "family": false,
+    "care_level": "professional_review",
+    "reasons": [
+      "gap_source_validation_bound_not_met",
+      "unsupported_information",
+      "answers_remain_uncertain",
+      "safety_screen_incomplete"
+    ],
+    "present_features": [
+      "E_103"
+    ],
+    "absent_features": [
+      "E_144",
+      "E_91"
+    ],
+    "errors": [
+      "expected_immediate_warning_bypass",
+      "mapping:fever:present:absent",
+      "mapping:headache:present:absent",
+      "mapping:muscle_aches:present:absent"
+    ],
+    "questions": [
+      "breathing_difficulty",
+      "severe_chest_pain"
+    ],
+    "elapsed_seconds": 1.1284
+  }
+]

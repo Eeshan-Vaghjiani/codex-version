@@ -1,0 +1,2277 @@
+{
+  "commit": "aa7d4220fa7f02d1772fdefd5cca916ad73845d1",
+  "runner_sha256": "15d70a6dd2cc45dbab7fdb188889d36ceac881884825d6c4fdb2d04c09de5ae2",
+  "clinical_validation": false,
+  "note": "Synthetic software checks are not disease diagnostic accuracy. Every text is unique. Failures are recorded, not retried or dropped.",
+  "api": {
+    "cases": 10000,
+    "unique_texts": 10000,
+    "seed": 20261029,
+    "workers": 6,
+    "passed": 7045,
+    "failed": 2955,
+    "errors": {
+      "mapping:hoarse_voice:present:missing": 1615,
+      "mapping:wheezing:present:missing": 941,
+      "mapping:dizziness:present:absent": 138,
+      "mapping:fever:present:absent": 139,
+      "mapping:hoarse_voice:present:absent": 61,
+      "mapping:sore_throat:present:absent": 126,
+      "mapping:chills:present:absent": 140,
+      "mapping:cough:present:absent": 143,
+      "mapping:itchy_eyes:present:absent": 126,
+      "mapping:itchy_nose_throat:present:absent": 149,
+      "mapping:tiredness:present:absent": 136,
+      "mapping:muscle_aches:present:absent": 143,
+      "mapping:runny_blocked_nose:present:absent": 127,
+      "mapping:headache:present:absent": 137,
+      "mapping:wheezing:present:absent": 73,
+      "expected_immediate_warning_bypass": 10
+    },
+    "categories": {
+      "routine": {
+        "cases": 4000,
+        "failed": 1251
+      },
+      "urgent": {
+        "cases": 1000,
+        "failed": 0
+      },
+      "denial": {
+        "cases": 1000,
+        "failed": 350
+      },
+      "other_person": {
+        "cases": 1000,
+        "failed": 314
+      },
+      "unsupported": {
+        "cases": 1000,
+        "failed": 353
+      },
+      "mixed": {
+        "cases": 1000,
+        "failed": 323
+      },
+      "contradiction": {
+        "cases": 500,
+        "failed": 174
+      },
+      "severe": {
+        "cases": 500,
+        "failed": 190
+      }
+    },
+    "outcomes": {
+      "prediction_complete": 1756,
+      "assessment_uncertain": 6670,
+      "urgent_review": 1572,
+      "insufficient_evidence": 2
+    },
+    "primary_counts": {
+      "Flu-like illness / common cold": 595,
+      "(withheld/urgent)": 8244,
+      "Influenza": 581,
+      "Allergic sinusitis": 67,
+      "Bronchitis": 102,
+      "Chronic rhinosinusitis": 15,
+      "Acute rhinosinusitis": 167,
+      "Bronchiolitis": 86,
+      "URTI": 59,
+      "Epiglottitis": 19,
+      "Pneumonia": 39,
+      "Pulmonary neoplasm": 13,
+      "Acute laryngitis": 8,
+      "Tuberculosis": 2,
+      "Acute COPD exacerbation / infection": 3
+    },
+    "question_counts": {
+      "3": 2561,
+      "5": 671,
+      "4": 1364,
+      "7": 453,
+      "2": 2891,
+      "0": 1309,
+      "6": 576,
+      "8": 115,
+      "10": 11,
+      "9": 38,
+      "1": 11
+    },
+    "model_status": {
+      "status": "loaded",
+      "model_version": "v3_partial_evidence",
+      "model_type": "missing_evidence_likelihood",
+      "feature_count": 34,
+      "model_feature_count": 34,
+      "class_count": 21,
+      "model_class_count": 21,
+      "clinical_validation": false,
+      "live_model_notice": "V3 partial-evidence: 21 conditions, 34 features; simulated DDXPlus only; not clinically validated for patients in Kenya.",
+      "training_data": "simulated DDXPlus only",
+      "covid_in_scope": false,
+      "gap_validation": "source_validation_checked",
+      "patient_naming_enabled": true,
+      "gap_source_note": "Separate complete-profile source-validation fold (%8==3), previously reporting-only in aggregate. Not new patients; not Kenyan clinical validation."
+    },
+    "elapsed_seconds": 2502.6,
+    "mean_case_seconds": 1.50139182,
+    "median_case_seconds": 1.4217499999999998,
+    "p95_case_seconds": 2.7769,
+    "failure_examples": [
+      {
+        "case_id": 2,
+        "category": "routine",
+        "text": "I have dizziness, loss of smell, running nose, voice changes, a sore throat for 3 days.",
+        "language": "en",
+        "age": 48,
+        "sex": "M",
+        "days": 3,
+        "target": null,
+        "expected_states": {
+          "dizziness": "present",
+          "loss_of_smell": "present",
+          "runny_blocked_nose": "present",
+          "hoarse_voice": "present",
+          "sore_throat": "present"
+        },
+        "expected_urgent": false,
+        "answers": "mixed",
+        "mapped_states": {
+          "loss_of_smell": "present",
+          "runny_blocked_nose": "present",
+          "sore_throat": "present",
+          "dizziness": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "voice changes",
+            "suggestions": []
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "family_viral_upper_respiratory",
+          "not_clinically_validated",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_103",
+          "E_181",
+          "E_97",
+          "E_50"
+        ],
+        "absent_features": [
+          "E_66",
+          "E_91",
+          "E_88"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever",
+          "activity_fatigue",
+          "heavy_sweating"
+        ],
+        "elapsed_seconds": 1.7023
+      },
+      {
+        "case_id": 3,
+        "category": "routine",
+        "text": "Nina pua imeziba, sauti kukwaruza, pua inawasha kwa siku 1.",
+        "language": "sw",
+        "age": 2,
+        "sex": "M",
+        "days": 1,
+        "target": null,
+        "expected_states": {
+          "runny_blocked_nose": "present",
+          "hoarse_voice": "present",
+          "itchy_nose_throat": "present"
+        },
+        "expected_urgent": false,
+        "answers": "mixed",
+        "mapped_states": {
+          "itchy_nose_throat": "present",
+          "runny_blocked_nose": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "sauti kukwaruza",
+            "suggestions": [
+              {
+                "code": "hoarse_voice",
+                "suggested_alias": "sauti imekwaruza",
+                "language": "sw",
+                "score": 83.9
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_169",
+          "E_181"
+        ],
+        "absent_features": [
+          "E_66",
+          "E_91"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever"
+        ],
+        "elapsed_seconds": 1.3652
+      },
+      {
+        "case_id": 4,
+        "category": "routine",
+        "text": "Nina koo kuuma, kizunguzungu, sauti kukwaruza, uchovu, sauti ya mluzi kwa siku 5.",
+        "language": "sw",
+        "age": 80,
+        "sex": "F",
+        "days": 5,
+        "target": null,
+        "expected_states": {
+          "sore_throat": "present",
+          "dizziness": "present",
+          "hoarse_voice": "present",
+          "tiredness": "present",
+          "wheezing": "present"
+        },
+        "expected_urgent": false,
+        "answers": "mixed",
+        "mapped_states": {
+          "wheezing": "present",
+          "dizziness": "present",
+          "sore_throat": "present",
+          "tiredness": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "sauti kukwaruza",
+            "suggestions": [
+              {
+                "code": "hoarse_voice",
+                "suggested_alias": "sauti imekwaruza",
+                "language": "sw",
+                "score": 83.9
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_214",
+          "E_97",
+          "E_89",
+          "E_91"
+        ],
+        "absent_features": [
+          "E_66"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever",
+          "fatigue_pattern"
+        ],
+        "elapsed_seconds": 1.6722
+      },
+      {
+        "case_id": 7,
+        "category": "routine",
+        "text": "Nina kichwa kinauma, sauti kukwaruza, kutetemeka kwa siku 2.",
+        "language": "sw",
+        "age": 65,
+        "sex": "M",
+        "days": 2,
+        "target": null,
+        "expected_states": {
+          "headache": "present",
+          "hoarse_voice": "present",
+          "chills": "present"
+        },
+        "expected_urgent": false,
+        "answers": "all_no",
+        "mapped_states": {
+          "headache": "present",
+          "chills": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "sauti kukwaruza",
+            "suggestions": [
+              {
+                "code": "hoarse_voice",
+                "suggested_alias": "sauti imekwaruza",
+                "language": "sw",
+                "score": 83.9
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "non_specific_input",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_53",
+          "E_94"
+        ],
+        "absent_features": [
+          "E_91",
+          "E_201",
+          "E_66",
+          "E_97",
+          "E_181"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "severe_chest_pain",
+          "fever",
+          "symptom_severity",
+          "cough",
+          "breathing_difficulty",
+          "sore_throat",
+          "runny_blocked_nose"
+        ],
+        "elapsed_seconds": 2.1497
+      },
+      {
+        "case_id": 13,
+        "category": "other_person",
+        "text": "My brother has a sore throat. I have no sense of smell, a whistling sound when breathing out for 14 days.",
+        "language": "en",
+        "age": 2,
+        "sex": "M",
+        "days": 14,
+        "target": "sore_throat",
+        "expected_states": {
+          "loss_of_smell": "present",
+          "wheezing": "present"
+        },
+        "expected_urgent": false,
+        "answers": "disclose",
+        "mapped_states": {
+          "loss_of_smell": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "brother",
+            "suggestions": []
+          },
+          {
+            "unmatched_text": "whistling sound when breathing out",
+            "suggestions": [
+              {
+                "code": "wheezing",
+                "suggested_alias": "whistling sound when i breathe out",
+                "language": "en",
+                "score": 91.2
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_103",
+          "E_91"
+        ],
+        "absent_features": [
+          "E_66"
+        ],
+        "errors": [
+          "mapping:wheezing:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever"
+        ],
+        "elapsed_seconds": 1.4578
+      },
+      {
+        "case_id": 18,
+        "category": "mixed",
+        "text": "Nina shivering, kichwa kuuma, voice changes kwa siku 2.",
+        "language": "sw",
+        "age": 35,
+        "sex": "M",
+        "days": 2,
+        "target": null,
+        "expected_states": {
+          "chills": "present",
+          "headache": "present",
+          "hoarse_voice": "present"
+        },
+        "expected_urgent": false,
+        "answers": "disclose",
+        "mapped_states": {
+          "headache": "present",
+          "chills": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "voice changes",
+            "suggestions": []
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "family_viral_upper_respiratory",
+          "not_clinically_validated",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_53",
+          "E_94",
+          "E_91",
+          "E_201"
+        ],
+        "absent_features": [
+          "E_66"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "severe_chest_pain",
+          "fever",
+          "symptom_severity",
+          "cough",
+          "breathing_difficulty",
+          "symptom_duration"
+        ],
+        "elapsed_seconds": 2.1001
+      },
+      {
+        "case_id": 19,
+        "category": "contradiction",
+        "text": "I have wheezing, tiredness, voice changes, running nose, loss of smell for 3 days. I have a sore throat, but I do not have a sore throat.",
+        "language": "en",
+        "age": 2,
+        "sex": "F",
+        "days": 3,
+        "target": "sore_throat",
+        "expected_states": {
+          "wheezing": "present",
+          "tiredness": "present",
+          "hoarse_voice": "present",
+          "runny_blocked_nose": "present",
+          "loss_of_smell": "present",
+          "sore_throat": "unknown"
+        },
+        "expected_urgent": false,
+        "answers": "all_no",
+        "mapped_states": {
+          "loss_of_smell": "present",
+          "runny_blocked_nose": "present",
+          "sore_throat": "unknown",
+          "tiredness": "present",
+          "wheezing": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "voice changes",
+            "suggestions": []
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_103",
+          "E_181",
+          "E_214"
+        ],
+        "absent_features": [
+          "E_66",
+          "E_91"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever",
+          "fatigue_pattern"
+        ],
+        "elapsed_seconds": 1.6234
+      },
+      {
+        "case_id": 20,
+        "category": "severe",
+        "text": "I have severe muscle aches, voice changes for 7 days.",
+        "language": "en",
+        "age": 2,
+        "sex": "F",
+        "days": 7,
+        "target": null,
+        "expected_states": {
+          "muscle_aches": "present",
+          "hoarse_voice": "present"
+        },
+        "expected_urgent": false,
+        "answers": "mixed",
+        "mapped_states": {
+          "muscle_aches": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "voice changes",
+            "suggestions": []
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "non_specific_input",
+          "unsupported_information",
+          "clinical_assessment_needed"
+        ],
+        "present_features": [
+          "E_144",
+          "E_91"
+        ],
+        "absent_features": [],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "severe_chest_pain",
+          "fever"
+        ],
+        "elapsed_seconds": 1.186
+      },
+      {
+        "case_id": 22,
+        "category": "routine",
+        "text": "I have no sense of smell, a sore throat, high temperature, a hoarse voice, feeling dizzy for 7 days.",
+        "language": "en",
+        "age": 2,
+        "sex": "M",
+        "days": 7,
+        "target": null,
+        "expected_states": {
+          "loss_of_smell": "present",
+          "sore_throat": "present",
+          "fever": "present",
+          "hoarse_voice": "present",
+          "dizziness": "present"
+        },
+        "expected_urgent": false,
+        "answers": "two_unknown",
+        "mapped_states": {
+          "loss_of_smell": "present",
+          "fever": "absent",
+          "dizziness": "absent",
+          "hoarse_voice": "absent",
+          "sore_throat": "absent"
+        },
+        "unmatched": [],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met",
+          "answers_remain_uncertain",
+          "safety_screen_incomplete"
+        ],
+        "present_features": [
+          "E_103"
+        ],
+        "absent_features": [
+          "E_91",
+          "E_212",
+          "E_97"
+        ],
+        "errors": [
+          "mapping:dizziness:present:absent",
+          "mapping:fever:present:absent",
+          "mapping:hoarse_voice:present:absent",
+          "mapping:sore_throat:present:absent"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain"
+        ],
+        "elapsed_seconds": 0.9055
+      },
+      {
+        "case_id": 24,
+        "category": "routine",
+        "text": "Nina nimepoteza harufu, sauti kukwaruza, nimechoka, kutetemeka kwa siku 5.",
+        "language": "sw",
+        "age": 80,
+        "sex": "F",
+        "days": 5,
+        "target": null,
+        "expected_states": {
+          "loss_of_smell": "present",
+          "hoarse_voice": "present",
+          "tiredness": "present",
+          "chills": "present"
+        },
+        "expected_urgent": false,
+        "answers": "two_unknown",
+        "mapped_states": {
+          "loss_of_smell": "present",
+          "chills": "present",
+          "tiredness": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "sauti kukwaruza",
+            "suggestions": [
+              {
+                "code": "hoarse_voice",
+                "suggested_alias": "sauti imekwaruza",
+                "language": "sw",
+                "score": 83.9
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "close_model_rank",
+          "unsupported_information",
+          "answers_remain_uncertain",
+          "safety_screen_incomplete"
+        ],
+        "present_features": [
+          "E_103",
+          "E_94"
+        ],
+        "absent_features": [],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain"
+        ],
+        "elapsed_seconds": 0.9193
+      },
+      {
+        "case_id": 31,
+        "category": "denial",
+        "text": "I have wheezing, muscle aches, a runny nose, eyes itching, voice changes, an itchy throat for 7 days. I do not have dizziness.",
+        "language": "en",
+        "age": 80,
+        "sex": "F",
+        "days": 7,
+        "target": "dizziness",
+        "expected_states": {
+          "wheezing": "present",
+          "muscle_aches": "present",
+          "runny_blocked_nose": "present",
+          "itchy_eyes": "present",
+          "hoarse_voice": "present",
+          "itchy_nose_throat": "present",
+          "dizziness": "absent"
+        },
+        "expected_urgent": false,
+        "answers": "mixed",
+        "mapped_states": {
+          "itchy_nose_throat": "present",
+          "itchy_eyes": "present",
+          "muscle_aches": "present",
+          "runny_blocked_nose": "present",
+          "dizziness": "absent",
+          "wheezing": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "voice changes",
+            "suggestions": []
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "source_validation_selection_rule_met",
+          "not_clinically_validated",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_169",
+          "E_170",
+          "E_144",
+          "E_181",
+          "E_214"
+        ],
+        "absent_features": [
+          "E_66",
+          "E_91"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever"
+        ],
+        "elapsed_seconds": 1.6748
+      },
+      {
+        "case_id": 33,
+        "category": "other_person",
+        "text": "My brother has dizziness. I have tiredness, voice changes, an itchy throat, itchy eyes, head pain, no sense of smell for 7 days.",
+        "language": "en",
+        "age": 24,
+        "sex": "M",
+        "days": 7,
+        "target": "dizziness",
+        "expected_states": {
+          "tiredness": "present",
+          "hoarse_voice": "present",
+          "itchy_nose_throat": "present",
+          "itchy_eyes": "present",
+          "headache": "present",
+          "loss_of_smell": "present"
+        },
+        "expected_urgent": false,
+        "answers": "disclose",
+        "mapped_states": {
+          "loss_of_smell": "present",
+          "itchy_nose_throat": "present",
+          "itchy_eyes": "present",
+          "headache": "present",
+          "tiredness": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "brother",
+            "suggestions": []
+          },
+          {
+            "unmatched_text": "voice changes",
+            "suggestions": []
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "source_validation_selection_rule_met",
+          "not_clinically_validated",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_103",
+          "E_169",
+          "E_170",
+          "E_53",
+          "E_89",
+          "E_91"
+        ],
+        "absent_features": [
+          "E_66"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever",
+          "fatigue_pattern"
+        ],
+        "elapsed_seconds": 1.8845
+      },
+      {
+        "case_id": 35,
+        "category": "unsupported",
+        "text": "I have no sense of smell, shivering, eyes itching, a dry cough, a whistling sound when breathing out, a hoarse voice for 3 days. I also have ear pain.",
+        "language": "en",
+        "age": 2,
+        "sex": "F",
+        "days": 3,
+        "target": null,
+        "expected_states": {
+          "loss_of_smell": "present",
+          "chills": "present",
+          "itchy_eyes": "present",
+          "cough": "present",
+          "wheezing": "present",
+          "hoarse_voice": "present"
+        },
+        "expected_urgent": false,
+        "answers": "disclose",
+        "mapped_states": {
+          "loss_of_smell": "present",
+          "hoarse_voice": "absent",
+          "itchy_eyes": "absent",
+          "chills": "absent",
+          "cough": "absent"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "whistling sound when breathing out",
+            "suggestions": [
+              {
+                "code": "wheezing",
+                "suggested_alias": "whistling sound when i breathe out",
+                "language": "en",
+                "score": 91.2
+              }
+            ]
+          },
+          {
+            "unmatched_text": "ear pain",
+            "suggestions": [
+              {
+                "code": "headache",
+                "suggested_alias": "head pain",
+                "language": "en",
+                "score": 82.4
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_103",
+          "E_91"
+        ],
+        "absent_features": [
+          "E_212",
+          "E_170",
+          "E_94",
+          "E_201",
+          "E_66"
+        ],
+        "errors": [
+          "mapping:chills:present:absent",
+          "mapping:cough:present:absent",
+          "mapping:hoarse_voice:present:absent",
+          "mapping:itchy_eyes:present:absent",
+          "mapping:wheezing:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever"
+        ],
+        "elapsed_seconds": 1.5677
+      },
+      {
+        "case_id": 40,
+        "category": "severe",
+        "text": "I have severe eyes itching, an itchy throat, constant tiredness, throat pain, a whistling sound when breathing out for 21 days.",
+        "language": "en",
+        "age": 0,
+        "sex": "M",
+        "days": 21,
+        "target": null,
+        "expected_states": {
+          "itchy_eyes": "present",
+          "itchy_nose_throat": "present",
+          "tiredness": "present",
+          "sore_throat": "present",
+          "wheezing": "present"
+        },
+        "expected_urgent": false,
+        "answers": "two_unknown",
+        "mapped_states": {
+          "tiredness": "present",
+          "itchy_nose_throat": "present",
+          "itchy_eyes": "present",
+          "sore_throat": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "whistling sound when breathing out",
+            "suggestions": [
+              {
+                "code": "wheezing",
+                "suggested_alias": "whistling sound when i breathe out",
+                "language": "en",
+                "score": 91.2
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met",
+          "unsupported_information",
+          "clinical_assessment_needed",
+          "answers_remain_uncertain",
+          "safety_screen_incomplete"
+        ],
+        "present_features": [
+          "E_89",
+          "E_169",
+          "E_170",
+          "E_97"
+        ],
+        "absent_features": [],
+        "errors": [
+          "mapping:wheezing:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain"
+        ],
+        "elapsed_seconds": 1.2407
+      },
+      {
+        "case_id": 43,
+        "category": "routine",
+        "text": "Nina koo linauma, sauti kukwaruza, pua inanitoka, nimechoka kwa siku 1.",
+        "language": "sw",
+        "age": 65,
+        "sex": "M",
+        "days": 1,
+        "target": null,
+        "expected_states": {
+          "sore_throat": "present",
+          "hoarse_voice": "present",
+          "runny_blocked_nose": "present",
+          "tiredness": "present"
+        },
+        "expected_urgent": false,
+        "answers": "mixed",
+        "mapped_states": {
+          "runny_blocked_nose": "present",
+          "sore_throat": "present",
+          "tiredness": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "sauti kukwaruza",
+            "suggestions": [
+              {
+                "code": "hoarse_voice",
+                "suggested_alias": "sauti imekwaruza",
+                "language": "sw",
+                "score": 83.9
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "family_viral_upper_respiratory",
+          "not_clinically_validated",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_181",
+          "E_97",
+          "E_89",
+          "E_88"
+        ],
+        "absent_features": [
+          "E_66",
+          "E_91"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever",
+          "fatigue_pattern",
+          "activity_fatigue"
+        ],
+        "elapsed_seconds": 1.6057
+      },
+      {
+        "case_id": 48,
+        "category": "routine",
+        "text": "Nina kizunguzungu, sauti kukwaruza, sauti ya mluzi, nimepoteza harufu kwa siku 14.",
+        "language": "sw",
+        "age": 80,
+        "sex": "M",
+        "days": 14,
+        "target": null,
+        "expected_states": {
+          "dizziness": "present",
+          "hoarse_voice": "present",
+          "wheezing": "present",
+          "loss_of_smell": "present"
+        },
+        "expected_urgent": false,
+        "answers": "mixed",
+        "mapped_states": {
+          "loss_of_smell": "present",
+          "dizziness": "present",
+          "wheezing": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "sauti kukwaruza",
+            "suggestions": [
+              {
+                "code": "hoarse_voice",
+                "suggested_alias": "sauti imekwaruza",
+                "language": "sw",
+                "score": 83.9
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "family_viral_upper_respiratory",
+          "not_clinically_validated",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_103",
+          "E_214",
+          "E_91",
+          "E_182"
+        ],
+        "absent_features": [
+          "E_66"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever",
+          "nasal_discharge"
+        ],
+        "elapsed_seconds": 1.5341
+      },
+      {
+        "case_id": 56,
+        "category": "unsupported",
+        "text": "I have itchy eyes, no sense of smell, coughing, an itchy nose, a whistling sound when breathing out for 14 days. I also have nausea.",
+        "language": "en",
+        "age": 48,
+        "sex": "M",
+        "days": 14,
+        "target": null,
+        "expected_states": {
+          "itchy_eyes": "present",
+          "loss_of_smell": "present",
+          "cough": "present",
+          "itchy_nose_throat": "present",
+          "wheezing": "present"
+        },
+        "expected_urgent": false,
+        "answers": "mixed",
+        "mapped_states": {
+          "loss_of_smell": "present",
+          "itchy_nose_throat": "absent",
+          "itchy_eyes": "present",
+          "cough": "absent"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "whistling sound when breathing out",
+            "suggestions": [
+              {
+                "code": "wheezing",
+                "suggested_alias": "whistling sound when i breathe out",
+                "language": "en",
+                "score": 91.2
+              }
+            ]
+          },
+          {
+            "unmatched_text": "nausea",
+            "suggestions": []
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_103",
+          "E_170",
+          "E_91"
+        ],
+        "absent_features": [
+          "E_169",
+          "E_201",
+          "E_66"
+        ],
+        "errors": [
+          "mapping:cough:present:absent",
+          "mapping:itchy_nose_throat:present:absent",
+          "mapping:wheezing:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever"
+        ],
+        "elapsed_seconds": 1.4034
+      },
+      {
+        "case_id": 58,
+        "category": "mixed",
+        "text": "Nina loss of smell, kichwa kinauma, voice changes, pua imeziba kwa siku 21.",
+        "language": "sw",
+        "age": 48,
+        "sex": "M",
+        "days": 21,
+        "target": null,
+        "expected_states": {
+          "loss_of_smell": "present",
+          "headache": "present",
+          "hoarse_voice": "present",
+          "runny_blocked_nose": "present"
+        },
+        "expected_urgent": false,
+        "answers": "all_no",
+        "mapped_states": {
+          "headache": "present",
+          "loss_of_smell": "present",
+          "runny_blocked_nose": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "voice changes",
+            "suggestions": []
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_53",
+          "E_103",
+          "E_181"
+        ],
+        "absent_features": [
+          "E_66",
+          "E_91"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever"
+        ],
+        "elapsed_seconds": 1.3766
+      },
+      {
+        "case_id": 60,
+        "category": "severe",
+        "text": "I have severe throat pain, a dry cough, voice changes, a runny nose for 2 days.",
+        "language": "en",
+        "age": 16,
+        "sex": "M",
+        "days": 2,
+        "target": null,
+        "expected_states": {
+          "sore_throat": "present",
+          "cough": "present",
+          "hoarse_voice": "present",
+          "runny_blocked_nose": "present"
+        },
+        "expected_urgent": false,
+        "answers": "two_unknown",
+        "mapped_states": {
+          "sore_throat": "present",
+          "runny_blocked_nose": "present",
+          "cough": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "voice changes",
+            "suggestions": []
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met",
+          "unsupported_information",
+          "clinical_assessment_needed",
+          "answers_remain_uncertain",
+          "safety_screen_incomplete"
+        ],
+        "present_features": [
+          "E_97",
+          "E_181",
+          "E_201"
+        ],
+        "absent_features": [],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain"
+        ],
+        "elapsed_seconds": 0.9676
+      },
+      {
+        "case_id": 61,
+        "category": "routine",
+        "text": "Nina sauti kukwaruza, kutetemeka, kichwa kuuma, kikohozi, uchovu kwa siku 21.",
+        "language": "sw",
+        "age": 2,
+        "sex": "M",
+        "days": 21,
+        "target": null,
+        "expected_states": {
+          "hoarse_voice": "present",
+          "chills": "present",
+          "headache": "present",
+          "cough": "present",
+          "tiredness": "present"
+        },
+        "expected_urgent": false,
+        "answers": "mixed",
+        "mapped_states": {
+          "headache": "present",
+          "chills": "present",
+          "cough": "present",
+          "tiredness": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "sauti kukwaruza",
+            "suggestions": [
+              {
+                "code": "hoarse_voice",
+                "suggested_alias": "sauti imekwaruza",
+                "language": "sw",
+                "score": 83.9
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "family_viral_upper_respiratory",
+          "not_clinically_validated",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_53",
+          "E_94",
+          "E_201",
+          "E_89"
+        ],
+        "absent_features": [
+          "E_66",
+          "E_91",
+          "E_162",
+          "E_77"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever",
+          "fatigue_pattern",
+          "weight_loss",
+          "productive_cough"
+        ],
+        "elapsed_seconds": 2.0817
+      },
+      {
+        "case_id": 65,
+        "category": "routine",
+        "text": "I have a runny nose, no sense of smell, tiredness, high temperature for 2 days.",
+        "language": "en",
+        "age": 80,
+        "sex": "F",
+        "days": 2,
+        "target": null,
+        "expected_states": {
+          "runny_blocked_nose": "present",
+          "loss_of_smell": "present",
+          "tiredness": "present",
+          "fever": "present"
+        },
+        "expected_urgent": false,
+        "answers": "disclose",
+        "mapped_states": {
+          "loss_of_smell": "present",
+          "fever": "absent",
+          "runny_blocked_nose": "present",
+          "tiredness": "absent"
+        },
+        "unmatched": [],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met"
+        ],
+        "present_features": [
+          "E_103",
+          "E_181"
+        ],
+        "absent_features": [
+          "E_91",
+          "E_89",
+          "E_66"
+        ],
+        "errors": [
+          "mapping:fever:present:absent",
+          "mapping:tiredness:present:absent"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain"
+        ],
+        "elapsed_seconds": 1.2995
+      },
+      {
+        "case_id": 68,
+        "category": "routine",
+        "text": "Nina kutetemeka, homa, sauti kukwaruza, macho yanawasha, kizunguzungu kwa siku 7.",
+        "language": "sw",
+        "age": 16,
+        "sex": "F",
+        "days": 7,
+        "target": null,
+        "expected_states": {
+          "chills": "present",
+          "fever": "present",
+          "hoarse_voice": "present",
+          "itchy_eyes": "present",
+          "dizziness": "present"
+        },
+        "expected_urgent": false,
+        "answers": "two_unknown",
+        "mapped_states": {
+          "itchy_eyes": "present",
+          "dizziness": "present",
+          "chills": "present",
+          "fever": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "sauti kukwaruza",
+            "suggestions": [
+              {
+                "code": "hoarse_voice",
+                "suggested_alias": "sauti imekwaruza",
+                "language": "sw",
+                "score": 83.9
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "non_specific_input",
+          "unsupported_information",
+          "answers_remain_uncertain",
+          "safety_screen_incomplete"
+        ],
+        "present_features": [
+          "E_170",
+          "E_94",
+          "E_91"
+        ],
+        "absent_features": [],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "severe_chest_pain",
+          "cough"
+        ],
+        "elapsed_seconds": 1.0844
+      },
+      {
+        "case_id": 73,
+        "category": "other_person",
+        "text": "My brother has a fever. I have itchy eyes, a sore throat, a cough, chills, a whistling sound when breathing out for 14 days.",
+        "language": "en",
+        "age": 65,
+        "sex": "M",
+        "days": 14,
+        "target": "fever",
+        "expected_states": {
+          "itchy_eyes": "present",
+          "sore_throat": "present",
+          "cough": "present",
+          "chills": "present",
+          "wheezing": "present"
+        },
+        "expected_urgent": false,
+        "answers": "all_no",
+        "mapped_states": {
+          "sore_throat": "present",
+          "itchy_eyes": "present",
+          "chills": "present",
+          "cough": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "brother",
+            "suggestions": []
+          },
+          {
+            "unmatched_text": "whistling sound when breathing out",
+            "suggestions": [
+              {
+                "code": "wheezing",
+                "suggested_alias": "whistling sound when i breathe out",
+                "language": "en",
+                "score": 91.2
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "family_viral_upper_respiratory",
+          "not_clinically_validated",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_97",
+          "E_170",
+          "E_94",
+          "E_201"
+        ],
+        "absent_features": [
+          "E_66",
+          "E_91",
+          "E_162"
+        ],
+        "errors": [
+          "mapping:wheezing:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever",
+          "weight_loss"
+        ],
+        "elapsed_seconds": 2.0626
+      },
+      {
+        "case_id": 75,
+        "category": "unsupported",
+        "text": "I have no sense of smell, body aches, high temperature, constant tiredness, an itchy nose, a sore throat for 2 days. I also have abdominal pain.",
+        "language": "en",
+        "age": 80,
+        "sex": "M",
+        "days": 2,
+        "target": null,
+        "expected_states": {
+          "loss_of_smell": "present",
+          "muscle_aches": "present",
+          "fever": "present",
+          "tiredness": "present",
+          "itchy_nose_throat": "present",
+          "sore_throat": "present"
+        },
+        "expected_urgent": false,
+        "answers": "all_no",
+        "mapped_states": {
+          "tiredness": "absent",
+          "loss_of_smell": "present",
+          "fever": "absent",
+          "sore_throat": "absent",
+          "itchy_nose_throat": "absent",
+          "muscle_aches": "absent"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "abdominal pain",
+            "suggestions": []
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "unsupported_information",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_103"
+        ],
+        "absent_features": [
+          "E_89",
+          "E_91",
+          "E_97",
+          "E_169",
+          "E_144",
+          "E_66"
+        ],
+        "errors": [
+          "mapping:fever:present:absent",
+          "mapping:itchy_nose_throat:present:absent",
+          "mapping:muscle_aches:present:absent",
+          "mapping:sore_throat:present:absent",
+          "mapping:tiredness:present:absent"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain"
+        ],
+        "elapsed_seconds": 1.4915
+      },
+      {
+        "case_id": 91,
+        "category": "denial",
+        "text": "I have voice changes, high temperature, an itchy throat, shivering, a whistling sound when breathing out for 14 days. I do not have a cough.",
+        "language": "en",
+        "age": 16,
+        "sex": "M",
+        "days": 14,
+        "target": "cough",
+        "expected_states": {
+          "hoarse_voice": "present",
+          "fever": "present",
+          "itchy_nose_throat": "present",
+          "chills": "present",
+          "wheezing": "present",
+          "cough": "absent"
+        },
+        "expected_urgent": false,
+        "answers": "all_no",
+        "mapped_states": {
+          "fever": "present",
+          "itchy_nose_throat": "present",
+          "chills": "present",
+          "cough": "absent"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "voice changes",
+            "suggestions": []
+          },
+          {
+            "unmatched_text": "whistling sound when breathing out",
+            "suggestions": [
+              {
+                "code": "wheezing",
+                "suggested_alias": "whistling sound when i breathe out",
+                "language": "en",
+                "score": 91.2
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_91",
+          "E_169",
+          "E_94"
+        ],
+        "absent_features": [
+          "E_201",
+          "E_66",
+          "E_88",
+          "E_50",
+          "E_97"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing",
+          "mapping:wheezing:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "activity_fatigue",
+          "heavy_sweating",
+          "sore_throat"
+        ],
+        "elapsed_seconds": 2.2159
+      },
+      {
+        "case_id": 95,
+        "category": "unsupported",
+        "text": "I have no sense of smell, body aches, a blocked nose, a hoarse voice for 3 days. I also have ear pain.",
+        "language": "en",
+        "age": 80,
+        "sex": "M",
+        "days": 3,
+        "target": null,
+        "expected_states": {
+          "loss_of_smell": "present",
+          "muscle_aches": "present",
+          "runny_blocked_nose": "present",
+          "hoarse_voice": "present"
+        },
+        "expected_urgent": false,
+        "answers": "all_no",
+        "mapped_states": {
+          "loss_of_smell": "present",
+          "hoarse_voice": "absent",
+          "runny_blocked_nose": "absent",
+          "muscle_aches": "absent"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "ear pain",
+            "suggestions": [
+              {
+                "code": "headache",
+                "suggested_alias": "head pain",
+                "language": "en",
+                "score": 82.4
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_103"
+        ],
+        "absent_features": [
+          "E_212",
+          "E_181",
+          "E_144",
+          "E_66",
+          "E_91"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:absent",
+          "mapping:muscle_aches:present:absent",
+          "mapping:runny_blocked_nose:present:absent"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever"
+        ],
+        "elapsed_seconds": 1.8861
+      },
+      {
+        "case_id": 96,
+        "category": "unsupported",
+        "text": "I have a whistling sound when breathing out, tiredness, dizziness, an itchy throat for 5 days. I also have nausea.",
+        "language": "en",
+        "age": 24,
+        "sex": "F",
+        "days": 5,
+        "target": null,
+        "expected_states": {
+          "wheezing": "present",
+          "tiredness": "present",
+          "dizziness": "present",
+          "itchy_nose_throat": "present"
+        },
+        "expected_urgent": false,
+        "answers": "mixed",
+        "mapped_states": {
+          "itchy_nose_throat": "present",
+          "tiredness": "present",
+          "dizziness": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "whistling sound when breathing out",
+            "suggestions": [
+              {
+                "code": "wheezing",
+                "suggested_alias": "whistling sound when i breathe out",
+                "language": "en",
+                "score": 91.2
+              }
+            ]
+          },
+          {
+            "unmatched_text": "nausea",
+            "suggestions": []
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "family_viral_upper_respiratory",
+          "not_clinically_validated",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_169",
+          "E_89",
+          "E_91",
+          "E_182"
+        ],
+        "absent_features": [
+          "E_66"
+        ],
+        "errors": [
+          "mapping:wheezing:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever",
+          "fatigue_pattern",
+          "nasal_discharge"
+        ],
+        "elapsed_seconds": 2.6207
+      },
+      {
+        "case_id": 98,
+        "category": "mixed",
+        "text": "Nina a fever, koo kuuma, chills, sauti kukwaruza, tiredness kwa siku 5.",
+        "language": "sw",
+        "age": 35,
+        "sex": "M",
+        "days": 5,
+        "target": null,
+        "expected_states": {
+          "fever": "present",
+          "sore_throat": "present",
+          "chills": "present",
+          "hoarse_voice": "present",
+          "tiredness": "present"
+        },
+        "expected_urgent": false,
+        "answers": "all_no",
+        "mapped_states": {
+          "tiredness": "present",
+          "sore_throat": "present",
+          "chills": "present",
+          "fever": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "sauti kukwaruza",
+            "suggestions": [
+              {
+                "code": "hoarse_voice",
+                "suggested_alias": "sauti imekwaruza",
+                "language": "sw",
+                "score": 83.9
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "self_care_or_review",
+        "reasons": [
+          "gap_source_validation_bound_not_met",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_97",
+          "E_94",
+          "E_91"
+        ],
+        "absent_features": [
+          "E_66"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fatigue_pattern"
+        ],
+        "elapsed_seconds": 1.9537
+      },
+      {
+        "case_id": 101,
+        "category": "routine",
+        "text": "Nina nimechoka, sauti ya mluzi, baridi, sauti kukwaruza, macho yanawasha, koo kuuma kwa siku 3.",
+        "language": "sw",
+        "age": 0,
+        "sex": "M",
+        "days": 3,
+        "target": null,
+        "expected_states": {
+          "tiredness": "present",
+          "wheezing": "present",
+          "chills": "present",
+          "hoarse_voice": "present",
+          "itchy_eyes": "present",
+          "sore_throat": "present"
+        },
+        "expected_urgent": false,
+        "answers": "disclose",
+        "mapped_states": {
+          "itchy_eyes": "present",
+          "wheezing": "present",
+          "sore_throat": "present",
+          "tiredness": "present",
+          "chills": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "sauti kukwaruza",
+            "suggestions": [
+              {
+                "code": "hoarse_voice",
+                "suggested_alias": "sauti imekwaruza",
+                "language": "sw",
+                "score": 83.9
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "urgent_review",
+        "primary": null,
+        "family": false,
+        "care_level": "urgent_review",
+        "reasons": [
+          "reported_warning_sign"
+        ],
+        "present_features": [
+          "E_170",
+          "E_214",
+          "E_97",
+          "E_94",
+          "E_91"
+        ],
+        "absent_features": [
+          "E_66"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing"
+        ],
+        "questions": [
+          "breathing_difficulty",
+          "severe_chest_pain",
+          "fever"
+        ],
+        "elapsed_seconds": 1.6974
+      },
+      {
+        "case_id": 102,
+        "category": "routine",
+        "text": "I have a fever, voice changes, eyes itching, a whistling sound when breathing out, constant tiredness for 21 days.",
+        "language": "en",
+        "age": 35,
+        "sex": "M",
+        "days": 21,
+        "target": null,
+        "expected_states": {
+          "fever": "present",
+          "hoarse_voice": "present",
+          "itchy_eyes": "present",
+          "wheezing": "present",
+          "tiredness": "present"
+        },
+        "expected_urgent": false,
+        "answers": "all_no",
+        "mapped_states": {
+          "tiredness": "present",
+          "itchy_eyes": "present",
+          "fever": "present"
+        },
+        "unmatched": [
+          {
+            "unmatched_text": "voice changes",
+            "suggestions": []
+          },
+          {
+            "unmatched_text": "whistling sound when breathing out",
+            "suggestions": [
+              {
+                "code": "wheezing",
+                "suggested_alias": "whistling sound when i breathe out",
+                "language": "en",
+                "score": 91.2
+              }
+            ]
+          }
+        ],
+        "initial_warning": false,
+        "status": "assessment_uncertain",
+        "primary": null,
+        "family": false,
+        "care_level": "professional_review",
+        "reasons": [
+          "non_specific_input",
+          "unsupported_information"
+        ],
+        "present_features": [
+          "E_89",
+          "E_170",
+          "E_91"
+        ],
+        "absent_features": [
+          "E_201",
+          "E_66",
+          "E_97",
+          "E_181"
+        ],
+        "errors": [
+          "mapping:hoarse_voice:present:missing",
+          "mapping:wheezing:present:missing"
+        ],
+        "questions": [
+          "severe_chest_pain",
+          "symptom_severity",
+          "cough",
+          "breathing_difficulty",
+          "sore_throat",
+          "runny_blocked_nose"
+        ],
+        "elapsed_seconds": 2.5405
+      }
+    ]
+  },
+  "source": {
+    "counts": {
+      "cases": 10000,
+      "underlying_top1_correct": 7227,
+      "uncertain": 7104,
+      "family": 484,
+      "family_label_in_family": 467,
+      "eligible": 2412,
+      "named_correct": 2306
+    },
+    "unique_source_profiles": 10000,
+    "unique_model_inputs": 9958,
+    "evidence_buckets": {
+      "1:0": {
+        "cases": 229
+      },
+      "2:0": {
+        "cases": 311
+      },
+      "3:0": {
+        "cases": 391
+      },
+      "4:0": {
+        "cases": 324
+      },
+      "5:0": {
+        "cases": 216,
+        "named": 206,
+        "named_correct": 192
+      },
+      "6:0": {
+        "cases": 130,
+        "named": 123,
+        "named_correct": 117
+      },
+      "7:0": {
+        "cases": 57,
+        "named": 56,
+        "named_correct": 56
+      },
+      "8:0": {
+        "cases": 14,
+        "named": 14,
+        "named_correct": 14
+      },
+      "1:1": {
+        "cases": 219
+      },
+      "2:1": {
+        "cases": 323
+      },
+      "3:1": {
+        "cases": 379
+      },
+      "4:1": {
+        "cases": 332
+      },
+      "5:1": {
+        "cases": 194,
+        "named": 185,
+        "named_correct": 176
+      },
+      "6:1": {
+        "cases": 141,
+        "named": 135,
+        "named_correct": 128
+      },
+      "7:1": {
+        "cases": 64,
+        "named": 63,
+        "named_correct": 61
+      },
+      "8:1": {
+        "cases": 20,
+        "named": 19,
+        "named_correct": 19
+      },
+      "1:2": {
+        "cases": 222
+      },
+      "2:2": {
+        "cases": 342
+      },
+      "3:2": {
+        "cases": 377
+      },
+      "4:2": {
+        "cases": 295
+      },
+      "5:2": {
+        "cases": 215,
+        "named": 204,
+        "named_correct": 195
+      },
+      "6:2": {
+        "cases": 129,
+        "named": 122,
+        "named_correct": 118
+      },
+      "7:2": {
+        "cases": 57,
+        "named": 57,
+        "named_correct": 56
+      },
+      "8:2": {
+        "cases": 27,
+        "named": 27,
+        "named_correct": 27
+      },
+      "1:3": {
+        "cases": 227
+      },
+      "2:3": {
+        "cases": 328
+      },
+      "3:3": {
+        "cases": 404
+      },
+      "4:3": {
+        "cases": 310
+      },
+      "5:3": {
+        "cases": 195,
+        "named": 187,
+        "named_correct": 176
+      },
+      "6:3": {
+        "cases": 128,
+        "named": 125,
+        "named_correct": 122
+      },
+      "7:3": {
+        "cases": 56,
+        "named": 56,
+        "named_correct": 56
+      },
+      "8:3": {
+        "cases": 16,
+        "named": 16,
+        "named_correct": 16
+      },
+      "1:4": {
+        "cases": 224
+      },
+      "2:4": {
+        "cases": 314
+      },
+      "3:4": {
+        "cases": 362
+      },
+      "4:4": {
+        "cases": 329
+      },
+      "5:4": {
+        "cases": 196,
+        "named": 187,
+        "named_correct": 175
+      },
+      "6:4": {
+        "cases": 155,
+        "named": 152,
+        "named_correct": 144
+      },
+      "7:4": {
+        "cases": 57,
+        "named": 56,
+        "named_correct": 55
+      },
+      "8:4": {
+        "cases": 27,
+        "named": 27,
+        "named_correct": 27
+      },
+      "1:5": {
+        "cases": 225
+      },
+      "2:5": {
+        "cases": 347
+      },
+      "3:5": {
+        "cases": 390
+      },
+      "4:5": {
+        "cases": 295
+      },
+      "5:5": {
+        "cases": 205,
+        "named": 199,
+        "named_correct": 187
+      },
+      "6:5": {
+        "cases": 116,
+        "named": 111,
+        "named_correct": 104
+      },
+      "7:5": {
+        "cases": 63,
+        "named": 62,
+        "named_correct": 62
+      },
+      "8:5": {
+        "cases": 23,
+        "named": 23,
+        "named_correct": 23
+      }
+    },
+    "named_coverage": 0.2412,
+    "named_selective_accuracy": 0.9560530679933665,
+    "correct_named_per_all_cases": 0.2306,
+    "underlying_top1_accuracy": 0.7227,
+    "family_source_label_agreement": 0.9648760330578512,
+    "note": "Existing DDXPlus test fold, excluding training/validation signatures; 10,000 distinct full source profiles, but partial model inputs may repeat. Source-only classification, not API triage or Kenyan clinical validation. Family agreement means the source class is in the declared family, not a proven viral cause. No threshold changes."
+  }
+}
