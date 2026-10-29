@@ -86,8 +86,8 @@
     "Acute COPD exacerbation / infection": {
       "medical_name": "Acute COPD exacerbation / possible infection",
       "display_name": {
-        "en": "COPD flare-up / possible infection",
-        "sw": "Kuzidi kwa ugonjwa sugu wa mapafu (COPD) / huenda kuna maambukizi"
+        "en": "Long-term lung condition flare-up (acute COPD exacerbation)",
+        "sw": "Kuzidi kwa ugonjwa sugu wa mapafu (COPD)"
       },
       "description": {
         "en": "A sudden worsening of an existing long-term lung condition, with more breathlessness, cough or mucus. An infection can be a trigger; symptoms alone do not establish the cause.",
@@ -142,8 +142,8 @@
     "Allergic sinusitis": {
       "medical_name": "Allergic sinusitis (source dataset label)",
       "display_name": {
-        "en": "Allergy-related sinus inflammation",
-        "sw": "Kuvimba kwa sinasi kunakohusiana na mzio"
+        "en": "Allergy-related sinus inflammation (allergic sinusitis)",
+        "sw": "Kuvimba kwa sinasi kutokana na mzio (allergic sinusitis)"
       },
       "description": {
         "en": "Allergies can contribute to nose and sinus swelling, with a blocked nose and facial pressure. This dataset label does not establish an allergy or a bacterial infection.",
@@ -203,8 +203,8 @@
     "Bronchospasm / acute asthma exacerbation": {
       "medical_name": "Bronchospasm / acute asthma exacerbation",
       "display_name": {
-        "en": "Airway narrowing / asthma flare-up",
-        "sw": "Kubana kwa njia za hewa / kuzidi kwa pumu"
+        "en": "Airway narrowing and asthma flare-up (bronchospasm / acute asthma exacerbation)",
+        "sw": "Kubana kwa njia za hewa na kuzidi kwa pumu (bronchospasm / acute asthma exacerbation)"
       },
       "description": {
         "en": "Tightening and narrowing of the airways can cause wheezing, cough, chest tightness and breathlessness. These symptoms do not by themselves confirm asthma.",
@@ -231,8 +231,8 @@
     "Croup": {
       "medical_name": "Croup",
       "display_name": {
-        "en": "Croup (upper airway swelling)",
-        "sw": "Croup (kuvimba kwa njia ya juu ya hewa)"
+        "en": "Barking cough illness in young children (croup)",
+        "sw": "Ugonjwa wa kikohozi cha kubweka kwa watoto wadogo (croup)"
       },
       "description": {
         "en": "An illness mainly affecting young children that can cause a barking cough, hoarse voice and noisy breathing. A child with breathing difficulty needs urgent assessment.",
@@ -290,7 +290,7 @@
       "medical_name": "Pneumonia",
       "display_name": {
         "en": "Lung infection (pneumonia)",
-        "sw": "Maambukizi ya mapafu (nimonia)"
+        "sw": "Maambukizi ya mapafu (pneumonia)"
       },
       "description": {
         "en": "An infection inside the lungs can cause cough, fever and breathing difficulty. Symptoms overlap with other illnesses; a healthcare professional needs to assess the cause and severity.",
@@ -303,8 +303,8 @@
     "Pulmonary neoplasm": {
       "medical_name": "Pulmonary neoplasm",
       "display_name": {
-        "en": "Lung growth (pulmonary neoplasm)",
-        "sw": "Uvimbe kwenye pafu (pulmonary neoplasm)"
+        "en": "Abnormal growth in the lung (pulmonary neoplasm)",
+        "sw": "Uvimbe usio wa kawaida kwenye pafu (pulmonary neoplasm)"
       },
       "description": {
         "en": "An abnormal growth in the lung may be cancerous or non-cancerous. Symptoms alone cannot identify a growth or its type; medical assessment and tests are needed.",
@@ -331,7 +331,7 @@
     "Tuberculosis": {
       "medical_name": "Tuberculosis",
       "display_name": {
-        "en": "Tuberculosis (TB)",
+        "en": "TB (tuberculosis)",
         "sw": "Kifua kikuu (TB)"
       },
       "description": {

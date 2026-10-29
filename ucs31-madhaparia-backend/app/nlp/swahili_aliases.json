@@ -149,5 +149,42 @@
     "kupoteza ladha",
     "sipati ladha",
     "hakuna ladha"
+  ],
+  "night_breathlessness": [
+    "kuamka nikikosa pumzi",
+    "nakosa pumzi usiku"
+  ],
+  "wheeze_after_coughing": [
+    "mluzi baada ya kukohoa",
+    "kupumua kwa mluzi baada ya kukohoa"
+  ],
+  "nasal_discharge": [
+    "kamasi za kijani",
+    "kamasi za manjano"
+  ],
+  "loss_of_smell": [
+    "kupoteza uwezo wa kunusa",
+    "siwezi kunusa",
+    "nimepoteza harufu"
+  ],
+  "itchy_nose_throat": [
+    "pua inawasha",
+    "koo linawasha"
+  ],
+  "itchy_eyes": [
+    "macho yanawasha"
+  ],
+  "pain_deep_breath": [
+    "maumivu nikivuta pumzi kwa nguvu"
+  ],
+  "worse_lying_down": [
+    "inazidi nikilala chini"
+  ],
+  "worse_with_exertion": [
+    "inazidi nikifanya shughuli"
+  ],
+  "activity_fatigue": [
+    "nimechoka kufanya shughuli za kawaida",
+    "siwezi kufanya shughuli zangu"
   ]
 }

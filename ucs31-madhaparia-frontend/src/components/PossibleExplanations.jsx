@@ -16,7 +16,7 @@ export default function PossibleExplanations({ primary, language = 'en' }) {
   const hasMatch = typeof primary.match_percent_rounded === 'number' && bandLabel
   return (
     <article className="consultation-candidate" aria-label={swahili ? 'Hali inayowezekana' : 'Possible explanation'}>
-      <h3>{primary.display_name}</h3>
+      <h3>{primary.dual_name || primary.display_name}</h3>
       {hasMatch && (
         <p className="consultation-match" role="status">
           <strong>{swahili ? `${bandLabel} match` : `${bandLabel} match`} — {swahili ? `karibu ${primary.match_percent_rounded}%` : `about ${primary.match_percent_rounded}%`}</strong>
@@ -25,9 +25,11 @@ export default function PossibleExplanations({ primary, language = 'en' }) {
           {primary.match_label_detail && <><br /><span>{primary.match_label_detail}</span></>}
         </p>
       )}
-      {primary.medical_name && primary.medical_name !== primary.display_name &&
-        !primary.display_name.toLowerCase().includes(primary.medical_name.toLowerCase()) && (
-        <p className="consultation-medical-name">{swahili ? 'Jina la kitabibu' : 'Medical name'}: {primary.medical_name}</p>
+      {primary.is_family_answer && primary.family_note && (
+        <p className="consultation-limitation"><strong>{primary.family_note}</strong></p>
+      )}
+      {primary.tb_note && (
+        <p className="consultation-limitation">{primary.tb_note}</p>
       )}
       {primary.description && <div className="consultation-meaning">
         <h4>{swahili ? 'Maana yake' : 'What this means'}</h4>

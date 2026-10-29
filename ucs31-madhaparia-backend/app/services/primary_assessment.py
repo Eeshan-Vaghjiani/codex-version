@@ -12,6 +12,34 @@ RESPIRATORY_FEATURES = frozenset({'E_103','E_112','E_166','E_169','E_181','E_182
 PUBLIC_CONTEXT_FIELDS = {'language','symptom_states','symptom_durations','duration','severity','cough_type',
  'onset_text','weight_loss_intent','fatigue_pattern','follow_up_answers','questions_asked','model_version','context_note','age'}
 
+# Family-level flu-like answer. NOT a model class and NOT a diagnosis: a
+# family of common viral upper-respiratory illnesses, used only for the
+# narrow 4:0 exception in primary_selection.py. Dual format, as for every
+# patient result: simple name first, medical description in parentheses.
+FAMILY_DUAL_NAME = {
+    'en': 'Flu-like illness / common cold (viral upper respiratory infection)',
+    'sw': 'Ugonjwa unaofanana na mafua / mafua ya kawaida (maambukizi ya virusi ya njia za juu za hewa)',
+}
+FAMILY_SIMPLE_NAME = {
+    'en': 'Flu-like illness / common cold',
+    'sw': 'Ugonjwa unaofanana na mafua / mafua ya kawaida',
+}
+FAMILY_DESCRIPTION = {
+    'en': 'A family of common viral illnesses of the nose and throat. This is not one confirmed disease: influenza, a common cold and other viral upper-respiratory illnesses overlap heavily and cannot be separated from these symptoms alone.',
+    'sw': 'Familia ya magonjwa ya kawaida ya virusi ya pua na koo. Hii si ugonjwa mmoja uliothibitishwa: influenza, mafua ya kawaida na magonjwa mengine ya virusi ya njia za juu za hewa yanafanana sana na hayawezi kutenganishwa kwa dalili hizi pekee.',
+}
+FAMILY_NOTE = {
+    'en': 'Family answer, not a diagnosis: this names a family of common viral illnesses, not one confirmed disease.',
+    'sw': 'Jibu la familia, si utambuzi: hili linataja familia ya magonjwa ya kawaida ya virusi, si ugonjwa mmoja uliothibitishwa.',
+}
+TB_NOTE = {
+    'en': 'About TB: TB is a bacterial infection. It is testable and treatable. Having TB does not mean having HIV, and TB is nothing to be ashamed of.',
+    'sw': 'Kuhusu TB: TB ni maambukizi ya bakteria. Inaweza kupimwa na kutibiwa. Kuwa na TB haimaanishi kuwa na HIV, na TB si jambo la aibu.',
+}
+# Features that count as specific support for a serious name (see
+# primary_selection.SPARSE_SERIOUS_FEATURES). Used as defence in depth here.
+_SPARSE_SPECIFIC_FEATURES = frozenset({'E_162', 'E_45', 'E_14', 'E_66', 'E_50'})
+
 
 def has_respiratory_scope(features):
     return bool(set(features) & RESPIRATORY_FEATURES)
@@ -96,6 +124,7 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
     needs_covid_note = (
         states.get('loss_of_smell') == 'present' or states.get('loss_of_taste') == 'present'
         or (primary and primary['condition'] in ('Acute rhinosinusitis', 'Chronic rhinosinusitis', 'Allergic sinusitis', 'Influenza', 'URTI'))
+        or (primary and primary.get('is_family_answer'))
         or primary is None
     )
     if needs_covid_note:
@@ -121,6 +150,20 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
              'A serious condition may be close behind. Seek professional assessment today, do not wait.'),
             base['next_steps'][-1],
         ]
+    if 'sparse_serious_guard' in context.get('_decision_reasons', []):
+        base['care_level'] = 'professional_review'
+        base['next_steps'] = [
+            ('Dalili hizi pekee hazitoshi kutaja ugonjwa mbaya kwa uhakika. Tafuta tathmini ya mtaalamu wa afya; uchunguzi au vipimo vinaweza kuhitajika.' if sw else
+             'These symptoms alone are not enough to name a serious condition with confidence. Seek professional assessment; an examination or tests may be needed.'),
+            base['next_steps'][-1],
+        ]
+    # Withheld must still be useful: never a bare "we cannot name one" with
+    # no next step. A fever in Kenya always gets a malaria-test step.
+    if primary is None and states.get('fever') == 'present':
+        malaria_step = ('Ikiwa una homa nchini Kenya, fikiria kipimo cha malaria.' if sw else
+                        'If you have a fever in Kenya, consider a malaria test.')
+        if malaria_step not in base['next_steps']:
+            base['next_steps'].insert(1, malaria_step)
     base['health_guidance'] = base['next_steps'][0]
     return base
 
@@ -145,6 +188,46 @@ def build_primary_assessment(confirmation, age, sex):
     if any(value == 'severe' for value in context.get('severity', {}).values()):
         chosen['status'], chosen['primary_prediction'] = 'uncertain', None
         reasons = ['clinical_assessment_needed']
+    # Defence in depth for the sparse-serious guard: even if a caller
+    # bypasses classify_primary's guard, a serious name on <=3 present
+    # features with no specific support never reaches the patient here.
+    if chosen['status'] == 'eligible' and chosen.get('primary_prediction'):
+        _raw_condition = chosen['primary_prediction'].get('condition')
+        _match = chosen.get('match') or {}
+        _is_sparse_serious = (
+            _raw_condition == 'Pulmonary neoplasm'
+            or (_raw_condition == 'Tuberculosis' and (_match.get('band') == 'strong'))
+        ) and len(present) <= 3 and not (set(present) & _SPARSE_SPECIFIC_FEATURES)
+        if _is_sparse_serious:
+            chosen['status'], chosen['primary_prediction'] = 'uncertain', None
+            reasons = ['sparse_serious_guard']
+    if chosen['status'] == 'family' and chosen.get('primary_prediction'):
+        raw = chosen['primary_prediction']
+        primary = {
+            'condition': raw['condition'],
+            'is_family_answer': True,
+            'family_top_condition': raw.get('family_top_condition'),
+            'medical_name': 'Viral upper respiratory infection',
+            'display_name': FAMILY_DUAL_NAME['sw' if sw else 'en'],
+            'dual_name': FAMILY_DUAL_NAME['sw' if sw else 'en'],
+            'simple_name': FAMILY_SIMPLE_NAME['sw' if sw else 'en'],
+            'description': FAMILY_DESCRIPTION['sw' if sw else 'en'],
+            'family_note': FAMILY_NOTE['sw' if sw else 'en'],
+            'match_percent_rounded': (chosen.get('match') or {}).get('percent_rounded'),
+            'match_band': (chosen.get('match') or {}).get('band'),
+            'match_label': (chosen.get('match') or {}).get('label'),
+            'match_label_detail': ('Alama hii ni ya familia ya magonjwa ya virusi, si uwezekano kwamba una ugonjwa mmoja uliothibitishwa.' if sw else
+                                   'This match is for the viral family pattern, not the probability that you have one confirmed disease.'),
+            'explanation': ('Dalili ulizoripoti zinapatana na familia hii ya magonjwa ya kawaida ya virusi, lakini pia zinaweza kuonekana katika hali nyingine.' if sw else
+                            'Some of the symptoms you reported fit this family of common viral illnesses, but they can also occur in other conditions.'),
+            'supporting_symptoms': list(dict.fromkeys(
+                SW_SYMPTOMS.get(code, item.get('display_name', code.replace('_',' '))) if sw
+                else item.get('display_name', code.replace('_',' '))
+                for code,item in confirmation.get('_symptom_details', {}).items()
+                if context.get('symptom_states', {}).get(code) == 'present')),
+            'evidence_note': ('Matokeo haya hayajathibitishwa katika huduma za kliniki nchini Kenya.' if sw else
+                              'This assessment has not been clinically validated for patients in Kenya.'),
+        }
     if chosen['status'] == 'eligible' and chosen.get('primary_prediction'):
         raw = chosen['primary_prediction']
         primary = {**patient_term(raw['condition'], language),
@@ -162,6 +245,8 @@ def build_primary_assessment(confirmation, age, sex):
             'evidence_note': ('Matokeo haya hayajathibitishwa katika huduma za kliniki nchini Kenya.' if sw else
                               'This assessment has not been clinically validated for patients in Kenya.'),
         }
+    if primary and primary.get('condition') == 'Tuberculosis':
+        primary['tb_note'] = TB_NOTE['sw' if sw else 'en']
     reported = any(value in {'present','unknown'} for value in context.get('symptom_states', {}).values())
     decision_status = 'possible_explanation' if primary else 'uncertain' if reported else 'insufficient_information'
     status = 'prediction_complete' if primary else 'assessment_uncertain' if reported else 'insufficient_evidence'

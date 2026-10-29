@@ -9,7 +9,7 @@ export function getPatientPrimary(result) {
       result?.care_level === 'urgent_review' ||
       result?.decision?.status !== 'possible_explanation' ||
       !result?.decision?.policy_version ||
-      !result?.primary_prediction?.display_name) return null
+      !(result?.primary_prediction?.display_name || result?.primary_prediction?.dual_name)) return null
   return result.primary_prediction
 }
 

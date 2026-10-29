@@ -1,6 +1,45 @@
 # TEST REPORT — Muse improvements, 2026-10-29
 
-## Real counts (actually run here)
+## Real counts (actually run here, follow-up run)
+- Backend full suite: **338 passed, 0 failed** (PostgreSQL via pgserver bundle,
+  `TEST_DATABASE_URL` to a local test DB, Alembic + seeded catalogue).
+  This includes the earlier 39 new tests plus 12 dual/family tests and
+  5 uncapped-follow-up tests. No failing test was deleted; one existing
+  frontend test that asserted the old separate "Medical name:" line was
+  updated to assert the new dual title (the behaviour intentionally
+  changed, see CHANGELOG), and old 5-question-cap assertions were not
+  needed to change — the v3 consultation tests still pass because the
+  unknown-answer and gain stops end those flows first.
+- Frontend full suite (vitest): **116 passed, 0 failed** (20 files),
+  including the new dual-title and TB/family-note tests.
+- Frontend build: `vite build` succeeds with `VITE_API_BASE_URL` set
+  (baseline requirement; without it the baseline vite config itself errors).
+
+## Follow-up results (dual naming, flu-like fix, uncapped gathering)
+- Dual naming: all 21 V3 classes, EN and SW, pass the
+  simple (medical) format check.
+- Common cluster, before → after:
+  - "headache, sore throat, dry cough and a running nose" — before:
+    "running nose" unmapped (3 symptoms, URTI 69% moderate by luck).
+    After: runny_blocked_nose mapped, 4 symptoms, family answer
+    "Flu-like illness / common cold (viral upper respiratory
+    infection)", 78% moderate, with care steps and COVID test note.
+  - "headache, sore throat, cough and runny nose for 2 days" — before:
+    withheld (bucket 4:0 disabled). After: family answer, 78% moderate.
+  - "fever, cough, tiredness and sore throat" (4:0 close case) — still
+    withheld: top 51%, below the 75% family threshold.
+  - "headache, tiredness and cough for 2 days" — before: Pulmonary
+    neoplasm 100% strong. After: no neoplasm name, status uncertain,
+    reason sparse_serious_guard, professional-review guidance.
+  - "fever + cough" — before: withheld. After extra discriminator
+    (sore throat "yes"): URTI, 70% moderate.
+- 21 journeys: **21 passed** in `tests/test_muse_journeys.py` (re-run).
+- New tests: `tests/test_muse_dual_and_family.py` (12 tests) and
+  `tests/test_muse_uncapped_followup.py` (5 tests) — all pass.
+- What was NOT run in this follow-up: browser / Playwright journeys,
+  ML training/evaluation suites (no model retrained).
+
+## Earlier counts (first build, for reference)
 - Backend full suite: **321 passed, 0 failed** (PostgreSQL via pgserver bundle,
   `TEST_DATABASE_URL` to a local `respiratory_test` DB, Alembic + seeded catalogue).
   This includes the 39 new tests below and all pre-existing tests.

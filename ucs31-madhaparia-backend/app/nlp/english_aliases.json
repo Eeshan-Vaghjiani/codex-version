@@ -77,7 +77,9 @@
     "waking up breathless",
     "breathless at night",
     "choking at night",
-    "waking up choking"
+    "waking up choking",
+    "waking up gasping",
+    "waking gasping for air"
   ],
   "wheezing": [
     "wheezing",
@@ -90,7 +92,8 @@
   "wheeze_after_coughing": [
     "wheezing after coughing",
     "wheeze after coughing",
-    "noisy breathing after coughing"
+    "noisy breathing after coughing",
+    "whistling after coughing"
   ],
   "stridor": [
     "stridor",
@@ -125,6 +128,7 @@
   ],
   "runny_blocked_nose": [
     "runny nose",
+    "running nose",
     "blocked nose",
     "stuffy nose",
     "nasal congestion",
@@ -137,7 +141,9 @@
     "green nasal discharge",
     "yellow nasal discharge",
     "green mucus from nose",
-    "yellow mucus from nose"
+    "yellow mucus from nose",
+    "green snot",
+    "yellow snot"
   ],
   "loss_of_smell": [
     "loss of smell",
@@ -145,7 +151,8 @@
     "can't smell",
     "lost sense of smell",
     "lost my sense of smell",
-    "loss of my sense of smell"
+    "loss of my sense of smell",
+    "no sense of smell"
   ],
   "itchy_nose_throat": [
     "itchy nose",
@@ -154,7 +161,8 @@
   ],
   "itchy_eyes": [
     "itchy eyes",
-    "eyes are itchy"
+    "eyes are itchy",
+    "eyes itching"
   ],
   "headache": [
     "headache",

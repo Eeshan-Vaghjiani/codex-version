@@ -219,9 +219,14 @@
         "waking up breathless",
         "breathless at night",
         "choking at night",
-        "waking up choking"
+        "waking up choking",
+        "waking up gasping",
+        "waking gasping for air"
       ],
-      "sw": []
+      "sw": [
+        "kuamka nikikosa pumzi",
+        "nakosa pumzi usiku"
+      ]
     }
   },
   {
@@ -260,9 +265,13 @@
       "en": [
         "wheezing after coughing",
         "wheeze after coughing",
-        "noisy breathing after coughing"
+        "noisy breathing after coughing",
+        "whistling after coughing"
       ],
-      "sw": []
+      "sw": [
+        "mluzi baada ya kukohoa",
+        "kupumua kwa mluzi baada ya kukohoa"
+      ]
     }
   },
   {
@@ -379,6 +388,7 @@
     "aliases": {
       "en": [
         "runny nose",
+        "running nose",
         "blocked nose",
         "stuffy nose",
         "nasal congestion",
@@ -409,9 +419,14 @@
         "green nasal discharge",
         "yellow nasal discharge",
         "green mucus from nose",
-        "yellow mucus from nose"
+        "yellow mucus from nose",
+        "green snot",
+        "yellow snot"
       ],
-      "sw": []
+      "sw": [
+        "kamasi za kijani",
+        "kamasi za manjano"
+      ]
     }
   },
   {
@@ -429,9 +444,14 @@
         "can't smell",
         "lost sense of smell",
         "lost my sense of smell",
-        "loss of my sense of smell"
+        "loss of my sense of smell",
+        "no sense of smell"
       ],
-      "sw": []
+      "sw": [
+        "kupoteza uwezo wa kunusa",
+        "siwezi kunusa",
+        "nimepoteza harufu"
+      ]
     }
   },
   {
@@ -471,7 +491,10 @@
         "itchy throat",
         "itchy nose or throat"
       ],
-      "sw": []
+      "sw": [
+        "pua inawasha",
+        "koo linawasha"
+      ]
     }
   },
   {
@@ -485,9 +508,12 @@
     "aliases": {
       "en": [
         "itchy eyes",
-        "eyes are itchy"
+        "eyes are itchy",
+        "eyes itching"
       ],
-      "sw": []
+      "sw": [
+        "macho yanawasha"
+      ]
     }
   },
   {
@@ -562,7 +588,9 @@
         "pain on deep breath",
         "chest pain when taking a deep breath"
       ],
-      "sw": []
+      "sw": [
+        "maumivu nikivuta pumzi kwa nguvu"
+      ]
     }
   },
   {
@@ -579,7 +607,9 @@
         "better when sitting up",
         "breathing worse lying down"
       ],
-      "sw": []
+      "sw": [
+        "inazidi nikilala chini"
+      ]
     }
   },
   {
@@ -597,7 +627,9 @@
         "symptoms worse when active",
         "better with rest"
       ],
-      "sw": []
+      "sw": [
+        "inazidi nikifanya shughuli"
+      ]
     }
   },
   {
@@ -640,7 +672,10 @@
         "too tired to do usual activities",
         "exhausted doing normal activities"
       ],
-      "sw": []
+      "sw": [
+        "nimechoka kufanya shughuli za kawaida",
+        "siwezi kufanya shughuli zangu"
+      ]
     }
   },
   {

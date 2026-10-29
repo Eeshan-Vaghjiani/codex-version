@@ -25,9 +25,19 @@ describe('One possible explanation', () => {
     expect(screen.queryByRole('article')).not.toBeInTheDocument()
   })
 
-  it('retains a medical name when it differs from the familiar name', () => {
-    render(<PossibleExplanations primary={{ ...primary, display_name: 'Familiar name' }} />)
-    expect(screen.getByText('Medical name: Medical name')).toBeInTheDocument()
+  it('shows the dual name as the single title, with no separate medical line', () => {
+    // Dual format (simple + medical in one title) replaced the old
+    // separate "Medical name:" line in 2026-10-29.
+    render(<PossibleExplanations primary={{ ...primary, dual_name: 'Chest infection (bronchitis)' }} />)
+    expect(screen.getByText('Chest infection (bronchitis)')).toBeInTheDocument()
+    expect(screen.queryByText(/Medical name:/)).not.toBeInTheDocument()
+  })
+
+  it('renders the TB note and the family note when present', () => {
+    render(<PossibleExplanations primary={{ ...primary, dual_name: 'TB (tuberculosis)', tb_note: 'Having TB does not mean having HIV.' }} />)
+    expect(screen.getByText('Having TB does not mean having HIV.')).toBeInTheDocument()
+    render(<PossibleExplanations primary={{ ...primary, dual_name: 'Flu-like illness / common cold (viral upper respiratory infection)', is_family_answer: true, family_note: 'Family answer, not a diagnosis.' }} />)
+    expect(screen.getByText('Family answer, not a diagnosis.')).toBeInTheDocument()
   })
 
   it('uses short Swahili labels', () => {
