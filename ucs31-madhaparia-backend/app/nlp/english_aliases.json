@@ -13,7 +13,12 @@
     "shivers",
     "feeling cold and shaking",
     "feeling shivery",
-    "shaking with chills"
+    "shaking with chills",
+    "feel cold",
+    "feeling cold",
+    "feel chilly",
+    "feeling chilly",
+    "cold chills"
   ],
   "cough": [
     "cough",
@@ -71,7 +76,12 @@
     "gasping for air",
     "gasping",
     "trouble breathing",
-    "unable to breathe"
+    "unable to breathe",
+    "cannot speak",
+    "can't speak",
+    "cannot speak a full sentence",
+    "difficulty breathing at rest",
+    "having challenges breathing"
   ],
   "night_breathlessness": [
     "waking up breathless",
@@ -135,7 +145,9 @@
     "my nose is running",
     "nose is running",
     "nose is blocked",
-    "nose is stuffy"
+    "nose is stuffy",
+    "running nostrils",
+    "nose is runny"
   ],
   "nasal_discharge": [
     "green nasal discharge",
@@ -229,7 +241,9 @@
     "sweating at night",
     "sweat a lot at night",
     "wake up soaked in sweat",
-    "sweating more than usual"
+    "sweating more than usual",
+    "sweat at night",
+    "sweats at night"
   ],
   "loss_of_appetite": [
     "loss of appetite",
@@ -306,5 +320,40 @@
     "no taste",
     "lost my sense of taste",
     "loss of my sense of taste"
+  ],
+  "dizziness": [
+    "dizzy",
+    "dizziness",
+    "feeling dizzy",
+    "lightheaded",
+    "light-headed",
+    "feel faint",
+    "feeling faint"
+  ],
+  "common_cold": [
+    "have a cold",
+    "i have a cold",
+    "common cold",
+    "caught a cold",
+    "catching a cold"
+  ],
+  "flu_like": [
+    "flu",
+    "the flu",
+    "i have flu",
+    "have flu",
+    "influenza",
+    "flu-like illness",
+    "flu like illness"
+  ],
+  "weakness": [
+    "weakness",
+    "weaknes",
+    "feeling weak",
+    "feel weak",
+    "weak",
+    "low energy",
+    "no energy",
+    "lack of strength"
   ]
 }

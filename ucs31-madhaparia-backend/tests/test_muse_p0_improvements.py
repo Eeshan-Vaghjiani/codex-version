@@ -170,7 +170,10 @@ def test_covid_note_on_taste_or_smell():
     ctx = _context(symptom_states={"loss_of_taste": "present"})
     out = patient_guidance(ctx, 30, decision_status="uncertain", primary=None)
     assert "COVID" in out["covid_scope_note"]
-    assert "does not rule out COVID" in out["covid_scope_note"] or "not rule out" in out["covid_scope_note"]
+    # Wording updated 2026-10-29 to the fuller Codex note ("not ruled out"
+    # instead of "not rule out"); the behaviour checked here is unchanged:
+    # the note is shown and COVID is not ruled out by a flu-like result.
+    assert "does not rule out COVID" in out["covid_scope_note"] or "not rule out" in out["covid_scope_note"] or "not ruled out" in out["covid_scope_note"]
     assert "COVID" in COVID_SCOPE_NOTE["en"]
 
 

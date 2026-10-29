@@ -49,6 +49,17 @@ def detect_safety_signs(text, age=None):
         flags.append(_flag('sudden_severe_headache', 'Sudden unusually severe headache', sudden))
     if pressure:
         flags.append(_flag('severe_chest_pressure', 'Severe or crushing chest pressure', pressure))
+    # Taken with credit from the Codex branch (f423bde): sudden one-sided
+    # weakness, face drooping or slurred speech is a sudden neurological
+    # change and goes to emergency review, not to a prediction. General
+    # weakness ("sina nguvu", "I feel weak") is a context symptom only and
+    # does NOT trigger this flag; Codex's weakness-clarification question
+    # was not taken in this pass (see COMPARISON in CHANGELOG).
+    focal = _reported(text, ('sudden one-sided weakness', 'sudden weakness on one side',
+        'sudden weakness in one arm', 'sudden weakness in one leg', 'face drooping',
+        'my face is drooping', 'slurred speech', 'udhaifu wa ghafla upande mmoja', 'uso umepinda'))
+    if focal:
+        flags.append(_flag('sudden_neurological_change', 'Sudden weakness, facial or speech change', focal))
     # Integer age 0 cannot distinguish a newborn from an older infant. Do not
     # silently assume the child is over three months or delay clinical review.
     if age == 0 and fever:

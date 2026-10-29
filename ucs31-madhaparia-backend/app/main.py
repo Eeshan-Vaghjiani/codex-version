@@ -474,6 +474,11 @@ def predict_conditions(
                 if hasattr(db, "rollback"):
                     db.rollback()
             tier = next((f.get("breathing_tier") for f in confirmation["red_flag_symptoms"] if f.get("code") == "shortness_of_breath" and f.get("breathing_tier")), None)
+            # A sudden neurological change is an emergency even when there
+            # is no breathing flag: it must not fall through to same-day
+            # wording for other warning signs.
+            if any(flag.get("code") == "sudden_neurological_change" for flag in confirmation["red_flag_symptoms"]):
+                tier = "emergency"
             guidance = get_urgent_guidance(language, tier=tier)
             if any(flag.get("code") == "infant_fever" for flag in confirmation["red_flag_symptoms"]):
                 guidance["health_guidance"] = (

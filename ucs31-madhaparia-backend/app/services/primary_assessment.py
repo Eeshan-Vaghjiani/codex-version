@@ -36,6 +36,28 @@ TB_NOTE = {
     'en': 'About TB: TB is a bacterial infection. It is testable and treatable. Having TB does not mean having HIV, and TB is nothing to be ashamed of.',
     'sw': 'Kuhusu TB: TB ni maambukizi ya bakteria. Inaweza kupimwa na kutibiwa. Kuwa na TB haimaanishi kuwa na HIV, na TB si jambo la aibu.',
 }
+# Discriminator questions offered on a withheld screen, so a non-specific
+# case never dead-ends. Wording matches consultation.py / assessment.py
+# (kept as a local table to avoid a circular import: consultation.py
+# imports this module). Codes are symptom codes; a "yes" to
+# shortness_of_breath is a warning sign and must go to urgent review,
+# never to an ordinary prediction.
+DISCRIMINATOR_CODES = ('cough', 'sore_throat', 'runny_blocked_nose', 'fever', 'shortness_of_breath')
+DISCRIMINATOR_QUESTIONS = {
+    'cough': ('Do you have a cough?', 'Je, una kikohozi?'),
+    'sore_throat': ('Is your throat sore?', 'Je, koo lako linauma?'),
+    'runny_blocked_nose': ('Is your nose runny or blocked?', 'Je, una mafua au pua imeziba?'),
+    'fever': ('Do you have a fever?', 'Je, una homa?'),
+    'shortness_of_breath': ('Are you having difficulty breathing now?', 'Je, una shida ya kupumua sasa?'),
+}
+WITHHELD_TITLE = {
+    'en': 'No single respiratory condition can be named from these symptoms alone',
+    'sw': 'Hakuna ugonjwa mmoja wa mfumo wa upumuaji unaoweza kutajwa kutokana na dalili hizi pekee',
+}
+NON_SPECIFIC_EXPLANATION = {
+    'en': 'These are general symptoms. They can occur in many illnesses, including common viral infections, and do not point clearly to one respiratory condition by themselves.',
+    'sw': 'Hizi ni dalili za jumla. Zinaweza kutokea katika magonjwa mengi, ikiwa ni pamoja na maambukizi ya kawaida ya virusi, na hazielekezi wazi kwa ugonjwa mmoja wa mfumo wa upumuaji.',
+}
 # Features that count as specific support for a serious name (see
 # primary_selection.SPARSE_SERIOUS_FEATURES). Used as defence in depth here.
 _SPARSE_SPECIFIC_FEATURES = frozenset({'E_162', 'E_45', 'E_14', 'E_66', 'E_50'})
@@ -157,6 +179,14 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
              'These symptoms alone are not enough to name a serious condition with confidence. Seek professional assessment; an examination or tests may be needed.'),
             base['next_steps'][-1],
         ]
+    # Non-specific withheld: add a temperature check step. Mild severity
+    # does NOT change the model (severity is advice-only in V3), so this
+    # step is care guidance, never a claim that mild means a milder illness.
+    if primary is None and 'non_specific_input' in context.get('_decision_reasons', []):
+        temp_step = ('Pima joto la mwili ikiwa unaweza, na uangalie dalili mpya kama kikohozi, koo kuuma, mafua, au shida ya kupumua.' if sw else
+                     'Check your temperature if you can, and watch for new symptoms such as a cough, sore throat, runny nose, or difficulty breathing.')
+        if temp_step not in base['next_steps']:
+            base['next_steps'].insert(1, temp_step)
     # Withheld must still be useful: never a bare "we cannot name one" with
     # no next step. A fever in Kenya always gets a malaria-test step.
     if primary is None and states.get('fever') == 'present':
@@ -257,6 +287,27 @@ def build_primary_assessment(confirmation, age, sex):
               'decision': decision, 'uncertain': True, 'clinical_validation': False,
               'model_status': 'research_selective_primary',
               **patient_guidance(guidance_context, age, decision_status, primary)}
+    if primary is None:
+        # A non-specific / withheld result must NEVER be a blank screen:
+        # it always carries a title, a plain explanation, care guidance
+        # (from patient_guidance above, including the malaria-test step
+        # when fever is present), and discriminator questions the patient
+        # can answer to re-run the assessment. The raw V3 ranking behind
+        # a non-specific case (e.g. Pulmonary neoplasm 1.000 on headache
+        # + tiredness alone, Epiglottitis 0.216 on headache + tiredness +
+        # fever) is a model artefact of two or three non-specific features
+        # and is deliberately NOT exposed here: the anchor gate and the
+        # sparse-serious guard block it from ever becoming a patient name.
+        result['withheld_title'] = WITHHELD_TITLE['sw' if sw else 'en']
+        if 'non_specific_input' in reasons:
+            result['non_specific_explanation'] = NON_SPECIFIC_EXPLANATION['sw' if sw else 'en']
+        known = context.get('symptom_states', {})
+        result['discriminator_questions'] = [
+            {'code': code, 'question_id': code,
+             'text_en': DISCRIMINATOR_QUESTIONS[code][0],
+             'text_sw': DISCRIMINATOR_QUESTIONS[code][1]}
+            for code in DISCRIMINATOR_CODES
+            if known.get(code) not in ('present', 'absent')]
     # Private audit details are stored separately and removed from patient JSON.
     result['_audit'] = {'selection': chosen, 'input_guard_reasons': reasons}
     return result

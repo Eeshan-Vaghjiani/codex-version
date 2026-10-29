@@ -125,3 +125,107 @@
 ## ML (`ucs31-madhaparia-ml/`)
 - `inference/primary_selection.py`: same gap gate as backend (AST parity preserved).
 - `models/v3_primary_selection.json`, `models/v3_primary_scope.json`: same hash fix as backend.
+
+## Final pass, 2026-10-29 — non-specific output fix + Codex comparison and takes
+
+### Non-specific input is never a blank output (urgent fix, Eeshan's exact cases)
+- Root cause (verified, not guessed): "Tiredness and headache" maps to
+  E_53 + E_89, neither in `RESPIRATORY_ANCHOR_FEATURES`, so
+  `classify_primary` returns `non_specific_input` /
+  `no_supported_respiratory_anchor`, primary None, BEFORE the ranking.
+  The raw V3 ranking underneath is Pulmonary neoplasm 1.000 on those two
+  features alone. The anchor gate is what blocks that tumour name — it
+  was NOT removed, and must never be removed to force a name.
+- `app/services/consultation.py`: the non-respiratory question sequence
+  used to dead-end after fever/cough. It now also asks breathing
+  difficulty (safety first), sore throat, and runny/blocked nose before
+  giving up: general_duration → symptom_severity → fever → cough →
+  breathing_difficulty → sore_throat → runny_blocked_nose → withheld.
+- `app/services/primary_assessment.py`: every withheld V3 result now
+  carries `withheld_title` ("No single respiratory condition can be
+  named from these symptoms alone"), a plain `non_specific_explanation`
+  for non-specific cases, care guidance (rest/fluids, temperature check
+  for non-specific cases, malaria-test step whenever fever is present in
+  Kenya, warning signs, 24-48 hour review), and `discriminator_questions`
+  (cough, sore throat, runny/blocked nose, fever, difficulty breathing —
+  only ones not already known) so the patient can answer and re-check.
+  A "yes" to difficulty breathing on that screen goes to urgent review,
+  never to an ordinary prediction.
+- `src/pages/PredictionPage.jsx`: the withheld screen renders the new
+  title, the plain explanation, and a discriminator form (Yes / No /
+  Not sure per question). "Yes" symptoms are added to the confirmation
+  and the assessment re-runs from the result form; "No" / "Not sure"
+  add nothing, so they never silently become negatives.
+- Second exact case: tiredness + headache + fever (mild) still has no
+  respiratory anchor, so it still names nothing — correctly. Mild
+  severity does NOT change the model (severity is advice-only in V3),
+  so picking "mild" cannot unlock a name, and no name was forced. What
+  changed is the output: full explanation + flu-like care + the malaria
+  test note (fever in Kenya) + warning signs + 24-48 hour review +
+  discriminator follow-ups. After adding cough + sore throat it resolves
+  to Seasonal flu (influenza) as a single primary, low match (51%
+  present-only; 64% moderate with breathing absent) — never Epiglottitis
+  (raw top 0.216 on the 3-feature case) or neoplasm.
+- Honest limit on the first case: adding cough + sore throat + runny
+  nose resolves to the 4:0 family answer only when the tiredness is
+  transient (the consultation drops a transient tiredness feature, so
+  the remaining pattern is headache + cough + sore throat + runny nose,
+  78% moderate). If the tiredness is persistent it stays in the
+  evidence, the 5-feature pattern scores only 45%, and the case still
+  withholds rather than being given a forced weak name. Both branches
+  are tested; the withheld branch still gives full guidance.
+- Tests: `tests/test_muse_nonspecific.py` (7 tests) and one new
+  PredictionPage vitest (withheld screen renders title, explanation,
+  discriminator questions, re-check button, no disease name).
+
+### Taken from the Codex branch, with credit (codex-respiracare-improvements-2026-10-29, f423bde / 85ccf0e)
+- Everyday EN/SW/Sheng aliases for existing codes (43 canonical alias
+  additions): e.g. "nimechoka", "nimechoka sana", "ninachoka" →
+  tiredness; "sina nguvu" is covered by the new weakness context code
+  below; "koo linaniuma" → sore throat; "pua inatoka" → runny/blocked
+  nose; "kichwa kinauma" → headache; "chest inauma" → chest pain;
+  "nina sauti ya mluzi" → wheezing; "I feel cold" → chills;
+  "having challenges breathing", "difficulty breathing at rest",
+  "I can't speak" → shortness of breath (in a symptom box this is
+  treated as speech/breathing difficulty, per the checklist; see
+  LIMITATIONS for the trade-off); "ladha imepotea" → loss of taste.
+- Four honest context codes with NO model features (Codex f423bde):
+  weakness ("sina nguvu", "I feel weak", "weak"), dizziness
+  ("kizunguzungu"), common_cold ("niko na cold", "kipooza"), flu_like
+  ("I have flu", "influenza", "mafua makali"). Recognising the
+  patient's words without inventing a disease, feature or diagnosis.
+  Files: `app/nlp/canonical_symptoms.json` (now 46 codes),
+  `english_aliases.json`, `swahili_aliases.json`.
+- Sudden neurological change as an emergency flag (Codex 85ccf0e focal
+  block, in `app/services/assessment_safety.py` + `app/main.py`):
+  sudden one-sided weakness, face drooping, slurred speech →
+  `sudden_neurological_change`, routed to emergency guidance even with
+  no breathing flag. General weakness does NOT trigger it.
+- Fuller COVID out-of-scope wording (Codex terminology
+  `covid_scope_message`) in `health_guidance.py` COVID_SCOPE_NOTE:
+  adds that influenza and COVID are different infections, severity
+  alone cannot identify COVID, and taste/smell changes are not proof
+  and are less reliable with newer variants. Kiswahili still draft.
+- Tests: `tests/test_muse_codex_takes.py` (5 tests). One existing test
+  assertion was updated for the intentional COVID wording change
+  (`test_covid_note_on_taste_or_smell` now also accepts "not ruled
+  out"); the behaviour it checks is unchanged, no test was deleted.
+- Full comparison: see COMPARISON_CODEX.md in this repo root.
+
+### NOT taken from Codex, deliberately (see COMPARISON_CODEX.md)
+- Codex gap gate (0.15 gap / 0.60 floor, only 5-8-positive buckets
+  enabled on its source-validation fold): fold-checked, but it withholds
+  the approved 4:0 family cluster and has no sparse-serious guard, so
+  adopting it would regress Eeshan's approved family fix. Muse keeps
+  its 0.10 / 0.20 gap gate + family exception + sparse guard; Codex's
+  validation protocol is the template for checking Muse's thresholds on
+  a fresh fold (future work, not claimed here).
+- Codex bronchitis display ("Chest infection / airway inflammation
+  (bronchitis)"): decided format is "Chest infection (bronchitis)".
+- Codex withheld-viral guidance recommending paracetamol: no specific
+  medicine is recommended in this version.
+- Codex 5-question cap: superseded by the uncapped-gathering
+  authorisation (soft guide 5, hard ceiling 20, safety stops kept).
+- Codex weakness-clarification question: a new safety pathway needing
+  its own review; the free-text emergency detection above was taken,
+  the question was not.

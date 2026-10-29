@@ -1,5 +1,50 @@
 # TEST REPORT — Muse improvements, 2026-10-29
 
+## Real counts (actually run here, final pass)
+- Backend full suite: **350 passed, 0 failed** (PostgreSQL via pgserver
+  bundle, `TEST_DATABASE_URL` to a local test DB, Alembic + seeded
+  catalogue). This is 338 + 7 non-specific tests + 5 Codex-take tests.
+  No failing test was deleted. One existing assertion was updated for
+  an intentional wording change (COVID note, see CHANGELOG); the
+  behaviour it checks is unchanged.
+- Frontend full suite (vitest): **117 passed, 0 failed** (20 files),
+  including the new withheld-screen test (title, explanation,
+  discriminator questions, re-check button, no disease name).
+- Frontend build: `vite build` succeeds with `VITE_API_BASE_URL` set.
+- 21 journeys: **21 passed** in `tests/test_muse_journeys.py` (included
+  in the backend full-suite count; re-run in the final pass as part of
+  the suite, not separately re-counted here).
+
+## Final pass results (non-specific output fix)
+- "Tiredness and headache" — before: `non_specific_input`, primary
+  None, and the consultation dead-ended after fever/cough, so the
+  patient saw no condition and no next question. After: full withheld
+  screen (title, plain explanation, rest/fluids + temperature check,
+  warning signs, 24-48 hour review) AND discriminator questions
+  (cough, sore throat, runny/blocked nose, fever, breathing difficulty)
+  in the consultation sequence and on the withheld screen; never names
+  Pulmonary neoplasm (raw V3 1.000 on these 2 features is a model
+  artefact, blocked by the anchor gate). After adding cough + sore
+  throat + runny nose with transient tiredness: family answer, 78%
+  moderate. With persistent tiredness: still withheld at 45% (tested
+  honestly, not forced).
+- "Tiredness + headache + fever (mild)" — before: same blank outcome;
+  mild did not and does not change the model. After: full withheld
+  screen + malaria-test step (fever in Kenya) + discriminator
+  follow-ups; never names Epiglottitis (raw top 0.216) or neoplasm.
+  After adding cough + sore throat: Seasonal flu (influenza), single
+  primary, low match (51% present-only; 64% moderate with breathing
+  absent).
+- Codex takes (tests in `tests/test_muse_codex_takes.py`, 5 passed):
+  everyday aliases map as expected; context codes carry no features;
+  sudden one-sided weakness / face drooping raise
+  `sudden_neurological_change` while general weakness does not; COVID
+  note carries the fuller Codex wording.
+- What was NOT run in this final pass: browser / Playwright journeys,
+  ML training/evaluation suites (no model retrained). Codex's claimed
+  45 browser journeys were not re-run here and are reported as Codex's
+  claim, not verified by Muse.
+
 ## Real counts (actually run here, follow-up run)
 - Backend full suite: **338 passed, 0 failed** (PostgreSQL via pgserver bundle,
   `TEST_DATABASE_URL` to a local test DB, Alembic + seeded catalogue).

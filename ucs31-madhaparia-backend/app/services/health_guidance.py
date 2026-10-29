@@ -142,9 +142,14 @@ def get_urgent_guidance(language="en", tier=None) -> dict:
     }
 
 
+# Wording taken with credit from the Codex branch (f423bde terminology
+# covid_scope_message): fuller than the previous Muse note — it adds that
+# influenza and COVID are different infections, severity alone cannot
+# identify COVID, and taste/smell changes are not proof and are less
+# reliable with newer variants. Still draft Kiswahili, unreviewed.
 COVID_SCOPE_NOTE = {
-    "en": "COVID-19 is not one of the conditions this version predicts. If there was exposure, a positive test, or loss of taste or smell, a COVID test is recommended. A sinusitis or flu-like result does not rule out COVID.",
-    "sw": "COVID-19 si mojawapo ya magonjwa ambayo toleo hili hutabiri. Ikiwa ulikutana na mgonjwa, una kipimo chanya, au umepoteza ladha au harufu, kipimo cha COVID kinapendekezwa. Matokeo ya sinusitis au mafua hayatoi COVID.",
+    "en": "COVID is not one of the conditions this version predicts. With exposure, a positive test, or loss of taste/smell, COVID testing is recommended (follow clinical advice if already positive). COVID is not ruled out by a sinusitis or flu-like result. Influenza and COVID are different infections with overlapping symptoms; severity alone cannot identify COVID. Taste/smell changes are not proof and are less reliable with newer variants.",
+    "sw": "COVID si mojawapo ya hali zinazotabiriwa na toleo hili. Ikiwa umekaribiana na mwenye COVID, umepata kipimo chanya, au umepoteza ladha/harufu, kipimo cha COVID kinapendekezwa (fuata ushauri wa mhudumu ikiwa tayari una kipimo chanya). Jibu la sinasi au dalili kama influenza haliondoi COVID. Influenza na COVID ni maambukizi tofauti yenye dalili zinazofanana; ukali pekee hautambui COVID. Kupoteza ladha/harufu si uthibitisho na si dalili ya kutegemewa kwa aina mpya za virusi.",
 }
 
 

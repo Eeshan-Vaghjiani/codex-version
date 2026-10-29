@@ -204,4 +204,32 @@ describe('PredictionPage saved results', () => {
     expect(screen.getByRole('note', { name: 'Unsupported symptom information' }))
       .toHaveTextContent('This does not mean those symptoms are absent.')
   })
+
+  it('renders a full non-blank withheld screen with discriminator questions', () => {
+    seed({
+      ...selected,
+      status: 'assessment_uncertain',
+      primary_prediction: null,
+      predictions: [],
+      decision: { status: 'uncertain', reasons: ['non_specific_input'], policy_version: 'kenya-single-primary-v1' },
+      withheld_title: 'No single respiratory condition can be named from these symptoms alone',
+      non_specific_explanation: 'These are general symptoms. They can occur in many illnesses.',
+      withheld_message: 'We cannot name one condition from this information. This does NOT mean you are fine.',
+      withheld_reason: 'The symptoms do not point clearly to a respiratory condition.',
+      next_steps: ['Rest, drink fluids as you can.'],
+      discriminator_questions: [
+        { code: 'sore_throat', question_id: 'sore_throat', text_en: 'Is your throat sore?', text_sw: 'Je, koo lako linauma?' },
+        { code: 'runny_blocked_nose', question_id: 'runny_blocked_nose', text_en: 'Is your nose runny or blocked?', text_sw: 'Je, una mafua au pua imeziba?' },
+        { code: 'shortness_of_breath', question_id: 'shortness_of_breath', text_en: 'Are you having difficulty breathing now?', text_sw: 'Je, una shida ya kupumua sasa?' },
+      ],
+    })
+    renderPredictionPage()
+    expect(screen.getByRole('heading', { name: 'No single respiratory condition can be named from these symptoms alone' })).toBeInTheDocument()
+    expect(screen.getByText('These are general symptoms. They can occur in many illnesses.')).toBeInTheDocument()
+    expect(screen.getByText('Is your throat sore?')).toBeInTheDocument()
+    expect(screen.getByText('Is your nose runny or blocked?')).toBeInTheDocument()
+    expect(screen.getByText('Are you having difficulty breathing now?')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Re-check with these answers' })).toBeInTheDocument()
+    expect(screen.queryByText('Tuberculosis (TB)')).not.toBeInTheDocument()
+  })
 })

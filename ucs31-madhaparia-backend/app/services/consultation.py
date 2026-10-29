@@ -153,6 +153,19 @@ def next_consultation_question(states, details, durations, asked, catalogue, age
             return 'fever'
         if states.get('cough', 'unmentioned') in {'unknown', 'unmentioned'} and 'cough' not in asked:
             return 'cough'
+        # Non-specific fix (2026-10-29): a case such as tiredness + headache
+        # used to dead-end here with no output once fever/cough were known,
+        # even though sore throat and a runny nose were never asked. Ask the
+        # remaining discriminators before giving up: safety (breathing)
+        # first, then the two respiratory discriminators. A "yes" to any of
+        # them can move the case into respiratory scope and resolve it;
+        # all "no" still ends in a full withheld screen, never a blank one.
+        if states.get('shortness_of_breath', 'unmentioned') in {'unknown', 'unmentioned'} and 'breathing_difficulty' not in asked:
+            return 'breathing_difficulty'
+        if states.get('sore_throat', 'unmentioned') in {'unknown', 'unmentioned'} and 'sore_throat' not in asked:
+            return 'sore_throat'
+        if states.get('runny_blocked_nose', 'unmentioned') in {'unknown', 'unmentioned'} and 'runny_blocked_nose' not in asked:
+            return 'runny_blocked_nose'
         return None
     # Safety always precedes model-guided questions for respiratory reports.
     if states.get('shortness_of_breath', 'unmentioned') in {'unknown', 'unmentioned'} and 'breathing_difficulty' not in asked:
