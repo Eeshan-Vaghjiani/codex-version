@@ -203,12 +203,27 @@ def test_duration_changes_advice_not_score(days):
 def test_terminology_and_covid_scope():
     from app.services.patient_terminology import patient_term, terminology
     assert 'chest infection' in patient_term('Bronchitis')['display_name'].lower()
-    assert patient_term('Tuberculosis')['display_name'] == 'Tuberculosis (TB)'
+    assert patient_term('Tuberculosis')['display_name'] == 'TB (tuberculosis)'
     assert patient_term('Pneumonia')['display_name'] == 'Lung infection (pneumonia)'
     assert patient_term('Influenza', 'sw')['display_name'] != 'mafua'
     assert 'bare' in terminology()['conditions']['Influenza']['terminology_note']
     assert 'COVID is not one' in terminology()['covid_scope_message']['en']
     assert 'pending' in terminology()['review_status']
+
+
+def test_every_model_class_has_dual_simple_and_medical_name():
+    # Dual naming is enforced for all 21 classes: simple name first, medical
+    # name in parentheses, never one alone. No class is exempt.
+    from app.services.patient_terminology import patient_term, terminology
+    for condition in terminology()['conditions']:
+        for language in ('en', 'sw'):
+            term = patient_term(condition, language)
+            display = term['display_name']
+            assert display == term['dual_name']
+            assert '(' in display and display.endswith(')')
+            simple = display.rsplit(' (', 1)[0]
+            assert simple == term['simple_name']
+            assert term['medical_name'] and not simple.endswith(')')
 
 
 @pytest.mark.parametrize('band,low,high', [('under_3_days', 0, 2), ('3_to_14_days', 3, 14), ('over_14_days', 15, None)])

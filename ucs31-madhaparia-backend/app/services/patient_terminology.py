@@ -19,5 +19,12 @@ def patient_term(condition, language='en'):
     if not entry:
         raise ValueError(f'No patient terminology entry for model class: {condition}')
     lang = 'sw' if language == 'sw' else 'en'
+    display = entry['display_name'][lang]
+    # Stable dual format, enforced: simple Kenyan-known name or plain
+    # meaning first, medical name in parentheses, never one alone.
+    if '(' not in display or not display.endswith(')'):
+        raise ValueError(f'Patient terminology entry is not in dual format: {condition} ({lang})')
+    simple = display.rsplit(' (', 1)[0]
     return {'condition': condition, 'medical_name': entry['medical_name'],
-            'display_name': entry['display_name'][lang], 'description': entry['description'][lang]}
+            'display_name': display, 'dual_name': display, 'simple_name': simple,
+            'description': entry['description'][lang]}
