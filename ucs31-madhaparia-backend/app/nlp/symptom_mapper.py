@@ -716,6 +716,20 @@ def infer_symptom_status(text, matched_alias):
             statuses.append("absent")
             continue
 
+        # "Can breathe fine" phrases are negative by meaning, not by a
+        # negation word before the alias: without this special case
+        # they would be read as present breathing difficulty. The
+        # phrase itself is the denial, so it maps to absent (the same
+        # pattern as the sikohoi special case above). Added 2026-10-29
+        # after the sweep check showed "I can breathe fine" left as
+        # unmatched wording, which vetoed an otherwise clear result.
+        if normalize_text(matched_alias) in {
+                "can breathe fine", "breathe fine", "breathing fine",
+                "can breathe normally", "breathing normally",
+                "napumua vizuri", "ninapumua vizuri", "naweza kupumua vizuri"}:
+            statuses.append("absent")
+            continue
+
         # Check whether a past symptom has resolved.
         if re.search(
             r"\bi\s+had\s+(?:a\s+|an\s+)?$",

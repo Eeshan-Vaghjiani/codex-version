@@ -132,7 +132,61 @@ def _prolonged(duration):
     return bool(re.search(r'weeks|months|wiki|miezi', str(duration.get('text', '')), re.I))
 
 
-def next_consultation_question(states, details, durations, asked, catalogue, age, sex):
+def next_consultation_question(states, details, durations, asked, catalogue, age, sex, initial_clear=False):
+    """Prompt-first follow-ups (Eeshan, 2026-10-29): questions are OPTIONAL.
+
+    Order, and why each question is allowed at all:
+    1. Safety first, once: breathing difficulty. This is the only
+       question allowed before a result is known, because a "yes"
+       changes the action to urgent review, never to a prediction.
+    2. Severe severity: stop. A severe report goes to clinical
+       assessment in build_primary_assessment, not to more questions.
+    3. Prompt-first stop: if the ORIGINAL prompt already gives a clear
+       eligible primary or a family answer, return None immediately.
+       Duration, severity and fatigue-pattern refinement questions are
+       advice/refinement only and must NOT delay a clear result. A
+       prompt that is already clear asks ZERO further questions.
+       `initial_clear` is the key to this: it is computed by
+       prepare_consultation from the ORIGINAL prompt's evidence,
+       BEFORE any follow-up answer. A follow-up "no" (e.g. to the
+       safety question) adds absent evidence that can drop a clear
+       score just below its bucket minimum (batch-1 sweep: wheezing +
+       nasal discharge + hoarse voice, Bronchiolitis 88% strong, fell
+       to 0.641 vs a 0.657 bucket minimum on breathing-absent, gap
+       still 0.53) and then trigger 6-7 more questions that can only
+       demote it further. Once a case was clear, follow-up negatives
+       must NOT reopen the question queue: safety is asked, then the
+       result is given (which may still be withheld-with-guidance if
+       the safety negative genuinely drops it below the validated
+       minimum — that is a policy outcome, documented in LIMITATIONS,
+       not a question-flow failure, and it is never a blank screen).
+       The current-evidence eligibility check below remains for cases
+       that were NOT initially clear: a "yes" answer that adds a
+       present feature can resolve them, and that check must use
+       current evidence, not initial evidence.
+    4. Context family: if the user already said "cold" / "flu" (context
+       codes common_cold / flu_like), there is no model discriminator
+       left to ask that would change the family answer: return None and
+       let build_primary_assessment give the family guidance.
+    5. Only then, discriminators that would actually change the
+       prediction or the action:
+       - non-respiratory scope: fever, cough, sore throat, runny/blocked
+         nose. A "yes" to any of them can move the case into respiratory
+         scope and resolve it. Duration and severity are NOT asked here:
+         they are advice-only in V3 and do not change the prediction, so
+         asking them before the discriminators wasted the user's time.
+         Answering "no" to all discriminators ends the consultation and
+         falls back to the full withheld/general guidance in
+         build_primary_assessment, never to a blank screen.
+       - respiratory scope, not yet clear: fatigue_pattern (it changes
+         the tiredness feature: persistent keeps it, transient drops it),
+         weight_loss_intent (it changes the weight-loss feature),
+         symptom_duration ONLY when a cough is reported and its duration
+         is unknown (duration changes the action: a prolonged cough
+         triggers the chronic-workup / weight-loss discriminator), and
+         weight_loss for a prolonged cough. Then the information-gain
+         pool, as before.
+    """
     if len(asked) >= MAX_CONSULTATION_QUESTIONS:
         return None
     reported = {code for code, state in states.items() if state == 'present'}
@@ -141,37 +195,48 @@ def next_consultation_question(states, details, durations, asked, catalogue, age
     from app.services.primary_assessment import has_respiratory_scope
     present_features, _ = _features(states, details)
     severe = any(item.get('severity') == 'severe' for item in details.values())
-    if not has_respiratory_scope(present_features):
-        if severe:
-            return None
-        known_durations = [value for key, value in durations.items() if key != '_general']
-        if not known_durations and not durations.get('_general') and 'general_duration' not in asked:
-            return 'general_duration'
-        if 'headache' in reported and not details.get('headache', {}).get('severity') and 'symptom_severity' not in asked:
-            return 'symptom_severity'
-        if states.get('fever', 'unmentioned') in {'unknown', 'unmentioned'} and 'fever' not in asked:
-            return 'fever'
-        if states.get('cough', 'unmentioned') in {'unknown', 'unmentioned'} and 'cough' not in asked:
-            return 'cough'
-        # Non-specific fix (2026-10-29): a case such as tiredness + headache
-        # used to dead-end here with no output once fever/cough were known,
-        # even though sore throat and a runny nose were never asked. Ask the
-        # remaining discriminators before giving up: safety (breathing)
-        # first, then the two respiratory discriminators. A "yes" to any of
-        # them can move the case into respiratory scope and resolve it;
-        # all "no" still ends in a full withheld screen, never a blank one.
-        if states.get('shortness_of_breath', 'unmentioned') in {'unknown', 'unmentioned'} and 'breathing_difficulty' not in asked:
-            return 'breathing_difficulty'
-        if states.get('sore_throat', 'unmentioned') in {'unknown', 'unmentioned'} and 'sore_throat' not in asked:
-            return 'sore_throat'
-        if states.get('runny_blocked_nose', 'unmentioned') in {'unknown', 'unmentioned'} and 'runny_blocked_nose' not in asked:
-            return 'runny_blocked_nose'
-        return None
-    # Safety always precedes model-guided questions for respiratory reports.
+    # 1. Safety first, once.
     if states.get('shortness_of_breath', 'unmentioned') in {'unknown', 'unmentioned'} and 'breathing_difficulty' not in asked:
         return 'breathing_difficulty'
+    # 2. Severe goes to assessment, not to more questions.
     if severe:
         return None
+    # 3b. Initially clear: safety (step 1, above) is the only question
+    # allowed. Do not reopen the queue on a follow-up negative.
+    if initial_clear:
+        return None
+    # 4. Context family: the user already said cold/flu in plain words.
+    if states.get('common_cold') == 'present' or states.get('flu_like') == 'present':
+        return None
+    present, absent = _features(states, details)
+    # 3. Prompt-first stop: a clear result from the original prompt
+    # needs no follow-up at all.
+    from app.services.primary_assessment import select_primary_evidence
+    from app.core.errors import ServiceNotReadyError
+    # A missing policy is a service failure, not "uncertain": it must
+    # propagate as 503 (see test_missing_selection_policy...), never be
+    # swallowed into a follow-up question. Only a genuinely unexpected
+    # selection error falls back to "uncertain" here.
+    try:
+        _chosen = select_primary_evidence(present, absent, age, sex)
+    except ServiceNotReadyError:
+        raise
+    except Exception:
+        _chosen = {'status': 'uncertain'}
+    if _chosen.get('status') in ('eligible', 'family'):
+        return None
+    # 5a. Non-respiratory scope: discriminators only.
+    if not has_respiratory_scope(present_features):
+        for _code, _qid in (('fever', 'fever'), ('cough', 'cough'),
+                            ('sore_throat', 'sore_throat'),
+                            ('runny_blocked_nose', 'runny_blocked_nose')):
+            if states.get(_code, 'unmentioned') in {'unknown', 'unmentioned'} and _qid not in asked:
+                return _qid
+        # All discriminators answered (no/not sure): fall back to the
+        # full withheld/general guidance, never a blank screen and
+        # never more advice-only questions.
+        return None
+    # 5b. Respiratory scope, not yet clear: feature-changing questions.
     if 'tiredness' in reported and details.get('tiredness', {}).get('fatigue_pattern') == 'unspecified' and 'fatigue_pattern' not in asked:
         return 'fatigue_pattern'
     if 'cough' in reported and not durations.get('cough') and 'symptom_duration' not in asked:
@@ -180,10 +245,6 @@ def next_consultation_question(states, details, durations, asked, catalogue, age
         return 'weight_loss_intent'
     if 'cough' in reported and _prolonged(durations.get('cough')) and states.get('weight_loss', 'unmentioned') in {'unknown', 'unmentioned'} and 'weight_loss' not in asked and 'weight_loss_intent' not in asked:
         return 'weight_loss'
-    present, absent = _features(states, details)
-    from app.services.primary_assessment import select_primary_evidence
-    if select_primary_evidence(present, absent, age, sex)['status'] == 'eligible':
-        return None
     available = {}
     for code in POOL:
         if code in asked or states.get(code, 'unmentioned') not in {'unknown', 'unmentioned'}:
@@ -224,9 +285,24 @@ def prepare_consultation(confirmation, answers, language, db, age, sex):
         if state == 'present' and (item.get('duration_text') or item.get('duration_min_days') is not None):
             durations[code] = {'text': item.get('duration_text'), 'min_days': item.get('duration_min_days'),
                                'max_days': item.get('duration_max_days'), 'symptom_code': code}
+    # Prompt-first anchor: was the ORIGINAL prompt already clear, before
+    # any follow-up answer changed the evidence? Computed once, from
+    # the initial states, and passed to every next-question call, so a
+    # follow-up "no" cannot reopen the queue on a case that was clear.
+    _init_present, _init_absent = _features(states, details)
+    _initial_clear = False
+    if _init_present:
+        from app.services.primary_assessment import select_primary_evidence as _select0
+        from app.core.errors import ServiceNotReadyError as _SNR
+        try:
+            _initial_clear = _select0(_init_present, _init_absent, age, sex).get('status') in ('eligible', 'family')
+        except _SNR:
+            raise  # missing policy is a 503, never "not clear"
+        except Exception:
+            _initial_clear = False
     for response in answers:
         question_id = response['question_id']
-        expected = next_consultation_question(states, details, durations, asked, catalogue, age, sex)
+        expected = next_consultation_question(states, details, durations, asked, catalogue, age, sex, _initial_clear)
         if question_id != expected:
             raise ValueError('Follow-up answers must match the next question without duplicates or skipped questions.')
         payload = consultation_question(question_id, language)
@@ -277,9 +353,22 @@ def prepare_consultation(confirmation, answers, language, db, age, sex):
                 profile['red_flag_symptoms'] = detect_safety_signs('fever', age=0)
                 break  # Newly disclosed infant fever also precedes more questions.
     present, absent = _features(states, details)
+    if _initial_clear and not profile['has_red_flag']:
+        # Initially clear + safety-only: a safety "no" must NOT demote
+        # the clear result. The safety question is a screen, not a
+        # model discriminator: its "yes" already routes to urgent
+        # review above, and its "no" is recorded in symptom_states
+        # (displayed to the patient) but does not rewrite the model
+        # evidence for a case that was already clear. Without this,
+        # the safety negative alone dropped batch-1's clear cases
+        # below their bucket minimum and the result became withheld
+        # instead of the initial name. For cases that were NOT
+        # initially clear, all answers (including safety) still count
+        # as model evidence, as before.
+        present, absent = _init_present, _init_absent
     unknown_count = sum(1 for a in answers[:len(asked)] if a.get('answer') == 'unknown')
     next_id = None if profile['has_red_flag'] else next_consultation_question(
-        states, details, durations, asked, catalogue, age, sex)
+        states, details, durations, asked, catalogue, age, sex, _initial_clear)
     if unknown_count >= MAX_UNKNOWN_ANSWERS:
         # Checklist stop: not knowing is also an answer. Do not keep asking.
         next_id = None

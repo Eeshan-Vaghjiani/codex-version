@@ -202,7 +202,12 @@
         "can't speak",
         "cannot speak a full sentence",
         "difficulty breathing at rest",
-        "having challenges breathing"
+        "having challenges breathing",
+        "can breathe fine",
+        "breathe fine",
+        "breathing fine",
+        "can breathe normally",
+        "breathing normally"
       ],
       "sw": [
         "kushindwa kupumua",
@@ -215,7 +220,10 @@
         "nashindwa kupumua",
         "siwezi kuongea",
         "napumua kwa shida nikiwa nimepumzika",
-        "nimeishiwa na pumzi"
+        "nimeishiwa na pumzi",
+        "napumua vizuri",
+        "ninapumua vizuri",
+        "naweza kupumua vizuri"
       ]
     }
   },
@@ -303,7 +311,10 @@
         "high pitched breathing sound",
         "high pitched sound when breathing in"
       ],
-      "sw": []
+      "sw": [
+        "sauti ya juu unapovuta pumzi",
+        "mluzi wa juu unapovuta pumzi"
+      ]
     }
   },
   {
@@ -320,7 +331,10 @@
         "too much saliva",
         "more saliva than usual"
       ],
-      "sw": []
+      "sw": [
+        "mate mengi",
+        "kutokwa na mate mengi"
+      ]
     }
   },
   {
@@ -603,9 +617,13 @@
       "en": [
         "chest pain at rest",
         "chest hurts while resting",
-        "chest pain even when resting"
+        "chest pain even when resting",
+        "chest pain even at rest"
       ],
-      "sw": []
+      "sw": [
+        "maumivu ya kifua hata wakati wa kupumzika",
+        "kifua kuuma hata ukipumzika"
+      ]
     }
   },
   {
@@ -1052,7 +1070,13 @@
         "i have a cold",
         "common cold",
         "caught a cold",
-        "catching a cold"
+        "catching a cold",
+        "i have cold",
+        "have cold",
+        "got cold",
+        "got a cold",
+        "having cold",
+        "cold"
       ],
       "sw": [
         "niko na cold",

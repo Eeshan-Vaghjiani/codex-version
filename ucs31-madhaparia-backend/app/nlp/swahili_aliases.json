@@ -37,7 +37,10 @@
     "nashindwa kupumua",
     "siwezi kuongea",
     "napumua kwa shida nikiwa nimepumzika",
-    "nimeishiwa na pumzi"
+    "nimeishiwa na pumzi",
+    "napumua vizuri",
+    "ninapumua vizuri",
+    "naweza kupumua vizuri"
   ],
   "wheezing": [
     "sauti ya mluzi wakati wa kutoa pumzi",
@@ -239,5 +242,17 @@
     "niko na flu",
     "nina influenza",
     "mafua makali"
+  ],
+  "stridor": [
+    "sauti ya juu unapovuta pumzi",
+    "mluzi wa juu unapovuta pumzi"
+  ],
+  "drooling": [
+    "mate mengi",
+    "kutokwa na mate mengi"
+  ],
+  "chest_pain_at_rest": [
+    "maumivu ya kifua hata wakati wa kupumzika",
+    "kifua kuuma hata ukipumzika"
   ]
 }

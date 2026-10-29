@@ -95,28 +95,30 @@ def test_tiredness_headache_withheld_output_is_never_blank():
 
 
 def test_consultation_asks_discriminators_before_giving_up():
-    # Step through next_consultation_question for tiredness + headache,
-    # answering "no" each time. Before the fix this stopped after cough;
-    # now it asks breathing, sore throat and runny nose too.
+    # Prompt-first (Eeshan, 2026-10-29): step through
+    # next_consultation_question for tiredness + headache, answering
+    # "no" each time. The question sequence is now safety first, then
+    # ONLY discriminators that would change the answer (fever, cough,
+    # sore throat, runny/blocked nose). Duration and severity are
+    # advice-only in V3 and are deliberately NOT asked before a result:
+    # asking them first is what wasted the user's time. Answering "no"
+    # to all discriminators ends the consultation (the withheld screen
+    # with guidance is the result), never a blank screen.
     states = {"tiredness": "present", "headache": "present"}
     details = {"tiredness": {"code": "tiredness", "features": ["E_89"]},
                "headache": {"code": "headache", "features": ["E_53"]}}
     durations, asked = {}, []
-    expected = ["general_duration", "symptom_severity", "fever", "cough",
-                "breathing_difficulty", "sore_throat", "runny_blocked_nose"]
+    expected = ["breathing_difficulty", "fever", "cough",
+                "sore_throat", "runny_blocked_nose"]
     for question_id in expected:
         nxt = next_consultation_question(states, details, durations, asked, CATALOGUE, 30, "M")
         assert nxt == question_id, (asked, nxt)
         asked.append(question_id)
-        if question_id == "general_duration":
-            durations["_general"] = {"text": "under_3_days", "min_days": 0}
-        elif question_id == "symptom_severity":
-            details["headache"]["severity"] = "mild"
-        else:
-            code = {"breathing_difficulty": "shortness_of_breath"}.get(question_id, question_id)
-            states[code] = "absent"
-            details[code] = {"code": code, "features": CANON[code]}
+        code = {"breathing_difficulty": "shortness_of_breath"}.get(question_id, question_id)
+        states[code] = "absent"
+        details[code] = {"code": code, "features": CANON[code]}
     assert next_consultation_question(states, details, durations, asked, CATALOGUE, 30, "M") is None
+    assert "general_duration" not in asked and "symptom_severity" not in asked
 
 
 def test_tiredness_headache_resolves_after_respiratory_symptoms_added():

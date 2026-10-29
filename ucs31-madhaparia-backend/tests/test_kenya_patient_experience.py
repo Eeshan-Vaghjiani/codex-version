@@ -217,7 +217,10 @@ def test_nonspecific_nonrespiratory_symptoms_do_not_force_disease(kenya_flow, te
     assert data["primary_prediction"] is None
     assert data["uncertain"] is True
     assert data["decision"]["status"] != "possible_explanation"
-    assert set(asked) <= {"breathing_difficulty", "general_duration", "symptom_severity", "cough", "fever"}
+    # Prompt-first (2026-10-29): only safety + discriminators that would
+    # change the answer are asked; duration/severity are advice-only and
+    # are no longer asked before a result.
+    assert set(asked) <= {"breathing_difficulty", "cough", "fever", "sore_throat", "runny_blocked_nose"}
     assert data["assessment_summary"] and data["next_steps"]
     visible = " ".join(str(data.get(key, "")) for key in ("assessment_summary", "next_steps", "health_guidance"))
     assert "ruled out" not in visible.lower()
@@ -226,9 +229,14 @@ def test_nonspecific_nonrespiratory_symptoms_do_not_force_disease(kenya_flow, te
 
 
 def test_headache_and_tiredness_get_relevant_duration_question(kenya_flow):
+    # Prompt-first (2026-10-29, intentional behaviour change): duration
+    # is advice-only and must NOT be asked before the discriminators.
+    # Headache + tiredness now asks safety + discriminators only, and
+    # still forces no disease name.
     data, _, asked = finish_assessment(kenya_flow,
         patient_payload(kenya_flow, "I have headache and tiredness"), cough_answer="no")
-    assert "general_duration" in asked
+    assert "general_duration" not in asked
+    assert set(asked) <= {"breathing_difficulty", "cough", "fever", "sore_throat", "runny_blocked_nose"}
     assert data["primary_prediction"] is None
     assert "symptom_duration" not in asked  # No invented cough duration.
 
@@ -245,6 +253,13 @@ def test_respiratory_patterns_return_at_most_one_qualified_possibility(kenya_flo
     assert data["uncertain"] is True
     if data["primary_prediction"]:
         condition = data["primary_prediction"]["condition"]
+        if condition == "Flu-like illness / common cold":
+            # Family answer (prompt-first / 4-present extension, 2026-10-29):
+            # not a terminology condition, so check the family contract
+            # instead of the per-disease terminology entry.
+            assert data["primary_prediction"]["is_family_answer"] is True
+            assert "(viral upper respiratory infection)" in data["primary_prediction"]["display_name"]
+            return
         terminology = json.loads(TERMINOLOGY.read_text(encoding="utf-8"))["conditions"][condition]
         assert data["primary_prediction"]["medical_name"] == terminology["medical_name"]
         assert data["primary_prediction"]["display_name"] == terminology["display_name"]["en" if not text.startswith("Nina") else "sw"]

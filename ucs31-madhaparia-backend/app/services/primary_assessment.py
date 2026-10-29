@@ -140,6 +140,17 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
             'Hatukuweza kutaja ugonjwa mmoja kutokana na taarifa hizi. Hii HAIMAANISHI uko sawa, na HAIONDOI ugonjwa wowote. Fuatilia kwa saa 24-48, na tafuta huduma mapema ikiwa dalili zinazidi au dalili ya hatari inatokea.'
             if sw else
             'We cannot name one condition from this information. This does NOT mean you are fine, and it does NOT rule out any condition. Check again in 24-48 hours if symptoms continue, and seek care sooner if they get worse or a warning sign appears.')
+    # Symptom-aware withheld guidance, taken from Codex 292acf1 (adapted,
+    # no specific medicine): a withheld result's "what to do next" is
+    # tailored to the symptoms actually reported, instead of the same
+    # generic lines for every sparse case. Only for a withheld result at
+    # self-care/review level; urgent and professional-review results
+    # keep their own steps untouched.
+    if (primary is None and base.get('care_level') == 'self_care_or_review'
+            and decision_status != 'insufficient_information'):
+        from app.services.consultation_guidance import symptom_specific_advice
+        for line in reversed(symptom_specific_advice(context, sw)):
+            base['next_steps'].insert(1, line)
     # COVID is out of scope in V3. Show the note whenever taste/smell loss,
     # sinusitis, or a flu-like result is involved, and on every withheld result.
     states = context.get('symptom_states', {})
@@ -275,6 +286,46 @@ def build_primary_assessment(confirmation, age, sex):
             'evidence_note': ('Matokeo haya hayajathibitishwa katika huduma za kliniki nchini Kenya.' if sw else
                               'This assessment has not been clinically validated for patients in Kenya.'),
         }
+    # Prompt-first context fallback (Eeshan, 2026-10-29): if the user
+    # already said "cold" / "flu" in plain words, and the model names
+    # nothing, do NOT return a blank or a forced disease. Give the
+    # family answer, with NO model match percent (there are no model
+    # features behind a context word, so inventing a percent would be
+    # dishonest). This branch runs only when no model primary exists
+    # and no input guard (unsupported wording / severe severity) has
+    # already withheld the case; a model primary, when present, wins.
+    _states_for_context = context.get('symptom_states', {})
+    if (primary is None
+            and (_states_for_context.get('common_cold') == 'present'
+                 or _states_for_context.get('flu_like') == 'present')
+            and 'unsupported_information' not in reasons
+            and 'clinical_assessment_needed' not in reasons):
+        primary = {
+            'condition': 'Flu-like illness / common cold',
+            'is_family_answer': True,
+            'is_context_family_answer': True,
+            'family_top_condition': None,
+            'medical_name': 'Viral upper respiratory infection',
+            'display_name': FAMILY_DUAL_NAME['sw' if sw else 'en'],
+            'dual_name': FAMILY_DUAL_NAME['sw' if sw else 'en'],
+            'simple_name': FAMILY_SIMPLE_NAME['sw' if sw else 'en'],
+            'description': FAMILY_DESCRIPTION['sw' if sw else 'en'],
+            'family_note': FAMILY_NOTE['sw' if sw else 'en'],
+            'match_label': ('Jibu hili linatokana na maneno yako mwenyewe ("cold" / "flu"), si alama ya modeli.' if sw else
+                            'This answer comes from your own words ("cold" / "flu"), not from a model score.'),
+            'match_label_detail': ('Hakuna asilimia iliyotolewa kwa sababu hakuna kipengele cha modeli nyuma ya neno hili la muktadha.' if sw else
+                                   'No percent is shown because there is no model feature behind this context word.'),
+            'explanation': ('Umesema una "cold" / "flu". Hiyo inaelezea familia ya magonjwa ya kawaida ya virusi, si ugonjwa mmoja uliothibitishwa.' if sw else
+                            'You said you have a "cold" / "flu". That describes a family of common viral illnesses, not one confirmed disease.'),
+            'supporting_symptoms': list(dict.fromkeys(
+                SW_SYMPTOMS.get(code, item.get('display_name', code.replace('_', ' '))) if sw
+                else item.get('display_name', code.replace('_', ' '))
+                for code, item in confirmation.get('_symptom_details', {}).items()
+                if context.get('symptom_states', {}).get(code) == 'present')),
+            'evidence_note': ('Matokeo haya hayajathibitishwa katika huduma za kliniki nchini Kenya.' if sw else
+                              'This assessment has not been clinically validated for patients in Kenya.'),
+        }
+        reasons = [r for r in reasons if r not in ('insufficient_evidence', 'non_specific_input')] + ['context_family_answer']
     if primary and primary.get('condition') == 'Tuberculosis':
         primary['tb_note'] = TB_NOTE['sw' if sw else 'en']
     reported = any(value in {'present','unknown'} for value in context.get('symptom_states', {}).values())

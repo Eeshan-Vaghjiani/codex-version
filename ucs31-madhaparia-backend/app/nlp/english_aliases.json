@@ -81,7 +81,12 @@
     "can't speak",
     "cannot speak a full sentence",
     "difficulty breathing at rest",
-    "having challenges breathing"
+    "having challenges breathing",
+    "can breathe fine",
+    "breathe fine",
+    "breathing fine",
+    "can breathe normally",
+    "breathing normally"
   ],
   "night_breathlessness": [
     "waking up breathless",
@@ -189,7 +194,8 @@
   "chest_pain_at_rest": [
     "chest pain at rest",
     "chest hurts while resting",
-    "chest pain even when resting"
+    "chest pain even when resting",
+    "chest pain even at rest"
   ],
   "pain_deep_breath": [
     "pain when breathing deeply",
@@ -335,7 +341,13 @@
     "i have a cold",
     "common cold",
     "caught a cold",
-    "catching a cold"
+    "catching a cold",
+    "i have cold",
+    "have cold",
+    "got cold",
+    "got a cold",
+    "having cold",
+    "cold"
   ],
   "flu_like": [
     "flu",

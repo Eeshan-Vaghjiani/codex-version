@@ -12,6 +12,60 @@ SW_SYMPTOMS = {
 }
 
 
+def symptom_specific_advice(context, sw):
+    """Plain-language advice tailored to the reported symptoms when no
+    condition is named. Taken from Codex 292acf1 (with credit in
+    CHANGELOG), adapted to Muse's guards: guidance only, never a
+    diagnosis, no model evidence, and NO specific medicine is named
+    (Codex's paracetamol lines are replaced with rest/fluids/monitor
+    wording, per Muse's no-specific-medicine rule). Called only for a
+    withheld (sparse) result at self-care/review level, never for an
+    urgent or professional-review result."""
+    states = context.get('symptom_states', {})
+    duration = context.get('duration') or {}
+    persistent = (duration.get('min_days') >= 14 if duration.get('min_days') is not None else any(
+        word in str(duration.get('text', '')).lower() for word in ('weeks', 'months', 'wiki', 'miezi')))
+    present = lambda code: states.get(code) == 'present'
+    lines = []
+    if present('headache') and present('fever'):
+        lines.append(
+            'Kichwa kuuma na homa vinaweza kuwa maambukizi makubwa. Tafuta huduma ya haraka ikifuatana na shingo ngumu, kuchanganyikiwa, vipele, au kusikia mwanga; vinginevyo fuatilia na upitie upya.' if sw else
+            'Headache with fever can be a more serious infection. Seek urgent care if it comes with a stiff neck, confusion, a rash, or sensitivity to light; otherwise monitor and review.')
+    elif present('headache'):
+        lines.append(
+            'Kichwa kipya, kikali, au cha upande mmoja, au chenye udhaifu wa kiungo, kuchanganyikiwa, shingo ngumu, au kuzimia kinahitaji tathmini ya haraka; vinginevyo pumzika, kunywa maji na fuatilia.' if sw else
+            'A new, severe, or one-sided headache, or one with limb weakness, confusion, a stiff neck, or fainting needs urgent assessment; otherwise rest, drink fluids and monitor.')
+    if present('chest_pain'):
+        lines.append(
+            'Maumivu yoyote ya kifua yanahitaji kutathminiwa. Tafuta huduma sasa kama ni makali, yanaenea mkononi au taya, au yanafuatana na jasho, shida ya kupumua, au kichefuchefu.' if sw else
+            'Any chest pain should be assessed. Seek care now if it is severe, spreads to your arm or jaw, or comes with sweating, breathlessness, or nausea.')
+    if present('cough') and not persistent:
+        lines.append(
+            'Kikohozi kwa kawaida hutulia ndani ya wiki 2-3. Mwone mhudumu wa afya mapema kama kinazidi, unakohoa damu, au una shida ya kupumua, maumivu ya kifua, au homa isiyotulia.' if sw else
+            'A cough usually settles within 2-3 weeks. See a clinician sooner if it is getting worse, you cough blood, or you have breathing difficulty, chest pain, or a fever that does not settle.')
+    if present('wheezing'):
+        lines.append(
+            'Sauti ya mluzi inaweza kuwa pumu au maambukizi ya kifua. Mwone mhudumu wa afya kama ni mpya, au kama una pumu au COPD na inhaler yako ya kawaida haisaidii.' if sw else
+            'Wheezing can be asthma or a chest infection. See a clinician if it is new, or if you have asthma or COPD and your usual inhaler is not helping.')
+    if present('sore_throat') and not present('runny_blocked_nose'):
+        lines.append(
+            'Koo kuuma mara nyingi hutokana na virusi na hutulia yenyewe; pumzika na kunywa maji.' if sw else
+            'A sore throat most often comes from a virus and settles on its own; rest and drink fluids.')
+    if present('heavy_sweating'):
+        lines.append(
+            'Jasho usiku na kikohozi kinachoendelea au kupungua uzito vinahitaji tathmini (inawezekana TB); vikiwa peke yake, fuatilia na upitie upya vikiendelea.' if sw else
+            'Night sweats with a persistent cough or weight loss need assessment (possible TB); on their own, monitor and review if they continue.')
+    if present('muscle_aches') or present('chills'):
+        lines.append(
+            'Maumivu ya mwili na kutetemeka mara nyingi hutokea na homa na maambukizi ya virusi; pumzika, unywe maji. Mwone mhudumu wa afya kama vinaendelea zaidi ya siku chache.' if sw else
+            'Body aches and chills commonly occur with fever and viral infections; rest and drink fluids. See a clinician if they persist beyond a few days.')
+    if present('weakness') or present('tiredness'):
+        lines.append(
+            'Uchovu au udhaifu usio wa kawaida mara nyingi huboreka kwa kupumzika na maji. Mwone mhudumu wa afya kama ni mkali, unaendelea zaidi ya wiki mbili, au unafuatana na kupungua uzito, jasho usiku, au shida ya kupumua.' if sw else
+            'Unusual tiredness or weakness often improves with rest and fluids. See a clinician if it is severe, persistent beyond a couple of weeks, or comes with weight loss, night sweats, or shortness of breath.')
+    return lines
+
+
 def consultation_guidance(context, age):
     language = context.get('language', 'en')
     sw = language == 'sw'
