@@ -5,7 +5,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import {
   getSavedSymptomConfirmation,
   getSavedSymptomMapping,
-  mapSymptoms, saveSymptomMapping,
+  mapSymptoms, saveSymptomMapping, saveSymptomConfirmation,
 } from '../services/symptoms'
 
 import {
@@ -35,6 +35,13 @@ function PredictionPage() {
   const [followUpAnswer, setFollowUpAnswer] = useState('')
   const [correction, setCorrection] = useState(mapping?.input_text || '')
   const [copyMessage, setCopyMessage] = useState('')
+  // Discriminator answers on a withheld screen: the patient taps Yes/No/Not
+  // sure for each question the backend offered. A "Yes" symptom is added to
+  // the confirmation and the assessment re-runs; "No"/"Not sure" add nothing,
+  // so they cannot silently become negatives. "Yes" to difficulty breathing is
+  // a warning sign: it goes to urgent review, never to a prediction.
+  const [discriminatorAnswers, setDiscriminatorAnswers] = useState({})
+  const [discriminatorUrgent, setDiscriminatorUrgent] = useState(false)
 
   // Keep a saved result only when it belongs to
   // this exact symptom description and selection.
@@ -228,6 +235,39 @@ function PredictionPage() {
     setSex('')
     setError('')
     setFollowUpAnswer('')
+    setDiscriminatorAnswers({})
+    setDiscriminatorUrgent(false)
+  }
+
+  function handleDiscriminatorSubmit(event) {
+    event.preventDefault()
+    setError('')
+    if (discriminatorAnswers.shortness_of_breath === 'yes') {
+      setDiscriminatorUrgent(true)
+      return
+    }
+    const added = (result?.discriminator_questions || [])
+      .filter((question) => discriminatorAnswers[question.code] === 'yes')
+      .map((question) => question.code)
+    if (added.length === 0) {
+      setError(swahili
+        ? 'Tafadhali chagua angalau dalili moja uliyo nayo, au hariri ulivyoelewa.'
+        : 'Please choose at least one symptom you also have, or edit what we understood.')
+      return
+    }
+    const newCodes = [...new Set([...(confirmation?.confirmed_codes || []), ...added])]
+    saveSymptomConfirmation({
+      ...confirmation,
+      confirmed_codes: newCodes,
+      confirmed_symptoms: [
+        ...(confirmation?.confirmed_symptoms || []),
+        ...added.filter((code) => !(confirmation?.confirmed_symptoms || []).some((item) => item.code === code))
+          .map((code) => ({ code, display_name: code })),
+      ],
+    })
+    clearPredictionResult()
+    setResult(null)
+    setDiscriminatorAnswers({})
   }
 
   return (
@@ -585,7 +625,7 @@ function PredictionPage() {
                   </p>
 
                   <h2>{prediction ? (swahili ? 'Hali inayowezekana' : 'Possible explanation')
-                    : swahili ? 'Tunahitaji maelezo zaidi' : 'More information is needed'}</h2>
+                    : result.withheld_title || (swahili ? 'Tunahitaji maelezo zaidi' : 'More information is needed')}</h2>
 
                   <p>
                     {currentDecision && result.assessment_summary || (prediction
@@ -603,7 +643,50 @@ function PredictionPage() {
                 ) : (
                   <section className="pred34-uncertainty" role="status">
                     <h3>{swahili ? 'Hatua inayofuata' : 'What can help'}</h3>
+                    {result.non_specific_explanation && <p>{result.non_specific_explanation}</p>}
                     <p>{currentDecision ? (result.uncertainty_message || 'A healthcare professional can help assess your symptoms. Review the next steps below.') : 'Start a new symptom check to use the current assessment. Earlier model rankings cannot be treated as a supported result.'}</p>
+                  </section>
+                )}
+
+                {!prediction && !isUrgentResult && !needsFollowUp && discriminatorUrgent && (
+                  <section className="pred34-urgent-result" role="alert">
+                    <p className="pred34-kicker">Urgent review</p>
+                    <h2>{swahili ? 'Tafuta tathmini ya mtaalamu wa afya leo.' : 'Seek prompt medical assessment today.'}</h2>
+                    <p>{swahili
+                      ? 'Umeripoti shida ya kupumua. Usisubiri utabiri wa kiotomatiki; tafuta huduma ya afya mara moja.'
+                      : 'You reported difficulty breathing. Do not wait for an automated prediction; seek medical care promptly.'}</p>
+                  </section>
+                )}
+
+                {!prediction && !isUrgentResult && !needsFollowUp && !discriminatorUrgent && Array.isArray(result.discriminator_questions) && result.discriminator_questions.length > 0 && (
+                  <section className="pred34-panel" aria-labelledby="pred34-discriminator-title">
+                    <h3 id="pred34-discriminator-title">{swahili ? 'Je, una dalili hizi nyingine?' : 'Do you also have any of these?'}</h3>
+                    <p>{swahili
+                      ? 'Kujibu kunaweza kusaidia kutaja mfumo. Kama una shida ya kupumua, chagua Ndiyo hapo na utapata mwongozo wa dharura badala ya utabiri.'
+                      : 'Answering may help name a pattern. If you have difficulty breathing, choose Yes for it and you will get urgent guidance instead of a prediction.'}</p>
+                    <form onSubmit={handleDiscriminatorSubmit}>
+                      {result.discriminator_questions.map((question) => (
+                        <fieldset key={question.code} className="my-3">
+                          <legend>{swahili ? question.text_sw : question.text_en}</legend>
+                          {[
+                            { value: 'yes', label: swahili ? 'Ndiyo' : 'Yes' },
+                            { value: 'no', label: swahili ? 'Hapana' : 'No' },
+                            { value: 'unknown', label: swahili ? 'Sina uhakika' : 'Not sure' },
+                          ].map((option) => (
+                            <label className="d-block" key={option.value}>
+                              <input type="radio" name={`discriminator-${question.code}`}
+                                value={option.value}
+                                checked={discriminatorAnswers[question.code] === option.value}
+                                onChange={() => setDiscriminatorAnswers((prev) => ({ ...prev, [question.code]: option.value }))} />
+                              {' '}{option.label}
+                            </label>
+                          ))}
+                        </fieldset>
+                      ))}
+                      <button className="button button-primary" type="submit" disabled={loading}>
+                        {swahili ? 'Tuma na uhesabu upya' : 'Submit and re-assess'}
+                      </button>
+                    </form>
                   </section>
                 )}
 

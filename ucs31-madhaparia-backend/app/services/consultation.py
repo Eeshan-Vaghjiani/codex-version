@@ -112,10 +112,19 @@ def next_consultation_question(states, details, durations, asked, catalogue, age
     reported = {code for code, state in states.items() if state == 'present'}
     if not reported:
         return None
-    # Complete the safety screen before any routine discriminator, even when
-    # the initial complaint has no respiratory anchor.
-    if states.get('shortness_of_breath', 'unmentioned') in {'unknown', 'unmentioned'} and 'breathing_difficulty' not in asked:
-        return 'breathing_difficulty'
+    # Safety screen first for a respiratory report. For a non-respiratory
+    # report, breathing is asked as a discriminator later (not the opening),
+    # so the patient is not opened with "breathing" when nothing points to the
+    # chest; a "yes" to breathing is still a warning sign and routes to urgent
+    # review. Severe chest pain stays a safety-screen question for all reports.
+    from app.services.primary_assessment import has_respiratory_scope
+    present_features, _ = _features(states, details)
+    respiratory_report = bool(reported & {
+        'cough', 'sore_throat', 'runny_blocked_nose', 'wheezing', 'productive_cough',
+        'shortness_of_breath', 'intense_coughing_fits', 'vomiting_after_coughing'}) or has_respiratory_scope(present_features)
+    if respiratory_report:
+        if states.get('shortness_of_breath', 'unmentioned') in {'unknown', 'unmentioned'} and 'breathing_difficulty' not in asked:
+            return 'breathing_difficulty'
     if 'severe_chest_pain' not in asked:
         return 'severe_chest_pain'
     if states.get('fever', 'unmentioned') in {'unknown', 'unmentioned'} and 'fever' not in asked:
@@ -126,8 +135,6 @@ def next_consultation_question(states, details, durations, asked, catalogue, age
         return 'weakness_meaning'
     if details.get('weakness', {}).get('weakness_meaning') in {'other_weakness', 'unknown'}:
         return None
-    from app.services.primary_assessment import has_respiratory_scope
-    present_features, _ = _features(states, details)
     severe = any(item.get('severity') == 'severe' for item in details.values())
     if not has_respiratory_scope(present_features):
         if severe:
@@ -141,6 +148,15 @@ def next_consultation_question(states, details, durations, asked, catalogue, age
             return 'fever'
         if states.get('cough', 'unmentioned') in {'unknown', 'unmentioned'} and 'cough' not in asked:
             return 'cough'
+        # A non-specific case must not dead-end on a blank screen: ask the
+        # respiratory discriminators (breathing first - a warning sign) before
+        # giving up, so a "yes" can move the case into respiratory scope.
+        if states.get('shortness_of_breath', 'unmentioned') in {'unknown', 'unmentioned'} and 'breathing_difficulty' not in asked:
+            return 'breathing_difficulty'
+        if states.get('sore_throat', 'unmentioned') in {'unknown', 'unmentioned'} and 'sore_throat' not in asked:
+            return 'sore_throat'
+        if states.get('runny_blocked_nose', 'unmentioned') in {'unknown', 'unmentioned'} and 'runny_blocked_nose' not in asked:
+            return 'runny_blocked_nose'
         return None
     # Safety always precedes model-guided questions for respiratory reports.
     if states.get('shortness_of_breath', 'unmentioned') in {'unknown', 'unmentioned'} and 'breathing_difficulty' not in asked:

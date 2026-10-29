@@ -11,6 +11,28 @@ RESPIRATORY_FEATURES = frozenset({'E_103','E_112','E_166','E_169','E_181','E_182
 PUBLIC_CONTEXT_FIELDS = {'language','symptom_states','symptom_durations','duration','severity','cough_type',
  'onset_text','weight_loss_intent','fatigue_pattern','weakness_meaning','symptom_labels','follow_up_answers','questions_asked','model_version','context_note','age','urgency'}
 
+# Discriminator questions offered on a withheld result, so a non-specific case
+# never dead-ends: a "yes" can move it into respiratory scope and re-run the
+# assessment. Wording matches consultation.py (kept local to avoid a circular
+# import). shortness_of_breath is a warning sign: a "yes" must go to urgent
+# review, never to an ordinary prediction.
+DISCRIMINATOR_CODES = ('cough', 'sore_throat', 'runny_blocked_nose', 'fever', 'shortness_of_breath')
+DISCRIMINATOR_QUESTIONS = {
+    'cough': ('Do you have a cough?', 'Je, una kikohozi?'),
+    'sore_throat': ('Is your throat sore?', 'Je, koo lako linauma?'),
+    'runny_blocked_nose': ('Is your nose runny or blocked?', 'Je, una mafua au pua imeziba?'),
+    'fever': ('Do you have a fever?', 'Je, una homa?'),
+    'shortness_of_breath': ('Are you having difficulty breathing now?', 'Je, una shida ya kupumua sasa?'),
+}
+WITHHELD_TITLE = {
+    'en': 'No single respiratory condition can be named from these symptoms alone',
+    'sw': 'Hakuna ugonjwa mmoja wa mfumo wa upumuaji unaoweza kutajwa kutokana na dalili hizi pekee',
+}
+NON_SPECIFIC_EXPLANATION = {
+    'en': 'These are general symptoms. They can occur in many illnesses, including common viral infections, and do not point clearly to one respiratory condition by themselves.',
+    'sw': 'Hizi ni dalili za jumla. Zinaweza kutokea katika magonjwa mengi, ikiwa ni pamoja na maambukizi ya kawaida ya virusi, na hazielekezi wazi kwa ugonjwa mmoja wa mfumo wa upumuaji.',
+}
+
 
 def has_respiratory_scope(features):
     return bool(set(features) & RESPIRATORY_FEATURES)
@@ -114,6 +136,11 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
         extra = symptom_specific_advice(context, sw)
         for line in reversed(extra):
             base['next_steps'].insert(1, line)
+        if 'non_specific_input' in context.get('_decision_reasons', []):
+            temp_step = ('Pima joto la mwili ikiwa unaweza, na uangalie dalili mpya kama kikohozi, koo kuuma, mafua, au shida ya kupumua.' if sw else
+                'Check your temperature if you can, and watch for new symptoms such as a cough, sore throat, runny nose, or difficulty breathing.')
+            if temp_step not in base['next_steps']:
+                base['next_steps'].insert(1, temp_step)
     base['urgency'] = 'urgent_same_day' if base['care_level'] == 'urgent_review' else base['care_level']
     base['health_guidance'] = base['next_steps'][0]
     return base
@@ -179,6 +206,23 @@ def build_primary_assessment(confirmation, age, sex):
               'decision': decision, 'uncertain': True, 'clinical_validation': False,
               'model_status': 'research_selective_primary',
               **patient_guidance(guidance_context, age, decision_status, primary)}
+    if primary is None:
+        # A withheld result is never a blank screen: it carries a clear title,
+        # a plain explanation, care guidance (patient_guidance above), and
+        # discriminator questions the patient can answer to re-run. The raw
+        # V3 ranking behind a non-specific case is a model artefact of a few
+        # non-specific features and is deliberately NOT exposed: the anchor
+        # gate and the sparse-serious guard block it from becoming a name.
+        result['withheld_title'] = WITHHELD_TITLE['sw' if sw else 'en']
+        if 'non_specific_input' in reasons:
+            result['non_specific_explanation'] = NON_SPECIFIC_EXPLANATION['sw' if sw else 'en']
+        known = context.get('symptom_states', {})
+        result['discriminator_questions'] = [
+            {'code': code, 'question_id': code,
+             'text_en': DISCRIMINATOR_QUESTIONS[code][0],
+             'text_sw': DISCRIMINATOR_QUESTIONS[code][1]}
+            for code in DISCRIMINATOR_CODES
+            if known.get(code) not in ('present', 'absent')]
     # Private audit details are stored separately and removed from patient JSON.
     result['_audit'] = {'selection': chosen, 'input_guard_reasons': reasons}
     return result

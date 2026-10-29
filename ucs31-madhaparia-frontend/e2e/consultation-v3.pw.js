@@ -108,7 +108,7 @@ for (const scenario of scenarios) {
       expect(result.predictions).toEqual([])
       expect(result.decision.status).not.toBe('possible_explanation')
       await expect(page.getByRole('heading', {
-        name: scenario.language === 'sw' ? 'Tunahitaji maelezo zaidi' : 'More information is needed', exact: true,
+        name: result.withheld_title || (scenario.language === 'sw' ? 'Tunahitaji maelezo zaidi' : 'More information is needed'), exact: true,
       })).toBeVisible()
       await expect(page.locator('.consultation-candidate')).toHaveCount(0)
     }

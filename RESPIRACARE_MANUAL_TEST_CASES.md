@@ -46,6 +46,8 @@ withheld, the richer eligible pattern shows one match.
 | Dizziness (context) | `i am dizzy` / `nina kizunguzungu` | Dizziness understood as context (no model evidence); safety screen first; never faked into a prediction | PASS |
 | Night sweats | `i sweat at night` | Recognised as heavy sweating; no unmatched wording | PASS |
 | Sparse guidance is symptom-aware | `I have tiredness, headache and fever` (under 3 days, moderate) | Withheld (no name), but guidance is tailored: headache+fever stiff-neck/confusion red-flag line, tiredness line, malaria-test line; no diagnosis named | PASS |
+| Withheld is never blank + optional discriminators | `i feel dizzy` | Full withheld result (title + guidance), not blank; breathing NOT the first question (severe chest pain is); "do you also have" taps for still-unknown symptoms | PASS |
+| Discriminator tap re-runs | tap "Do you also have a cough?" → Yes | Adds cough and re-runs; a yes to difficulty breathing goes to urgent review, never a prediction | PASS |
 
 Additional recorded journeys:
 

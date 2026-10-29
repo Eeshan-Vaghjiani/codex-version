@@ -49,7 +49,7 @@ def advance(flow, body, choices):
 def test_exact_example_gets_clarification_and_neutral_advice(v3_flow, text):
     data, asked = advance(v3_flow, payload(v3_flow, text), {
         'weakness_meaning': 'general_low_energy', 'symptom_severity': 'mild'})
-    assert asked == ['breathing_difficulty', 'severe_chest_pain', 'fever', 'weakness_meaning', 'symptom_severity']
+    assert asked == ['severe_chest_pain', 'fever', 'weakness_meaning', 'symptom_severity', 'cough']
     assert data['primary_prediction'] is None and data['predictions'] == []
     assert not data['model_features']
     assert data['assessment_context']['duration']['min_days'] == 3
@@ -174,6 +174,37 @@ def test_symptom_aware_guidance_for_withheld_sparse_case(v3_flow):
     assert 'unusual tiredness' in advice, advice   # tiredness line
     assert 'malaria' in advice, advice             # fever in Kenya line
     assert not any(word in advice for word in ('influenza', 'pneumonia', 'covid', 'bronchitis'))
+
+
+def test_withheld_result_is_never_blank_and_offers_discriminators(v3_flow):
+    """A withheld result must never be a blank screen: title + explanation +
+    care guidance, plus discriminator questions for the symptoms still unknown,
+    and breathing still surfaced as a question (a warning sign)."""
+    data, asked = advance(v3_flow, payload(v3_flow, 'I have tiredness, headache and fever'), {
+        'general_duration': 'under_3_days', 'symptom_severity': 'mild',
+        'fatigue_pattern': 'transient'})
+    assert data['primary_prediction'] is None and data['status'] == 'assessment_uncertain'
+    assert data['withheld_title']
+    assert data['non_specific_explanation']
+    assert data['next_steps']
+    codes = [q['code'] for q in data['discriminator_questions']]
+    # Only the still-unknown respiratory discriminators are offered; cough and
+    # fever were asked, and breathing was asked (a warning sign).
+    assert 'sore_throat' in codes and 'runny_blocked_nose' in codes
+    assert 'cough' not in codes and 'shortness_of_breath' not in codes
+    assert 'breathing_difficulty' in asked
+    assert all(q['text_en'] and q['text_sw'] for q in data['discriminator_questions'])
+
+
+def test_non_respiratory_report_does_not_open_with_breathing(v3_flow):
+    """A non-respiratory report is not opened with 'breathing': severe chest
+    pain is asked first, and breathing is a later discriminator (a warning
+    sign, still surfaced)."""
+    data, asked = advance(v3_flow, payload(v3_flow, 'I feel dizzy'), {
+        'general_duration': 'under_3_days'})
+    assert asked[0] != 'breathing_difficulty', asked
+    assert 'breathing_difficulty' in asked or any(
+        q['code'] == 'shortness_of_breath' for q in data.get('discriminator_questions', [])), asked
 
 
 def test_unresolved_safety_does_not_name_even_an_eligible_pattern(monkeypatch):
