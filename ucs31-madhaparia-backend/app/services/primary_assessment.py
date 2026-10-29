@@ -5,7 +5,7 @@ from app.services.patient_terminology import patient_term
 from app.services.consultation_guidance import consultation_guidance, withheld_viral_guidance, symptom_specific_advice, SW_SYMPTOMS
 from app.services.v3_prediction import get_v3_bundle
 
-PATIENT_POLICY_VERSION = 'kenya_single_primary_v4_family_gathering'
+PATIENT_POLICY_VERSION = 'kenya_single_primary_v5_negation_scope'
 RESPIRATORY_FEATURES = frozenset({'E_103','E_112','E_166','E_169','E_181','E_182','E_190','E_194',
  'E_201','E_203','E_212','E_214','E_217','E_220','E_45','E_65','E_66','E_67','E_77','E_97'})
 PUBLIC_CONTEXT_FIELDS = {'language','symptom_states','symptom_durations','duration','severity','cough_type',
@@ -276,13 +276,13 @@ def history_patient_projection(session):
             'created_at': session.created_at, 'has_red_flag': session.has_red_flag,
             'assessment_context': public_assessment_context(context), 'predictions': [], 'primary_prediction': None,
             'clinical_validation': False, 'uncertain': True}
-    if session.status == 'urgent_review' or session.has_red_flag:
-        from app.services.assessment_safety import detect_safety_signs, safety_guidance
-        flags = detect_safety_signs(session.input_text, age=session.age)
+    from app.services.assessment_safety import detect_safety_signs, safety_guidance
+    flags = detect_safety_signs(session.input_text, age=session.age)
+    if flags or session.status == 'urgent_review' or session.has_red_flag:
         check = 'exertion_full_sentence' if context.get('urgency') == 'urgent_same_day' else 'at_rest_or_cannot_speak'
         if not flags:
             flags = [{'code': 'saved_warning', 'breathing_tier': 'severity_check' if check == 'exertion_full_sentence' else 'emergency'}]
-        return {**base, 'status': 'urgent_review',
+        return {**base, 'status': 'urgent_review', 'has_red_flag': True,
                 'decision': {'status':'urgent_review','reasons':['reported_warning_sign'],'policy_version':PATIENT_POLICY_VERSION},
                 **safety_guidance(flags, language, check)}
     saved = context.get('patient_decision', {})

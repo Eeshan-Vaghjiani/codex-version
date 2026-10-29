@@ -5,7 +5,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import {
   getSavedSymptomConfirmation,
   getSavedSymptomMapping,
-  mapSymptoms, saveSymptomMapping, saveSymptomConfirmation,
+  mapSymptoms, confirmSymptoms, saveSymptomMapping, saveSymptomConfirmation,
 } from '../services/symptoms'
 
 import {
@@ -36,8 +36,8 @@ function PredictionPage() {
   const [correction, setCorrection] = useState(mapping?.input_text || '')
   const [copyMessage, setCopyMessage] = useState('')
   // Discriminator answers on a withheld screen: the patient taps Yes/No/Not
-  // sure for each question the backend offered. A "Yes" symptom is added to
-  // the confirmation and the assessment re-runs; "No"/"Not sure" add nothing,
+  // sure for each question the backend offered. "Yes" answers are re-mapped
+  // and confirmed by the API before reassessment; "No"/"Not sure" add nothing,
   // so they cannot silently become negatives. "Yes" to difficulty breathing is
   // a warning sign: it goes to urgent review, never to a prediction.
   const [discriminatorAnswers, setDiscriminatorAnswers] = useState({})
@@ -208,6 +208,9 @@ function PredictionPage() {
         setError(
           'Your login session is no longer valid. Please log in again.',
         )
+      } else if (requestError.response?.status === 400 &&
+          requestError.response?.data?.detail?.includes('not recognised as present')) {
+        setError('Your saved selections do not match the description. Go back to confirmation, or edit your description to include the symptoms you added.')
       } else if (requestError.response?.status === 422) {
         setError(
           getApiErrorMessage(
@@ -239,7 +242,7 @@ function PredictionPage() {
     setDiscriminatorUrgent(false)
   }
 
-  function handleDiscriminatorSubmit(event) {
+  async function handleDiscriminatorSubmit(event) {
     event.preventDefault()
     setError('')
     if (discriminatorAnswers.shortness_of_breath === 'yes') {
@@ -256,18 +259,27 @@ function PredictionPage() {
       return
     }
     const newCodes = [...new Set([...(confirmation?.confirmed_codes || []), ...added])]
-    saveSymptomConfirmation({
-      ...confirmation,
-      confirmed_codes: newCodes,
-      confirmed_symptoms: [
-        ...(confirmation?.confirmed_symptoms || []),
-        ...added.filter((code) => !(confirmation?.confirmed_symptoms || []).some((item) => item.code === code))
-          .map((code) => ({ code, display_name: code })),
-      ],
-    })
-    clearPredictionResult()
-    setResult(null)
-    setDiscriminatorAnswers({})
+    const affirmations = swahili
+      ? { cough: 'Nina kikohozi.', sore_throat: 'Koo linauma.',
+        runny_blocked_nose: 'Nina mafua au pua imeziba.', fever: 'Nina homa.' }
+      : { cough: 'I have a cough.', sore_throat: 'I have a sore throat.',
+        runny_blocked_nose: 'I have a runny or blocked nose.', fever: 'I have a fever.' }
+    const originalText = mapping.input_text.trim()
+    const updatedText = `${originalText}${/[.!?]$/.test(originalText) ? '' : '.'}\n${added.map((code) => affirmations[code]).join('\n')}`
+    setLoading(true)
+    try {
+      const updatedMapping = await mapSymptoms(updatedText)
+      const updatedConfirmation = await confirmSymptoms(updatedText, newCodes)
+      // Save neither half until the API has accepted the text and selections.
+      saveSymptomMapping(updatedMapping)
+      saveSymptomConfirmation(updatedConfirmation)
+      clearPredictionResult()
+      setCorrection(updatedText)
+      setResult(null)
+      setDiscriminatorAnswers({})
+    } catch (requestError) {
+      setError(getApiErrorMessage(requestError, 'Could not confirm the added symptoms. Please review or edit your description.'))
+    } finally { setLoading(false) }
   }
 
   return (

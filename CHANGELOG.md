@@ -1,8 +1,22 @@
-# Changelog — 2026-10-29
+# Changelog - 2026-10-29
 
 Starting point: `c04aca7`. Work confined to this repository; no external organisation
 repo accessed. Push authorised to `codex-respiracare-improvements-2026-10-29`;
 `main` and deployment untouched.
+
+## Fixes following the audit and confirmation screenshot
+
+Application code changed to resolve the audit's software defects (no model
+retrained, no disease gate relaxed). Shared negation scope so intrinsic loss
+phrases ("no sense of smell", "sina nguvu") cannot deny neighbouring symptoms;
+the independent safety detector uses the same context, so missed infant fever
+is now caught before routine mapping. Old history projections recheck warning
+signs from the original description/age. Discriminator "Yes" answers re-map and
+server-confirm the updated description instead of trusting stale local codes.
+A replay of the same 10,000 distinct descriptions now passes **10,000 / 10,000**
+(was 7,045 / 2,955); the frozen V3 model and its source metrics are unchanged.
+[Fixes report](audit-artifacts/AUDIT_FIXES_2026-10-29.md) and
+[fixed replay](audit-artifacts/UNIQUE_10000_FIXED_2026-10-29.md).
 
 ## Subsequent 10,000-case audit (application left unchanged)
 

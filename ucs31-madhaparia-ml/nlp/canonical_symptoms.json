@@ -262,7 +262,8 @@
         "whistling when breathing",
         "whistling when breathing out",
         "whistling sound when i breathe out",
-        "whistle when i breathe out"
+        "whistle when i breathe out",
+        "whistling sound when breathing out"
       ],
       "sw": [
         "sauti ya mluzi wakati wa kutoa pumzi",
@@ -392,11 +393,13 @@
         "hoarse voice",
         "changed voice",
         "lost my voice",
-        "rough voice"
+        "rough voice",
+        "voice changes"
       ],
       "sw": [
         "sauti imekauka",
-        "sauti imekwaruza"
+        "sauti imekwaruza",
+        "sauti kukwaruza"
       ]
     }
   },
@@ -420,7 +423,8 @@
         "nose is stuffy",
         "running nose",
         "running nostrils",
-        "nose is runny"
+        "nose is runny",
+        "runny or blocked nose"
       ],
       "sw": [
         "mafua",
@@ -430,7 +434,8 @@
         "pua inatoa makamasi",
         "pua inanitoka",
         "pua inatoka",
-        "pua inaenda"
+        "pua inaenda",
+        "mafua au pua imeziba"
       ]
     }
   },
@@ -540,7 +545,8 @@
       "en": [
         "itchy eyes",
         "eyes are itchy",
-        "eyes itching"
+        "eyes itching",
+        "eyes are itching"
       ],
       "sw": [
         "macho yanawasha"

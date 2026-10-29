@@ -1,7 +1,7 @@
 import api from './api'
 
 // Keep the cache structure while rejecting results/questions from older policies.
-const PREDICTION_CACHE_VERSION = 'kenya-single-primary-2026-10-29-family-gathering'
+const PREDICTION_CACHE_VERSION = 'kenya-single-primary-2026-10-29-negation-scope'
 
 const PREDICTION_KEY =
   'respiracare_prediction_result'

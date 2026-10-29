@@ -1,0 +1,318 @@
+{
+  "commit": "c1c069e203332e2ed820aeb4f42279f71489552b",
+  "runner_sha256": "c8984e4e6c95a3bf0948b1785f0282ab1496dc8478867e19d68749930434e87b",
+  "clinical_validation": false,
+  "note": "Synthetic software checks are not disease diagnostic accuracy. Every text is unique. Failures are recorded, not retried or dropped.",
+  "api": {
+    "cases": 10000,
+    "unique_texts": 10000,
+    "seed": 20261029,
+    "workers": 8,
+    "passed": 10000,
+    "failed": 0,
+    "errors": {},
+    "categories": {
+      "routine": {
+        "cases": 4000,
+        "failed": 0
+      },
+      "urgent": {
+        "cases": 1000,
+        "failed": 0
+      },
+      "denial": {
+        "cases": 1000,
+        "failed": 0
+      },
+      "other_person": {
+        "cases": 1000,
+        "failed": 0
+      },
+      "unsupported": {
+        "cases": 1000,
+        "failed": 0
+      },
+      "mixed": {
+        "cases": 1000,
+        "failed": 0
+      },
+      "contradiction": {
+        "cases": 500,
+        "failed": 0
+      },
+      "severe": {
+        "cases": 500,
+        "failed": 0
+      }
+    },
+    "outcomes": {
+      "prediction_complete": 2664,
+      "assessment_uncertain": 5754,
+      "urgent_review": 1582
+    },
+    "primary_counts": {
+      "Flu-like illness / common cold": 665,
+      "(withheld/urgent)": 7336,
+      "Bronchitis": 213,
+      "Influenza": 879,
+      "Allergic sinusitis": 104,
+      "Acute rhinosinusitis": 279,
+      "Acute laryngitis": 43,
+      "Chronic rhinosinusitis": 23,
+      "Bronchiolitis": 245,
+      "URTI": 67,
+      "Epiglottitis": 56,
+      "Pneumonia": 64,
+      "Pulmonary neoplasm": 16,
+      "Tuberculosis": 5,
+      "Acute COPD exacerbation / infection": 5
+    },
+    "question_counts": {
+      "3": 2611,
+      "7": 425,
+      "4": 1416,
+      "5": 709,
+      "2": 2885,
+      "0": 1316,
+      "8": 119,
+      "6": 473,
+      "10": 8,
+      "9": 29,
+      "1": 9
+    },
+    "model_status": {
+      "status": "loaded",
+      "model_version": "v3_partial_evidence",
+      "model_type": "missing_evidence_likelihood",
+      "feature_count": 34,
+      "model_feature_count": 34,
+      "class_count": 21,
+      "model_class_count": 21,
+      "clinical_validation": false,
+      "live_model_notice": "V3 partial-evidence: 21 conditions, 34 features; simulated DDXPlus only; not clinically validated for patients in Kenya.",
+      "training_data": "simulated DDXPlus only",
+      "covid_in_scope": false,
+      "gap_validation": "source_validation_checked",
+      "patient_naming_enabled": true,
+      "gap_source_note": "Separate complete-profile source-validation fold (%8==3), previously reporting-only in aggregate. Not new patients; not Kenyan clinical validation."
+    },
+    "elapsed_seconds": 2385.99,
+    "mean_case_seconds": 1.90859332,
+    "median_case_seconds": 1.85845,
+    "p95_case_seconds": 3.3474,
+    "failure_examples": []
+  },
+  "source": {
+    "counts": {
+      "cases": 10000,
+      "underlying_top1_correct": 7227,
+      "uncertain": 7104,
+      "family": 484,
+      "family_label_in_family": 467,
+      "eligible": 2412,
+      "named_correct": 2306
+    },
+    "unique_source_profiles": 10000,
+    "unique_model_inputs": 9958,
+    "evidence_buckets": {
+      "1:0": {
+        "cases": 229
+      },
+      "2:0": {
+        "cases": 311
+      },
+      "3:0": {
+        "cases": 391
+      },
+      "4:0": {
+        "cases": 324
+      },
+      "5:0": {
+        "cases": 216,
+        "named": 206,
+        "named_correct": 192
+      },
+      "6:0": {
+        "cases": 130,
+        "named": 123,
+        "named_correct": 117
+      },
+      "7:0": {
+        "cases": 57,
+        "named": 56,
+        "named_correct": 56
+      },
+      "8:0": {
+        "cases": 14,
+        "named": 14,
+        "named_correct": 14
+      },
+      "1:1": {
+        "cases": 219
+      },
+      "2:1": {
+        "cases": 323
+      },
+      "3:1": {
+        "cases": 379
+      },
+      "4:1": {
+        "cases": 332
+      },
+      "5:1": {
+        "cases": 194,
+        "named": 185,
+        "named_correct": 176
+      },
+      "6:1": {
+        "cases": 141,
+        "named": 135,
+        "named_correct": 128
+      },
+      "7:1": {
+        "cases": 64,
+        "named": 63,
+        "named_correct": 61
+      },
+      "8:1": {
+        "cases": 20,
+        "named": 19,
+        "named_correct": 19
+      },
+      "1:2": {
+        "cases": 222
+      },
+      "2:2": {
+        "cases": 342
+      },
+      "3:2": {
+        "cases": 377
+      },
+      "4:2": {
+        "cases": 295
+      },
+      "5:2": {
+        "cases": 215,
+        "named": 204,
+        "named_correct": 195
+      },
+      "6:2": {
+        "cases": 129,
+        "named": 122,
+        "named_correct": 118
+      },
+      "7:2": {
+        "cases": 57,
+        "named": 57,
+        "named_correct": 56
+      },
+      "8:2": {
+        "cases": 27,
+        "named": 27,
+        "named_correct": 27
+      },
+      "1:3": {
+        "cases": 227
+      },
+      "2:3": {
+        "cases": 328
+      },
+      "3:3": {
+        "cases": 404
+      },
+      "4:3": {
+        "cases": 310
+      },
+      "5:3": {
+        "cases": 195,
+        "named": 187,
+        "named_correct": 176
+      },
+      "6:3": {
+        "cases": 128,
+        "named": 125,
+        "named_correct": 122
+      },
+      "7:3": {
+        "cases": 56,
+        "named": 56,
+        "named_correct": 56
+      },
+      "8:3": {
+        "cases": 16,
+        "named": 16,
+        "named_correct": 16
+      },
+      "1:4": {
+        "cases": 224
+      },
+      "2:4": {
+        "cases": 314
+      },
+      "3:4": {
+        "cases": 362
+      },
+      "4:4": {
+        "cases": 329
+      },
+      "5:4": {
+        "cases": 196,
+        "named": 187,
+        "named_correct": 175
+      },
+      "6:4": {
+        "cases": 155,
+        "named": 152,
+        "named_correct": 144
+      },
+      "7:4": {
+        "cases": 57,
+        "named": 56,
+        "named_correct": 55
+      },
+      "8:4": {
+        "cases": 27,
+        "named": 27,
+        "named_correct": 27
+      },
+      "1:5": {
+        "cases": 225
+      },
+      "2:5": {
+        "cases": 347
+      },
+      "3:5": {
+        "cases": 390
+      },
+      "4:5": {
+        "cases": 295
+      },
+      "5:5": {
+        "cases": 205,
+        "named": 199,
+        "named_correct": 187
+      },
+      "6:5": {
+        "cases": 116,
+        "named": 111,
+        "named_correct": 104
+      },
+      "7:5": {
+        "cases": 63,
+        "named": 62,
+        "named_correct": 62
+      },
+      "8:5": {
+        "cases": 23,
+        "named": 23,
+        "named_correct": 23
+      }
+    },
+    "named_coverage": 0.2412,
+    "named_selective_accuracy": 0.9560530679933665,
+    "correct_named_per_all_cases": 0.2306,
+    "underlying_top1_accuracy": 0.7227,
+    "family_source_label_agreement": 0.9648760330578512,
+    "note": "Existing DDXPlus test fold, excluding training/validation signatures; 10,000 distinct full source profiles, but partial model inputs may repeat. Source-only classification, not API triage or Kenyan clinical validation. Family agreement means the source class is in the declared family, not a proven viral cause. No threshold changes."
+  }
+}

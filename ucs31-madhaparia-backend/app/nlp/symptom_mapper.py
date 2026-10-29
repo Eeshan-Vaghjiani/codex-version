@@ -740,6 +740,8 @@ def infer_symptom_status(text, matched_alias):
 
 
         clause = context_prefix(normalized, occurrence)
+        # Intrinsic loss/weakness wording is a positive observation, not a denial of the next symptom.
+        clause = re.sub(r"\b(?:no\s+(?:sense\s+of\s+(?:smell|taste)|taste|energy|appetite)|not\s+hungry|sina\s+nguvu)\b", "", clause)
 
         uncertain = re.search(
             r"\b(?:not\s+sure|unsure|don'?t\s+(?:know|think)|sijui|maybe|perhaps|labda|huenda|sina\s+uhakika|may|might|could)\b|\bdo\s+i\s+have\b|\bif\s+(?:i|nina)\b",

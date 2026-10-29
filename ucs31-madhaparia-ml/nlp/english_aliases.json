@@ -97,7 +97,8 @@
     "whistling when breathing",
     "whistling when breathing out",
     "whistling sound when i breathe out",
-    "whistle when i breathe out"
+    "whistle when i breathe out",
+    "whistling sound when breathing out"
   ],
   "wheeze_after_coughing": [
     "wheezing after coughing",
@@ -134,7 +135,8 @@
     "hoarse voice",
     "changed voice",
     "lost my voice",
-    "rough voice"
+    "rough voice",
+    "voice changes"
   ],
   "runny_blocked_nose": [
     "runny nose",
@@ -147,7 +149,8 @@
     "nose is stuffy",
     "running nose",
     "running nostrils",
-    "nose is runny"
+    "nose is runny",
+    "runny or blocked nose"
   ],
   "nasal_discharge": [
     "green nasal discharge",
@@ -208,7 +211,8 @@
   "itchy_eyes": [
     "itchy eyes",
     "eyes are itchy",
-    "eyes itching"
+    "eyes itching",
+    "eyes are itching"
   ],
   "headache": [
     "headache",

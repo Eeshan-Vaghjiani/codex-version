@@ -236,6 +236,7 @@ const safetyJourneys = [
   ['blood', 'I am coughing a lot of blood', 'emergency'],
   ['confusion', 'I have confusion', 'emergency'],
   ['baby-fever', 'I have fever', 'emergency', 0],
+  ['baby-fever-after-smell-loss', 'I have no sense of smell, fever and cough', 'emergency', 0],
   ['stiff-neck', 'I have headache, fever and stiff neck', 'emergency'],
   ['generic', 'I have fever, pain and fatigue'],
   ['severe-viral', 'I have severe fever, cough and body aches for two days'],
@@ -363,4 +364,35 @@ test('result correction rechecks safety and clears the old assessment', async ({
   await expect(page.getByRole('alert')).toContainText('hospital casualty')
   expect(await page.evaluate(() => sessionStorage.getItem('respiracare_prediction_result'))).toBeNull()
   expect(await page.evaluate(() => sessionStorage.getItem('respiracare_symptom_confirmation'))).toBeNull()
+})
+
+test('added discriminator symptoms are confirmed against updated text before prediction', async ({ page }) => {
+  await mapInput(page, 'I feel weak for 3 days')
+  const withheld = (await answerQuestions(page, await begin(page, 22), true)).result
+  expect(withheld.primary_prediction).toBeNull()
+  for (const code of ['cough', 'sore_throat', 'runny_blocked_nose']) {
+    const question = withheld.discriminator_questions.find((item) => item.code === code)
+    expect(question).toBeTruthy()
+    await page.getByRole('group', { name: question.text_en }).getByRole('radio', { name: 'Yes', exact: true }).check()
+  }
+  const confirmed = page.waitForResponse((response) => response.url().endsWith('/symptoms/confirm'))
+  await page.getByRole('button', { name: 'Submit and re-assess' }).click()
+  const confirmationResponse = await confirmed
+  expect(confirmationResponse.ok(), await confirmationResponse.text()).toBe(true)
+  const confirmation = await confirmationResponse.json()
+  expect(confirmation.confirmed_codes.sort()).toEqual(['weakness', 'cough', 'sore_throat', 'runny_blocked_nose'].sort())
+  await expect(page.getByRole('heading', { name: 'Complete your information' })).toBeVisible()
+  const next = page.waitForResponse((response) => response.url().endsWith('/predict'))
+  await page.getByRole('button', { name: 'Generate awareness result' }).click()
+  const response = await next
+  expect(response.ok(), await response.text()).toBe(true)
+  const sent = response.request().postDataJSON()
+  expect(sent.text).toContain('I have a cough.')
+  expect(sent.text).toContain('I have a sore throat.')
+  expect(sent.text).toContain('I have a runny or blocked nose.')
+  const result = (await answerQuestions(page, await response.json(), false, {
+    weakness_meaning: 'general_low_energy', symptom_severity: 'mild',
+  })).result
+  expect(['assessment_uncertain', 'prediction_complete']).toContain(result.status)
+  await expect(page.getByText(/not recognised as present from the submitted text/)).toHaveCount(0)
 })

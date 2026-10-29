@@ -87,6 +87,8 @@ out. Severity alone cannot identify COVID. V2 is not enabled to supply a label.
 - [Defence one-pager](README_DEFENCE.md)
 - [Changes and test coverage](CHANGELOG.md)
 - [Baseline, final checks and limitations](audit-artifacts/VALIDATION_2026-10-29.md)
+- [Fixes following the audit and confirmation screenshot](audit-artifacts/AUDIT_FIXES_2026-10-29.md)
+- [Fixed 10,000-case replay](audit-artifacts/UNIQUE_10000_FIXED_2026-10-29.md)
 - [Simulated-source results and fresh-evaluation blocker](audit-artifacts/SIMULATED_EVALUATION_2026-10-29.md)
 - [Training provenance: was the model trained on only 2,000 records?](audit-artifacts/TRAINING_PROVENANCE_2026-10-29.md)
 - [Manual cases and recorded browser outcomes](RESPIRACARE_MANUAL_TEST_CASES.md)

@@ -85,7 +85,7 @@ describe('SymptomInputPage', () => {
     analyse('Nashindwa kupumua')
     const alert = await screen.findByRole('alert')
     expect(alert).toHaveTextContent('Tafuta huduma ya dharura sasa.')
-    expect(alert).toHaveFocus()
+    await waitFor(() => expect(alert).toHaveFocus())
     expect(screen.queryByText('Continue to confirmation')).not.toBeInTheDocument()
   })
 

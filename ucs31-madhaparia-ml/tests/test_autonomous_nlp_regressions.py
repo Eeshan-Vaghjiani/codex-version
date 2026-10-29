@@ -165,3 +165,20 @@ def test_backend_and_ml_shared_logic_cannot_silently_drift():
         assert ml[name] == backend[name], name
     for filename in ["canonical_symptoms.json", "english_aliases.json", "swahili_aliases.json"]:
         assert json.loads((ROOT / "ucs31-madhaparia-ml/nlp" / filename).read_text(encoding="utf8")) == json.loads((BACKEND / "app/nlp" / filename).read_text(encoding="utf8"))
+
+
+@pytest.mark.parametrize('text,alias,status', [
+    ('I have no sense of smell, fever and cough', 'fever', 'present'),
+    ('I have no sense of smell, fever and cough', 'cough', 'present'),
+    ('I have no taste, fever and cough', 'cough', 'present'),
+    ('I have no energy and headache', 'headache', 'present'),
+    ('I have no appetite and cough', 'cough', 'present'),
+    ('Sina nguvu na homa', 'homa', 'present'),
+    ('I have no fever or cough', 'cough', 'absent'),
+    ('Sina homa wala kikohozi', 'kikohozi', 'absent'),
+    ('I do not have no sense of smell, fever or cough', 'cough', 'absent'),
+    ('I have no sense of smell, but no fever', 'fever', 'absent'),
+    ('I am not sure if I have no sense of smell and cough', 'cough', 'unknown'),
+])
+def test_intrinsic_absence_wording_does_not_negate_other_symptoms(mapper, text, alias, status):
+    assert mapper.infer_symptom_status(text, alias) == status
