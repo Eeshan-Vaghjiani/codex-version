@@ -141,6 +141,27 @@ def test_loss_of_taste_is_recognised_and_points_to_covid_testing(v3_flow):
     assert mapped['unmatched_wording'] == []
 
 
+def test_cold_or_flu_claim_is_context_not_model_evidence(v3_flow):
+    for text in ('I have a cold', 'niko na cold', 'I have flu', 'nina flu'):
+        mapped = build_confirmation_output(text, v3_flow.db)
+        assert not mapped['unmatched_wording'], (text, mapped['unmatched_wording'])
+        assert all(item['features'] == [] for item in mapped['recognised_symptoms'])
+
+
+@pytest.mark.parametrize('text,keywords', [
+    ('I have a cold', ('viral cold', 'mafua ya virusi')),
+    ('niko na cold', ('viral cold', 'mafua ya virusi')),
+    ('I have flu', ('flu-like', 'mafua ya ndege')),
+    ('nina flu', ('flu-like', 'mafua ya ndege')),
+])
+def test_cold_and_flu_claims_get_actionable_guidance(v3_flow, text, keywords):
+    data, asked = advance(v3_flow, payload(v3_flow, text), {
+        'general_duration': 'under_3_days', 'symptom_severity': 'mild'})
+    assert data['primary_prediction'] is None
+    advice = ' '.join(data['next_steps']).lower()
+    assert any(keyword in advice for keyword in keywords), (text, advice)
+
+
 def test_unresolved_safety_does_not_name_even_an_eligible_pattern(monkeypatch):
     import app.services.primary_assessment as service
     monkeypatch.setattr(service, 'select_primary_evidence', lambda *args: {

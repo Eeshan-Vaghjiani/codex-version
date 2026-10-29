@@ -38,6 +38,13 @@ withheld, the richer eligible pattern shows one match.
 | Severe flu-like illness, no test | `I have severe fever, cough and body aches for two days` | Professional review; no automatic COVID label | PASS |
 | Overlapping respiratory pattern | `I have cough, sore throat, fever and muscle aches` | Withheld, not blindly highest-ranked; COVID caveat and monitoring. Separate mocked close-gap/dangerous-second units verify same-day review | PASS |
 | Additional mixed input | `Nina homa na cough kwa siku mbili` | Kiswahili/mixed safety screen, acute advice, withheld | PASS |
+| Flu claim, English | `I have flu` | Flu-like guidance (rest/fluids/paracetamol, no antibiotics); no condition named; COVID-test consideration if fever/chills | PASS |
+| Flu claim, Kiswahili/Sheng | `niko na flu` | Same flu-like guidance in Kiswahili; no condition named | PASS |
+| Cold claim | `I have a cold` / `niko na cold` | Viral-cold guidance (upper-respiratory, rest/fluids/paracetamol, 5-7 day review); no condition named | PASS |
+| Everyday Sheng symptoms | `kifua kinauma` / `kichwa kinauma` / `koo inaniuma` / `pua inanitoka` / `naskia mwili` | Each symptom understood and confirmed; no unmatched wording; safety screen still first | PASS |
+| Tiredness + cough + fever | `nina kikohozi na homa na nimechoka` | All three understood; fatigue-pattern asked; withheld (sparse), actionable acute advice, nothing ruled out | PASS |
+| Dizziness (context) | `i am dizzy` / `nina kizunguzungu` | Dizziness understood as context (no model evidence); safety screen first; never faked into a prediction | PASS |
+| Night sweats | `i sweat at night` | Recognised as heavy sweating; no unmatched wording | PASS |
 
 Additional recorded journeys:
 

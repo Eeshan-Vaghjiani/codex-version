@@ -6,8 +6,10 @@ only; not clinically validated for patients in Kenya. V2 is not live.**
 RespiraCare is a React frontend, FastAPI backend and ML research project for
 respiratory health awareness. It provides guidance, not a diagnosis or a
 substitute for a qualified healthcare professional. It considers only a limited
-set of respiratory conditions. Kenyan clinician, Kiswahili and patient
-comprehension review remain pending.
+set of respiratory conditions. Everyday English, Kiswahili and Sheng phrasings
+are understood (tiredness, chest/head/throat pain, runny nose, body aches, night
+sweats, and stated cold/flu/dizziness as context only). Kenyan clinician and
+patient comprehension review remain pending.
 
 ## Current safety decision — 29 October 2026
 

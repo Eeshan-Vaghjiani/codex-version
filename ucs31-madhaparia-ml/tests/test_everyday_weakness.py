@@ -27,3 +27,26 @@ def test_everyday_cold_and_taste_are_understood(text, expected):
     result = build_confirmation_output(text)
     assert {item['code'] for item in result['recognised_symptoms']} == expected
     assert not result['unmatched_wording']
+
+
+@pytest.mark.parametrize('text,expected', [
+    ('i sweat at night', {'heavy_sweating'}),
+    ('i am dizzy', {'dizziness'}),
+    ('nimechoka', {'tiredness'}),
+    ('kifua kinauma', {'chest_pain'}),
+    ('kichwa kinauma', {'headache'}),
+    ('naskia kichwa', {'headache'}),
+    ('nina sauti ya mluzi', {'wheezing'}),
+    ('koo inaniuma', {'sore_throat'}),
+    ('niko na flu', {'flu_like'}),
+    ('nina flu', {'flu_like'}),
+    ('niko na cold', {'common_cold'}),
+    ('i have a cold', {'common_cold'}),
+    ('pua inanitoka', {'runny_blocked_nose'}),
+    ('naskia mwili', {'muscle_aches'}),
+])
+def test_everyday_kenyan_phrases_are_understood(text, expected):
+    result = build_confirmation_output(text)
+    codes = {item['code'] for item in result['recognised_symptoms']}
+    assert expected <= codes, (text, codes)
+    assert not result['unmatched_wording'], (text, result['unmatched_wording'])

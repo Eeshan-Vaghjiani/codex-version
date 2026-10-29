@@ -17,12 +17,16 @@ SW_SYMPTOMS = {
 
 
 def withheld_viral_guidance(states, duration, sw):
-    """Actionable advice for a likely viral cold when no condition is named.
+    """Actionable advice for a likely viral cold/flu when no condition is named.
 
-    Only for a mild sore-throat + runny/blocked-nose pattern with no danger sign.
+    Triggers on a mild sore-throat + runny/blocked-nose pattern, or on a
+    patient-stated common cold or flu-like illness, with no danger sign.
     This is guidance, not a diagnosis: it does not name a condition.
     """
-    if states.get('sore_throat') != 'present' or states.get('runny_blocked_nose') != 'present':
+    cold_claim = states.get('common_cold') == 'present'
+    flu_claim = states.get('flu_like') == 'present'
+    urti = states.get('sore_throat') == 'present' and states.get('runny_blocked_nose') == 'present'
+    if not (cold_claim or flu_claim or urti):
         return []
     danger = any(states.get(code) == 'present' for code in (
         'shortness_of_breath', 'intense_coughing_fits', 'vomiting_after_coughing',
@@ -32,9 +36,14 @@ def withheld_viral_guidance(states, duration, sw):
     days = (duration or {}).get('min_days')
     if days is not None and days >= 14:
         return []
+    if flu_claim:
+        opening = ('Maelezo haya yanafanana na ugonjwa wa mafua ya ndege (influenza). Virusi kadhaa vinaweza kusababisha hali hii, ikiwemo influenza na COVID; dalili pekee haziwezi kuthibitisha ni ipi. Pumzika, unywe maji, tumia paracetamol kwa maumivu au homa; antibiotiki hazisaidii kwa maambukizi ya virusi.' if sw else
+            'This describes a flu-like illness. Several viruses, including influenza and COVID, can cause it; symptoms alone cannot confirm which one. Rest, drink fluids, and use paracetamol for discomfort or fever; antibiotics do not help a viral infection.')
+    else:
+        opening = ('Mchanganyiko huu mara nyingi hutokana na mafua ya virusi (maambukizi ya njia ya juu ya upumuaji). Kwa kawaida hupita yenyewe; pumzika, unywe maji, na tumia paracetamol kwa maumivu. Antibiotiki hazihitajiki kwa mafua ya virusi.' if sw else
+            'This combination most often comes from a common viral cold (upper-respiratory infection). It usually clears on its own; rest, drink fluids, and use paracetamol for discomfort. Antibiotics are not needed for a viral cold.')
     lines = [
-        ('Mchanganyiko huu mara nyingi hutokana na mafua ya virusi (maambukizi ya njia ya juu ya upumuaji). Kwa kawaida hupita yenyewe; pumzika, unywe maji, na tumia paracetamol kwa maumivu. Antibiotiki hazihitajiki kwa mafua ya virusi.' if sw else
-         'This combination most often comes from a common viral cold (upper-respiratory infection). It usually clears on its own; rest, drink fluids, and use paracetamol for discomfort. Antibiotics are not needed for a viral cold.'),
+        opening,
         ('Mwone mhudumu wa afya kama haijaimarika baada ya siku 5-7, au mapema kwa shida ya kupumua, maumivu ya kifua, homa kali, au kama una pumu, COPD au kisukari.' if sw else
          'See a clinician if not improving in about 5-7 days, or sooner for breathing difficulty, chest pain, high fever, or if you have asthma, COPD or diabetes.'),
     ]

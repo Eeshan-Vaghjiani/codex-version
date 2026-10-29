@@ -42,14 +42,19 @@
   "wheezing": [
     "sauti ya mluzi wakati wa kutoa pumzi",
     "mluzi ninapotoa pumzi",
-    "kifua kinatoa mlio wa mluzi"
+    "kifua kinatoa mlio wa mluzi",
+    "sauti ya mluzi",
+    "nina sauti ya mluzi"
   ],
   "sore_throat": [
     "koo kuuma",
     "kidonda cha koo",
     "koo linauma",
     "koo langu linauma",
-    "maumivu ya koo"
+    "maumivu ya koo",
+    "koo inaniuma",
+    "koo inaniona",
+    "koo linaniuma"
   ],
   "hoarse_voice": [
     "sauti imekauka",
@@ -60,25 +65,43 @@
     "homa ya mafua",
     "pua imeziba",
     "pua inatiririka",
-    "pua inatoa makamasi"
+    "pua inatoa makamasi",
+    "pua inanitoka",
+    "pua inatoka",
+    "pua inaenda"
   ],
   "headache": [
     "kichwa kuuma",
     "kuumwa na kichwa",
-    "maumivu ya kichwa"
+    "maumivu ya kichwa",
+    "kichwa kinauma",
+    "kichwa kinaniuma",
+    "naskia kichwa",
+    "naskia maumivu ya kichwa"
   ],
   "chest_pain": [
     "kifua kuuma",
-    "maumivu ya kifua"
+    "maumivu ya kifua",
+    "kifua kinauma",
+    "kifua kinaniuma",
+    "chest inaniuma",
+    "chest inauma"
   ],
   "tiredness": [
     "uchovu",
     "kuchoka",
     "nimechoka kila wakati",
-    "uchovu wa kila wakati"
+    "uchovu wa kila wakati",
+    "nimechoka",
+    "nimechoka sana",
+    "nimechoka leo",
+    "ninachoka"
   ],
   "weakness": ["sina nguvu", "mwili hauna nguvu", "nahisi udhaifu", "udhaifu"],
   "loss_of_taste": ["kupoteza ladha", "ladha imepotea", "sikioni ladha", "siioni ladha"],
+  "dizziness": ["kizunguzungu", "nina kizunguzungu", "kichwa kinazunguka", "naskia kizunguzungu"],
+  "common_cold": ["niko na cold", "nina cold", "niko na kipooza", "kipooza"],
+  "flu_like": ["nina flu", "niko na flu", "nina influenza", "mafua makali"],
   "weight_loss": [
     "kupungua uzito",
     "ninapungua uzito",
@@ -132,7 +155,10 @@
     "misuli inauma",
     "misuli ya mwili mzima inauma",
     "maumivu ya misuli mwili mzima",
-    "mwili unauma"
+    "mwili unauma",
+    "naskia mwili",
+    "sikia mwili",
+    "mwili inaniuma"
   ],
   "vomiting_after_coughing": [
     "kutapika baada ya kukohoa",

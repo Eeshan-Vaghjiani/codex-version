@@ -51,8 +51,11 @@ A positive test, exposure or taste/smell loss warrants testing/clinical advice;
 sinusitis/flu-like output never excludes COVID. Severe influenza is not proof of
 COVID. Bronchitis is explained as chest infection / airway inflammation with its
 medical name. Influenza wording retains the warning against bare mafua; homa is
-not a flu diagnosis. TB and pneumonia wording remain. Clinician, Kiswahili,
-Sheng coverage and patient-comprehension validation remain pending.
+not a flu diagnosis. TB and pneumonia wording remain. Everyday English, Kiswahili
+and Sheng phrasings (tiredness `nimechoka`, chest/head/sore-throat pain, runny
+nose, body aches, night sweats, and stated cold/flu/dizziness) are recognised as
+context only, never model evidence. Clinician and patient-comprehension
+validation remain pending.
 
 **Say to the panel:** “We prioritise warning signs and refuse unsupported names.
 Our model is evaluated only on simulated-source data, not Kenyan patients. The

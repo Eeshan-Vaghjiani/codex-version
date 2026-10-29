@@ -61,8 +61,12 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
         summary = ('Hili ni jambo linaloweza kueleza dalili zako, si utambuzi uliothibitishwa.' if sw else
                    'This is one possible explanation for your symptoms, not a confirmed diagnosis.')
     elif viral_lines and base['care_level'] == 'self_care_or_review':
-        summary = ('Mchanganyiko huu mara nyingi huonekana katika mafua ya virusi. Programu haiamini kutosha kutaja ugonjwa mmoja; ushauri ni wa jumla, si utambuzi.' if sw else
-                   'This pattern most often reflects a viral cold. The model is not confident enough to name one condition; this is general care advice, not a diagnosis.')
+        summary = (
+            'Maelezo haya yanafanana na ugonjwa wa mafua ya ndege. Virusi kadhaa, ikiwemo influenza na COVID, vinaweza kusababisha hali hii; programu haiwezi kuthibitisha ni ipi kwa dalili pekee.' if sw else
+            'This describes a flu-like illness. Several viruses, including influenza and COVID, can cause it; symptoms alone cannot confirm which one.')
+        if states.get('flu_like') != 'present':
+            summary = ('Mchanganyiko huu mara nyingi huonekana katika mafua ya virusi. Programu haiamini kutosha kutaja ugonjwa mmoja; ushauri ni wa jumla, si utambuzi.' if sw else
+                       'This pattern most often reflects a viral cold. The model is not confident enough to name one condition; this is general care advice, not a diagnosis.')
     elif not scope and any(value == 'present' for value in states.values()):
         summary = ('Dalili hizi zinaweza kuwa na sababu kadhaa. Programu hii inalenga magonjwa ya mfumo wa upumuaji na haiwezi kutathmini sababu zote.' if sw else
                    'These symptoms can have several causes. This app focuses on respiratory conditions and cannot assess every possible cause.')

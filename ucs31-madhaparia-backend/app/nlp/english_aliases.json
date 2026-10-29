@@ -163,6 +163,31 @@
     "lost my sense of taste",
     "lost sense of taste"
   ],
+  "dizziness": [
+    "dizzy",
+    "dizziness",
+    "feeling dizzy",
+    "lightheaded",
+    "light-headed",
+    "feel faint",
+    "feeling faint"
+  ],
+  "common_cold": [
+    "have a cold",
+    "i have a cold",
+    "common cold",
+    "caught a cold",
+    "catching a cold"
+  ],
+  "flu_like": [
+    "flu",
+    "the flu",
+    "i have flu",
+    "have flu",
+    "influenza",
+    "flu-like illness",
+    "flu like illness"
+  ],
   "itchy_nose_throat": [
     "itchy nose",
     "itchy throat",
@@ -238,7 +263,9 @@
     "sweating at night",
     "sweat a lot at night",
     "wake up soaked in sweat",
-    "sweating more than usual"
+    "sweating more than usual",
+    "sweat at night",
+    "sweats at night"
   ],
   "loss_of_appetite": [
     "loss of appetite",

@@ -175,7 +175,11 @@
   },
   {
     "code": "shortness_of_breath",
-    "safety_aliases": {"sw": ["kifua kinabana"]},
+    "safety_aliases": {
+      "sw": [
+        "kifua kinabana"
+      ]
+    },
     "display_name": "Significant shortness of breath",
     "features": [
       "E_66"
@@ -256,7 +260,9 @@
       "sw": [
         "sauti ya mluzi wakati wa kutoa pumzi",
         "mluzi ninapotoa pumzi",
-        "kifua kinatoa mlio wa mluzi"
+        "kifua kinatoa mlio wa mluzi",
+        "sauti ya mluzi",
+        "nina sauti ya mluzi"
       ]
     }
   },
@@ -355,7 +361,10 @@
         "kidonda cha koo",
         "koo linauma",
         "koo langu linauma",
-        "maumivu ya koo"
+        "maumivu ya koo",
+        "koo inaniuma",
+        "koo inaniona",
+        "koo linaniuma"
       ]
     }
   },
@@ -407,7 +416,10 @@
         "homa ya mafua",
         "pua imeziba",
         "pua inatiririka",
-        "pua inatoa makamasi"
+        "pua inatoa makamasi",
+        "pua inanitoka",
+        "pua inatoka",
+        "pua inaenda"
       ]
     }
   },
@@ -519,7 +531,11 @@
       "sw": [
         "kichwa kuuma",
         "kuumwa na kichwa",
-        "maumivu ya kichwa"
+        "maumivu ya kichwa",
+        "kichwa kinauma",
+        "kichwa kinaniuma",
+        "naskia kichwa",
+        "naskia maumivu ya kichwa"
       ]
     }
   },
@@ -539,7 +555,11 @@
       ],
       "sw": [
         "kifua kuuma",
-        "maumivu ya kifua"
+        "maumivu ya kifua",
+        "kifua kinauma",
+        "kifua kinaniuma",
+        "chest inaniuma",
+        "chest inauma"
       ]
     }
   },
@@ -634,7 +654,11 @@
         "uchovu",
         "kuchoka",
         "nimechoka kila wakati",
-        "uchovu wa kila wakati"
+        "uchovu wa kila wakati",
+        "nimechoka",
+        "nimechoka sana",
+        "nimechoka leo",
+        "ninachoka"
       ]
     }
   },
@@ -645,8 +669,22 @@
     "kind": "context",
     "is_red_flag": false,
     "aliases": {
-      "en": ["weakness", "weaknes", "feeling weak", "feel weak", "weak", "low energy", "no energy", "lack of strength"],
-      "sw": ["sina nguvu", "mwili hauna nguvu", "nahisi udhaifu", "udhaifu"]
+      "en": [
+        "weakness",
+        "weaknes",
+        "feeling weak",
+        "feel weak",
+        "weak",
+        "low energy",
+        "no energy",
+        "lack of strength"
+      ],
+      "sw": [
+        "sina nguvu",
+        "mwili hauna nguvu",
+        "nahisi udhaifu",
+        "udhaifu"
+      ]
     }
   },
   {
@@ -692,7 +730,10 @@
         "misuli inauma",
         "misuli ya mwili mzima inauma",
         "maumivu ya misuli mwili mzima",
-        "mwili unauma"
+        "mwili unauma",
+        "naskia mwili",
+        "sikia mwili",
+        "mwili inaniuma"
       ]
     }
   },
@@ -713,7 +754,9 @@
         "sweating at night",
         "sweat a lot at night",
         "wake up soaked in sweat",
-        "sweating more than usual"
+        "sweating more than usual",
+        "sweat at night",
+        "sweats at night"
       ],
       "sw": [
         "kutokwa jasho",
@@ -927,6 +970,76 @@
       "sw": [
         "maumivu sehemu ya juu ya kifua",
         "sehemu ya juu ya kifua inauma"
+      ]
+    }
+  },
+  {
+    "code": "dizziness",
+    "display_name": "Dizziness",
+    "features": [],
+    "kind": "context",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "dizzy",
+        "dizziness",
+        "feeling dizzy",
+        "lightheaded",
+        "light-headed",
+        "feel faint",
+        "feeling faint"
+      ],
+      "sw": [
+        "kizunguzungu",
+        "nina kizunguzungu",
+        "kichwa kinazunguka",
+        "naskia kizunguzungu"
+      ]
+    }
+  },
+  {
+    "code": "common_cold",
+    "display_name": "Common cold",
+    "features": [],
+    "kind": "context",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "have a cold",
+        "i have a cold",
+        "common cold",
+        "caught a cold",
+        "catching a cold"
+      ],
+      "sw": [
+        "niko na cold",
+        "nina cold",
+        "niko na kipooza",
+        "kipooza"
+      ]
+    }
+  },
+  {
+    "code": "flu_like",
+    "display_name": "Flu-like illness",
+    "features": [],
+    "kind": "context",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "flu",
+        "the flu",
+        "i have flu",
+        "have flu",
+        "influenza",
+        "flu-like illness",
+        "flu like illness"
+      ],
+      "sw": [
+        "nina flu",
+        "niko na flu",
+        "nina influenza",
+        "mafua makali"
       ]
     }
   }
