@@ -218,13 +218,22 @@ def classify_primary(present_features, absent_features, age, sex):
     top_score = first["raw_relative_score"]
     gap = first["raw_relative_score"] - second["raw_relative_score"]
     result["diagnostics"]["second_condition"] = second["condition"]
-    # Narrow 4:0 family exception, chosen route (not a general 4:0 enablement):
-    # the 4:0 bucket is disabled only because its source-validation risk
+    # Narrow 4-present family exception, chosen route (not a general bucket enablement):
+    # the 4-present buckets are disabled only because their source-validation risk
     # bound (0.1025) sits just over the 0.10 target. When the top pattern is
     # nevertheless clear (>=0.75, gap >=0.20), viral-family, and no dangerous
     # condition is a close second, return a FAMILY answer, not a specific
     # disease name. A 4-symptom close case still withholds below.
-    if not entry["enabled"] and result["diagnostics"]["evidence_bucket"] == "4:0":
+    # Extended 2026-10-29 (prompt-first fix): the same exception must hold
+    # after a safety/discriminator answer adds an absent feature. Answering
+    # "no" to breathing difficulty (or fever) moves 4:0 to 4:1/4:2, which
+    # is disabled for the same source-validation bound, and used to turn
+    # a clear family answer into a blank withheld screen -- exactly the
+    # "questions lead to nothing" failure. The exception is still narrow:
+    # 4 present features, disabled bucket, clear viral-family top, no
+    # dangerous close second. It is a family answer, never a specific
+    # disease name, and absent evidence is already inside the ranking.
+    if not entry["enabled"] and len(present) == 4 and result["diagnostics"]["policy_reason"] == "source_validation_bound_not_met":
         if (first["condition"] in VIRAL_UPPER_RESPIRATORY_FAMILY
                 and top_score >= FAMILY_MIN_SCORE and gap >= FAMILY_MIN_GAP
                 and not (second["condition"] in DANGEROUS_CONDITIONS and gap < DANGEROUS_CLOSE_GAP)):

@@ -54,3 +54,45 @@
   0.216 on headache + tiredness + fever. Both are blocked from patient
   output by the respiratory-anchor gate (and, for sparse serious names,
   the sparse-serious guard). Never quote these as patient scores.
+- Prompt-first freeze (2026-10-29 final merge): for a case that was
+  already clear on the initial prompt, a safety "no" is recorded in
+  symptom_states (shown to the patient) but does NOT rewrite the model
+  evidence — the final result is the initial clear result. This is a
+  deliberate user-experience rule, not a model property: without it,
+  a safety negative alone dropped clear cases below their bucket
+  minimum (batch-1 sweep: Bronchiolitis 88% strong fell to 0.641 vs a
+  0.657 minimum on breathing-absent) and triggered more questions.
+  For cases that were NOT initially clear, all answers (including
+  safety) still count as model evidence, as before.
+- Strong band on a single specific symptom is a model-policy outcome,
+  not a bug fixed here: batch-1 sweep found 267 named-strong cases on
+  <=2 model features, mostly single highly specific symptoms
+  (vomiting after coughing -> Whooping cough, difficulty swallowing
+  -> Epiglottitis, night breathlessness -> Acute pulmonary edema,
+  hoarse voice -> Acute laryngitis, itchy nose -> Allergic
+  sinusitis). Those conditions get professional-review guidance when
+  they are in the medical-review set. A "never name strong on 1
+  feature" guard was NOT invented in this pass: it would break
+  specific-symptom journeys and needs Eeshan's decision, not a
+  silent threshold.
+- Sweep batch 1 pattern bug, disclosed: the "2x-unknown" pattern
+  answered duration/severity/fatigue/weight-loss questions
+  informatively instead of "not sure" (answer_for() only handled
+  yes/no questions). Batch-1 2x-unknown rows are therefore "unknown
+  for yes/no, informative for special questions", not a pure
+  2x-unknown pattern. Fixed for batch 2; batch-1 failure clusters
+  (0 blanks, 0 sparse-serious violations) do not depend on that
+  pattern, and the 8 prompt-first failures were all "all-no" cases.
+- Context family rendering on the frontend was not separately tested
+  in this pass: it relies on the existing PossibleExplanations /
+  patientResult contract (display/dual name + policy version +
+  possible_explanation status, match percent optional). Backend tests
+  prove that contract for context family; a frontend test for the
+  no-percent family rendering is still open.
+- Family exception widened in this pass: it now applies to any
+  4-present bucket disabled only for its source-validation bound
+  (not just 4:0), because answering a safety/discriminator question
+  with "no" moves 4:0 to 4:1/4:2. Same thresholds (viral-family top
+  >=75%, gap >=20 points, no dangerous close second), still a family
+  answer, never a specific disease name. Still unvalidated on a
+  fresh fold, like all thresholds in this version.

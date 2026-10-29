@@ -1,5 +1,102 @@
 # TEST REPORT — Muse improvements, 2026-10-29
 
+## Real counts (actually run here, final merge pass)
+- Backend full suite: **365 passed, 0 failed** (PostgreSQL via pgserver
+  bundle, `TEST_DATABASE_URL` to a local test DB, Alembic + seeded
+  catalogue). This is 350 + 11 prompt-first tests + 2 sweep-fix tests
+  (initial-clear anchor, prepare freeze) + 2 alias tests (red-flag
+  SW aliases, can-breathe-fine). No failing test was deleted. Three
+  existing tests were updated for intentional behaviour changes and
+  recorded in CHANGELOG (discriminator-only sequence, allowed
+  question set, family-answer terminology handling); one regression
+  found by this pass (prompt-first check swallowing ServiceNotReady)
+  was fixed in code, not by weakening the test.
+- Frontend full suite (vitest): **117 passed, 0 failed** (20 files).
+  No frontend code changed in this pass; the context-family result
+  renders through the existing patientResult contract (match percent
+  optional), which is backend-tested but not separately
+  frontend-tested — see LIMITATIONS.
+- Frontend build: `vite build` succeeds with `VITE_API_BASE_URL` set.
+- 21 journeys in `tests/test_muse_journeys.py` are included in the
+  backend full-suite count (not separately re-counted).
+
+## 10,000-case sweeps (batch 1 + batch 2, auditable CSVs)
+- Method: `reports/test_sweep_10000.py` drives the real pipeline
+  (confirm -> consultation loop with the case's answer pattern ->
+  build) for every case and writes one CSV row per case;
+  `reports/analyse_sweep.py` recomputes derived flags from the raw
+  columns. Outcome categories: red_flag_bypass (warning sign found
+  at confirm or during follow-up, never reaches a prediction),
+  named_primary (one specific condition + rounded band),
+  family_answer (model family, or context family for a stated
+  cold/flu — the latter has NO percent by design),
+  withheld_with_guidance (no name, but full withheld screen with
+  title/explanation/care steps), blank (no name AND no guidance —
+  must be 0), sparse-serious violation (neoplasm, or TB strong, on
+  <=3 features with no specific support — must be 0),
+  prompt-first violation (initial prompt already clear, yet a
+  non-safety question was asked — must be 0).
+- Batch 1 (10,000, seed 20261029): named 707, model family 104,
+  context family 247, withheld-with-guidance 2602, red-flag bypass
+  6340, blank 0, errors 0, sparse-serious 0, prompt-first violations
+  8, advice-only questions 0. Mean questions 1.42, zero-question
+  3454. Failures fixed: the 8 prompt-first cases (initial-clear
+  anchor + safety freeze) and the red-flag alias gaps (see
+  CHANGELOG). Batch-1 2x-unknown pattern bug disclosed in CHANGELOG.
+- Batch 2 (10,000: 8 regressions + 50 exact + 9942 fresh, seed
+  20261030): as run, named 807, model family 44, context family
+  241, withheld-with-guidance 1916, red-flag bypass 6984, blank 0,
+  prompt-first violations 0, sparse-serious 0, advice-only
+  questions 0, errors 8 (all 8 = regression cases, generator age
+  string bug, NOT a product failure). Corrected rerun of the 8
+  regressions (`reports/test_sweep_10000_2_regressions_rerun.csv`):
+  all 8 named, 1 safety question each. Corrected batch-2 totals:
+  errors 0. Mean questions 1.10, zero-question 3851, >=10 questions
+  86 (all still withheld — the long-tail open decision in CHANGELOG).
+- Strong-on-sparse observation (not a violation, not fixed):
+  batch 1: 267, batch 2: 384 named-strong cases on <=2 model
+  features, mostly single specific symptoms (see CHANGELOG). Needs
+  Eeshan's decision before any guard is added.
+
+## Eeshan's exact prompts — what the merged version now says (all-no pattern, i.e. answering "no" to every follow-up)
+- "Tiredness and headache": withheld-with-guidance (full screen:
+  title, explanation, care steps, warning signs, 24-48h review),
+  never a tumour name. Questions: 5 (breathing safety, fever, cough,
+  sore throat, runny/blocked nose — all discriminators). If he
+  answers "not sure" twice, it stops after 2 questions and gives the
+  same withheld screen.
+- "i have cold": family answer "Flu-like illness / common cold
+  (viral upper respiratory infection)", no model percent (it comes
+  from his own words, not a model score), with care steps + COVID
+  test note. Questions: 1 (breathing safety only). With "I can
+  breathe fine" in the prompt: same family answer, 0 questions.
+  "I feel cold" is different and stays chills, not a cold.
+- Common cluster "headache, sore throat, cough, running nose":
+  family answer, 78% moderate. Questions: 1 (breathing safety only).
+  With "I can breathe fine" in the prompt: family answer, 83%
+  strong, 0 questions.
+- "headache, tiredness and cough": withheld-with-guidance, never
+  Pulmonary neoplasm (the old 100% tumour failure). Questions: 3
+  (breathing safety, fatigue pattern, cough duration) on all-no;
+  2 on 2x-unknown (stops at the don't-know limit).
+- "I have fever and I feel mild": withheld-with-guidance + malaria
+  test step (fever in Kenya). Mild correctly changes nothing in the
+  model. Questions: 4 discriminators on all-no (breathing, cough,
+  sore throat, runny/blocked nose).
+- No exact prompt gives a blank. That is the settled rule: no name
+  only when the answers give no usable information, never otherwise.
+
+## What was NOT run in this pass
+- Browser / Playwright journeys (Muse side, as before). Codex's
+  claimed 45 browser journeys and 372 backend (292acf1) were not
+  re-run here and are reported as Codex's claims, not verified.
+- ML training/evaluation suites (no model retrained). Gap, family
+  and guard thresholds remain unvalidated on a fresh fold.
+- No clinical validation for Kenyan patients; all model numbers are
+  simulated DDXPlus only.
+
+# TEST REPORT — Muse improvements, 2026-10-29
+
 ## Real counts (actually run here, final pass)
 - Backend full suite: **350 passed, 0 failed** (PostgreSQL via pgserver
   bundle, `TEST_DATABASE_URL` to a local test DB, Alembic + seeded

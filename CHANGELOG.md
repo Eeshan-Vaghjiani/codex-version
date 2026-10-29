@@ -1,5 +1,222 @@
 # CHANGELOG — Muse improvements, 2026-10-29 (base c04aca7)
 
+## Final merge 2026-10-29: prompt-first, all-no fallback, Codex 292acf1/178a3a8 merge, 2 x 10,000-case sweeps
+
+### Prompt-first: questions are truly optional (Eeshan's settled rule)
+- `app/services/consultation.py` `next_consultation_question()` rewritten
+  with the order documented in code comments: (1) safety (breathing)
+  first, once — the only question allowed before a result is known;
+  (2) severe severity stops, it goes to clinical assessment, not to
+  more questions; (3) prompt-first stop: if the original prompt already
+  gives an eligible primary or a family answer, return no more
+  questions immediately — duration, severity and fatigue-pattern
+  refinement must NOT delay a clear result; (4) context family: if the
+  user already said "cold"/"flu", no model discriminator is left to ask;
+  (5) only then, discriminators that would actually change the
+  prediction or the action — for non-respiratory scope: fever, cough,
+  sore throat, runny/blocked nose, in that order; for respiratory
+  scope not yet clear: fatigue_pattern (changes the tiredness feature),
+  weight_loss_intent (changes the weight-loss feature),
+  symptom_duration only when a cough is reported (duration changes the
+  action, not the model score), weight_loss for a prolonged cough,
+  then the information-gain pool (0.02 nats, soft guide 5, hard
+  ceiling 20, unchanged).
+- Duration and severity are NO LONGER asked before a result for
+  non-respiratory cases. That was the waste Eeshan reported: those
+  questions are advice-only in V3 and do not change the prediction,
+  yet they blocked the result. Tests that asserted the old sequence
+  were updated and the change is recorded here, not hidden as a test
+  fix: `test_muse_nonspecific.py` (new discriminator-only sequence),
+  `test_kenya_patient_experience.py` (allowed question set, duration
+  test renamed to assert duration is NOT asked first).
+- Service errors are NOT swallowed by the prompt-first check: a
+  missing selection policy still propagates as ServiceNotReady (503).
+  The first version of this change swallowed it into a follow-up
+  question and broke `test_missing_selection_policy...`; fixed before
+  delivery, test passes again.
+
+### Bug fixed in the prompt-first pass: answering "no" killed the family answer
+- Answering "no" to the breathing safety question moved the common
+  cluster from bucket 4:0 to 4:1/4:2, which is disabled for the same
+  source-validation bound, and turned a clear family answer into a
+  withheld blank — exactly the "questions lead to nothing" failure.
+- Fix, in `app/ml/primary_selection.py` AND the ML copy (logic
+  identical except the policy path): the narrow family exception now
+  applies to ANY 4-present bucket disabled only for its
+  source-validation bound, when the top is viral-family, >=0.75, gap
+  >=0.20, and no dangerous condition is a close second. Still a
+  family answer, never a specific disease name; absent evidence is
+  already inside the ranking. Verified: cluster + breathing absent =
+  family 83% moderate; cluster + fever absent = family 78%; cluster +
+  both absent = family 86%.
+
+### All-no fallback: a withheld result is always a useful result
+- If the user answers "no" (or "not sure") to all follow-ups, the
+  consultation ends and `build_primary_assessment()` gives the best
+  answer from the ORIGINAL prompt: (a) a context cold/flu word gives
+  the family answer (below); (b) tiredness + headache (+/- fever)
+  gives the full non-specific screen (title, plain explanation,
+  flu-like care, malaria-test step when fever is present, warning
+  signs, 24-48 hour review), never blank, never a tumour name;
+  (c) in general, withheld results carry guidance, never an empty
+  screen. This was already the design for (b)/(c); the prompt-first
+  rewrite makes it reachable without advice-only blockers, and the
+  new tests prove it end to end at consultation level.
+- Settled rule recorded here (Eeshan, 2026-10-29 13:56 EAT): NO disease
+  name is ONLY for when the user answers the questions poorly / gives
+  no usable information. NOT otherwise. If the user answers well on
+  what was asked, the app must use those answers and give something.
+  There is NO limit on what may be asked — the full catalogue may be
+  used — as long as each question would change the answer, and a
+  clear initial prompt asks nothing.
+
+### "i have cold" recognition + context family answer
+- `app/nlp/canonical_symptoms.json` and `app/nlp/english_aliases.json`:
+  "i have cold", "have cold", "got cold", "got a cold", "having cold"
+  and bare "cold" added as common_cold context aliases. Bare "cold"
+  is safe: the longer "feel cold"/"feeling cold" chills aliases match
+  first and occupy that span, so "I feel cold" still maps to chills
+  only (tested). "I have cold" now maps to common_cold, exactly like
+  "I have a cold" did.
+- `app/services/primary_assessment.py`: when no model primary exists
+  and the user said common_cold/flu_like, and no input guard
+  (unsupported wording / severe severity) has withheld the case, the
+  result is the family answer "Flu-like illness / common cold (viral
+  upper respiratory infection)" with a family note, labelled as coming
+  from the user's own words, with NO model match percent — there are
+  no model features behind a context word, so inventing a percent
+  would be dishonest. A model primary, when present, still wins.
+  Decision status is possible_explanation / prediction_complete, so
+  the frontend renders it (it requires a display/dual name, a policy
+  version and that status).
+
+### Codex 292acf1 / 178a3a8 merged (see COMPARISON_CODEX.md for the full record)
+- Codex branch head at comparison time was `178a3a8` (2026-10-29
+  13:44 EAT), whose parent is the assigned target `292acf1`
+  (13:20 EAT). `178a3a8` is CHANGELOG only; `292acf1` is the only
+  code change since `f423bde`.
+- Taken, with credit: Codex's symptom-aware withheld guidance
+  (`symptom_specific_advice()` in `consultation_guidance.py`, wired
+  into `patient_guidance()` for withheld results at self-care/review
+  level only). NOT taken: Codex's paracetamol lines and its
+  antibiotics line — Muse never recommends a specific medicine; the
+  adapted lines use rest/fluids/monitor wording. Codex's gap gate,
+  5-question cap and "final: codex" decision were NOT adopted: they
+  would regress Eeshan's settled prompt-first, uncapped-gathering,
+  family-answer and guard rules. The disagreement is recorded in
+  COMPARISON_CODEX.md, not papered over. Branches are the contact
+  channel: Codex and Muse do not share a chat; the merged branch is
+  the record of what was taken from each.
+- Codex test counts (backend 372 claimed in 292acf1) were NOT re-run
+  by Muse and are reported as Codex's claims.
+
+### Sweep fixes from batch 1 (8 prompt-first failures) and alias gaps
+- Initial-clear anchor + safety freeze, in
+  `app/services/consultation.py`: `prepare_consultation()` computes
+  whether the ORIGINAL prompt was already clear (eligible/family) and
+  passes it to `next_consultation_question()`. If it was clear, only
+  the safety question is asked, then the consultation stops — a
+  follow-up "no" cannot reopen the queue. And for an initially clear
+  case, a safety "no" is recorded in symptom_states but does NOT
+  rewrite the model evidence (model_features/absent stay at the
+  initial set), so the final result is the initial name. Without the
+  freeze, the safety negative alone dropped clear cases below their
+  bucket minimum and the result became withheld instead of the
+  initial name. For cases that were NOT initially clear, all answers
+  still count as model evidence, as before. Verified on all 8
+  batch-1 failure cases: 1 question (safety only), final = initial
+  name (COPD, pulmonary edema, Bronchiolitis, Bronchitis).
+- Red-flag alias gaps found by batch 1: chest_pain_at_rest, stridor
+  and drooling had NO Swahili aliases, and "chest pain even at rest"
+  (the display name itself) was not an alias, so 18 red-flag-category
+  cases withheld with "unsupported_information" instead of bypassing
+  to urgent review. Fixed: EN alias "chest pain even at rest" added;
+  draft SW aliases added for all three codes (unreviewed, as with all
+  Kiswahili copy). Tests added.
+- "I can breathe fine" understood, not left unmatched: EN aliases
+  "can breathe fine", "breathe fine", "breathing fine", "can breathe
+  normally", "breathing normally" and SW "napumua vizuri",
+  "ninapumua vizuri", "naweza kupumua vizuri" added for
+  shortness_of_breath, with a special case in `infer_symptom_status`
+  (like the existing "sikohoi" case) returning "absent" for those
+  phrases. Before this, "can breathe fine" was unmatched wording,
+  which vetoed an otherwise clear result in
+  `build_primary_assessment` (cluster + "I can breathe fine" withheld
+  instead of family). After: cluster + "I can breathe fine" = family
+  83% strong, ZERO questions; cold + "I can breathe fine" = context
+  family, ZERO questions; "I can't breathe" still bypasses to urgent
+  review. Existing negative tests ("I can breathe fine",
+  "napumua vizuri", "no difficulty breathing" must not trigger
+  safety signs) still pass.
+
+### 10,000-case sweeps (auditable files, not chat claims)
+- Runner: `reports/test_sweep_10000.py` (deterministic seed, real
+  pipeline: confirm_symptoms -> prepare_consultation loop with the
+  case's answer pattern -> build_primary_assessment). Analyser:
+  `reports/analyse_sweep.py` (recomputes derived flags from raw CSV
+  columns, so a runner definition bug cannot hide a failure).
+- Batch 1 (`reports/test_sweep_10000_1.csv`, 10,000 cases, seed
+  20261029, 357s): exact prompts 50, singles 1000, pairs 2200,
+  triples 2200, quads 1000, common clusters 1200, red flags 700,
+  negations 500, duration/severity 600, context 300, poor/unusable
+  250. Final outcomes: red-flag bypass 6340, withheld-with-guidance
+  2602, context family 247, model family 104, named primary 707,
+  blank 0, errors 0. Sparse-serious violations 0 (7 neoplasm namings,
+  all with weight loss present = specific support, so not guard
+  violations). Prompt-first violations 8 (the cluster above, all
+  "all-no"). Advice-only questions asked 0. Questions asked: mean
+  1.42, zero-question 3454, >=10 questions 316 (all still withheld
+  — see open decision below). Negation: 0 red-flag bypasses for
+  all-no/2x-unknown negation cases (all-yes/mixed red flags there
+  are safety "yes" answers, not negation failures). Unmapped texts
+  229, all poor/unusable, all still withheld-with-guidance, never
+  blank. Red-flag rate 63% is a sweep-design artefact, not a failure
+  rate: random codes include red-flag codes (3007 confirm bypasses)
+  and all-yes/mixed patterns answer "yes" to the safety question
+  first (3333 follow-up bypasses) — answering yes to breathing
+  difficulty correctly bypasses to urgent review.
+- Batch 1 pattern bug, disclosed: "2x-unknown" answered
+  duration/severity/fatigue/weight-loss questions informatively
+  instead of "not sure". Fixed for batch 2. Batch-1 failure clusters
+  do not depend on that pattern (the 8 failures were all "all-no").
+- Batch 2 (`reports/test_sweep_10000_2.csv`, 10,000 cases, seed
+  20261030, 237s): mix = 8 batch-1 regressions + 50 exact prompts +
+  9942 fresh random cases. As run: blank 0, prompt-first violations
+  0, sparse-serious violations 0, advice-only questions 0, errors 8
+  — all 8 errors were the regression cases, caused by a sweep
+  generator bug (age carried as a CSV string "30" instead of int,
+  rejected by the V3 age-group lookup), NOT a product failure. Fixed
+  by coercing age to int in the runner, and the 8 regressions were
+  re-run auditably (`reports/test_sweep_10000_2_regressions_rerun.csv`):
+  all 8 named, 1 safety question each, final = initial name. Corrected
+  batch-2 totals: named 807, model family 44, context family 241,
+  withheld-with-guidance 1916, red-flag bypass 6984, blank 0, errors
+  0 (after the generator fix; the as-run CSV keeps the 8 errors
+  visible and the rerun file is the correction, not a rewrite).
+  Batch 2 also ran while the "can breathe fine" alias fix landed, so
+  early batch-2 cases used pre-fix mapping for that phrase and later
+  cases used post-fix mapping; batch-2 fresh cases are random code
+  combinations and do not contain that phrase, so the batch-2 failure
+  clusters are unaffected.
+- Open decision for Eeshan (NOT silently changed): 316 batch-1 cases
+  and 86 batch-2 cases asked >=10 questions and still withheld —
+  all single/vague cases where the information-gain pool kept finding
+  >=0.02-nat questions. The soft guide of 5 exists in code but is
+  unenforced, per the uncapped-gathering authorisation. If Eeshan
+  wants it, the pool can be capped at 5 after discriminators (his
+  original 3-5 stop), and those cases would withhold after 5
+  questions with the same final outcome. Ask him; do not change the
+  cap here.
+- Observation, NOT fixed (needs Eeshan's decision): strong band on
+  <=2 model features in 267 batch-1 / 384 batch-2 cases, mostly
+  single highly specific symptoms (vomiting after coughing ->
+  Whooping cough, difficulty swallowing -> Epiglottitis, night
+  breathlessness -> Acute pulmonary edema, hoarse voice -> Acute
+  laryngitis, itchy nose -> Allergic sinusitis). Those are
+  model-policy outcomes for specific symptoms, with
+  professional-review guidance for the serious ones. A "never name
+  strong on 1 feature" guard was NOT invented here: it would break
+  specific-symptom journeys and needs his decision.
 ## Follow-up 2026-10-29: dual naming + common flu-like fix + uncapped symptom gathering
 
 ### Dual naming, stable format (simple Kenyan-known name + medical name, every time)

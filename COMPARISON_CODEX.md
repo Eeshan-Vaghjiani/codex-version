@@ -61,3 +61,59 @@ validated on a fresh fold (Codex's protocol is the template for that
 check); Kiswahili copy is draft and unreviewed; nothing here is
 clinically validated for patients in Kenya; browser journeys have not
 been run on the Muse branch.
+
+## Update: Codex 292acf1 and 178a3a8 (compared 2026-10-29, after f423bde)
+
+How Muse and Codex "keep contact", stated plainly: Codex and Muse do
+not share a chat. The branches are the channel. This section is Muse's
+record of what was read from the Codex branch and what was taken into
+the Muse branch. Codex's own record lives on its branch; neither
+branch's comparison is a joint decision. Eeshan decides which branch
+is final.
+
+Codex branch history after f423bde:
+- `292acf1` (2026-10-29 13:20 EAT) "Make withheld (sparse) guidance
+  symptom-aware" — the only code change since f423bde: a new
+  `symptom_specific_advice()` in `consultation_guidance.py`, wired
+  into withheld guidance in `primary_assessment.py`, plus one test
+  and docs. Sparse 1-3 feature cases stay withheld (no diagnosis);
+  "what to do next" is tailored to the reported symptoms (headache+
+  fever red-flag line; cough, wheezing, sore throat, chest pain,
+  night sweats, body aches, tiredness/weakness lines). Codex's
+  commit message claims backend 372 passed; that count was NOT
+  re-run by Muse and is reported as Codex's claim.
+- `178a3a8` (2026-10-29 13:44 EAT) "Document muse comparison and
+  finalize on codex branch" — CHANGELOG only, no code change. It
+  records Codex's decision NOT to merge Muse, on the grounds that
+  the two are different designs and that merging Muse would delete
+  Codex's gap-gate validation, provenance and everyday-language
+  tests. That last point is about a hypothetical merge of the two
+  branches: the Muse branch is a parallel branch from `c04aca7`, not
+  a merge of the Codex branch, so it never contained Codex's tests
+  to delete. Muse does not claim Codex's validation work is
+  superseded; it is recorded above as Codex's provenance strength.
+
+Taken from 292acf1 into Muse (this pass, with credit):
+- Symptom-aware withheld guidance: `symptom_specific_advice()` added
+  to Muse's `consultation_guidance.py` and wired into Muse's
+  `patient_guidance()` for withheld results at self-care/review
+  level only. Urgent and professional-review results keep their own
+  steps untouched.
+- NOT taken: Codex's paracetamol lines ("use paracetamol",
+  "paracetamol eases the pain", "paracetamol help") and its
+  antibiotics line for sore throat. Muse's rule stands: no specific
+  medicine is recommended. The adapted lines use rest, fluids and
+  monitor wording instead. Test
+  `test_codex_292acf1_symptom_aware_withheld_guidance_adapted_no_medicine`
+  asserts the tailored lines are present and that no paracetamol /
+  antibiotic recommendation appears in the output.
+- NOT taken: nothing else in 292acf1/178a3a8 changes patient
+  behaviour. Codex's gap gate, 5-question cap and "final: codex"
+  decision are Codex's design choices, not Muse's: Eeshan's settled
+  rules for the Muse branch are prompt-first (clear prompt asks
+  nothing), uncapped gathering when a question would change the
+  answer, dual naming, the family answer, and the sparse-serious
+  guard — all of which Codex's gate/cap would regress. That
+  disagreement is recorded, not papered over: the two branches
+  genuinely differ, and the merge record is what was taken, not a
+  claim that both branches now agree.
