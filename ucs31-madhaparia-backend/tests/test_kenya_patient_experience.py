@@ -244,10 +244,17 @@ def test_respiratory_patterns_return_at_most_one_qualified_possibility(kenya_flo
     assert_single_primary_contract(data)
     assert data["uncertain"] is True
     if data["primary_prediction"]:
-        condition = data["primary_prediction"]["condition"]
+        primary = data["primary_prediction"]
+        if primary.get("is_family_answer"):
+            # A family answer is a named family, not a terminology model class;
+            # it carries no model match % and its display name is the family.
+            assert primary["condition"] == "Flu-like illness / common cold"
+            assert primary.get("model_match_percent") is None
+            return
+        condition = primary["condition"]
         terminology = json.loads(TERMINOLOGY.read_text(encoding="utf-8"))["conditions"][condition]
-        assert data["primary_prediction"]["medical_name"] == terminology["medical_name"]
-        assert data["primary_prediction"]["display_name"] == terminology["display_name"]["en" if not text.startswith("Nina") else "sw"]
+        assert primary["medical_name"] == terminology["medical_name"]
+        assert primary["display_name"] == terminology["display_name"]["en" if not text.startswith("Nina") else "sw"]
 
 
 @pytest.mark.parametrize("text", [

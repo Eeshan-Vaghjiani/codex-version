@@ -13,7 +13,7 @@ from app.core.errors import ServiceNotReadyError
 from app.db.models import ModelVersion, PredictionSession, User
 from app.db.register_v3_model_version import register_v3_model_version, activate_v3_model_version
 from app.nlp.symptom_mapper import build_confirmation_output
-from app.services.consultation import POOL, V3_MODEL_VERSION
+from app.services.consultation import MAX_CONSULTATION_QUESTIONS, POOL, V3_MODEL_VERSION
 from app.services.history import save_prediction_session
 from app.services.model_versions import get_active_model_version
 from app.services.v3_prediction import get_v3_bundle, predict_partial_evidence
@@ -53,12 +53,12 @@ def payload(flow, text="I have a cough and fever for two days.", answers=None, *
 def finish(flow, body, choose=None):
     answers = list(body["follow_up_answers"])
     asked = []
-    for _ in range(6):
+    for _ in range(21):
         response = flow.client.post("/predict", json={**body, "follow_up_answers": answers})
         assert response.status_code == 200, response.text
         data = response.json()
         if data["status"] != "needs_follow_up":
-            assert len(answers) <= 5
+            assert len(answers) <= MAX_CONSULTATION_QUESTIONS
             return data, answers, asked
         question = data["follow_up_question"]
         qid = question["id"]
@@ -69,7 +69,7 @@ def finish(flow, body, choose=None):
         assert answer in values
         asked.append(qid)
         answers.append({"question_id": qid, "answer": answer})
-    pytest.fail("Consultation did not terminate after five questions")
+    pytest.fail("Consultation did not terminate within the hard question ceiling")
 
 
 def assert_selective_result(data):

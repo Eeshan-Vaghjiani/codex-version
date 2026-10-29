@@ -61,7 +61,7 @@ from app.services.assessment import (
     prepare_assessment, assessment_language, MIN_RESEARCH_PRESENT_FEATURES,
 )
 
-from app.services.consultation import prepare_consultation, V3_MODEL_VERSION
+from app.services.consultation import MAX_CONSULTATION_QUESTIONS, prepare_consultation, V3_MODEL_VERSION
 from app.services.v3_prediction import get_v3_bundle, predict_partial_evidence
 from app.services.consultation_guidance import consultation_guidance, explain_v3_candidates, LIVE_MODEL_NOTICE
 
@@ -177,7 +177,7 @@ class FollowUpAnswer(BaseModel):
 
 class PredictionRequest(SymptomTextRequest):
     model_config = ConfigDict(extra="forbid")
-    follow_up_answers: list[FollowUpAnswer] = Field(default_factory=list, max_length=5)
+    follow_up_answers: list[FollowUpAnswer] = Field(default_factory=list, max_length=MAX_CONSULTATION_QUESTIONS)
     age: int = Field(ge=0, le=120, strict=True)
     sex: Literal["M", "F"]
     text: str = Field(

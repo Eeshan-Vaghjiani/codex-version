@@ -11,7 +11,15 @@ from app.services.assessment import QUESTIONS as LEGACY_QUESTIONS, question_payl
 from app.services.symptom_confirmation import absent_features
 
 V3_MODEL_VERSION = 'v3_partial_evidence'
-MAX_CONSULTATION_QUESTIONS = 5
+# Symptom gathering is NOT capped at a small number for accuracy's sake
+# (authorised 2026-10-29): 5 is now a soft guide, not a cutoff. The hard
+# ceiling (20) exists only to prevent an endless loop; in practice the
+# information-gain stop, the eligible stop, the 2x unknown stop and the
+# red-flag stop end the consultation much earlier. A case that was
+# withheld for too little information may therefore ask for the missing
+# discriminators and then resolve, instead of stopping at 5 and withholding.
+SOFT_QUESTION_GUIDE = 5
+MAX_CONSULTATION_QUESTIONS = 20
 # Engineering stop policy selected on validation question rollouts; this is
 # expected entropy utility in nats, never a clinical certainty threshold.
 MIN_QUESTION_INFORMATION_GAIN = 0.02
@@ -34,9 +42,36 @@ CONSULTATION_QUESTIONS = {
     'fatigue_pattern': ('Is the tiredness constant, or do you wake feeling unrefreshed?', 'Je, uchovu ni wa kila wakati, au unaamka bila kujisikia umepumzika?'),
     'severe_chest_pain': ('Do you have severe or crushing chest pain now?', 'Je, una maumivu makali au shinikizo kali kifuani sasa?'),
     'weakness_meaning': ('When you say weak, what do you mean?', 'Unaposema mwili hauna nguvu, unamaanisha nini?'),
+    # Expanded discriminator pool: every code below already exists in the
+    # repo symptom catalogue with a trained V3 feature. No new disease,
+    # code or feature is invented here; these are questions the system
+    # already knows how to use, now actually asked when they would help.
+    'chills': ('Do you have chills or shivering?', 'Je, unatetemeka au unahisi baridi kali?'),
+    'intense_coughing_fits': ('Do you have intense coughing fits that you cannot stop?', 'Je, unakohoa kwa mashambulizi makali ambayo huwezi kuyazuia?'),
+    'vomiting_after_coughing': ('Do you vomit after coughing?', 'Je, unatapika baada ya kukohoa?'),
+    'night_breathlessness': ('Do you wake up at night breathless or choking?', 'Je, unaamka usiku ukikosa pumzi au ukibanwa?'),
+    'wheeze_after_coughing': ('Do you wheeze or breathe noisily after coughing?', 'Je, unapumua kwa mluzi baada ya kukohoa?'),
+    'difficulty_swallowing': ('Do you have difficulty swallowing?', 'Je, una shida ya kumeza?'),
+    'hoarse_voice': ('Is your voice hoarse or changed?', 'Je, sauti yako imekauka au imebadilika?'),
+    'nasal_discharge': ('Do you have green or yellow discharge from your nose?', 'Je, una kamasi za kijani au za manjano kutoka puani?'),
+    'loss_of_smell': ('Have you lost your sense of smell?', 'Je, umepoteza uwezo wa kunusa?'),
+    'itchy_nose_throat': ('Is your nose or throat itchy?', 'Je, pua au koo lako linawasha?'),
+    'itchy_eyes': ('Are your eyes itchy?', 'Je, macho yako yanawasha?'),
+    # Chest pain and pain on deep breathing are deliberately NOT in the
+    # routine pool: a "yes" to either needs clinical assessment, not a
+    # model-guided question, and they remain mappable from free text.
+    'worse_lying_down': ('Are your symptoms worse when you lie down?', 'Je, dalili zako zinazidi unapolala chini?'),
+    'worse_with_exertion': ('Are your symptoms worse with exertion or activity?', 'Je, dalili zako zinazidi unapofanya shughuli?'),
+    'activity_fatigue': ('Are you too tired for your usual activities?', 'Je, umechoka sana kufanya shughuli zako za kawaida?'),
+    'loss_of_appetite': ('Have you lost your appetite?', 'Je, umepoteza hamu ya kula?'),
 }
 POOL = ('runny_blocked_nose', 'sore_throat', 'muscle_aches', 'wheezing',
-        'productive_cough', 'heavy_sweating', 'weight_loss', 'cough', 'fever')
+        'productive_cough', 'heavy_sweating', 'weight_loss', 'cough', 'fever',
+        'chills', 'intense_coughing_fits', 'vomiting_after_coughing',
+        'night_breathlessness', 'wheeze_after_coughing', 'difficulty_swallowing',
+        'hoarse_voice', 'nasal_discharge', 'loss_of_smell', 'itchy_nose_throat',
+        'itchy_eyes', 'worse_lying_down',
+        'worse_with_exertion', 'activity_fatigue', 'loss_of_appetite')
 QUESTION_TO_CODE = {'breathing_difficulty': 'shortness_of_breath', 'unexplained_weight_loss': 'weight_loss'}
 YES_NO = [('yes', 'Yes', 'Ndiyo'), ('no', 'No', 'Hapana'), ('unknown', 'Not sure', 'Sina uhakika')]
 
@@ -176,8 +211,12 @@ def next_consultation_question(states, details, durations, asked, catalogue, age
     selection = select_primary_evidence(present, absent, age, sex)
     if 'dangerous_alternative_requires_review' in selection.get('reasons', []):
         return None
-    if (selection['status'] == 'eligible' and
-            selection.get('diagnostics', {}).get('source_relative_top_score', 0) >= .8):
+    # A clear model match (>=0.8) or a confident family answer both end the
+    # consultation: once the pattern is named, more questions add little. The
+    # family answer already passed its own >=0.75 / >=0.20 clear-pattern gate.
+    if (selection['status'] == 'family'
+            or (selection['status'] == 'eligible'
+                and selection.get('diagnostics', {}).get('source_relative_top_score', 0) >= .8)):
         return None
     available = {}
     for code in POOL:
@@ -296,6 +335,12 @@ def prepare_consultation(confirmation, answers, language, db, age, sex):
                 profile['has_red_flag'] = True
                 profile['red_flag_symptoms'] = [details['shortness_of_breath']]
                 details['shortness_of_breath']['breathing_tier'] = 'severity_check'
+                break
+            if question_id == 'night_breathlessness' and answer == 'yes':
+                # Waking breathless or choking is a breathing warning sign:
+                # urgent review, not a routine model answer.
+                profile['has_red_flag'] = True
+                profile['red_flag_symptoms'] = [details['night_breathlessness']]
                 break
             if question_id == 'fever' and answer == 'yes' and age == 0:
                 from app.services.assessment_safety import detect_safety_signs

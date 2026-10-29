@@ -36,8 +36,10 @@ NON_SPECIFIC_EXPLANATION = {
 # not a specific diagnosis, so it never claims which virus.
 FAMILY_TERM = {
     'en': {'display_name': 'Flu-like illness / common cold',
+           'medical_name': 'Viral upper-respiratory infection (family)',
            'short_description': 'A viral upper-respiratory infection (cold or flu-like illness). Symptoms alone cannot confirm which virus, and it usually clears on its own.'},
     'sw': {'display_name': 'Ugonjwa wa mafua / homa ya kawaida',
+           'medical_name': 'Maambukizi ya virusi ya njia ya juu ya upumuaji (familia)',
            'short_description': 'Maambukizi ya virusi ya njia ya juu ya upumuaji (mafua au ugonjwa kama mafua). Dalili pekee haziwezi kuthibitisha virusi ni kipi, na kwa kawaida hupita yenyewe.'},
 }
 
@@ -200,7 +202,8 @@ def build_primary_assessment(confirmation, age, sex):
         family = chosen['primary_prediction']
         family_term = FAMILY_TERM['sw' if sw else 'en']
         primary = {'condition': family['condition'], 'display_name': family_term['display_name'],
-            'short_description': family_term['short_description'], 'is_family_answer': True,
+            'medical_name': family_term['medical_name'], 'short_description': family_term['short_description'],
+            'description': family_term['short_description'], 'is_family_answer': True,
             'family_top_condition': family['family_top_condition'],
             'score_kind': 'family_answer', 'model_match_percent': None,
             'explanation': ('Dalili hizi zinaendana na maambukizi ya virusi ya njia ya juu ya upumuaji. Dalili pekee haziwezi kuthibitisha ni virusi kipi, na mafua na mafua ya ndege yanaweza kuonekana hivi.' if sw else

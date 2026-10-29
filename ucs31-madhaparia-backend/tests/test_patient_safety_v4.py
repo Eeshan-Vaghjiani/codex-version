@@ -58,6 +58,17 @@ JOURNEYS = [
 @pytest.mark.parametrize('name,text,urgency,age', JOURNEYS, ids=[row[0] for row in JOURNEYS])
 def test_required_api_journeys(v3_flow, name, text, urgency, age):
     data, answers = complete(v3_flow, payload(v3_flow, text, age=age))
+    if name == 'overlap':
+        # The 4-present viral upper-respiratory cluster (cough, sore throat,
+        # fever, muscle aches) now resolves to an honest family answer instead
+        # of withholding; it is never a specific disease or a model match %.
+        primary = data['primary_prediction']
+        assert primary is not None
+        assert primary['is_family_answer'] is True
+        assert primary['condition'] == 'Flu-like illness / common cold'
+        assert primary.get('model_match_percent') is None
+        assert data['status'] == 'prediction_complete'
+        return
     assert data['primary_prediction'] is None
     assert not data['predictions']
     assert 'COVID' not in str(data['primary_prediction'])
@@ -180,8 +191,13 @@ def test_no_change_to_advice_stops_even_with_high_information_gain(v3_flow, monk
     assert data['status'] == 'assessment_uncertain'
 
 
-def test_question_cap_is_five():
-    assert next_consultation_question({'cough': 'present'}, {}, {}, ['a', 'b', 'c', 'd', 'e'], {}, 24, 'F') is None
+def test_question_cap_is_twenty_not_five():
+    # Uncapped gathering (authorised 2026-10-29): 5 is a soft guide, the hard
+    # ceiling is 20. After 20 asked the flow must stop, never after 5.
+    from app.services.consultation import MAX_CONSULTATION_QUESTIONS, SOFT_QUESTION_GUIDE
+    assert SOFT_QUESTION_GUIDE == 5 and MAX_CONSULTATION_QUESTIONS == 20
+    assert next_consultation_question({'cough': 'present'}, {}, {}, ['a', 'b', 'c', 'd', 'e'], {}, 24, 'F') is not None
+    assert next_consultation_question({'cough': 'present'}, {}, {}, list('abcdefghijklmnopqrst'), {}, 24, 'F') is None
 
 
 @pytest.mark.parametrize('days', [2, 3, 14, 15, 21])

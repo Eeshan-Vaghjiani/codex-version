@@ -245,7 +245,11 @@ def test_out_of_order_invalid_or_duplicate_followups_rejected(flow, answers):
 
 
 def test_over_limit_followups_rejected(flow):
-    response = flow.client.post("/predict", json=request(answers=[{"question_id": "breathing_difficulty", "answer": "no"}] * 6))
+    # Uncapped gathering (authorised 2026-10-29): the hard ceiling is 20, so a
+    # 21-answer payload is rejected, but 6 (over the old cap of 5) is accepted.
+    from app.services.consultation import MAX_CONSULTATION_QUESTIONS
+    assert MAX_CONSULTATION_QUESTIONS == 20
+    response = flow.client.post("/predict", json=request(answers=[{"question_id": "breathing_difficulty", "answer": "no"}] * (MAX_CONSULTATION_QUESTIONS + 1)))
     assert response.status_code == 422
 
 
