@@ -1,0 +1,1563 @@
+{
+  "n": 10000,
+  "by_final_outcome": {
+    "red_flag_bypass": 6340,
+    "withheld_with_guidance": 2602,
+    "family_answer:context_family": 247,
+    "family_answer:model_family": 104,
+    "named_primary": 707
+  },
+  "by_initial_outcome": {
+    "withheld_with_guidance": 5410,
+    "family_answer:context_family": 592,
+    "family_answer:model_family": 190,
+    "red_flag_bypass": 3007,
+    "named_primary": 801
+  },
+  "by_category": {
+    "common_cluster": {
+      "n": 1200,
+      "withheld_with_guidance": 394,
+      "red_flag_bypass": 599,
+      "named_primary": 126,
+      "family_answer:model_family": 81
+    },
+    "context": {
+      "n": 300,
+      "red_flag_bypass": 163,
+      "family_answer:context_family": 79,
+      "withheld_with_guidance": 45,
+      "named_primary": 13
+    },
+    "duration_severity": {
+      "n": 600,
+      "withheld_with_guidance": 252,
+      "red_flag_bypass": 303,
+      "named_primary": 45
+    },
+    "exact_prompts": {
+      "n": 50,
+      "red_flag_bypass": 31,
+      "withheld_with_guidance": 13,
+      "family_answer:context_family": 4,
+      "family_answer:model_family": 2
+    },
+    "negation": {
+      "n": 500,
+      "withheld_with_guidance": 368,
+      "red_flag_bypass": 132
+    },
+    "pair": {
+      "n": 2200,
+      "named_primary": 179,
+      "red_flag_bypass": 1468,
+      "withheld_with_guidance": 487,
+      "family_answer:context_family": 66
+    },
+    "poor_unusable": {
+      "n": 250,
+      "withheld_with_guidance": 250
+    },
+    "quad": {
+      "n": 1000,
+      "withheld_with_guidance": 131,
+      "red_flag_bypass": 761,
+      "family_answer:model_family": 12,
+      "family_answer:context_family": 23,
+      "named_primary": 73
+    },
+    "red_flag": {
+      "n": 700,
+      "red_flag_bypass": 682,
+      "withheld_with_guidance": 18
+    },
+    "single": {
+      "n": 1000,
+      "red_flag_bypass": 589,
+      "withheld_with_guidance": 346,
+      "named_primary": 46,
+      "family_answer:context_family": 19
+    },
+    "triple": {
+      "n": 2200,
+      "red_flag_bypass": 1612,
+      "named_primary": 225,
+      "withheld_with_guidance": 298,
+      "family_answer:context_family": 56,
+      "family_answer:model_family": 9
+    }
+  },
+  "by_pattern": {
+    "2x-unknown": {
+      "n": 2555,
+      "withheld_with_guidance": 1375,
+      "family_answer:context_family": 141,
+      "family_answer:model_family": 49,
+      "red_flag_bypass": 730,
+      "named_primary": 260
+    },
+    "all-no": {
+      "n": 2505,
+      "withheld_with_guidance": 1117,
+      "family_answer:context_family": 106,
+      "family_answer:model_family": 55,
+      "red_flag_bypass": 782,
+      "named_primary": 445
+    },
+    "all-yes": {
+      "n": 2506,
+      "red_flag_bypass": 2446,
+      "named_primary": 2,
+      "withheld_with_guidance": 58
+    },
+    "mixed": {
+      "n": 2434,
+      "red_flag_bypass": 2382,
+      "withheld_with_guidance": 52
+    }
+  },
+  "blank_count": 0,
+  "error_count": 0,
+  "errors": [],
+  "prompt_first_violations_recomputed": 8,
+  "sparse_neoplasm_count": 0,
+  "any_neoplasm_count": 7,
+  "sparse_tb_strong_count": 0,
+  "strong_on_sparse_count": 267,
+  "unmapped_count": 229,
+  "advice_only_question_cases": 0,
+  "questions_asked_total": 14229,
+  "questions_asked_mean": 1.42,
+  "questions_asked_zero": 3454,
+  "outcome_changed_count": 3685,
+  "red_flag_confirm": 3007,
+  "red_flag_followup": 3333,
+  "negation_red_flag": [
+    {
+      "case_id": "8358",
+      "category": "negation",
+      "text": "I have a cough but no fever",
+      "language": "en",
+      "pattern": "all-yes",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "fever:absent;cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "1",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8369",
+      "category": "negation",
+      "text": "I have a cough but no fever",
+      "language": "en",
+      "pattern": "all-yes",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "fever:absent;cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "1",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8374",
+      "category": "negation",
+      "text": "I have a headache but I can breathe fine",
+      "language": "en",
+      "pattern": "all-yes",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "headache:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "0",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8375",
+      "category": "negation",
+      "text": "I can breathe fine and I have a cough",
+      "language": "en",
+      "pattern": "mixed",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "0",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8376",
+      "category": "negation",
+      "text": "I have a cough but no fever",
+      "language": "en",
+      "pattern": "mixed",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "fever:absent;cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "1",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8379",
+      "category": "negation",
+      "text": "I have a headache but I can breathe fine",
+      "language": "en",
+      "pattern": "all-yes",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "headache:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "0",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8382",
+      "category": "negation",
+      "text": "I can breathe fine and I have a cough",
+      "language": "en",
+      "pattern": "all-yes",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "0",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8384",
+      "category": "negation",
+      "text": "I have a headache but I can breathe fine",
+      "language": "en",
+      "pattern": "all-yes",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "headache:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "0",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8387",
+      "category": "negation",
+      "text": "I have a cough but no fever",
+      "language": "en",
+      "pattern": "all-yes",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "fever:absent;cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "1",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8390",
+      "category": "negation",
+      "text": "I can breathe fine and I have a cough",
+      "language": "en",
+      "pattern": "all-yes",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "0",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8399",
+      "category": "negation",
+      "text": "I have a cough but no fever",
+      "language": "en",
+      "pattern": "all-yes",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "fever:absent;cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "1",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8401",
+      "category": "negation",
+      "text": "I have a headache but I can breathe fine",
+      "language": "en",
+      "pattern": "mixed",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "headache:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "0",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8407",
+      "category": "negation",
+      "text": "I have a headache but I can breathe fine",
+      "language": "en",
+      "pattern": "all-yes",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "headache:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "0",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8413",
+      "category": "negation",
+      "text": "I have a cough but no fever",
+      "language": "en",
+      "pattern": "mixed",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "fever:absent;cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "1",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8415",
+      "category": "negation",
+      "text": "I have a cough but no fever",
+      "language": "en",
+      "pattern": "all-yes",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "fever:absent;cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "1",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8417",
+      "category": "negation",
+      "text": "I can breathe fine and I have a cough",
+      "language": "en",
+      "pattern": "mixed",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "0",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8418",
+      "category": "negation",
+      "text": "I can breathe fine and I have a cough",
+      "language": "en",
+      "pattern": "all-yes",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "0",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8421",
+      "category": "negation",
+      "text": "I can breathe fine and I have a cough",
+      "language": "en",
+      "pattern": "all-yes",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "0",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8428",
+      "category": "negation",
+      "text": "I can breathe fine and I have a cough",
+      "language": "en",
+      "pattern": "mixed",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "0",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8429",
+      "category": "negation",
+      "text": "I can breathe fine and I have a cough",
+      "language": "en",
+      "pattern": "mixed",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "cough:present",
+      "initial_outcome": "withheld_with_guidance",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "red_flag_bypass",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "1",
+      "question_ids": "breathing_difficulty",
+      "red_flag_stage": "follow_up",
+      "red_flag_codes": "shortness_of_breath",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "1",
+      "decision_reasons": "reported_warning_sign",
+      "final_present_count": "2",
+      "final_absent_count": "0",
+      "error": "",
+      "_qids": [
+        "breathing_difficulty"
+      ],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 0,
+      "_advice_only_question": 0
+    }
+  ],
+  "exact_prompts": {
+    "I can breathe fine and I have a cough": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "14",
+        "question_ids": "breathing_difficulty;symptom_duration;sore_throat;loss_of_smell;itchy_nose_throat;productive_cough;hoarse_voice;heavy_sweating;nasal_discharge;muscle_aches;wheezing;itchy_eyes;runny_blocked_nose;loss_of_appetite"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "14",
+        "question_ids": "breathing_difficulty;symptom_duration;productive_cough;sore_throat;loss_of_smell;runny_blocked_nose;wheezing;hoarse_voice;loss_of_appetite;nasal_discharge;muscle_aches;itchy_nose_throat;fever;itchy_eyes"
+      }
+    },
+    "I can't breathe": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "all-no": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "2x-unknown": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      }
+    },
+    "I feel cold": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "5",
+        "question_ids": "breathing_difficulty;fever;cough;sore_throat;runny_blocked_nose"
+      }
+    },
+    "I have a cold": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "family_answer:context_family",
+        "final_primary": "Flu-like illness / common cold",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "family_answer:context_family",
+        "final_primary": "Flu-like illness / common cold",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      }
+    },
+    "I have fever and I feel mild": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "4",
+        "question_ids": "breathing_difficulty;cough;sore_throat;runny_blocked_nose"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "2",
+        "question_ids": "breathing_difficulty;cough"
+      }
+    },
+    "Nina homa na kikohozi kwa siku mbili": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "11",
+        "question_ids": "breathing_difficulty;sore_throat;muscle_aches;hoarse_voice;productive_cough;nasal_discharge;heavy_sweating;runny_blocked_nose;loss_of_smell;chills;wheezing"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "2",
+        "question_ids": "breathing_difficulty;sore_throat"
+      }
+    },
+    "Siwezi kupumua": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "all-no": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "2x-unknown": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      }
+    },
+    "Tiredness and headache": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "5",
+        "question_ids": "breathing_difficulty;fever;cough;sore_throat;runny_blocked_nose"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "2",
+        "question_ids": "breathing_difficulty;fever"
+      }
+    },
+    "Tiredness and headache and fever": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "4",
+        "question_ids": "breathing_difficulty;cough;sore_throat;runny_blocked_nose"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "2",
+        "question_ids": "breathing_difficulty;cough"
+      }
+    },
+    "headache, sore throat, cough, running nose": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "family_answer:model_family",
+        "final_primary": "Flu-like illness / common cold",
+        "final_band": "strong",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "family_answer:model_family",
+        "final_primary": "Flu-like illness / common cold",
+        "final_band": "moderate",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      }
+    },
+    "headache, tiredness and cough for 2 days": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "11",
+        "question_ids": "breathing_difficulty;fatigue_pattern;sore_throat;loss_of_smell;hoarse_voice;muscle_aches;productive_cough;nasal_discharge;heavy_sweating;loss_of_appetite;wheezing"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "2",
+        "question_ids": "breathing_difficulty;fatigue_pattern"
+      }
+    },
+    "i have cold": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "family_answer:context_family",
+        "final_primary": "Flu-like illness / common cold",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "family_answer:context_family",
+        "final_primary": "Flu-like illness / common cold",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      }
+    },
+    "napumua kwa shida": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "all-no": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "2x-unknown": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      }
+    }
+  },
+  "failure_cluster_counts": {
+    "prompt_first_violation": 8
+  },
+  "failure_cases_total": 8,
+  "strong_on_sparse_examples": [
+    {
+      "text": "Nina pua inawasha for 2 days",
+      "final_primary": "Allergic sinusitis",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "itchy_nose_throat:present"
+    },
+    {
+      "text": "Nina pua inawasha for 2 days",
+      "final_primary": "Allergic sinusitis",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "itchy_nose_throat:present"
+    },
+    {
+      "text": "I have mild difficulty swallowing for 3 weeks",
+      "final_primary": "Epiglottitis",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "difficulty_swallowing:present"
+    },
+    {
+      "text": "Nina koo kuuma",
+      "final_primary": "URTI",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "sore_throat:present"
+    },
+    {
+      "text": "Nina koo kuuma",
+      "final_primary": "URTI",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "sore_throat:present"
+    },
+    {
+      "text": "I have difficulty swallowing",
+      "final_primary": "Epiglottitis",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "difficulty_swallowing:present"
+    },
+    {
+      "text": "Nina kutapika baada ya kukohoa for 2 days",
+      "final_primary": "Whooping cough",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "vomiting_after_coughing:present"
+    },
+    {
+      "text": "Nina kuamka nikikosa pumzi for 3 weeks",
+      "final_primary": "Acute pulmonary edema",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "night_breathlessness:present"
+    },
+    {
+      "text": "Nina kikohozi cha mashambulizi",
+      "final_primary": "Whooping cough",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "intense_coughing_fits:present"
+    },
+    {
+      "text": "Nina shida ya kumeza for 3 weeks",
+      "final_primary": "Epiglottitis",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "difficulty_swallowing:present"
+    },
+    {
+      "text": "I have itchy nose for 3 weeks",
+      "final_primary": "Allergic sinusitis",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "itchy_nose_throat:present"
+    },
+    {
+      "text": "Nina kutapika baada ya kukohoa kwa wiki 3",
+      "final_primary": "Whooping cough",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "vomiting_after_coughing:present"
+    },
+    {
+      "text": "Nina sauti imekauka for 3 weeks",
+      "final_primary": "Acute laryngitis",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "hoarse_voice:present"
+    },
+    {
+      "text": "Nina kutapika baada ya kukohoa kwa wiki 3",
+      "final_primary": "Whooping cough",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "vomiting_after_coughing:present"
+    },
+    {
+      "text": "Nina koo kuuma",
+      "final_primary": "URTI",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "sore_throat:present"
+    },
+    {
+      "text": "I have vomiting after coughing for 3 weeks",
+      "final_primary": "Whooping cough",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "vomiting_after_coughing:present"
+    },
+    {
+      "text": "Nina mluzi baada ya kukohoa for 3 weeks",
+      "final_primary": "Whooping cough",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "wheeze_after_coughing:present"
+    },
+    {
+      "text": "Nina sauti imekauka kwa siku 2",
+      "final_primary": "Acute laryngitis",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "hoarse_voice:present"
+    },
+    {
+      "text": "Nina kuamka nikikosa pumzi",
+      "final_primary": "Acute pulmonary edema",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "night_breathlessness:present"
+    },
+    {
+      "text": "Nina maumivu nikivuta pumzi kwa nguvu for 2 days",
+      "final_primary": "Pneumonia",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "pain_deep_breath:present"
+    }
+  ],
+  "unmapped_examples": [
+    {
+      "text": "I don't know what is wrong",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "I have pain",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "my body is not okay",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "I am unwell",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "sijisikii vizuri",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "not feeling well",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "my body is not okay",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "sijisikii vizuri",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "I am unwell",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "I have pain",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "I am unwell",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "sijisikii vizuri",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "ninaumwa",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "I have pain",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "something is wrong",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "something",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "I don't know what is wrong",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "I feel bad",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "I don't know what is wrong",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    },
+    {
+      "text": "I am unwell",
+      "category": "poor_unusable",
+      "final_outcome": "withheld_with_guidance"
+    }
+  ]
+}

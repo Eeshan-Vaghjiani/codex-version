@@ -1,0 +1,154 @@
+[
+  {
+    "case_id": "3334",
+    "category": "triple",
+    "text": "Nina sauti ya mluzi wakati wa kutoa pumzi na kamasi za kijani na makohozi ya kijani",
+    "language": "sw",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "",
+    "reasons": [
+      "prompt_first_violation"
+    ],
+    "initial_outcome": "named_primary",
+    "initial_primary": "Acute COPD exacerbation / infection",
+    "final_outcome": "named_primary",
+    "final_primary": "Acute COPD exacerbation / infection",
+    "questions_asked": "2",
+    "question_ids": "breathing_difficulty;fever",
+    "mapped_codes": "wheezing:present;productive_cough:present;nasal_discharge:present"
+  },
+  {
+    "case_id": "3464",
+    "category": "triple",
+    "text": "Nina kuamka nikikosa pumzi and heavy sweating and coloured phlegm for 2 days",
+    "language": "mixed",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "2d",
+    "reasons": [
+      "prompt_first_violation"
+    ],
+    "initial_outcome": "named_primary",
+    "initial_primary": "Acute pulmonary edema",
+    "final_outcome": "named_primary",
+    "final_primary": "Acute pulmonary edema",
+    "questions_asked": "2",
+    "question_ids": "breathing_difficulty;runny_blocked_nose",
+    "mapped_codes": "night_breathlessness:present;productive_cough:present;heavy_sweating:present"
+  },
+  {
+    "case_id": "4613",
+    "category": "triple",
+    "text": "Nina sauti ya mluzi wakati wa kutoa pumzi and hoarse voice and green nasal discharge for 3 weeks",
+    "language": "mixed",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "14d",
+    "reasons": [
+      "prompt_first_violation"
+    ],
+    "initial_outcome": "named_primary",
+    "initial_primary": "Bronchiolitis",
+    "final_outcome": "withheld_with_guidance",
+    "final_primary": "",
+    "questions_asked": "7",
+    "question_ids": "breathing_difficulty;loss_of_smell;difficulty_swallowing;runny_blocked_nose;fever;sore_throat;cough",
+    "mapped_codes": "wheezing:present;nasal_discharge:present;hoarse_voice:present"
+  },
+  {
+    "case_id": "4617",
+    "category": "triple",
+    "text": "Nina sauti imekauka and sore throat and coloured phlegm for 3 weeks",
+    "language": "mixed",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "14d",
+    "reasons": [
+      "prompt_first_violation"
+    ],
+    "initial_outcome": "named_primary",
+    "initial_primary": "Bronchitis",
+    "final_outcome": "named_primary",
+    "final_primary": "Bronchitis",
+    "questions_asked": "2",
+    "question_ids": "breathing_difficulty;heavy_sweating",
+    "mapped_codes": "productive_cough:present;hoarse_voice:present;sore_throat:present"
+  },
+  {
+    "case_id": "6079",
+    "category": "quad",
+    "text": "I have worse with exercise, tight chest, too tired for normal activities and wheezing for 3 weeks",
+    "language": "en",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "14d",
+    "reasons": [
+      "prompt_first_violation"
+    ],
+    "initial_outcome": "named_primary",
+    "initial_primary": "Bronchiolitis",
+    "final_outcome": "named_primary",
+    "final_primary": "Spontaneous pneumothorax",
+    "questions_asked": "2",
+    "question_ids": "breathing_difficulty;cough",
+    "mapped_codes": "activity_fatigue:present;worse_with_exertion:present;chest_tightness:present;wheezing:present"
+  },
+  {
+    "case_id": "6092",
+    "category": "quad",
+    "text": "Nina maumivu ya misuli na sauti ya mluzi wakati wa kutoa pumzi na sauti imekauka na kupiga chafya",
+    "language": "sw",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "",
+    "reasons": [
+      "prompt_first_violation"
+    ],
+    "initial_outcome": "named_primary",
+    "initial_primary": "Bronchiolitis",
+    "final_outcome": "withheld_with_guidance",
+    "final_primary": "",
+    "questions_asked": "7",
+    "question_ids": "breathing_difficulty;runny_blocked_nose;fever;difficulty_swallowing;chills;sore_throat;cough",
+    "mapped_codes": "wheezing:present;muscle_aches:present;hoarse_voice:present;sneezing:present"
+  },
+  {
+    "case_id": "6152",
+    "category": "quad",
+    "text": "Nina kupoteza uwezo wa kunusa na nimechoka kufanya shughuli za kawaida na makohozi na sauti ya mluzi wakati wa kutoa pumzi",
+    "language": "sw",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "",
+    "reasons": [
+      "prompt_first_violation"
+    ],
+    "initial_outcome": "named_primary",
+    "initial_primary": "Bronchiolitis",
+    "final_outcome": "withheld_with_guidance",
+    "final_primary": "",
+    "questions_asked": "6",
+    "question_ids": "breathing_difficulty;nasal_discharge;fever;runny_blocked_nose;sore_throat;muscle_aches",
+    "mapped_codes": "activity_fatigue:present;wheezing:present;loss_of_smell:present;sputum_reported:present"
+  },
+  {
+    "case_id": "6162",
+    "category": "quad",
+    "text": "Nina makohozi ya kijani na inazidi nikilala chini na pua inawasha na maumivu sehemu ya juu ya kifua kwa siku 2",
+    "language": "sw",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "2d",
+    "reasons": [
+      "prompt_first_violation"
+    ],
+    "initial_outcome": "named_primary",
+    "initial_primary": "Acute pulmonary edema",
+    "final_outcome": "named_primary",
+    "final_primary": "Acute pulmonary edema",
+    "questions_asked": "2",
+    "question_ids": "breathing_difficulty;cough",
+    "mapped_codes": "upper_chest_pain:present;worse_lying_down:present;productive_cough:present;itchy_nose_throat:present"
+  }
+]
