@@ -15,6 +15,14 @@
     "nikikohoa",
     "sikohoi"
   ],
+  "intense_coughing_fits": [
+    "kikohozi cha mashambulizi",
+    "kukohoa sana bila kuacha"
+  ],
+  "vomiting_after_coughing": [
+    "kutapika baada ya kukohoa",
+    "natapika baada ya kukohoa"
+  ],
   "productive_cough": [
     "makohozi ya kijani",
     "makohozi ya njano",
@@ -39,12 +47,24 @@
     "napumua kwa shida nikiwa nimepumzika",
     "nimeishiwa na pumzi"
   ],
+  "night_breathlessness": [
+    "kuamka nikikosa pumzi",
+    "nakosa pumzi usiku"
+  ],
   "wheezing": [
     "sauti ya mluzi wakati wa kutoa pumzi",
     "mluzi ninapotoa pumzi",
     "kifua kinatoa mlio wa mluzi",
     "sauti ya mluzi",
     "nina sauti ya mluzi"
+  ],
+  "wheeze_after_coughing": [
+    "mluzi baada ya kukohoa",
+    "kupumua kwa mluzi baada ya kukohoa"
+  ],
+  "difficulty_swallowing": [
+    "shida ya kumeza",
+    "kumeza kwa shida"
   ],
   "sore_throat": [
     "koo kuuma",
@@ -70,6 +90,30 @@
     "pua inatoka",
     "pua inaenda"
   ],
+  "nasal_discharge": [
+    "kamasi za kijani",
+    "kamasi za manjano"
+  ],
+  "loss_of_smell": [
+    "kupoteza uwezo wa kunusa",
+    "siwezi kunusa",
+    "nimepoteza harufu"
+  ],
+  "loss_of_taste": [
+    "kupoteza ladha",
+    "ladha imepotea",
+    "sikioni ladha",
+    "siioni ladha",
+    "sipati ladha",
+    "hakuna ladha"
+  ],
+  "itchy_nose_throat": [
+    "pua inawasha",
+    "koo linawasha"
+  ],
+  "itchy_eyes": [
+    "macho yanawasha"
+  ],
   "headache": [
     "kichwa kuuma",
     "kuumwa na kichwa",
@@ -87,6 +131,15 @@
     "chest inaniuma",
     "chest inauma"
   ],
+  "pain_deep_breath": [
+    "maumivu nikivuta pumzi kwa nguvu"
+  ],
+  "worse_lying_down": [
+    "inazidi nikilala chini"
+  ],
+  "worse_with_exertion": [
+    "inazidi nikifanya shughuli"
+  ],
   "tiredness": [
     "uchovu",
     "kuchoka",
@@ -97,58 +150,15 @@
     "nimechoka leo",
     "ninachoka"
   ],
-  "weakness": ["sina nguvu", "mwili hauna nguvu", "nahisi udhaifu", "udhaifu"],
-  "loss_of_taste": ["kupoteza ladha", "ladha imepotea", "sikioni ladha", "siioni ladha"],
-  "dizziness": ["kizunguzungu", "nina kizunguzungu", "kichwa kinazunguka", "naskia kizunguzungu"],
-  "common_cold": ["niko na cold", "nina cold", "niko na kipooza", "kipooza"],
-  "flu_like": ["nina flu", "niko na flu", "nina influenza", "mafua makali"],
-  "weight_loss": [
-    "kupungua uzito",
-    "ninapungua uzito",
-    "nimepungua uzito",
-    "kupungua uzito bila kukusudia",
-    "nimepungua uzito bila kukusudia",
-    "kupungua uzito bila sababu"
+  "weakness": [
+    "sina nguvu",
+    "mwili hauna nguvu",
+    "nahisi udhaifu",
+    "udhaifu"
   ],
-  "loss_of_appetite": [
-    "kukosa hamu ya kula",
-    "sina hamu ya kula",
-    "hamu ya kula imepungua"
-  ],
-  "heavy_sweating": [
-    "kutokwa jasho",
-    "jasho usiku",
-    "kutokwa na jasho jingi",
-    "jasho jingi usiku",
-    "natokwa na jasho jingi",
-    "kutoka jasho jingi usiku"
-  ],
-  "blue_lips": [
-    "midomo kuwa bluu",
-    "midomo imekuwa bluu"
-  ],
-  "sneezing": [
-    "kupiga chafya",
-    "napiga chafya",
-    "chafya"
-  ],
-  "confusion": [
-    "kuchanganyikiwa"
-  ],
-  "fainting": [
-    "kuzimia",
-    "nimezimia"
-  ],
-  "intense_coughing_fits": [
-    "kikohozi cha mashambulizi",
-    "kukohoa sana bila kuacha"
-  ],
-  "sputum_reported": [
-    "makohozi"
-  ],
-  "chest_tightness": [
-    "kifua kubana",
-    "kifua kinabana"
+  "activity_fatigue": [
+    "nimechoka kufanya shughuli za kawaida",
+    "siwezi kufanya shughuli zangu"
   ],
   "muscle_aches": [
     "maumivu ya misuli",
@@ -160,13 +170,49 @@
     "sikia mwili",
     "mwili inaniuma"
   ],
-  "vomiting_after_coughing": [
-    "kutapika baada ya kukohoa",
-    "natapika baada ya kukohoa"
+  "heavy_sweating": [
+    "kutokwa jasho",
+    "jasho usiku",
+    "kutokwa na jasho jingi",
+    "jasho jingi usiku",
+    "natokwa na jasho jingi",
+    "kutoka jasho jingi usiku"
   ],
-  "difficulty_swallowing": [
-    "shida ya kumeza",
-    "kumeza kwa shida"
+  "loss_of_appetite": [
+    "kukosa hamu ya kula",
+    "sina hamu ya kula",
+    "hamu ya kula imepungua"
+  ],
+  "weight_loss": [
+    "kupungua uzito",
+    "ninapungua uzito",
+    "nimepungua uzito",
+    "kupungua uzito bila kukusudia",
+    "nimepungua uzito bila kukusudia",
+    "kupungua uzito bila sababu"
+  ],
+  "blue_lips": [
+    "midomo kuwa bluu",
+    "midomo imekuwa bluu"
+  ],
+  "confusion": [
+    "kuchanganyikiwa"
+  ],
+  "fainting": [
+    "kuzimia",
+    "nimezimia"
+  ],
+  "sneezing": [
+    "kupiga chafya",
+    "napiga chafya",
+    "chafya"
+  ],
+  "sputum_reported": [
+    "makohozi"
+  ],
+  "chest_tightness": [
+    "kifua kubana",
+    "kifua kinabana"
   ],
   "forehead_pain": [
     "maumivu ya paji la uso",
@@ -175,5 +221,23 @@
   "upper_chest_pain": [
     "maumivu sehemu ya juu ya kifua",
     "sehemu ya juu ya kifua inauma"
+  ],
+  "dizziness": [
+    "kizunguzungu",
+    "nina kizunguzungu",
+    "kichwa kinazunguka",
+    "naskia kizunguzungu"
+  ],
+  "common_cold": [
+    "niko na cold",
+    "nina cold",
+    "niko na kipooza",
+    "kipooza"
+  ],
+  "flu_like": [
+    "nina flu",
+    "niko na flu",
+    "nina influenza",
+    "mafua makali"
   ]
 }

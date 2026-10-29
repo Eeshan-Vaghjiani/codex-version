@@ -19,6 +19,9 @@ export default function PossibleExplanations({ primary, language = 'en' }) {
   return (
     <article className="consultation-candidate" aria-label={swahili ? 'Hali inayowezekana' : 'Possible explanation'}>
       <h3>{primary.display_name}</h3>
+      {primary.is_family_answer && <p className="consultation-limitation">{swahili
+        ? 'Hili ni kundi la hali zinazowezekana, si ugonjwa mmoja uliothibitishwa.'
+        : 'This describes a family of possible illnesses, not a confirmed disease or a specific virus.'}</p>}
       {getPatientMatch(primary) && <div className="consultation-match">
         <strong>{swahili ? 'Ulinganifu wa modeli' : 'Model match'}: {getPatientMatch(primary)} — {band}</strong>
         <p>{swahili

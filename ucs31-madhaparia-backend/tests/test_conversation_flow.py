@@ -158,8 +158,8 @@ def test_cold_or_flu_claim_is_context_not_model_evidence(v3_flow):
 @pytest.mark.parametrize('text,keywords', [
     ('I have a cold', ('viral cold', 'mafua ya virusi')),
     ('niko na cold', ('viral cold', 'mafua ya virusi')),
-    ('I have flu', ('flu-like', 'mafua ya ndege')),
-    ('nina flu', ('flu-like', 'mafua ya ndege')),
+    ('I have flu', ('flu-like', 'dalili kama mafua')),
+    ('nina flu', ('flu-like', 'dalili kama mafua')),
 ])
 def test_cold_and_flu_claims_get_actionable_guidance(v3_flow, text, keywords):
     data, asked = advance(v3_flow, payload(v3_flow, text), {
@@ -167,6 +167,7 @@ def test_cold_and_flu_claims_get_actionable_guidance(v3_flow, text, keywords):
     assert data['primary_prediction'] is None
     advice = ' '.join(data['next_steps']).lower()
     assert any(keyword in advice for keyword in keywords), (text, advice)
+    assert 'mafua ya ndege' not in advice
 
 
 def test_symptom_aware_guidance_for_withheld_sparse_case(v3_flow):
@@ -239,11 +240,24 @@ def test_common_cluster_gets_a_family_answer_not_a_diagnosis(v3_flow, text):
     assert primary['score_kind'] == 'family_answer'
     # A family answer never claims a specific virus or carries a model match %.
     assert primary.get('model_match_percent') is None
+    assert 'family_top_condition' not in primary
     assert data['status'] == 'prediction_complete'
     summary = data['assessment_summary'].lower()
     assert 'viral upper-respiratory' in summary
     # It is not a confirmed diagnosis: exactly one family answer, no disease list.
     assert [p['condition'] for p in data['predictions']] == ['Flu-like illness / common cold']
+
+    # History must preserve the family snapshot, not look it up as a model class.
+    from types import SimpleNamespace
+    from app.services.primary_assessment import history_patient_projection
+    session = SimpleNamespace(id='family-test', age=21, sex='M', input_text=text,
+        confirmed_codes=data['confirmed_codes'], created_at=None, has_red_flag=False,
+        status=data['status'], model_features=data['model_features'],
+        assessment_context={**data['assessment_context'], 'patient_decision': data['decision'],
+                            '_patient_primary': primary})
+    saved = history_patient_projection(session)
+    assert saved['primary_prediction'] == primary
+    assert saved['predictions'] == [primary]
 
 
 def test_family_answer_guidance_is_actionable_and_never_antibiotics(v3_flow):

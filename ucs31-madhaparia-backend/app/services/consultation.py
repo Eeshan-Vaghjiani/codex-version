@@ -251,7 +251,7 @@ def next_consultation_question(states, details, durations, asked, catalogue, age
                     hypothetical_details[code] = {'code': code, 'features': catalogue[code].features}
                 p, a = _features(hypothetical, hypothetical_details)
                 decision = select_primary_evidence(p, a, age, sex)
-                primary = decision.get('primary_prediction') if decision['status'] == 'eligible' else None
+                primary = decision.get('primary_prediction') if decision['status'] in {'eligible', 'family'} else None
                 from app.services.primary_assessment import patient_guidance
                 guidance = patient_guidance({'symptom_states': hypothetical, 'duration': durations.get('cough'),
                     '_present_features': p, '_decision_reasons': decision.get('reasons', [])}, age, primary=primary)

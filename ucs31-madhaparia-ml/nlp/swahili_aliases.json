@@ -98,7 +98,7 @@
     "ninachoka"
   ],
   "weakness": ["sina nguvu", "mwili hauna nguvu", "nahisi udhaifu", "udhaifu"],
-  "loss_of_taste": ["kupoteza ladha", "ladha imepotea", "sikioni ladha", "siioni ladha"],
+  "loss_of_taste": ["kupoteza ladha", "ladha imepotea", "sikioni ladha", "siioni ladha", "sipati ladha", "hakuna ladha"],
   "dizziness": ["kizunguzungu", "nina kizunguzungu", "kichwa kinazunguka", "naskia kizunguzungu"],
   "common_cold": ["niko na cold", "nina cold", "niko na kipooza", "kipooza"],
   "flu_like": ["nina flu", "niko na flu", "nina influenza", "mafua makali"],
@@ -172,6 +172,16 @@
     "maumivu ya paji la uso",
     "paji la uso linauma"
   ],
+  "night_breathlessness": ["kuamka nikikosa pumzi", "nakosa pumzi usiku"],
+  "wheeze_after_coughing": ["mluzi baada ya kukohoa", "kupumua kwa mluzi baada ya kukohoa"],
+  "nasal_discharge": ["kamasi za kijani", "kamasi za manjano"],
+  "loss_of_smell": ["kupoteza uwezo wa kunusa", "siwezi kunusa", "nimepoteza harufu"],
+  "itchy_nose_throat": ["pua inawasha", "koo linawasha"],
+  "itchy_eyes": ["macho yanawasha"],
+  "pain_deep_breath": ["maumivu nikivuta pumzi kwa nguvu"],
+  "worse_lying_down": ["inazidi nikilala chini"],
+  "worse_with_exertion": ["inazidi nikifanya shughuli"],
+  "activity_fatigue": ["nimechoka kufanya shughuli za kawaida", "siwezi kufanya shughuli zangu"],
   "upper_chest_pain": [
     "maumivu sehemu ya juu ya kifua",
     "sehemu ya juu ya kifua inauma"

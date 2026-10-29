@@ -11,7 +11,7 @@ from tests.test_v3_consultation import v3_flow, payload
 
 def complete(flow, body):
     answers = []
-    for _ in range(6):
+    for _ in range(21):
         response = flow.client.post('/predict', json={**body, 'follow_up_answers': answers})
         assert response.status_code == 200, response.text
         data = response.json()
@@ -23,10 +23,10 @@ def complete(flow, body):
         answer = ('no' if q['id'] in {'breathing_difficulty', 'severe_chest_pain', 'fever'} else
                   'under_3_days' if q['id'] in {'general_duration', 'symptom_duration'} else 'unknown')
         answers.append({'question_id': q['id'], 'answer': answer})
-    pytest.fail('More than five questions')
+    pytest.fail('Exceeded the 20-question ceiling')
 
 
-# All named results stay withheld while independent gap validation is missing.
+# Sparse names stay withheld; the explicit four-present family exception is separate.
 JOURNEYS = [
     ('headache-fatigue', 'I have headache and fatigue', None, 24),
     ('cough', 'Nina kikohozi', None, 24),

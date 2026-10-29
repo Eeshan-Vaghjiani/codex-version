@@ -22,6 +22,12 @@ def test_weakness_negative_and_subject_are_preserved(text):
     ('i feel cold, and my throat pains, and i have running nose', {'chills', 'sore_throat', 'runny_blocked_nose'}),
     ('I feel cold, my throat pains and I have running nose', {'chills', 'sore_throat', 'runny_blocked_nose'}),
     ('I have loss of taste', {'loss_of_taste'}),
+    ('I have green snot and a cough', {'nasal_discharge', 'cough'}),
+    ('Nina kamasi za kijani na kikohozi', {'nasal_discharge', 'cough'}),
+    ('Nina mluzi baada ya kukohoa', {'wheeze_after_coughing'}),
+    ('Nimepoteza harufu', {'loss_of_smell'}),
+    ('I have waking gasping for air', {'night_breathlessness'}),
+    ('Macho yanawasha', {'itchy_eyes'}),
 ])
 def test_everyday_cold_and_taste_are_understood(text, expected):
     result = build_confirmation_output(text)

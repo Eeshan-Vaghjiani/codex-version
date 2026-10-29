@@ -18,10 +18,8 @@ POLICY_VERSION = "v3_selective_primary_v1"
 SCOPE_POLICY_VERSION = "v3_respiratory_scope_v1"
 GAP_POLICY_PATH = POLICY_PATH.with_name('v3_gap_selection.json')
 DANGEROUS_ALTERNATIVES = frozenset({"Pneumonia", "Tuberculosis", "Pulmonary neoplasm", "Acute pulmonary edema"})
-# Narrow 4:0 family exception (see classify_primary): only for the viral
-# upper-respiratory family, only when the disabled 4:0 bucket's top pattern is
-# clear on its own. Conservative, unvalidated on a fresh fold - not a
-# validated clinical rule.
+# shortcut: Muse's four-present family thresholds are not fold-checked; validate
+# family-level errors separately before claiming source-validation coverage.
 VIRAL_UPPER_RESPIRATORY_FAMILY = frozenset({
     "URTI", "Influenza", "Viral pharyngitis", "Acute rhinosinusitis",
 })
@@ -207,12 +205,9 @@ def classify_primary(present_features, absent_features, age, sex):
     })
     gap = result["diagnostics"]["source_relative_top_two_gap"]
     gate = load_gap_policy()
-    # Narrow 4:0 family exception: the 4:0 bucket is gap-disabled because its
-    # source-validation risk bound (1.0 accepted here) sits over the target.
-    # When the top pattern is nevertheless clear (>=0.75, gap >=0.20),
-    # viral-family, and no dangerous alternative is a close second, return a
-    # FAMILY answer, not a specific disease name. A 4-symptom close case still
-    # withholds below.
+    # Family-only exception for four present features, including answered
+    # negatives. Disabled disease buckets stay disabled; this is not a
+    # fold-checked disease selection or a claim about a specific virus.
     if (result["diagnostics"]["evidence_bucket"].startswith("4:")
             and gate is not None and not gate['buckets']['4:0']['enabled']
             and first["condition"] in VIRAL_UPPER_RESPIRATORY_FAMILY
@@ -220,7 +215,7 @@ def classify_primary(present_features, absent_features, age, sex):
             and not (second["condition"] in DANGEROUS_ALTERNATIVES and gap < gate['minimum_relative_gap'])):
         result["status"] = "family"
         result["reasons"] = ["family_viral_upper_respiratory", "not_clinically_validated"]
-        result["diagnostics"]["policy_reason"] = "family_viral_upper_respiratory_4_0"
+        result["diagnostics"]["policy_reason"] = "family_viral_upper_respiratory_four_present"
         result["primary_prediction"] = {
             "condition": "Flu-like illness / common cold",
             "is_family_answer": True,

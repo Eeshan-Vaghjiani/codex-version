@@ -37,7 +37,7 @@ def withheld_viral_guidance(states, duration, sw):
     if days is not None and days >= 14:
         return []
     if flu_claim:
-        opening = ('Maelezo haya yanafanana na ugonjwa wa mafua ya ndege (influenza). Virusi kadhaa vinaweza kusababisha hali hii, ikiwemo influenza na COVID; dalili pekee haziwezi kuthibitisha ni ipi. Pumzika, unywe maji, tumia paracetamol kwa maumivu au homa; antibiotiki hazisaidii kwa maambukizi ya virusi.' if sw else
+        opening = ('Maelezo haya yanafanana na ugonjwa wenye dalili kama mafua. Virusi kadhaa vinaweza kusababisha hali hii, ikiwemo influenza na COVID; dalili pekee haziwezi kuthibitisha ni ipi. Pumzika, unywe maji, tumia paracetamol kwa maumivu au homa; antibiotiki hazisaidii kwa maambukizi ya virusi.' if sw else
             'This describes a flu-like illness. Several viruses, including influenza and COVID, can cause it; symptoms alone cannot confirm which one. Rest, drink fluids, and use paracetamol for discomfort or fever; antibiotics do not help a viral infection.')
     else:
         opening = ('Mchanganyiko huu mara nyingi hutokana na mafua ya virusi (maambukizi ya njia ya juu ya upumuaji). Kwa kawaida hupita yenyewe; pumzika, unywe maji, na tumia paracetamol kwa maumivu. Antibiotiki hazihitajiki kwa mafua ya virusi.' if sw else
@@ -49,7 +49,7 @@ def withheld_viral_guidance(states, duration, sw):
     ]
     if states.get('fever') == 'present' or states.get('chills') == 'present':
         lines.append(
-            ('COVID na mafua ya ndege yanaweza kuonekana hivi. Kama umepoteza ladha/harufu, umekaribiana na mwenye COVID, au unataka uhakika, ulizia kipimo cha COVID.' if sw else
+            ('COVID na influenza zinaweza kuonekana hivi. Kama umepoteza ladha/harufu, umekaribiana na mwenye COVID, au unataka uhakika, ulizia kipimo cha COVID.' if sw else
              'COVID and flu can look like this. If you have loss of taste/smell, known COVID exposure, or want certainty, ask about a COVID test.'))
     return lines
 

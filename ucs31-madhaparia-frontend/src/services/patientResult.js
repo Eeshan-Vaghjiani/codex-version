@@ -16,7 +16,7 @@ export function hasPatientDecision(result) {
 
 export function getPatientMatch(primary) {
   const percent = primary?.model_match_percent
-  if (primary?.score_kind !== 'v3_relative_model_match' ||
+  if (primary?.is_family_answer || primary?.score_kind !== 'v3_relative_model_match' ||
       !Number.isInteger(percent) || percent < 0 || percent > 100) return null
   return `${percent}%`
 }

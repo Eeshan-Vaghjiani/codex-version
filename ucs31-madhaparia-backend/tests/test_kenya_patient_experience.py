@@ -102,13 +102,13 @@ def patient_payload(flow, text, **extra):
 
 def finish_assessment(flow, body, *, cough_answer="unknown"):
     answers, asked = list(body.get("follow_up_answers", [])), []
-    for _ in range(6):
+    for _ in range(21):
         response = flow.client.post("/predict", json={**body, "follow_up_answers": answers})
         assert response.status_code == 200, response.text
         data = response.json()
         assert_single_primary_contract(data)
         if data["status"] != "needs_follow_up":
-            assert len(answers) <= 5
+            assert len(answers) <= 20
             return data, answers, asked
         question = data["follow_up_question"]
         qid = question["id"]
@@ -119,7 +119,7 @@ def finish_assessment(flow, body, *, cough_answer="unknown"):
         assert answer in values
         asked.append(qid)
         answers.append({"question_id": qid, "answer": answer})
-    pytest.fail("Assessment exceeded five questions")
+    pytest.fail("Assessment exceeded the 20-question ceiling")
 
 
 def test_patient_terminology_exactly_covers_active_source_classes():

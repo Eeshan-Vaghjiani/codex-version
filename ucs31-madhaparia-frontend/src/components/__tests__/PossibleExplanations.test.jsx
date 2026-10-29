@@ -25,6 +25,14 @@ describe('One possible explanation', () => {
     expect(screen.queryByRole('article')).not.toBeInTheDocument()
   })
 
+  it('labels a family answer without showing a match percentage', () => {
+    render(<PossibleExplanations primary={{ ...primary, is_family_answer: true,
+      display_name: 'Flu-like illness / common cold',
+      score_kind: 'v3_relative_model_match', model_match_percent: 99 }} />)
+    expect(screen.getByText(/family of possible illnesses/)).toBeInTheDocument()
+    expect(screen.queryByText(/99%|Strong match/)).not.toBeInTheDocument()
+  })
+
   it('retains a medical name when it differs from the familiar name', () => {
     render(<PossibleExplanations primary={{ ...primary, display_name: 'Familiar name' }} />)
     expect(screen.getByText('Medical name: Medical name')).toBeInTheDocument()

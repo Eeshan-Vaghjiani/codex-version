@@ -38,7 +38,7 @@ The sequence follows a history-taking structure:
 3. Clarify relevant context such as cough duration and whether reported weight loss was intentional.
 4. Select a useful missing symptom question using the model's expected information gain.
 5. Record the controlled answer and use it in the next assessment.
-6. Stop after at most five questions, when no relevant questions remain, or when another model question has little expected benefit.
+6. Five questions is a soft guide, with a hard ceiling of 20. Stop earlier for warning signs, two unknown replies, a supported primary/family answer, no relevant questions, or little expected benefit.
 
 Questions have stable IDs, English/Swahili wording, numbered options and an explicit “not sure” choice. Answer replay validates ordering and prevents duplicates or skipped questions. Unknown weight-loss intention no longer produces a duplicate weight-loss question. Reloading resumes a current consultation; old prediction/abstention caches are invalidated.
 

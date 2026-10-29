@@ -45,7 +45,7 @@ async function answerQuestions(page, result, preferUnknown = false, choices = {}
     const question = result.follow_up_question
     expect(asked).not.toContain(question.id)
     asked.push(question.id)
-    expect(asked.length).toBeLessThanOrEqual(5)
+    expect(asked.length).toBeLessThanOrEqual(20)  // uncapped gathering: soft guide 5, hard ceiling 20
     await expect(page.getByRole('heading', { name: question.text, exact: true })).toBeVisible()
     if (asked.length === 1) {
       await page.reload()
@@ -77,6 +77,7 @@ const scenarios = [
   { name: 'fever alone', text: 'I have fever.', language: 'en', fever: 'present' },
   { name: 'headache and tiredness', text: 'I have a headache and feel tired.', language: 'en' },
   { name: 'fever cough sore throat body aches', text: 'I have fever, a cough, a sore throat and body aches.', language: 'en', fever: 'present' },
+  { name: 'common four-symptom family', text: 'I have cough, sore throat, runny nose and headache', language: 'en', requiresFamily: true },
 ]
 
 for (const scenario of scenarios) {
@@ -86,6 +87,10 @@ for (const scenario of scenarios) {
     expect(['prediction_complete', 'assessment_uncertain', 'insufficient_evidence']).toContain(result.status)
     expect(result.decision.policy_version).toBeTruthy()
     expect(result.predictions.length).toBeLessThanOrEqual(1)
+    if (scenario.requiresFamily) {
+      expect(result.primary_prediction?.is_family_answer).toBe(true)
+      expect(result.primary_prediction.condition).toBe('Flu-like illness / common cold')
+    }
     if (scenario.requiresPrimary) {
       expect(result.primary_prediction).toBeNull()
       expect(result.decision.reasons).toContain('gap_source_validation_bound_not_met')
@@ -112,10 +117,18 @@ for (const scenario of scenarios) {
       })).toBeVisible()
       await expect(page.locator('.consultation-candidate')).toHaveCount(0)
     }
-    await expect(page.getByText(result.assessment_summary, { exact: true })).toBeVisible()
+    await expect(page.locator('.pred34-result-intro').getByText(result.assessment_summary, { exact: true })).toBeVisible()
     if (result.primary_prediction) {
-      expect(Number.isInteger(result.primary_prediction.model_match_percent)).toBe(true)
-      await expect(page.getByText(/not a probability, not a diagnosis, not overall accuracy/)).toBeVisible()
+      if (result.primary_prediction.is_family_answer) {
+        // A family answer names a family, never a specific virus; it carries
+        // no model match percentage.
+        expect(result.primary_prediction.model_match_percent).toBeNull()
+        expect(result.predictions).toEqual([result.primary_prediction])
+        await expect(page.locator('.consultation-match')).toHaveCount(0)
+      } else {
+        expect(Number.isInteger(result.primary_prediction.model_match_percent)).toBe(true)
+        await expect(page.getByText(/not a probability, not a diagnosis, not overall accuracy/)).toBeVisible()
+      }
     } else expect(await page.locator('.pred34-results').textContent()).not.toMatch(/\d+(?:\.\d+)?%/)
     expect(JSON.stringify(result)).not.toMatch(/model_confidence_percent|raw_relative_score/)
     if (['informative coughing fits', 'English cough and fever', 'headache and tiredness', 'fever cough sore throat body aches'].includes(scenario.name)) {
@@ -247,6 +260,19 @@ for (const [name, text, urgency, age = 24] of safetyJourneys) {
       } else expect(mapping.safety_question).toBeNull()
     } else {
       result = (await answerQuestions(page, await begin(page, age))).result
+      if (name === 'overlap') {
+        // The 4-present viral upper-respiratory cluster now resolves to an
+        // honest family answer, never a specific disease or a model match %.
+        expect(result.primary_prediction).not.toBeNull()
+        expect(result.primary_prediction.is_family_answer).toBe(true)
+        expect(result.primary_prediction.condition).toBe('Flu-like illness / common cold')
+        expect(result.primary_prediction.model_match_percent).toBeNull()
+        expect(result.predictions).toEqual([result.primary_prediction])
+        await expect(page.getByRole('heading', {
+          name: result.primary_prediction.display_name, exact: true })).toBeVisible()
+        await expect(page.locator('.consultation-candidate')).toHaveCount(1)
+        return
+      }
       expect(result.primary_prediction).toBeNull()
       expect(result.predictions).toEqual([])
       if (urgency) {
@@ -280,7 +306,7 @@ for (const text of ['i feel tired and have weaknes for 3 days',
     expect(result.assessment_context.symptom_states.weakness).toBe('present')
     expect(result.model_features).toEqual([])
     expect(asked).toContain('weakness_meaning')
-    expect(asked.length).toBeLessThanOrEqual(5)
+    expect(asked.length).toBeLessThanOrEqual(20)  // uncapped gathering: soft guide 5, hard ceiling 20
     expect(result.next_steps.join(' ')).not.toMatch(/influenza|pneumonia|covid|bronchitis|malaria/i)
     await expect(page.getByLabel(/Correct symptoms, duration or severity/)).toHaveValue(text)
     await page.getByText('Summary to show a health worker / Muhtasari kwa mhudumu wa afya', { exact: true }).click()

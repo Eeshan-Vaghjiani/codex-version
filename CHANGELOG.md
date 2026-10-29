@@ -1,6 +1,8 @@
 # Changelog — 2026-10-29
 
-Starting point: `c04aca7`. No Drive merge, external organisation repo, push or deployment.
+Starting point: `c04aca7`. Work confined to this repository; no external organisation
+repo accessed. Push authorised to `codex-respiracare-improvements-2026-10-29`;
+`main` and deployment untouched.
 
 | Change | Main files | Checks |
 |---|---|---|
@@ -18,33 +20,32 @@ Starting point: `c04aca7`. No Drive merge, external organisation repo, push or d
 | Everyday-language expansion: Sheng/Kiswahili phrasings for tiredness (`nimechoka`), chest pain, headache, wheezing, sore throat, runny nose, body aches, night sweats; plus three honest context symptoms (`dizziness`, `common_cold`, `flu_like` - features `[]`, never model evidence) so a stated cold/flu/dizziness is understood and gets plain guidance instead of "nothing" | both `canonical_symptoms.json`, `english_aliases.json`, `swahili_aliases.json`; `consultation_guidance.py`, `primary_assessment.py` | `test_everyday_kenyan_phrases_are_understood`, `test_cold_or_flu_claim_is_context_not_model_evidence`, `test_cold_and_flu_claims_get_actionable_guidance`; ML 412 passed, backend 371 passed; live API verified |
 | Symptom-aware withheld guidance: sparse (1-3 feature) cases stay withheld but "what to do next" is now tailored to the reported symptoms (headache+fever red flags, cough, wheezing, sore throat, chest pain, night sweats, body aches, tiredness) instead of near-identical generic advice | `consultation_guidance.py`, `primary_assessment.py` | `test_symptom_aware_guidance_for_withheld_sparse_case`; backend 372 passed; live API verified |
 | Never-blank withheld + optional discriminator questions: a withheld result always carries a clear title, a plain explanation, care guidance and tappable "do you also have" questions (cough, sore throat, runny nose, fever, breathing) to re-run; breathing is no longer forced first for a non-respiratory report (severe chest pain stays a safety-screen question, breathing is a later discriminator) | `primary_assessment.py`, `consultation.py`, frontend `PredictionPage.jsx` | `test_withheld_result_is_never_blank_and_offers_discriminators`, `test_non_respiratory_report_does_not_open_with_breathing`; backend 374, frontend 124 passed; live API verified |
-
-## Comparison with the parallel `muse` branch — final decision
-
-`muse/respiracare-improvements-2026-10-29` is a separate implementation of the same
-brief, diverged from the same `c04aca7`. Each branch has three commits on top.
-
-**Not merged.** The two are different designs, not a superset:
-- codex uses the **checked 0.15 gap / 0.60 floor** gate validated on a separate
-  source-validation fold (24/48 buckets); muse uses a different close-gap gate.
-- muse adds **dual naming** (simple + medical) and **uncapped symptom gathering**
-  (soft 5 / hard 20); codex keeps its verified everyday-language vocabulary and
-  context-only symptoms.
-- muse **deleted** codex's gap-gate validation, DDXPlus provenance and
-  everyday-language tests; merging it would undo that checked work.
-- muse took **with credit** two codex items (`f423bde`): the sudden-neurological-change
-  emergency flag and the fuller COVID scope note.
-- codex already never blank-ends a withheld result (it gives symptom-aware guidance),
-  so muse's "non-specific never blank" and extra discriminator questions would add
-  question-flow and E2E churn without fixing an actual codex gap.
-
-**Final: `codex-respiracare-improvements-2026-10-29`** (`292acf1`), verified
-ML 412 / backend 372 / frontend 124 / E2E 45, live-verified, `main` untouched.
-| Safety screen first; five/0.02-nat limits retained; two unknowns and no-change-to-action stops | `consultation.py` | consultation tests, safety-v4 tests; existing replay/validation tests retained |
+| Family-only viral answer for four-present patterns, including negative follow-up answers; never a specific virus or percentage; history preserved | both `primary_selection.py`, `primary_assessment.py`, frontend family label | real API/history regression, family/boundary ML tests, browser history journey |
+| Simple + medical names for all 21 classes; original COVID scope message retained | `patient_terminology.json`, `patient_terminology.py` | every-class bilingual terminology test |
+| Sparse-serious guard; expanded 24-code question pool; soft guide 5 / hard ceiling 20 in both service and API schema | `consultation.py`, `main.py`, both selection files | beyond-five replay, ceiling, catalogue-feature and night-breathlessness warning tests |
+| Additive everyday aliases from Muse mirrored into serving/research dictionaries; corrected Kiswahili flu-like wording (not bird flu) | both NLP dictionaries, guidance service | mapper regressions and bilingual guidance tests |
+| Safety first; 0.02-nat, two-unknown and no-change-to-action stops retained | `consultation.py` | consultation and safety tests |
 | Explicit non-reassuring abstention; result-page correction; duration/severity visible; stale policy/cache invalidation | `primary_assessment.py`, frontend result/input/history pages and cache service | API/UI correction and abstention tests; 14 original browser scenarios retained |
 | Acute vs chronic advice without changing scores; prolonged cough/weight-loss retained | `consultation_guidance.py`, `consultation.py` | duration-band/evidence invariance tests |
 | Honest model identity and disclaimer; V2 historical only | root/project READMEs, `/model/status`, app footer, `health_guidance.py` | model-status and frontend communication tests |
 | Removed tracked generated dist from index; preserved ignore rules; test discovery excludes executable experiment scripts | `.gitignore`, ML `pytest.ini` | final git hygiene check; no tests deleted or missing-data failures hidden |
+
+## Comparison with the parallel `muse` branch — final decision
+
+Selected features ported with credit from Muse `d11800d` / `9e48792`, not a blanket
+branch merge: never-blank withheld output, optional discriminator taps, family
+answers, dual names, sparse-serious guard, longer gathering and additive aliases.
+Codex retains its provenance work, everyday context symptoms, tests and frozen
+**checked 0.15 gap / 0.60 floor** disease gate (24/48 buckets). Muse's general
+0.10/0.20 close-gap gate was **not** adopted.
+
+The family-only exception adopts Muse's **0.75 score / 0.20 gap** thresholds.
+It is **not independently fold-checked**; disease-gate accuracy/coverage does not
+validate it. No bucket was enabled and no model retrained. Cached consultations
+and saved patient-policy versions are invalidated for the changed flow.
+
+Final checks: **ML 423 + 5 subtests / backend 381 / frontend 125 / Edge browser 46**.
+Lint and production build passed. See the validation addendum for limitations.
 
 Tests whose old expectations contradicted the requested safety-screen order or
 new abstention policy were updated explicitly, not deleted. The retained

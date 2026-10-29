@@ -5,7 +5,7 @@ from app.services.patient_terminology import patient_term
 from app.services.consultation_guidance import consultation_guidance, withheld_viral_guidance, symptom_specific_advice, SW_SYMPTOMS
 from app.services.v3_prediction import get_v3_bundle
 
-PATIENT_POLICY_VERSION = 'kenya_single_primary_v3_gap_checked'
+PATIENT_POLICY_VERSION = 'kenya_single_primary_v4_family_gathering'
 RESPIRATORY_FEATURES = frozenset({'E_103','E_112','E_166','E_169','E_181','E_182','E_190','E_194',
  'E_201','E_203','E_212','E_214','E_217','E_220','E_45','E_65','E_66','E_67','E_77','E_97'})
 PUBLIC_CONTEXT_FIELDS = {'language','symptom_states','symptom_durations','duration','severity','cough_type',
@@ -96,7 +96,7 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
                    'This is one possible explanation for your symptoms, not a confirmed diagnosis.')
     elif viral_lines and base['care_level'] == 'self_care_or_review':
         summary = (
-            'Maelezo haya yanafanana na ugonjwa wa mafua ya ndege. Virusi kadhaa, ikiwemo influenza na COVID, vinaweza kusababisha hali hii; programu haiwezi kuthibitisha ni ipi kwa dalili pekee.' if sw else
+            'Maelezo haya yanafanana na ugonjwa wenye dalili kama mafua. Virusi kadhaa, ikiwemo influenza na COVID, vinaweza kusababisha hali hii; programu haiwezi kuthibitisha ni ipi kwa dalili pekee.' if sw else
             'This describes a flu-like illness. Several viruses, including influenza and COVID, can cause it; symptoms alone cannot confirm which one.')
         if states.get('flu_like') != 'present':
             summary = ('Mchanganyiko huu mara nyingi huonekana katika mafua ya virusi. Programu haiamini kutosha kutaja ugonjwa mmoja; ushauri ni wa jumla, si utambuzi.' if sw else
@@ -204,9 +204,8 @@ def build_primary_assessment(confirmation, age, sex):
         primary = {'condition': family['condition'], 'display_name': family_term['display_name'],
             'medical_name': family_term['medical_name'], 'short_description': family_term['short_description'],
             'description': family_term['short_description'], 'is_family_answer': True,
-            'family_top_condition': family['family_top_condition'],
             'score_kind': 'family_answer', 'model_match_percent': None,
-            'explanation': ('Dalili hizi zinaendana na maambukizi ya virusi ya njia ya juu ya upumuaji. Dalili pekee haziwezi kuthibitisha ni virusi kipi, na mafua na mafua ya ndege yanaweza kuonekana hivi.' if sw else
+            'explanation': ('Dalili hizi zinaendana na maambukizi ya virusi ya njia ya juu ya upumuaji. Dalili pekee haziwezi kuthibitisha ni virusi kipi; mafua ya kawaida na influenza yanaweza kuonekana hivi.' if sw else
                 'These symptoms are consistent with a viral upper-respiratory infection. Symptoms alone cannot confirm which virus, and cold and flu can look like this.'),
             'supporting_symptoms': list(dict.fromkeys(
                 SW_SYMPTOMS.get(code, item.get('display_name', code.replace('_',' '))) if sw
@@ -295,7 +294,7 @@ def history_patient_projection(session):
                                        'This record was produced by an earlier assessment policy. Start a new assessment to use the current approach.')}
 
     primary = context.get('_patient_primary') if saved.get('status') == 'possible_explanation' else None
-    if primary:
+    if primary and not primary.get('is_family_answer'):
         primary = {**primary, **patient_term(primary['condition'], language)}
     return {**base, 'status':session.status, 'primary_prediction':primary,
             'predictions':[primary] if primary else [], 'decision': saved,

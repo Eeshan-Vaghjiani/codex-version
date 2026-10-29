@@ -4,13 +4,18 @@ Updated 29 October 2026. These are synthetic software behaviour cases, not clini
 
 Use an isolated local V3 API and frontend, register a disposable account, and start a fresh assessment. For the recorded new browser journeys use **age 24, sex M**, except the baby case (**age 0**). Confirm only present patient symptoms. Answer **No** to unreported breathing difficulty, severe chest pain and fever; **under 3 days** only for an otherwise unspecified duration in these synthetic cases; **Not sure** to other unreported questions. These are a reproducible test-answer pattern, not suggested patient answers. Real users must answer honestly.
 
-**Current naming/score expectation.** Names require the checked V3 bucket + scope
+**Current naming/score expectation.** Specific names require the checked V3 bucket + scope
 + gap policy. A predeclared 0.15 gap / 0.60 floor passed 24 of 48 evidence buckets
 on a separate source-validation fold: 5–8 positive-feature buckets may show one
 whole-percent V3 model match (not a probability or overall accuracy), while the
 1–3 positive-feature buckets remain withheld with no score. Do not restore an old
 name to make a demo look better. The rows below follow that rule: sparse input is
-withheld, the richer eligible pattern shows one match.
+withheld, the richer eligible pattern shows one match. Separately, a four-present
+viral upper-respiratory pattern can show “Flu-like illness / common cold” without
+a percentage. Its adopted 0.75 score / 0.20 gap thresholds are not independently
+fold-checked; do not describe it as covered by the disease-gate validation.
+Five questions is a soft guide; the hard ceiling is 20. Two unknown replies and
+warning signs still stop earlier. All 21 classes use simple + medical names.
 
 | Case | Input | Expected urgency and next advice | Recorded browser outcome |
 |---|---|---|---|
@@ -36,7 +41,8 @@ withheld, the richer eligible pattern shows one match.
 | Headache + fever + stiff neck | `I have headache, fever and stiff neck` | Emergency casualty now, no diagnosis of the cause | PASS |
 | Generic nonrespiratory input | `I have fever, pain and fatigue` | No respiratory name; nothing ruled out, monitor/review/correct | PASS |
 | Severe flu-like illness, no test | `I have severe fever, cough and body aches for two days` | Professional review; no automatic COVID label | PASS |
-| Overlapping respiratory pattern | `I have cough, sore throat, fever and muscle aches` | Withheld, not blindly highest-ranked; COVID caveat and monitoring. Separate mocked close-gap/dangerous-second units verify same-day review | PASS |
+| Overlapping respiratory pattern | `I have cough, sore throat, fever and muscle aches` | Family-only “Flu-like illness / common cold”, no percentage or specific virus; COVID caveat. Close/dangerous alternatives still withhold | PASS |
+| Common four-symptom cluster | `I have cough, sore throat, runny nose and headache` | Family-only answer after safety/context questions, no percentage; saved history preserves it | PASS |
 | Additional mixed input | `Nina homa na cough kwa siku mbili` | Kiswahili/mixed safety screen, acute advice, withheld | PASS |
 | Flu claim, English | `I have flu` | Flu-like guidance (rest/fluids/paracetamol, no antibiotics); no condition named; COVID-test consideration if fever/chills | PASS |
 | Flu claim, Kiswahili/Sheng | `niko na flu` | Same flu-like guidance in Kiswahili; no condition named | PASS |
@@ -58,13 +64,13 @@ Additional recorded journeys:
 | Everyday weakness, mixed | `Nina uchovu na weakness kwa siku tatu` | Same neutral outcome | PASS |
 | Weakness clarification escalates | `I feel weak for three days`, answer sudden one-sided | Emergency, no further question, no prediction | PASS |
 | Sudden one-sided weakness reported | `I have sudden one-sided weakness` | Immediate emergency at symptom entry; no confirmation link | PASS |
-| Eligible rich pattern | `I have fever, cough, sore throat, muscle aches, constant tiredness and runny nose for two days` | One whole-percent V3 match (Influenza), preserved in history | PASS |
+| Eligible rich pattern | `I have fever, cough, sore throat, muscle aches, constant tiredness and runny nose for two days` | One whole-percent V3 match, preserved in history; extra answers can change the selected class | PASS |
 | Correction rechecks safety | `I feel tired and have weakness for three days` → correct to `I have sudden one-sided weakness` | Emergency after recheck; old result/confirmation cleared | PASS |
 | Health-worker summary copy | Everyday weakness result | Copy summary contains reported text; no ranked scores | PASS |
 | Common cold, everyday phrasing | `i feel cold, and my throat pains, and i have running nose` | chills/sore throat/runny nose all recognised; no name; viral-cold guidance + COVID test consideration | PASS |
 | Loss of taste | `I have loss of taste` | Recognised; COVID testing advice; not a COVID diagnosis | PASS |
 
-The original **14 browser journeys** are retained, including informative coughing fits, English/Kiswahili negations, vague input, urgent focus/viewport, stale cache and empty input. The informative case now explicitly checks source-gap withholding instead of requiring its old disease name. No scenario was deleted to hide a failure. All **45 browser journeys** ran against real local Edge + UI + API, not mocked browser responses. See the [validation record](audit-artifacts/VALIDATION_2026-10-29.md) for final counts.
+The original **14 browser journeys** are retained, including informative coughing fits, English/Kiswahili negations, vague input, urgent focus/viewport, stale cache and empty input. The informative case now explicitly checks source-gap withholding instead of requiring its old disease name. No scenario was deleted to hide a failure. All **46 browser journeys** ran against real local Edge + UI + API, not mocked browser responses, including the common four-symptom family answer and saved history. See the [validation record](audit-artifacts/VALIDATION_2026-10-29.md) for final counts.
 
 Also check an empty submission; unknown wording; `my brother has a cough` (not patient evidence); `I have cough but I do not have cough` (uncertain); `Nina kikohozi lakini sina homa` (fever absent); sudden unusually severe headache; severe/crushing chest pressure. On mobile, check warning focus and readable controls. Reload during a follow-up; its question must persist. On the result, check present/absent/uncertain, duration and severity, edit the description, and recheck; the old result/confirmation must be cleared. Current history must preserve urgency and abstention; old policies require reassessment and must not resurrect scores/names.
 

@@ -19,13 +19,38 @@ def test_no_information_does_not_infer_from_demographics_or_negatives():
     assert result["supported_absent_count"] == 1
 
 
-@pytest.mark.parametrize("features", [["E_91"], ["E_89"], ["E_201"], ["E_53", "E_55_@_V_89", "E_89"], ["E_91", "E_201", "E_97", "E_144"]])
+@pytest.mark.parametrize("features", [["E_91"], ["E_89"], ["E_201"], ["E_53", "E_55_@_V_89", "E_89"], ["E_91", "E_201", "E_97"]])
 def test_named_vague_inputs_do_not_force_a_primary(features):
     # Software behavior only: no disease ground truth is invented for a vague
     # symptom description, and this test makes no clinical-safety claim.
     result = classify_primary(features, [], 25, "F")
     assert result["status"] == "uncertain"
     assert result["primary_prediction"] is None
+
+
+@pytest.mark.parametrize('absent', [[], ['E_66', 'E_91', 'E_214']])
+def test_common_cluster_can_name_only_a_family_without_a_score(absent):
+    result = classify_primary(['E_201', 'E_97', 'E_181', 'E_53'], absent, 24, 'M')
+    assert result['status'] == 'family'
+    assert result['clinical_validation'] is False
+    assert result['primary_prediction']['condition'] == 'Flu-like illness / common cold'
+    assert result['primary_prediction']['is_family_answer'] is True
+    assert 'raw_relative_score' not in result['primary_prediction']
+    assert 'model_match_percent' not in result['primary_prediction']
+
+
+@pytest.mark.parametrize('condition,score,second_score', [
+    ('URTI', .74, .10), ('URTI', .78, .59), ('Pneumonia', .90, .05),
+])
+def test_family_exception_does_not_bypass_weak_close_or_serious_patterns(monkeypatch, condition, score, second_score):
+    import inference.primary_selection as service
+    first = {'condition': condition, 'raw_relative_score': score,
+             'supporting_features': [], 'supporting_absent_features': []}
+    second = {'condition': 'Tuberculosis', 'raw_relative_score': second_score}
+    monkeypatch.setattr(service, 'predict_v3', lambda *args, **kwargs: {'predictions': [first, second]})
+    result = service.classify_primary(['E_201', 'E_97', 'E_181', 'E_53'], [], 24, 'M')
+    assert result['status'] == 'uncertain'
+    assert result['primary_prediction'] is None
 
 
 @pytest.mark.parametrize("present,absent", [(["E_91"], ["E_91"]), (["fake"], []), (["E_91", "E_91"], []), ("E_91", [])])

@@ -3,6 +3,46 @@
 Starting commit: `c04aca7`. Only the local codex-version repository is in scope.
 No Drive snapshot or organisation repository was accessed. No .env was opened.
 
+## Final feature-port addendum
+
+User-approved Muse features were adapted into Codex, not merged wholesale:
+family-only output, simple + medical naming, sparse-serious guard, and longer
+gathering (soft guide 5, hard ceiling 20, 24-code routine pool).
+
+Latest checks in this checkout:
+
+| Check | Result |
+|---|---|
+| Backend, disposable PostgreSQL schema | **381 passed**, existing Starlette/httpx warning |
+| ML | **423 passed, 5 subtests passed** |
+| Frontend unit tests | **125 passed**, 21 files |
+| Lint | Passed |
+| Production build | Passed with process-only `VITE_API_BASE_URL=http://127.0.0.1:8011` |
+| Real Edge browser | **46 passed**, 3.5 minutes; actual UI/API/history, no mocked browser responses |
+
+The first browser rerun exposed a real history-projection 500: a family-only
+answer was incorrectly looked up as one of the 21 model classes. It now preserves
+the saved family snapshot; API/history regression coverage was added. Family
+answers have an explicit family label, no patient-facing underlying class and
+no percentage, including if stale score fields are present. Old cached flows
+and older patient-policy histories require reassessment under the new version.
+An intermediate run also started before API readiness (three connection-refused
+failures); after a successful health check, the full 46-case rerun passed.
+
+New pool coverage checks every question against actual catalogue/V3 features,
+both languages, and the urgent stop for newly disclosed night breathlessness.
+The beyond-five API path and 20-question payload ceiling are covered. Backend
+and ML NLP dictionaries have identical parsed content. Kiswahili flu-like
+guidance no longer incorrectly says bird flu.
+
+**Limits:** the frozen specific-name gap gate is unchanged by these ports.
+The adopted family-only **0.75 score / 0.20 gap** heuristic has **not** been
+independently evaluated on a held-out fold. The checked disease-gate reports
+do not measure family-answer coverage or accuracy. No updated overall accuracy,
+clinical safety, Kenyan patient validation or language-comprehension claim is
+made. No model was retrained; no COVID class added; no deployment performed.
+Push is authorised only to `codex-respiracare-improvements-2026-10-29`.
+
 ## Baseline (before application changes)
 
 - Initial frontend unit/browser commands could not start: dependencies absent.
@@ -44,7 +84,7 @@ copied, and there are no local credentials available to rotate. Owners of any
 shared snapshot must delete its .env and rotate credentials with their provider;
 that external action cannot be verified or performed from this checkout.
 
-## Final full-suite run
+## Earlier full-suite run (before feature ports)
 
 | Suite | Baseline | Final |
 |---|---:|---:|
