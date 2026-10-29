@@ -496,7 +496,7 @@ function PredictionPage() {
                 </p>
 
                 <h2 id="pred34-urgent-title">
-                  Seek prompt medical assessment.
+                  {result.breathing_tier === 'emergency' ? 'Emergency — go to hospital now.' : 'Seek prompt medical assessment.'}
                 </h2>
 
                 <p>
@@ -565,6 +565,8 @@ function PredictionPage() {
                 ) : (
                   <section className="pred34-uncertainty" role="status">
                     <h3>{swahili ? 'Hatua inayofuata' : 'What can help'}</h3>
+                    {result.withheld_message && <p><strong>{result.withheld_message}</strong></p>}
+                    {result.withheld_reason && <p>Why: {result.withheld_reason}</p>}
                     <p>{currentDecision ? (result.uncertainty_message || 'A healthcare professional can help assess your symptoms. Review the next steps below.') : 'Start a new symptom check to use the current assessment. Earlier model rankings cannot be treated as a supported result.'}</p>
                   </section>
                 )}
@@ -593,6 +595,24 @@ function PredictionPage() {
                     </div>
                   )}
 
+                {result.covid_scope_note && (
+                  <div className="pred34-information" role="note" aria-label="COVID scope">
+                    <p>{result.covid_scope_note}</p>
+                  </div>
+                )}
+
+                <section className="pred34-panel" aria-labelledby="pred34-understood-title">
+                  <h3 id="pred34-understood-title">{swahili ? 'Tulivyoelewa' : 'What we understood'}</h3>
+                  {prediction?.supporting_symptoms?.length > 0 ? (
+                    <ul>{prediction.supporting_symptoms.map((s) => <li key={s}>{s}</li>)}</ul>
+                  ) : (
+                    <p>{swahili ? 'Dalili zilizothibitishwa zinaonyeshwa kwenye ukurasa wa uthibitisho.' : 'Your confirmed symptoms are shown on the confirmation page.'}</p>
+                  )}
+                  <p>
+                    <Link to="/symptoms/confirm">Edit what we understood / Hariri tulivyoelewa</Link>
+                  </p>
+                </section>
+
                 <section
                   className="pred34-guidance"
                   aria-labelledby="pred34-guidance-title"
@@ -610,7 +630,7 @@ function PredictionPage() {
                     <strong>{swahili ? 'Tathmini ya mtaalamu wa afya inapendekezwa' : 'Professional review recommended'}</strong>
                   )}
                   {Array.isArray(result.next_steps) && result.next_steps.length > 0 && (
-                    <ul>{result.next_steps.map((step) => <li key={step}>{step}</li>)}</ul>
+                    <ul>{result.next_steps.filter((s) => !/emergency care immediately|dharura mara moja/i.test(s)).slice(0, 3).map((step) => <li key={step}>{step}</li>)}</ul>
                   )}
                 </section>
               </>
@@ -648,6 +668,12 @@ function PredictionPage() {
             </div>}
 
             <div className="pred34-result-actions">
+              <Link
+                to="/symptoms/confirm"
+                className="button button-secondary pred34-secondary"
+              >
+                Edit what we understood
+              </Link>
               <button
                 type="button"
                 className="button button-secondary pred34-secondary"

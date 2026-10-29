@@ -2,7 +2,10 @@
 
 This is a simulated-source eligibility rule, not clinical validation. A caller
 must apply its clinical scope, mapping ambiguity and emergency pathways first.
-No unmentioned feature becomes a negative, and no patient confidence is emitted.
+No unmentioned feature becomes a negative. The only patient-facing number
+is a rounded whole-percent match band (see patient_match): it is a display
+mapping of the relative ranking score, not a probability, not a diagnosis,
+and not overall accuracy. Raw relative scores stay in diagnostics only.
 """
 import hashlib
 import json
@@ -24,6 +27,42 @@ RESPIRATORY_ANCHOR_FEATURES = frozenset({
     "E_201", "E_203", "E_212", "E_214", "E_217", "E_220", "E_45", "E_65",
     "E_66", "E_67", "E_77", "E_97",
 })
+
+# Patient-facing match band. Thresholds are conservative and deliberately
+# NOT claimed as validated on a fresh fold: the gap gate (0.10) is the
+# checklist's 10-point minimum, and the dangerous-second margin (0.20) is a
+# safety margin, not a measured clinical threshold. Do not tune these on
+# the test set. Raw scores are relative ranking shares (they sum to 1
+# across the 21 classes), so a whole-percent display is a share of the
+# model's ranking, not a probability that the patient has the condition.
+MIN_CLOSE_GAP = 0.10
+DANGEROUS_CLOSE_GAP = 0.20
+DANGEROUS_CONDITIONS = frozenset({
+    "Pneumonia", "Tuberculosis", "Pulmonary neoplasm", "Acute pulmonary edema",
+    "Spontaneous pneumothorax", "Epiglottitis",
+})
+
+
+def match_band_for(percent_rounded, gap):
+    """Band for an already-eligible result. Strong needs 80+ AND a clear gap."""
+    if percent_rounded >= 80 and gap >= MIN_CLOSE_GAP:
+        return "strong"
+    if percent_rounded >= 60:
+        return "moderate"
+    return "low"
+
+
+def patient_match(top_score, gap):
+    """Patient-safe match dict. Never include a raw score here."""
+    percent_rounded = int(round(top_score * 100))
+    return {
+        "percent_rounded": percent_rounded,
+        "band": match_band_for(percent_rounded, gap),
+        "gap_points_rounded": int(round(gap * 100)),
+        "label": "Model match, not a probability.",
+        "label_detail": "This whole percent is how strongly the reported pattern matched this condition in the simulated model. It is not the probability that you have this condition, not a diagnosis, and not overall accuracy.",
+    }
+
 
 
 @lru_cache(maxsize=2)
@@ -140,9 +179,22 @@ def classify_primary(present_features, absent_features, age, sex):
     if not entry["enabled"] or first["raw_relative_score"] < entry["minimum_relative_score"]:
         result["reasons"] = ["non_specific_input" if len(present) == 1 else "ambiguous_model_rank"]
         return result
+    top_score = first["raw_relative_score"]
+    gap = first["raw_relative_score"] - second["raw_relative_score"]
+    result["diagnostics"]["second_condition"] = second["condition"]
+    if second["condition"] in DANGEROUS_CONDITIONS and gap < DANGEROUS_CLOSE_GAP:
+        result["reasons"] = ["dangerous_close_second"]
+        result["diagnostics"]["policy_reason"] = "dangerous_close_second_below_margin"
+        return result
+    if gap < MIN_CLOSE_GAP:
+        result["reasons"] = ["close_alternative"]
+        result["diagnostics"]["policy_reason"] = "top_two_gap_below_minimum"
+        return result
     result["status"] = "eligible"
     result["reasons"] = ["source_validation_selection_rule_met", "not_clinically_validated"]
-    # Preserve exact reported evidence, but keep all relative ranking numbers
-    # in diagnostics. Patient-facing callers receive no confidence percentage.
+    result["match"] = patient_match(top_score, gap)
+    # Preserve exact reported evidence. Raw relative scores stay in
+    # diagnostics (audit only); the patient object carries only the
+    # rounded match band in result["match"].
     result["primary_prediction"] = {key: value for key, value in first.items() if key not in ("raw_relative_score", "rank")}
     return result

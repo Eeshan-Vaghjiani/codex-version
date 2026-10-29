@@ -215,7 +215,7 @@ function HomePage() {
                   <span className="hp-step-number">03 / 03</span>
                 </div>
                 <h3>Read your awareness guidance</h3>
-                <p>For non-urgent cases, see one predicted condition and its confidence information. Urgent signs lead to safety guidance instead.</p>
+                <p>For non-urgent cases, see one possible condition and how strongly it matched. Urgent signs lead to safety guidance instead.</p>
               </article>
             </div>
           </div>

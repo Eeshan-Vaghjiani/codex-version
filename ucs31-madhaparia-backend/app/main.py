@@ -374,11 +374,13 @@ def map_symptoms(
     language = assessment_language(request.text, request.language)
     red_flags = detect_safety_signs(request.text)
     if red_flags:
+        tier = next((f.get("breathing_tier") for f in red_flags if f.get("code") == "shortness_of_breath" and f.get("breathing_tier")), None)
         return {
             "input_text": request.text, "recognised_symptoms": red_flags,
             "unmatched_wording": [], "has_red_flag": True,
             "safety_status": "urgent_review", "requires_confirmation": False,
-            **get_urgent_guidance(language),
+            "breathing_tier": tier,
+            **get_urgent_guidance(language, tier=tier),
         }
     return build_confirmation_output(request.text, db)
 
@@ -471,7 +473,8 @@ def predict_conditions(
                 logging.getLogger(__name__).exception("Could not save urgent assessment")
                 if hasattr(db, "rollback"):
                     db.rollback()
-            guidance = get_urgent_guidance(language)
+            tier = next((f.get("breathing_tier") for f in confirmation["red_flag_symptoms"] if f.get("code") == "shortness_of_breath" and f.get("breathing_tier")), None)
+            guidance = get_urgent_guidance(language, tier=tier)
             if any(flag.get("code") == "infant_fever" for flag in confirmation["red_flag_symptoms"]):
                 guidance["health_guidance"] = (
                     "Homa kwa mtoto mchanga inahitaji tathmini ya haraka ya mtaalamu wa afya, hasa chini ya miezi mitatu. Usisubiri maswali zaidi."
@@ -479,6 +482,7 @@ def predict_conditions(
                     "Fever in a baby needs prompt medical assessment, especially under three months. Do not wait to complete more questions."
                 )
             return {**base(), "prediction_id": prediction_id, "status": "urgent_review", "decision": decision,
+                    "breathing_tier": tier,
                     "red_flag_symptoms": confirmation["red_flag_symptoms"], **guidance}
 
         question = confirmation.get("follow_up_question")

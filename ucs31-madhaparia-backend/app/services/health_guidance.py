@@ -103,7 +103,34 @@ def get_prediction_guidance(language="en", context=None) -> dict:
     }
 
 
-def get_urgent_guidance(language="en") -> dict:
+def get_urgent_guidance(language="en", tier=None) -> dict:
+    """Urgent guidance, graded by breathing tier.
+
+    tier="emergency" = can't breathe / gasping / cannot speak / at rest:
+    emergency screen, no further questions, no prediction.
+    tier="urgent" = difficulty breathing only on exertion: same-day care.
+    tier=None = any other warning sign: urgent assessment.
+    """
+    if tier == "emergency":
+        if language == "sw":
+            return {
+                "health_guidance": "Unahitaji huduma ya dharura SASA. Nenda hospitalini karibu nawe sasa, kwenye chumba cha dharura. Usisubiri programu hii. Usiendeshe gari mwenyewe kama unaweza kuepuka. Kama uko peke yako, mwite mtu aliye karibu akusaidie.",
+                "disclaimer": get_prediction_guidance(language)["disclaimer"],
+            }
+        return {
+            "health_guidance": "You need emergency help NOW. Go to the nearest hospital casualty now. Do not wait for this app. Do not drive yourself if you can avoid it. If you are alone, call someone nearby for help.",
+            "disclaimer": DISCLAIMER,
+        }
+    if tier == "urgent":
+        if language == "sw":
+            return {
+                "health_guidance": "Tafuta huduma ya matibabu LEO. Usisubiri hadi kesho. Ikiwa shida ya kupumua inazidi, au unashindwa kuzungumza, tafuta huduma ya dharura sasa.",
+                "disclaimer": get_prediction_guidance(language)["disclaimer"],
+            }
+        return {
+            "health_guidance": "Seek medical care TODAY. Do not wait until tomorrow. If breathing difficulty worsens, or you cannot speak normally, seek emergency care now.",
+            "disclaimer": DISCLAIMER,
+        }
     if language == "sw":
         return {
             "health_guidance": "Dalili ya hatari imetambuliwa. Tafuta huduma ya matibabu ya haraka. Ikiwa unapumua kwa shida sana, unashindwa kuzungumza, au hali inazidi haraka, tafuta huduma ya dharura sasa. Usisubiri kukamilisha maswali haya.",
@@ -113,6 +140,12 @@ def get_urgent_guidance(language="en") -> dict:
         "health_guidance": "A warning sign was detected. Seek urgent medical assessment. If breathing difficulty is severe, you cannot speak normally, or symptoms are rapidly worsening, seek emergency care now. Do not wait to complete this questionnaire.",
         "disclaimer": DISCLAIMER,
     }
+
+
+COVID_SCOPE_NOTE = {
+    "en": "COVID-19 is not one of the conditions this version predicts. If there was exposure, a positive test, or loss of taste or smell, a COVID test is recommended. A sinusitis or flu-like result does not rule out COVID.",
+    "sw": "COVID-19 si mojawapo ya magonjwa ambayo toleo hili hutabiri. Ikiwa ulikutana na mgonjwa, una kipimo chanya, au umepoteza ladha au harufu, kipimo cha COVID kinapendekezwa. Matokeo ya sinusitis au mafua hayatoi COVID.",
+}
 
 
 def get_insufficient_guidance(language="en", context=None) -> dict:

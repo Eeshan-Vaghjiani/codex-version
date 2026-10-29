@@ -15,6 +15,7 @@ MAX_CONSULTATION_QUESTIONS = 5
 # Engineering stop policy selected on validation question rollouts; this is
 # expected entropy utility in nats, never a clinical certainty threshold.
 MIN_QUESTION_INFORMATION_GAIN = 0.02
+MAX_UNKNOWN_ANSWERS = 2  # Checklist stop: 'I don't know' twice ends follow-ups.
 
 # Wording tracks the actual evidence definition, including qualified sputum.
 CONSULTATION_QUESTIONS = {
@@ -222,8 +223,12 @@ def prepare_consultation(confirmation, answers, language, db, age, sex):
                 profile['red_flag_symptoms'] = detect_safety_signs('fever', age=0)
                 break  # Newly disclosed infant fever also precedes more questions.
     present, absent = _features(states, details)
+    unknown_count = sum(1 for a in answers[:len(asked)] if a.get('answer') == 'unknown')
     next_id = None if profile['has_red_flag'] else next_consultation_question(
         states, details, durations, asked, catalogue, age, sex)
+    if unknown_count >= MAX_UNKNOWN_ANSWERS:
+        # Checklist stop: not knowing is also an answer. Do not keep asking.
+        next_id = None
     profile['_symptom_details'] = details
     profile.update({
         'confirmed_codes': [code for code, state in states.items() if state == 'present'],

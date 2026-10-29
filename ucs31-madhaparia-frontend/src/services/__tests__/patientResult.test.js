@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getPatientPrimary } from '../patientResult'
+import { getPatientMatch, getPatientPrimary } from '../patientResult'
 
 const primary = { condition: 'example', display_name: 'Backend familiar name' }
 const selected = { status: 'prediction_complete', primary_prediction: primary,
@@ -25,5 +25,14 @@ describe('Patient result selection contract', () => {
     { ...selected, care_level: 'urgent_review' },
   ])('does not promote scores, unmarked history or an urgent response to a disease result', (result) => {
     expect(getPatientPrimary(result)).toBeNull()
+  })
+})
+
+
+describe('Patient match band', () => {
+  it('returns the rounded match only for an eligible primary', () => {
+    const withMatch = { ...selected, primary_prediction: { ...primary, match_percent_rounded: 92, match_band: 'strong', match_label: 'Model match, not a probability.' } }
+    expect(getPatientMatch(withMatch)).toMatchObject({ percent_rounded: 92, band: 'strong' })
+    expect(getPatientMatch({ ...selected, decision: { status: 'uncertain', policy_version: 'current' } })).toBeNull()
   })
 })

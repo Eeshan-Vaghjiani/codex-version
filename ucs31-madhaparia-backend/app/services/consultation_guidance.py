@@ -34,6 +34,27 @@ def consultation_guidance(context, age):
         'Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.',
         'Seek clinical assessment if symptoms worsen, persist, or concern you.',
     ])
+    # Duration advice (advice-only, NOT a model feature). Acute vs chronic
+    # thinking, in plain language, with a concrete next step.
+    min_days = duration.get('min_days')
+    if min_days is not None and min_days < 3:
+        duration_advice = ('Dalili za siku 2-3 mara nyingi ni za papo hapo: mafua, maambukizi ya virusi, COVID inawezekana, maambukizi ya kifua ya papo hapo, au nimonia ya mwanzo. Ikiwa una homa nchini Kenya, fikiria kipimo cha malaria.'
+                           if sw else
+                           'Symptoms for 2-3 days are usually acute: flu or a viral infection, COVID is possible, acute chest infection, or early pneumonia. If you have a fever in Kenya, consider a malaria test.')
+    elif min_days is not None and min_days >= 14:
+        duration_advice = ('Kikohozi cha zaidi ya wiki 2 kinahitaji uchunguzi wa muda mrefu: TB, pumu, au COPD. Uliza kuhusu kipimo cha TB na uchunguzi wa kifua.'
+                           if sw else
+                           'A cough for more than 2 weeks needs a chronic workup: TB, asthma, or COPD. Ask about a TB test and a chest examination.')
+    elif persistent:
+        duration_advice = ('Kikohozi cha muda mrefu kinahitaji uchunguzi wa muda mrefu: TB, pumu, au COPD. Uliza kuhusu kipimo cha TB.'
+                           if sw else
+                           'A persistent cough needs a chronic workup: TB, asthma, or COPD. Ask about a TB test.')
+    else:
+        duration_advice = None
+    if duration_advice:
+        # After the primary care step: health_guidance is next_steps[0]
+        # and must stay the care recommendation, not duration context.
+        next_steps.insert(1, duration_advice)
     next_steps.append('Ukipata shida kali ya kupumua, kushindwa kuzungumza au midomo kuwa ya buluu, tafuta huduma ya dharura mara moja.'
                       if sw else 'Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips.')
     return {

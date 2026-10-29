@@ -144,5 +144,10 @@
   "upper_chest_pain": [
     "maumivu sehemu ya juu ya kifua",
     "sehemu ya juu ya kifua inauma"
+  ],
+  "loss_of_taste": [
+    "kupoteza ladha",
+    "sipati ladha",
+    "hakuna ladha"
   ]
 }

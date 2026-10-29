@@ -158,7 +158,10 @@
         "blood in cough",
         "blood in phlegm",
         "bloody sputum",
-        "blood in my sputum"
+        "blood in my sputum",
+        "coughing blood",
+        "coughing a lot of blood",
+        "coughing up a lot of blood"
       ],
       "sw": [
         "kukohoa damu",
@@ -424,9 +427,34 @@
         "loss of smell",
         "cannot smell",
         "can't smell",
-        "lost sense of smell"
+        "lost sense of smell",
+        "lost my sense of smell",
+        "loss of my sense of smell"
       ],
       "sw": []
+    }
+  },
+  {
+    "code": "loss_of_taste",
+    "display_name": "Loss of taste",
+    "features": [],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "loss of taste",
+        "cannot taste",
+        "can't taste",
+        "lost sense of taste",
+        "no taste",
+        "lost my sense of taste",
+        "loss of my sense of taste"
+      ],
+      "sw": [
+        "kupoteza ladha",
+        "sipati ladha",
+        "hakuna ladha"
+      ]
     }
   },
   {
@@ -738,7 +766,10 @@
         "blue lips",
         "blue face",
         "lips turning blue",
-        "lips are turning blue"
+        "lips are turning blue",
+        "lips turned blue",
+        "my lips turned blue",
+        "my lips are blue"
       ],
       "sw": [
         "midomo kuwa bluu",
@@ -756,7 +787,10 @@
       "en": [
         "confusion",
         "feeling confused",
-        "disoriented"
+        "disoriented",
+        "feel confused",
+        "I am confused",
+        "am confused"
       ],
       "sw": [
         "kuchanganyikiwa"

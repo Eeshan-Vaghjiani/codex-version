@@ -4,6 +4,7 @@ These limited software safeguards cannot rule out an emergency. See the linked
 Kenya research report for clinical sources and remaining review requirements.
 """
 import re
+from app.nlp.breathing_tier import classify_breathing_tier
 from app.nlp.symptom_mapper import (
     detect_safety_signs as respiratory_warning_signs,
     infer_repeated_symptom_context,
@@ -30,12 +31,17 @@ def _flag(code, description, phrase):
 
 def detect_safety_signs(text, age=None):
     flags = respiratory_warning_signs(text)
+    tier = classify_breathing_tier(text)
+    if tier:
+        for flag in flags:
+            if flag.get("code") == "shortness_of_breath":
+                flag["breathing_tier"] = tier
     headache = _reported(text, ('headache', 'head pain', 'kichwa kuuma', 'maumivu ya kichwa'))
     fever = _reported(text, ('fever', 'feverish', 'homa', 'high temperature'))
     neck = _reported(text, ('stiff neck', 'neck stiffness', 'shingo kukakamaa', 'shingo ngumu'))
     sudden = _reported(text, ('sudden severe headache', 'severe sudden headache', 'sudden worst headache', 'worst headache of my life',
                               'thunderclap headache', 'kichwa kuuma ghafla sana'))
-    pressure = _reported(text, ('crushing chest pain', 'severe chest pressure', 'crushing chest pressure',
+    pressure = _reported(text, ('crushing chest pain', 'severe chest pain', 'severe chest pressure', 'crushing chest pressure',
                                 'sudden severe chest pain', 'maumivu makali ya kifua ghafla'))
     if neck and (headache or fever):
         flags.append(_flag('headache_fever_stiff_neck', 'Headache or fever with neck stiffness', neck))

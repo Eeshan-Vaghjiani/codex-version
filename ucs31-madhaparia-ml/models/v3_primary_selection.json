@@ -1,7 +1,7 @@
 {
   "policy_version": "v3_selective_primary_v1",
   "model_version": "v3_partial_evidence",
-  "model_sha256": "ae709ef5ddf6dd7a101fe426b610c3e83ef58aa93cb895ca13e7500220dc889c",
+  "model_sha256": "8f40d37946a53e2c93fd4aa0526ce7b432e34287e249bf57ee61edbd4e367835",
   "feature_order": [
     "E_103",
     "E_112",

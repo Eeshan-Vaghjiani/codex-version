@@ -1,7 +1,7 @@
 {
   "scope_policy_version": "v3_respiratory_scope_v1",
-  "base_policy_sha256": "f065c078632ce183e010c3444a32de5a81d3312f7c698b59fac373dd8aaf0df5",
-  "model_sha256": "ae709ef5ddf6dd7a101fe426b610c3e83ef58aa93cb895ca13e7500220dc889c",
+  "base_policy_sha256": "387ca2997ad97efbe4064d13a6642ae168f8c0d2aee7ef19c77dbf98118d3c9f",
+  "model_sha256": "8f40d37946a53e2c93fd4aa0526ce7b432e34287e249bf57ee61edbd4e367835",
   "required_present_anchor_features": [
     "E_103",
     "E_112",

@@ -15,6 +15,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 from app.core.errors import ServiceNotReadyError
 from app.db.models import Symptom, SymptomAlias
+from app.nlp.breathing_tier import classify_breathing_tier
 
 from rapidfuzz import fuzz, process
 from rapidfuzz.distance import DamerauLevenshtein
@@ -1208,8 +1209,13 @@ def detect_safety_signs(text):
         if status == "absent" or subject == "other_person":
             continue
         canonical = _SAFETY_SYMPTOMS[code]
+        extra = {}
+        if code == "shortness_of_breath":
+            tier = classify_breathing_tier(text)
+            if tier:
+                extra["breathing_tier"] = tier
         flags.append({
-            "code": code, "display_name": canonical["display_name"],
+            "code": code, "display_name": canonical["display_name"], **extra,
             "features": list(canonical["features"]), "kind": canonical["kind"],
             "is_red_flag": True, "matched_text": match["matched_alias"],
             "language": match["language"], "match_type": match["match_type"],

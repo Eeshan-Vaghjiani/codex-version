@@ -3,6 +3,7 @@ from copy import deepcopy
 from app.core.errors import ServiceNotReadyError
 from app.services.patient_terminology import patient_term
 from app.services.consultation_guidance import consultation_guidance, SW_SYMPTOMS
+from app.services.health_guidance import COVID_SCOPE_NOTE
 from app.services.v3_prediction import get_v3_bundle
 
 PATIENT_POLICY_VERSION = 'kenya_single_primary_v1'
@@ -67,6 +68,38 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
         summary = ('Dalili ulizotoa zinafanana na hali kadhaa. Kwa sasa hatuwezi kupendekeza ugonjwa mmoja kwa msingi wa taarifa hizi.' if sw else
                    'The symptoms you reported overlap with several conditions. The information does not support naming one illness at this point.')
     base['assessment_summary'] = summary
+    # Withheld / uncertain wording must never read as reassurance.
+    if decision_status in ('uncertain', 'insufficient_information') or primary is None:
+        reason = (context.get('_decision_reasons') or [None])[0]
+        reason_text = {
+            'close_alternative': 'The top two patterns were too close to choose one safely.',
+            'dangerous_close_second': 'A serious condition was close behind the top pattern, so no single name is given.',
+            'non_specific_input': 'The symptoms do not point clearly to a respiratory condition.',
+            'insufficient_evidence': 'There is too little information to name one condition.',
+            'ambiguous_model_rank': 'The patterns were too close or too weak to name one condition safely.',
+        }.get(reason, 'There is not enough clear information to name one condition safely.')
+        reason_text_sw = {
+            'close_alternative': 'Mifumo miwili ya juu ilikuwa karibu sana kuchagua moja kwa usalama.',
+            'dangerous_close_second': 'Hali mbaya ilikuwa karibu nyuma ya mfumo wa juu, kwa hivyo jina moja halitolewi.',
+            'non_specific_input': 'Dalili hazielekezi wazi kwa ugonjwa wa mfumo wa upumuaji.',
+            'insufficient_evidence': 'Taarifa ni chache mno kutaja ugonjwa mmoja.',
+            'ambiguous_model_rank': 'Mifumo ilikuwa karibu sana au dhaifu mno kutaja ugonjwa mmoja kwa usalama.',
+        }.get(reason, 'Hakuna taarifa wazi za kutosha kutaja ugonjwa mmoja kwa usalama.')
+        base['withheld_reason'] = reason_text_sw if sw else reason_text
+        base['withheld_message'] = (
+            'Hatukuweza kutaja ugonjwa mmoja kutokana na taarifa hizi. Hii HAIMAANISHI uko sawa, na HAIONDOI ugonjwa wowote. Fuatilia kwa saa 24-48, na tafuta huduma mapema ikiwa dalili zinazidi au dalili ya hatari inatokea.'
+            if sw else
+            'We cannot name one condition from this information. This does NOT mean you are fine, and it does NOT rule out any condition. Check again in 24-48 hours if symptoms continue, and seek care sooner if they get worse or a warning sign appears.')
+    # COVID is out of scope in V3. Show the note whenever taste/smell loss,
+    # sinusitis, or a flu-like result is involved, and on every withheld result.
+    states = context.get('symptom_states', {})
+    needs_covid_note = (
+        states.get('loss_of_smell') == 'present' or states.get('loss_of_taste') == 'present'
+        or (primary and primary['condition'] in ('Acute rhinosinusitis', 'Chronic rhinosinusitis', 'Allergic sinusitis', 'Influenza', 'URTI'))
+        or primary is None
+    )
+    if needs_covid_note:
+        base['covid_scope_note'] = COVID_SCOPE_NOTE['sw' if sw else 'en']
     base['uncertainty_message'] = ('Maswali yanasaidia kuelewa dalili, lakini uchunguzi au vipimo vya mtaalamu wa afya vinaweza kuhitajika.' if sw else
                                    'Your answers help clarify the symptoms, but an examination or tests may be needed.')
     # A possibility of these conditions needs clinical assessment, rather than
@@ -79,6 +112,13 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
         base['next_steps'] = [
             ('Wasiliana na mtaalamu wa afya ili atathmini dalili hizi; uchunguzi au vipimo vinaweza kuhitajika.' if sw else
              'Contact a healthcare professional to assess this possibility; an examination or tests may be needed.'),
+            base['next_steps'][-1],
+        ]
+    if 'dangerous_close_second' in context.get('_decision_reasons', []):
+        base['care_level'] = 'professional_review'
+        base['next_steps'] = [
+            ('Hali mbaya inaweza kuwa karibu. Tafuta tathmini ya mtaalamu wa afya leo, usisubiri.' if sw else
+             'A serious condition may be close behind. Seek professional assessment today, do not wait.'),
             base['next_steps'][-1],
         ]
     base['health_guidance'] = base['next_steps'][0]
@@ -108,6 +148,10 @@ def build_primary_assessment(confirmation, age, sex):
     if chosen['status'] == 'eligible' and chosen.get('primary_prediction'):
         raw = chosen['primary_prediction']
         primary = {**patient_term(raw['condition'], language),
+            'match_percent_rounded': (chosen.get('match') or {}).get('percent_rounded'),
+            'match_band': (chosen.get('match') or {}).get('band'),
+            'match_label': (chosen.get('match') or {}).get('label'),
+            'match_label_detail': (chosen.get('match') or {}).get('label_detail'),
             'explanation': ('Dalili ulizoripoti zinapatana na maelezo haya, lakini pia zinaweza kuonekana katika hali nyingine.' if sw else
                             'Some of the symptoms you reported are consistent with this possibility, but they can also occur in other conditions.'),
             'supporting_symptoms': list(dict.fromkeys(
