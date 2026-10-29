@@ -34,7 +34,10 @@
     "napumua kwa shida",
     "ninapumua kwa shida",
     "shida ya kupumua",
-    "nashindwa kupumua"
+    "nashindwa kupumua",
+    "siwezi kuongea",
+    "napumua kwa shida nikiwa nimepumzika",
+    "nimeishiwa na pumzi"
   ],
   "wheezing": [
     "sauti ya mluzi wakati wa kutoa pumzi",
@@ -74,6 +77,8 @@
     "nimechoka kila wakati",
     "uchovu wa kila wakati"
   ],
+  "weakness": ["sina nguvu", "mwili hauna nguvu", "nahisi udhaifu", "udhaifu"],
+  "loss_of_taste": ["kupoteza ladha", "ladha imepotea", "sikioni ladha", "siioni ladha"],
   "weight_loss": [
     "kupungua uzito",
     "ninapungua uzito",

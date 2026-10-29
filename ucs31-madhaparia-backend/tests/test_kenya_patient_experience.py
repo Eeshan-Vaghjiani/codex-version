@@ -115,7 +115,7 @@ def finish_assessment(flow, body, *, cough_answer="unknown"):
         assert qid not in asked
         assert question["text"] and question["rationale"]
         values = {option["value"] for option in question["options"]}
-        answer = "no" if qid == "breathing_difficulty" else cough_answer if qid == "cough" else "unknown"
+        answer = "no" if qid in {"breathing_difficulty", "severe_chest_pain"} else cough_answer if qid == "cough" else "unknown"
         assert answer in values
         asked.append(qid)
         answers.append({"question_id": qid, "answer": answer})
@@ -217,10 +217,10 @@ def test_nonspecific_nonrespiratory_symptoms_do_not_force_disease(kenya_flow, te
     assert data["primary_prediction"] is None
     assert data["uncertain"] is True
     assert data["decision"]["status"] != "possible_explanation"
-    assert set(asked) <= {"breathing_difficulty", "general_duration", "symptom_severity", "cough", "fever"}
+    assert set(asked) <= {"breathing_difficulty", "severe_chest_pain", "general_duration", "symptom_severity", "cough", "fever"}
     assert data["assessment_summary"] and data["next_steps"]
     visible = " ".join(str(data.get(key, "")) for key in ("assessment_summary", "next_steps", "health_guidance"))
-    assert "ruled out" not in visible.lower()
+    assert "nothing is ruled out" in data['uncertainty_message'] or 'hakuna ugonjwa ulioondolewa' in data['uncertainty_message']
     assert "you are low risk" not in visible.lower()
     assert "this is low risk" not in visible.lower()
 
@@ -314,8 +314,10 @@ def test_three_to_fourteen_day_answer_does_not_invent_fourteen_day_lower_bound(k
     response = kenya_flow.client.post("/predict", json=body)
     assert response.status_code == 200, response.text
     first = response.json()
-    assert first["follow_up_question"]["id"] == "symptom_duration"
+    assert first["follow_up_question"]["id"] == "severe_chest_pain"
     response = kenya_flow.client.post("/predict", json={**body, "follow_up_answers": [
+        {"question_id": "severe_chest_pain", "answer": "no"},
+        {"question_id": "fever", "answer": "no"},
         {"question_id": "symptom_duration", "answer": "3_to_14_days"}]})
     assert response.status_code == 200, response.text
     data = response.json()

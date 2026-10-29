@@ -16,7 +16,7 @@ MIN_RESEARCH_PRESENT_FEATURES = 3
 def assessment_language(text, requested=None):
     if requested:
         return requested
-    return 'sw' if re.search(r'\b(nina|sina|kikohozi|homa|kupumua|lakini)\b', text.lower()) else 'en'
+    return 'sw' if re.search(r'\b(nina|sina|kikohozi|homa|kupumua|napumua|ninapumua|siwezi|nashindwa|ninashindwa|kifua|lakini)\b', text.lower()) else 'en'
 
 
 QUESTIONS = {

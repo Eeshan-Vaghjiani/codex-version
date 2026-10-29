@@ -37,7 +37,12 @@
         "shivers",
         "feeling cold and shaking",
         "feeling shivery",
-        "shaking with chills"
+        "shaking with chills",
+        "feel cold",
+        "feeling cold",
+        "feel chilly",
+        "feeling chilly",
+        "cold chills"
       ],
       "sw": [
         "baridi",
@@ -158,7 +163,8 @@
         "blood in cough",
         "blood in phlegm",
         "bloody sputum",
-        "blood in my sputum"
+        "blood in my sputum",
+        "coughing a lot of blood"
       ],
       "sw": [
         "kukohoa damu",
@@ -169,6 +175,7 @@
   },
   {
     "code": "shortness_of_breath",
+    "safety_aliases": {"sw": ["kifua kinabana"]},
     "display_name": "Significant shortness of breath",
     "features": [
       "E_66"
@@ -189,7 +196,12 @@
         "gasping for air",
         "gasping",
         "trouble breathing",
-        "unable to breathe"
+        "unable to breathe",
+        "cannot speak",
+        "can't speak",
+        "cannot speak a full sentence",
+        "difficulty breathing at rest",
+        "having challenges breathing"
       ],
       "sw": [
         "kushindwa kupumua",
@@ -199,7 +211,10 @@
         "napumua kwa shida",
         "ninapumua kwa shida",
         "shida ya kupumua",
-        "nashindwa kupumua"
+        "nashindwa kupumua",
+        "siwezi kuongea",
+        "napumua kwa shida nikiwa nimepumzika",
+        "nimeishiwa na pumzi"
       ]
     }
   },
@@ -382,7 +397,10 @@
         "my nose is running",
         "nose is running",
         "nose is blocked",
-        "nose is stuffy"
+        "nose is stuffy",
+        "running nose",
+        "running nostrils",
+        "nose is runny"
       ],
       "sw": [
         "mafua",
@@ -427,6 +445,28 @@
         "lost sense of smell"
       ],
       "sw": []
+    }
+  },
+  {
+    "code": "loss_of_taste",
+    "display_name": "Loss of taste",
+    "features": [],
+    "kind": "context",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "loss of taste",
+        "cannot taste",
+        "can't taste",
+        "lost my sense of taste",
+        "lost sense of taste"
+      ],
+      "sw": [
+        "kupoteza ladha",
+        "ladha imepotea",
+        "sikioni ladha",
+        "siioni ladha"
+      ]
     }
   },
   {
@@ -574,7 +614,7 @@
   },
   {
     "code": "tiredness",
-    "display_name": "Constant tiredness",
+    "display_name": "Tiredness",
     "features": [
       "E_89"
     ],
@@ -596,6 +636,17 @@
         "nimechoka kila wakati",
         "uchovu wa kila wakati"
       ]
+    }
+  },
+  {
+    "code": "weakness",
+    "display_name": "Feeling weak",
+    "features": [],
+    "kind": "context",
+    "is_red_flag": false,
+    "aliases": {
+      "en": ["weakness", "weaknes", "feeling weak", "feel weak", "weak", "low energy", "no energy", "lack of strength"],
+      "sw": ["sina nguvu", "mwili hauna nguvu", "nahisi udhaifu", "udhaifu"]
     }
   },
   {

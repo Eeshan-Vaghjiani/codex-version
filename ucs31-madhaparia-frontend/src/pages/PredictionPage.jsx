@@ -1,10 +1,11 @@
 
 import { useState } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 import {
   getSavedSymptomConfirmation,
   getSavedSymptomMapping,
+  mapSymptoms, saveSymptomMapping,
 } from '../services/symptoms'
 
 import {
@@ -18,9 +19,10 @@ import {
 import { getApiErrorMessage } from '../services/api'
 import PredictionFeedback from '../components/PredictionFeedback'
 import PossibleExplanations from '../components/PossibleExplanations'
-import { getPatientPrimary, hasPatientDecision } from '../services/patientResult'
+import { buildPatientSummary, getPatientPrimary, hasPatientDecision } from '../services/patientResult'
 
 function PredictionPage() {
+  const navigate = useNavigate()
   const mapping = getSavedSymptomMapping()
   const confirmation = getSavedSymptomConfirmation()
 
@@ -31,6 +33,8 @@ function PredictionPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [followUpAnswer, setFollowUpAnswer] = useState('')
+  const [correction, setCorrection] = useState(mapping?.input_text || '')
+  const [copyMessage, setCopyMessage] = useState('')
 
   // Keep a saved result only when it belongs to
   // this exact symptom description and selection.
@@ -93,6 +97,33 @@ function PredictionPage() {
   const isUrgentResult =
     result?.status === 'urgent_review' || result?.care_level === 'urgent_review' ||
     result?.has_red_flag === true || isConfirmedUrgent
+
+  async function correctExtraction(event) {
+    event.preventDefault()
+    setLoading(true)
+    setError('')
+    try {
+      const updated = await mapSymptoms(correction)
+      saveSymptomMapping(updated)
+      clearPredictionResult()
+      navigate('/symptoms', { state: { mapping: updated, text: correction } })
+    } catch (requestError) {
+      setError(getApiErrorMessage(requestError, 'Could not recheck the corrected description. Please try again.'))
+    } finally { setLoading(false) }
+  }
+
+  async function checkBreathing(answer) {
+    setLoading(true)
+    setError('')
+    try {
+      const response = await createPrediction({ age: Number(age), sex, text: mapping.input_text,
+        confirmedCodes, followUpAnswers: result?.follow_up_answers || [], breathingCheck: answer })
+      if (response.status !== 'urgent_review') throw new Error('Safety response unavailable')
+      setResult(response)
+      savePredictionResult(response, mapping.input_text, { age: Number(age), sex })
+    } catch { setError('Could not update safety advice. Seek same-day care; at rest or unable to speak: casualty immediately.') }
+    finally { setLoading(false) }
+  }
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -496,13 +527,19 @@ function PredictionPage() {
                 </p>
 
                 <h2 id="pred34-urgent-title">
-                  Seek prompt medical assessment.
+                  {result.urgency === 'emergency' ? 'Emergency — go to hospital casualty now.' : 'Seek prompt medical assessment.'}
                 </h2>
 
                 <p>
                   {result.health_guidance ||
                     'Your confirmed symptoms may need prompt medical attention. Please consult a qualified healthcare professional.'}
                 </p>
+                {result.safety_question && <fieldset disabled={loading}>
+                  <legend>{result.safety_question.text}</legend>
+                  {result.safety_question.options.map((option) => <button type="button" key={option.value}
+                    className="button button-secondary m-1" onClick={() => checkBreathing(option.value)}>{option.label}</button>)}
+                </fieldset>}
+                {error && <p role="alert">{error}</p>}
 
                 <p className="pred34-urgent-footnote">
                   No automated disease prediction is
@@ -535,6 +572,7 @@ function PredictionPage() {
               </section>
             ) : (
               <>
+                <p className="pred34-warning" role="note">{swahili ? 'Hatua ya huduma' : 'Care priority'}: {result.urgency || result.care_level || 'Monitor and seek review if worsening'}. {result.health_guidance}</p>
                 {prediction && result.uncertain === true && result.uncertainty_message && (
                   <div className="pred34-uncertainty" role="status">
                     <strong>About this result</strong>
@@ -616,9 +654,35 @@ function PredictionPage() {
               </>
             )}
 
-            {durationLabel && (
-              <p className="pred34-input-note">Duration / Muda: {durationLabel}</p>
-            )}
+            <section className="pred34-panel" aria-labelledby="understood-title">
+              <h3 id="understood-title">What we understood / Tulichoelewa</h3>
+              <ul>
+                {Object.entries(result.assessment_context?.symptom_states || {}).map(([code, state]) => (
+                  <li key={code}>{result.assessment_context?.symptom_labels?.[code] || code.replaceAll('_', ' ')}: {state === 'unknown' ? 'uncertain / sina uhakika' : state}</li>
+                ))}
+                <li>Duration / Muda: {durationLabel || 'Not reported / Haijatajwa'}</li>
+                <li>Severity / Ukali: {Object.entries(result.assessment_context?.severity || {}).map(([code, value]) => `${code.replaceAll('_', ' ')}: ${value}`).join(', ') || 'Not reported / Haijatajwa'}</li>
+              </ul>
+              <form onSubmit={correctExtraction}>
+                <label htmlFor="correct-description">Correct symptoms, duration or severity / Sahihisha dalili, muda au ukali</label>
+                <textarea id="correct-description" className="form-control" value={correction}
+                  required maxLength={2000} disabled={loading} onChange={(event) => setCorrection(event.target.value)} />
+                <button type="submit" className="button button-secondary" disabled={loading}>Recheck corrections / Kagua marekebisho</button>
+                {error && !isUrgentResult && !needsFollowUp && <p role="alert">{error}</p>}
+              </form>
+              <details className="mt-3">
+                <summary>Summary to show a health worker / Muhtasari kwa mhudumu wa afya</summary>
+                <pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{buildPatientSummary(result, mapping.input_text)}</pre>
+                <button type="button" className="button button-secondary" onClick={async () => {
+                  try {
+                    await navigator.clipboard.writeText(buildPatientSummary(result, mapping.input_text))
+                    setCopyMessage('Copied. Only share this with someone you choose. / Umenakiliwa; shiriki kwa hiari yako.')
+                  } catch { setCopyMessage('Copy is unavailable. Select the summary text above to copy it. / Chagua maandishi hapo juu uyanakili.') }
+                }}>Copy summary / Nakili muhtasari</button>
+                {copyMessage && <p role="status">{copyMessage}</p>}
+              </details>
+            </section>
+            <p role="note">{result.covid_scope_message || 'COVID is not one of the conditions this version predicts. With exposure, a positive test, or loss of taste/smell, COVID testing is recommended. COVID is not ruled out by a sinusitis or flu-like result.'}</p>
 
             {contextNote && (
               <div className="pred34-information" role="note" aria-label="Assessment context limitations">
@@ -678,6 +742,7 @@ function PredictionPage() {
               assessment by a qualified healthcare
               professional.
             </p>
+            <p>V3 partial-evidence: 21 conditions, 34 features; simulated DDXPlus only; not clinically validated for patients in Kenya. Guidance only, not a diagnosis; only a limited set of respiratory conditions is considered.</p>
           </div>
 
           <Link to="/dashboard">

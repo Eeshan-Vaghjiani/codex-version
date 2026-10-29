@@ -50,7 +50,8 @@ _SAFETY_SYMPTOMS = {
 _SAFETY_ALIAS_INDEX = tuple(sorted(
     ({"alias": alias.lower(), "code": code, "language": language}
      for code, item in _SAFETY_SYMPTOMS.items()
-     for language, aliases in item.get("aliases", {}).items()
+     for source in ('aliases', 'safety_aliases')
+     for language, aliases in item.get(source, {}).items()
      for alias in aliases), key=lambda item: len(item["alias"]), reverse=True,
 ))
 
@@ -88,7 +89,7 @@ FILLER_WORDS = {
     "without", "dont", "don't", "doesn't", "didn't", "sina", "hana",
     "hakuna", "sipigi", "wala", "mild", "moderate", "severe", "kidogo",
     "wastani", "kali", "kwa", "siku", "wiki", "since", "still",
-    "dry", "wet", "productive", "kikavu", "chenye", "up", "started",
+    "dry", "wet", "productive", "kikavu", "chenye", "up", "started", "ninahisi",
 }
 
 def load_json(path):
@@ -885,7 +886,7 @@ def infer_repeated_symptom_context(
 
     clauses = re.split(
         r"\b(?:but|however|lakini)\b"
-        r"|\b(?:and|na)\s+(?=(?:i|my|am|nina|sina)\b)"
+        r"|\b(?:and|na)\s+(?=(?:i|my|am|nina|sina(?!\s+nguvu\b))\b)"
         r"|,\s*(?=(?:i|my)\b)"
         r"|[.!?;]",
         normalized,
@@ -981,7 +982,7 @@ def extract_patient_attributes(text, matched_alias, code, alias_index):
     }
     clauses = re.split(
         r"\b(?:but|however|lakini)\b"
-        r"|\b(?:and|na)\s+(?=(?:i|my|am|nina|sina)\b)"
+        r"|\b(?:and|na)\s+(?=(?:i|my|am|nina|sina(?!\s+nguvu\b))\b)"
         r"|,\s*(?=(?:i|my)\b)|[.!?;]", normalized,
     )
     durations, severities = [], set()
@@ -1197,6 +1198,25 @@ def build_confirmation_output(text, db: Session | None = None):
         ),
     }
 
+def breathing_tier(text):
+    """Grade reported breathing only; negative/other-person phrases cannot escalate."""
+    def reported(aliases):
+        return any(infer_repeated_symptom_context(text, alias) in {
+            ('present', 'patient_or_unspecified'), ('unknown', 'patient_or_unspecified')
+        } for alias in aliases if re.search(r'(?<!\w)' + re.escape(alias) + r'(?!\w)', normalize_text(text)))
+    if reported(("can't breathe", 'cannot breathe', 'can not breathe', 'unable to breathe', 'gasping',
+                 'cannot speak', "can't speak", 'unable to speak', 'cannot talk', "can't talk",
+                 'siwezi kupumua', 'siwezi kuongea', 'siwezi kuzungumza',
+                 'at rest', 'nikiwa nimepumzika', 'nimeishiwa na pumzi',
+                 'struggling to breathe', 'ninashindwa kupumua', 'nashindwa kupumua', 'kushindwa kupumua',
+                 "can't catch my breath", 'cannot catch my breath')):
+        return 'emergency'
+    if reported(('when i walk', 'only on exertion', 'only when walking', 'nikitembea')) and reported((
+            'can speak fine', 'can speak a full sentence', 'naweza kuongea sentensi kamili')):
+        return 'urgent_same_day'
+    return 'severity_check'
+
+
 def detect_safety_signs(text):
     """Check cached bundled warnings without DB, catalogue loader or ML access."""
     flags = []
@@ -1217,6 +1237,7 @@ def detect_safety_signs(text):
             "reported_subject": subject, "confirmed": False,
             "duration_min_days": None, "duration_max_days": None,
             "duration_text": None, "duration_unit": None, "severity": None,
+            "breathing_tier": breathing_tier(text) if code == 'shortness_of_breath' else None,
         })
     return flags
 

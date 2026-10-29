@@ -3,9 +3,10 @@ import api from './api'
 const MAPPING_KEY = 'respiracare_symptom_mapping'
 const CONFIRMATION_KEY = 'respiracare_symptom_confirmation'
 
-export async function mapSymptoms(text) {
+export async function mapSymptoms(text, breathingCheck) {
   const response = await api.post('/nlp/map', {
     text,
+    ...(breathingCheck && { breathing_check: breathingCheck }),
   })
 
   return response.data

@@ -379,7 +379,10 @@ function AppLayout() {
                 For health-awareness and educational
                 purposes only. This system does not
                 provide a medical diagnosis.
+                {' '}Not a substitute for a qualified healthcare professional.
+                Only a limited set of respiratory conditions is considered.
               </p>
+              <p>Live model: V3 partial-evidence, 21 conditions, 34 features; simulated DDXPlus only; not clinically validated for patients in Kenya. V2 is not live.</p>
             </div>
           </div>
 

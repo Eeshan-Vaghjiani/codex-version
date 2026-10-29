@@ -63,7 +63,7 @@ from app.services.assessment import (
 
 from app.services.consultation import prepare_consultation, V3_MODEL_VERSION
 from app.services.v3_prediction import get_v3_bundle, predict_partial_evidence
-from app.services.consultation_guidance import consultation_guidance, explain_v3_candidates
+from app.services.consultation_guidance import consultation_guidance, explain_v3_candidates, LIVE_MODEL_NOTICE
 
 from app.services.primary_assessment import (
     build_primary_assessment, public_assessment_context, history_patient_projection,
@@ -146,6 +146,7 @@ MAX_CONFIRMED_CODES = 50
 
 class SymptomTextRequest(BaseModel):
     language: Literal["en", "sw"] | None = None
+    breathing_check: Literal['at_rest_or_cannot_speak', 'exertion_full_sentence', 'unknown'] | None = None
 
     @field_validator("text", check_fields=False)
     @classmethod
@@ -256,11 +257,18 @@ def model_status(db: Session = Depends(get_db)):
     active = get_active_model_version(db)
     if active.version == V3_MODEL_VERSION:
         bundle = get_v3_bundle()
+        from app.ml.primary_selection import load_gap_policy
+        gap_policy = load_gap_policy()
         return {
             "status": "loaded", "model_version": V3_MODEL_VERSION,
             "model_type": bundle["model_type"], "feature_count": len(bundle["features"]),
             "model_feature_count": len(bundle["features"]), "class_count": len(bundle["classes"]),
             "model_class_count": len(bundle["classes"]), "clinical_validation": False,
+            "live_model_notice": LIVE_MODEL_NOTICE,
+            "training_data": "simulated DDXPlus only", "covid_in_scope": False,
+            "gap_validation": "source_validation_checked" if gap_policy else "pending_fresh_fold",
+            "patient_naming_enabled": bool(gap_policy and any(item['enabled'] for item in gap_policy['buckets'].values())),
+            "gap_source_note": gap_policy.get('source_note') if gap_policy else None,
         }
     if active.version == V2_MODEL_VERSION:
         bundle = get_v2_bundle()
@@ -374,13 +382,16 @@ def map_symptoms(
     language = assessment_language(request.text, request.language)
     red_flags = detect_safety_signs(request.text)
     if red_flags:
+        from app.services.assessment_safety import safety_guidance
         return {
             "input_text": request.text, "recognised_symptoms": red_flags,
             "unmatched_wording": [], "has_red_flag": True,
             "safety_status": "urgent_review", "requires_confirmation": False,
-            **get_urgent_guidance(language),
+            **safety_guidance(red_flags, language, request.breathing_check),
         }
-    return build_confirmation_output(request.text, db)
+    from app.services.health_guidance import get_prediction_guidance
+    return {**build_confirmation_output(request.text, db),
+            'disclaimer': get_prediction_guidance(language)['disclaimer']}
 
 
 
@@ -390,11 +401,14 @@ def confirm_recognised_symptoms(
     db: Session = Depends(get_db),
 ):
     try:
-        return confirm_symptoms(
+        result = confirm_symptoms(
             text=request.text,
             confirmed_codes=request.confirmed_codes,
             db=db,
         )
+        from app.services.health_guidance import get_prediction_guidance
+        result['disclaimer'] = get_prediction_guidance(assessment_language(request.text))['disclaimer']
+        return result
 
     except ValueError as error:
         raise HTTPException(
@@ -422,7 +436,9 @@ def predict_conditions(
             confirmation = {
                 "confirmed_codes": request.confirmed_codes, "model_features": [],
                 "has_red_flag": True, "red_flag_symptoms": red_flags,
-                "assessment_context": {"language": language, "follow_up_answers": answers},
+                "assessment_context": {"language": language, "follow_up_answers": [],
+                    "symptom_states": {flag['code']: flag.get('status', 'present') for flag in red_flags},
+                    "severity": {flag['code']: 'severe' for flag in red_flags if flag.get('breathing_tier') == 'emergency'}},
             }
         else:
             confirmation = confirm_symptoms(request.text, request.confirmed_codes, db)
@@ -464,6 +480,9 @@ def predict_conditions(
             decision = {"status": "urgent_review", "reasons": ["reported_warning_sign"],
                         "policy_version": PATIENT_POLICY_VERSION}
             context["patient_decision"] = decision
+            from app.services.assessment_safety import safety_guidance
+            guidance = safety_guidance(confirmation['red_flag_symptoms'], language, request.breathing_check)
+            context['urgency'] = guidance['urgency']
             prediction_id = None
             try:
                 prediction_id = persist("urgent_review", [])
@@ -471,12 +490,11 @@ def predict_conditions(
                 logging.getLogger(__name__).exception("Could not save urgent assessment")
                 if hasattr(db, "rollback"):
                     db.rollback()
-            guidance = get_urgent_guidance(language)
             if any(flag.get("code") == "infant_fever" for flag in confirmation["red_flag_symptoms"]):
                 guidance["health_guidance"] = (
-                    "Homa kwa mtoto mchanga inahitaji tathmini ya haraka ya mtaalamu wa afya, hasa chini ya miezi mitatu. Usisubiri maswali zaidi."
+                    "Homa kwa mtoto mchanga inahitaji tathmini ya haraka ya mtaalamu wa afya, hasa chini ya miezi mitatu. Nenda idara ya dharura ya hospitali iliyo karibu sasa. Usisubiri maswali zaidi."
                     if language == "sw" else
-                    "Fever in a baby needs prompt medical assessment, especially under three months. Do not wait to complete more questions."
+                    "Fever in a baby needs prompt medical assessment, especially under three months. Go to the nearest hospital casualty now. Do not wait to complete more questions."
                 )
             return {**base(), "prediction_id": prediction_id, "status": "urgent_review", "decision": decision,
                     "red_flag_symptoms": confirmation["red_flag_symptoms"], **guidance}

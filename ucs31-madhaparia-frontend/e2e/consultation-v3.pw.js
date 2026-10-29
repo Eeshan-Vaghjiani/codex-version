@@ -26,11 +26,11 @@ async function mapInput(page, text) {
   return response.json()
 }
 
-async function begin(page) {
+async function begin(page, age = 21) {
   await page.getByRole('link', { name: 'Continue to confirmation' }).click()
   await page.getByRole('button', { name: 'Confirm selected symptoms' }).click()
   await page.getByRole('link', { name: 'Continue to prediction' }).click()
-  await page.getByLabel('Age', { exact: true }).fill('21')
+  await page.getByLabel('Age', { exact: true }).fill(String(age))
   await page.getByLabel('Sex', { exact: true }).selectOption('M')
   const next = page.waitForResponse((response) => response.url().endsWith('/predict'))
   await page.getByRole('button', { name: 'Generate awareness result' }).click()
@@ -39,7 +39,7 @@ async function begin(page) {
   return response.json()
 }
 
-async function answerQuestions(page, result, preferUnknown = false) {
+async function answerQuestions(page, result, preferUnknown = false, choices = {}) {
   const asked = []
   while (result.status === 'needs_follow_up') {
     const question = result.follow_up_question
@@ -51,7 +51,7 @@ async function answerQuestions(page, result, preferUnknown = false) {
       await page.reload()
       await expect(page.getByRole('heading', { name: question.text, exact: true })).toBeVisible()
     }
-    const option = (preferUnknown && !/breath/.test(question.id) &&
+    const option = question.options.find((item) => item.value === choices[question.id]) || (preferUnknown && !/breath/.test(question.id) &&
       question.options.find((item) => item.value === 'unknown')) ||
       question.options.find((item) => item.value === 'under_3_days') ||
       question.options.find((item) => item.value === 'no') ||
@@ -86,7 +86,10 @@ for (const scenario of scenarios) {
     expect(['prediction_complete', 'assessment_uncertain', 'insufficient_evidence']).toContain(result.status)
     expect(result.decision.policy_version).toBeTruthy()
     expect(result.predictions.length).toBeLessThanOrEqual(1)
-    if (scenario.requiresPrimary) expect(result.primary_prediction).toBeTruthy()
+    if (scenario.requiresPrimary) {
+      expect(result.primary_prediction).toBeNull()
+      expect(result.decision.reasons).toContain('gap_source_validation_bound_not_met')
+    }
     expect(result.assessment_context.language).toBe(scenario.language)
     if (scenario.fever === null) {
       const feverAnswer = result.follow_up_answers.find((answer) => answer.question_id === 'fever')
@@ -110,14 +113,17 @@ for (const scenario of scenarios) {
       await expect(page.locator('.consultation-candidate')).toHaveCount(0)
     }
     await expect(page.getByText(result.assessment_summary, { exact: true })).toBeVisible()
-    expect(await page.locator('.pred34-results').textContent()).not.toMatch(/\d+(?:\.\d+)?%/)
+    if (result.primary_prediction) {
+      expect(Number.isInteger(result.primary_prediction.model_match_percent)).toBe(true)
+      await expect(page.getByText(/not a probability, not a diagnosis, not overall accuracy/)).toBeVisible()
+    } else expect(await page.locator('.pred34-results').textContent()).not.toMatch(/\d+(?:\.\d+)?%/)
     expect(JSON.stringify(result)).not.toMatch(/model_confidence_percent|raw_relative_score/)
     if (['informative coughing fits', 'English cough and fever', 'headache and tiredness', 'fever cough sore throat body aches'].includes(scenario.name)) {
       const slug = scenario.name.toLowerCase().replaceAll(' ', '-')
-      await page.screenshot({ path: `../audit-artifacts/kenya-patient-ui/after-${slug}-desktop.png`, fullPage: true })
+      await page.screenshot({ path: `../audit-artifacts/validation-2026-10-29-ui/after-${slug}-desktop.png`, fullPage: true })
       await page.setViewportSize({ width: 390, height: 844 })
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
-      await page.screenshot({ path: `../audit-artifacts/kenya-patient-ui/after-${slug}-mobile.png`, fullPage: true })
+      await page.screenshot({ path: `../audit-artifacts/validation-2026-10-29-ui/after-${slug}-mobile.png`, fullPage: true })
     }
     await testInfo.attach('actual-patient-response', { body: JSON.stringify(result, null, 2), contentType: 'application/json' })
     const token = await page.evaluate(() => sessionStorage.getItem('respiracare_access_token'))
@@ -152,12 +158,12 @@ for (const text of ['I am struggling to breathe.', 'Nashindwa kupumua.']) {
     expect(bounds.y).toBeGreaterThanOrEqual(header.y + header.height)
     expect(bounds.y + bounds.height).toBeLessThanOrEqual(page.viewportSize().height)
     await expect(page.getByRole('link', { name: 'Continue to confirmation' })).toHaveCount(0)
-    await page.screenshot({ path: `../audit-artifacts/kenya-patient-ui/after-urgent-focused-${text.startsWith('Nashindwa') ? 'mobile' : 'desktop'}.png` })
+    await page.screenshot({ path: `../audit-artifacts/validation-2026-10-29-ui/after-urgent-focused-${text.startsWith('Nashindwa') ? 'mobile' : 'desktop'}.png` })
     await testInfo.attach('actual-urgent-mapping', { body: JSON.stringify(mapped, null, 2), contentType: 'application/json' })
     if (text.startsWith('I am')) {
-      await page.screenshot({ path: '../audit-artifacts/kenya-patient-ui/after-urgent-desktop.png', fullPage: true })
+      await page.screenshot({ path: '../audit-artifacts/validation-2026-10-29-ui/after-urgent-desktop.png', fullPage: true })
       await page.setViewportSize({ width: 390, height: 844 })
-      await page.screenshot({ path: '../audit-artifacts/kenya-patient-ui/after-urgent-mobile.png', fullPage: true })
+      await page.screenshot({ path: '../audit-artifacts/validation-2026-10-29-ui/after-urgent-mobile.png', fullPage: true })
     }
   })
 }
@@ -168,9 +174,9 @@ test('vague input asks for symptoms without inventing a possible disease', async
   await expect(page.getByText('No supported symptoms were recognised')).toBeVisible()
   await expect(page.getByRole('link', { name: 'Continue to confirmation' })).toHaveCount(0)
   await testInfo.attach('actual-insufficient-mapping', { body: JSON.stringify(mapped, null, 2), contentType: 'application/json' })
-  await page.screenshot({ path: '../audit-artifacts/kenya-patient-ui/after-insufficient-desktop.png', fullPage: true })
+  await page.screenshot({ path: '../audit-artifacts/validation-2026-10-29-ui/after-insufficient-desktop.png', fullPage: true })
   await page.setViewportSize({ width: 390, height: 844 })
-  await page.screenshot({ path: '../audit-artifacts/kenya-patient-ui/after-insufficient-mobile.png', fullPage: true })
+  await page.screenshot({ path: '../audit-artifacts/validation-2026-10-29-ui/after-insufficient-mobile.png', fullPage: true })
 })
 
 test('an old abstention cache cannot replace a new consultation', async ({ page }) => {
@@ -193,4 +199,142 @@ test('empty symptom descriptions stay on the form with a readable correction', a
   await page.getByRole('button', { name: 'Analyse symptoms', exact: true }).click()
   await expect(page.getByRole('alert')).toContainText('Please describe at least one symptom')
   await expect(page.getByRole('link', { name: 'Continue to confirmation' })).toHaveCount(0)
+})
+
+// Real UI/API regressions; expected abstention reflects the pending gap fold,
+// not a judgement that these symptoms are harmless or that COVID is excluded.
+const safetyJourneys = [
+  ['headache-fatigue', 'I have headache and fatigue'],
+  ['cough', 'Nina kikohozi'],
+  ['fever-cough-2d', 'I have fever na kikohozi for two days'],
+  ['viral-2d', 'I have fever, cough and tiredness for two days'],
+  ['prolonged-weight', 'I have cough for three weeks and unintentional weight loss'],
+  ['cannot-breathe-en', "I can't breathe", 'emergency'],
+  ['cannot-breathe-sw', 'Siwezi kupumua', 'emergency'],
+  ['exertion', 'I have difficulty breathing when I walk, but I can speak fine', 'urgent_same_day'],
+  ['difficulty-sw', 'Napumua kwa shida', 'urgent_same_day'],
+  ['negative-breathing', 'I can breathe fine and have a cough'],
+  ['smell', 'I have loss of smell'],
+  ['smell-viral', 'I have loss of smell, cough and fever'],
+  ['taste', 'I have loss of taste and fever'],
+  ['chest-pain', 'I have severe chest pain', 'emergency'],
+  ['fainting', 'I fainted', 'emergency'],
+  ['blue-lips', 'My lips are turning blue', 'emergency'],
+  ['blood', 'I am coughing a lot of blood', 'emergency'],
+  ['confusion', 'I have confusion', 'emergency'],
+  ['baby-fever', 'I have fever', 'emergency', 0],
+  ['stiff-neck', 'I have headache, fever and stiff neck', 'emergency'],
+  ['generic', 'I have fever, pain and fatigue'],
+  ['severe-viral', 'I have severe fever, cough and body aches for two days'],
+  ['overlap', 'I have cough, sore throat, fever and muscle aches'],
+  ['sw-mixed', 'Nina homa na cough kwa siku mbili'],
+]
+
+for (const [name, text, urgency, age = 24] of safetyJourneys) {
+  test(`P0 journey: ${name}`, async ({ page }, testInfo) => {
+    const mapping = await mapInput(page, text)
+    let result = mapping
+    if (mapping.has_red_flag) {
+      expect(mapping.urgency).toBe(urgency)
+      await expect(page.getByRole('alert')).toContainText(mapping.health_guidance)
+      await expect(page.getByRole('link', { name: 'Continue to confirmation' })).toHaveCount(0)
+      if (mapping.safety_question) {
+        const next = page.waitForResponse((response) => response.url().endsWith('/nlp/map'))
+        await page.getByRole('button', { name: mapping.safety_question.options.find((option) => option.value === 'exertion_full_sentence').label, exact: true }).click()
+        result = await (await next).json()
+        expect(result.urgency).toBe('urgent_same_day')
+        expect(result.safety_question).toBeNull()
+      } else expect(mapping.safety_question).toBeNull()
+    } else {
+      result = (await answerQuestions(page, await begin(page, age))).result
+      expect(result.primary_prediction).toBeNull()
+      expect(result.predictions).toEqual([])
+      if (urgency) {
+        expect(result.urgency).toBe(urgency)
+        expect(result.follow_up_question).toBeUndefined()
+      } else {
+        expect(result.uncertainty_message).toMatch(/nothing is ruled out|hakuna ugonjwa ulioondolewa/)
+        expect(result.uncertainty_message).toContain('24-48')
+      }
+      await expect(page.getByRole('heading', { name: 'What we understood / Tulichoelewa' })).toBeVisible()
+      await expect(page.getByLabel(/Correct symptoms, duration or severity/)).toBeVisible()
+      await expect(page.getByRole('button', { name: /Recheck corrections/ })).toBeVisible()
+      await expect(page.getByRole('note').filter({ hasText: /COVID/ })).toBeVisible()
+    }
+    await expect(page.locator('.consultation-candidate')).toHaveCount(0)
+    await testInfo.attach('journey-output', { body: JSON.stringify({ name, expected: {
+      primary: 'withheld', score_band: 'not shown', urgency: urgency || 'advice-dependent',
+    }, actual: result }, null, 2), contentType: 'application/json' })
+  })
+}
+
+for (const text of ['i feel tired and have weaknes for 3 days',
+  'Ninahisi uchovu na sina nguvu kwa siku tatu', 'Nina uchovu na weakness kwa siku tatu']) {
+  test(`everyday conversation: ${text}`, async ({ page, context }, testInfo) => {
+    await mapInput(page, text)
+    const { result, asked } = await answerQuestions(page, await begin(page, 24), false, {
+      weakness_meaning: 'general_low_energy', symptom_severity: 'mild',
+    })
+    expect(result.primary_prediction).toBeNull()
+    expect(result.assessment_context.duration.min_days).toBe(3)
+    expect(result.assessment_context.symptom_states.weakness).toBe('present')
+    expect(result.model_features).toEqual([])
+    expect(asked).toContain('weakness_meaning')
+    expect(asked.length).toBeLessThanOrEqual(5)
+    expect(result.next_steps.join(' ')).not.toMatch(/influenza|pneumonia|covid|bronchitis|malaria/i)
+    await expect(page.getByLabel(/Correct symptoms, duration or severity/)).toHaveValue(text)
+    await page.getByText('Summary to show a health worker / Muhtasari kwa mhudumu wa afya', { exact: true }).click()
+    await context.grantPermissions(['clipboard-read', 'clipboard-write'])
+    await page.getByRole('button', { name: 'Copy summary / Nakili muhtasari' }).click()
+    await expect(page.getByText(/Copied. Only share/)).toBeVisible()
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toContain(text)
+    await testInfo.attach('actual-conversation', { body: JSON.stringify(result, null, 2), contentType: 'application/json' })
+  })
+}
+
+test('weakness clarification escalates sudden one-sided change without another question', async ({ page }) => {
+  await mapInput(page, 'I feel weak for three days')
+  const { result } = await answerQuestions(page, await begin(page, 24), false, { weakness_meaning: 'sudden_one_sided' })
+  expect(result.urgency).toBe('emergency')
+  expect(result.primary_prediction).toBeNull()
+  expect(result.follow_up_question).toBeUndefined()
+  await expect(page.getByRole('alert')).toContainText('hospital casualty')
+  await expect(page.getByRole('radio')).toHaveCount(0)
+})
+
+test('reported sudden one-sided weakness stops immediately at symptom entry', async ({ page }) => {
+  const mapping = await mapInput(page, 'I have sudden one-sided weakness')
+  expect(mapping.urgency).toBe('emergency')
+  expect(mapping.safety_question).toBeNull()
+  await expect(page.getByRole('alert')).toContainText('hospital casualty')
+  await expect(page.getByRole('link', { name: 'Continue to confirmation' })).toHaveCount(0)
+})
+
+test('a richer eligible pattern displays one whole-percent match and preserves it in history', async ({ page, request }, testInfo) => {
+  await mapInput(page, 'I have fever, cough, sore throat, muscle aches, constant tiredness and runny nose for two days')
+  const { result } = await answerQuestions(page, await begin(page))
+  expect(result.status).toBe('prediction_complete')
+  expect(result.predictions).toEqual([result.primary_prediction])
+  expect(Number.isInteger(result.primary_prediction.model_match_percent)).toBe(true)
+  expect(result.primary_prediction.model_match_percent).toBeGreaterThanOrEqual(60)
+  await expect(page.locator('.consultation-candidate')).toHaveCount(1)
+  await expect(page.getByText(/not a probability, not a diagnosis, not overall accuracy/)).toBeVisible()
+  const token = await page.evaluate(() => sessionStorage.getItem('respiracare_access_token'))
+  const history = await request.get(`${apiURL}/history/${result.prediction_id}`, { headers: { Authorization: `Bearer ${token}` } })
+  expect(history.ok()).toBe(true)
+  expect((await history.json()).primary_prediction).toEqual(result.primary_prediction)
+  await page.goto(`/history/${result.prediction_id}`)
+  await expect(page.locator('.consultation-candidate')).toHaveCount(1)
+  await expect(page.getByText(new RegExp(`Model match: ${result.primary_prediction.model_match_percent}%`))).toBeVisible()
+  await testInfo.attach('actual-eligible-match', { body: JSON.stringify(result, null, 2), contentType: 'application/json' })
+})
+
+test('result correction rechecks safety and clears the old assessment', async ({ page }) => {
+  await mapInput(page, 'I feel tired and have weakness for three days')
+  await answerQuestions(page, await begin(page, 24), false, { weakness_meaning: 'general_low_energy', symptom_severity: 'mild' })
+  await page.getByLabel(/Correct symptoms, duration or severity/).fill('I have sudden one-sided weakness')
+  await page.getByRole('button', { name: /Recheck corrections/ }).click()
+  await expect(page.getByRole('alert')).toContainText('hospital casualty')
+  expect(await page.evaluate(() => sessionStorage.getItem('respiracare_prediction_result'))).toBeNull()
+  expect(await page.evaluate(() => sessionStorage.getItem('respiracare_symptom_confirmation'))).toBeNull()
 })

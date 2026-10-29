@@ -16,6 +16,8 @@ POLICY_PATH = Path(__file__).resolve().parent / "artifacts/v3_primary_selection.
 SCOPE_POLICY_PATH = POLICY_PATH.with_name("v3_primary_scope.json")
 POLICY_VERSION = "v3_selective_primary_v1"
 SCOPE_POLICY_VERSION = "v3_respiratory_scope_v1"
+GAP_POLICY_PATH = POLICY_PATH.with_name('v3_gap_selection.json')
+DANGEROUS_ALTERNATIVES = frozenset({"Pneumonia", "Tuberculosis", "Pulmonary neoplasm", "Acute pulmonary edema"})
 # This is the supported respiratory scope, not a list of emergency signs or a
 # clinician-validated exclusion test. Generic fever, pain and fatigue alone
 # cannot establish that the patient's complaint belongs to these source classes.
@@ -90,6 +92,37 @@ def load_primary_scope(path=None):
     return scope
 
 
+@lru_cache(maxsize=2)
+def load_gap_policy(path=None):
+    target = Path(path or GAP_POLICY_PATH)
+    if not target.exists():
+        return None
+    gate = json.loads(target.read_text(encoding='utf8'))
+    policy = load_primary_policy()
+    if (gate.get('policy_version') != 'v3_relative_gap_v1' or gate.get('clinical_validation') is not False
+            or gate.get('model_sha256') != policy['model_sha256']
+            or gate.get('base_policy_sha256') != hashlib.sha256(Path(POLICY_PATH).read_bytes()).hexdigest()
+            or gate.get('test_used_for_selection') is not False):
+        raise ValueError('Gap policy does not match frozen V3 / independent source validation')
+    for field in ('minimum_relative_gap', 'minimum_relative_score'):
+        value = gate.get(field)
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or not 0 <= value <= 1:
+            raise ValueError('Invalid relative gap policy threshold')
+    if gate.get('minimum_present_count') != 2 or set(gate.get('buckets', {})) != set(policy['buckets']):
+        raise ValueError('Incomplete gap-policy evidence buckets')
+    for key, entry in gate['buckets'].items():
+        if type(entry.get('enabled')) is not bool:
+            raise ValueError('Invalid gap bucket state')
+        if not entry['enabled']:
+            continue
+        n, errors, bound = entry.get('accepted'), entry.get('errors'), entry.get('risk_upper_bound')
+        if (type(n) is not int or n <= 0 or type(errors) is not int or not 0 <= errors <= n
+                or isinstance(bound, bool) or not isinstance(bound, (int, float)) or not math.isfinite(bound)
+                or not 0 <= bound <= policy['target_source_selective_error'] or not policy['buckets'][key]['enabled']):
+            raise ValueError('Gap bucket did not pass independent source-validation bound')
+    return gate
+
+
 def classify_primary(present_features, absent_features, age, sex):
     """Return at most one possible condition, or an explicit uncertainty state.
 
@@ -137,6 +170,19 @@ def classify_primary(present_features, absent_features, age, sex):
         "supporting_absent_count": len(first["supporting_absent_features"]),
         "policy_bucket_enabled": entry["enabled"], "policy_reason": entry["reason"],
     })
+    gap = result["diagnostics"]["source_relative_top_two_gap"]
+    gate = load_gap_policy()
+    if gate is None or gap < gate['minimum_relative_gap']:
+        result["reasons"] = ["gap_validation_pending" if gate is None else "close_model_rank"]
+        # With no validated separation test, do not hide a potentially serious
+        # alternative behind a mild label. This precaution may over-refer.
+        if second["condition"] in DANGEROUS_ALTERNATIVES and first["condition"] not in DANGEROUS_ALTERNATIVES:
+            result["reasons"].append("dangerous_alternative_requires_review")
+        return result
+    if (len(present) < gate['minimum_present_count'] or first['raw_relative_score'] < gate['minimum_relative_score']
+            or not gate['buckets'][result['diagnostics']['evidence_bucket']]['enabled']):
+        result['reasons'] = ['gap_source_validation_bound_not_met']
+        return result
     if not entry["enabled"] or first["raw_relative_score"] < entry["minimum_relative_score"]:
         result["reasons"] = ["non_specific_input" if len(present) == 1 else "ambiguous_model_rank"]
         return result

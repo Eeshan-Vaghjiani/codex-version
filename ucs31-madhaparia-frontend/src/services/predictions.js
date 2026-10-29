@@ -1,7 +1,7 @@
 import api from './api'
 
 // Keep the cache structure while rejecting results/questions from older policies.
-const PREDICTION_CACHE_VERSION = 'kenya-single-primary-2026-10-28'
+const PREDICTION_CACHE_VERSION = 'kenya-single-primary-2026-10-29-gap-checked'
 
 const PREDICTION_KEY =
   'respiracare_prediction_result'
@@ -13,6 +13,7 @@ export async function createPrediction({
   confirmedCodes,
   followUpAnswers = [],
   language,
+  breathingCheck,
 }) {
   const response = await api.post(
     '/predict',
@@ -21,6 +22,7 @@ export async function createPrediction({
       sex,
       text,
       confirmed_codes: confirmedCodes,
+      ...(breathingCheck && { breathing_check: breathingCheck }),
       ...(followUpAnswers.length > 0 && {
         follow_up_answers: followUpAnswers,
       }),

@@ -246,7 +246,7 @@ def fit_policy(data, bundle):
     return policy
 
 
-def accept_vectorized(policy, probabilities, present_count, absent_count, present, include_scope=True, apply_scope_overrides=True):
+def accept_vectorized(policy, probabilities, present_count, absent_count, present, include_scope=True, apply_scope_overrides=True, apply_gap=True):
     accepted = np.zeros(len(probabilities), dtype=bool)
     for entry in policy["buckets"].values():
         if entry["enabled"]:
@@ -259,6 +259,20 @@ def accept_vectorized(policy, probabilities, present_count, absent_count, presen
             for key in load_primary_scope()["disabled_buckets"]:
                 p, a = map(int, key.split(":"))
                 accepted &= ~((present_count == p) & (absent_count == a))
+    if apply_gap:
+        from inference.primary_selection import load_gap_policy
+        gate = load_gap_policy()
+        if gate is None:
+            accepted[:] = False
+        else:
+            ranked = np.sort(probabilities, axis=1)
+            accepted &= ((ranked[:, -1] - ranked[:, -2] >= gate['minimum_relative_gap']) &
+                         (ranked[:, -1] >= gate['minimum_relative_score']) &
+                         (present_count >= gate['minimum_present_count']))
+            for key, entry in gate['buckets'].items():
+                if not entry['enabled']:
+                    p, a = map(int, key.split(':'))
+                    accepted &= ~((present_count == p) & (absent_count == a))
     return accepted
 
 

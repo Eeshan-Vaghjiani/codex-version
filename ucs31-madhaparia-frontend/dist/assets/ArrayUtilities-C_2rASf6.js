@@ -1,1 +1,0 @@
-function e(e,t,n){return e.reduce((e,r)=>[Math.min(e[0],r[t]),Math.max(e[1],r[n])],[Number.MAX_VALUE,-Number.MAX_VALUE])}var t={getArrayExtremes:e};export{t};

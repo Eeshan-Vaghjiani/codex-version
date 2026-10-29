@@ -1,1 +1,0 @@
-import{$ as e,b as t,ot as n,q as r}from"./SeriesRegistry-D9skVCBF.js";var i;(function(i){function a(i,a){i.eventOptions=i.eventOptions||{},e(a.events,function(e,a){i.eventOptions[a]!==e&&(i.eventOptions[a]&&(n(i,a,i.eventOptions[a]),delete i.eventOptions[a]),r(e)&&(i.eventOptions[a]=e,t(i,a,e,{order:0})))})}i.registerEventOptions=a})(i||={});var a=i;export{a as t};

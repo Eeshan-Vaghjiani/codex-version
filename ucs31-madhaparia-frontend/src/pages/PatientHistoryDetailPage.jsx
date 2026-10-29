@@ -151,12 +151,13 @@ function PatientHistoryDetailPage() {
         {urgent ? (
           <section className="hist35-urgent-detail" role="alert">
             <p className="hist35-kicker">Urgent-review session</p>
-            <h2>A safety-sensitive symptom was confirmed.</h2>
+            <h2>{session.urgency === 'emergency' ? 'Emergency — seek care immediately.' : 'Prompt clinical review is needed.'}</h2>
             <p>
-              This session followed the urgent-review route because a
-              safety-sensitive symptom was confirmed. The prediction model was bypassed.
+              A reported warning sign or unresolved potentially serious pattern
+              needs professional review. No automated disease name is displayed.
             </p>
             {session.health_guidance && <p>{session.health_guidance}</p>}
+            {(session.has_red_flag || session.status === 'urgent_review') && <p>The prediction model was bypassed for reported warning signs.</p>}
             <p>Seek prompt professional medical assessment if you are experiencing severe or worsening symptoms.</p>
           </section>
         ) : (
@@ -168,6 +169,7 @@ function PatientHistoryDetailPage() {
             </div>
 
             {currentDecision && session.assessment_summary && <p>{session.assessment_summary}</p>}
+            <p>Care priority: {session.urgency || session.care_level || 'Review if worsening'}. {session.health_guidance}</p>
 
             {prediction ? (
               <PossibleExplanations primary={prediction} language={session.assessment_context?.language} />

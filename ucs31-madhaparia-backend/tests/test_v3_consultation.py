@@ -65,7 +65,7 @@ def finish(flow, body, choose=None):
         assert qid not in [item["question_id"] for item in answers]
         assert question["rationale"] and question["text"]
         values = {item["value"] for item in question["options"]}
-        answer = choose(qid, values) if choose else "no" if qid == "breathing_difficulty" else "unknown"
+        answer = choose(qid, values) if choose else "no" if qid in {"breathing_difficulty", "severe_chest_pain"} else "unknown"
         assert answer in values
         asked.append(qid)
         answers.append({"question_id": qid, "answer": answer})
@@ -145,7 +145,8 @@ def test_known_duration_skips_repeated_duration_question_and_targets_missing_poo
     data, _, asked = finish(v3_flow, payload(v3_flow))
     assert "symptom_duration" not in asked
     assert asked[0] == "breathing_difficulty"
-    assert all(qid in POOL for qid in asked[1:])
+    assert asked[1] == 'severe_chest_pain'
+    assert all(qid in POOL for qid in asked[2:])
     assert "cough" not in asked and "fever" not in asked
     assert data["assessment_context"]["symptom_durations"]["cough"]["min_days"] == 2
     assert_selective_result(data)
@@ -198,7 +199,9 @@ def test_weight_loss_intention_controls_native_feature(v3_flow, intent, expected
     body = payload(v3_flow, "I have cough for two days and have been losing weight")
     first = v3_flow.client.post("/predict", json=body).json()
     assert "E_162" not in first["model_features"]
-    answers = [{"question_id": "breathing_difficulty", "answer": "no"}]
+    answers = [{"question_id": "breathing_difficulty", "answer": "no"},
+               {"question_id": "severe_chest_pain", "answer": "no"},
+               {"question_id": "fever", "answer": "no"}]
     second = v3_flow.client.post("/predict", json={**body, "follow_up_answers": answers}).json()
     assert second["follow_up_question"]["id"] == "weight_loss_intent"
     answers.append({"question_id": "weight_loss_intent", "answer": intent})
@@ -290,20 +293,30 @@ def test_low_benefit_questions_stop_without_blocking_an_assessment(v3_flow, monk
     monkeypatch.setattr(service, 'rank_follow_up_features', lambda *args, **kwargs: [
         {'feature': 'E_144', 'information_gain': gain},
     ])
-    body = payload(v3_flow, 'I have a cough and fever for two days but no difficulty breathing')
+    # Isolate information-gain behaviour from the separate pending-gap stop:
+    # a hypothetical muscle-ache answer changes the selected pattern/action.
+    import app.services.primary_assessment as primary
+    monkeypatch.setattr(primary, 'select_primary_evidence', lambda p, a, *args: {
+        'status': 'eligible' if 'E_144' in p else 'uncertain',
+        'primary_prediction': {'condition': 'Influenza'} if 'E_144' in p else None,
+        'reasons': ['hypothetical_test_selection'], 'diagnostics': {}})
+    body = payload(v3_flow, 'I have a cough and fever for two days but no difficulty breathing',
+        answers=[{'question_id': 'severe_chest_pain', 'answer': 'no'}])
     response = v3_flow.client.post('/predict', json=body)
     assert response.status_code == 200, response.text
     data = response.json()
     assert data['status'] == expected_status
     if expected_status == 'assessment_uncertain':
         assert_selective_result(data)
-        assert data['follow_up_answers'] == []
+        assert data['follow_up_answers'] == [{'question_id': 'severe_chest_pain', 'answer': 'no'}]
     else:
         assert data['follow_up_question']['id'] == 'muscle_aches'
 
 
 def test_unknown_weight_intention_does_not_repeat_the_same_weight_question(v3_flow):
     answers = [{'question_id': 'breathing_difficulty', 'answer': 'no'},
+               {'question_id': 'severe_chest_pain', 'answer': 'no'},
+               {'question_id': 'fever', 'answer': 'no'},
                {'question_id': 'weight_loss_intent', 'answer': 'unknown'}]
     body = payload(v3_flow, 'I have a cough for several weeks and have been losing weight', answers=answers)
     response = v3_flow.client.post('/predict', json=body)

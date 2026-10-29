@@ -47,11 +47,14 @@ def test_actual_informative_primary_stops_questions_after_safety_and_context(v3_
     data, answers, asked = finish(v3_flow, payload(v3_flow,
         'I have intense coughing fits and vomiting after coughing for 5 days.'))
     assert_single_primary_contract(data)
-    assert data['status'] == 'prediction_complete'
-    assert data['primary_prediction']['condition'] == 'Whooping cough'
-    assert asked == ['breathing_difficulty']
-    assert answers == [{'question_id': 'breathing_difficulty', 'answer': 'no'}]
-    assert data['care_level'] == 'professional_review'
+    # Retain this informative case: its sparse bucket failed the new independent
+    # source-gap bound, so the old eligibility must not silently restore a name.
+    assert data['status'] == 'assessment_uncertain'
+    assert data['primary_prediction'] is None
+    assert 'gap_source_validation_bound_not_met' in data['decision']['reasons']
+    assert asked[:2] == ['breathing_difficulty', 'severe_chest_pain']
+    assert len(answers) <= 5
+    assert 'nothing is ruled out' in data['uncertainty_message']
 
 
 def test_missing_selection_policy_is_service_unavailable_not_a_patient_error(v3_flow, monkeypatch):
@@ -59,7 +62,8 @@ def test_missing_selection_policy_is_service_unavailable_not_a_patient_error(v3_
     def missing(*args, **kwargs):
         raise FileNotFoundError('Missing frozen decision policy')
     monkeypatch.setattr(selector, 'classify_primary', missing)
-    body = payload(v3_flow, 'I have cough for two days but no difficulty breathing')
+    body = payload(v3_flow, 'I have cough and fever for two days but no difficulty breathing',
+        answers=[{'question_id': 'severe_chest_pain', 'answer': 'no'}])
     response = v3_flow.client.post('/predict', json=body)
     assert response.status_code == 503
     assert v3_flow.saved == []

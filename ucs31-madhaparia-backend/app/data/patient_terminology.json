@@ -4,6 +4,10 @@
   "review_status": "Evidence-informed draft; Kenyan clinician, Kiswahili language and patient comprehension review pending. Not clinical validation.",
   "schema_note": "conditions are keyed by unchanged model class. medical_name preserves medical meaning; display_name and description are localized presentation only. source_ids resolve in sources. Adding terminology never adds a trained or validated model class. Do not use this file as triage logic or as a list of diagnoses that can be excluded.",
   "scope": "21 source classes in v3_partial_evidence. COVID-19, malaria, HIV and allergic rhinitis are not added as active V3 predictions.",
+  "covid_scope_message": {
+    "en": "COVID is not one of the conditions this version predicts. With exposure, a positive test, or loss of taste/smell, COVID testing is recommended (follow clinical advice if already positive). COVID is not ruled out by a sinusitis or flu-like result. Influenza and COVID are different infections with overlapping symptoms; severity alone cannot identify COVID. Taste/smell changes are not proof and are less reliable with newer variants.",
+    "sw": "COVID si mojawapo ya hali zinazotabiriwa na toleo hili. Ikiwa umekaribiana na mwenye COVID, umepata kipimo chanya, au umepoteza ladha/harufu, kipimo cha COVID kinapendekezwa (fuata ushauri wa mhudumu ikiwa tayari una kipimo chanya). Jibu la sinasi au dalili kama influenza haliondoi COVID. Influenza na COVID ni maambukizi tofauti yenye dalili zinazofanana; ukali pekee hautambui COVID. Kupoteza ladha/harufu si uthibitisho na si dalili ya kutegemewa kwa aina mpya za virusi."
+  },
   "sources": {
     "ke_community_2024": {"title": "Kenya MOH Clinical Guidelines, Level 1 Community Health Services (2024), TB pp. 124-125", "url": "https://health.go.ke/sites/default/files/2025-04/Clinical%20Guidelines%20for%20Level%201%20Community%20Health%20Services.pdf"},
     "ke_hospitals_2024": {"title": "Kenya MOH Clinical Guidelines, Levels 4-6 (2024), acute upper respiratory infections section 24.1", "url": "https://health.go.ke/sites/default/files/2025-04/Clinical%20Guidelines%20for%20Management%20Level%204%20Primary%20Care%20Hospitals%20Level%205%20Secondary%20Hospitals%20Level%206%20Tertiary%20Hospitals%20%E2%80%93%20National%20Hospitals.pdf"},
@@ -71,7 +75,7 @@
     },
     "Bronchitis": {
       "medical_name": "Bronchitis",
-      "display_name": {"en": "Airway inflammation (bronchitis)", "sw": "Kuvimba kwa njia za hewa (bronchitis)"},
+      "display_name": {"en": "Chest infection / airway inflammation (bronchitis)", "sw": "Maambukizi ya kifua / kuvimba kwa njia za hewa (bronchitis)"},
       "description": {"en": "Inflammation of the larger breathing tubes can cause cough, sometimes with mucus. Similar symptoms can occur with other illnesses, including pneumonia.", "sw": "Kuvimba kwa mirija mikubwa ya hewa kunaweza kusababisha kikohozi, wakati mwingine chenye makohozi. Dalili zinazofanana zinaweza kutokana na magonjwa mengine, yakiwemo maambukizi ya mapafu."},
       "source_ids": ["nhs_bronchitis"]
     },

@@ -1,1 +1,0 @@
-import{Z as e,t}from"./SeriesRegistry-D9skVCBF.js";import"./highcharts-3d.src-onQxbqm7.js";import"./cylinder.src-DU_btS8m.js";import"./funnel3d.src-DrY3hsVj.js";var n={reversed:!0,neckHeight:0,neckWidth:0,dataLabels:{verticalAlign:`top`}},{funnel3d:r}=t.seriesTypes,i=class extends r{};i.defaultOptions=e(r.defaultOptions,n),t.registerSeriesType(`pyramid3d`,i);

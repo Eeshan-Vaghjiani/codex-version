@@ -32,6 +32,8 @@ CONSULTATION_QUESTIONS = {
     'general_duration': ('How long have you had these symptoms?', 'Umekuwa na dalili hizi kwa muda gani?'),
     'symptom_severity': ('How much are these symptoms affecting your usual activities?', 'Dalili hizi zinaathiri shughuli zako za kawaida kwa kiasi gani?'),
     'fatigue_pattern': ('Is the tiredness constant, or do you wake feeling unrefreshed?', 'Je, uchovu ni wa kila wakati, au unaamka bila kujisikia umepumzika?'),
+    'severe_chest_pain': ('Do you have severe or crushing chest pain now?', 'Je, una maumivu makali au shinikizo kali kifuani sasa?'),
+    'weakness_meaning': ('When you say weak, what do you mean?', 'Unaposema mwili hauna nguvu, unamaanisha nini?'),
 }
 POOL = ('runny_blocked_nose', 'sore_throat', 'muscle_aches', 'wheezing',
         'productive_cough', 'heavy_sweating', 'weight_loss', 'cough', 'fever')
@@ -52,6 +54,11 @@ def consultation_question(question_id, language):
             options = [('under_3_days', 'Less than 3 days', 'Chini ya siku 3'),
                        ('3_to_14_days', '3 to 14 days', 'Siku 3 hadi 14'),
                        ('over_14_days', 'More than 14 days', 'Zaidi ya siku 14'),
+                       ('unknown', 'Not sure', 'Sina uhakika')]
+        elif question_id == 'weakness_meaning':
+            options = [('general_low_energy', 'Low energy all over; I can move my arms and legs normally', 'Uchovu mwili mzima; naweza kusogeza mikono na miguu kawaida'),
+                       ('sudden_one_sided', 'Sudden weakness on one side, face drooping or speech difficulty', 'Udhaifu wa ghafla upande mmoja, uso kupinda au shida ya kuzungumza'),
+                       ('other_weakness', 'Other loss of strength or difficulty moving normally', 'Kupungua nguvu kwa namna nyingine au shida ya kusogeza mwili kawaida'),
                        ('unknown', 'Not sure', 'Sina uhakika')]
         elif question_id == 'symptom_severity':
             options = [('mild', 'Mild: usual activities possible', 'Kidogo: naweza kufanya shughuli za kawaida'),
@@ -76,7 +83,10 @@ def consultation_question(question_id, language):
     if question_id in {'symptom_duration', 'general_duration'}:
         result['rationale'] = ('Muda husaidia kuchagua maswali na ushauri; haujafunzwa kama kipengele cha modeli.'
                                if language == 'sw' else
-                               'Duration guides questions and advice; it is not a trained disease-model feature.')
+                                'Duration guides questions and advice; it is not a trained disease-model feature.')
+    if question_id == 'weakness_meaning':
+        result['rationale'] = ('Kupungua nguvu kuna maana tofauti; jibu husaidia kuchagua huduma inayofaa, si kuongeza kipengele cha modeli.' if language == 'sw' else
+            'Weakness can mean different things. This answer guides care; it is not a trained disease-model feature.')
     return result
 
 
@@ -102,6 +112,20 @@ def next_consultation_question(states, details, durations, asked, catalogue, age
     reported = {code for code, state in states.items() if state == 'present'}
     if not reported:
         return None
+    # Complete the safety screen before any routine discriminator, even when
+    # the initial complaint has no respiratory anchor.
+    if states.get('shortness_of_breath', 'unmentioned') in {'unknown', 'unmentioned'} and 'breathing_difficulty' not in asked:
+        return 'breathing_difficulty'
+    if 'severe_chest_pain' not in asked:
+        return 'severe_chest_pain'
+    if states.get('fever', 'unmentioned') in {'unknown', 'unmentioned'} and 'fever' not in asked:
+        return 'fever'
+    if not durations and 'symptom_duration' not in asked and 'general_duration' not in asked:
+        return 'symptom_duration' if 'cough' in reported else 'general_duration'
+    if 'weakness' in reported and 'weakness_meaning' not in asked:
+        return 'weakness_meaning'
+    if details.get('weakness', {}).get('weakness_meaning') in {'other_weakness', 'unknown'}:
+        return None
     from app.services.primary_assessment import has_respiratory_scope
     present_features, _ = _features(states, details)
     severe = any(item.get('severity') == 'severe' for item in details.values())
@@ -111,7 +135,7 @@ def next_consultation_question(states, details, durations, asked, catalogue, age
         known_durations = [value for key, value in durations.items() if key != '_general']
         if not known_durations and not durations.get('_general') and 'general_duration' not in asked:
             return 'general_duration'
-        if 'headache' in reported and not details.get('headache', {}).get('severity') and 'symptom_severity' not in asked:
+        if any(code in reported and not details.get(code, {}).get('severity') for code in ('headache', 'tiredness', 'weakness')) and 'symptom_severity' not in asked:
             return 'symptom_severity'
         if states.get('fever', 'unmentioned') in {'unknown', 'unmentioned'} and 'fever' not in asked:
             return 'fever'
@@ -133,7 +157,11 @@ def next_consultation_question(states, details, durations, asked, catalogue, age
         return 'weight_loss'
     present, absent = _features(states, details)
     from app.services.primary_assessment import select_primary_evidence
-    if select_primary_evidence(present, absent, age, sex)['status'] == 'eligible':
+    selection = select_primary_evidence(present, absent, age, sex)
+    if 'dangerous_alternative_requires_review' in selection.get('reasons', []):
+        return None
+    if (selection['status'] == 'eligible' and
+            selection.get('diagnostics', {}).get('source_relative_top_score', 0) >= .8):
         return None
     available = {}
     for code in POOL:
@@ -156,11 +184,30 @@ def next_consultation_question(states, details, durations, asked, catalogue, age
     for item in ranked:
         feature = item['feature']
         if item['information_gain'] >= MIN_QUESTION_INFORMATION_GAIN and feature in available:
-            return available[feature]
+            code = available[feature]
+            # Information gain alone is not a reason to burden the patient:
+            # at least one usable answer must change the name or care action.
+            outcomes = []
+            for state in (None, 'present', 'absent'):
+                hypothetical = dict(states)
+                hypothetical_details = dict(details)
+                if state:
+                    hypothetical[code] = state
+                    hypothetical_details[code] = {'code': code, 'features': catalogue[code].features}
+                p, a = _features(hypothetical, hypothetical_details)
+                decision = select_primary_evidence(p, a, age, sex)
+                primary = decision.get('primary_prediction') if decision['status'] == 'eligible' else None
+                from app.services.primary_assessment import patient_guidance
+                guidance = patient_guidance({'symptom_states': hypothetical, 'duration': durations.get('cough'),
+                    '_present_features': p, '_decision_reasons': decision.get('reasons', [])}, age, primary=primary)
+                outcomes.append((primary['condition'] if primary else None, guidance['care_level']))
+            if len(set(outcomes)) > 1:
+                return code
     return None
 
 
 def prepare_consultation(confirmation, answers, language, db, age, sex):
+    from app.services.consultation_guidance import SW_SYMPTOMS
     profile = deepcopy(confirmation)
     catalogue = {row.code: row for row in db.scalars(select(Symptom)).all()}
     states, details, durations, asked = {}, {}, {}, []
@@ -175,6 +222,7 @@ def prepare_consultation(confirmation, answers, language, db, age, sex):
         if state == 'present' and (item.get('duration_text') or item.get('duration_min_days') is not None):
             durations[code] = {'text': item.get('duration_text'), 'min_days': item.get('duration_min_days'),
                                'max_days': item.get('duration_max_days'), 'symptom_code': code}
+    unknown_count = 0
     for response in answers:
         question_id = response['question_id']
         expected = next_consultation_question(states, details, durations, asked, catalogue, age, sex)
@@ -185,19 +233,35 @@ def prepare_consultation(confirmation, answers, language, db, age, sex):
         if answer not in {item['value'] for item in payload['options']}:
             raise ValueError(f'Invalid answer for follow-up question {question_id}.')
         asked.append(question_id)
+        unknown_count += answer == 'unknown'
         if question_id in {'symptom_duration', 'general_duration'}:
             low, high = {'under_3_days': (0, 2), '3_to_14_days': (3, 14),
                          'over_14_days': (15, None), 'unknown': (None, None)}[answer]
             duration_code = 'cough' if question_id == 'symptom_duration' else '_general'
             durations[duration_code] = {'text': answer, 'min_days': low, 'max_days': high,
                                       'source': 'follow_up', 'symptom_code': duration_code}
+        elif question_id == 'weakness_meaning':
+            details['weakness']['weakness_meaning'] = answer
+            if answer == 'sudden_one_sided':
+                from app.services.assessment_safety import detect_safety_signs
+                profile['has_red_flag'] = True
+                profile['red_flag_symptoms'] = detect_safety_signs('sudden one-sided weakness', age=age)
+                break
         elif question_id == 'symptom_severity':
-            target = 'headache' if states.get('headache') == 'present' else next((c for c in details if states.get(c) == 'present'), None)
+            target = next((code for code in ('weakness', 'headache', 'tiredness') if states.get(code) == 'present'),
+                          next((c for c in details if states.get(c) == 'present'), None))
             if target and answer != 'unknown':
                 details[target]['severity'] = answer
         elif question_id == 'fatigue_pattern':
             details['tiredness']['fatigue_pattern'] = answer
             details['tiredness']['features'] = catalogue['tiredness'].features if answer in {'persistent', 'unrefreshing'} else []
+        elif question_id == 'severe_chest_pain':
+            states['severe_chest_pain'] = {'yes': 'present', 'no': 'absent', 'unknown': 'unknown'}[answer]
+            if answer == 'yes':
+                from app.services.assessment_safety import detect_safety_signs
+                profile['has_red_flag'] = True
+                profile['red_flag_symptoms'] = detect_safety_signs('severe chest pain', age=age)
+                break
         else:
             code = QUESTION_TO_CODE.get(question_id, question_id)
             if question_id == 'weight_loss_intent':
@@ -215,14 +279,17 @@ def prepare_consultation(confirmation, answers, language, db, age, sex):
             if question_id == 'breathing_difficulty' and answer == 'yes':
                 profile['has_red_flag'] = True
                 profile['red_flag_symptoms'] = [details['shortness_of_breath']]
+                details['shortness_of_breath']['breathing_tier'] = 'severity_check'
                 break
             if question_id == 'fever' and answer == 'yes' and age == 0:
                 from app.services.assessment_safety import detect_safety_signs
                 profile['has_red_flag'] = True
                 profile['red_flag_symptoms'] = detect_safety_signs('fever', age=0)
                 break  # Newly disclosed infant fever also precedes more questions.
+        if unknown_count >= 2:
+            break
     present, absent = _features(states, details)
-    next_id = None if profile['has_red_flag'] else next_consultation_question(
+    next_id = None if profile['has_red_flag'] or unknown_count >= 2 else next_consultation_question(
         states, details, durations, asked, catalogue, age, sex)
     profile['_symptom_details'] = details
     profile.update({
@@ -237,6 +304,9 @@ def prepare_consultation(confirmation, answers, language, db, age, sex):
             'onset_text': details.get('cough', {}).get('onset_text'),
             'weight_loss_intent': details.get('weight_loss', {}).get('weight_loss_intent'),
             'fatigue_pattern': details.get('tiredness', {}).get('fatigue_pattern'),
+            'weakness_meaning': details.get('weakness', {}).get('weakness_meaning'),
+            'symptom_labels': {code: (SW_SYMPTOMS.get(code, item.get('display_name', code.replace('_', ' '))) if language == 'sw'
+                                     else item.get('display_name', code.replace('_', ' '))) for code, item in details.items()},
             'follow_up_answers': answers[:len(asked)], 'questions_asked': asked,
             'model_version': V3_MODEL_VERSION,
             'context_note': (

@@ -1,4 +1,4 @@
-> Current patient flow: **V3 partial evidence with selective single-primary decisions**. After migrations, run `python -m app.db.seed_symptom_catalog` and `python -m app.db.seed_model_version` against the intended database. Patients receive one possible explanation when the frozen research policy permits it, or follow-up/uncertainty guidance without a condition name. No patient confidence percentage is returned. See the [current Kenya patient experience report](../KENYA_PATIENT_EXPERIENCE_REPORT.md) and [research and terminology references](docs/kenya_research.md). This has no Kenyan clinical validation. Legacy model sections below are retained for provenance.
+> Live model: **V3 partial-evidence, 21 conditions, 34 features; simulated DDXPlus only; not clinically validated for patients in Kenya. V2 is not live.** Names are currently withheld because a fresh-fold gap threshold cannot be validated with the missing datasets. Selected-result presentation supports a rounded whole-percent **model match**, never a patient probability or overall accuracy; no score is shown for withheld or urgent results. See the [current README](../README.md), [defence one-pager](../README_DEFENCE.md) and [validation record](../audit-artifacts/VALIDATION_2026-10-29.md). After migrations, seed the symptom catalogue and model version. Legacy sections below are historical, not the patient contract.
 
 # Respiratory Health Awareness Backend
 
@@ -23,8 +23,9 @@ The backend provides:
 - Symptom confirmation and rejection
 - Red-flag symptom detection
 - Safety-only red-flag handling
-- Random Forest prediction
-- Top-3 condition pattern results
+- V3 partial-evidence ranking with selective abstention
+- At most one patient condition, only when the checked V3 bucket + scope + gap
+  policy permits; sparse patterns are withheld
 - User-friendly disease names
 - Plain-English condition descriptions
 - Model-confidence explanation

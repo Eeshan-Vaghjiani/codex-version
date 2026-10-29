@@ -41,7 +41,8 @@ URGENT_GUIDANCE = (
 DISCLAIMER = (
     "This system provides health-awareness information only. "
     "It does not provide a medical diagnosis and should not "
-    "replace assessment by a qualified healthcare professional."
+    "replace assessment by a qualified healthcare professional. "
+    "It has not been clinically validated for patients in Kenya and considers only a limited set of respiratory conditions."
 )
 
 
@@ -94,7 +95,7 @@ def get_prediction_guidance(language="en", context=None) -> dict:
         return {
             "confidence_explanation": "Alama ya modeli haijarekebishwa kuwa uwezekano wa kitabibu. Si uwezekano kwamba una ugonjwa huu.",
             "health_guidance": assessment_advice + "Dalili zikiendelea, zikizidi au zikikutia wasiwasi, tafuta tathmini ya mtaalamu wa afya. Alama ndogo haimaanishi hatari ndogo.",
-            "disclaimer": "Mfumo huu hutoa taarifa za afya tu. Hautoi utambuzi wa ugonjwa wala kuchukua nafasi ya mtaalamu wa afya.",
+            "disclaimer": "Mfumo huu hutoa mwongozo tu, si utambuzi wa ugonjwa wala mbadala wa mtaalamu wa afya aliyehitimu. Haujathibitishwa kitabibu kwa wagonjwa nchini Kenya na hutathmini baadhi tu ya magonjwa ya mfumo wa upumuaji.",
         }
     return {
         "confidence_explanation": CONFIDENCE_EXPLANATION,

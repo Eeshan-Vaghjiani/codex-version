@@ -2,14 +2,14 @@
 from copy import deepcopy
 from app.core.errors import ServiceNotReadyError
 from app.services.patient_terminology import patient_term
-from app.services.consultation_guidance import consultation_guidance, SW_SYMPTOMS
+from app.services.consultation_guidance import consultation_guidance, withheld_viral_guidance, SW_SYMPTOMS
 from app.services.v3_prediction import get_v3_bundle
 
-PATIENT_POLICY_VERSION = 'kenya_single_primary_v1'
+PATIENT_POLICY_VERSION = 'kenya_single_primary_v3_gap_checked'
 RESPIRATORY_FEATURES = frozenset({'E_103','E_112','E_166','E_169','E_181','E_182','E_190','E_194',
  'E_201','E_203','E_212','E_214','E_217','E_220','E_45','E_65','E_66','E_67','E_77','E_97'})
 PUBLIC_CONTEXT_FIELDS = {'language','symptom_states','symptom_durations','duration','severity','cough_type',
- 'onset_text','weight_loss_intent','fatigue_pattern','follow_up_answers','questions_asked','model_version','context_note','age'}
+ 'onset_text','weight_loss_intent','fatigue_pattern','weakness_meaning','symptom_labels','follow_up_answers','questions_asked','model_version','context_note','age','urgency'}
 
 
 def has_respiratory_scope(features):
@@ -44,12 +44,12 @@ def select_primary_evidence(present_features, absent_features, age, sex):
 def patient_guidance(context, age, decision_status='uncertain', primary=None):
     sw = context.get('language') == 'sw'
     base = consultation_guidance(context, age)
-    # No confidence percentage, ranking score or technical probability note is
-    # exposed on the patient transport contract, including expandable sections.
+    # Only the selected V3 match is public; ranked candidates stay private.
     base.pop('score_note', None)
     base.pop('confidence_explanation', None)
     base['context_note'] = public_assessment_context(dict(context, context_note=''))['context_note']
     states = context.get('symptom_states', {})
+    viral_lines = withheld_viral_guidance(states, context.get('duration', {}), sw) if primary is None else []
     scope = has_respiratory_scope(context.get('_present_features', []))
     if decision_status == 'insufficient_information':
         summary = ('Tafadhali eleza dalili unazohisi na muda ambao umekuwa nazo, ili tuweze kuuliza maswali yanayofaa.' if sw else
@@ -60,6 +60,9 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
     elif primary is not None:
         summary = ('Hili ni jambo linaloweza kueleza dalili zako, si utambuzi uliothibitishwa.' if sw else
                    'This is one possible explanation for your symptoms, not a confirmed diagnosis.')
+    elif viral_lines and base['care_level'] == 'self_care_or_review':
+        summary = ('Mchanganyiko huu mara nyingi huonekana katika mafua ya virusi. Programu haiamini kutosha kutaja ugonjwa mmoja; ushauri ni wa jumla, si utambuzi.' if sw else
+                   'This pattern most often reflects a viral cold. The model is not confident enough to name one condition; this is general care advice, not a diagnosis.')
     elif not scope and any(value == 'present' for value in states.values()):
         summary = ('Dalili hizi zinaweza kuwa na sababu kadhaa. Programu hii inalenga magonjwa ya mfumo wa upumuaji na haiwezi kutathmini sababu zote.' if sw else
                    'These symptoms can have several causes. This app focuses on respiratory conditions and cannot assess every possible cause.')
@@ -67,8 +70,12 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
         summary = ('Dalili ulizotoa zinafanana na hali kadhaa. Kwa sasa hatuwezi kupendekeza ugonjwa mmoja kwa msingi wa taarifa hizi.' if sw else
                    'The symptoms you reported overlap with several conditions. The information does not support naming one illness at this point.')
     base['assessment_summary'] = summary
-    base['uncertainty_message'] = ('Maswali yanasaidia kuelewa dalili, lakini uchunguzi au vipimo vya mtaalamu wa afya vinaweza kuhitajika.' if sw else
-                                   'Your answers help clarify the symptoms, but an examination or tests may be needed.')
+    base['uncertainty_message'] = (
+        'Taarifa hazitoshi kutaja hali moja, na hakuna ugonjwa ulioondolewa. Fuatilia kwa saa 24-48 na utafute huduma mapema hali ikizidi.' if sw else
+        'Not enough information to name one condition, and nothing is ruled out. Monitor for 24-48 hours and seek care sooner if it worsens.'
+    ) if primary is None else (
+        'Hili ni pendekezo tu; uchunguzi au vipimo vinaweza kuhitajika.' if sw else
+        'This is a tentative pattern match; an examination or tests may be needed.')
     # A possibility of these conditions needs clinical assessment, rather than
     # a generic home-care recommendation based on a relative model ranking.
     medical_review_classes = {'Tuberculosis','Pulmonary neoplasm','Pneumonia','Whooping cough',
@@ -81,6 +88,24 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
              'Contact a healthcare professional to assess this possibility; an examination or tests may be needed.'),
             base['next_steps'][-1],
         ]
+    if 'dangerous_alternative_requires_review' in context.get('_decision_reasons', []):
+        base['care_level'] = 'urgent_review'
+        base['next_steps'].insert(0, 'Tafuta tathmini ya mtaalamu wa afya leo. Modeli haiwezi kutenganisha hali zinazoweza kuhitaji matibabu.' if sw else
+            'Seek same-day clinical review. The model cannot safely separate overlapping patterns that may need treatment.')
+    if viral_lines and base['care_level'] == 'self_care_or_review':
+        for line in reversed(viral_lines):
+            base['next_steps'].insert(0, line)
+    if primary and primary.get('match_band') == 'low':
+        base['uncertainty_message'] = ('Ulinganifu ni mdogo; modeli haina uhakika. Sahihisha dalili, fuatilia kwa saa 24-48 na utafute huduma mapema hali ikizidi.' if sw else
+            'Low match: the model is not sure. Correct the symptoms, monitor for 24-48 hours and seek care sooner if it worsens.')
+    if primary is None and base['care_level'] == 'professional_review':
+        base['uncertainty_message'] = ('Taarifa hazitoshi kutaja hali moja, na hakuna ugonjwa ulioondolewa. Panga tathmini ya mhudumu wa afya mapema; usisubiri saa 24-48 kwa dalili kali, zinazoendelea au kupungua nguvu kusikoeleweka.' if sw else
+            'Not enough information to name one condition, and nothing is ruled out. Arrange a health-worker assessment promptly; do not wait 24-48 hours for severe, persistent symptoms or unexplained loss of strength.')
+    if 'safety_screen_incomplete' in context.get('_decision_reasons', []):
+        base['care_level'] = 'professional_review'
+        base['next_steps'].insert(0, 'Hatukuweza kufafanua dalili za hatari. Wasiliana na mhudumu wa afya mapema; shida ya kupumua ukiwa umepumzika au maumivu makali ya kifua yanahitaji huduma ya dharura sasa.' if sw else
+            'We could not clarify the warning-sign screen. Contact a health worker promptly; breathing difficulty at rest or severe chest pain needs emergency care now.')
+    base['urgency'] = 'urgent_same_day' if base['care_level'] == 'urgent_review' else base['care_level']
     base['health_guidance'] = base['next_steps'][0]
     return base
 
@@ -101,13 +126,30 @@ def build_primary_assessment(confirmation, age, sex):
     # completeness guard: unsupported details must not silently produce a name.
     if confirmation.get('unmatched_wording'):
         chosen['status'], chosen['primary_prediction'] = 'uncertain', None
-        reasons = ['unsupported_information']
+        reasons.append('unsupported_information')
     if any(value == 'severe' for value in context.get('severity', {}).values()):
         chosen['status'], chosen['primary_prediction'] = 'uncertain', None
-        reasons = ['clinical_assessment_needed']
+        reasons.append('clinical_assessment_needed')
+    if context.get('symptom_states', {}).get('weakness') == 'present' and context.get('weakness_meaning') != 'general_low_energy':
+        chosen['status'], chosen['primary_prediction'] = 'uncertain', None
+        reasons.append('weakness_needs_assessment')
+    replies = context.get('follow_up_answers', [])
+    if sum(reply.get('answer') == 'unknown' for reply in replies) >= 2:
+        chosen['status'], chosen['primary_prediction'] = 'uncertain', None
+        reasons.append('answers_remain_uncertain')
+    if any(reply.get('question_id') in {'breathing_difficulty', 'severe_chest_pain'} and reply.get('answer') == 'unknown' for reply in replies):
+        chosen['status'], chosen['primary_prediction'] = 'uncertain', None
+        reasons.append('safety_screen_incomplete')
     if chosen['status'] == 'eligible' and chosen.get('primary_prediction'):
         raw = chosen['primary_prediction']
+        score = chosen.get('diagnostics', {}).get('source_relative_top_score', raw.get('raw_relative_score'))
+        if not isinstance(score, (int, float)) or isinstance(score, bool) or not 0 <= score <= 1:
+            raise ServiceNotReadyError('The selected V3 match score is unavailable.')
+        percent = int(score * 100 + 0.5)
         primary = {**patient_term(raw['condition'], language),
+            'model_match_percent': percent,
+            'match_band': 'low' if percent < 60 else 'moderate' if percent < 80 else 'strong',
+            'score_kind': 'v3_relative_model_match',
             'explanation': ('Dalili ulizoripoti zinapatana na maelezo haya, lakini pia zinaweza kuonekana katika hali nyingine.' if sw else
                             'Some of the symptoms you reported are consistent with this possibility, but they can also occur in other conditions.'),
             'supporting_symptoms': list(dict.fromkeys(
@@ -143,10 +185,14 @@ def history_patient_projection(session):
             'assessment_context': public_assessment_context(context), 'predictions': [], 'primary_prediction': None,
             'clinical_validation': False, 'uncertain': True}
     if session.status == 'urgent_review' or session.has_red_flag:
-        from app.services.health_guidance import get_urgent_guidance
+        from app.services.assessment_safety import detect_safety_signs, safety_guidance
+        flags = detect_safety_signs(session.input_text, age=session.age)
+        check = 'exertion_full_sentence' if context.get('urgency') == 'urgent_same_day' else 'at_rest_or_cannot_speak'
+        if not flags:
+            flags = [{'code': 'saved_warning', 'breathing_tier': 'severity_check' if check == 'exertion_full_sentence' else 'emergency'}]
         return {**base, 'status': 'urgent_review',
                 'decision': {'status':'urgent_review','reasons':['reported_warning_sign'],'policy_version':PATIENT_POLICY_VERSION},
-                **get_urgent_guidance(language)}
+                **safety_guidance(flags, language, check)}
     saved = context.get('patient_decision', {})
     if saved.get('policy_version') != PATIENT_POLICY_VERSION:
         return {**base, 'status':'reassessment_required',

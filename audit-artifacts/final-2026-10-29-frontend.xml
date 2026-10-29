@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="122" failures="0" errors="0" time="21.9854668">
+    <testsuite name="src/components/__tests__/AdminRoute.test.jsx" timestamp="2026-10-29T07:34:14.773Z" hostname="Eeshan" tests="4" failures="0" errors="0" skipped="0" time="0.1466401">
+        <testcase classname="src/components/__tests__/AdminRoute.test.jsx" name="AdminRoute &gt; shows the administrator loading state" time="0.1048539">
+        </testcase>
+        <testcase classname="src/components/__tests__/AdminRoute.test.jsx" name="AdminRoute &gt; redirects unauthenticated users to login" time="0.0187588">
+        </testcase>
+        <testcase classname="src/components/__tests__/AdminRoute.test.jsx" name="AdminRoute &gt; blocks authenticated patients from administrator pages" time="0.0101771">
+        </testcase>
+        <testcase classname="src/components/__tests__/AdminRoute.test.jsx" name="AdminRoute &gt; allows administrators to access administrator pages" time="0.0091758">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PossibleExplanations.test.jsx" timestamp="2026-10-29T07:34:14.783Z" hostname="Eeshan" tests="4" failures="0" errors="0" skipped="0" time="0.555299">
+        <testcase classname="src/components/__tests__/PossibleExplanations.test.jsx" name="One possible explanation &gt; uses backend wording and reported symptoms with a clear uncertainty statement" time="0.4791168">
+        </testcase>
+        <testcase classname="src/components/__tests__/PossibleExplanations.test.jsx" name="One possible explanation &gt; cannot select a disease from a legacy candidate array" time="0.0054885">
+        </testcase>
+        <testcase classname="src/components/__tests__/PossibleExplanations.test.jsx" name="One possible explanation &gt; retains a medical name when it differs from the familiar name" time="0.0157727">
+        </testcase>
+        <testcase classname="src/components/__tests__/PossibleExplanations.test.jsx" name="One possible explanation &gt; uses short Swahili labels" time="0.048956">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/PredictionFeedback.test.jsx" timestamp="2026-10-29T07:34:14.785Z" hostname="Eeshan" tests="2" failures="0" errors="0" skipped="0" time="1.069758">
+        <testcase classname="src/components/__tests__/PredictionFeedback.test.jsx" name="PredictionFeedback &gt; tells assistive technology which answer is selected" time="0.9213729">
+        </testcase>
+        <testcase classname="src/components/__tests__/PredictionFeedback.test.jsx" name="PredictionFeedback &gt; announces a missing answer as an alert" time="0.1434959">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/ProtectedRoute.test.jsx" timestamp="2026-10-29T07:34:14.786Z" hostname="Eeshan" tests="4" failures="0" errors="0" skipped="0" time="0.490629">
+        <testcase classname="src/components/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute &gt; shows the session loading state" time="0.085954">
+        </testcase>
+        <testcase classname="src/components/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute &gt; redirects unauthenticated users to login" time="0.0258011">
+        </testcase>
+        <testcase classname="src/components/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute &gt; offers a retry instead of logging out when the backend is unreachable" time="0.3593334">
+        </testcase>
+        <testcase classname="src/components/__tests__/ProtectedRoute.test.jsx" name="ProtectedRoute &gt; allows authenticated users to access protected content" time="0.0135356">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/context/__tests__/AuthContext.test.jsx" timestamp="2026-10-29T07:34:14.789Z" hostname="Eeshan" tests="4" failures="0" errors="0" skipped="0" time="0.4631463">
+        <testcase classname="src/context/__tests__/AuthContext.test.jsx" name="AuthProvider session restore &gt; keeps the token when the backend cannot be reached" time="0.1082568">
+        </testcase>
+        <testcase classname="src/context/__tests__/AuthContext.test.jsx" name="AuthProvider session restore &gt; clears the token when the backend answers 401" time="0.0309194">
+        </testcase>
+        <testcase classname="src/context/__tests__/AuthContext.test.jsx" name="AuthProvider session restore &gt; restores a valid session" time="0.0140061">
+        </testcase>
+        <testcase classname="src/context/__tests__/AuthContext.test.jsx" name="AuthProvider session restore &gt; restores the session when retried after the backend returns" time="0.3051227">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/__tests__/AdminHistoryDetailPage.test.jsx" timestamp="2026-10-29T07:34:14.791Z" hostname="Eeshan" tests="5" failures="0" errors="0" skipped="0" time="1.4304747">
+        <testcase classname="src/pages/__tests__/AdminHistoryDetailPage.test.jsx" name="Admin history detail display &gt; shows a single saved condition without ranking" time="0.9845085">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AdminHistoryDetailPage.test.jsx" name="Admin history detail display &gt; keeps caution and context visible when legacy response metadata is missing" time="0.1975999">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AdminHistoryDetailPage.test.jsx" name="Admin history detail display &gt; preserves competing possibilities in older records" time="0.1362519">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AdminHistoryDetailPage.test.jsx" name="Admin history detail display &gt; shows urgent guidance without a prediction" time="0.0516174">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AdminHistoryDetailPage.test.jsx" name="Admin history detail display &gt; does not show a disease when status alone indicates urgent review" time="0.0553582">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/__tests__/AssessmentFollowUp.test.jsx" timestamp="2026-10-29T07:34:14.793Z" hostname="Eeshan" tests="14" failures="0" errors="0" skipped="0" time="2.8858782">
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; shows localized numbered options without a disease or feedback" time="1.1081634">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; validates selection before making a request" time="0.2203254">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; submits stable question ID and answer with the original demographics and symptoms" time="0.2254767">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; appends each answer and resets the selection for the next question" time="0.4190003">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; keeps the question available when the backend rejects an answer" time="0.1944135">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; suppresses stray disease scores for needs_follow_up" time="0.0544708">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; suppresses stray disease scores for insufficient_evidence" time="0.0255665">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; prioritizes urgent guidance over a returned follow-up question and disease" time="0.0589433">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; treats a red-flag response as urgent even when its status is inconsistent" time="0.0441444">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; displays emergency guidance before any demographic form submission" time="0.077628">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; explains preserved context that the active model cannot learn from" time="0.0788098">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; uses numbered backend option labels without duplicating their numbers" time="0.0800502">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; turns follow-up answers into a backend selected possibility and practical next steps" time="0.2462771">
+        </testcase>
+        <testcase classname="src/pages/__tests__/AssessmentFollowUp.test.jsx" name="Targeted assessment follow-ups &gt; prioritizes an urgent care level even if a response includes tentative candidates" time="0.0474815">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/__tests__/ErrorMessages.test.jsx" timestamp="2026-10-29T07:34:14.799Z" hostname="Eeshan" tests="3" failures="0" errors="0" skipped="0" time="1.1690705">
+        <testcase classname="src/pages/__tests__/ErrorMessages.test.jsx" name="pages with a 422 validation list &gt; login shows a message instead of crashing" time="1.0066683">
+        </testcase>
+        <testcase classname="src/pages/__tests__/ErrorMessages.test.jsx" name="pages with a 422 validation list &gt; history detail treats an invalid id as not found" time="0.1114053">
+        </testcase>
+        <testcase classname="src/pages/__tests__/ErrorMessages.test.jsx" name="pages with a 422 validation list &gt; history detail turns other error lists into text" time="0.0469586">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/__tests__/LoginLogoutRedirect.test.jsx" timestamp="2026-10-29T07:34:14.801Z" hostname="Eeshan" tests="3" failures="0" errors="0" skipped="0" time="1.0329412">
+        <testcase classname="src/pages/__tests__/LoginLogoutRedirect.test.jsx" name="redirect after login &gt; returns to the page that was requested" time="0.100941">
+        </testcase>
+        <testcase classname="src/pages/__tests__/LoginLogoutRedirect.test.jsx" name="redirect after login &gt; uses the dashboard when nothing was requested" time="0.0124669">
+        </testcase>
+        <testcase classname="src/pages/__tests__/LoginLogoutRedirect.test.jsx" name="logout &gt; goes to the home page and then signs out" time="0.9156442">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/__tests__/PatientHistoryDetailPage.test.jsx" timestamp="2026-10-29T07:34:14.803Z" hostname="Eeshan" tests="4" failures="0" errors="0" skipped="0" time="1.5864575">
+        <testcase classname="src/pages/__tests__/PatientHistoryDetailPage.test.jsx" name="Patient history detail display &gt; shows a single condition without ranking" time="1.0213625">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PatientHistoryDetailPage.test.jsx" name="Patient history detail display &gt; keeps uncertainty and preserved context visible when legacy response metadata is missing" time="0.2360944">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PatientHistoryDetailPage.test.jsx" name="Patient history detail display &gt; asks for a new check instead of promoting candidates from an older record" time="0.2046238">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PatientHistoryDetailPage.test.jsx" name="Patient history detail display &gt; shows urgent guidance without a disease prediction" time="0.111091">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/__tests__/PatientHistoryPage.test.jsx" timestamp="2026-10-29T07:34:14.806Z" hostname="Eeshan" tests="1" failures="0" errors="0" skipped="0" time="0.4934333">
+        <testcase classname="src/pages/__tests__/PatientHistoryPage.test.jsx" name="history list presents one backend primary and asks to reassess old rankings" time="0.4904354">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/__tests__/PatientSafety.test.jsx" timestamp="2026-10-29T07:34:14.807Z" hostname="Eeshan" tests="8" failures="0" errors="0" skipped="0" time="1.8049509">
+        <testcase classname="src/pages/__tests__/PatientSafety.test.jsx" name="Patient safety presentation &gt; shows one V3 whole-percent match with honest labels and care first" time="0.9910561">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PatientSafety.test.jsx" name="Patient safety presentation &gt; shows duration, severity and present / absent / uncertain on the result itself" time="0.1210972">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PatientSafety.test.jsx" name="Patient safety presentation &gt; rechecks corrections from the result, clears old result and reopens confirmation flow" time="0.4398454">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PatientSafety.test.jsx" name="Patient safety presentation &gt; never shows a name or score for urgent_review" time="0.0720159">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PatientSafety.test.jsx" name="Patient safety presentation &gt; never shows a name or score for assessment_uncertain" time="0.0366505">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PatientSafety.test.jsx" name="Patient safety presentation &gt; never shows a name or score for insufficient_evidence" time="0.0475312">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PatientSafety.test.jsx" name="Patient safety presentation &gt; does not convert legacy or malformed scores into a V3 match" time="0.0014999">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PatientSafety.test.jsx" name="Patient safety presentation &gt; makes the HomePage promise conditional and explicit about pending validation" time="0.0914024">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/__tests__/PredictionPage.test.jsx" timestamp="2026-10-29T07:34:14.810Z" hostname="Eeshan" tests="15" failures="0" errors="0" skipped="0" time="2.4879959">
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="isPredictionForConfirmation &gt; matches the same text and codes in any order" time="0.0068399">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="isPredictionForConfirmation &gt; rejects a result made from different text" time="0.0012835">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="isPredictionForConfirmation &gt; rejects a result made from different codes" time="0.0005578">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="isPredictionForConfirmation &gt; rejects a missing result" time="0.0004853">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="PredictionPage saved results &gt; discards an old policy cache before reopening the form" time="0.2862554">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="PredictionPage saved results &gt; displays only the explicit backend primary even if stray candidates exist" time="0.9917344">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="PredictionPage saved results &gt; does not invent a primary for an unsupported or unmarked result" time="0.1472221">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="PredictionPage saved results &gt; does not invent a primary for an unsupported or unmarked result" time="0.2180559">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="PredictionPage saved results &gt; does not invent a primary for an unsupported or unmarked result" time="0.229438">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="PredictionPage saved results &gt; does not invent a primary for an unsupported or unmarked result" time="0.1612098">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="PredictionPage saved results &gt; does not invent a primary for an unsupported or unmarked result" time="0.1732998">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="PredictionPage saved results &gt; keeps urgent guidance ahead of even an explicitly selected primary" time="0.0471889">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="PredictionPage saved results &gt; does not reuse a routine saved result for a red flag confirmation" time="0.0911021">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="PredictionPage saved results &gt; shows a next step once when the guidance paragraph repeats the first bullet" time="0.0539619">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionPage.test.jsx" name="PredictionPage saved results &gt; explains unused symptom details without treating absent features as negative evidence" time="0.0745851">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/__tests__/PredictionSubmission.test.jsx" timestamp="2026-10-29T07:34:14.816Z" hostname="Eeshan" tests="4" failures="0" errors="0" skipped="0" time="1.9456507">
+        <testcase classname="src/pages/__tests__/PredictionSubmission.test.jsx" name="Prediction submission workflow &gt; submits confirmed symptoms and displays the result" time="1.1318538">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionSubmission.test.jsx" name="Prediction submission workflow &gt; prevents submission with an invalid age" time="0.2666817">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionSubmission.test.jsx" name="Prediction submission workflow &gt; shows an error when the login session has expired" time="0.3651687">
+        </testcase>
+        <testcase classname="src/pages/__tests__/PredictionSubmission.test.jsx" name="Prediction submission workflow &gt; submits a red-flag case and shows urgent guidance" time="0.1746266">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/__tests__/SymptomConfirmationPage.test.jsx" timestamp="2026-10-29T07:34:14.818Z" hostname="Eeshan" tests="5" failures="0" errors="0" skipped="0" time="2.0020025">
+        <testcase classname="src/pages/__tests__/SymptomConfirmationPage.test.jsx" name="Symptom confirmation workflow &gt; does not preselect absent or uncertain symptoms as present" time="1.029007">
+        </testcase>
+        <testcase classname="src/pages/__tests__/SymptomConfirmationPage.test.jsx" name="Symptom confirmation workflow &gt; does not select symptoms reported only for another person" time="0.2654205">
+        </testcase>
+        <testcase classname="src/pages/__tests__/SymptomConfirmationPage.test.jsx" name="Symptom confirmation workflow &gt; sends only selected symptoms to the backend" time="0.21094">
+        </testcase>
+        <testcase classname="src/pages/__tests__/SymptomConfirmationPage.test.jsx" name="Symptom confirmation workflow &gt; prevents confirmation when no symptoms are selected" time="0.3350418">
+        </testcase>
+        <testcase classname="src/pages/__tests__/SymptomConfirmationPage.test.jsx" name="Symptom confirmation workflow &gt; shows urgent guidance for a confirmed red flag" time="0.1573089">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/__tests__/SymptomInputPage.test.jsx" timestamp="2026-10-29T07:34:14.820Z" hostname="Eeshan" tests="7" failures="0" errors="0" skipped="0" time="2.3009682">
+        <testcase classname="src/pages/__tests__/SymptomInputPage.test.jsx" name="SymptomInputPage &gt; ignores an analysis response when the user has changed the description" time="1.0803981">
+        </testcase>
+        <testcase classname="src/pages/__tests__/SymptomInputPage.test.jsx" name="SymptomInputPage &gt; shows urgent guidance before confirmation and does not offer the questionnaire" time="0.3555955">
+        </testcase>
+        <testcase classname="src/pages/__tests__/SymptomInputPage.test.jsx" name="SymptomInputPage &gt; shows absent symptoms and extracted duration and severity distinctly" time="0.2158262">
+        </testcase>
+        <testcase classname="src/pages/__tests__/SymptomInputPage.test.jsx" name="SymptomInputPage &gt; shows symptom wording for confirmation without text-match percentages" time="0.1616463">
+        </testcase>
+        <testcase classname="src/pages/__tests__/SymptomInputPage.test.jsx" name="SymptomInputPage &gt; clears an older prediction result when new symptoms are analysed" time="0.1451306">
+        </testcase>
+        <testcase classname="src/pages/__tests__/SymptomInputPage.test.jsx" name="SymptomInputPage &gt; does not offer confirmation when nothing was recognised" time="0.1618315">
+        </testcase>
+        <testcase classname="src/pages/__tests__/SymptomInputPage.test.jsx" name="SymptomInputPage &gt; shows a readable message for a validation error list" time="0.1648957">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/api.test.js" timestamp="2026-10-29T07:34:14.823Z" hostname="Eeshan" tests="5" failures="0" errors="0" skipped="0" time="0.0110929">
+        <testcase classname="src/services/__tests__/api.test.js" name="getApiErrorMessage &gt; joins the messages of a FastAPI validation list" time="0.005153">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="getApiErrorMessage &gt; always returns a string" time="0.0006528">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="getApiErrorMessage &gt; returns a string detail unchanged" time="0.0005504">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="getApiErrorMessage &gt; uses the fallback when there is no detail" time="0.0005484">
+        </testcase>
+        <testcase classname="src/services/__tests__/api.test.js" name="getApiErrorMessage &gt; explains a network error in plain language" time="0.0007278">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/apiAuthExpiry.test.js" timestamp="2026-10-29T07:34:14.825Z" hostname="Eeshan" tests="3" failures="0" errors="0" skipped="0" time="0.0418206">
+        <testcase classname="src/services/__tests__/apiAuthExpiry.test.js" name="401 handling in the shared API client &gt; signs out on a 401 even when no token was sent" time="0.02542">
+        </testcase>
+        <testcase classname="src/services/__tests__/apiAuthExpiry.test.js" name="401 handling in the shared API client &gt; clears the token on a 401 for a protected request" time="0.0049196">
+        </testcase>
+        <testcase classname="src/services/__tests__/apiAuthExpiry.test.js" name="401 handling in the shared API client &gt; does not sign out for a wrong password at login" time="0.0069438">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/historyFeedback.test.js" timestamp="2026-10-29T07:34:14.827Z" hostname="Eeshan" tests="6" failures="0" errors="0" skipped="0" time="0.0203091">
+        <testcase classname="src/services/__tests__/historyFeedback.test.js" name="History and feedback API integration &gt; retrieves patient history using the default limit" time="0.0115405">
+        </testcase>
+        <testcase classname="src/services/__tests__/historyFeedback.test.js" name="History and feedback API integration &gt; supports a custom history limit" time="0.0009646">
+        </testcase>
+        <testcase classname="src/services/__tests__/historyFeedback.test.js" name="History and feedback API integration &gt; retrieves an individual prediction session" time="0.001117">
+        </testcase>
+        <testcase classname="src/services/__tests__/historyFeedback.test.js" name="History and feedback API integration &gt; preserves urgent-review history records" time="0.0010431">
+        </testcase>
+        <testcase classname="src/services/__tests__/historyFeedback.test.js" name="History and feedback API integration &gt; submits feedback with a trimmed comment" time="0.0009103">
+        </testcase>
+        <testcase classname="src/services/__tests__/historyFeedback.test.js" name="History and feedback API integration &gt; sends null when the optional comment is blank" time="0.0005908">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/patientResult.test.js" timestamp="2026-10-29T07:34:14.830Z" hostname="Eeshan" tests="12" failures="0" errors="0" skipped="0" time="0.0154792">
+        <testcase classname="src/services/__tests__/patientResult.test.js" name="Patient result selection contract &gt; uses the explicit primary rather than the first model candidate" time="0.0054202">
+        </testcase>
+        <testcase classname="src/services/__tests__/patientResult.test.js" name="Patient result selection contract &gt; does not promote scores, unmarked history or an urgent response to a disease result" time="0.0006169">
+        </testcase>
+        <testcase classname="src/services/__tests__/patientResult.test.js" name="Patient result selection contract &gt; does not promote scores, unmarked history or an urgent response to a disease result" time="0.0019595">
+        </testcase>
+        <testcase classname="src/services/__tests__/patientResult.test.js" name="Patient result selection contract &gt; does not promote scores, unmarked history or an urgent response to a disease result" time="0.0005238">
+        </testcase>
+        <testcase classname="src/services/__tests__/patientResult.test.js" name="Patient result selection contract &gt; does not promote scores, unmarked history or an urgent response to a disease result" time="0.0003974">
+        </testcase>
+        <testcase classname="src/services/__tests__/patientResult.test.js" name="Patient result selection contract &gt; does not promote scores, unmarked history or an urgent response to a disease result" time="0.000266">
+        </testcase>
+        <testcase classname="src/services/__tests__/patientResult.test.js" name="Patient result selection contract &gt; does not promote scores, unmarked history or an urgent response to a disease result" time="0.0002569">
+        </testcase>
+        <testcase classname="src/services/__tests__/patientResult.test.js" name="Patient result selection contract &gt; does not promote scores, unmarked history or an urgent response to a disease result" time="0.0002261">
+        </testcase>
+        <testcase classname="src/services/__tests__/patientResult.test.js" name="Patient result selection contract &gt; does not promote scores, unmarked history or an urgent response to a disease result" time="0.0003248">
+        </testcase>
+        <testcase classname="src/services/__tests__/patientResult.test.js" name="Patient result selection contract &gt; does not promote scores, unmarked history or an urgent response to a disease result" time="0.0004784">
+        </testcase>
+        <testcase classname="src/services/__tests__/patientResult.test.js" name="Patient result selection contract &gt; does not promote scores, unmarked history or an urgent response to a disease result" time="0.0002728">
+        </testcase>
+        <testcase classname="src/services/__tests__/patientResult.test.js" name="Patient result selection contract &gt; does not promote scores, unmarked history or an urgent response to a disease result" time="0.0002895">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/predictions.test.js" timestamp="2026-10-29T07:34:14.836Z" hostname="Eeshan" tests="9" failures="0" errors="0" skipped="0" time="0.031469">
+        <testcase classname="src/services/__tests__/predictions.test.js" name="Prediction API integration &gt; preserves consultation explanations, evidence and next steps unchanged" time="0.0087706">
+        </testcase>
+        <testcase classname="src/services/__tests__/predictions.test.js" name="Prediction API integration &gt; preserves follow-up identifiers, answer values, and response language" time="0.002431">
+        </testcase>
+        <testcase classname="src/services/__tests__/predictions.test.js" name="Prediction API integration &gt; sends the correct prediction request" time="0.0011612">
+        </testcase>
+        <testcase classname="src/services/__tests__/predictions.test.js" name="Prediction API integration &gt; supports a V1 single prediction response" time="0.0030223">
+        </testcase>
+        <testcase classname="src/services/__tests__/predictions.test.js" name="Prediction API integration &gt; preserves all V2 response fields" time="0.0022052">
+        </testcase>
+        <testcase classname="src/services/__tests__/predictions.test.js" name="Prediction API integration &gt; saves the complete V2 prediction result" time="0.0016603">
+        </testcase>
+        <testcase classname="src/services/__tests__/predictions.test.js" name="Prediction API integration &gt; propagates API errors" time="0.0047306">
+        </testcase>
+        <testcase classname="src/services/__tests__/predictions.test.js" name="Assessment cache policy migration &gt; discards unversioned predictions instead of treating old model guesses as current" time="0.0011875">
+        </testcase>
+        <testcase classname="src/services/__tests__/predictions.test.js" name="Assessment cache policy migration &gt; discards a cache from a different policy while keeping fresh answers resumable" time="0.0018757">
+        </testcase>
+    </testsuite>
+</testsuites>

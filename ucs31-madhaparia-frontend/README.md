@@ -1,6 +1,6 @@
 # RespiraCare Frontend
 
-> Current patient results use an explicit **single-primary selection decision**, with no condition name when evidence remains uncertain and no patient confidence percentages. See [UI validation and screenshots](docs/frontend_kenya_validation.md), the [full Kenya patient experience report](../KENYA_PATIENT_EXPERIENCE_REPORT.md), and [manual test cases](../RESPIRACARE_MANUAL_TEST_CASES.md). Model results have not been clinically validated for Kenyan patients.
+> Live model: **V3 partial-evidence, 21 conditions, 34 features; simulated DDXPlus only; not clinically validated for patients in Kenya. V2 is not live.** Names are currently withheld pending a fresh-fold gap validation. The selected-result UI supports one whole-percent V3 **model match**, not a probability, diagnosis or overall accuracy; withheld/urgent results have no score. See the [current README](../README.md), [validation record](../audit-artifacts/VALIDATION_2026-10-29.md) and [manual cases](../RESPIRACARE_MANUAL_TEST_CASES.md). Earlier UI reports describe historical policies.
 
 Frontend application for the **Respiratory Health Awareness and Prediction System**.
 
@@ -25,8 +25,8 @@ The application is intended for **health-awareness and educational purposes only
 - Symptom confirmation
 - Red-flag symptom handling
 - Respiratory prediction workflow
-- Ranked prediction results
-- Prediction confidence information
+- One selected primary or explicit withholding; never a ranked patient list
+- Honest whole-percent V3 model-match presentation for eligible fixtures (live names currently withheld)
 - Patient-specific prediction history
 - Prediction history detail view
 - Prediction feedback submission

@@ -1,0 +1,22 @@
+,Acute COPD exacerbation / infection,Acute laryngitis,Acute pulmonary edema,Acute rhinosinusitis,Allergic sinusitis,Bronchiectasis,Bronchiolitis,Bronchitis,Bronchospasm / acute asthma exacerbation,Chronic rhinosinusitis,Croup,Epiglottitis,Influenza,Larygospasm,Pneumonia,Pulmonary neoplasm,Spontaneous pneumothorax,Tuberculosis,URTI,Viral pharyngitis,Whooping cough,ABSTAIN
+Acute COPD exacerbation / infection,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1729
+Acute laryngitis,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3217
+Acute pulmonary edema,0,0,1798,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,800
+Acute rhinosinusitis,0,0,0,476,0,0,0,0,0,555,0,0,1,0,0,0,0,0,26,0,0,771
+Allergic sinusitis,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1294
+Bronchiectasis,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2224
+Bronchiolitis,0,0,0,0,0,0,6,2,0,0,0,0,0,0,0,0,0,0,0,0,0,26
+Bronchitis,0,0,0,0,0,0,0,2209,0,0,0,0,0,0,160,0,0,0,204,0,0,1021
+Bronchospasm / acute asthma exacerbation,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1761
+Chronic rhinosinusitis,0,0,0,0,0,0,0,0,0,1337,0,0,0,0,0,0,0,0,0,0,0,1410
+Croup,0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,0,0,0,225
+Epiglottitis,0,0,0,0,0,0,0,0,0,0,0,1920,0,0,0,0,0,0,0,0,0,444
+Influenza,0,0,0,0,0,0,0,0,0,0,0,0,2452,0,18,0,0,0,402,0,0,682
+Larygospasm,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,197
+Pneumonia,0,0,0,0,0,0,0,25,0,0,0,0,58,0,3243,2,0,0,42,6,0,166
+Pulmonary neoplasm,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,1382,0,0,0,0,0,492
+Spontaneous pneumothorax,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,514,0,0,0,0,829
+Tuberculosis,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,280,0,0,0,1585
+URTI,0,0,0,0,0,0,0,5,0,0,0,0,30,0,14,0,0,0,7394,0,0,1300
+Viral pharyngitis,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,821,0,7507
+Whooping cough,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,291

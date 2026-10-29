@@ -1,0 +1,352 @@
+{
+  "policy_version": "v3_relative_gap_v1",
+  "clinical_validation": false,
+  "model_sha256": "ae709ef5ddf6dd7a101fe426b610c3e83ef58aa93cb895ca13e7500220dc889c",
+  "base_policy_sha256": "f065c078632ce183e010c3444a32de5a81d3312f7c698b59fac373dd8aaf0df5",
+  "protocol_sha256": "374031b260b707303e313672141ea8b64a3bda815c034db35e31701694be3273",
+  "minimum_relative_gap": 0.15,
+  "minimum_relative_score": 0.6,
+  "minimum_present_count": 2,
+  "test_used_for_selection": false,
+  "buckets": {
+    "1:0": {
+      "enabled": false,
+      "cases": 6479,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "1:1": {
+      "enabled": false,
+      "cases": 6479,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "1:2": {
+      "enabled": false,
+      "cases": 6479,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "1:3": {
+      "enabled": false,
+      "cases": 6479,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "1:4": {
+      "enabled": false,
+      "cases": 6479,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "1:5": {
+      "enabled": false,
+      "cases": 6479,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "2:0": {
+      "enabled": false,
+      "cases": 6405,
+      "accepted": 1642,
+      "errors": 135,
+      "risk_upper_bound": 0.10511289888936466
+    },
+    "2:1": {
+      "enabled": false,
+      "cases": 6405,
+      "accepted": 1720,
+      "errors": 150,
+      "risk_upper_bound": 0.1100638349122207
+    },
+    "2:2": {
+      "enabled": false,
+      "cases": 6405,
+      "accepted": 1850,
+      "errors": 181,
+      "risk_upper_bound": 0.12083357832653088
+    },
+    "2:3": {
+      "enabled": false,
+      "cases": 6405,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "2:4": {
+      "enabled": false,
+      "cases": 6405,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "2:5": {
+      "enabled": false,
+      "cases": 6405,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "3:0": {
+      "enabled": false,
+      "cases": 5810,
+      "accepted": 3225,
+      "errors": 300,
+      "risk_upper_bound": 0.10977101823187059
+    },
+    "3:1": {
+      "enabled": false,
+      "cases": 5810,
+      "accepted": 3299,
+      "errors": 308,
+      "risk_upper_bound": 0.10993380894663808
+    },
+    "3:2": {
+      "enabled": false,
+      "cases": 5810,
+      "accepted": 3415,
+      "errors": 325,
+      "risk_upper_bound": 0.11156823002419869
+    },
+    "3:3": {
+      "enabled": false,
+      "cases": 5810,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "3:4": {
+      "enabled": false,
+      "cases": 5810,
+      "accepted": 3537,
+      "errors": 331,
+      "risk_upper_bound": 0.10956985040817172
+    },
+    "3:5": {
+      "enabled": false,
+      "cases": 5810,
+      "accepted": 3628,
+      "errors": 356,
+      "risk_upper_bound": 0.11420964898878204
+    },
+    "4:0": {
+      "enabled": false,
+      "cases": 4542,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "4:1": {
+      "enabled": false,
+      "cases": 4542,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "4:2": {
+      "enabled": false,
+      "cases": 4542,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "4:3": {
+      "enabled": false,
+      "cases": 4542,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "4:4": {
+      "enabled": false,
+      "cases": 4542,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "4:5": {
+      "enabled": false,
+      "cases": 4542,
+      "accepted": 0,
+      "errors": 0,
+      "risk_upper_bound": 1.0
+    },
+    "5:0": {
+      "enabled": true,
+      "cases": 3378,
+      "accepted": 3131,
+      "errors": 187,
+      "risk_upper_bound": 0.07387800323957606
+    },
+    "5:1": {
+      "enabled": true,
+      "cases": 3378,
+      "accepted": 3156,
+      "errors": 202,
+      "risk_upper_bound": 0.07851272974421518
+    },
+    "5:2": {
+      "enabled": true,
+      "cases": 3378,
+      "accepted": 3163,
+      "errors": 210,
+      "risk_upper_bound": 0.0811071895266283
+    },
+    "5:3": {
+      "enabled": true,
+      "cases": 3378,
+      "accepted": 3171,
+      "errors": 211,
+      "risk_upper_bound": 0.08124877891516132
+    },
+    "5:4": {
+      "enabled": true,
+      "cases": 3378,
+      "accepted": 3177,
+      "errors": 202,
+      "risk_upper_bound": 0.07799777386528498
+    },
+    "5:5": {
+      "enabled": true,
+      "cases": 3378,
+      "accepted": 3188,
+      "errors": 209,
+      "risk_upper_bound": 0.08013328336618114
+    },
+    "6:0": {
+      "enabled": true,
+      "cases": 2378,
+      "accepted": 2284,
+      "errors": 87,
+      "risk_upper_bound": 0.05203885740496811
+    },
+    "6:1": {
+      "enabled": true,
+      "cases": 2378,
+      "accepted": 2285,
+      "errors": 91,
+      "risk_upper_bound": 0.0540281319946296
+    },
+    "6:2": {
+      "enabled": true,
+      "cases": 2378,
+      "accepted": 2288,
+      "errors": 92,
+      "risk_upper_bound": 0.05445910831709848
+    },
+    "6:3": {
+      "enabled": true,
+      "cases": 2378,
+      "accepted": 2286,
+      "errors": 88,
+      "risk_upper_bound": 0.05249704346910815
+    },
+    "6:4": {
+      "enabled": true,
+      "cases": 2378,
+      "accepted": 2295,
+      "errors": 90,
+      "risk_upper_bound": 0.05329427354819075
+    },
+    "6:5": {
+      "enabled": true,
+      "cases": 2378,
+      "accepted": 2302,
+      "errors": 93,
+      "risk_upper_bound": 0.05462824310027334
+    },
+    "7:0": {
+      "enabled": true,
+      "cases": 1425,
+      "accepted": 1390,
+      "errors": 18,
+      "risk_upper_bound": 0.025218146147409394
+    },
+    "7:1": {
+      "enabled": true,
+      "cases": 1425,
+      "accepted": 1389,
+      "errors": 19,
+      "risk_upper_bound": 0.02619746174403071
+    },
+    "7:2": {
+      "enabled": true,
+      "cases": 1425,
+      "accepted": 1389,
+      "errors": 18,
+      "risk_upper_bound": 0.02523618840443316
+    },
+    "7:3": {
+      "enabled": true,
+      "cases": 1425,
+      "accepted": 1391,
+      "errors": 18,
+      "risk_upper_bound": 0.025200129669218526
+    },
+    "7:4": {
+      "enabled": true,
+      "cases": 1425,
+      "accepted": 1391,
+      "errors": 20,
+      "risk_upper_bound": 0.027113635725253996
+    },
+    "7:5": {
+      "enabled": true,
+      "cases": 1425,
+      "accepted": 1389,
+      "errors": 20,
+      "risk_upper_bound": 0.027152422620873126
+    },
+    "8:0": {
+      "enabled": true,
+      "cases": 730,
+      "accepted": 726,
+      "errors": 3,
+      "risk_upper_bound": 0.017797658531774892
+    },
+    "8:1": {
+      "enabled": true,
+      "cases": 730,
+      "accepted": 724,
+      "errors": 2,
+      "risk_upper_bound": 0.015344594474905417
+    },
+    "8:2": {
+      "enabled": true,
+      "cases": 730,
+      "accepted": 724,
+      "errors": 2,
+      "risk_upper_bound": 0.015344594474905417
+    },
+    "8:3": {
+      "enabled": true,
+      "cases": 730,
+      "accepted": 723,
+      "errors": 2,
+      "risk_upper_bound": 0.015365683353230667
+    },
+    "8:4": {
+      "enabled": true,
+      "cases": 730,
+      "accepted": 724,
+      "errors": 3,
+      "risk_upper_bound": 0.017846483571757908
+    },
+    "8:5": {
+      "enabled": true,
+      "cases": 730,
+      "accepted": 722,
+      "errors": 3,
+      "risk_upper_bound": 0.017895577229912474
+    }
+  },
+  "source_note": "Separate complete-profile source-validation fold (%8==3), previously reporting-only in aggregate. Not new patients; not Kenyan clinical validation.",
+  "gap_calibration_profiles": 6479,
+  "gap_reporting_profiles": 6426
+}

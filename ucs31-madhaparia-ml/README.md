@@ -1,6 +1,6 @@
 # IS Project 2 - Respiratory Health Awareness and Prediction System
 
-> Current assessment: the frozen **V3 partial-evidence likelihood model**, with an independently checked selective primary policy. The underlying model is unchanged by the latest patient experience work. See [matched before/after metrics and reusable charts](reports/kenya_patient_experience/EVALUATION_REPORT.md) and the [application report](../KENYA_PATIENT_EXPERIENCE_REPORT.md). These are simulated DDXPlus results, not Kenyan clinical validation. Earlier model descriptions below are historical.
+> Live model: **V3 partial-evidence, 21 conditions, 34 features; simulated DDXPlus only; not clinically validated for patients in Kenya. V2 is not live.** The model artifact is unchanged. Names require the checked V3 bucket + scope + gap policy (24/48 buckets enabled from a separate source-validation fold; sparse patterns withheld). Old selective-accuracy/coverage reports describe the earlier policy, not this gate. See the [current README](../README.md) and [validation record](../audit-artifacts/VALIDATION_2026-10-29.md). Earlier model descriptions below are historical.
 
 ## Machine Learning Component
 
@@ -13,9 +13,9 @@ The system uses the DDXPlus dataset to identify respiratory condition patterns f
 - Dataset: DDXPlus
 - Domain: Respiratory conditions
 - Conditions: 21
-- Primary model: Random Forest
-- Benchmark model: XGBoost
-- Prediction output: Top 3 possible respiratory condition patterns with confidence values
+- Live model: V3 partial-evidence likelihood model, 34 features
+- Historical benchmarks only: Random Forest / XGBoost (not the live patient path)
+- Patient output: at most one selected condition with whole-percent model match, or withheld; names currently withheld pending fresh-fold gap validation
 - Languages: English and Swahili
 - NLP input: English, Swahili and mixed-language symptom descriptions
 - Purpose: Health-awareness support, not medical diagnosis

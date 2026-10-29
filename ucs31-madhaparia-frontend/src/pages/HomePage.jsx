@@ -215,7 +215,7 @@ function HomePage() {
                   <span className="hp-step-number">03 / 03</span>
                 </div>
                 <h3>Read your awareness guidance</h3>
-                <p>For non-urgent cases, see one predicted condition and its confidence information. Urgent signs lead to safety guidance instead.</p>
+                <p>Urgent signs lead to safety guidance first. A supported result can show one possible condition with a rounded model match, not a probability or overall accuracy. Names are withheld when the information or independently checked selection rules do not support them; nothing is ruled out.</p>
               </article>
             </div>
           </div>

@@ -24,3 +24,4 @@ ucs31-madhaparia-ml/data/readable/*.txt
 **/test-results/
 **/playwright-report/
 **/playwright-results/
+audit-artifacts/validation-2026-10-29-ui/

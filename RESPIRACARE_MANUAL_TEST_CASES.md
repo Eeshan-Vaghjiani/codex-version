@@ -1,26 +1,61 @@
 # RespiraCare — local manual checks
 
-Updated 28 October 2026 for the single-primary patient flow. These are software behavior examples, not a clinical diagnosis reference set.
+Updated 29 October 2026. These are synthetic software behaviour cases, not clinical diagnoses or Kenyan validation.
 
-Open **http://127.0.0.1:5173**. You can register a local test account or use the test login previously provided. Start a fresh assessment so you do not reuse an old session. For repeatable results use **age 21, sex M**, confirm only symptoms actually reported, and answer **No** to the breathing question and **Not sure** to other unreported questions. Honest different answers can change the outcome.
+Use an isolated local V3 API and frontend, register a disposable account, and start a fresh assessment. For the recorded new browser journeys use **age 24, sex M**, except the baby case (**age 0**). Confirm only present patient symptoms. Answer **No** to unreported breathing difficulty, severe chest pain and fever; **under 3 days** only for an otherwise unspecified duration in these synthetic cases; **Not sure** to other unreported questions. These are a reproducible test-answer pattern, not suggested patient answers. Real users must answer honestly.
 
-| Type this | What to check |
-|---|---|
-| `I have intense coughing fits and vomiting after coughing for 5 days.` | After the breathing question: one possible **Whooping cough**, a clear possibility/diagnosis distinction and professional assessment advice. No percentages or extra disease cards. |
-| `I have cough and a sore throat.` | After breathing and duration clarification: one possible broad **Nose or throat infection (URTI)** under the answer pattern above. No claim of confirmed influenza. |
-| `I have a headache and feel tired.` | Relevant duration/severity/associated-symptom questions, then a calm explanation that these symptoms can have several causes. No forced tumour/TB label. |
-| `I have fever, cough, sore throat and body aches for two days.` | A few relevant questions; under the answer pattern above, uncertainty without forcing influenza or a specific virus. |
-| `Nina kikohozi lakini sina homa.` | Cough present, fever absent, Kiswahili follow-ups/guidance; “no fever” must not become positive fever. |
-| `My muscles ache all over my body.` | Muscle aches recognized, followed by relevant questions; no disease forced from aches alone. |
-| `I feel unwell.` | Ask for actual symptoms and duration; no invented condition. |
-| `I have abdominal pain and nausea.` | Unsupported respiratory-model scope is handled clearly; no invented diagnosis. |
-| `I have cough but I do not have cough.` | Contradictory cough remains uncertain rather than simultaneously present and absent. |
-| `I am struggling to breathe.` or `Siwezi kupumua.` | Immediate prominent urgent assessment guidance. No routine prediction or questionnaire delay. |
-| `I have a headache, fever and a stiff neck.` | Immediate urgent guidance, without diagnosing meningitis. |
-| `I have a severe sudden headache.` | Immediate urgent guidance. |
-| `I have severe crushing chest pressure.` | Immediate urgent guidance, without diagnosing a heart attack. |
-| `I have cough for two weeks and have lost weight without trying.` | Prompt professional review advice. A possible TB result can still appear with this more specific evidence; it must be tentative and must not replace assessment/testing. |
+**Current naming/score expectation.** Names require the checked V3 bucket + scope
++ gap policy. A predeclared 0.15 gap / 0.60 floor passed 24 of 48 evidence buckets
+on a separate source-validation fold: 5–8 positive-feature buckets may show one
+whole-percent V3 model match (not a probability or overall accuracy), while the
+1–3 positive-feature buckets remain withheld with no score. Do not restore an old
+name to make a demo look better. The rows below follow that rule: sparse input is
+withheld, the richer eligible pattern shows one match.
 
-Also try an empty submission: the form/API should reject it without inventing a result. On a phone or narrow browser, check that the question options, primary card, warning and feedback remain readable without horizontal scrolling. Reload during a follow-up and verify the current question persists. Open history: current results should preserve the same one-primary/uncertainty decision, while older policy records should prompt a new assessment without displaying their previous three scores.
+| Case | Input | Expected urgency and next advice | Recorded browser outcome |
+|---|---|---|---|
+| Headache + fatigue failure case | `I have headache and fatigue` | Uncertain; no tumour/TB name; nothing ruled out, monitor 24–48h, sooner if worsening; correct extraction | PASS |
+| Cough only | `Nina kikohozi` | Safety screen first; uncertain, same monitoring/correction advice | PASS |
+| Fever + cough, 2 days | `I have fever na kikohozi for two days` | Uncertain; acute-infection advice, ask about malaria testing with fever in Kenya | PASS |
+| Fever + cough + tiredness | `I have fever, cough and tiredness for two days` | Uncertain; acute advice, not confirmed influenza/COVID | PASS |
+| Prolonged cough + weight loss | `I have cough for three weeks and unintentional weight loss` | Professional assessment promptly; persistent-cough/TB testing advice, no TB diagnosis | PASS |
+| Cannot breathe, English | `I can't breathe` | Emergency, nearest hospital casualty immediately; no prediction or questions | PASS |
+| Cannot breathe, Kiswahili | `Siwezi kupumua` | Same immediate emergency advice, in Kiswahili | PASS |
+| Exertion with normal speech | `I have difficulty breathing when I walk, but I can speak fine` | Urgent same-day care; no routine prediction; emergency if at rest/cannot speak | PASS |
+| Ambiguous breathing difficulty | `Napumua kwa shida` | Same-day advice plus exactly one exertion/speech check; exertion+full sentence stays same-day, rest/cannot speak becomes emergency | PASS |
+| Breathing denial + cough | `I can breathe fine and have a cough` | No false breathing red flag; routine safety checks, withheld, monitor/correct | PASS |
+| Smell only | `I have loss of smell` | Withheld; COVID outside scope, test recommendation; never a COVID label | PASS |
+| Smell + cough + fever | `I have loss of smell, cough and fever` | Withheld; sinusitis/flu-like pattern does not exclude COVID; testing advice | PASS |
+| Taste + fever | `I have loss of taste and fever` | Unsupported taste is not COVID proof; COVID testing advice; fever/malaria advice | PASS |
+| Severe chest pain | `I have severe chest pain` | Emergency casualty now; stop questions and prediction | PASS |
+| Fainting | `I fainted` | Emergency casualty now | PASS |
+| Blue lips | `My lips are turning blue` | Emergency casualty now | PASS |
+| A lot of blood | `I am coughing a lot of blood` | Emergency casualty now | PASS |
+| Confusion | `I have confusion` | Emergency casualty now | PASS |
+| Baby fever | `I have fever`, **age 0** | Immediate clinical assessment/casualty; no further questions or model guess | PASS |
+| Headache + fever + stiff neck | `I have headache, fever and stiff neck` | Emergency casualty now, no diagnosis of the cause | PASS |
+| Generic nonrespiratory input | `I have fever, pain and fatigue` | No respiratory name; nothing ruled out, monitor/review/correct | PASS |
+| Severe flu-like illness, no test | `I have severe fever, cough and body aches for two days` | Professional review; no automatic COVID label | PASS |
+| Overlapping respiratory pattern | `I have cough, sore throat, fever and muscle aches` | Withheld, not blindly highest-ranked; COVID caveat and monitoring. Separate mocked close-gap/dangerous-second units verify same-day review | PASS |
+| Additional mixed input | `Nina homa na cough kwa siku mbili` | Kiswahili/mixed safety screen, acute advice, withheld | PASS |
 
-No result from these checks establishes that illness is mild or that serious conditions have been ruled out. The app has not been clinically validated for Kenyan patients. The [implementation and measured comparison report](KENYA_PATIENT_EXPERIENCE_REPORT.md) distinguishes software behavior, simulated-source metrics and remaining clinical review needs.
+Additional recorded journeys:
+
+| Case | Input | Expected | Recorded browser outcome |
+|---|---|---|---|
+| Everyday weakness, typo | `i feel tired and have weaknes for 3 days` | Both symptoms recognised; weakness clarification; no respiratory advice despite 3 days; no name/score | PASS |
+| Everyday weakness, Kiswahili | `Ninahisi uchovu na sina nguvu kwa siku tatu` | Same neutral outcome, Kiswahili | PASS |
+| Everyday weakness, mixed | `Nina uchovu na weakness kwa siku tatu` | Same neutral outcome | PASS |
+| Weakness clarification escalates | `I feel weak for three days`, answer sudden one-sided | Emergency, no further question, no prediction | PASS |
+| Sudden one-sided weakness reported | `I have sudden one-sided weakness` | Immediate emergency at symptom entry; no confirmation link | PASS |
+| Eligible rich pattern | `I have fever, cough, sore throat, muscle aches, constant tiredness and runny nose for two days` | One whole-percent V3 match (Influenza), preserved in history | PASS |
+| Correction rechecks safety | `I feel tired and have weakness for three days` → correct to `I have sudden one-sided weakness` | Emergency after recheck; old result/confirmation cleared | PASS |
+| Health-worker summary copy | Everyday weakness result | Copy summary contains reported text; no ranked scores | PASS |
+| Common cold, everyday phrasing | `i feel cold, and my throat pains, and i have running nose` | chills/sore throat/runny nose all recognised; no name; viral-cold guidance + COVID test consideration | PASS |
+| Loss of taste | `I have loss of taste` | Recognised; COVID testing advice; not a COVID diagnosis | PASS |
+
+The original **14 browser journeys** are retained, including informative coughing fits, English/Kiswahili negations, vague input, urgent focus/viewport, stale cache and empty input. The informative case now explicitly checks source-gap withholding instead of requiring its old disease name. No scenario was deleted to hide a failure. All **45 browser journeys** ran against real local Edge + UI + API, not mocked browser responses. See the [validation record](audit-artifacts/VALIDATION_2026-10-29.md) for final counts.
+
+Also check an empty submission; unknown wording; `my brother has a cough` (not patient evidence); `I have cough but I do not have cough` (uncertain); `Nina kikohozi lakini sina homa` (fever absent); sudden unusually severe headache; severe/crushing chest pressure. On mobile, check warning focus and readable controls. Reload during a follow-up; its question must persist. On the result, check present/absent/uncertain, duration and severity, edit the description, and recheck; the old result/confirmation must be cleared. Current history must preserve urgency and abstention; old policies require reassessment and must not resurrect scores/names.
+
+No result establishes that illness is mild or anything is ruled out. The app is not clinically validated for Kenyan patients; clinician/Kiswahili/patient-comprehension review is pending. The [evaluation note](audit-artifacts/SIMULATED_EVALUATION_2026-10-29.md) separates retained simulated DDXPlus numbers from the blocked fresh evaluation. These browser passes do not establish medical safety, diagnostic accuracy or clinical benefit from follow-ups.

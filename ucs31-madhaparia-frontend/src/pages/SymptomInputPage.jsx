@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import {
   clearSymptomConfirmation,
@@ -34,13 +34,17 @@ const examples = [
 ]
 
 function SymptomInputPage() {
-  const [text, setText] = useState('')
-  const [mapping, setMapping] = useState(null)
+  const location = useLocation()
+  const [text, setText] = useState(location.state?.text || '')
+  const [mapping, setMapping] = useState(location.state?.mapping || null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const requestVersion = useRef(0)
   const urgentAlert = useRef(null)
   useEffect(() => () => { requestVersion.current += 1 }, [])
+  useEffect(() => {
+    if (location.state?.mapping) clearSymptomConfirmation()
+  }, [location.state])
 
   useEffect(() => {
     if (mapping?.has_red_flag) {
@@ -373,6 +377,20 @@ function SymptomInputPage() {
                   {mapping.health_guidance || mapping.safety_message ||
                     'Seek urgent medical help now if you are struggling to breathe. Do not wait to finish this assessment. / Tafuta huduma ya matibabu ya dharura sasa ikiwa unapata shida kubwa ya kupumua. Usisubiri kukamilisha tathmini hii.'}
                 </p>
+                {mapping.safety_question && <fieldset disabled={loading}>
+                  <legend>{mapping.safety_question.text}</legend>
+                  {mapping.safety_question.options.map((option) => <button key={option.value} type="button"
+                    className="button button-secondary m-1" onClick={async () => {
+                      setLoading(true)
+                      try {
+                        const checked = await mapSymptoms(text, option.value)
+                        setMapping(checked)
+                        saveSymptomMapping(checked)
+                      } catch { setError('Could not update the safety check. Seek same-day care; at rest or unable to speak: hospital casualty now.') }
+                      finally { setLoading(false) }
+                    }}>{option.label}</button>)}
+                </fieldset>}
+                {mapping.disclaimer && <p>{mapping.disclaimer}</p>}
               </div>
             )}
 

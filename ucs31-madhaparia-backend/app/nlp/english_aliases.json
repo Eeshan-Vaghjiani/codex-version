@@ -13,7 +13,12 @@
     "shivers",
     "feeling cold and shaking",
     "feeling shivery",
-    "shaking with chills"
+    "shaking with chills",
+    "feel cold",
+    "feeling cold",
+    "feel chilly",
+    "feeling chilly",
+    "cold chills"
   ],
   "cough": [
     "cough",
@@ -53,7 +58,8 @@
     "blood in cough",
     "blood in phlegm",
     "bloody sputum",
-    "blood in my sputum"
+    "blood in my sputum",
+    "coughing a lot of blood"
   ],
   "shortness_of_breath": [
     "shortness of breath",
@@ -68,7 +74,12 @@
     "gasping for air",
     "gasping",
     "trouble breathing",
-    "unable to breathe"
+    "unable to breathe",
+    "cannot speak",
+    "can't speak",
+    "cannot speak a full sentence",
+    "difficulty breathing at rest",
+    "having challenges breathing"
   ],
   "night_breathlessness": [
     "waking up breathless",
@@ -128,7 +139,10 @@
     "my nose is running",
     "nose is running",
     "nose is blocked",
-    "nose is stuffy"
+    "nose is stuffy",
+    "running nose",
+    "running nostrils",
+    "nose is runny"
   ],
   "nasal_discharge": [
     "green nasal discharge",
@@ -141,6 +155,13 @@
     "cannot smell",
     "can't smell",
     "lost sense of smell"
+  ],
+  "loss_of_taste": [
+    "loss of taste",
+    "cannot taste",
+    "can't taste",
+    "lost my sense of taste",
+    "lost sense of taste"
   ],
   "itchy_nose_throat": [
     "itchy nose",
@@ -191,6 +212,7 @@
     "tired all the time",
     "always tired"
   ],
+  "weakness": ["weakness", "weaknes", "feeling weak", "feel weak", "weak", "low energy", "no energy", "lack of strength"],
   "activity_fatigue": [
     "too tired for normal activities",
     "too tired to do usual activities",
