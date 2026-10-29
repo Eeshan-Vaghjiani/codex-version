@@ -45,6 +45,7 @@ withheld, the richer eligible pattern shows one match.
 | Tiredness + cough + fever | `nina kikohozi na homa na nimechoka` | All three understood; fatigue-pattern asked; withheld (sparse), actionable acute advice, nothing ruled out | PASS |
 | Dizziness (context) | `i am dizzy` / `nina kizunguzungu` | Dizziness understood as context (no model evidence); safety screen first; never faked into a prediction | PASS |
 | Night sweats | `i sweat at night` | Recognised as heavy sweating; no unmatched wording | PASS |
+| Sparse guidance is symptom-aware | `I have tiredness, headache and fever` (under 3 days, moderate) | Withheld (no name), but guidance is tailored: headache+fever stiff-neck/confusion red-flag line, tiredness line, malaria-test line; no diagnosis named | PASS |
 
 Additional recorded journeys:
 

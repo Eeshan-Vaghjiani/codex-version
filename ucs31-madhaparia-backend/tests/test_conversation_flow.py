@@ -162,6 +162,20 @@ def test_cold_and_flu_claims_get_actionable_guidance(v3_flow, text, keywords):
     assert any(keyword in advice for keyword in keywords), (text, advice)
 
 
+def test_symptom_aware_guidance_for_withheld_sparse_case(v3_flow):
+    """The exact user case: tiredness + headache + fever, under 3 days, moderate.
+    Stays withheld (no name), but the guidance is tailored to what was reported."""
+    data, asked = advance(v3_flow, payload(v3_flow, 'I have tiredness, headache and fever'), {
+        'general_duration': 'under_3_days', 'symptom_severity': 'mild',
+        'fatigue_pattern': 'transient'})
+    assert data['primary_prediction'] is None and data['predictions'] == []
+    advice = ' '.join(data['next_steps']).lower()
+    assert 'stiff neck' in advice, advice          # headache + fever red-flag line
+    assert 'unusual tiredness' in advice, advice   # tiredness line
+    assert 'malaria' in advice, advice             # fever in Kenya line
+    assert not any(word in advice for word in ('influenza', 'pneumonia', 'covid', 'bronchitis'))
+
+
 def test_unresolved_safety_does_not_name_even_an_eligible_pattern(monkeypatch):
     import app.services.primary_assessment as service
     monkeypatch.setattr(service, 'select_primary_evidence', lambda *args: {

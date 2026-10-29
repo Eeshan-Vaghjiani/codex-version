@@ -2,7 +2,7 @@
 from copy import deepcopy
 from app.core.errors import ServiceNotReadyError
 from app.services.patient_terminology import patient_term
-from app.services.consultation_guidance import consultation_guidance, withheld_viral_guidance, SW_SYMPTOMS
+from app.services.consultation_guidance import consultation_guidance, withheld_viral_guidance, symptom_specific_advice, SW_SYMPTOMS
 from app.services.v3_prediction import get_v3_bundle
 
 PATIENT_POLICY_VERSION = 'kenya_single_primary_v3_gap_checked'
@@ -109,6 +109,11 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
         base['care_level'] = 'professional_review'
         base['next_steps'].insert(0, 'Hatukuweza kufafanua dalili za hatari. Wasiliana na mhudumu wa afya mapema; shida ya kupumua ukiwa umepumzika au maumivu makali ya kifua yanahitaji huduma ya dharura sasa.' if sw else
             'We could not clarify the warning-sign screen. Contact a health worker promptly; breathing difficulty at rest or severe chest pain needs emergency care now.')
+    if (primary is None and not viral_lines and base['care_level'] == 'self_care_or_review'
+            and decision_status != 'insufficient_information'):
+        extra = symptom_specific_advice(context, sw)
+        for line in reversed(extra):
+            base['next_steps'].insert(1, line)
     base['urgency'] = 'urgent_same_day' if base['care_level'] == 'urgent_review' else base['care_level']
     base['health_guidance'] = base['next_steps'][0]
     return base
