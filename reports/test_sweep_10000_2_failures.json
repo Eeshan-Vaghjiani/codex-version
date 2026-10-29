@@ -1,0 +1,154 @@
+[
+  {
+    "case_id": "1",
+    "category": "batch1_regression",
+    "text": "Nina sauti ya mluzi wakati wa kutoa pumzi na kamasi za kijani na makohozi ya kijani",
+    "language": "sw",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "",
+    "reasons": [
+      "error:ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model."
+    ],
+    "initial_outcome": "error",
+    "initial_primary": "",
+    "final_outcome": "error",
+    "final_primary": "",
+    "questions_asked": "0",
+    "question_ids": "",
+    "mapped_codes": ""
+  },
+  {
+    "case_id": "2",
+    "category": "batch1_regression",
+    "text": "Nina kuamka nikikosa pumzi and heavy sweating and coloured phlegm for 2 days",
+    "language": "mixed",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "2d",
+    "reasons": [
+      "error:ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model."
+    ],
+    "initial_outcome": "error",
+    "initial_primary": "",
+    "final_outcome": "error",
+    "final_primary": "",
+    "questions_asked": "0",
+    "question_ids": "",
+    "mapped_codes": ""
+  },
+  {
+    "case_id": "3",
+    "category": "batch1_regression",
+    "text": "Nina sauti ya mluzi wakati wa kutoa pumzi and hoarse voice and green nasal discharge for 3 weeks",
+    "language": "mixed",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "14d",
+    "reasons": [
+      "error:ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model."
+    ],
+    "initial_outcome": "error",
+    "initial_primary": "",
+    "final_outcome": "error",
+    "final_primary": "",
+    "questions_asked": "0",
+    "question_ids": "",
+    "mapped_codes": ""
+  },
+  {
+    "case_id": "4",
+    "category": "batch1_regression",
+    "text": "Nina sauti imekauka and sore throat and coloured phlegm for 3 weeks",
+    "language": "mixed",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "14d",
+    "reasons": [
+      "error:ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model."
+    ],
+    "initial_outcome": "error",
+    "initial_primary": "",
+    "final_outcome": "error",
+    "final_primary": "",
+    "questions_asked": "0",
+    "question_ids": "",
+    "mapped_codes": ""
+  },
+  {
+    "case_id": "5",
+    "category": "batch1_regression",
+    "text": "I have worse with exercise, tight chest, too tired for normal activities and wheezing for 3 weeks",
+    "language": "en",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "14d",
+    "reasons": [
+      "error:ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model."
+    ],
+    "initial_outcome": "error",
+    "initial_primary": "",
+    "final_outcome": "error",
+    "final_primary": "",
+    "questions_asked": "0",
+    "question_ids": "",
+    "mapped_codes": ""
+  },
+  {
+    "case_id": "6",
+    "category": "batch1_regression",
+    "text": "Nina maumivu ya misuli na sauti ya mluzi wakati wa kutoa pumzi na sauti imekauka na kupiga chafya",
+    "language": "sw",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "",
+    "reasons": [
+      "error:ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model."
+    ],
+    "initial_outcome": "error",
+    "initial_primary": "",
+    "final_outcome": "error",
+    "final_primary": "",
+    "questions_asked": "0",
+    "question_ids": "",
+    "mapped_codes": ""
+  },
+  {
+    "case_id": "7",
+    "category": "batch1_regression",
+    "text": "Nina kupoteza uwezo wa kunusa na nimechoka kufanya shughuli za kawaida na makohozi na sauti ya mluzi wakati wa kutoa pumzi",
+    "language": "sw",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "",
+    "reasons": [
+      "error:ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model."
+    ],
+    "initial_outcome": "error",
+    "initial_primary": "",
+    "final_outcome": "error",
+    "final_primary": "",
+    "questions_asked": "0",
+    "question_ids": "",
+    "mapped_codes": ""
+  },
+  {
+    "case_id": "8",
+    "category": "batch1_regression",
+    "text": "Nina makohozi ya kijani na inazidi nikilala chini na pua inawasha na maumivu sehemu ya juu ya kifua kwa siku 2",
+    "language": "sw",
+    "pattern": "all-no",
+    "age": "30",
+    "duration": "2d",
+    "reasons": [
+      "error:ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model."
+    ],
+    "initial_outcome": "error",
+    "initial_primary": "",
+    "final_outcome": "error",
+    "final_primary": "",
+    "questions_asked": "0",
+    "question_ids": "",
+    "mapped_codes": ""
+  }
+]

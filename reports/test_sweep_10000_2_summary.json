@@ -1,0 +1,957 @@
+{
+  "n": 10000,
+  "by_final_outcome": {
+    "error": 8,
+    "red_flag_bypass": 6984,
+    "withheld_with_guidance": 1916,
+    "family_answer:context_family": 241,
+    "family_answer:model_family": 44,
+    "named_primary": 807
+  },
+  "by_initial_outcome": {
+    "error": 8,
+    "withheld_with_guidance": 4627,
+    "family_answer:context_family": 582,
+    "family_answer:model_family": 56,
+    "red_flag_bypass": 3843,
+    "named_primary": 884
+  },
+  "by_category": {
+    "batch1_regression": {
+      "n": 8,
+      "error": 8
+    },
+    "batch2_fresh": {
+      "n": 9942,
+      "withheld_with_guidance": 1903,
+      "red_flag_bypass": 6953,
+      "named_primary": 807,
+      "family_answer:context_family": 237,
+      "family_answer:model_family": 42
+    },
+    "exact_prompts": {
+      "n": 50,
+      "red_flag_bypass": 31,
+      "withheld_with_guidance": 13,
+      "family_answer:context_family": 4,
+      "family_answer:model_family": 2
+    }
+  },
+  "by_pattern": {
+    "2x-unknown": {
+      "n": 2506,
+      "withheld_with_guidance": 1132,
+      "family_answer:context_family": 144,
+      "family_answer:model_family": 14,
+      "red_flag_bypass": 1003,
+      "named_primary": 213
+    },
+    "all-no": {
+      "n": 2479,
+      "error": 8,
+      "withheld_with_guidance": 783,
+      "family_answer:context_family": 97,
+      "family_answer:model_family": 30,
+      "red_flag_bypass": 969,
+      "named_primary": 592
+    },
+    "all-yes": {
+      "n": 2530,
+      "red_flag_bypass": 2530
+    },
+    "mixed": {
+      "n": 2485,
+      "red_flag_bypass": 2482,
+      "named_primary": 2,
+      "withheld_with_guidance": 1
+    }
+  },
+  "blank_count": 0,
+  "error_count": 8,
+  "errors": [
+    {
+      "case_id": "1",
+      "category": "batch1_regression",
+      "text": "Nina sauti ya mluzi wakati wa kutoa pumzi na kamasi za kijani na makohozi ya kijani",
+      "language": "sw",
+      "pattern": "all-no",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "",
+      "initial_outcome": "error",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "error",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "0",
+      "question_ids": "",
+      "red_flag_stage": "",
+      "red_flag_codes": "",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "0",
+      "decision_reasons": "",
+      "final_present_count": "0",
+      "final_absent_count": "0",
+      "error": "ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model.",
+      "_qids": [],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 1,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "2",
+      "category": "batch1_regression",
+      "text": "Nina kuamka nikikosa pumzi and heavy sweating and coloured phlegm for 2 days",
+      "language": "mixed",
+      "pattern": "all-no",
+      "age": "30",
+      "duration": "2d",
+      "mapped_codes": "",
+      "initial_outcome": "error",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "error",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "0",
+      "question_ids": "",
+      "red_flag_stage": "",
+      "red_flag_codes": "",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "0",
+      "decision_reasons": "",
+      "final_present_count": "0",
+      "final_absent_count": "0",
+      "error": "ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model.",
+      "_qids": [],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 1,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "3",
+      "category": "batch1_regression",
+      "text": "Nina sauti ya mluzi wakati wa kutoa pumzi and hoarse voice and green nasal discharge for 3 weeks",
+      "language": "mixed",
+      "pattern": "all-no",
+      "age": "30",
+      "duration": "14d",
+      "mapped_codes": "",
+      "initial_outcome": "error",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "error",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "0",
+      "question_ids": "",
+      "red_flag_stage": "",
+      "red_flag_codes": "",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "0",
+      "decision_reasons": "",
+      "final_present_count": "0",
+      "final_absent_count": "0",
+      "error": "ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model.",
+      "_qids": [],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 1,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "4",
+      "category": "batch1_regression",
+      "text": "Nina sauti imekauka and sore throat and coloured phlegm for 3 weeks",
+      "language": "mixed",
+      "pattern": "all-no",
+      "age": "30",
+      "duration": "14d",
+      "mapped_codes": "",
+      "initial_outcome": "error",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "error",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "0",
+      "question_ids": "",
+      "red_flag_stage": "",
+      "red_flag_codes": "",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "0",
+      "decision_reasons": "",
+      "final_present_count": "0",
+      "final_absent_count": "0",
+      "error": "ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model.",
+      "_qids": [],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 1,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "5",
+      "category": "batch1_regression",
+      "text": "I have worse with exercise, tight chest, too tired for normal activities and wheezing for 3 weeks",
+      "language": "en",
+      "pattern": "all-no",
+      "age": "30",
+      "duration": "14d",
+      "mapped_codes": "",
+      "initial_outcome": "error",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "error",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "0",
+      "question_ids": "",
+      "red_flag_stage": "",
+      "red_flag_codes": "",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "0",
+      "decision_reasons": "",
+      "final_present_count": "0",
+      "final_absent_count": "0",
+      "error": "ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model.",
+      "_qids": [],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 1,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "6",
+      "category": "batch1_regression",
+      "text": "Nina maumivu ya misuli na sauti ya mluzi wakati wa kutoa pumzi na sauti imekauka na kupiga chafya",
+      "language": "sw",
+      "pattern": "all-no",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "",
+      "initial_outcome": "error",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "error",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "0",
+      "question_ids": "",
+      "red_flag_stage": "",
+      "red_flag_codes": "",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "0",
+      "decision_reasons": "",
+      "final_present_count": "0",
+      "final_absent_count": "0",
+      "error": "ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model.",
+      "_qids": [],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 1,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "7",
+      "category": "batch1_regression",
+      "text": "Nina kupoteza uwezo wa kunusa na nimechoka kufanya shughuli za kawaida na makohozi na sauti ya mluzi wakati wa kutoa pumzi",
+      "language": "sw",
+      "pattern": "all-no",
+      "age": "30",
+      "duration": "",
+      "mapped_codes": "",
+      "initial_outcome": "error",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "error",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "0",
+      "question_ids": "",
+      "red_flag_stage": "",
+      "red_flag_codes": "",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "0",
+      "decision_reasons": "",
+      "final_present_count": "0",
+      "final_absent_count": "0",
+      "error": "ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model.",
+      "_qids": [],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 1,
+      "_advice_only_question": 0
+    },
+    {
+      "case_id": "8",
+      "category": "batch1_regression",
+      "text": "Nina makohozi ya kijani na inazidi nikilala chini na pua inawasha na maumivu sehemu ya juu ya kifua kwa siku 2",
+      "language": "sw",
+      "pattern": "all-no",
+      "age": "30",
+      "duration": "2d",
+      "mapped_codes": "",
+      "initial_outcome": "error",
+      "initial_primary": "",
+      "initial_band": "",
+      "final_outcome": "error",
+      "final_primary": "",
+      "final_band": "",
+      "final_match": "",
+      "questions_asked": "0",
+      "question_ids": "",
+      "red_flag_stage": "",
+      "red_flag_codes": "",
+      "sparse_serious_violation": "0",
+      "blank": "0",
+      "prompt_first_violation": "0",
+      "outcome_changed": "0",
+      "decision_reasons": "",
+      "final_present_count": "0",
+      "final_absent_count": "0",
+      "error": "ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model.",
+      "_qids": [],
+      "_prompt_violation": 0,
+      "_blank": 0,
+      "_sparse_neoplasm": 0,
+      "_any_neoplasm": 0,
+      "_sparse_tb_strong": 0,
+      "_strong_sparse": 0,
+      "_unmapped": 1,
+      "_advice_only_question": 0
+    }
+  ],
+  "prompt_first_violations_recomputed": 0,
+  "sparse_neoplasm_count": 0,
+  "any_neoplasm_count": 0,
+  "sparse_tb_strong_count": 0,
+  "strong_on_sparse_count": 384,
+  "unmapped_count": 8,
+  "advice_only_question_cases": 0,
+  "questions_asked_total": 10979,
+  "questions_asked_mean": 1.1,
+  "questions_asked_zero": 3851,
+  "outcome_changed_count": 3519,
+  "red_flag_confirm": 3843,
+  "red_flag_followup": 3141,
+  "negation_red_flag": [],
+  "exact_prompts": {
+    "I can breathe fine and I have a cough": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "14",
+        "question_ids": "breathing_difficulty;symptom_duration;sore_throat;loss_of_smell;itchy_nose_throat;productive_cough;hoarse_voice;heavy_sweating;nasal_discharge;muscle_aches;wheezing;itchy_eyes;runny_blocked_nose;loss_of_appetite"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "2",
+        "question_ids": "breathing_difficulty;symptom_duration"
+      }
+    },
+    "I can't breathe": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "all-no": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "2x-unknown": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      }
+    },
+    "I feel cold": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "5",
+        "question_ids": "breathing_difficulty;fever;cough;sore_throat;runny_blocked_nose"
+      }
+    },
+    "I have a cold": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "family_answer:context_family",
+        "final_primary": "Flu-like illness / common cold",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "family_answer:context_family",
+        "final_primary": "Flu-like illness / common cold",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      }
+    },
+    "I have fever and I feel mild": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "4",
+        "question_ids": "breathing_difficulty;cough;sore_throat;runny_blocked_nose"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "2",
+        "question_ids": "breathing_difficulty;cough"
+      }
+    },
+    "Nina homa na kikohozi kwa siku mbili": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "11",
+        "question_ids": "breathing_difficulty;sore_throat;muscle_aches;hoarse_voice;productive_cough;nasal_discharge;heavy_sweating;runny_blocked_nose;loss_of_smell;chills;wheezing"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "2",
+        "question_ids": "breathing_difficulty;sore_throat"
+      }
+    },
+    "Siwezi kupumua": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "all-no": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "2x-unknown": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      }
+    },
+    "Tiredness and headache": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "5",
+        "question_ids": "breathing_difficulty;fever;cough;sore_throat;runny_blocked_nose"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "2",
+        "question_ids": "breathing_difficulty;fever"
+      }
+    },
+    "Tiredness and headache and fever": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "4",
+        "question_ids": "breathing_difficulty;cough;sore_throat;runny_blocked_nose"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "2",
+        "question_ids": "breathing_difficulty;cough"
+      }
+    },
+    "headache, sore throat, cough, running nose": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "family_answer:model_family",
+        "final_primary": "Flu-like illness / common cold",
+        "final_band": "moderate",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "family_answer:model_family",
+        "final_primary": "Flu-like illness / common cold",
+        "final_band": "moderate",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      }
+    },
+    "headache, tiredness and cough for 2 days": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "11",
+        "question_ids": "breathing_difficulty;fatigue_pattern;sore_throat;loss_of_smell;hoarse_voice;muscle_aches;productive_cough;nasal_discharge;heavy_sweating;loss_of_appetite;wheezing"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "withheld_with_guidance",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "2",
+        "question_ids": "breathing_difficulty;fatigue_pattern"
+      }
+    },
+    "i have cold": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "all-no": {
+        "final_outcome": "family_answer:context_family",
+        "final_primary": "Flu-like illness / common cold",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      },
+      "2x-unknown": {
+        "final_outcome": "family_answer:context_family",
+        "final_primary": "Flu-like illness / common cold",
+        "final_band": "",
+        "questions_asked": "1",
+        "question_ids": "breathing_difficulty"
+      }
+    },
+    "napumua kwa shida": {
+      "all-yes": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "all-no": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "mixed": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      },
+      "2x-unknown": {
+        "final_outcome": "red_flag_bypass",
+        "final_primary": "",
+        "final_band": "",
+        "questions_asked": "0",
+        "question_ids": ""
+      }
+    }
+  },
+  "failure_cluster_counts": {
+    "error:ServiceNotReadyError: The assessment decision policy is unavailable or does not match its model.": 8
+  },
+  "failure_cases_total": 8,
+  "strong_on_sparse_examples": [
+    {
+      "text": "Nina pua inawasha and weakness for 3 weeks",
+      "final_primary": "Allergic sinusitis",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "itchy_nose_throat:present;weakness:present"
+    },
+    {
+      "text": "Nina uchovu and vomiting after coughing and runny nose for 3 weeks",
+      "final_primary": "Whooping cough",
+      "final_band": "strong",
+      "final_present_count": "2",
+      "mapped_codes": "vomiting_after_coughing:present;runny_blocked_nose:present;tiredness:present"
+    },
+    {
+      "text": "Nina inazidi nikilala chini kwa siku 2",
+      "final_primary": "Acute pulmonary edema",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "worse_lying_down:present"
+    },
+    {
+      "text": "Nina maumivu ya misuli na kizunguzungu na maumivu nikivuta pumzi kwa nguvu",
+      "final_primary": "Pneumonia",
+      "final_band": "strong",
+      "final_present_count": "2",
+      "mapped_codes": "pain_deep_breath:present;muscle_aches:present;dizziness:present"
+    },
+    {
+      "text": "Nina kikohozi cha mashambulizi na kuamka nikikosa pumzi kwa siku 2",
+      "final_primary": "Whooping cough",
+      "final_band": "strong",
+      "final_present_count": "2",
+      "mapped_codes": "intense_coughing_fits:present;night_breathlessness:present"
+    },
+    {
+      "text": "Nina uchovu and phlegm and sore throat for 2 days",
+      "final_primary": "URTI",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "sore_throat:present;sputum_reported:present;tiredness:present"
+    },
+    {
+      "text": "Nina mluzi baada ya kukohoa",
+      "final_primary": "Whooping cough",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "wheeze_after_coughing:present"
+    },
+    {
+      "text": "I have loss of appetite and vomiting after coughing for 3 weeks",
+      "final_primary": "Whooping cough",
+      "final_band": "strong",
+      "final_present_count": "2",
+      "mapped_codes": "vomiting_after_coughing:present;loss_of_appetite:present"
+    },
+    {
+      "text": "Nina koo kuuma and tired and runny nose for 3 weeks",
+      "final_primary": "URTI",
+      "final_band": "strong",
+      "final_present_count": "2",
+      "mapped_codes": "runny_blocked_nose:present;sore_throat:present;tiredness:present"
+    },
+    {
+      "text": "I have intense coughing fits and have a cold for 3 weeks",
+      "final_primary": "Whooping cough",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "intense_coughing_fits:present;common_cold:present"
+    },
+    {
+      "text": "Nina koo kuuma and loss of appetite and phlegm for 2 days",
+      "final_primary": "Influenza",
+      "final_band": "strong",
+      "final_present_count": "2",
+      "mapped_codes": "loss_of_appetite:present;sore_throat:present;sputum_reported:present"
+    },
+    {
+      "text": "Nina pua inawasha na inazidi nikilala chini",
+      "final_primary": "Allergic sinusitis",
+      "final_band": "strong",
+      "final_present_count": "2",
+      "mapped_codes": "worse_lying_down:present;itchy_nose_throat:present"
+    },
+    {
+      "text": "I have have a cold and itchy nose",
+      "final_primary": "Allergic sinusitis",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "common_cold:present;itchy_nose_throat:present"
+    },
+    {
+      "text": "Nina niko na cold and wheezing and fever for 2 days",
+      "final_primary": "Bronchitis",
+      "final_band": "strong",
+      "final_present_count": "2",
+      "mapped_codes": "common_cold:present;wheezing:present;fever:present"
+    },
+    {
+      "text": "Nina koo kuuma na baridi kwa siku 2",
+      "final_primary": "Influenza",
+      "final_band": "strong",
+      "final_present_count": "2",
+      "mapped_codes": "sore_throat:present;chills:present"
+    },
+    {
+      "text": "Nina koo kuuma and weakness",
+      "final_primary": "URTI",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "sore_throat:present;weakness:present"
+    },
+    {
+      "text": "Nina kikohozi na sauti imekauka",
+      "final_primary": "Acute laryngitis",
+      "final_band": "strong",
+      "final_present_count": "2",
+      "mapped_codes": "hoarse_voice:present;cough:present"
+    },
+    {
+      "text": "Nina shida ya kumeza kwa wiki 3",
+      "final_primary": "Epiglottitis",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "difficulty_swallowing:present"
+    },
+    {
+      "text": "Nina inazidi nikilala chini na kizunguzungu kwa wiki 3",
+      "final_primary": "Acute pulmonary edema",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "worse_lying_down:present;dizziness:present"
+    },
+    {
+      "text": "Nina sauti imekauka na kizunguzungu kwa wiki 3",
+      "final_primary": "Acute laryngitis",
+      "final_band": "strong",
+      "final_present_count": "1",
+      "mapped_codes": "hoarse_voice:present;dizziness:present"
+    }
+  ],
+  "unmapped_examples": [
+    {
+      "text": "Nina sauti ya mluzi wakati wa kutoa pumzi na kamasi za kijani na makohozi ya kijani",
+      "category": "batch1_regression",
+      "final_outcome": "error"
+    },
+    {
+      "text": "Nina kuamka nikikosa pumzi and heavy sweating and coloured phlegm for 2 days",
+      "category": "batch1_regression",
+      "final_outcome": "error"
+    },
+    {
+      "text": "Nina sauti ya mluzi wakati wa kutoa pumzi and hoarse voice and green nasal discharge for 3 weeks",
+      "category": "batch1_regression",
+      "final_outcome": "error"
+    },
+    {
+      "text": "Nina sauti imekauka and sore throat and coloured phlegm for 3 weeks",
+      "category": "batch1_regression",
+      "final_outcome": "error"
+    },
+    {
+      "text": "I have worse with exercise, tight chest, too tired for normal activities and wheezing for 3 weeks",
+      "category": "batch1_regression",
+      "final_outcome": "error"
+    },
+    {
+      "text": "Nina maumivu ya misuli na sauti ya mluzi wakati wa kutoa pumzi na sauti imekauka na kupiga chafya",
+      "category": "batch1_regression",
+      "final_outcome": "error"
+    },
+    {
+      "text": "Nina kupoteza uwezo wa kunusa na nimechoka kufanya shughuli za kawaida na makohozi na sauti ya mluzi wakati wa kutoa pumzi",
+      "category": "batch1_regression",
+      "final_outcome": "error"
+    },
+    {
+      "text": "Nina makohozi ya kijani na inazidi nikilala chini na pua inawasha na maumivu sehemu ya juu ya kifua kwa siku 2",
+      "category": "batch1_regression",
+      "final_outcome": "error"
+    }
+  ]
+}
