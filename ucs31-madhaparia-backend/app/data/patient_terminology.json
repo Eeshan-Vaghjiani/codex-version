@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "researched_at": "2026-10-28",
+  "review_status": "Evidence-informed draft; Kenyan clinician, Kiswahili language and patient comprehension review pending. Not clinical validation.",
+  "schema_note": "conditions are keyed by unchanged model class. medical_name preserves medical meaning; display_name and description are localized presentation only. source_ids resolve in sources. Adding terminology never adds a trained or validated model class. Do not use this file as triage logic or as a list of diagnoses that can be excluded.",
+  "scope": "21 source classes in v3_partial_evidence. COVID-19, malaria, HIV and allergic rhinitis are not added as active V3 predictions.",
+  "sources": {
+    "ke_community_2024": {"title": "Kenya MOH Clinical Guidelines, Level 1 Community Health Services (2024), TB pp. 124-125", "url": "https://health.go.ke/sites/default/files/2025-04/Clinical%20Guidelines%20for%20Level%201%20Community%20Health%20Services.pdf"},
+    "ke_hospitals_2024": {"title": "Kenya MOH Clinical Guidelines, Levels 4-6 (2024), acute upper respiratory infections section 24.1", "url": "https://health.go.ke/sites/default/files/2025-04/Clinical%20Guidelines%20for%20Management%20Level%204%20Primary%20Care%20Hospitals%20Level%205%20Secondary%20Hospitals%20Level%206%20Tertiary%20Hospitals%20%E2%80%93%20National%20Hospitals.pdf"},
+    "who_influenza": {"title": "WHO: Influenza (seasonal)", "url": "https://www.who.int/news-room/fact-sheets/detail/influenza-(seasonal)"},
+    "who_copd": {"title": "WHO: Chronic obstructive pulmonary disease", "url": "https://www.who.int/news-room/fact-sheets/detail/chronic-obstructive-pulmonary-disease-(copd)"},
+    "who_asthma": {"title": "WHO: Asthma", "url": "https://www.who.int/news-room/fact-sheets/detail/asthma"},
+    "who_pneumonia": {"title": "WHO: Pneumonia in children", "url": "https://www.who.int/news-room/fact-sheets/detail/pneumonia"},
+    "nhs_laryngitis": {"title": "NHS: Laryngitis", "url": "https://www.nhs.uk/conditions/laryngitis/"},
+    "nhs_sinusitis": {"title": "NHS: Sinusitis", "url": "https://www.nhs.uk/conditions/sinusitis-sinus-infection/"},
+    "nhs_bronchiectasis": {"title": "NHS inform: Bronchiectasis", "url": "https://www.nhsinform.scot/illnesses-and-conditions/lungs-and-airways/bronchiectasis"},
+    "nhs_bronchiolitis": {"title": "NHS: Bronchiolitis", "url": "https://www.nhs.uk/conditions/bronchiolitis/"},
+    "nhs_bronchitis": {"title": "NHS: Bronchitis", "url": "https://www.nhs.uk/conditions/bronchitis/"},
+    "nhs_croup": {"title": "NHS: Croup", "url": "https://www.nhs.uk/conditions/croup/"},
+    "nhs_epiglottitis": {"title": "NHS: Epiglottitis", "url": "https://www.nhs.uk/conditions/epiglottitis/"},
+    "nhs_pertussis": {"title": "NHS inform: Whooping cough", "url": "https://www.nhsinform.scot/illnesses-and-conditions/infections-and-poisoning/whooping-cough"},
+    "nhs_rti": {"title": "NHS: Respiratory tract infections", "url": "https://www.nhs.uk/conditions/respiratory-tract-infection/"},
+    "mayo_laryngospasm": {"title": "Mayo Clinic: Laryngospasm", "url": "https://www.mayoclinic.org/diseases-conditions/gerd/expert-answers/laryngospasm/faq-20058269"},
+    "nci_neoplasm": {"title": "US National Cancer Institute: Tumor", "url": "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/tumor"},
+    "nhlbi_respiratory_failure": {"title": "US NHLBI: Respiratory failure causes and risk factors", "url": "https://www.nhlbi.nih.gov/health/respiratory-failure/causes"},
+    "healthnz_pneumothorax": {"title": "Health New Zealand: Collapsed lung", "url": "https://www.healthnz.govt.nz/health-topics/conditions-treatments/lungs/collapsed-lung-pneumothorax"}
+  },
+  "conditions": {
+    "Acute COPD exacerbation / infection": {
+      "medical_name": "Acute COPD exacerbation / possible infection",
+      "display_name": {"en": "COPD flare-up / possible infection", "sw": "Kuzidi kwa ugonjwa sugu wa mapafu (COPD) / huenda kuna maambukizi"},
+      "description": {"en": "A sudden worsening of an existing long-term lung condition, with more breathlessness, cough or mucus. An infection can be a trigger; symptoms alone do not establish the cause.", "sw": "Hali ya ugonjwa sugu wa mapafu iliyopo inazidi ghafla, na kusababisha kupumua kwa shida zaidi, kikohozi au makohozi. Maambukizi yanaweza kuchangia; dalili pekee hazithibitishi chanzo."},
+      "source_ids": ["who_copd"]
+    },
+    "Acute laryngitis": {
+      "medical_name": "Acute laryngitis",
+      "display_name": {"en": "Voice box inflammation (laryngitis)", "sw": "Kuvimba kwa kisanduku cha sauti (laryngitis)"},
+      "description": {"en": "Irritation or swelling of the voice box can cause a hoarse or lost voice, throat discomfort and cough. Other conditions can cause similar symptoms.", "sw": "Kuwashwa au kuvimba kwa kisanduku cha sauti kunaweza kufanya sauti ikwaruze au ipotee, na kuleta maumivu ya koo na kikohozi. Hali nyingine pia zinaweza kusababisha dalili hizi."},
+      "source_ids": ["nhs_laryngitis"]
+    },
+    "Acute pulmonary edema": {
+      "medical_name": "Acute pulmonary oedema",
+      "display_name": {"en": "Sudden fluid build-up in the lungs (pulmonary oedema)", "sw": "Maji kujaa ghafla ndani ya mapafu (pulmonary oedema)"},
+      "description": {"en": "Fluid collects inside the lungs and can seriously affect breathing. Sudden or severe breathing difficulty needs emergency assessment, whatever the cause.", "sw": "Maji yanakusanyika ndani ya mapafu na yanaweza kuathiri sana kupumua. Shida ya kupumua ya ghafla au kali inahitaji huduma ya dharura, bila kujali chanzo."},
+      "source_ids": ["nhlbi_respiratory_failure"]
+    },
+    "Acute rhinosinusitis": {
+      "medical_name": "Acute rhinosinusitis",
+      "display_name": {"en": "Recent nose and sinus inflammation (acute rhinosinusitis)", "sw": "Kuvimba kwa pua na sinasi kwa muda mfupi (acute rhinosinusitis)"},
+      "description": {"en": "Swelling in the nose and the small spaces around it can cause blockage, discharge and facial pressure. Symptoms alone cannot show whether bacteria are involved.", "sw": "Kuvimba kwa pua na nafasi ndogo zinazoizunguka kunaweza kuziba pua, kuleta makamasi na shinikizo usoni. Dalili pekee hazionyeshi kama bakteria ndio chanzo."},
+      "source_ids": ["nhs_sinusitis"]
+    },
+    "Allergic sinusitis": {
+      "medical_name": "Allergic sinusitis (source dataset label)",
+      "display_name": {"en": "Allergy-related sinus inflammation", "sw": "Kuvimba kwa sinasi kunakohusiana na mzio"},
+      "description": {"en": "Allergies can contribute to nose and sinus swelling, with a blocked nose and facial pressure. This dataset label does not establish an allergy or a bacterial infection.", "sw": "Mzio unaweza kuchangia kuvimba kwa pua na sinasi, kuziba pua na shinikizo usoni. Jina hili la modeli halithibitishi mzio wala maambukizi ya bakteria."},
+      "source_ids": ["nhs_sinusitis"],
+      "terminology_note": "Retain the source class. Do not silently rename it allergic rhinitis: these are not identical labels."
+    },
+    "Bronchiectasis": {
+      "medical_name": "Bronchiectasis",
+      "display_name": {"en": "Widened, damaged airways (bronchiectasis)", "sw": "Kupanuka na kuharibika kwa njia za hewa (bronchiectasis)"},
+      "description": {"en": "A long-term condition in which widened airways collect mucus, causing ongoing cough or repeated chest infections. Examination and tests are needed to identify it.", "sw": "Hali ya muda mrefu ambapo njia za hewa zilizopanuka hukusanya makohozi, na kusababisha kikohozi cha muda mrefu au maambukizi ya mara kwa mara. Uchunguzi na vipimo vinahitajika kuitambua."},
+      "source_ids": ["nhs_bronchiectasis"]
+    },
+    "Bronchiolitis": {
+      "medical_name": "Bronchiolitis",
+      "display_name": {"en": "Small airway infection (bronchiolitis)", "sw": "Maambukizi ya njia ndogo za hewa (bronchiolitis)"},
+      "description": {"en": "An infection affecting small airways, mainly in babies and children under two. It can cause cough, noisy or fast breathing and feeding difficulty, and can become serious.", "sw": "Maambukizi ya njia ndogo za hewa, hasa kwa watoto chini ya miaka miwili. Yanaweza kusababisha kikohozi, kupumua kwa sauti au haraka na shida ya kunyonya au kula, na yanaweza kuwa makali."},
+      "source_ids": ["nhs_bronchiolitis"]
+    },
+    "Bronchitis": {
+      "medical_name": "Bronchitis",
+      "display_name": {"en": "Airway inflammation (bronchitis)", "sw": "Kuvimba kwa njia za hewa (bronchitis)"},
+      "description": {"en": "Inflammation of the larger breathing tubes can cause cough, sometimes with mucus. Similar symptoms can occur with other illnesses, including pneumonia.", "sw": "Kuvimba kwa mirija mikubwa ya hewa kunaweza kusababisha kikohozi, wakati mwingine chenye makohozi. Dalili zinazofanana zinaweza kutokana na magonjwa mengine, yakiwemo maambukizi ya mapafu."},
+      "source_ids": ["nhs_bronchitis"]
+    },
+    "Bronchospasm / acute asthma exacerbation": {
+      "medical_name": "Bronchospasm / acute asthma exacerbation",
+      "display_name": {"en": "Airway narrowing / asthma flare-up", "sw": "Kubana kwa njia za hewa / kuzidi kwa pumu"},
+      "description": {"en": "Tightening and narrowing of the airways can cause wheezing, cough, chest tightness and breathlessness. These symptoms do not by themselves confirm asthma.", "sw": "Kukaza na kubana kwa njia za hewa kunaweza kusababisha kupumua kwa mluzi, kikohozi, kubana kwa kifua na shida ya kupumua. Dalili hizi pekee hazithibitishi pumu."},
+      "source_ids": ["who_asthma"]
+    },
+    "Chronic rhinosinusitis": {
+      "medical_name": "Chronic rhinosinusitis",
+      "display_name": {"en": "Ongoing nose and sinus inflammation (chronic rhinosinusitis)", "sw": "Kuvimba kwa pua na sinasi kwa muda mrefu (chronic rhinosinusitis)"},
+      "description": {"en": "Long-lasting nose and sinus swelling can cause blockage, discharge, facial pressure or reduced smell. A short symptom description cannot establish a chronic condition.", "sw": "Kuvimba kwa muda mrefu kwa pua na sinasi kunaweza kuziba pua, kuleta makamasi, shinikizo usoni au kupunguza uwezo wa kunusa. Maelezo mafupi ya dalili hayathibitishi hali ya muda mrefu."},
+      "source_ids": ["nhs_sinusitis"]
+    },
+    "Croup": {
+      "medical_name": "Croup",
+      "display_name": {"en": "Croup (upper airway swelling)", "sw": "Croup (kuvimba kwa njia ya juu ya hewa)"},
+      "description": {"en": "An illness mainly affecting young children that can cause a barking cough, hoarse voice and noisy breathing. A child with breathing difficulty needs urgent assessment.", "sw": "Hali inayoathiri zaidi watoto wadogo, na inaweza kusababisha kikohozi kama kubweka, sauti kukwaruza na kupumua kwa sauti. Mtoto mwenye shida ya kupumua anahitaji uchunguzi wa haraka."},
+      "source_ids": ["nhs_croup"]
+    },
+    "Epiglottitis": {
+      "medical_name": "Epiglottitis",
+      "display_name": {"en": "Swelling near the windpipe (epiglottitis)", "sw": "Kuvimba karibu na mrija wa hewa (epiglottitis)"},
+      "description": {"en": "Swelling of the flap covering the windpipe can block breathing. Suspected epiglottitis needs emergency hospital care; do not wait for more app questions.", "sw": "Kuvimba kwa kifuniko cha mrija wa hewa kunaweza kuzuia kupumua. Hali hii ikishukiwa inahitaji huduma ya dharura hospitalini; usisubiri maswali zaidi kwenye programu."},
+      "source_ids": ["nhs_epiglottitis"]
+    },
+    "Influenza": {
+      "medical_name": "Influenza",
+      "display_name": {"en": "Seasonal flu (influenza)", "sw": "Influenza (mafua ya influenza)"},
+      "description": {"en": "A respiratory infection caused by influenza viruses that may cause fever, cough, sore throat, aches and tiredness. Other infections cause similar symptoms; this result does not confirm influenza.", "sw": "Maambukizi ya mfumo wa kupumua yanayosababishwa na virusi vya influenza, yanayoweza kuleta homa, kikohozi, koo kuuma, maumivu ya mwili na uchovu. Maambukizi mengine yana dalili zinazofanana; jibu hili halithibitishi influenza."},
+      "source_ids": ["who_influenza"],
+      "terminology_note": "Do not use bare 'mafua' or 'flu' to turn an unspecified respiratory illness into confirmed influenza."
+    },
+    "Larygospasm": {
+      "medical_name": "Laryngospasm",
+      "display_name": {"en": "Vocal cord spasm (laryngospasm)", "sw": "Kukaza ghafla kwa nyuzi za sauti (laryngospasm)"},
+      "description": {"en": "The vocal cords can suddenly tighten, making breathing or speaking difficult. An ongoing breathing problem needs emergency assessment rather than assuming it will pass.", "sw": "Nyuzi za sauti zinaweza kukaza ghafla na kufanya kupumua au kuzungumza kuwa vigumu. Shida ya kupumua inayoendelea inahitaji huduma ya dharura; usidhani itaisha yenyewe."},
+      "source_ids": ["mayo_laryngospasm"],
+      "terminology_note": "The misspelled model key Larygospasm is unchanged to preserve model compatibility; presentation corrects it."
+    },
+    "Pneumonia": {
+      "medical_name": "Pneumonia",
+      "display_name": {"en": "Lung infection (pneumonia)", "sw": "Maambukizi ya mapafu (nimonia)"},
+      "description": {"en": "An infection inside the lungs can cause cough, fever and breathing difficulty. Symptoms overlap with other illnesses; a healthcare professional needs to assess the cause and severity.", "sw": "Maambukizi ndani ya mapafu yanaweza kusababisha kikohozi, homa na shida ya kupumua. Dalili zinafanana na za magonjwa mengine; mhudumu wa afya anahitaji kutathmini chanzo na ukali."},
+      "source_ids": ["who_pneumonia"]
+    },
+    "Pulmonary neoplasm": {
+      "medical_name": "Pulmonary neoplasm",
+      "display_name": {"en": "Lung growth (pulmonary neoplasm)", "sw": "Uvimbe kwenye pafu (pulmonary neoplasm)"},
+      "description": {"en": "An abnormal growth in the lung may be cancerous or non-cancerous. Symptoms alone cannot identify a growth or its type; medical assessment and tests are needed.", "sw": "Uvimbe kwenye pafu unaweza kuwa wa saratani au usio wa saratani. Dalili pekee haziwezi kutambua uvimbe wala aina yake; uchunguzi wa mhudumu wa afya na vipimo vinahitajika."},
+      "source_ids": ["nci_neoplasm"]
+    },
+    "Spontaneous pneumothorax": {
+      "medical_name": "Spontaneous pneumothorax",
+      "display_name": {"en": "Collapsed lung (spontaneous pneumothorax)", "sw": "Pafu kusinyaa kwa sababu ya hewa kulizunguka (pneumothorax)"},
+      "description": {"en": "Air can collect around a lung and cause it to collapse, even without an injury. Sudden chest pain or breathlessness needs prompt medical assessment; severe breathing difficulty is an emergency.", "sw": "Hewa inaweza kukusanyika kuzunguka pafu na kulisababisha kusinyaa, hata bila jeraha. Maumivu ya kifua au shida ya kupumua ya ghafla inahitaji uchunguzi wa haraka; shida kali ya kupumua ni dharura."},
+      "source_ids": ["healthnz_pneumothorax"]
+    },
+    "Tuberculosis": {
+      "medical_name": "Tuberculosis",
+      "display_name": {"en": "Tuberculosis (TB)", "sw": "Kifua kikuu (TB)"},
+      "description": {"en": "A bacterial infection that often affects the lungs. A persistent cough, fever, night sweats or unexplained weight loss needs assessment and TB testing; symptoms alone do not confirm TB.", "sw": "Maambukizi ya bakteria yanayoathiri mara nyingi mapafu. Kikohozi cha muda mrefu, homa, jasho la usiku au kupungua uzito bila sababu vinahitaji uchunguzi na vipimo vya TB; dalili pekee hazithibitishi TB."},
+      "source_ids": ["ke_community_2024"]
+    },
+    "URTI": {
+      "medical_name": "Upper respiratory tract infection (URTI)",
+      "display_name": {"en": "Nose or throat infection (URTI)", "sw": "Maambukizi ya pua au koo (URTI)"},
+      "description": {"en": "An infection of the nose, throat or other upper airways. This broad term does not identify a particular virus and is not the same as confirmed influenza or a common cold.", "sw": "Maambukizi ya pua, koo au sehemu nyingine za juu za njia ya hewa. Jina hili halitambui kirusi maalumu wala halithibitishi influenza au mafua ya kawaida."},
+      "source_ids": ["nhs_rti", "ke_hospitals_2024"]
+    },
+    "Viral pharyngitis": {
+      "medical_name": "Viral pharyngitis",
+      "display_name": {"en": "Viral sore throat (viral pharyngitis)", "sw": "Koo kuuma kutokana na virusi (viral pharyngitis)"},
+      "description": {"en": "A virus can inflame the throat and make swallowing painful. Similar symptoms can have other causes; symptoms alone do not prove a viral infection.", "sw": "Maambukizi ya virusi yanaweza kusababisha koo kuvimba na kuuma wakati wa kumeza. Dalili zinazofanana zinaweza kuwa na vyanzo vingine; dalili pekee hazithibitishi maambukizi ya virusi."},
+      "source_ids": ["ke_hospitals_2024"]
+    },
+    "Whooping cough": {
+      "medical_name": "Pertussis (whooping cough)",
+      "display_name": {"en": "Whooping cough (pertussis)", "sw": "Kifaduro (pertussis)"},
+      "description": {"en": "A bacterial airway infection that spreads easily and can cause repeated coughing fits. Babies may have breathing pauses without a typical whoop and need prompt assessment.", "sw": "Maambukizi ya bakteria katika njia za hewa yanayoenea kwa urahisi na kuleta vipindi vya kukohoa sana. Watoto wachanga wanaweza kusimama kupumua bila sauti ya kawaida ya kifaduro na wanahitaji uchunguzi wa haraka."},
+      "source_ids": ["nhs_pertussis"]
+    }
+  }
+}

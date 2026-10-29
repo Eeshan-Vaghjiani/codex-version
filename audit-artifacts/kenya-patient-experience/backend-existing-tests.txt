@@ -1,0 +1,1431 @@
+.........FFFFFFF..FFF................F........FFFFF.F.................FF [ 31%]
+FF............................F...........................F....F........ [ 63%]
+.............................F.FFFF........FFFFFFF..FFFFFFFF....F....... [ 95%]
+...F.FF...                                                               [100%]
+================================== FAILURES ===================================
+_______________ test_all_supplied_cases_through_api[supplied-1] _______________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DC2F0C50>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('7a6408c6-092a-400b-aac0-89e34078c419'), version='1.0'))
+text = 'I have fever.', expected = {'fever': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{n}" for n in range(1, 13)])
+    def test_all_supplied_cases_through_api(flow, text, expected):
+        mapped_response = flow.client.post("/nlp/map", json={"text": text})
+        assert mapped_response.status_code == 200
+        mapped = mapped_response.json()
+        if "shortness_of_breath" in expected:
+            # The safety route intentionally returns warning signs immediately.
+            assert mapped["has_red_flag"] is True
+            assert any(item["code"] == "shortness_of_breath" for item in mapped["recognised_symptoms"])
+        else:
+            assert {item["code"]: item["status"] for item in mapped["recognised_symptoms"]} == expected
+        codes = [code for code, state in expected.items() if state == "present"]
+        confirmation_response = flow.client.post("/symptoms/confirm", json={"text": text, "confirmed_codes": codes})
+        assert confirmation_response.status_code == 200, confirmation_response.text
+        confirmation = confirmation_response.json()
+        assert set(confirmation["confirmed_codes"]) == set(codes)
+        for item in confirmation["absent_symptoms"]:
+            assert item["status"] == "absent"
+            assert item["code"] not in confirmation["confirmed_codes"]
+        data = finish_questions(flow.client, request(text, codes))
+        if "shortness_of_breath" in codes:
+            assert data["status"] == "urgent_review"
+            assert data["has_red_flag"] is True
+        else:
+>           assert data["status"] == "insufficient_evidence"
+E           AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E             
+E             - insufficient_evidence
+E             + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:116: AssertionError
+_______________ test_all_supplied_cases_through_api[supplied-2] _______________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DC6B7290>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('20150743-28da-4a8f-b958-09e89de74fe9'), version='1.0'))
+text = 'Runny nose, for a few days with headache and sore throat.'
+expected = {'runny_blocked_nose': 'present', 'headache': 'present', 'sore_throat': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{n}" for n in range(1, 13)])
+    def test_all_supplied_cases_through_api(flow, text, expected):
+        mapped_response = flow.client.post("/nlp/map", json={"text": text})
+        assert mapped_response.status_code == 200
+        mapped = mapped_response.json()
+        if "shortness_of_breath" in expected:
+            # The safety route intentionally returns warning signs immediately.
+            assert mapped["has_red_flag"] is True
+            assert any(item["code"] == "shortness_of_breath" for item in mapped["recognised_symptoms"])
+        else:
+            assert {item["code"]: item["status"] for item in mapped["recognised_symptoms"]} == expected
+        codes = [code for code, state in expected.items() if state == "present"]
+        confirmation_response = flow.client.post("/symptoms/confirm", json={"text": text, "confirmed_codes": codes})
+        assert confirmation_response.status_code == 200, confirmation_response.text
+        confirmation = confirmation_response.json()
+        assert set(confirmation["confirmed_codes"]) == set(codes)
+        for item in confirmation["absent_symptoms"]:
+            assert item["status"] == "absent"
+            assert item["code"] not in confirmation["confirmed_codes"]
+        data = finish_questions(flow.client, request(text, codes))
+        if "shortness_of_breath" in codes:
+            assert data["status"] == "urgent_review"
+            assert data["has_red_flag"] is True
+        else:
+>           assert data["status"] == "insufficient_evidence"
+E           AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E             
+E             - insufficient_evidence
+E             + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:116: AssertionError
+_______________ test_all_supplied_cases_through_api[supplied-3] _______________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DC6C5B50>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('0a22c3dc-7a9b-4a51-8109-ee20fc0dcf8c'), version='1.0'))
+text = 'I have a cough and fever.'
+expected = {'cough': 'present', 'fever': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{n}" for n in range(1, 13)])
+    def test_all_supplied_cases_through_api(flow, text, expected):
+        mapped_response = flow.client.post("/nlp/map", json={"text": text})
+        assert mapped_response.status_code == 200
+        mapped = mapped_response.json()
+        if "shortness_of_breath" in expected:
+            # The safety route intentionally returns warning signs immediately.
+            assert mapped["has_red_flag"] is True
+            assert any(item["code"] == "shortness_of_breath" for item in mapped["recognised_symptoms"])
+        else:
+            assert {item["code"]: item["status"] for item in mapped["recognised_symptoms"]} == expected
+        codes = [code for code, state in expected.items() if state == "present"]
+        confirmation_response = flow.client.post("/symptoms/confirm", json={"text": text, "confirmed_codes": codes})
+        assert confirmation_response.status_code == 200, confirmation_response.text
+        confirmation = confirmation_response.json()
+        assert set(confirmation["confirmed_codes"]) == set(codes)
+        for item in confirmation["absent_symptoms"]:
+            assert item["status"] == "absent"
+            assert item["code"] not in confirmation["confirmed_codes"]
+        data = finish_questions(flow.client, request(text, codes))
+        if "shortness_of_breath" in codes:
+            assert data["status"] == "urgent_review"
+            assert data["has_red_flag"] is True
+        else:
+>           assert data["status"] == "insufficient_evidence"
+E           AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E             
+E             - insufficient_evidence
+E             + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:116: AssertionError
+_______________ test_all_supplied_cases_through_api[supplied-4] _______________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DC6EB990>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('52b16b70-2715-4cff-a8ea-695c179d0fae'), version='1.0'))
+text = 'I have a cough.', expected = {'cough': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{n}" for n in range(1, 13)])
+    def test_all_supplied_cases_through_api(flow, text, expected):
+        mapped_response = flow.client.post("/nlp/map", json={"text": text})
+        assert mapped_response.status_code == 200
+        mapped = mapped_response.json()
+        if "shortness_of_breath" in expected:
+            # The safety route intentionally returns warning signs immediately.
+            assert mapped["has_red_flag"] is True
+            assert any(item["code"] == "shortness_of_breath" for item in mapped["recognised_symptoms"])
+        else:
+            assert {item["code"]: item["status"] for item in mapped["recognised_symptoms"]} == expected
+        codes = [code for code, state in expected.items() if state == "present"]
+        confirmation_response = flow.client.post("/symptoms/confirm", json={"text": text, "confirmed_codes": codes})
+        assert confirmation_response.status_code == 200, confirmation_response.text
+        confirmation = confirmation_response.json()
+        assert set(confirmation["confirmed_codes"]) == set(codes)
+        for item in confirmation["absent_symptoms"]:
+            assert item["status"] == "absent"
+            assert item["code"] not in confirmation["confirmed_codes"]
+        data = finish_questions(flow.client, request(text, codes))
+        if "shortness_of_breath" in codes:
+            assert data["status"] == "urgent_review"
+            assert data["has_red_flag"] is True
+        else:
+>           assert data["status"] == "insufficient_evidence"
+E           AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E             
+E             - insufficient_evidence
+E             + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:116: AssertionError
+_______________ test_all_supplied_cases_through_api[supplied-5] _______________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DCC225D0>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('fd77cf52-47cf-4f91-98d7-fddb6fb198b1'), version='1.0'))
+text = 'I have a runny nose, sneezing and a mild cough.'
+expected = {'runny_blocked_nose': 'present', 'sneezing': 'present', 'cough': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{n}" for n in range(1, 13)])
+    def test_all_supplied_cases_through_api(flow, text, expected):
+        mapped_response = flow.client.post("/nlp/map", json={"text": text})
+        assert mapped_response.status_code == 200
+        mapped = mapped_response.json()
+        if "shortness_of_breath" in expected:
+            # The safety route intentionally returns warning signs immediately.
+            assert mapped["has_red_flag"] is True
+            assert any(item["code"] == "shortness_of_breath" for item in mapped["recognised_symptoms"])
+        else:
+            assert {item["code"]: item["status"] for item in mapped["recognised_symptoms"]} == expected
+        codes = [code for code, state in expected.items() if state == "present"]
+        confirmation_response = flow.client.post("/symptoms/confirm", json={"text": text, "confirmed_codes": codes})
+        assert confirmation_response.status_code == 200, confirmation_response.text
+        confirmation = confirmation_response.json()
+        assert set(confirmation["confirmed_codes"]) == set(codes)
+        for item in confirmation["absent_symptoms"]:
+            assert item["status"] == "absent"
+            assert item["code"] not in confirmation["confirmed_codes"]
+        data = finish_questions(flow.client, request(text, codes))
+        if "shortness_of_breath" in codes:
+            assert data["status"] == "urgent_review"
+            assert data["has_red_flag"] is True
+        else:
+>           assert data["status"] == "insufficient_evidence"
+E           AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E             
+E             - insufficient_evidence
+E             + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:116: AssertionError
+_______________ test_all_supplied_cases_through_api[supplied-6] _______________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DCC22B90>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('e5759414-ef0c-41b1-8248-f0916308616f'), version='1.0'))
+text = 'I have had a cough and fever for two days.'
+expected = {'cough': 'present', 'fever': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{n}" for n in range(1, 13)])
+    def test_all_supplied_cases_through_api(flow, text, expected):
+        mapped_response = flow.client.post("/nlp/map", json={"text": text})
+        assert mapped_response.status_code == 200
+        mapped = mapped_response.json()
+        if "shortness_of_breath" in expected:
+            # The safety route intentionally returns warning signs immediately.
+            assert mapped["has_red_flag"] is True
+            assert any(item["code"] == "shortness_of_breath" for item in mapped["recognised_symptoms"])
+        else:
+            assert {item["code"]: item["status"] for item in mapped["recognised_symptoms"]} == expected
+        codes = [code for code, state in expected.items() if state == "present"]
+        confirmation_response = flow.client.post("/symptoms/confirm", json={"text": text, "confirmed_codes": codes})
+        assert confirmation_response.status_code == 200, confirmation_response.text
+        confirmation = confirmation_response.json()
+        assert set(confirmation["confirmed_codes"]) == set(codes)
+        for item in confirmation["absent_symptoms"]:
+            assert item["status"] == "absent"
+            assert item["code"] not in confirmation["confirmed_codes"]
+        data = finish_questions(flow.client, request(text, codes))
+        if "shortness_of_breath" in codes:
+            assert data["status"] == "urgent_review"
+            assert data["has_red_flag"] is True
+        else:
+>           assert data["status"] == "insufficient_evidence"
+E           AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E             
+E             - insufficient_evidence
+E             + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:116: AssertionError
+_______________ test_all_supplied_cases_through_api[supplied-7] _______________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DC6E83D0>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('2c86b52a-8d1e-4aac-ae5c-eb101eeba9f0'), version='1.0'))
+text = 'I have had a cough for several weeks and have been losing weight.'
+expected = {'cough': 'present', 'weight_loss': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{n}" for n in range(1, 13)])
+    def test_all_supplied_cases_through_api(flow, text, expected):
+        mapped_response = flow.client.post("/nlp/map", json={"text": text})
+        assert mapped_response.status_code == 200
+        mapped = mapped_response.json()
+        if "shortness_of_breath" in expected:
+            # The safety route intentionally returns warning signs immediately.
+            assert mapped["has_red_flag"] is True
+            assert any(item["code"] == "shortness_of_breath" for item in mapped["recognised_symptoms"])
+        else:
+            assert {item["code"]: item["status"] for item in mapped["recognised_symptoms"]} == expected
+        codes = [code for code, state in expected.items() if state == "present"]
+        confirmation_response = flow.client.post("/symptoms/confirm", json={"text": text, "confirmed_codes": codes})
+        assert confirmation_response.status_code == 200, confirmation_response.text
+        confirmation = confirmation_response.json()
+        assert set(confirmation["confirmed_codes"]) == set(codes)
+        for item in confirmation["absent_symptoms"]:
+            assert item["status"] == "absent"
+            assert item["code"] not in confirmation["confirmed_codes"]
+        data = finish_questions(flow.client, request(text, codes))
+        if "shortness_of_breath" in codes:
+            assert data["status"] == "urgent_review"
+            assert data["has_red_flag"] is True
+        else:
+>           assert data["status"] == "insufficient_evidence"
+E           AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E             
+E             - insufficient_evidence
+E             + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:116: AssertionError
+______________ test_all_supplied_cases_through_api[supplied-10] _______________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DC63AA90>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('05ff2eb7-1bd0-4295-9058-05b67040ed41'), version='1.0'))
+text = 'I have a cough, but I do not have a fever.'
+expected = {'cough': 'present', 'fever': 'absent'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{n}" for n in range(1, 13)])
+    def test_all_supplied_cases_through_api(flow, text, expected):
+        mapped_response = flow.client.post("/nlp/map", json={"text": text})
+        assert mapped_response.status_code == 200
+        mapped = mapped_response.json()
+        if "shortness_of_breath" in expected:
+            # The safety route intentionally returns warning signs immediately.
+            assert mapped["has_red_flag"] is True
+            assert any(item["code"] == "shortness_of_breath" for item in mapped["recognised_symptoms"])
+        else:
+            assert {item["code"]: item["status"] for item in mapped["recognised_symptoms"]} == expected
+        codes = [code for code, state in expected.items() if state == "present"]
+        confirmation_response = flow.client.post("/symptoms/confirm", json={"text": text, "confirmed_codes": codes})
+        assert confirmation_response.status_code == 200, confirmation_response.text
+        confirmation = confirmation_response.json()
+        assert set(confirmation["confirmed_codes"]) == set(codes)
+        for item in confirmation["absent_symptoms"]:
+            assert item["status"] == "absent"
+            assert item["code"] not in confirmation["confirmed_codes"]
+        data = finish_questions(flow.client, request(text, codes))
+        if "shortness_of_breath" in codes:
+            assert data["status"] == "urgent_review"
+            assert data["has_red_flag"] is True
+        else:
+>           assert data["status"] == "insufficient_evidence"
+E           AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E             
+E             - insufficient_evidence
+E             + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:116: AssertionError
+______________ test_all_supplied_cases_through_api[supplied-11] _______________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DC730F50>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('88f04490-8705-45a8-9784-6409a7568238'), version='1.0'))
+text = 'Nina homa na kikohozi.'
+expected = {'cough': 'present', 'fever': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{n}" for n in range(1, 13)])
+    def test_all_supplied_cases_through_api(flow, text, expected):
+        mapped_response = flow.client.post("/nlp/map", json={"text": text})
+        assert mapped_response.status_code == 200
+        mapped = mapped_response.json()
+        if "shortness_of_breath" in expected:
+            # The safety route intentionally returns warning signs immediately.
+            assert mapped["has_red_flag"] is True
+            assert any(item["code"] == "shortness_of_breath" for item in mapped["recognised_symptoms"])
+        else:
+            assert {item["code"]: item["status"] for item in mapped["recognised_symptoms"]} == expected
+        codes = [code for code, state in expected.items() if state == "present"]
+        confirmation_response = flow.client.post("/symptoms/confirm", json={"text": text, "confirmed_codes": codes})
+        assert confirmation_response.status_code == 200, confirmation_response.text
+        confirmation = confirmation_response.json()
+        assert set(confirmation["confirmed_codes"]) == set(codes)
+        for item in confirmation["absent_symptoms"]:
+            assert item["status"] == "absent"
+            assert item["code"] not in confirmation["confirmed_codes"]
+        data = finish_questions(flow.client, request(text, codes))
+        if "shortness_of_breath" in codes:
+            assert data["status"] == "urgent_review"
+            assert data["has_red_flag"] is True
+        else:
+>           assert data["status"] == "insufficient_evidence"
+E           AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E             
+E             - insufficient_evidence
+E             + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:116: AssertionError
+______________ test_all_supplied_cases_through_api[supplied-12] _______________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DCC17D50>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('843c2311-559d-4039-ba86-de476e334274'), version='1.0'))
+text = 'Nina kikohozi lakini sina homa.'
+expected = {'cough': 'present', 'fever': 'absent'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{n}" for n in range(1, 13)])
+    def test_all_supplied_cases_through_api(flow, text, expected):
+        mapped_response = flow.client.post("/nlp/map", json={"text": text})
+        assert mapped_response.status_code == 200
+        mapped = mapped_response.json()
+        if "shortness_of_breath" in expected:
+            # The safety route intentionally returns warning signs immediately.
+            assert mapped["has_red_flag"] is True
+            assert any(item["code"] == "shortness_of_breath" for item in mapped["recognised_symptoms"])
+        else:
+            assert {item["code"]: item["status"] for item in mapped["recognised_symptoms"]} == expected
+        codes = [code for code, state in expected.items() if state == "present"]
+        confirmation_response = flow.client.post("/symptoms/confirm", json={"text": text, "confirmed_codes": codes})
+        assert confirmation_response.status_code == 200, confirmation_response.text
+        confirmation = confirmation_response.json()
+        assert set(confirmation["confirmed_codes"]) == set(codes)
+        for item in confirmation["absent_symptoms"]:
+            assert item["status"] == "absent"
+            assert item["code"] not in confirmation["confirmed_codes"]
+        data = finish_questions(flow.client, request(text, codes))
+        if "shortness_of_breath" in codes:
+            assert data["status"] == "urgent_review"
+            assert data["has_red_flag"] is True
+        else:
+>           assert data["status"] == "insufficient_evidence"
+E           AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E             
+E             - insufficient_evidence
+E             + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:116: AssertionError
+______________ test_followup_answers_change_the_recorded_profile ______________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DCC3D6D0>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('14719cf1-7ce2-4672-bd23-c2904d35a2bb'), version='1.0'))
+
+    def test_followup_answers_change_the_recorded_profile(flow):
+        answers = [{"question_id": "breathing_difficulty", "answer": "no"},
+                   {"question_id": "symptom_duration", "answer": "3_to_14_days"},
+                   {"question_id": "fever", "answer": "yes"}]
+        response = flow.client.post("/predict", json=request(answers=answers))
+        assert response.status_code == 200, response.text
+        data = response.json()
+        context = data["assessment_context"]
+        assert context["symptom_states"]["shortness_of_breath"] == "absent"
+        assert context["symptom_states"]["fever"] == "present"
+        assert context["duration"]["min_days"] == 3
+        assert context["duration"]["max_days"] == 14
+        assert "E_91" in data["model_features"]
+        assert context["questions_asked"] == [answer["question_id"] for answer in answers]
+>       assert data["status"] == "insufficient_evidence"
+E       AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E         
+E         - insufficient_evidence
+E         + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:231: AssertionError
+________ test_sparse_input_policy_consistent_across_demographics[0-F] _________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000201627D6E10>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('573c601d-ea86-4ad1-a78a-dae9ca980bc2'), version='1.0'))
+age = 0, sex = 'F'
+
+    @pytest.mark.parametrize("age,sex", [(0, "F"), (21, "M"), (21, "F"), (80, "M"), (120, "F")])
+    def test_sparse_input_policy_consistent_across_demographics(flow, age, sex):
+        data = finish_questions(flow.client, request(age=age, sex=sex))
+>       assert data["status"] == "insufficient_evidence"
+E       AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E         
+E         - insufficient_evidence
+E         + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:281: AssertionError
+________ test_sparse_input_policy_consistent_across_demographics[21-M] ________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DCC1E750>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('16208f1c-d0f3-4d29-b920-0a91a81b7c57'), version='1.0'))
+age = 21, sex = 'M'
+
+    @pytest.mark.parametrize("age,sex", [(0, "F"), (21, "M"), (21, "F"), (80, "M"), (120, "F")])
+    def test_sparse_input_policy_consistent_across_demographics(flow, age, sex):
+        data = finish_questions(flow.client, request(age=age, sex=sex))
+>       assert data["status"] == "insufficient_evidence"
+E       AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E         
+E         - insufficient_evidence
+E         + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:281: AssertionError
+________ test_sparse_input_policy_consistent_across_demographics[21-F] ________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DCC646D0>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('cde45845-cbb6-4140-ad12-7e0d63a01323'), version='1.0'))
+age = 21, sex = 'F'
+
+    @pytest.mark.parametrize("age,sex", [(0, "F"), (21, "M"), (21, "F"), (80, "M"), (120, "F")])
+    def test_sparse_input_policy_consistent_across_demographics(flow, age, sex):
+        data = finish_questions(flow.client, request(age=age, sex=sex))
+>       assert data["status"] == "insufficient_evidence"
+E       AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E         
+E         - insufficient_evidence
+E         + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:281: AssertionError
+________ test_sparse_input_policy_consistent_across_demographics[80-M] ________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DC67DED0>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('5d96b437-32cc-4b65-adf9-793e1ac6e04f'), version='1.0'))
+age = 80, sex = 'M'
+
+    @pytest.mark.parametrize("age,sex", [(0, "F"), (21, "M"), (21, "F"), (80, "M"), (120, "F")])
+    def test_sparse_input_policy_consistent_across_demographics(flow, age, sex):
+        data = finish_questions(flow.client, request(age=age, sex=sex))
+>       assert data["status"] == "insufficient_evidence"
+E       AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E         
+E         - insufficient_evidence
+E         + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:281: AssertionError
+_______ test_sparse_input_policy_consistent_across_demographics[120-F] ________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DCC80A90>, db=<sqlalchemy.orm.session.Session ob...y_v1'}, '_patient_primary': None}}], version=namespace(id=UUID('03de1fbc-8c5f-486f-841e-110d723583e6'), version='1.0'))
+age = 120, sex = 'F'
+
+    @pytest.mark.parametrize("age,sex", [(0, "F"), (21, "M"), (21, "F"), (80, "M"), (120, "F")])
+    def test_sparse_input_policy_consistent_across_demographics(flow, age, sex):
+        data = finish_questions(flow.client, request(age=age, sex=sex))
+>       assert data["status"] == "insufficient_evidence"
+E       AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E         
+E         - insufficient_evidence
+E         + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:281: AssertionError
+_______ test_v2_three_symptoms_returns_only_uncertain_research_matches ________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DCC8E210>, db=<sqlalchemy.orm.session.Session ob..._primary': None}}], version=namespace(id=UUID('37231499-660e-4085-8439-b83e0b729a95'), version='v2_23class_prototype'))
+
+    def test_v2_three_symptoms_returns_only_uncertain_research_matches(flow):
+        flow.version.version = main.V2_MODEL_VERSION
+        text = "I have a runny nose, headache and sore throat for two days"
+        codes = ["runny_blocked_nose", "headache", "sore_throat"]
+        data = finish_questions(flow.client, request(text, codes))
+        assert data["uncertain"] is True
+>       assert data["score_note"]
+               ^^^^^^^^^^^^^^^^^^
+E       KeyError: 'score_note'
+
+tests\test_assessment_safety_regressions.py:297: KeyError
+______ test_v2_sparse_inputs_do_not_force_a_disease[I have cough-codes0] ______
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DCCB6210>, db=<sqlalchemy.orm.session.Session ob..._primary': None}}], version=namespace(id=UUID('54bef3ff-b80e-4ae0-ae03-416a16ebede8'), version='v2_23class_prototype'))
+text = 'I have cough', codes = ['cough']
+
+    @pytest.mark.parametrize("text,codes", [
+        ("I have cough", ["cough"]),
+        ("I have cough and fever", ["cough", "fever"]),
+        ("Nina homa na kikohozi", ["cough", "fever"]),
+    ])
+    def test_v2_sparse_inputs_do_not_force_a_disease(flow, text, codes):
+        flow.version.version = main.V2_MODEL_VERSION
+        data = finish_questions(flow.client, request(text, codes))
+>       assert data["status"] == "insufficient_evidence"
+E       AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E         
+E         - insufficient_evidence
+E         + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:348: AssertionError
+_ test_v2_sparse_inputs_do_not_force_a_disease[I have cough and fever-codes1] _
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DCC1CBD0>, db=<sqlalchemy.orm.session.Session ob..._primary': None}}], version=namespace(id=UUID('b301f776-f122-4776-baf2-b9a67f4cb8bf'), version='v2_23class_prototype'))
+text = 'I have cough and fever', codes = ['cough', 'fever']
+
+    @pytest.mark.parametrize("text,codes", [
+        ("I have cough", ["cough"]),
+        ("I have cough and fever", ["cough", "fever"]),
+        ("Nina homa na kikohozi", ["cough", "fever"]),
+    ])
+    def test_v2_sparse_inputs_do_not_force_a_disease(flow, text, codes):
+        flow.version.version = main.V2_MODEL_VERSION
+        data = finish_questions(flow.client, request(text, codes))
+>       assert data["status"] == "insufficient_evidence"
+E       AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E         
+E         - insufficient_evidence
+E         + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:348: AssertionError
+_ test_v2_sparse_inputs_do_not_force_a_disease[Nina homa na kikohozi-codes2] __
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DCFB7B10>, db=<sqlalchemy.orm.session.Session ob..._primary': None}}], version=namespace(id=UUID('d6bfcf83-a0ea-4eb7-a464-36d6d34620ee'), version='v2_23class_prototype'))
+text = 'Nina homa na kikohozi', codes = ['cough', 'fever']
+
+    @pytest.mark.parametrize("text,codes", [
+        ("I have cough", ["cough"]),
+        ("I have cough and fever", ["cough", "fever"]),
+        ("Nina homa na kikohozi", ["cough", "fever"]),
+    ])
+    def test_v2_sparse_inputs_do_not_force_a_disease(flow, text, codes):
+        flow.version.version = main.V2_MODEL_VERSION
+        data = finish_questions(flow.client, request(text, codes))
+>       assert data["status"] == "insufficient_evidence"
+E       AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E         
+E         - insufficient_evidence
+E         + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:348: AssertionError
+_______________ test_explicit_absence_reaches_real_v2_predictor _______________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DCC8EB90>, db=<sqlalchemy.orm.session.Session ob..._primary': None}}], version=namespace(id=UUID('3025e40e-14a4-46a1-a616-6b892191c50b'), version='v2_23class_prototype'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000200DCC8EB10>
+
+    def test_explicit_absence_reaches_real_v2_predictor(flow, monkeypatch):
+        flow.version.version = main.V2_MODEL_VERSION
+        captured = {}
+        predictor = main.predict_v2_single
+    
+        def record(**kwargs):
+            captured.update(kwargs)
+            return predictor(**kwargs)
+    
+        monkeypatch.setattr(main, "predict_v2_single", record)
+        text = "I have a runny nose, headache and sore throat for two days, but no fever"
+        data = finish_questions(flow.client, request(text, ["runny_blocked_nose", "headache", "sore_throat"]))
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_assessment_safety_regressions.py:365: AssertionError
+________________ test_register_login_predict_history_feedback _________________
+
+    def test_register_login_predict_history_feedback():
+        patient = register_and_login(
+            f"patient-{uuid.uuid4().hex}@example.com"
+        )
+    
+        other_patient = register_and_login(
+            f"other-{uuid.uuid4().hex}@example.com"
+        )
+    
+        # Symptom mapping uses the seeded database catalogue.
+        response = client.post(
+            "/nlp/map",
+            json={
+                "text": "I have fever na kikohozi"
+            },
+        )
+    
+        assert response.status_code == 200
+    
+        codes = [
+            symptom["code"]
+            for symptom
+            in response.json()["recognised_symptoms"]
+        ]
+    
+        assert set(codes) == {"fever", "cough"}
+    
+        # Prediction is stored for the logged-in patient.
+        response = finish_followups(
+            client,
+            headers=patient,
+            payload={
+                "age": 25,
+                "sex": "M",
+                "text": "I have fever na kikohozi",
+                "confirmed_codes": codes,
+            },
+        )
+    
+        assert response.status_code == 200
+    
+        prediction = response.json()
+    
+>       assert prediction["status"] == "insufficient_evidence"
+E       AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E         
+E         - insufficient_evidence
+E         + assessment_uncertain
+
+tests\test_end_to_end.py:93: AssertionError
+_________ test_v1_sparse_assessment_abstains_and_preserves_ownership __________
+
+mock_prediction_save = {'user_id': UUID('ef6626ac-7f18-4e10-9420-6fb983ced173'), 'age': 25, 'sex': 'M', 'input_text': 'I have fever na kikohozi', ...}
+
+    def test_v1_sparse_assessment_abstains_and_preserves_ownership(
+        mock_prediction_save,
+    ):
+        response = finish_followups(
+            client,
+            {
+                "age": 25,
+                "sex": "M",
+                "text": "I have fever na kikohozi",
+                "confirmed_codes": [
+                    "fever",
+                    "cough",
+                ],
+            },
+        )
+    
+        assert response.status_code == 200
+    
+        data = response.json()
+    
+        # Intentional contract: V1 cannot distinguish unknown from absent evidence.
+>       assert data["status"] == "insufficient_evidence"
+E       AssertionError: assert 'assessment_uncertain' == 'insufficient_evidence'
+E         
+E         - insufficient_evidence
+E         + assessment_uncertain
+
+tests\test_prediction_validation.py:92: AssertionError
+____________ test_no_confirmed_model_feature_returns_clarification ____________
+
+    def test_no_confirmed_model_feature_returns_clarification():
+        response = client.post(
+            "/predict",
+            json={
+                "age": 25,
+                "sex": "M",
+                "text": "I have fever",
+                "confirmed_codes": [],
+            },
+        )
+    
+        assert response.status_code == 200
+        data = response.json()
+        assert data["status"] == "insufficient_evidence"
+        assert data["predictions"] == []
+>       assert "no_supported_present_symptoms" in data["uncertainty_reasons"]
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'uncertainty_reasons'
+
+tests\test_prediction_validation.py:222: KeyError
+___________ TestPredictionApiRouting.test_real_v2_model_through_api ___________
+
+self = <tests.test_v2_prediction_api_unit.TestPredictionApiRouting testMethod=test_real_v2_model_through_api>
+
+    def test_real_v2_model_through_api(self):
+        # Use the real V2 predictor, not the mocked result.
+        # Database access and prediction history remain mocked.
+        self.mocks[3].side_effect = predict_v2_single
+    
+        response = self.request_prediction()
+    
+        self.assertEqual(response.status_code, 200)
+    
+        data = response.json()
+    
+        self.assertEqual(
+            data["model_version"],
+            "v2_23class_prototype",
+        )
+>       self.assertEqual(data["feature_count"], 66)
+                         ^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'feature_count'
+
+tests\test_v2_prediction_api_unit.py:224: KeyError
+_ TestPredictionApiRouting.test_unsupported_only_abstains_without_model_call __
+
+self = <tests.test_v2_prediction_api_unit.TestPredictionApiRouting testMethod=test_unsupported_only_abstains_without_model_call>
+
+    def test_unsupported_only_abstains_without_model_call(self):
+        self.confirmation["model_features"] = [
+            "E_55_@_V_101"
+        ]
+        self.confirmation["confirmed_codes"] = ["cough"]
+        self.confirmation["recognised_symptoms"][0]["features"] = ["E_55_@_V_101"]
+        self.confirmation["recognised_symptoms"][1]["status"] = "absent"
+        self.confirmation["recognised_symptoms"][2]["status"] = "absent"
+    
+        response = self.request_prediction()
+    
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+>       self.assertEqual(data["status"], "insufficient_evidence")
+E       AssertionError: 'assessment_uncertain' != 'insufficient_evidence'
+E       - assessment_uncertain
+E       + insufficient_evidence
+
+tests\test_v2_prediction_api_unit.py:182: AssertionError
+____ TestPredictionApiRouting.test_v1_abstains_without_falling_back_to_v2 _____
+
+self = <tests.test_v2_prediction_api_unit.TestPredictionApiRouting testMethod=test_v1_abstains_without_falling_back_to_v2>
+
+    def test_v1_abstains_without_falling_back_to_v2(self):
+        self.model_version.version = "1.0"
+    
+        response = self.request_prediction()
+    
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+    
+        self.assertEqual(data["model_version"], "1.0")
+>       self.assertEqual(data["status"], "insufficient_evidence")
+E       AssertionError: 'assessment_uncertain' != 'insufficient_evidence'
+E       - assessment_uncertain
+E       + insufficient_evidence
+
+tests\test_v2_prediction_api_unit.py:162: AssertionError
+_ TestPredictionApiRouting.test_v2_returns_research_condition_and_uncertainty _
+
+self = <tests.test_v2_prediction_api_unit.TestPredictionApiRouting testMethod=test_v2_returns_research_condition_and_uncertainty>
+
+    def test_v2_returns_research_condition_and_uncertainty(self):
+        response = self.request_prediction()
+    
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+    
+        self.assertEqual(
+            data["model_version"],
+            "v2_23class_prototype",
+        )
+>       self.assertEqual(data["feature_count"], 66)
+                         ^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'feature_count'
+
+tests\test_v2_prediction_api_unit.py:139: KeyError
+___________________ test_v2_prediction_history_and_red_flag ___________________
+
+    def test_v2_prediction_history_and_red_flag():
+        # The pytest test schema is prepared by conftest.py.
+        # Register and activate V2 only inside that schema.
+        with SessionLocal() as db:
+            user = User(
+                email=f"v2-test-{uuid.uuid4().hex}@example.com",
+                password_hash="test-only-not-a-real-password",
+                role="patient",
+            )
+    
+            db.add(user)
+            db.flush()
+    
+            user_id = user.id
+    
+            register_v2_model_version(db)
+            v2 = activate_v2_model_version(db)
+    
+            v2_id = v2.id
+    
+            db.commit()
+    
+        # Use the real database dependency and real prediction
+        # service. Override only authentication with the test user.
+        app.dependency_overrides[
+            main_module.get_current_user
+        ] = lambda: SimpleNamespace(
+            id=user_id,
+            role="patient",
+        )
+    
+        try:
+            with TestClient(app) as client:
+    
+                # ------------------------------------------
+                # 1. Normal V2 prediction
+                # ------------------------------------------
+                response = client.post(
+                    "/predict",
+                    json={
+                        "age": 25,
+                        "sex": "M",
+                        "text": "I have fever na kikohozi and a runny nose for two days but no difficulty breathing",
+                        "confirmed_codes": [
+                            "fever",
+                            "cough",
+                            "runny_blocked_nose",
+                        ],
+                    },
+                )
+    
+                assert response.status_code == 200, (
+                    response.text
+                )
+    
+                result = response.json()
+    
+>               assert result["status"] == "prediction_complete"
+E               AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E                 
+E                 - prediction_complete
+E                 + assessment_uncertain
+
+tests\test_v2_prediction_history_integration.py:83: AssertionError
+__________ test_supplied_cases_complete_v3_consultation[supplied-1] ___________
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DCFC7790>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('68fba71f-bff7-4b18-9756-2af4aba5f8d9'), version='v3_partial_evidence'))
+text = 'I have fever.', expected = {'fever': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{i}" for i in range(1, 13)])
+    def test_supplied_cases_complete_v3_consultation(v3_flow, text, expected):
+        data, answers, asked = finish(v3_flow, payload(v3_flow, text))
+        if "shortness_of_breath" in expected:
+            assert data["status"] == "urgent_review"
+            assert not answers and not data["predictions"]
+        elif not expected:
+            assert data["status"] == "insufficient_evidence"
+            assert not answers and not data["predictions"]
+        else:
+>           assert_real_candidates(data)
+
+tests\test_v3_consultation.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['fever'], 'effective_confirmed_codes': ['fever'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+__________ test_supplied_cases_complete_v3_consultation[supplied-2] ___________
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200E35BAC10>, db=<sqlalchemy.orm.session.Session ob...ents in Kenya.'}}}], version=namespace(id=UUID('81ac784e-f129-4ca4-a0a1-80af8c7c6937'), version='v3_partial_evidence'))
+text = 'Runny nose, for a few days with headache and sore throat.'
+expected = {'runny_blocked_nose': 'present', 'headache': 'present', 'sore_throat': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{i}" for i in range(1, 13)])
+    def test_supplied_cases_complete_v3_consultation(v3_flow, text, expected):
+        data, answers, asked = finish(v3_flow, payload(v3_flow, text))
+        if "shortness_of_breath" in expected:
+            assert data["status"] == "urgent_review"
+            assert not answers and not data["predictions"]
+        elif not expected:
+            assert data["status"] == "insufficient_evidence"
+            assert not answers and not data["predictions"]
+        else:
+>           assert_real_candidates(data)
+
+tests\test_v3_consultation.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['sore_throat', 'runny_blocked_nose', 'headache'], 'effective_confirmed_codes': ['sore_throat', 'runny_blocked_nose', 'headache'], ...}
+
+    def assert_real_candidates(data):
+        assert data["status"] == "prediction_complete"
+        assert data["model_version"] == V3_MODEL_VERSION
+        assert data["clinical_validation"] is False
+        assert data["uncertain"] is True
+>       assert len(data["predictions"]) == 3
+E       AssertionError: assert 1 == 3
+E        +  where 1 = len([{'condition': 'URTI', 'medical_name': 'Upper respiratory tract infection (URTI)', 'display_name': 'Nose or throat inf...is broad term does not identify a particular virus and is not the same as confirmed influenza or a common cold.', ...}])
+
+tests\test_v3_consultation.py:80: AssertionError
+__________ test_supplied_cases_complete_v3_consultation[supplied-3] ___________
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200E3601050>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('867f98b2-a8e3-45bc-9329-46f860b1dac6'), version='v3_partial_evidence'))
+text = 'I have a cough and fever.'
+expected = {'cough': 'present', 'fever': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{i}" for i in range(1, 13)])
+    def test_supplied_cases_complete_v3_consultation(v3_flow, text, expected):
+        data, answers, asked = finish(v3_flow, payload(v3_flow, text))
+        if "shortness_of_breath" in expected:
+            assert data["status"] == "urgent_review"
+            assert not answers and not data["predictions"]
+        elif not expected:
+            assert data["status"] == "insufficient_evidence"
+            assert not answers and not data["predictions"]
+        else:
+>           assert_real_candidates(data)
+
+tests\test_v3_consultation.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['fever', 'cough'], 'effective_confirmed_codes': ['fever', 'cough'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+__________ test_supplied_cases_complete_v3_consultation[supplied-4] ___________
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200E3646E90>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('d71a6924-d2d2-4ef4-bec0-da9d4c76d16d'), version='v3_partial_evidence'))
+text = 'I have a cough.', expected = {'cough': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{i}" for i in range(1, 13)])
+    def test_supplied_cases_complete_v3_consultation(v3_flow, text, expected):
+        data, answers, asked = finish(v3_flow, payload(v3_flow, text))
+        if "shortness_of_breath" in expected:
+            assert data["status"] == "urgent_review"
+            assert not answers and not data["predictions"]
+        elif not expected:
+            assert data["status"] == "insufficient_evidence"
+            assert not answers and not data["predictions"]
+        else:
+>           assert_real_candidates(data)
+
+tests\test_v3_consultation.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['cough'], 'effective_confirmed_codes': ['cough'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+__________ test_supplied_cases_complete_v3_consultation[supplied-5] ___________
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DC6E84D0>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('4fdc8446-bf6a-42e5-901e-981038d0f5f9'), version='v3_partial_evidence'))
+text = 'I have a runny nose, sneezing and a mild cough.'
+expected = {'runny_blocked_nose': 'present', 'sneezing': 'present', 'cough': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{i}" for i in range(1, 13)])
+    def test_supplied_cases_complete_v3_consultation(v3_flow, text, expected):
+        data, answers, asked = finish(v3_flow, payload(v3_flow, text))
+        if "shortness_of_breath" in expected:
+            assert data["status"] == "urgent_review"
+            assert not answers and not data["predictions"]
+        elif not expected:
+            assert data["status"] == "insufficient_evidence"
+            assert not answers and not data["predictions"]
+        else:
+>           assert_real_candidates(data)
+
+tests\test_v3_consultation.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['runny_blocked_nose', 'sneezing', 'cough'], 'effective_confirmed_codes': ['runny_blocked_nose', 'sneezing', 'cough'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+__________ test_supplied_cases_complete_v3_consultation[supplied-6] ___________
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DD1D7010>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('c133d546-de8e-4005-9484-c5baff6fb310'), version='v3_partial_evidence'))
+text = 'I have had a cough and fever for two days.'
+expected = {'cough': 'present', 'fever': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{i}" for i in range(1, 13)])
+    def test_supplied_cases_complete_v3_consultation(v3_flow, text, expected):
+        data, answers, asked = finish(v3_flow, payload(v3_flow, text))
+        if "shortness_of_breath" in expected:
+            assert data["status"] == "urgent_review"
+            assert not answers and not data["predictions"]
+        elif not expected:
+            assert data["status"] == "insufficient_evidence"
+            assert not answers and not data["predictions"]
+        else:
+>           assert_real_candidates(data)
+
+tests\test_v3_consultation.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['fever', 'cough'], 'effective_confirmed_codes': ['fever', 'cough'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+__________ test_supplied_cases_complete_v3_consultation[supplied-7] ___________
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200E3595250>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('176791af-fb93-4d1c-8d9f-3d56f5155510'), version='v3_partial_evidence'))
+text = 'I have had a cough for several weeks and have been losing weight.'
+expected = {'cough': 'present', 'weight_loss': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{i}" for i in range(1, 13)])
+    def test_supplied_cases_complete_v3_consultation(v3_flow, text, expected):
+        data, answers, asked = finish(v3_flow, payload(v3_flow, text))
+        if "shortness_of_breath" in expected:
+            assert data["status"] == "urgent_review"
+            assert not answers and not data["predictions"]
+        elif not expected:
+            assert data["status"] == "insufficient_evidence"
+            assert not answers and not data["predictions"]
+        else:
+>           assert_real_candidates(data)
+
+tests\test_v3_consultation.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['weight_loss', 'cough'], 'effective_confirmed_codes': ['cough'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+__________ test_supplied_cases_complete_v3_consultation[supplied-10] __________
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200E36037D0>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('5e4ca44e-04e3-4f60-b9c6-5953a8dcbb6a'), version='v3_partial_evidence'))
+text = 'I have a cough, but I do not have a fever.'
+expected = {'cough': 'present', 'fever': 'absent'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{i}" for i in range(1, 13)])
+    def test_supplied_cases_complete_v3_consultation(v3_flow, text, expected):
+        data, answers, asked = finish(v3_flow, payload(v3_flow, text))
+        if "shortness_of_breath" in expected:
+            assert data["status"] == "urgent_review"
+            assert not answers and not data["predictions"]
+        elif not expected:
+            assert data["status"] == "insufficient_evidence"
+            assert not answers and not data["predictions"]
+        else:
+>           assert_real_candidates(data)
+
+tests\test_v3_consultation.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['cough'], 'effective_confirmed_codes': ['cough'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+__________ test_supplied_cases_complete_v3_consultation[supplied-11] __________
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DD02B610>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('93ebdfc7-97b4-4b5f-b9a3-9818af84cb7c'), version='v3_partial_evidence'))
+text = 'Nina homa na kikohozi.'
+expected = {'cough': 'present', 'fever': 'present'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{i}" for i in range(1, 13)])
+    def test_supplied_cases_complete_v3_consultation(v3_flow, text, expected):
+        data, answers, asked = finish(v3_flow, payload(v3_flow, text))
+        if "shortness_of_breath" in expected:
+            assert data["status"] == "urgent_review"
+            assert not answers and not data["predictions"]
+        elif not expected:
+            assert data["status"] == "insufficient_evidence"
+            assert not answers and not data["predictions"]
+        else:
+>           assert_real_candidates(data)
+
+tests\test_v3_consultation.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['cough', 'fever'], 'effective_confirmed_codes': ['cough', 'fever'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+__________ test_supplied_cases_complete_v3_consultation[supplied-12] __________
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DD219E50>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('9c20a5ab-326a-4ce6-972a-637bc48bee10'), version='v3_partial_evidence'))
+text = 'Nina kikohozi lakini sina homa.'
+expected = {'cough': 'present', 'fever': 'absent'}
+
+    @pytest.mark.parametrize("text,expected", SUPPLIED_CASES, ids=[f"supplied-{i}" for i in range(1, 13)])
+    def test_supplied_cases_complete_v3_consultation(v3_flow, text, expected):
+        data, answers, asked = finish(v3_flow, payload(v3_flow, text))
+        if "shortness_of_breath" in expected:
+            assert data["status"] == "urgent_review"
+            assert not answers and not data["predictions"]
+        elif not expected:
+            assert data["status"] == "insufficient_evidence"
+            assert not answers and not data["predictions"]
+        else:
+>           assert_real_candidates(data)
+
+tests\test_v3_consultation.py:105: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['cough'], 'effective_confirmed_codes': ['cough'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+_ test_equivalent_languages_have_equivalent_model_evidence[I have cough-Nina kikohozi] _
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DD0433D0>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('bf53ca4e-3004-49cd-8374-359047840655'), version='v3_partial_evidence'))
+english = 'I have cough', swahili = 'Nina kikohozi'
+
+    @pytest.mark.parametrize("english,swahili", [
+        ("I have cough", "Nina kikohozi"),
+        ("I have fever", "Nina homa"),
+        ("I have cough and fever for two days", "Nina kikohozi na homa kwa siku mbili"),
+    ])
+    def test_equivalent_languages_have_equivalent_model_evidence(v3_flow, english, swahili):
+        en, _, _ = finish(v3_flow, payload(v3_flow, english, language="en"))
+        sw, _, _ = finish(v3_flow, payload(v3_flow, swahili, language="sw"))
+>       assert_real_candidates(en)
+
+tests\test_v3_consultation.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['cough'], 'effective_confirmed_codes': ['cough'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+_ test_equivalent_languages_have_equivalent_model_evidence[I have fever-Nina homa] _
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DD225B90>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('d0166399-bcae-447c-b5b6-05cb7127ee61'), version='v3_partial_evidence'))
+english = 'I have fever', swahili = 'Nina homa'
+
+    @pytest.mark.parametrize("english,swahili", [
+        ("I have cough", "Nina kikohozi"),
+        ("I have fever", "Nina homa"),
+        ("I have cough and fever for two days", "Nina kikohozi na homa kwa siku mbili"),
+    ])
+    def test_equivalent_languages_have_equivalent_model_evidence(v3_flow, english, swahili):
+        en, _, _ = finish(v3_flow, payload(v3_flow, english, language="en"))
+        sw, _, _ = finish(v3_flow, payload(v3_flow, swahili, language="sw"))
+>       assert_real_candidates(en)
+
+tests\test_v3_consultation.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['fever'], 'effective_confirmed_codes': ['fever'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+_ test_equivalent_languages_have_equivalent_model_evidence[I have cough and fever for two days-Nina kikohozi na homa kwa siku mbili] _
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DD244710>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('b9f06c73-9f3b-4451-bbfb-fca95e990ab0'), version='v3_partial_evidence'))
+english = 'I have cough and fever for two days'
+swahili = 'Nina kikohozi na homa kwa siku mbili'
+
+    @pytest.mark.parametrize("english,swahili", [
+        ("I have cough", "Nina kikohozi"),
+        ("I have fever", "Nina homa"),
+        ("I have cough and fever for two days", "Nina kikohozi na homa kwa siku mbili"),
+    ])
+    def test_equivalent_languages_have_equivalent_model_evidence(v3_flow, english, swahili):
+        en, _, _ = finish(v3_flow, payload(v3_flow, english, language="en"))
+        sw, _, _ = finish(v3_flow, payload(v3_flow, swahili, language="sw"))
+>       assert_real_candidates(en)
+
+tests\test_v3_consultation.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['fever', 'cough'], 'effective_confirmed_codes': ['fever', 'cough'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+_________ test_explicit_negative_answer_changes_actual_ranked_scores __________
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DD1F0B10>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('fbd0f796-def4-409f-87ad-732588e6e3d4'), version='v3_partial_evidence'))
+
+    def test_explicit_negative_answer_changes_actual_ranked_scores(v3_flow):
+        denied, _, _ = finish(v3_flow, payload(v3_flow, "I have cough for two days but no fever"))
+        unknown, _, _ = finish(v3_flow, payload(v3_flow, "I have cough for two days but maybe fever"))
+>       assert_real_candidates(denied)
+
+tests\test_v3_consultation.py:133: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['cough'], 'effective_confirmed_codes': ['cough'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+_ test_known_duration_skips_repeated_duration_question_and_targets_missing_pool _
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200E3562290>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('8ec4a8d1-9d78-450a-8069-6e7327c622f5'), version='v3_partial_evidence'))
+
+    def test_known_duration_skips_repeated_duration_question_and_targets_missing_pool(v3_flow):
+        data, _, asked = finish(v3_flow, payload(v3_flow))
+        assert "symptom_duration" not in asked
+        assert asked[0] == "breathing_difficulty"
+        assert all(qid in POOL for qid in asked[1:])
+        assert "cough" not in asked and "fever" not in asked
+        assert data["assessment_context"]["symptom_durations"]["cough"]["min_days"] == 2
+>       assert_real_candidates(data)
+
+tests\test_v3_consultation.py:148: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['fever', 'cough'], 'effective_confirmed_codes': ['fever', 'cough'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+____________ test_unknown_answers_do_not_become_negative_evidence _____________
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DD210550>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('851720cb-f0f1-4258-b3e2-e072a8fd7251'), version='v3_partial_evidence'))
+
+    def test_unknown_answers_do_not_become_negative_evidence(v3_flow):
+        data, answers, _ = finish(v3_flow, payload(v3_flow))
+        for answer in answers:
+            if answer["answer"] == "unknown" and answer["question_id"] in POOL:
+                assert data["assessment_context"]["symptom_states"][answer["question_id"]] == "unknown"
+        assert data["assessment_context"]["questions_asked"] == [row["question_id"] for row in answers]
+>       assert v3_flow.saved[-1]["assessment_context"] == data["assessment_context"]
+E       AssertionError: assert {'language': ...'cough'}, ...} == {'language': ...'cough'}, ...}
+E         
+E         Omitting 13 identical items, use -vv to show
+E         Differing items:
+E         {'context_note': 'This model learns reported symptoms and yes/no answers from complete simulated patient records. Unme...ion and severity guide advice but are not trained disease-model features. Results have not been clinically validated.'} != {'context_note': 'This app considers a limited set of respiratory conditions. An examination or tests may be needed.'}
+E         Left contains 3 more items:
+E         {'_patient_primary': None,
+E          '_primary_audit': {'input_guard_reasons': ['ambiguous_model_rank'],...
+E         
+E         ...Full output truncated (23 lines hidden), use '-vv' to show
+
+tests\test_v3_consultation.py:169: AssertionError
+______ test_v3_real_history_persists_evidence_answers_and_model_version _______
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DD1F1850>, db=<sqlalchemy.orm.session.Session ob...DD1F1150>, saved=[], version=namespace(id=UUID('78522048-8bff-4133-9f35-afdd0778ce33'), version='v3_partial_evidence'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000200DD1F0A10>
+
+    def test_v3_real_history_persists_evidence_answers_and_model_version(v3_flow, monkeypatch):
+        connection = engine.connect()
+        transaction = connection.begin()
+        db = Session(bind=connection, join_transaction_mode="create_savepoint")
+        try:
+            user = User(email=f"v3-history-{uuid.uuid4().hex}@example.com", password_hash="test-only", role="patient")
+            db.add(user)
+            db.flush()
+            version = register_v3_model_version(db)
+            v3_flow.version.id = version.id
+            main.app.dependency_overrides[main.get_db] = lambda: db
+            main.app.dependency_overrides[main.get_current_user] = lambda: user
+            monkeypatch.setattr(main, "save_prediction_session", save_prediction_session)
+            data, answers, _ = finish(v3_flow, payload(v3_flow))
+>           assert_real_candidates(data)
+
+tests\test_v3_consultation.py:259: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 21, 'sex': 'M', 'confirmed_codes': ['fever', 'cough'], 'effective_confirmed_codes': ['fever', 'cough'], ...}
+
+    def assert_real_candidates(data):
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:76: AssertionError
+_ test_low_benefit_questions_stop_without_blocking_an_assessment[0.0-prediction_complete] _
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200DD2388D0>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('639b34da-5c32-4a33-b1a2-6caf1278689e'), version='v3_partial_evidence'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000200DD2396D0>
+gain = 0.0, expected_status = 'prediction_complete'
+
+    @pytest.mark.parametrize('gain,expected_status', [(0.0, 'prediction_complete'), (0.019, 'prediction_complete'), (0.02, 'needs_follow_up')])
+    def test_low_benefit_questions_stop_without_blocking_an_assessment(v3_flow, monkeypatch, gain, expected_status):
+        import app.services.v3_prediction as service
+        monkeypatch.setattr(service, 'rank_follow_up_features', lambda *args, **kwargs: [
+            {'feature': 'E_144', 'information_gain': gain},
+        ])
+        body = payload(v3_flow, 'I have a cough and fever for two days but no difficulty breathing')
+        response = v3_flow.client.post('/predict', json=body)
+        assert response.status_code == 200, response.text
+        data = response.json()
+>       assert data['status'] == expected_status
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:290: AssertionError
+_ test_low_benefit_questions_stop_without_blocking_an_assessment[0.019-prediction_complete] _
+
+v3_flow = namespace(client=<starlette.testclient.TestClient object at 0x00000200E36479D0>, db=<sqlalchemy.orm.session.Session ob...t_primary': None}}], version=namespace(id=UUID('b461c05b-9660-4b58-8f6b-5acd30ba5ef7'), version='v3_partial_evidence'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000200DD1A1650>
+gain = 0.019, expected_status = 'prediction_complete'
+
+    @pytest.mark.parametrize('gain,expected_status', [(0.0, 'prediction_complete'), (0.019, 'prediction_complete'), (0.02, 'needs_follow_up')])
+    def test_low_benefit_questions_stop_without_blocking_an_assessment(v3_flow, monkeypatch, gain, expected_status):
+        import app.services.v3_prediction as service
+        monkeypatch.setattr(service, 'rank_follow_up_features', lambda *args, **kwargs: [
+            {'feature': 'E_144', 'information_gain': gain},
+        ])
+        body = payload(v3_flow, 'I have a cough and fever for two days but no difficulty breathing')
+        response = v3_flow.client.post('/predict', json=body)
+        assert response.status_code == 200, response.text
+        data = response.json()
+>       assert data['status'] == expected_status
+E       AssertionError: assert 'assessment_uncertain' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + assessment_uncertain
+
+tests\test_v3_consultation.py:290: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\krish\OneDrive\Desktop\IS codex\ucs31-madhaparia-backend\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api[supplied-1]
+FAILED tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api[supplied-2]
+FAILED tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api[supplied-3]
+FAILED tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api[supplied-4]
+FAILED tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api[supplied-5]
+FAILED tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api[supplied-6]
+FAILED tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api[supplied-7]
+FAILED tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api[supplied-10]
+FAILED tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api[supplied-11]
+FAILED tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api[supplied-12]
+FAILED tests/test_assessment_safety_regressions.py::test_followup_answers_change_the_recorded_profile
+FAILED tests/test_assessment_safety_regressions.py::test_sparse_input_policy_consistent_across_demographics[0-F]
+FAILED tests/test_assessment_safety_regressions.py::test_sparse_input_policy_consistent_across_demographics[21-M]
+FAILED tests/test_assessment_safety_regressions.py::test_sparse_input_policy_consistent_across_demographics[21-F]
+FAILED tests/test_assessment_safety_regressions.py::test_sparse_input_policy_consistent_across_demographics[80-M]
+FAILED tests/test_assessment_safety_regressions.py::test_sparse_input_policy_consistent_across_demographics[120-F]
+FAILED tests/test_assessment_safety_regressions.py::test_v2_three_symptoms_returns_only_uncertain_research_matches
+FAILED tests/test_assessment_safety_regressions.py::test_v2_sparse_inputs_do_not_force_a_disease[I have cough-codes0]
+FAILED tests/test_assessment_safety_regressions.py::test_v2_sparse_inputs_do_not_force_a_disease[I have cough and fever-codes1]
+FAILED tests/test_assessment_safety_regressions.py::test_v2_sparse_inputs_do_not_force_a_disease[Nina homa na kikohozi-codes2]
+FAILED tests/test_assessment_safety_regressions.py::test_explicit_absence_reaches_real_v2_predictor
+FAILED tests/test_end_to_end.py::test_register_login_predict_history_feedback
+FAILED tests/test_prediction_validation.py::test_v1_sparse_assessment_abstains_and_preserves_ownership
+FAILED tests/test_prediction_validation.py::test_no_confirmed_model_feature_returns_clarification
+FAILED tests/test_v2_prediction_api_unit.py::TestPredictionApiRouting::test_real_v2_model_through_api
+FAILED tests/test_v2_prediction_api_unit.py::TestPredictionApiRouting::test_unsupported_only_abstains_without_model_call
+FAILED tests/test_v2_prediction_api_unit.py::TestPredictionApiRouting::test_v1_abstains_without_falling_back_to_v2
+FAILED tests/test_v2_prediction_api_unit.py::TestPredictionApiRouting::test_v2_returns_research_condition_and_uncertainty
+FAILED tests/test_v2_prediction_history_integration.py::test_v2_prediction_history_and_red_flag
+FAILED tests/test_v3_consultation.py::test_supplied_cases_complete_v3_consultation[supplied-1]
+FAILED tests/test_v3_consultation.py::test_supplied_cases_complete_v3_consultation[supplied-2]
+FAILED tests/test_v3_consultation.py::test_supplied_cases_complete_v3_consultation[supplied-3]
+FAILED tests/test_v3_consultation.py::test_supplied_cases_complete_v3_consultation[supplied-4]
+FAILED tests/test_v3_consultation.py::test_supplied_cases_complete_v3_consultation[supplied-5]
+FAILED tests/test_v3_consultation.py::test_supplied_cases_complete_v3_consultation[supplied-6]
+FAILED tests/test_v3_consultation.py::test_supplied_cases_complete_v3_consultation[supplied-7]
+FAILED tests/test_v3_consultation.py::test_supplied_cases_complete_v3_consultation[supplied-10]
+FAILED tests/test_v3_consultation.py::test_supplied_cases_complete_v3_consultation[supplied-11]
+FAILED tests/test_v3_consultation.py::test_supplied_cases_complete_v3_consultation[supplied-12]
+FAILED tests/test_v3_consultation.py::test_equivalent_languages_have_equivalent_model_evidence[I have cough-Nina kikohozi]
+FAILED tests/test_v3_consultation.py::test_equivalent_languages_have_equivalent_model_evidence[I have fever-Nina homa]
+FAILED tests/test_v3_consultation.py::test_equivalent_languages_have_equivalent_model_evidence[I have cough and fever for two days-Nina kikohozi na homa kwa siku mbili]
+FAILED tests/test_v3_consultation.py::test_explicit_negative_answer_changes_actual_ranked_scores
+FAILED tests/test_v3_consultation.py::test_known_duration_skips_repeated_duration_question_and_targets_missing_pool
+FAILED tests/test_v3_consultation.py::test_unknown_answers_do_not_become_negative_evidence
+FAILED tests/test_v3_consultation.py::test_v3_real_history_persists_evidence_answers_and_model_version
+FAILED tests/test_v3_consultation.py::test_low_benefit_questions_stop_without_blocking_an_assessment[0.0-prediction_complete]
+FAILED tests/test_v3_consultation.py::test_low_benefit_questions_stop_without_blocking_an_assessment[0.019-prediction_complete]
+48 failed, 178 passed, 1 warning in 131.80s (0:02:11)

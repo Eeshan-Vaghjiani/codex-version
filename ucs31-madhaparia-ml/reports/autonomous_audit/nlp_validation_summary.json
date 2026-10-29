@@ -1,0 +1,49 @@
+{
+  "baseline": {
+    "ml_nlp_tests_passed": 47,
+    "ml_subtests_passed": 5,
+    "backend_has_no_symptom_status_duration_or_negation": true,
+    "cases_artifact": "nlp_baseline.json"
+  },
+  "final": {
+    "new_unique_contract_tests": 79,
+    "ml_nlp_tests_passed": 126,
+    "ml_subtests_passed": 5,
+    "production_backend_contract_tests_passed": 79,
+    "cases_artifact": "nlp_case_comparison.json",
+    "latest_nlp_contract_tests_passed_after_cache_refactor": 79
+  },
+  "root_causes": [
+    {
+      "file": "backend/app/nlp/symptom_mapper.py",
+      "cause": "Production copy lagged behind ML NLP; it omitted status, patient context, duration and all negation checks."
+    },
+    {
+      "file": "backend/app/nlp/*.json",
+      "cause": "Production aliases omitted struggling to breathe, losing weight and sneezing. Suggestions could offer wheezing for sneezing."
+    },
+    {
+      "file": "ml/nlp/symptom_mapper.py",
+      "cause": "Broad same-prefix transposition heuristic admitted multi-edit substitutions; duration supported only exact English days/weeks; no severity; context words rendered as unmatched."
+    }
+  ],
+  "fixes": [
+    "Synchronized extraction logic and added static parity regression for shared functions and catalogues.",
+    "Preserved recognised present/absent/unknown states and absent/uncertain arrays; unmentioned remains absent from recognised list.",
+    "Restricted automatic word typo matching to a single edit with same first character; multiword matching requires 95 similarity.",
+    "Extracted explicit English/Swahili durations/ranges; preserved vague duration text without fabricated numeric bounds.",
+    "Extracted mild/moderate/severe attributes and recognized uncertainty including Swahili.",
+    "Added DB/model-independent detect_safety_signs preserving negation and patient context.",
+    "Cached bundled warning-sign catalogue independently of normal DB extraction; reused DB aliases for unmatched cleanup so API catalogue use never falls back to JSON."
+  ],
+  "limitations": [
+    "Rule-based NLP covers documented aliases and contextual patterns; arbitrary text is not proven safe or clinically validated.",
+    "Vague durations retain text with unknown numeric bounds; hours/months do not invent integer-day conversions.",
+    "Regular production catalogue must be re-seeded for new non-emergency aliases; emergency detection independently reads bundled catalogues.",
+    "Severity and duration are contextual attributes, not claimed trained model features."
+  ],
+  "commands_executed": [
+    ".venv/Scripts/python.exe -m pytest tests/test_symptom_mapper.py tests/test_nlp_negation_safety.py tests/test_nlp_duration.py tests/test_nlp_patient_context.py tests/test_autonomous_nlp_regressions.py -q",
+    "RESPIRACARE_TEST_BACKEND_NLP=1 ../ucs31-madhaparia-backend/.venv/Scripts/python.exe -m pytest tests/test_autonomous_nlp_regressions.py -q"
+  ]
+}

@@ -1,0 +1,199 @@
+Feature,Importance,Readable_Feature
+E_41,0.03027300153309345,Have you been in contact with a person with similar symptoms in the past 2 weeks?
+E_57_@_V_123,0.024436047352781216,Does the pain radiate to another location?: nowhere
+E_212,0.02305934071933348,"Have you noticed that the tone of your voice has become deeper, softer or hoarse?"
+E_56,0.022960394093149494,How intense is the pain?
+E_54_@_V_181,0.01864349264202264,Characterize your pain:: burning
+E_55_@_V_33,0.018602422514776142,Do you feel pain somewhere?: thyroid cartilage
+E_181,0.0183409804051131,Do you have nasal congestion or a clear runny nose?
+E_123,0.018254140652379618,Do you have a chronic obstructive pulmonary disease (COPD)?
+E_97,0.0175606844077418,Do you have a sore throat?
+E_77,0.01690115328511511,Do you have a cough that produces colored or more abundant sputum than usual?
+E_54_@_V_154,0.016863183507319492,Characterize your pain:: tedious
+E_55_@_V_137,0.01684829257922088,Do you feel pain somewhere?: palace
+E_214,0.01676088308579569,Have you noticed a wheezing sound when you exhale?
+E_116,0.016615382794380327,Have you had a cold in the last 2 weeks?
+E_169,0.016568205197636937,Is your nose or the back of your throat itchy?
+E_194,0.016545135296522715,Have you noticed a high pitched sound when breathing in?
+E_131_@_V_12,0.01607836824842913,Do your lesions peel off?: Y
+E_227,0.016002311522219596,Are you immunosuppressed?
+E_58,0.015937284513369884,How precisely is the pain located?
+E_55_@_V_21,0.015437697637839387,Do you feel pain somewhere?: tonsil(L)
+E_55_@_V_20,0.015309522059556019,Do you feel pain somewhere?: tonsil(R)
+E_45,0.014997475264201109,Have you been coughing up blood?
+E_129,0.014448671679359853,"Do you have any lesions, redness or problems on your skin that you believe are related to the condition you are consulting for?"
+E_209,0.01374298278417178,Are your vaccinations up to date?
+E_130_@_V_156,0.013294137848233498,What color is the rash?: pink
+E_48,0.012883861752630395,Do you live with 4 or more people?
+E_222,0.012257134956570607,Are you exposed to secondhand cigarette smoke on a daily basis?
+E_53,0.011568534149752273,"Do you have pain somewhere, related to your reason for consulting?"
+E_66,0.01144946197782173,Are you experiencing shortness of breath or difficulty breathing in a significant way?
+E_59,0.011187446133937498,How fast did the pain appear?
+E_18,0.011014263873869806,Do you have cystic fibrosis?
+E_170,0.010994545629599348,Do you have severe itching in one or both eyes?
+E_151,0.010626831838211075,Do you have swelling in one or more areas of your body?
+E_50,0.010273944771013248,Have you had significantly increased sweating?
+E_124,0.009932823911525503,Do you have asthma or have you ever had to use a bronchodilator in the past?
+E_91,0.00929126410264671,Do you have a fever (either felt or measured with a thermometer)?
+E_86,0.009245374504336495,"Do you have any close family members who suffer from allergies (any type), hay fever or eczema?"
+E_46,0.009211371040275085,Have you had 2 or more asthma attacks in the past year?
+E_135_@_V_12,0.008743110275456495,Is the lesion (or are the lesions) larger than 1cm?: Y
+E_125,0.008672731874867829,Have you ever been diagnosed with gastroesophageal reflux?
+E_120,0.008430001136018727,Do you have polyps in your nose?
+E_106,0.008366055796942072,Do you have heart failure?
+E_226,0.007938455996309123,Are you more likely to develop common allergies than the general population?
+E_49,0.007886596899590906,Do you attend or work in a daycare?
+E_54_@_V_179,0.007805184622000836,Characterize your pain:: a knife stroke
+E_119,0.00760684136209331,Have you been diagnosed with chronic sinusitis?
+E_55_@_V_148,0.007505538629338196,Do you feel pain somewhere?: pharynx
+E_132,0.007464138792374312,Is the rash swollen?
+E_162,0.0071722365501671265,Have you had an involuntary weight loss over the last 3 months?
+E_201,0.0071289373314124965,Do you have a cough?
+E_55_@_V_62,0.006935135113883657,Do you feel pain somewhere?: top of the head
+E_118,0.006831722740780678,Have you ever had pneumonia?
+E_55_@_V_26,0.006823742188311051,Do you feel pain somewhere?: back of the neck
+E_191,0.006628986057316,Are you a former smoker?
+E_69,0.006570748079800543,Do you have diabetes?
+E_88,0.006562933686550177,Do you feel so tired that you are unable to do your usual activities or are you stuck in your bed all day long?
+E_134,0.006522704598474667,How intense is the pain caused by the rash?
+E_101,0.006408611151316822,Have you been hospitalized for an asthma attack in the past year?
+E_144,0.006242713974879575,Do you have diffuse (widespread) muscle pain?
+E_54_@_V_192,0.006066842613944046,Characterize your pain:: sharp
+E_72,0.0060037388575363065,Have you had one or several flare ups of chronic obstructive pulmonary disease (COPD) in the past year?
+E_219,0.005958864204698383,Are your symptoms more prominent at night?
+E_79,0.005955448729915806,Do you smoke cigarettes?
+E_136,0.0059317878329195484,How severe is the itching?
+E_54_@_V_183,0.005849963354257792,Characterize your pain:: heavy
+E_55_@_V_108,0.005756682957078189,Do you feel pain somewhere?: cheek(R)
+E_190,0.005735408634162358,Have you noticed that you produce more saliva than usual?
+E_55_@_V_166,0.005587811944133867,Do you feel pain somewhere?: temple(R)
+E_208,0.005465762543868379,"Is your BMI less than 18.5, or are you underweight?"
+E_55_@_V_124,0.005100814551939063,Do you feel pain somewhere?: occiput
+E_55_@_V_163,0.005043439229061523,Do you feel pain somewhere?: under the jaw
+E_220,0.004914895542044714,Do you have pain that is increased when you breathe in deeply?
+E_103,0.004906694777975756,Have you lost your sense of smell?
+E_21,0.004762082892746502,Have you ever had a spontaneous pneumothorax?
+E_20,0.004736088769879063,Do you have Rheumatoid Arthritis?
+E_55_@_V_109,0.004707676409263211,Do you feel pain somewhere?: cheek(L)
+E_54_@_V_198,0.004703031013032598,Characterize your pain:: exhausting
+E_47,0.004695456668365516,Do you suffer from Crohn’s disease or ulcerative colitis (UC)?
+E_55_@_V_89,0.004455635588609757,Do you feel pain somewhere?: forehead
+E_166,0.0043484802456988285,Did you vomit after coughing?
+AGE,0.0043145120362170445,Age
+E_5,0.004314040961353612,Have you ever had fluid in your lungs?
+E_78,0.004299599187785385,Do you drink alcohol excessively or do you have an addiction to alcohol?
+E_55_@_V_25,0.0041106245216278,Do you feel pain somewhere?: back of head
+E_65,0.003969353880704354,"Do you have difficulty swallowing, or have a feeling of discomfort/blockage when swallowing?"
+E_105,0.0039404622488064586,Have you ever had a heart attack or do you have angina (chest pain)?
+E_55_@_V_53,0.0039340657489942005,Do you feel pain somewhere?: side of the neck(R)
+E_55_@_V_174,0.0038906853018755043,Do you feel pain somewhere?: trachea
+E_31,0.003729140165093184,Do you have severe Chronic Obstructive Pulmonary Disease (COPD)?
+E_2,0.0035487176765166455,Are you infected with the human immunodeficiency virus (HIV)?
+E_94,0.003285588356896605,Have you had chills or shivers?
+E_207,0.0030670880967828833,Do you live in in a big city?
+E_55_@_V_167,0.0030554950599976046,Do you feel pain somewhere?: temple(L)
+E_104,0.0029804300767308518,Do you have high blood pressure or do you take medications to treat high blood pressure?
+E_54_@_V_161,0.002940294004212308,Characterize your pain:: sensitive
+E_54_@_V_71,0.0027465476437723542,Characterize your pain:: heartbreaking
+E_161,0.002739257328536346,Have you recently had a loss of appetite or do you get full more quickly then usually?
+E_200,0.002737142311164972,Do you work in the mining sector?
+E_87,0.002662866608274959,Do you have any family members who have asthma?
+E_54_@_V_191,0.002614980500778257,Characterize your pain:: violent
+E_55_@_V_122,0.0025969627927479007,Do you feel pain somewhere?: nose
+E_175,0.002546078476869575,"Have you noticed any new fatigue, generalized and vague discomfort, diffuse (widespread) muscle aches or a change in your general well-being related to your consultation today?"
+E_55_@_V_32,0.0024978220375704283,Do you feel pain somewhere?: mouth
+E_224,0.002478875298703243,Do you have family members who have had lung cancer?
+E_198,0.0024100659963325827,Do you work in agriculture?
+E_67,0.002318454645106791,Do you have bouts of choking or shortness of breath that wake you up at night?
+E_8,0.0022825421067577227,Do you currently undergo dialysis?
+E_61,0.0022482857759629237,Are you currently using intravenous drugs?
+E_182,0.002145820306829186,Do you have greenish or yellowish nasal discharge?
+E_55_@_V_170,0.0020900478512852704,Do you feel pain somewhere?: posterior chest wall(R)
+E_89,0.0020741602627176786,Do you constantly feel fatigued or do you have non-restful sleep?
+E_95,0.0020356626021366103,Do you have Parkinson’s disease?
+E_121,0.0020248802352837102,Do you have a deviated nasal septum?
+E_55_@_V_54,0.0020056822618490355,Do you feel pain somewhere?: side of the neck(L)
+E_33,0.001994282220612176,Do you have pain that improves when you lean forward?
+E_218,0.0019596397489187317,Do you have symptoms that are increased with physical exertion but alleviated with rest?
+E_55_@_V_171,0.0019155436858302836,Do you feel pain somewhere?: posterior chest wall(L)
+E_199,0.0018799863998431683,Do you work in construction?
+E_217,0.0018673557541537995,Are your symptoms worse when lying down and alleviated while sitting up?
+E_40,0.001866593343358224,Have you been in contact with someone who has had pertussis (whoooping cough)?
+E_44,0.0018515335661051903,Do you take corticosteroids?
+E_4,0.0018054913971096668,Have you or any member of your family ever had croup?
+E_133_@_V_123,0.0017426197830446482,Where is the affected region located?: nowhere
+E_203,0.0016361136080113832,Do you have intense coughing fits?
+E_62,0.0016156066809057755,Do you regularly take stimulant drugs?
+E_57_@_V_25,0.001399886167918966,Does the pain radiate to another location?: back of head
+E_152_@_V_35,0.0013880832072522106,Where is the swelling located?: ankle(L)
+E_55_@_V_56,0.00138435161547071,Do you feel pain somewhere?: side of the chest(L)
+E_165,0.0013787311845700446,Have any of your family members ever had a pneumothorax?
+E_55_@_V_29,0.0012603949365400226,Do you feel pain somewhere?: lower chest
+E_55_@_V_159,0.0012500238739097756,Do you feel pain somewhere?: breast(R)
+E_57_@_V_89,0.0012198310130839371,Does the pain radiate to another location?: forehead
+E_202,0.0012097557029905977,Does the person have a whooping cough?
+E_57_@_V_166,0.0011792687592205337,Does the pain radiate to another location?: temple(R)
+E_57_@_V_167,0.0011392373268809084,Does the pain radiate to another location?: temple(L)
+E_55_@_V_55,0.0010875100573421285,Do you feel pain somewhere?: side of the chest(R)
+E_152_@_V_119,0.0010836475058958281,Where is the swelling located?: calf(R)
+E_57_@_V_122,0.0009752243131266019,Does the pain radiate to another location?: nose
+E_152_@_V_172,0.0009552104786542293,Where is the swelling located?: tibia(R)
+E_55_@_V_160,0.0009528344189937328,Do you feel pain somewhere?: breast(L)
+E_152_@_V_120,0.000872743525700622,Where is the swelling located?: calf(L)
+E_112,0.0008499663766516944,Do you wheeze while inhaling or is your breathing noisy after coughing spells?
+E_55_@_V_125,0.0007712632778344621,Do you feel pain somewhere?: eye(R)
+E_107,0.0007659262836770766,Have you ever had a stroke?
+E_14,0.0007487885626932051,Do you have chest pain even at rest?
+E_55_@_V_123,0.000719968191066617,Do you feel pain somewhere?: nowhere
+E_54_@_V_11,0.0007021756836215936,Characterize your pain:: NA
+E_152_@_V_34,0.0006878322817818913,Where is the swelling located?: ankle(R)
+SEX_M,0.000544552944207506,Sex: Male
+E_70,0.0005443554064762624,Are you significantly overweight compared to people of the same height as you?
+E_152_@_V_173,0.0004761775025360668,Where is the swelling located?: tibia(L)
+E_55_@_V_101,0.0004585653865245663,Do you feel pain somewhere?: upper chest
+E_55_@_V_126,0.0004351659844101577,Do you feel pain somewhere?: eye(L)
+E_196,0.0003046458158401553,Have you had surgery within the last month?
+E_54_@_V_180,0.00029689713362172535,Characterize your pain:: tugging
+E_133_@_V_26,0.0002621651997043056,Where is the affected region located?: back of the neck
+E_133_@_V_89,0.0002453598045913475,Where is the affected region located?: forehead
+E_57_@_V_30,0.00021143132963222661,Does the pain radiate to another location?: biceps(R)
+E_57_@_V_31,0.00019859871718715282,Does the pain radiate to another location?: biceps(L)
+E_204_@_V_4,0.00019801284619376874,Have you traveled out of the country in the last 4 weeks?: North America
+E_57_@_V_121,0.00016641162615813006,Does the pain radiate to another location?: jaw
+E_133_@_V_54,0.0001399955092528493,Where is the affected region located?: side of the neck(L)
+E_57_@_V_118,0.00013103536142518798,Does the pain radiate to another location?: chin
+E_17,0.00011859050545568324,Are you of Asian descent?
+E_57_@_V_194,9.969422710869583e-05,Does the pain radiate to another location?: shoulder(R)
+E_133_@_V_53,9.492537716708061e-05,Where is the affected region located?: side of the neck(R)
+E_183,9.103729970434849e-05,Do you live in a rural area?
+E_32,7.984515101327441e-05,Do you have a decrease in appetite?
+E_133_@_V_195,7.817465473638833e-05,Where is the affected region located?: shoulder(L)
+E_142,7.602845787209369e-05,Does your mother suffer from asthma?
+E_23,7.404310862255268e-05,Do you ever temporarily stop breathing while you’re asleep?
+E_133_@_V_42,7.38202773096014e-05,Where is the affected region located?: commissure(L)
+E_195,6.708699870908253e-05,Do you live in the suburbs?
+E_133_@_V_38,6.563040594805986e-05,Where is the affected region located?: cervical spine
+E_57_@_V_127,5.141854178056742e-05,Does the pain radiate to another location?: scapula(R)
+E_133_@_V_41,4.3882777314383546e-05,Where is the affected region located?: commissure(R)
+E_57_@_V_128,4.255134845290193e-05,Does the pain radiate to another location?: scapula(L)
+E_55_@_V_34,3.434672553046243e-05,Do you feel pain somewhere?: ankle(R)
+E_57_@_V_195,3.085812996644201e-05,Does the pain radiate to another location?: shoulder(L)
+E_133_@_V_194,2.5618697699612044e-05,Where is the affected region located?: shoulder(R)
+E_133_@_V_82,2.1777342099911494e-05,Where is the affected region located?: buttock(R)
+E_133_@_V_85,2.160956705689877e-05,Where is the affected region located?: flank(L)
+E_133_@_V_40,1.686465214861365e-05,Where is the affected region located?: lumbar spine
+E_133_@_V_83,1.5191782365189946e-05,Where is the affected region located?: buttock(L)
+E_133_@_V_39,1.1565791323573432e-05,Where is the affected region located?: thoracic spine
+E_133_@_V_84,9.690290346107144e-06,Where is the affected region located?: flank(R)
+E_55_@_V_35,9.313603312745931e-06,Do you feel pain somewhere?: ankle(L)
+E_133_@_V_187,5.440266852971501e-06,Where is the affected region located?: belly
+E_133_@_V_170,5.4021985304490665e-06,Where is the affected region located?: posterior chest wall(R)
+E_57_@_V_177,5.377426411873965e-06,Does the pain radiate to another location?: triceps(R)
+E_133_@_V_171,5.2499275489986805e-06,Where is the affected region located?: posterior chest wall(L)
+E_57_@_V_178,3.112456603138712e-06,Does the pain radiate to another location?: triceps(L)
+E_152_@_V_123,1.6912402509582324e-06,Where is the swelling located?: nowhere
+E_55_@_V_119,7.724310270342306e-07,Do you feel pain somewhere?: calf(R)
+E_55_@_V_173,2.4415241782585416e-07,Do you feel pain somewhere?: tibia(L)
+E_55_@_V_120,1.9282954623621134e-07,Do you feel pain somewhere?: calf(L)
+E_55_@_V_172,1.2493795189761888e-07,Do you feel pain somewhere?: tibia(R)
+E_55_@_V_197,1.8068040487434784e-08,Do you feel pain somewhere?: epigastric

@@ -1,0 +1,282 @@
+{
+  "fever": [
+    "fever",
+    "high temperature",
+    "hot body",
+    "feeling feverish",
+    "feverish",
+    "my body feels very hot"
+  ],
+  "chills": [
+    "chills",
+    "shivering",
+    "shivers",
+    "feeling cold and shaking",
+    "feeling shivery",
+    "shaking with chills"
+  ],
+  "cough": [
+    "cough",
+    "coughing",
+    "i am coughing",
+    "persistent cough",
+    "coff",
+    "keep coughing",
+    "coughs"
+  ],
+  "intense_coughing_fits": [
+    "intense coughing fits",
+    "severe coughing fits",
+    "coughing attacks",
+    "cannot stop coughing",
+    "can't stop coughing",
+    "repeated coughing fits"
+  ],
+  "vomiting_after_coughing": [
+    "vomiting after coughing",
+    "vomit after coughing",
+    "throwing up after coughing"
+  ],
+  "productive_cough": [
+    "coloured phlegm",
+    "colored phlegm",
+    "yellow phlegm",
+    "green phlegm",
+    "yellow sputum",
+    "green sputum",
+    "more phlegm than usual",
+    "more sputum than usual",
+    "increased sputum"
+  ],
+  "coughing_blood": [
+    "coughing up blood",
+    "blood in cough",
+    "blood in phlegm",
+    "bloody sputum",
+    "blood in my sputum"
+  ],
+  "shortness_of_breath": [
+    "shortness of breath",
+    "breathless",
+    "difficulty breathing",
+    "hard to breathe",
+    "cannot breathe",
+    "can't breathe",
+    "struggling to breathe",
+    "can't catch my breath",
+    "cannot catch my breath",
+    "gasping for air",
+    "gasping",
+    "trouble breathing",
+    "unable to breathe"
+  ],
+  "night_breathlessness": [
+    "waking up breathless",
+    "breathless at night",
+    "choking at night",
+    "waking up choking"
+  ],
+  "wheezing": [
+    "wheezing",
+    "wheeze",
+    "whistling when breathing",
+    "whistling when breathing out",
+    "whistling sound when i breathe out",
+    "whistle when i breathe out"
+  ],
+  "wheeze_after_coughing": [
+    "wheezing after coughing",
+    "wheeze after coughing",
+    "noisy breathing after coughing"
+  ],
+  "stridor": [
+    "stridor",
+    "high pitched breathing sound",
+    "high pitched sound when breathing in"
+  ],
+  "drooling": [
+    "drooling",
+    "too much saliva",
+    "more saliva than usual"
+  ],
+  "difficulty_swallowing": [
+    "difficulty swallowing",
+    "hard to swallow",
+    "trouble swallowing",
+    "cannot swallow"
+  ],
+  "sore_throat": [
+    "sore throat",
+    "throat pain",
+    "painful throat",
+    "throat hurts",
+    "my throat hurts",
+    "pain in my throat",
+    "throat is sore"
+  ],
+  "hoarse_voice": [
+    "hoarse voice",
+    "changed voice",
+    "lost my voice",
+    "rough voice"
+  ],
+  "runny_blocked_nose": [
+    "runny nose",
+    "blocked nose",
+    "stuffy nose",
+    "nasal congestion",
+    "my nose is running",
+    "nose is running",
+    "nose is blocked",
+    "nose is stuffy"
+  ],
+  "nasal_discharge": [
+    "green nasal discharge",
+    "yellow nasal discharge",
+    "green mucus from nose",
+    "yellow mucus from nose"
+  ],
+  "loss_of_smell": [
+    "loss of smell",
+    "cannot smell",
+    "can't smell",
+    "lost sense of smell"
+  ],
+  "itchy_nose_throat": [
+    "itchy nose",
+    "itchy throat",
+    "itchy nose or throat"
+  ],
+  "itchy_eyes": [
+    "itchy eyes",
+    "eyes are itchy"
+  ],
+  "headache": [
+    "headache",
+    "head pain",
+    "my head hurts"
+  ],
+  "chest_pain": [
+    "chest pain",
+    "chest hurts",
+    "pain in chest"
+  ],
+  "chest_pain_at_rest": [
+    "chest pain at rest",
+    "chest hurts while resting",
+    "chest pain even when resting"
+  ],
+  "pain_deep_breath": [
+    "pain when breathing deeply",
+    "pain on deep breath",
+    "chest pain when taking a deep breath"
+  ],
+  "worse_lying_down": [
+    "worse when lying down",
+    "better when sitting up",
+    "breathing worse lying down"
+  ],
+  "worse_with_exertion": [
+    "worse with exercise",
+    "worse with exertion",
+    "symptoms worse when active",
+    "better with rest"
+  ],
+  "tiredness": [
+    "tired",
+    "tiredness",
+    "fatigue",
+    "feeling tired",
+    "constant tiredness",
+    "tired all the time",
+    "always tired"
+  ],
+  "activity_fatigue": [
+    "too tired for normal activities",
+    "too tired to do usual activities",
+    "exhausted doing normal activities"
+  ],
+  "muscle_aches": [
+    "muscle aches",
+    "muscle pain",
+    "aching muscles",
+    "body aches",
+    "my whole body aches",
+    "aching all over",
+    "all my muscles ache",
+    "muscles ache",
+    "my muscles ache",
+    "widespread muscle aches"
+  ],
+  "heavy_sweating": [
+    "heavy sweating",
+    "sweating a lot",
+    "night sweats",
+    "excessive sweating",
+    "sweating at night",
+    "sweat a lot at night",
+    "wake up soaked in sweat",
+    "sweating more than usual"
+  ],
+  "loss_of_appetite": [
+    "loss of appetite",
+    "no appetite",
+    "not hungry",
+    "don't feel like eating",
+    "lost my appetite",
+    "not feeling hungry"
+  ],
+  "weight_loss": [
+    "weight loss",
+    "unintended weight loss",
+    "losing weight without trying",
+    "losing weight",
+    "lost weight",
+    "losing weight unintentionally",
+    "unintentional weight loss",
+    "lost weight without trying"
+  ],
+  "blue_lips": [
+    "blue lips",
+    "blue face",
+    "lips turning blue",
+    "lips are turning blue"
+  ],
+  "confusion": [
+    "confusion",
+    "feeling confused",
+    "disoriented"
+  ],
+  "fainting": [
+    "fainting",
+    "fainted",
+    "passed out",
+    "passing out"
+  ],
+  "sneezing": [
+    "sneezing",
+    "sneeze",
+    "frequent sneezing"
+  ],
+  "sputum_reported": [
+    "phlegm",
+    "sputum",
+    "mucus"
+  ],
+  "chest_tightness": [
+    "tight chest",
+    "chest tightness",
+    "my chest feels tight",
+    "chest feels tight"
+  ],
+  "forehead_pain": [
+    "forehead pain",
+    "pain in my forehead",
+    "my forehead hurts"
+  ],
+  "upper_chest_pain": [
+    "upper chest pain",
+    "pain in my upper chest",
+    "my upper chest hurts"
+  ]
+}

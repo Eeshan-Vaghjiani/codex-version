@@ -1,0 +1,86 @@
+diff --git a/app/data/condition_information.json b/app/data/condition_information.json
+index 9ca870c..1d3f6ad 100644
+--- a/app/data/condition_information.json
++++ b/app/data/condition_information.json
+@@ -4,7 +4,7 @@
+     "short_description": "A sudden worsening of COPD symptoms such as breathlessness, cough, wheezing or increased mucus. Respiratory infections can sometimes trigger a flare-up."
+   },
+   "Acute laryngitis": {
+-    "display_name": "Acute Laryngitis",
++    "display_name": "Voice Box Inflammation (Laryngitis)",
+     "short_description": "Short-term inflammation of the voice box and vocal cords that may cause hoarseness, a weak voice, sore throat or cough."
+   },
+   "Acute pulmonary edema": {
+@@ -12,7 +12,7 @@
+     "short_description": "A sudden build-up of fluid inside the lungs that can make breathing very difficult and requires prompt medical assessment."
+   },
+   "Acute rhinosinusitis": {
+-    "display_name": "Acute Sinusitis",
++    "display_name": "Sinus Inflammation (Acute Sinusitis)",
+     "short_description": "Short-term inflammation of the nose and sinuses that may cause a blocked or runny nose, facial pressure, headache and nasal discharge."
+   },
+   "Allergic sinusitis": {
+@@ -20,11 +20,11 @@
+     "short_description": "Inflammation of the nose and sinus areas linked to allergies, which may cause congestion, nasal symptoms and facial pressure."
+   },
+   "Bronchiectasis": {
+-    "display_name": "Bronchiectasis",
++    "display_name": "Bronchiectasis (Damaged Airways)",
+     "short_description": "A long-term condition where damaged airways become widened and can trap mucus, leading to persistent cough and repeated chest infections."
+   },
+   "Bronchiolitis": {
+-    "display_name": "Bronchiolitis",
++    "display_name": "Small Airway Inflammation (Bronchiolitis)",
+     "short_description": "Inflammation of the small airways in the lungs, often caused by a viral infection and commonly affecting infants and young children."
+   },
+   "Bronchitis": {
+@@ -44,7 +44,7 @@
+     "short_description": "An upper-airway illness, most common in young children, that can cause swelling around the vocal cords, a barking cough, hoarseness and noisy breathing."
+   },
+   "Epiglottitis": {
+-    "display_name": "Epiglottitis",
++    "display_name": "Serious Throat Swelling (Epiglottitis)",
+     "short_description": "Inflammation and swelling of the tissue protecting the windpipe. It can interfere with breathing and can become a medical emergency."
+   },
+   "Influenza": {
+@@ -52,7 +52,7 @@
+     "short_description": "A contagious viral respiratory infection that can cause fever, body aches, tiredness, headache, cough and other respiratory symptoms."
+   },
+   "Larygospasm": {
+-    "display_name": "Laryngospasm (Vocal Cord Spasm)",
++    "display_name": "Sudden Vocal Cord Spasm",
+     "short_description": "A sudden involuntary tightening of the vocal cords that can temporarily make it difficult to breathe or speak."
+   },
+   "Pneumonia": {
+@@ -60,11 +60,11 @@
+     "short_description": "An infection of the lungs that may cause cough, fever or chills, chest discomfort and shortness of breath."
+   },
+   "Pulmonary neoplasm": {
+-    "display_name": "Lung Tumour / Pulmonary Neoplasm",
++    "display_name": "Lung Tumour (Abnormal Lung Growth)",
+     "short_description": "An abnormal growth of cells in lung tissue. Lung growths require proper medical assessment to determine their type and significance."
+   },
+   "Spontaneous pneumothorax": {
+-    "display_name": "Spontaneous Collapsed Lung",
++    "display_name": "Collapsed Lung (Pneumothorax)",
+     "short_description": "A condition where air collects around a lung and causes part or all of the lung to collapse, sometimes without an obvious injury."
+   },
+   "Tuberculosis": {
+@@ -72,7 +72,7 @@
+     "short_description": "An infection caused by tuberculosis bacteria. Active lung TB may cause a long-lasting cough, fever, night sweats, tiredness or weight loss."
+   },
+   "URTI": {
+-    "display_name": "Upper Respiratory Tract Infection (URTI)",
++    "display_name": "Upper Respiratory Infection (URTI)",
+     "short_description": "An infection affecting the nose, throat or other upper airways, commonly causing symptoms such as congestion, sore throat and cough."
+   },
+   "Viral pharyngitis": {
+@@ -88,7 +88,7 @@
+     "short_description": "A respiratory illness caused by the SARS-CoV-2 virus. It may cause fever, cough, sore throat, tiredness, breathing difficulties and other symptoms."
+   },
+   "Allergic rhinitis": {
+-    "display_name": "Allergic Rhinitis",
++    "display_name": "Nasal Allergies (Allergic Rhinitis)",
+     "short_description": "An allergic reaction affecting the nose, which may cause sneezing, a runny or blocked nose, itching and watery eyes."
+   }
+ }

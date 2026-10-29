@@ -1,0 +1,64 @@
+{
+  "training_records": 443075,
+  "unique_training_inputs": 421066,
+  "validation_cases": 55808,
+  "exact_overlap_cases": 2886,
+  "non_overlap_cases": 52922,
+  "exact_overlap_percent": 5.1713016055045875,
+  "results": {
+    "all": {
+      "V1": {
+        "cases": 55808,
+        "conditions_represented": 21,
+        "accuracy": 0.9938539277522935,
+        "macro_f1_21_classes": 0.9926634637257763
+      },
+      "V2": {
+        "cases": 55808,
+        "conditions_represented": 21,
+        "accuracy": 0.8933665424311926,
+        "macro_f1_21_classes": 0.8642440547040405
+      }
+    },
+    "overlap": {
+      "V1": {
+        "cases": 2886,
+        "conditions_represented": 11,
+        "accuracy": 1.0,
+        "macro_f1_21_classes": 0.5238095238095238
+      },
+      "V2": {
+        "cases": 2886,
+        "conditions_represented": 11,
+        "accuracy": 0.7515592515592515,
+        "macro_f1_21_classes": 0.4193356045270058
+      }
+    },
+    "non_overlap": {
+      "V1": {
+        "cases": 52922,
+        "conditions_represented": 21,
+        "accuracy": 0.99351876346321,
+        "macro_f1_21_classes": 0.9926634556799501
+      },
+      "V2": {
+        "cases": 52922,
+        "conditions_represented": 21,
+        "accuracy": 0.9010997316805865,
+        "macro_f1_21_classes": 0.8686377439818445
+      }
+    }
+  },
+  "accuracy_change_percentage_points": {
+    "V1": -0.03351642890835338,
+    "V2": 0.7733189249393924
+  },
+  "limitations": [
+    "Exact matching uses age, sex, and complete raw evidence.",
+    "Duplicate-free validation removes exact matches only.",
+    "Near-duplicate patterns have not been evaluated.",
+    "Synthetic cases may share diagnostic patterns.",
+    "Training and validation come from simulated DDXPlus data.",
+    "The audit does not establish clinical performance."
+  ]
+}

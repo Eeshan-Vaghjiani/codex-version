@@ -1,0 +1,156 @@
+{
+  "api_unique_new_tests": 69,
+  "last_completed_api_test_run": {
+    "new_api_tests_passed": 69,
+    "original_catalogue_and_confirmation_tests_passed": 14,
+    "passed": 83,
+    "failed": 0,
+    "seconds": 43.16
+  },
+  "test_scope": [
+    "all12 supplied cases",
+    "English/Swahili/mixed negation",
+    "present/absent/uncertain/unmentioned distinction",
+    "duration/severity through assessment",
+    "emergencies independent of catalogue/model/history",
+    "followup order,replay,limits,accepted answers change profile",
+    "strict malformed payload validation",
+    "shared generic pain feature absence",
+    "V2 sparse abstention and actual explicit absence forwarding",
+    "demographic sparse-policy consistency",
+    "per-symptom durations preserve cough independently of fever",
+    "professional-assessment advice appears before questionnaire completion in English and Swahili"
+  ],
+  "cases": [
+    {
+      "case": 1,
+      "text": "I have fever.",
+      "reported_symptom_states": {
+        "fever": "present"
+      },
+      "final_v1_api_status": "insufficient_evidence",
+      "predictions": [],
+      "verification": "tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api; real migrated local PostgreSQL catalogue; authentication/history saves isolated; V1 abstention policy; bounded followups answered no or unknown"
+    },
+    {
+      "case": 2,
+      "text": "Runny nose, for a few days with headache and sore throat.",
+      "reported_symptom_states": {
+        "sore_throat": "present",
+        "runny_blocked_nose": "present",
+        "headache": "present"
+      },
+      "final_v1_api_status": "insufficient_evidence",
+      "predictions": [],
+      "verification": "tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api; real migrated local PostgreSQL catalogue; authentication/history saves isolated; V1 abstention policy; bounded followups answered no or unknown"
+    },
+    {
+      "case": 3,
+      "text": "I have a cough and fever.",
+      "reported_symptom_states": {
+        "fever": "present",
+        "cough": "present"
+      },
+      "final_v1_api_status": "insufficient_evidence",
+      "predictions": [],
+      "verification": "tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api; real migrated local PostgreSQL catalogue; authentication/history saves isolated; V1 abstention policy; bounded followups answered no or unknown"
+    },
+    {
+      "case": 4,
+      "text": "I have a cough.",
+      "reported_symptom_states": {
+        "cough": "present"
+      },
+      "final_v1_api_status": "insufficient_evidence",
+      "predictions": [],
+      "verification": "tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api; real migrated local PostgreSQL catalogue; authentication/history saves isolated; V1 abstention policy; bounded followups answered no or unknown"
+    },
+    {
+      "case": 5,
+      "text": "I have a runny nose, sneezing and a mild cough.",
+      "reported_symptom_states": {
+        "runny_blocked_nose": "present",
+        "sneezing": "present",
+        "cough": "present"
+      },
+      "final_v1_api_status": "insufficient_evidence",
+      "predictions": [],
+      "verification": "tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api; real migrated local PostgreSQL catalogue; authentication/history saves isolated; V1 abstention policy; bounded followups answered no or unknown"
+    },
+    {
+      "case": 6,
+      "text": "I have had a cough and fever for two days.",
+      "reported_symptom_states": {
+        "fever": "present",
+        "cough": "present"
+      },
+      "final_v1_api_status": "insufficient_evidence",
+      "predictions": [],
+      "verification": "tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api; real migrated local PostgreSQL catalogue; authentication/history saves isolated; V1 abstention policy; bounded followups answered no or unknown"
+    },
+    {
+      "case": 7,
+      "text": "I have had a cough for several weeks and have been losing weight.",
+      "reported_symptom_states": {
+        "weight_loss": "present",
+        "cough": "present"
+      },
+      "final_v1_api_status": "insufficient_evidence",
+      "predictions": [],
+      "verification": "tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api; real migrated local PostgreSQL catalogue; authentication/history saves isolated; V1 abstention policy; bounded followups answered no or unknown"
+    },
+    {
+      "case": 8,
+      "text": "I have a cough and I am struggling to breathe.",
+      "reported_symptom_states": {
+        "shortness_of_breath": "present",
+        "cough": "present"
+      },
+      "final_v1_api_status": "urgent_review",
+      "predictions": [],
+      "verification": "tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api; real migrated local PostgreSQL catalogue; authentication/history saves isolated; V1 abstention policy; bounded followups answered no or unknown"
+    },
+    {
+      "case": 9,
+      "text": "I feel unwell.",
+      "reported_symptom_states": {},
+      "final_v1_api_status": "insufficient_evidence",
+      "predictions": [],
+      "verification": "tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api; real migrated local PostgreSQL catalogue; authentication/history saves isolated; V1 abstention policy; bounded followups answered no or unknown"
+    },
+    {
+      "case": 10,
+      "text": "I have a cough, but I do not have a fever.",
+      "reported_symptom_states": {
+        "fever": "absent",
+        "cough": "present"
+      },
+      "final_v1_api_status": "insufficient_evidence",
+      "predictions": [],
+      "verification": "tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api; real migrated local PostgreSQL catalogue; authentication/history saves isolated; V1 abstention policy; bounded followups answered no or unknown"
+    },
+    {
+      "case": 11,
+      "text": "Nina homa na kikohozi.",
+      "reported_symptom_states": {
+        "cough": "present",
+        "fever": "present"
+      },
+      "final_v1_api_status": "insufficient_evidence",
+      "predictions": [],
+      "verification": "tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api; real migrated local PostgreSQL catalogue; authentication/history saves isolated; V1 abstention policy; bounded followups answered no or unknown"
+    },
+    {
+      "case": 12,
+      "text": "Nina kikohozi lakini sina homa.",
+      "reported_symptom_states": {
+        "cough": "present",
+        "fever": "absent"
+      },
+      "final_v1_api_status": "insufficient_evidence",
+      "predictions": [],
+      "verification": "tests/test_assessment_safety_regressions.py::test_all_supplied_cases_through_api; real migrated local PostgreSQL catalogue; authentication/history saves isolated; V1 abstention policy; bounded followups answered no or unknown"
+    }
+  ],
+  "limitation": "Software regression fixtures do not provide clinical ground truth. API fixture uses real migrated PostgreSQL catalogue, real NLP and real V2 inference; isolates authentication, active version choice and history writes. Existing repository tests separately exercise real authentication/persistence."
+}

@@ -1,0 +1,1 @@
+import{n as e}from"./index-DgO4spx0.js";async function t(t=500){return(await e.get(`/admin/history`,{params:{limit:t}})).data}async function n(t){return(await e.get(`/admin/history/${t}`)).data}async function r(t=500){return(await e.get(`/admin/feedback`,{params:{limit:t}})).data}export{t as n,n as r,r as t};

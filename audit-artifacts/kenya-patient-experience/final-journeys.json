@@ -1,0 +1,3749 @@
+{
+  "purpose": "Actual API observations for synthetic software cases, not clinical disease ground truth",
+  "model_status": {
+    "status": "loaded",
+    "model_version": "v3_partial_evidence",
+    "model_type": "missing_evidence_likelihood",
+    "feature_count": 34,
+    "model_feature_count": 34,
+    "class_count": 21,
+    "model_class_count": 21,
+    "clinical_validation": false
+  },
+  "answer_policy": "No breathing difficulty; all other unreported questions explicitly not sure",
+  "cases": [
+    {
+      "id": "tiredness",
+      "category": "nonspecific",
+      "input": "I am tired all the time.",
+      "mapping": {
+        "input_text": "I am tired all the time.",
+        "recognised_symptoms": [
+          {
+            "code": "tiredness",
+            "display_name": "Constant tiredness",
+            "features": [
+              "E_89"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "tired all the time",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "fatigue_pattern": "persistent",
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "general_duration",
+          "question": "How long have you had these symptoms?",
+          "answer": "unknown"
+        },
+        {
+          "id": "fever",
+          "question": "Do you have a fever?",
+          "answer": "unknown"
+        },
+        {
+          "id": "cough",
+          "question": "Do you have a cough?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "tiredness"
+        ],
+        "effective_confirmed_codes": [
+          "tiredness"
+        ],
+        "model_features": [
+          "E_89"
+        ],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "tiredness": "present",
+            "fever": "unknown",
+            "cough": "unknown"
+          },
+          "symptom_durations": {
+            "_general": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "_general"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "_general"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": "persistent",
+          "follow_up_answers": [
+            {
+              "question_id": "general_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "fever",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "cough",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "general_duration",
+            "fever",
+            "cough"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "general_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "fever",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "cough",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "56124cd0-2768-4e3d-befb-46721d1ab057",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "non_specific_input"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "These symptoms can have several causes. This app focuses on respiratory conditions and cannot assess every possible cause.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "headache",
+      "category": "nonspecific",
+      "input": "I have a headache.",
+      "mapping": {
+        "input_text": "I have a headache.",
+        "recognised_symptoms": [
+          {
+            "code": "headache",
+            "display_name": "Headache",
+            "features": [
+              "E_53"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "headache",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "general_duration",
+          "question": "How long have you had these symptoms?",
+          "answer": "unknown"
+        },
+        {
+          "id": "symptom_severity",
+          "question": "How much are these symptoms affecting your usual activities?",
+          "answer": "unknown"
+        },
+        {
+          "id": "fever",
+          "question": "Do you have a fever?",
+          "answer": "unknown"
+        },
+        {
+          "id": "cough",
+          "question": "Do you have a cough?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "headache"
+        ],
+        "effective_confirmed_codes": [
+          "headache"
+        ],
+        "model_features": [
+          "E_53"
+        ],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "headache": "present",
+            "fever": "unknown",
+            "cough": "unknown"
+          },
+          "symptom_durations": {
+            "_general": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "_general"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "_general"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "general_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "symptom_severity",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "fever",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "cough",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "general_duration",
+            "symptom_severity",
+            "fever",
+            "cough"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "general_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "symptom_severity",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "fever",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "cough",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "86683cb0-f263-4625-ad63-78058466eb5d",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "non_specific_input"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "These symptoms can have several causes. This app focuses on respiratory conditions and cannot assess every possible cause.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "mild_fever",
+      "category": "nonspecific",
+      "input": "I have a mild fever.",
+      "mapping": {
+        "input_text": "I have a mild fever.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": "mild",
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "general_duration",
+          "question": "How long have you had these symptoms?",
+          "answer": "unknown"
+        },
+        {
+          "id": "cough",
+          "question": "Do you have a cough?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "fever"
+        ],
+        "effective_confirmed_codes": [
+          "fever"
+        ],
+        "model_features": [
+          "E_91"
+        ],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "fever": "present",
+            "cough": "unknown"
+          },
+          "symptom_durations": {
+            "_general": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "_general"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "_general"
+          },
+          "severity": {
+            "fever": "mild"
+          },
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "general_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "cough",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "general_duration",
+            "cough"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "general_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "cough",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "a5b2547c-6272-46a8-835a-5d1a6521abfb",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "non_specific_input"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "These symptoms can have several causes. This app focuses on respiratory conditions and cannot assess every possible cause.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "muscle_aches",
+      "category": "nonspecific",
+      "input": "My muscles ache all over my body.",
+      "mapping": {
+        "input_text": "My muscles ache all over my body.",
+        "recognised_symptoms": [
+          {
+            "code": "muscle_aches",
+            "display_name": "Muscle aches",
+            "features": [
+              "E_144"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "my muscles ache",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [
+          {
+            "unmatched_text": "all over body",
+            "suggestions": []
+          }
+        ],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "general_duration",
+          "question": "How long have you had these symptoms?",
+          "answer": "unknown"
+        },
+        {
+          "id": "fever",
+          "question": "Do you have a fever?",
+          "answer": "unknown"
+        },
+        {
+          "id": "cough",
+          "question": "Do you have a cough?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "muscle_aches"
+        ],
+        "effective_confirmed_codes": [
+          "muscle_aches"
+        ],
+        "model_features": [
+          "E_144"
+        ],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "muscle_aches": "present",
+            "fever": "unknown",
+            "cough": "unknown"
+          },
+          "symptom_durations": {
+            "_general": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "_general"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "_general"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "general_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "fever",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "cough",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "general_duration",
+            "fever",
+            "cough"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "general_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "fever",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "cough",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "159a8b86-ce76-426c-9691-c630a06d8042",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "unsupported_information"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "Some details could not be understood by this app. Please rephrase them or contact a healthcare professional.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "headache_tiredness",
+      "category": "nonspecific",
+      "input": "I have a headache and feel tired.",
+      "mapping": {
+        "input_text": "I have a headache and feel tired.",
+        "recognised_symptoms": [
+          {
+            "code": "headache",
+            "display_name": "Headache",
+            "features": [
+              "E_53"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "headache",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "tiredness",
+            "display_name": "Constant tiredness",
+            "features": [],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "tired",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "fatigue_pattern": "unspecified",
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "general_duration",
+          "question": "How long have you had these symptoms?",
+          "answer": "unknown"
+        },
+        {
+          "id": "symptom_severity",
+          "question": "How much are these symptoms affecting your usual activities?",
+          "answer": "unknown"
+        },
+        {
+          "id": "fever",
+          "question": "Do you have a fever?",
+          "answer": "unknown"
+        },
+        {
+          "id": "cough",
+          "question": "Do you have a cough?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "headache",
+          "tiredness"
+        ],
+        "effective_confirmed_codes": [
+          "headache",
+          "tiredness"
+        ],
+        "model_features": [
+          "E_53"
+        ],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "headache": "present",
+            "tiredness": "present",
+            "fever": "unknown",
+            "cough": "unknown"
+          },
+          "symptom_durations": {
+            "_general": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "_general"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "_general"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": "unspecified",
+          "follow_up_answers": [
+            {
+              "question_id": "general_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "symptom_severity",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "fever",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "cough",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "general_duration",
+            "symptom_severity",
+            "fever",
+            "cough"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "general_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "symptom_severity",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "fever",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "cough",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "c53dc579-b345-4a12-9f8c-93514011e276",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "non_specific_input"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "These symptoms can have several causes. This app focuses on respiratory conditions and cannot assess every possible cause.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "fever_headache",
+      "category": "nonspecific",
+      "input": "I have a mild fever and headache.",
+      "mapping": {
+        "input_text": "I have a mild fever and headache.",
+        "recognised_symptoms": [
+          {
+            "code": "headache",
+            "display_name": "Headache",
+            "features": [
+              "E_53"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "headache",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": "mild",
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "general_duration",
+          "question": "How long have you had these symptoms?",
+          "answer": "unknown"
+        },
+        {
+          "id": "symptom_severity",
+          "question": "How much are these symptoms affecting your usual activities?",
+          "answer": "unknown"
+        },
+        {
+          "id": "cough",
+          "question": "Do you have a cough?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "headache",
+          "fever"
+        ],
+        "effective_confirmed_codes": [
+          "headache",
+          "fever"
+        ],
+        "model_features": [
+          "E_53",
+          "E_91"
+        ],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "headache": "present",
+            "fever": "present",
+            "cough": "unknown"
+          },
+          "symptom_durations": {
+            "_general": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "_general"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "_general"
+          },
+          "severity": {
+            "fever": "mild"
+          },
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "general_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "symptom_severity",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "cough",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "general_duration",
+            "symptom_severity",
+            "cough"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "general_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "symptom_severity",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "cough",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "179631b2-bb03-4ec2-8c7d-190f17f401b1",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "non_specific_input"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "These symptoms can have several causes. This app focuses on respiratory conditions and cannot assess every possible cause.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "cough",
+      "category": "respiratory",
+      "input": "I have a cough.",
+      "mapping": {
+        "input_text": "I have a cough.",
+        "recognised_symptoms": [
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "breathing_difficulty",
+          "question": "Are you having difficulty breathing now?",
+          "answer": "no"
+        },
+        {
+          "id": "symptom_duration",
+          "question": "How long have you had the cough?",
+          "answer": "unknown"
+        },
+        {
+          "id": "sore_throat",
+          "question": "Is your throat sore?",
+          "answer": "unknown"
+        },
+        {
+          "id": "heavy_sweating",
+          "question": "Are you sweating much more than usual, including at night?",
+          "answer": "unknown"
+        },
+        {
+          "id": "muscle_aches",
+          "question": "Do your muscles ache across your body?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "cough"
+        ],
+        "model_features": [
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "cough": "present",
+            "shortness_of_breath": "absent",
+            "sore_throat": "unknown",
+            "heavy_sweating": "unknown",
+            "muscle_aches": "unknown"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "sore_throat",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "heavy_sweating",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "muscle_aches",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration",
+            "sore_throat",
+            "heavy_sweating",
+            "muscle_aches"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "heavy_sweating",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "muscle_aches",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "1343ba49-2d6c-465b-b04b-6e7704433b6b",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "non_specific_input"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "The symptoms you reported overlap with several conditions. The information does not support naming one illness at this point.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "sore_throat",
+      "category": "respiratory",
+      "input": "My throat is sore.",
+      "mapping": {
+        "input_text": "My throat is sore.",
+        "recognised_symptoms": [
+          {
+            "code": "sore_throat",
+            "display_name": "Sore throat",
+            "features": [
+              "E_97"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "throat is sore",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "breathing_difficulty",
+          "question": "Are you having difficulty breathing now?",
+          "answer": "no"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "sore_throat"
+        ],
+        "effective_confirmed_codes": [
+          "sore_throat"
+        ],
+        "model_features": [
+          "E_97"
+        ],
+        "explicitly_absent_features": [
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "sore_throat": "present",
+            "shortness_of_breath": "absent"
+          },
+          "symptom_durations": {},
+          "duration": null,
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "condition": "URTI",
+            "medical_name": "Upper respiratory tract infection (URTI)",
+            "display_name": "Nose or throat infection (URTI)",
+            "description": "An infection of the nose, throat or other upper airways. This broad term does not identify a particular virus and is not the same as confirmed influenza or a common cold.",
+            "explanation": "Some of the symptoms you reported are consistent with this possibility, but they can also occur in other conditions.",
+            "supporting_symptoms": [
+              "Sore throat"
+            ],
+            "evidence_note": "This assessment has not been clinically validated for patients in Kenya."
+          }
+        ],
+        "primary_prediction": {
+          "condition": "URTI",
+          "medical_name": "Upper respiratory tract infection (URTI)",
+          "display_name": "Nose or throat infection (URTI)",
+          "description": "An infection of the nose, throat or other upper airways. This broad term does not identify a particular virus and is not the same as confirmed influenza or a common cold.",
+          "explanation": "Some of the symptoms you reported are consistent with this possibility, but they can also occur in other conditions.",
+          "supporting_symptoms": [
+            "Sore throat"
+          ],
+          "evidence_note": "This assessment has not been clinically validated for patients in Kenya."
+        },
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "29a36b5d-2691-49b9-b215-5cc7722cc8b5",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "prediction_complete",
+        "decision": {
+          "status": "possible_explanation",
+          "reasons": [
+            "source_validation_selection_rule_met",
+            "not_clinically_validated"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "This is one possible explanation for your symptoms, not a confirmed diagnosis.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "cough_throat",
+      "category": "respiratory",
+      "input": "I have cough and a sore throat.",
+      "mapping": {
+        "input_text": "I have cough and a sore throat.",
+        "recognised_symptoms": [
+          {
+            "code": "sore_throat",
+            "display_name": "Sore throat",
+            "features": [
+              "E_97"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "sore throat",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "breathing_difficulty",
+          "question": "Are you having difficulty breathing now?",
+          "answer": "no"
+        },
+        {
+          "id": "symptom_duration",
+          "question": "How long have you had the cough?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "sore_throat",
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "sore_throat",
+          "cough"
+        ],
+        "model_features": [
+          "E_97",
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "sore_throat": "present",
+            "cough": "present",
+            "shortness_of_breath": "absent"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "condition": "URTI",
+            "medical_name": "Upper respiratory tract infection (URTI)",
+            "display_name": "Nose or throat infection (URTI)",
+            "description": "An infection of the nose, throat or other upper airways. This broad term does not identify a particular virus and is not the same as confirmed influenza or a common cold.",
+            "explanation": "Some of the symptoms you reported are consistent with this possibility, but they can also occur in other conditions.",
+            "supporting_symptoms": [
+              "Sore throat",
+              "Cough"
+            ],
+            "evidence_note": "This assessment has not been clinically validated for patients in Kenya."
+          }
+        ],
+        "primary_prediction": {
+          "condition": "URTI",
+          "medical_name": "Upper respiratory tract infection (URTI)",
+          "display_name": "Nose or throat infection (URTI)",
+          "description": "An infection of the nose, throat or other upper airways. This broad term does not identify a particular virus and is not the same as confirmed influenza or a common cold.",
+          "explanation": "Some of the symptoms you reported are consistent with this possibility, but they can also occur in other conditions.",
+          "supporting_symptoms": [
+            "Sore throat",
+            "Cough"
+          ],
+          "evidence_note": "This assessment has not been clinically validated for patients in Kenya."
+        },
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "ccf3a7b6-fbf8-4aca-8671-323fbdf7ca5f",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "prediction_complete",
+        "decision": {
+          "status": "possible_explanation",
+          "reasons": [
+            "source_validation_selection_rule_met",
+            "not_clinically_validated"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "This is one possible explanation for your symptoms, not a confirmed diagnosis.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "flu_like",
+      "category": "respiratory",
+      "input": "I have fever, cough, sore throat and body aches for two days.",
+      "mapping": {
+        "input_text": "I have fever, cough, sore throat and body aches for two days.",
+        "recognised_symptoms": [
+          {
+            "code": "sore_throat",
+            "display_name": "Sore throat",
+            "features": [
+              "E_97"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "sore throat",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": 2,
+            "duration_min_days": 2,
+            "duration_text": "for two days",
+            "duration_unit": "days",
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "muscle_aches",
+            "display_name": "Muscle aches",
+            "features": [
+              "E_144"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "body aches",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": 2,
+            "duration_min_days": 2,
+            "duration_text": "for two days",
+            "duration_unit": "days",
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": 2,
+            "duration_min_days": 2,
+            "duration_text": "for two days",
+            "duration_unit": "days",
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": 2,
+            "duration_min_days": 2,
+            "duration_text": "for two days",
+            "duration_unit": "days",
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "breathing_difficulty",
+          "question": "Are you having difficulty breathing now?",
+          "answer": "no"
+        },
+        {
+          "id": "productive_cough",
+          "question": "Are you coughing up coloured phlegm, or more phlegm than usual?",
+          "answer": "unknown"
+        },
+        {
+          "id": "runny_blocked_nose",
+          "question": "Is your nose runny or blocked?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "sore_throat",
+          "muscle_aches",
+          "fever",
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "sore_throat",
+          "muscle_aches",
+          "fever",
+          "cough"
+        ],
+        "model_features": [
+          "E_97",
+          "E_144",
+          "E_91",
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "sore_throat": "present",
+            "muscle_aches": "present",
+            "fever": "present",
+            "cough": "present",
+            "shortness_of_breath": "absent",
+            "productive_cough": "unknown",
+            "runny_blocked_nose": "unknown"
+          },
+          "symptom_durations": {
+            "sore_throat": {
+              "text": "for two days",
+              "min_days": 2,
+              "max_days": 2,
+              "symptom_code": "sore_throat"
+            },
+            "muscle_aches": {
+              "text": "for two days",
+              "min_days": 2,
+              "max_days": 2,
+              "symptom_code": "muscle_aches"
+            },
+            "fever": {
+              "text": "for two days",
+              "min_days": 2,
+              "max_days": 2,
+              "symptom_code": "fever"
+            },
+            "cough": {
+              "text": "for two days",
+              "min_days": 2,
+              "max_days": 2,
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "for two days",
+            "min_days": 2,
+            "max_days": 2,
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "productive_cough",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "runny_blocked_nose",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "productive_cough",
+            "runny_blocked_nose"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "runny_blocked_nose",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "00b37e07-e6ac-4c2e-916e-0ba0c6269783",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "ambiguous_model_rank"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "The symptoms you reported overlap with several conditions. The information does not support naming one illness at this point.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "informative",
+      "category": "respiratory",
+      "input": "I have fever and cough with a runny nose and sore throat for two days, but no difficulty breathing.",
+      "mapping": {
+        "input_text": "I have fever and cough with a runny nose and sore throat for two days, but no difficulty breathing.",
+        "recognised_symptoms": [
+          {
+            "code": "shortness_of_breath",
+            "display_name": "Significant shortness of breath",
+            "features": [
+              "E_66"
+            ],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "difficulty breathing",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          },
+          {
+            "code": "sore_throat",
+            "display_name": "Sore throat",
+            "features": [
+              "E_97"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "sore throat",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": 2,
+            "duration_min_days": 2,
+            "duration_text": "for two days",
+            "duration_unit": "days",
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "runny_blocked_nose",
+            "display_name": "Runny or blocked nose",
+            "features": [
+              "E_181"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "runny nose",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": 2,
+            "duration_min_days": 2,
+            "duration_text": "for two days",
+            "duration_unit": "days",
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [
+          {
+            "code": "shortness_of_breath",
+            "display_name": "Significant shortness of breath",
+            "features": [
+              "E_66"
+            ],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "difficulty breathing",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "symptom_duration",
+          "question": "How long have you had the cough?",
+          "answer": "unknown"
+        },
+        {
+          "id": "productive_cough",
+          "question": "Are you coughing up coloured phlegm, or more phlegm than usual?",
+          "answer": "unknown"
+        },
+        {
+          "id": "wheezing",
+          "question": "Do you hear a whistling sound when breathing out?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "sore_throat",
+          "runny_blocked_nose",
+          "fever",
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "sore_throat",
+          "runny_blocked_nose",
+          "fever",
+          "cough"
+        ],
+        "model_features": [
+          "E_97",
+          "E_181",
+          "E_91",
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "shortness_of_breath": "absent",
+            "sore_throat": "present",
+            "runny_blocked_nose": "present",
+            "fever": "present",
+            "cough": "present",
+            "productive_cough": "unknown",
+            "wheezing": "unknown"
+          },
+          "symptom_durations": {
+            "sore_throat": {
+              "text": "for two days",
+              "min_days": 2,
+              "max_days": 2,
+              "symptom_code": "sore_throat"
+            },
+            "runny_blocked_nose": {
+              "text": "for two days",
+              "min_days": 2,
+              "max_days": 2,
+              "symptom_code": "runny_blocked_nose"
+            },
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "productive_cough",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "wheezing",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "symptom_duration",
+            "productive_cough",
+            "wheezing"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "wheezing",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "41286399-ce55-4ee4-96dd-911699538d39",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "ambiguous_model_rank"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "The symptoms you reported overlap with several conditions. The information does not support naming one illness at this point.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "sw_negation",
+      "category": "language",
+      "input": "Nina kikohozi lakini sina homa.",
+      "mapping": {
+        "input_text": "Nina kikohozi lakini sina homa.",
+        "recognised_symptoms": [
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "kikohozi",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "homa",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "homa",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "breathing_difficulty",
+          "question": "Je, una shida ya kupumua sasa?",
+          "answer": "no"
+        },
+        {
+          "id": "symptom_duration",
+          "question": "Umekuwa na kikohozi kwa muda gani?",
+          "answer": "unknown"
+        },
+        {
+          "id": "sore_throat",
+          "question": "Je, koo lako linauma?",
+          "answer": "unknown"
+        },
+        {
+          "id": "productive_cough",
+          "question": "Je, unakohoa makohozi yenye rangi, au mengi kuliko kawaida?",
+          "answer": "unknown"
+        },
+        {
+          "id": "heavy_sweating",
+          "question": "Je, unatoka jasho jingi kuliko kawaida, hasa usiku?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "cough"
+        ],
+        "model_features": [
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_91",
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "sw",
+          "symptom_states": {
+            "cough": "present",
+            "fever": "absent",
+            "shortness_of_breath": "absent",
+            "sore_throat": "unknown",
+            "productive_cough": "unknown",
+            "heavy_sweating": "unknown"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "sore_throat",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "productive_cough",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "heavy_sweating",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration",
+            "sore_throat",
+            "productive_cough",
+            "heavy_sweating"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "Programu hii inatathmini baadhi ya magonjwa ya mfumo wa upumuaji. Uchunguzi au vipimo vinaweza kuhitajika.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "heavy_sweating",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "3a03fe70-e829-4e97-8ffd-ec6f240b2210",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "non_specific_input"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Pumzika na kunywa maji kadiri unavyoweza; fuatilia kama dalili zinaimarika au zinazidi.",
+        "disclaimer": "Mfumo huu hutoa taarifa za afya tu. Hautoi utambuzi wa ugonjwa wala kuchukua nafasi ya mtaalamu wa afya.",
+        "assessment_summary": "Dalili ulizotoa zinafanana na hali kadhaa. Kwa sasa hatuwezi kupendekeza ugonjwa mmoja kwa msingi wa taarifa hizi.",
+        "uncertainty_message": "Maswali yanasaidia kuelewa dalili, lakini uchunguzi au vipimo vya mtaalamu wa afya vinaweza kuhitajika.",
+        "next_steps": [
+          "Pumzika na kunywa maji kadiri unavyoweza; fuatilia kama dalili zinaimarika au zinazidi.",
+          "Dalili zikizidi, zikiendelea au zikikutia wasiwasi, tafuta tathmini ya mtaalamu wa afya.",
+          "Ukipata shida kali ya kupumua, kushindwa kuzungumza au midomo kuwa ya buluu, tafuta huduma ya dharura mara moja."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "Programu hii inatathmini baadhi ya magonjwa ya mfumo wa upumuaji. Uchunguzi au vipimo vinaweza kuhitajika."
+      }
+    },
+    {
+      "id": "misspelling",
+      "category": "language",
+      "input": "I have a couhg and feaver.",
+      "mapping": {
+        "input_text": "I have a couhg and feaver.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "feaver",
+            "language": "en",
+            "match_type": "fuzzy",
+            "match_score": 90.9,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "couhg",
+            "language": "en",
+            "match_type": "fuzzy",
+            "match_score": 80.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "breathing_difficulty",
+          "question": "Are you having difficulty breathing now?",
+          "answer": "no"
+        },
+        {
+          "id": "symptom_duration",
+          "question": "How long have you had the cough?",
+          "answer": "unknown"
+        },
+        {
+          "id": "sore_throat",
+          "question": "Is your throat sore?",
+          "answer": "unknown"
+        },
+        {
+          "id": "heavy_sweating",
+          "question": "Are you sweating much more than usual, including at night?",
+          "answer": "unknown"
+        },
+        {
+          "id": "muscle_aches",
+          "question": "Do your muscles ache across your body?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "model_features": [
+          "E_91",
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "fever": "present",
+            "cough": "present",
+            "shortness_of_breath": "absent",
+            "sore_throat": "unknown",
+            "heavy_sweating": "unknown",
+            "muscle_aches": "unknown"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "sore_throat",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "heavy_sweating",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "muscle_aches",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration",
+            "sore_throat",
+            "heavy_sweating",
+            "muscle_aches"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "heavy_sweating",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "muscle_aches",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "363a75ab-75d6-4112-9fdd-212c53c5b7c6",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "ambiguous_model_rank"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "The symptoms you reported overlap with several conditions. The information does not support naming one illness at this point.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "unsupported",
+      "category": "unsupported",
+      "input": "I have abdominal pain and nausea.",
+      "mapping": {
+        "input_text": "I have abdominal pain and nausea.",
+        "recognised_symptoms": [],
+        "unmatched_wording": [
+          {
+            "unmatched_text": "abdominal pain",
+            "suggestions": []
+          },
+          {
+            "unmatched_text": "nausea",
+            "suggestions": []
+          }
+        ],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [],
+        "effective_confirmed_codes": [],
+        "model_features": [],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {},
+          "duration": null,
+          "symptom_durations": {},
+          "severity": {},
+          "follow_up_answers": [],
+          "questions_asked": [],
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": null,
+        "status": "insufficient_evidence",
+        "decision": {
+          "status": "insufficient_information",
+          "reasons": [
+            "insufficient_evidence"
+          ],
+          "policy_version": "kenya_single_primary_v1"
+        },
+        "model_version": null,
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "Please describe the symptoms you are experiencing and how long you have had them, so we can ask relevant questions.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "mixed_unsupported",
+      "category": "unsupported",
+      "input": "I have a headache and a skin rash.",
+      "mapping": {
+        "input_text": "I have a headache and a skin rash.",
+        "recognised_symptoms": [
+          {
+            "code": "headache",
+            "display_name": "Headache",
+            "features": [
+              "E_53"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "headache",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [
+          {
+            "unmatched_text": "skin rash",
+            "suggestions": []
+          }
+        ],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "general_duration",
+          "question": "How long have you had these symptoms?",
+          "answer": "unknown"
+        },
+        {
+          "id": "symptom_severity",
+          "question": "How much are these symptoms affecting your usual activities?",
+          "answer": "unknown"
+        },
+        {
+          "id": "fever",
+          "question": "Do you have a fever?",
+          "answer": "unknown"
+        },
+        {
+          "id": "cough",
+          "question": "Do you have a cough?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "headache"
+        ],
+        "effective_confirmed_codes": [
+          "headache"
+        ],
+        "model_features": [
+          "E_53"
+        ],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "headache": "present",
+            "fever": "unknown",
+            "cough": "unknown"
+          },
+          "symptom_durations": {
+            "_general": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "_general"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "_general"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "general_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "symptom_severity",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "fever",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "cough",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "general_duration",
+            "symptom_severity",
+            "fever",
+            "cough"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "general_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "symptom_severity",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "fever",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "cough",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "ee1cb2eb-5fda-4307-9ec9-286b8643f5e5",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "unsupported_information"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "Some details could not be understood by this app. Please rephrase them or contact a healthcare professional.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "contradictory",
+      "category": "contradictory",
+      "input": "I have cough but I do not have cough.",
+      "mapping": {
+        "input_text": "I have cough but I do not have cough.",
+        "recognised_symptoms": [
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "unknown",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "unknown",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "requires_confirmation": true
+      },
+      "turns": [],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [],
+        "effective_confirmed_codes": [],
+        "model_features": [],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "cough": "unknown"
+          },
+          "duration": null,
+          "symptom_durations": {},
+          "severity": {},
+          "follow_up_answers": [],
+          "questions_asked": [],
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": null,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "insufficient_evidence"
+          ],
+          "policy_version": "kenya_single_primary_v1"
+        },
+        "model_version": null,
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "The symptoms you reported overlap with several conditions. The information does not support naming one illness at this point.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "vague",
+      "category": "vague",
+      "input": "I feel unwell.",
+      "mapping": {
+        "input_text": "I feel unwell.",
+        "recognised_symptoms": [],
+        "unmatched_wording": [
+          {
+            "unmatched_text": "unwell",
+            "suggestions": []
+          }
+        ],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [],
+        "effective_confirmed_codes": [],
+        "model_features": [],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {},
+          "duration": null,
+          "symptom_durations": {},
+          "severity": {},
+          "follow_up_answers": [],
+          "questions_asked": [],
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": null,
+        "status": "insufficient_evidence",
+        "decision": {
+          "status": "insufficient_information",
+          "reasons": [
+            "insufficient_evidence"
+          ],
+          "policy_version": "kenya_single_primary_v1"
+        },
+        "model_version": null,
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "Please describe the symptoms you are experiencing and how long you have had them, so we can ask relevant questions.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "urgent_breathing",
+      "category": "urgent",
+      "input": "I am struggling to breathe.",
+      "mapping": {
+        "input_text": "I am struggling to breathe.",
+        "recognised_symptoms": [
+          {
+            "code": "shortness_of_breath",
+            "display_name": "Significant shortness of breath",
+            "features": [
+              "E_66"
+            ],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "struggling to breathe",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "confirmed": false,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_text": null,
+            "duration_unit": null,
+            "severity": null
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": true,
+        "safety_status": "urgent_review",
+        "requires_confirmation": false,
+        "health_guidance": "A warning sign was detected. Seek urgent medical assessment. If breathing difficulty is severe, you cannot speak normally, or symptoms are rapidly worsening, seek emergency care now. Do not wait to complete this questionnaire.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional."
+      },
+      "turns": [],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "shortness_of_breath"
+        ],
+        "effective_confirmed_codes": [
+          "shortness_of_breath"
+        ],
+        "model_features": [],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "follow_up_answers": [],
+          "age": 21
+        },
+        "follow_up_answers": [],
+        "has_red_flag": true,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "3660cc8d-a86a-4c1d-aa00-b4a612e16d56",
+        "status": "urgent_review",
+        "decision": {
+          "status": "urgent_review",
+          "reasons": [
+            "reported_warning_sign"
+          ],
+          "policy_version": "kenya_single_primary_v1"
+        },
+        "red_flag_symptoms": [
+          {
+            "code": "shortness_of_breath",
+            "display_name": "Significant shortness of breath",
+            "features": [
+              "E_66"
+            ],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "struggling to breathe",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "confirmed": false,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_text": null,
+            "duration_unit": null,
+            "severity": null
+          }
+        ],
+        "health_guidance": "A warning sign was detected. Seek urgent medical assessment. If breathing difficulty is severe, you cannot speak normally, or symptoms are rapidly worsening, seek emergency care now. Do not wait to complete this questionnaire.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional."
+      }
+    },
+    {
+      "id": "urgent_sw",
+      "category": "urgent",
+      "input": "Siwezi kupumua.",
+      "mapping": {
+        "input_text": "Siwezi kupumua.",
+        "recognised_symptoms": [
+          {
+            "code": "shortness_of_breath",
+            "display_name": "Significant shortness of breath",
+            "features": [
+              "E_66"
+            ],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "siwezi kupumua",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "confirmed": false,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_text": null,
+            "duration_unit": null,
+            "severity": null
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": true,
+        "safety_status": "urgent_review",
+        "requires_confirmation": false,
+        "health_guidance": "Dalili ya hatari imetambuliwa. Tafuta huduma ya matibabu ya haraka. Ikiwa unapumua kwa shida sana, unashindwa kuzungumza, au hali inazidi haraka, tafuta huduma ya dharura sasa. Usisubiri kukamilisha maswali haya.",
+        "disclaimer": "Mfumo huu hutoa taarifa za afya tu. Hautoi utambuzi wa ugonjwa wala kuchukua nafasi ya mtaalamu wa afya."
+      },
+      "turns": [],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "shortness_of_breath"
+        ],
+        "effective_confirmed_codes": [
+          "shortness_of_breath"
+        ],
+        "model_features": [],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "sw",
+          "follow_up_answers": [],
+          "age": 21
+        },
+        "follow_up_answers": [],
+        "has_red_flag": true,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "2ab024d5-5b96-4afd-a4f5-d831fb7be084",
+        "status": "urgent_review",
+        "decision": {
+          "status": "urgent_review",
+          "reasons": [
+            "reported_warning_sign"
+          ],
+          "policy_version": "kenya_single_primary_v1"
+        },
+        "red_flag_symptoms": [
+          {
+            "code": "shortness_of_breath",
+            "display_name": "Significant shortness of breath",
+            "features": [
+              "E_66"
+            ],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "siwezi kupumua",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "confirmed": false,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_text": null,
+            "duration_unit": null,
+            "severity": null
+          }
+        ],
+        "health_guidance": "Dalili ya hatari imetambuliwa. Tafuta huduma ya matibabu ya haraka. Ikiwa unapumua kwa shida sana, unashindwa kuzungumza, au hali inazidi haraka, tafuta huduma ya dharura sasa. Usisubiri kukamilisha maswali haya.",
+        "disclaimer": "Mfumo huu hutoa taarifa za afya tu. Hautoi utambuzi wa ugonjwa wala kuchukua nafasi ya mtaalamu wa afya."
+      }
+    },
+    {
+      "id": "urgent_blue_lips",
+      "category": "urgent",
+      "input": "My lips are turning blue.",
+      "mapping": {
+        "input_text": "My lips are turning blue.",
+        "recognised_symptoms": [
+          {
+            "code": "blue_lips",
+            "display_name": "Blue lips or face",
+            "features": [],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "lips are turning blue",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "confirmed": false,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_text": null,
+            "duration_unit": null,
+            "severity": null
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": true,
+        "safety_status": "urgent_review",
+        "requires_confirmation": false,
+        "health_guidance": "A warning sign was detected. Seek urgent medical assessment. If breathing difficulty is severe, you cannot speak normally, or symptoms are rapidly worsening, seek emergency care now. Do not wait to complete this questionnaire.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional."
+      },
+      "turns": [],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "blue_lips"
+        ],
+        "effective_confirmed_codes": [
+          "blue_lips"
+        ],
+        "model_features": [],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "follow_up_answers": [],
+          "age": 21
+        },
+        "follow_up_answers": [],
+        "has_red_flag": true,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "4a6c60a5-5fd9-4e5a-9541-624956f1583e",
+        "status": "urgent_review",
+        "decision": {
+          "status": "urgent_review",
+          "reasons": [
+            "reported_warning_sign"
+          ],
+          "policy_version": "kenya_single_primary_v1"
+        },
+        "red_flag_symptoms": [
+          {
+            "code": "blue_lips",
+            "display_name": "Blue lips or face",
+            "features": [],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "lips are turning blue",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "confirmed": false,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_text": null,
+            "duration_unit": null,
+            "severity": null
+          }
+        ],
+        "health_guidance": "A warning sign was detected. Seek urgent medical assessment. If breathing difficulty is severe, you cannot speak normally, or symptoms are rapidly worsening, seek emergency care now. Do not wait to complete this questionnaire.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional."
+      }
+    },
+    {
+      "id": "negated_warning",
+      "category": "nonurgent",
+      "input": "I have cough but no difficulty breathing.",
+      "mapping": {
+        "input_text": "I have cough but no difficulty breathing.",
+        "recognised_symptoms": [
+          {
+            "code": "shortness_of_breath",
+            "display_name": "Significant shortness of breath",
+            "features": [
+              "E_66"
+            ],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "difficulty breathing",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [
+          {
+            "code": "shortness_of_breath",
+            "display_name": "Significant shortness of breath",
+            "features": [
+              "E_66"
+            ],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "difficulty breathing",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "symptom_duration",
+          "question": "How long have you had the cough?",
+          "answer": "unknown"
+        },
+        {
+          "id": "sore_throat",
+          "question": "Is your throat sore?",
+          "answer": "unknown"
+        },
+        {
+          "id": "heavy_sweating",
+          "question": "Are you sweating much more than usual, including at night?",
+          "answer": "unknown"
+        },
+        {
+          "id": "muscle_aches",
+          "question": "Do your muscles ache across your body?",
+          "answer": "unknown"
+        },
+        {
+          "id": "productive_cough",
+          "question": "Are you coughing up coloured phlegm, or more phlegm than usual?",
+          "answer": "unknown"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "cough"
+        ],
+        "model_features": [
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "shortness_of_breath": "absent",
+            "cough": "present",
+            "sore_throat": "unknown",
+            "heavy_sweating": "unknown",
+            "muscle_aches": "unknown",
+            "productive_cough": "unknown"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "sore_throat",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "heavy_sweating",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "muscle_aches",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "productive_cough",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "symptom_duration",
+            "sore_throat",
+            "heavy_sweating",
+            "muscle_aches",
+            "productive_cough"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "heavy_sweating",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "muscle_aches",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "primary_prediction": null,
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "80a50881-5569-431a-a704-f8e79eaea490",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "assessment_uncertain",
+        "decision": {
+          "status": "uncertain",
+          "reasons": [
+            "non_specific_input"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "The symptoms you reported overlap with several conditions. The information does not support naming one illness at this point.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    },
+    {
+      "id": "prolonged_cough",
+      "category": "review",
+      "input": "I have cough for two weeks and have lost weight without trying.",
+      "mapping": {
+        "input_text": "I have cough for two weeks and have lost weight without trying.",
+        "recognised_symptoms": [
+          {
+            "code": "weight_loss",
+            "display_name": "Unintended weight loss",
+            "features": [
+              "E_162"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "lost weight without trying",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "weight_loss_intent": "unintentional",
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": 14,
+            "duration_min_days": 14,
+            "duration_text": "for two weeks",
+            "duration_unit": "weeks",
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "turns": [
+        {
+          "id": "breathing_difficulty",
+          "question": "Are you having difficulty breathing now?",
+          "answer": "no"
+        }
+      ],
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "weight_loss",
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "weight_loss",
+          "cough"
+        ],
+        "model_features": [
+          "E_162",
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "weight_loss": "present",
+            "cough": "present",
+            "shortness_of_breath": "absent"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "for two weeks",
+              "min_days": 14,
+              "max_days": 14,
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "for two weeks",
+            "min_days": 14,
+            "max_days": 14,
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": "unintentional",
+          "fatigue_pattern": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+          "age": 21
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "condition": "Tuberculosis",
+            "medical_name": "Tuberculosis",
+            "display_name": "Tuberculosis (TB)",
+            "description": "A bacterial infection that often affects the lungs. A persistent cough, fever, night sweats or unexplained weight loss needs assessment and TB testing; symptoms alone do not confirm TB.",
+            "explanation": "Some of the symptoms you reported are consistent with this possibility, but they can also occur in other conditions.",
+            "supporting_symptoms": [
+              "Unintended weight loss",
+              "Cough"
+            ],
+            "evidence_note": "This assessment has not been clinically validated for patients in Kenya."
+          }
+        ],
+        "primary_prediction": {
+          "condition": "Tuberculosis",
+          "medical_name": "Tuberculosis",
+          "display_name": "Tuberculosis (TB)",
+          "description": "A bacterial infection that often affects the lungs. A persistent cough, fever, night sweats or unexplained weight loss needs assessment and TB testing; symptoms alone do not confirm TB.",
+          "explanation": "Some of the symptoms you reported are consistent with this possibility, but they can also occur in other conditions.",
+          "supporting_symptoms": [
+            "Unintended weight loss",
+            "Cough"
+          ],
+          "evidence_note": "This assessment has not been clinically validated for patients in Kenya."
+        },
+        "clinical_validation": false,
+        "uncertain": true,
+        "prediction_id": "910b0f97-6baf-4177-8122-42d26319757e",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "status": "prediction_complete",
+        "decision": {
+          "status": "possible_explanation",
+          "reasons": [
+            "source_validation_selection_rule_met",
+            "not_clinically_validated"
+          ],
+          "policy_version": "kenya_single_primary_v1",
+          "source_policy_version": "v3_selective_primary_v1"
+        },
+        "model_status": "research_selective_primary",
+        "health_guidance": "Contact a healthcare professional to assess this possibility; an examination or tests may be needed.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "This is one possible explanation for your symptoms, not a confirmed diagnosis.",
+        "uncertainty_message": "Your answers help clarify the symptoms, but an examination or tests may be needed.",
+        "next_steps": [
+          "Contact a healthcare professional to assess this possibility; an examination or tests may be needed.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "professional_review",
+        "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed."
+      }
+    }
+  ]
+}

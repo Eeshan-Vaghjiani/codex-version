@@ -1,0 +1,3051 @@
+{
+  "purpose": "Observed software behavior; no diagnostic ground truth or clinical validation",
+  "demographics": {
+    "age": 21,
+    "sex": "M"
+  },
+  "cases": [
+    {
+      "case": 1,
+      "input": "I have fever.",
+      "mapping": {
+        "input_text": "I have fever.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "sore_throat",
+        "muscle_aches",
+        "runny_blocked_nose",
+        "cough"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have fever.",
+        "confirmed_codes": [
+          "fever"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "muscle_aches",
+            "answer": "no"
+          },
+          {
+            "question_id": "runny_blocked_nose",
+            "answer": "no"
+          },
+          {
+            "question_id": "cough",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "fever"
+        ],
+        "effective_confirmed_codes": [
+          "fever"
+        ],
+        "model_features": [
+          "E_91"
+        ],
+        "explicitly_absent_features": [
+          "E_66",
+          "E_97",
+          "E_144",
+          "E_181",
+          "E_201"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "fever": "present",
+            "shortness_of_breath": "absent",
+            "sore_throat": "absent",
+            "muscle_aches": "absent",
+            "runny_blocked_nose": "absent",
+            "cough": "absent"
+          },
+          "symptom_durations": {},
+          "duration": null,
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "sore_throat",
+              "answer": "no"
+            },
+            {
+              "question_id": "muscle_aches",
+              "answer": "no"
+            },
+            {
+              "question_id": "runny_blocked_nose",
+              "answer": "no"
+            },
+            {
+              "question_id": "cough",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "sore_throat",
+            "muscle_aches",
+            "runny_blocked_nose",
+            "cough"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated.",
+          "age": 21,
+          "uncertainty_reasons": [
+            "simulated_source_not_clinically_validated",
+            "incomplete_symptom_history"
+          ]
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "muscle_aches",
+            "answer": "no"
+          },
+          {
+            "question_id": "runny_blocked_nose",
+            "answer": "no"
+          },
+          {
+            "question_id": "cough",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Epiglottitis",
+            "display_name": "Serious Throat Swelling (Epiglottitis)",
+            "description": "Inflammation and swelling of the tissue protecting the windpipe. It can interfere with breathing and can become a medical emergency.",
+            "model_confidence_percent": 36.89,
+            "supporting_symptoms": [
+              "Fever",
+              "No Muscle aches",
+              "No Runny or blocked nose",
+              "No Cough",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "No Significant shortness of breath"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 2,
+            "condition": "Acute laryngitis",
+            "display_name": "Voice Box Inflammation (Laryngitis)",
+            "description": "Short-term inflammation of the voice box and vocal cords that may cause hoarseness, a weak voice, sore throat or cough.",
+            "model_confidence_percent": 34.24,
+            "supporting_symptoms": [
+              "Fever",
+              "No Muscle aches",
+              "No Runny or blocked nose",
+              "No Cough",
+              "No Significant shortness of breath",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 3,
+            "condition": "Viral pharyngitis",
+            "display_name": "Viral Sore Throat",
+            "description": "Inflammation of the throat caused by a virus, commonly resulting in soreness, discomfort or pain when swallowing.",
+            "model_confidence_percent": 24.73,
+            "supporting_symptoms": [
+              "Fever",
+              "No Muscle aches",
+              "No Cough",
+              "No Significant shortness of breath",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "No Runny or blocked nose"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          }
+        ],
+        "prediction_id": "092530d5-c378-4d13-a835-691b0f890fe0",
+        "status": "prediction_complete",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "Your symptoms overlap with several respiratory conditions. These are possible explanations, not a diagnosis.",
+        "uncertainty_message": "This is a tentative assessment. Your answers help compare patterns, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "score_note": "Scores compare patterns in a simulated dataset. They are not validated clinical probabilities or estimates of illness severity.",
+        "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated."
+      }
+    },
+    {
+      "case": 2,
+      "input": "Runny nose, for a few days with headache and sore throat.",
+      "mapping": {
+        "input_text": "Runny nose, for a few days with headache and sore throat.",
+        "recognised_symptoms": [
+          {
+            "code": "sore_throat",
+            "display_name": "Sore throat",
+            "features": [
+              "E_97"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "sore throat",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "runny_blocked_nose",
+            "display_name": "Runny or blocked nose",
+            "features": [
+              "E_181"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "runny nose",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": null,
+            "duration_min_days": null,
+            "duration_text": "for a few days",
+            "duration_unit": "days",
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "headache",
+            "display_name": "Headache",
+            "features": [
+              "E_53"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "headache",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "wheezing"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "Runny nose, for a few days with headache and sore throat.",
+        "confirmed_codes": [
+          "sore_throat",
+          "runny_blocked_nose",
+          "headache"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "wheezing",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "sore_throat",
+          "runny_blocked_nose",
+          "headache"
+        ],
+        "effective_confirmed_codes": [
+          "sore_throat",
+          "runny_blocked_nose",
+          "headache"
+        ],
+        "model_features": [
+          "E_97",
+          "E_181",
+          "E_53"
+        ],
+        "explicitly_absent_features": [
+          "E_66",
+          "E_214"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "sore_throat": "present",
+            "runny_blocked_nose": "present",
+            "headache": "present",
+            "shortness_of_breath": "absent",
+            "wheezing": "absent"
+          },
+          "symptom_durations": {
+            "runny_blocked_nose": {
+              "text": "for a few days",
+              "min_days": null,
+              "max_days": null,
+              "symptom_code": "runny_blocked_nose"
+            }
+          },
+          "duration": {
+            "text": "for a few days",
+            "min_days": null,
+            "max_days": null,
+            "symptom_code": "runny_blocked_nose"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "wheezing",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "wheezing"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated.",
+          "age": 21,
+          "uncertainty_reasons": [
+            "simulated_source_not_clinically_validated",
+            "incomplete_symptom_history"
+          ]
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "wheezing",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "URTI",
+            "display_name": "Upper Respiratory Infection (URTI)",
+            "description": "An infection affecting the nose, throat or other upper airways, commonly causing symptoms such as congestion, sore throat and cough.",
+            "model_confidence_percent": 87.71,
+            "supporting_symptoms": [
+              "Sore throat",
+              "Runny or blocked nose",
+              "Headache",
+              "No Wheezing when breathing out",
+              "No Significant shortness of breath"
+            ],
+            "contradicting_symptoms": [],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 2,
+            "condition": "Influenza",
+            "display_name": "Influenza (Flu)",
+            "description": "A contagious viral respiratory infection that can cause fever, body aches, tiredness, headache, cough and other respiratory symptoms.",
+            "model_confidence_percent": 11.51,
+            "supporting_symptoms": [
+              "Sore throat",
+              "Runny or blocked nose",
+              "Headache",
+              "No Wheezing when breathing out",
+              "No Significant shortness of breath"
+            ],
+            "contradicting_symptoms": [],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 3,
+            "condition": "Bronchitis",
+            "display_name": "Bronchitis",
+            "description": "Inflammation of the main airways leading to the lungs, commonly causing cough and sometimes increased mucus.",
+            "model_confidence_percent": 0.78,
+            "supporting_symptoms": [
+              "Sore throat",
+              "Headache",
+              "Runny or blocked nose"
+            ],
+            "contradicting_symptoms": [
+              "No Wheezing when breathing out",
+              "No Significant shortness of breath"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          }
+        ],
+        "prediction_id": "d5fcd165-d058-4509-b451-8615ecf88b6f",
+        "status": "prediction_complete",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "Your symptoms overlap with several respiratory conditions. These are possible explanations, not a diagnosis.",
+        "uncertainty_message": "This is a tentative assessment. Your answers help compare patterns, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "score_note": "Scores compare patterns in a simulated dataset. They are not validated clinical probabilities or estimates of illness severity.",
+        "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated."
+      }
+    },
+    {
+      "case": 3,
+      "input": "I have a cough and fever.",
+      "mapping": {
+        "input_text": "I have a cough and fever.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "symptom_duration",
+        "sore_throat",
+        "muscle_aches",
+        "runny_blocked_nose"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have a cough and fever.",
+        "confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "muscle_aches",
+            "answer": "no"
+          },
+          {
+            "question_id": "runny_blocked_nose",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "model_features": [
+          "E_91",
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66",
+          "E_97",
+          "E_144",
+          "E_181"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "fever": "present",
+            "cough": "present",
+            "shortness_of_breath": "absent",
+            "sore_throat": "absent",
+            "muscle_aches": "absent",
+            "runny_blocked_nose": "absent"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "sore_throat",
+              "answer": "no"
+            },
+            {
+              "question_id": "muscle_aches",
+              "answer": "no"
+            },
+            {
+              "question_id": "runny_blocked_nose",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration",
+            "sore_throat",
+            "muscle_aches",
+            "runny_blocked_nose"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated.",
+          "age": 21,
+          "uncertainty_reasons": [
+            "simulated_source_not_clinically_validated",
+            "incomplete_symptom_history"
+          ]
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "muscle_aches",
+            "answer": "no"
+          },
+          {
+            "question_id": "runny_blocked_nose",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Acute laryngitis",
+            "display_name": "Voice Box Inflammation (Laryngitis)",
+            "description": "Short-term inflammation of the voice box and vocal cords that may cause hoarseness, a weak voice, sore throat or cough.",
+            "model_confidence_percent": 36.27,
+            "supporting_symptoms": [
+              "Fever",
+              "No Muscle aches",
+              "No Runny or blocked nose",
+              "No Significant shortness of breath",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "Cough"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 2,
+            "condition": "Viral pharyngitis",
+            "display_name": "Viral Sore Throat",
+            "description": "Inflammation of the throat caused by a virus, commonly resulting in soreness, discomfort or pain when swallowing.",
+            "model_confidence_percent": 28.53,
+            "supporting_symptoms": [
+              "Fever",
+              "No Muscle aches",
+              "No Significant shortness of breath",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "Cough",
+              "No Runny or blocked nose"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 3,
+            "condition": "Tuberculosis",
+            "display_name": "Tuberculosis (TB)",
+            "description": "An infection caused by tuberculosis bacteria. Active lung TB may cause a long-lasting cough, fever, night sweats, tiredness or weight loss.",
+            "model_confidence_percent": 17.7,
+            "supporting_symptoms": [
+              "Fever",
+              "Cough",
+              "No Muscle aches",
+              "No Runny or blocked nose",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "No Significant shortness of breath"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          }
+        ],
+        "prediction_id": "67568095-e09b-43db-aaa2-d5c40b92f833",
+        "status": "prediction_complete",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "Your symptoms overlap with several respiratory conditions. These are possible explanations, not a diagnosis.",
+        "uncertainty_message": "This is a tentative assessment. Your answers help compare patterns, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "score_note": "Scores compare patterns in a simulated dataset. They are not validated clinical probabilities or estimates of illness severity.",
+        "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated."
+      }
+    },
+    {
+      "case": 4,
+      "input": "I have a cough.",
+      "mapping": {
+        "input_text": "I have a cough.",
+        "recognised_symptoms": [
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "symptom_duration",
+        "sore_throat",
+        "productive_cough",
+        "heavy_sweating"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have a cough.",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "no"
+          },
+          {
+            "question_id": "heavy_sweating",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "cough"
+        ],
+        "model_features": [
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66",
+          "E_97",
+          "E_77",
+          "E_50"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "cough": "present",
+            "shortness_of_breath": "absent",
+            "sore_throat": "absent",
+            "productive_cough": "absent",
+            "heavy_sweating": "absent"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "sore_throat",
+              "answer": "no"
+            },
+            {
+              "question_id": "productive_cough",
+              "answer": "no"
+            },
+            {
+              "question_id": "heavy_sweating",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration",
+            "sore_throat",
+            "productive_cough",
+            "heavy_sweating"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated.",
+          "age": 21,
+          "uncertainty_reasons": [
+            "simulated_source_not_clinically_validated",
+            "incomplete_symptom_history"
+          ]
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "no"
+          },
+          {
+            "question_id": "heavy_sweating",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Viral pharyngitis",
+            "display_name": "Viral Sore Throat",
+            "description": "Inflammation of the throat caused by a virus, commonly resulting in soreness, discomfort or pain when swallowing.",
+            "model_confidence_percent": 44.14,
+            "supporting_symptoms": [
+              "No Heavy sweating",
+              "No Significant shortness of breath",
+              "No Coloured or increased phlegm",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "Cough"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 2,
+            "condition": "Chronic rhinosinusitis",
+            "display_name": "Chronic Sinusitis",
+            "description": "Long-lasting inflammation of the nose and sinuses that may cause ongoing congestion, facial pressure, nasal discharge or reduced sense of smell.",
+            "model_confidence_percent": 15.42,
+            "supporting_symptoms": [
+              "Cough",
+              "No Heavy sweating",
+              "No Significant shortness of breath",
+              "No Coloured or increased phlegm",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 3,
+            "condition": "Allergic sinusitis",
+            "display_name": "Allergy-Related Sinus Inflammation",
+            "description": "Inflammation of the nose and sinus areas linked to allergies, which may cause congestion, nasal symptoms and facial pressure.",
+            "model_confidence_percent": 12.41,
+            "supporting_symptoms": [
+              "No Heavy sweating",
+              "No Significant shortness of breath",
+              "No Coloured or increased phlegm",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "Cough"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          }
+        ],
+        "prediction_id": "16b25ad0-0716-4aef-bd4c-458abd571f7f",
+        "status": "prediction_complete",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "Your symptoms overlap with several respiratory conditions. These are possible explanations, not a diagnosis.",
+        "uncertainty_message": "This is a tentative assessment. Your answers help compare patterns, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "score_note": "Scores compare patterns in a simulated dataset. They are not validated clinical probabilities or estimates of illness severity.",
+        "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated."
+      }
+    },
+    {
+      "case": 5,
+      "input": "I have a runny nose, sneezing and a mild cough.",
+      "mapping": {
+        "input_text": "I have a runny nose, sneezing and a mild cough.",
+        "recognised_symptoms": [
+          {
+            "code": "runny_blocked_nose",
+            "display_name": "Runny or blocked nose",
+            "features": [
+              "E_181"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "runny nose",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "sneezing",
+            "display_name": "Sneezing",
+            "features": [],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "sneezing",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": "mild",
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "symptom_duration",
+        "sore_throat",
+        "muscle_aches",
+        "fever"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have a runny nose, sneezing and a mild cough.",
+        "confirmed_codes": [
+          "runny_blocked_nose",
+          "sneezing",
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "muscle_aches",
+            "answer": "no"
+          },
+          {
+            "question_id": "fever",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "runny_blocked_nose",
+          "sneezing",
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "runny_blocked_nose",
+          "sneezing",
+          "cough"
+        ],
+        "model_features": [
+          "E_181",
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66",
+          "E_97",
+          "E_144",
+          "E_91"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "runny_blocked_nose": "present",
+            "sneezing": "present",
+            "cough": "present",
+            "shortness_of_breath": "absent",
+            "sore_throat": "absent",
+            "muscle_aches": "absent",
+            "fever": "absent"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "severity": {
+            "cough": "mild"
+          },
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "sore_throat",
+              "answer": "no"
+            },
+            {
+              "question_id": "muscle_aches",
+              "answer": "no"
+            },
+            {
+              "question_id": "fever",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration",
+            "sore_throat",
+            "muscle_aches",
+            "fever"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated.",
+          "age": 21,
+          "uncertainty_reasons": [
+            "simulated_source_not_clinically_validated",
+            "incomplete_symptom_history"
+          ]
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "muscle_aches",
+            "answer": "no"
+          },
+          {
+            "question_id": "fever",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Viral pharyngitis",
+            "display_name": "Viral Sore Throat",
+            "description": "Inflammation of the throat caused by a virus, commonly resulting in soreness, discomfort or pain when swallowing.",
+            "model_confidence_percent": 36.3,
+            "supporting_symptoms": [
+              "Runny or blocked nose",
+              "No Muscle aches",
+              "No Significant shortness of breath",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "Cough",
+              "No Fever"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 2,
+            "condition": "Allergic sinusitis",
+            "display_name": "Allergy-Related Sinus Inflammation",
+            "description": "Inflammation of the nose and sinus areas linked to allergies, which may cause congestion, nasal symptoms and facial pressure.",
+            "model_confidence_percent": 35.68,
+            "supporting_symptoms": [
+              "Runny or blocked nose",
+              "No Muscle aches",
+              "No Significant shortness of breath",
+              "No Fever",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "Cough"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 3,
+            "condition": "Chronic rhinosinusitis",
+            "display_name": "Chronic Sinusitis",
+            "description": "Long-lasting inflammation of the nose and sinuses that may cause ongoing congestion, facial pressure, nasal discharge or reduced sense of smell.",
+            "model_confidence_percent": 21.42,
+            "supporting_symptoms": [
+              "Cough",
+              "Runny or blocked nose",
+              "No Muscle aches",
+              "No Significant shortness of breath",
+              "No Fever",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          }
+        ],
+        "prediction_id": "6a8a21c3-c6e3-4d83-a22e-68115054b510",
+        "status": "prediction_complete",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "Your symptoms overlap with several respiratory conditions. These are possible explanations, not a diagnosis.",
+        "uncertainty_message": "This is a tentative assessment. Your answers help compare patterns, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "score_note": "Scores compare patterns in a simulated dataset. They are not validated clinical probabilities or estimates of illness severity.",
+        "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated."
+      }
+    },
+    {
+      "case": 6,
+      "input": "I have had a cough and fever for two days.",
+      "mapping": {
+        "input_text": "I have had a cough and fever for two days.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": 2,
+            "duration_min_days": 2,
+            "duration_text": "for two days",
+            "duration_unit": "days",
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": 2,
+            "duration_min_days": 2,
+            "duration_text": "for two days",
+            "duration_unit": "days",
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "sore_throat",
+        "muscle_aches",
+        "runny_blocked_nose",
+        "productive_cough"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have had a cough and fever for two days.",
+        "confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "muscle_aches",
+            "answer": "no"
+          },
+          {
+            "question_id": "runny_blocked_nose",
+            "answer": "no"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "model_features": [
+          "E_91",
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66",
+          "E_97",
+          "E_144",
+          "E_181",
+          "E_77"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "fever": "present",
+            "cough": "present",
+            "shortness_of_breath": "absent",
+            "sore_throat": "absent",
+            "muscle_aches": "absent",
+            "runny_blocked_nose": "absent",
+            "productive_cough": "absent"
+          },
+          "symptom_durations": {
+            "fever": {
+              "text": "for two days",
+              "min_days": 2,
+              "max_days": 2,
+              "symptom_code": "fever"
+            },
+            "cough": {
+              "text": "for two days",
+              "min_days": 2,
+              "max_days": 2,
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "for two days",
+            "min_days": 2,
+            "max_days": 2,
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "sore_throat",
+              "answer": "no"
+            },
+            {
+              "question_id": "muscle_aches",
+              "answer": "no"
+            },
+            {
+              "question_id": "runny_blocked_nose",
+              "answer": "no"
+            },
+            {
+              "question_id": "productive_cough",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "sore_throat",
+            "muscle_aches",
+            "runny_blocked_nose",
+            "productive_cough"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated.",
+          "age": 21,
+          "uncertainty_reasons": [
+            "simulated_source_not_clinically_validated",
+            "incomplete_symptom_history"
+          ]
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "muscle_aches",
+            "answer": "no"
+          },
+          {
+            "question_id": "runny_blocked_nose",
+            "answer": "no"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Acute laryngitis",
+            "display_name": "Voice Box Inflammation (Laryngitis)",
+            "description": "Short-term inflammation of the voice box and vocal cords that may cause hoarseness, a weak voice, sore throat or cough.",
+            "model_confidence_percent": 38.45,
+            "supporting_symptoms": [
+              "Fever",
+              "No Muscle aches",
+              "No Runny or blocked nose",
+              "No Significant shortness of breath",
+              "No Coloured or increased phlegm",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "Cough"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 2,
+            "condition": "Viral pharyngitis",
+            "display_name": "Viral Sore Throat",
+            "description": "Inflammation of the throat caused by a virus, commonly resulting in soreness, discomfort or pain when swallowing.",
+            "model_confidence_percent": 30.25,
+            "supporting_symptoms": [
+              "Fever",
+              "No Muscle aches",
+              "No Significant shortness of breath",
+              "No Coloured or increased phlegm",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "Cough",
+              "No Runny or blocked nose"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 3,
+            "condition": "Tuberculosis",
+            "display_name": "Tuberculosis (TB)",
+            "description": "An infection caused by tuberculosis bacteria. Active lung TB may cause a long-lasting cough, fever, night sweats, tiredness or weight loss.",
+            "model_confidence_percent": 18.77,
+            "supporting_symptoms": [
+              "Fever",
+              "Cough",
+              "No Muscle aches",
+              "No Runny or blocked nose",
+              "No Coloured or increased phlegm",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "No Significant shortness of breath"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          }
+        ],
+        "prediction_id": "1a8109d3-11c5-4ba1-959e-6d02abb12679",
+        "status": "prediction_complete",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "Your symptoms overlap with several respiratory conditions. These are possible explanations, not a diagnosis.",
+        "uncertainty_message": "This is a tentative assessment. Your answers help compare patterns, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "score_note": "Scores compare patterns in a simulated dataset. They are not validated clinical probabilities or estimates of illness severity.",
+        "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated."
+      }
+    },
+    {
+      "case": 7,
+      "input": "I have had a cough for several weeks and have been losing weight.",
+      "mapping": {
+        "input_text": "I have had a cough for several weeks and have been losing weight.",
+        "recognised_symptoms": [
+          {
+            "code": "weight_loss",
+            "display_name": "Unintended weight loss",
+            "features": [],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "losing weight",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "weight_loss_intent": "unspecified",
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": null,
+            "duration_min_days": null,
+            "duration_text": "for several weeks",
+            "duration_unit": "weeks",
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "weight_loss_intent",
+        "sore_throat",
+        "productive_cough",
+        "heavy_sweating"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have had a cough for several weeks and have been losing weight.",
+        "confirmed_codes": [
+          "weight_loss",
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "weight_loss_intent",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "no"
+          },
+          {
+            "question_id": "heavy_sweating",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "weight_loss",
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "cough"
+        ],
+        "model_features": [
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66",
+          "E_97",
+          "E_77",
+          "E_50"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "weight_loss": "unknown",
+            "cough": "present",
+            "shortness_of_breath": "absent",
+            "sore_throat": "absent",
+            "productive_cough": "absent",
+            "heavy_sweating": "absent"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "for several weeks",
+              "min_days": null,
+              "max_days": null,
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "for several weeks",
+            "min_days": null,
+            "max_days": null,
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": "unknown",
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "weight_loss_intent",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "sore_throat",
+              "answer": "no"
+            },
+            {
+              "question_id": "productive_cough",
+              "answer": "no"
+            },
+            {
+              "question_id": "heavy_sweating",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "weight_loss_intent",
+            "sore_throat",
+            "productive_cough",
+            "heavy_sweating"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated.",
+          "age": 21,
+          "uncertainty_reasons": [
+            "simulated_source_not_clinically_validated",
+            "incomplete_symptom_history"
+          ]
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "weight_loss_intent",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "no"
+          },
+          {
+            "question_id": "heavy_sweating",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Viral pharyngitis",
+            "display_name": "Viral Sore Throat",
+            "description": "Inflammation of the throat caused by a virus, commonly resulting in soreness, discomfort or pain when swallowing.",
+            "model_confidence_percent": 44.14,
+            "supporting_symptoms": [
+              "No Heavy sweating",
+              "No Significant shortness of breath",
+              "No Coloured or increased phlegm",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "Cough"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 2,
+            "condition": "Chronic rhinosinusitis",
+            "display_name": "Chronic Sinusitis",
+            "description": "Long-lasting inflammation of the nose and sinuses that may cause ongoing congestion, facial pressure, nasal discharge or reduced sense of smell.",
+            "model_confidence_percent": 15.42,
+            "supporting_symptoms": [
+              "Cough",
+              "No Heavy sweating",
+              "No Significant shortness of breath",
+              "No Coloured or increased phlegm",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 3,
+            "condition": "Allergic sinusitis",
+            "display_name": "Allergy-Related Sinus Inflammation",
+            "description": "Inflammation of the nose and sinus areas linked to allergies, which may cause congestion, nasal symptoms and facial pressure.",
+            "model_confidence_percent": 12.41,
+            "supporting_symptoms": [
+              "No Heavy sweating",
+              "No Significant shortness of breath",
+              "No Coloured or increased phlegm",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "Cough"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          }
+        ],
+        "prediction_id": "09042b88-e562-42ef-be5e-8ccc998a95be",
+        "status": "prediction_complete",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Arrange professional medical assessment promptly for prolonged cough or unexplained weight loss. Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "Your symptoms overlap with several respiratory conditions. These are possible explanations, not a diagnosis.",
+        "uncertainty_message": "This is a tentative assessment. Your answers help compare patterns, but an examination or tests may be needed.",
+        "next_steps": [
+          "Arrange a clinical assessment for severe or persistent symptoms, unexplained weight loss, or fever in a young child.",
+          "A clinician may need an examination or tests; this list cannot confirm or rule out a condition.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "professional_review",
+        "score_note": "Scores compare patterns in a simulated dataset. They are not validated clinical probabilities or estimates of illness severity.",
+        "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated."
+      }
+    },
+    {
+      "case": 8,
+      "input": "I have a cough and I am struggling to breathe.",
+      "mapping": {
+        "input_text": "I have a cough and I am struggling to breathe.",
+        "recognised_symptoms": [
+          {
+            "code": "shortness_of_breath",
+            "display_name": "Significant shortness of breath",
+            "features": [
+              "E_66"
+            ],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "struggling to breathe",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "confirmed": false,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_text": null,
+            "duration_unit": null,
+            "severity": null
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": true,
+        "safety_status": "urgent_review",
+        "requires_confirmation": false,
+        "health_guidance": "A warning sign was detected. Seek urgent medical assessment. If breathing difficulty is severe, you cannot speak normally, or symptoms are rapidly worsening, seek emergency care now. Do not wait to complete this questionnaire.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional."
+      },
+      "questions": [],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have a cough and I am struggling to breathe.",
+        "confirmed_codes": [
+          "shortness_of_breath"
+        ],
+        "follow_up_answers": []
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "shortness_of_breath"
+        ],
+        "effective_confirmed_codes": [
+          "shortness_of_breath"
+        ],
+        "model_features": [],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "follow_up_answers": []
+        },
+        "follow_up_answers": [],
+        "has_red_flag": true,
+        "predictions": [],
+        "prediction_id": "5eaa3a06-af4b-4b8d-ba25-d996fb3b4f4a",
+        "status": "urgent_review",
+        "red_flag_symptoms": [
+          {
+            "code": "shortness_of_breath",
+            "display_name": "Significant shortness of breath",
+            "features": [
+              "E_66"
+            ],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "struggling to breathe",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "confirmed": false,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_text": null,
+            "duration_unit": null,
+            "severity": null
+          }
+        ],
+        "health_guidance": "A warning sign was detected. Seek urgent medical assessment. If breathing difficulty is severe, you cannot speak normally, or symptoms are rapidly worsening, seek emergency care now. Do not wait to complete this questionnaire.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional."
+      }
+    },
+    {
+      "case": 9,
+      "input": "I feel unwell.",
+      "mapping": {
+        "input_text": "I feel unwell.",
+        "recognised_symptoms": [],
+        "unmatched_wording": [
+          {
+            "unmatched_text": "unwell",
+            "suggestions": []
+          }
+        ],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I feel unwell.",
+        "confirmed_codes": [],
+        "follow_up_answers": []
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [],
+        "effective_confirmed_codes": [],
+        "model_features": [],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {},
+          "duration": null,
+          "symptom_durations": {},
+          "severity": {},
+          "follow_up_answers": [],
+          "questions_asked": [],
+          "context_note": "Duration and severity are retained for guidance, not used by the model. V1 has no negative-evidence encoding; V2 has absence columns but was not trained on negative evidence. A no answer is recorded; it does not supply learned negative evidence to either saved model.",
+          "lossy_feature_note": null
+        },
+        "follow_up_answers": [],
+        "has_red_flag": false,
+        "predictions": [],
+        "status": "insufficient_evidence",
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "no_supported_present_symptoms"
+        ],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "uncertainty_message": "This information cannot reliably distinguish a condition. The model is experimental and has not been clinically validated. Seek professional assessment based on your symptoms.",
+        "score_note": "Model scores are uncalibrated and are not validated clinical probabilities."
+      }
+    },
+    {
+      "case": 10,
+      "input": "I have a cough, but I do not have a fever.",
+      "mapping": {
+        "input_text": "I have a cough, but I do not have a fever.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "symptom_duration",
+        "sore_throat",
+        "productive_cough",
+        "runny_blocked_nose"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have a cough, but I do not have a fever.",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "no"
+          },
+          {
+            "question_id": "runny_blocked_nose",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "cough"
+        ],
+        "model_features": [
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_91",
+          "E_66",
+          "E_97",
+          "E_77",
+          "E_181"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "fever": "absent",
+            "cough": "present",
+            "shortness_of_breath": "absent",
+            "sore_throat": "absent",
+            "productive_cough": "absent",
+            "runny_blocked_nose": "absent"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "sore_throat",
+              "answer": "no"
+            },
+            {
+              "question_id": "productive_cough",
+              "answer": "no"
+            },
+            {
+              "question_id": "runny_blocked_nose",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration",
+            "sore_throat",
+            "productive_cough",
+            "runny_blocked_nose"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated.",
+          "age": 21,
+          "uncertainty_reasons": [
+            "simulated_source_not_clinically_validated",
+            "incomplete_symptom_history"
+          ]
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "no"
+          },
+          {
+            "question_id": "runny_blocked_nose",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Chronic rhinosinusitis",
+            "display_name": "Chronic Sinusitis",
+            "description": "Long-lasting inflammation of the nose and sinuses that may cause ongoing congestion, facial pressure, nasal discharge or reduced sense of smell.",
+            "model_confidence_percent": 29.3,
+            "supporting_symptoms": [
+              "Cough",
+              "No Significant shortness of breath",
+              "No Coloured or increased phlegm",
+              "No Fever",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "No Runny or blocked nose"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 2,
+            "condition": "Viral pharyngitis",
+            "display_name": "Viral Sore Throat",
+            "description": "Inflammation of the throat caused by a virus, commonly resulting in soreness, discomfort or pain when swallowing.",
+            "model_confidence_percent": 20.0,
+            "supporting_symptoms": [
+              "No Significant shortness of breath",
+              "No Coloured or increased phlegm",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "Cough",
+              "No Runny or blocked nose",
+              "No Fever"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          },
+          {
+            "rank": 3,
+            "condition": "Acute laryngitis",
+            "display_name": "Voice Box Inflammation (Laryngitis)",
+            "description": "Short-term inflammation of the voice box and vocal cords that may cause hoarseness, a weak voice, sore throat or cough.",
+            "model_confidence_percent": 18.85,
+            "supporting_symptoms": [
+              "No Runny or blocked nose",
+              "No Significant shortness of breath",
+              "No Coloured or increased phlegm",
+              "No Sore throat"
+            ],
+            "contradicting_symptoms": [
+              "Cough",
+              "No Fever"
+            ],
+            "explanation": "This pattern partly matches the information you provided. The same symptoms can occur with other conditions.",
+            "evidence_note": "These reasons describe associations learned from simulated patient records, not clinical confirmation."
+          }
+        ],
+        "prediction_id": "47fa8e0a-9161-444b-a654-8feb88180d63",
+        "status": "prediction_complete",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "assessment_summary": "Your symptoms overlap with several respiratory conditions. These are possible explanations, not a diagnosis.",
+        "uncertainty_message": "This is a tentative assessment. Your answers help compare patterns, but an examination or tests may be needed.",
+        "next_steps": [
+          "Rest, drink fluids as you can, and monitor whether symptoms improve or worsen.",
+          "Seek clinical assessment if symptoms worsen, persist, or concern you.",
+          "Seek emergency care immediately for severe breathing difficulty, inability to speak normally, or blue lips."
+        ],
+        "care_level": "self_care_or_review",
+        "score_note": "Scores compare patterns in a simulated dataset. They are not validated clinical probabilities or estimates of illness severity.",
+        "context_note": "This model learns reported symptoms and yes/no answers from complete simulated patient records. Unmentioned symptoms remain unknown. Duration and severity guide advice but are not trained disease-model features. Results have not been clinically validated."
+      }
+    },
+    {
+      "case": 11,
+      "input": "Nina homa na kikohozi.",
+      "mapping": {
+        "input_text": "Nina homa na kikohozi.",
+        "recognised_symptoms": [
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "kikohozi",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "homa",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "onset_text": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "symptom_duration",
+        "sore_throat",
+        "muscle_aches",
+        "runny_blocked_nose"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "Nina homa na kikohozi.",
+        "confirmed_codes": [
+          "cough",
+          "fever"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "muscle_aches",
+            "answer": "no"
+          },
+          {
+            "question_id": "runny_blocked_nose",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "cough",
+          "fever"
+        ],
+        "effective_confirmed_codes": [
+          "cough",
+          "fever"
+        ],
+        "model_features": [
+          "E_201",
+          "E_91"
+        ],
+        "explicitly_absent_features": [
+          "E_66",
+          "E_97",
+          "E_144",
+          "E_181"
+        ],
+        "assessment_context": {
+          "language": "sw",
+          "symptom_states": {
+            "cough": "present",
+            "fever": "present",
+            "shortness_of_breath": "absent",
+            "sore_throat": "absent",
+            "muscle_aches": "absent",
+            "runny_blocked_nose": "absent"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "sore_throat",
+              "answer": "no"
+            },
+            {
+              "question_id": "muscle_aches",
+              "answer": "no"
+            },
+            {
+              "question_id": "runny_blocked_nose",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration",
+            "sore_throat",
+            "muscle_aches",
+            "runny_blocked_nose"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "Modeli hii imefunzwa kwa dalili zilizoripotiwa na majibu ya ndiyo/hapana kutoka kwa wagonjwa wa kuigiza. Dalili ambazo hujataja hubaki hazijulikani. Muda na ukali husaidia ushauri, lakini si vipengele vya modeli. Matokeo hayajathibitishwa kitabibu.",
+          "age": 21,
+          "uncertainty_reasons": [
+            "simulated_source_not_clinically_validated",
+            "incomplete_symptom_history"
+          ]
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "muscle_aches",
+            "answer": "no"
+          },
+          {
+            "question_id": "runny_blocked_nose",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Acute laryngitis",
+            "display_name": "Voice Box Inflammation (Laryngitis)",
+            "description": "Short-term inflammation of the voice box and vocal cords that may cause hoarseness, a weak voice, sore throat or cough.",
+            "model_confidence_percent": 36.27,
+            "supporting_symptoms": [
+              "homa",
+              "hakuna maumivu ya misuli",
+              "hakuna mafua au pua kuziba",
+              "hakuna shida ya kupumua",
+              "hakuna koo kuuma"
+            ],
+            "contradicting_symptoms": [
+              "kikohozi"
+            ],
+            "explanation": "Mfumo huu unalingana kwa kiasi na taarifa ulizotoa. Dalili hizi zinaweza pia kutokana na hali nyingine.",
+            "evidence_note": "Sababu hizi ni mahusiano yaliyojifunzwa katika wagonjwa wa kuigiza, si uthibitisho wa kitabibu."
+          },
+          {
+            "rank": 2,
+            "condition": "Viral pharyngitis",
+            "display_name": "Viral Sore Throat",
+            "description": "Inflammation of the throat caused by a virus, commonly resulting in soreness, discomfort or pain when swallowing.",
+            "model_confidence_percent": 28.53,
+            "supporting_symptoms": [
+              "homa",
+              "hakuna maumivu ya misuli",
+              "hakuna shida ya kupumua",
+              "hakuna koo kuuma"
+            ],
+            "contradicting_symptoms": [
+              "kikohozi",
+              "hakuna mafua au pua kuziba"
+            ],
+            "explanation": "Mfumo huu unalingana kwa kiasi na taarifa ulizotoa. Dalili hizi zinaweza pia kutokana na hali nyingine.",
+            "evidence_note": "Sababu hizi ni mahusiano yaliyojifunzwa katika wagonjwa wa kuigiza, si uthibitisho wa kitabibu."
+          },
+          {
+            "rank": 3,
+            "condition": "Tuberculosis",
+            "display_name": "Tuberculosis (TB)",
+            "description": "An infection caused by tuberculosis bacteria. Active lung TB may cause a long-lasting cough, fever, night sweats, tiredness or weight loss.",
+            "model_confidence_percent": 17.7,
+            "supporting_symptoms": [
+              "homa",
+              "kikohozi",
+              "hakuna maumivu ya misuli",
+              "hakuna mafua au pua kuziba",
+              "hakuna koo kuuma"
+            ],
+            "contradicting_symptoms": [
+              "hakuna shida ya kupumua"
+            ],
+            "explanation": "Mfumo huu unalingana kwa kiasi na taarifa ulizotoa. Dalili hizi zinaweza pia kutokana na hali nyingine.",
+            "evidence_note": "Sababu hizi ni mahusiano yaliyojifunzwa katika wagonjwa wa kuigiza, si uthibitisho wa kitabibu."
+          }
+        ],
+        "prediction_id": "7d20ca7d-8967-43d1-815c-0d1ef683ae73",
+        "status": "prediction_complete",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "unsupported_model_features": [],
+        "confidence_explanation": "Alama ya modeli haijarekebishwa kuwa uwezekano wa kitabibu. Si uwezekano kwamba una ugonjwa huu.",
+        "health_guidance": "Dalili zikiendelea, zikizidi au zikikutia wasiwasi, tafuta tathmini ya mtaalamu wa afya. Alama ndogo haimaanishi hatari ndogo.",
+        "disclaimer": "Mfumo huu hutoa taarifa za afya tu. Hautoi utambuzi wa ugonjwa wala kuchukua nafasi ya mtaalamu wa afya.",
+        "assessment_summary": "Dalili zako zinaweza kuonekana katika hali kadhaa za mfumo wa upumuaji. Haya ni maelezo yanayowezekana, si utambuzi wa ugonjwa.",
+        "uncertainty_message": "Maelezo haya ni ya awali. Maswali na majibu yanasaidia kulinganisha dalili, lakini uchunguzi au vipimo vinaweza kuhitajika.",
+        "next_steps": [
+          "Pumzika na kunywa maji kadiri unavyoweza; fuatilia kama dalili zinaimarika au zinazidi.",
+          "Dalili zikizidi, zikiendelea au zikikutia wasiwasi, tafuta tathmini ya mtaalamu wa afya.",
+          "Ukipata shida kali ya kupumua, kushindwa kuzungumza au midomo kuwa ya buluu, tafuta huduma ya dharura mara moja."
+        ],
+        "care_level": "self_care_or_review",
+        "score_note": "Alama ni za kulinganisha mifumo katika data ya kuigiza; si uwezekano wa kitabibu uliothibitishwa.",
+        "context_note": "Modeli hii imefunzwa kwa dalili zilizoripotiwa na majibu ya ndiyo/hapana kutoka kwa wagonjwa wa kuigiza. Dalili ambazo hujataja hubaki hazijulikani. Muda na ukali husaidia ushauri, lakini si vipengele vya modeli. Matokeo hayajathibitishwa kitabibu."
+      }
+    },
+    {
+      "case": 12,
+      "input": "Nina kikohozi lakini sina homa.",
+      "mapping": {
+        "input_text": "Nina kikohozi lakini sina homa.",
+        "recognised_symptoms": [
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "kikohozi",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "cough_type": null,
+            "onset_text": null,
+            "confirmed": false
+          },
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "homa",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "homa",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "symptom_duration",
+        "sore_throat",
+        "productive_cough",
+        "runny_blocked_nose"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "Nina kikohozi lakini sina homa.",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "no"
+          },
+          {
+            "question_id": "runny_blocked_nose",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "cough"
+        ],
+        "model_features": [
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_91",
+          "E_66",
+          "E_97",
+          "E_77",
+          "E_181"
+        ],
+        "assessment_context": {
+          "language": "sw",
+          "symptom_states": {
+            "cough": "present",
+            "fever": "absent",
+            "shortness_of_breath": "absent",
+            "sore_throat": "absent",
+            "productive_cough": "absent",
+            "runny_blocked_nose": "absent"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "severity": {},
+          "cough_type": null,
+          "onset_text": null,
+          "weight_loss_intent": null,
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "sore_throat",
+              "answer": "no"
+            },
+            {
+              "question_id": "productive_cough",
+              "answer": "no"
+            },
+            {
+              "question_id": "runny_blocked_nose",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration",
+            "sore_throat",
+            "productive_cough",
+            "runny_blocked_nose"
+          ],
+          "model_version": "v3_partial_evidence",
+          "context_note": "Modeli hii imefunzwa kwa dalili zilizoripotiwa na majibu ya ndiyo/hapana kutoka kwa wagonjwa wa kuigiza. Dalili ambazo hujataja hubaki hazijulikani. Muda na ukali husaidia ushauri, lakini si vipengele vya modeli. Matokeo hayajathibitishwa kitabibu.",
+          "age": 21,
+          "uncertainty_reasons": [
+            "simulated_source_not_clinically_validated",
+            "incomplete_symptom_history"
+          ]
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "sore_throat",
+            "answer": "no"
+          },
+          {
+            "question_id": "productive_cough",
+            "answer": "no"
+          },
+          {
+            "question_id": "runny_blocked_nose",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Chronic rhinosinusitis",
+            "display_name": "Chronic Sinusitis",
+            "description": "Long-lasting inflammation of the nose and sinuses that may cause ongoing congestion, facial pressure, nasal discharge or reduced sense of smell.",
+            "model_confidence_percent": 29.3,
+            "supporting_symptoms": [
+              "kikohozi",
+              "hakuna shida ya kupumua",
+              "hakuna makohozi yenye rangi au mengi kuliko kawaida",
+              "hakuna homa",
+              "hakuna koo kuuma"
+            ],
+            "contradicting_symptoms": [
+              "hakuna mafua au pua kuziba"
+            ],
+            "explanation": "Mfumo huu unalingana kwa kiasi na taarifa ulizotoa. Dalili hizi zinaweza pia kutokana na hali nyingine.",
+            "evidence_note": "Sababu hizi ni mahusiano yaliyojifunzwa katika wagonjwa wa kuigiza, si uthibitisho wa kitabibu."
+          },
+          {
+            "rank": 2,
+            "condition": "Viral pharyngitis",
+            "display_name": "Viral Sore Throat",
+            "description": "Inflammation of the throat caused by a virus, commonly resulting in soreness, discomfort or pain when swallowing.",
+            "model_confidence_percent": 20.0,
+            "supporting_symptoms": [
+              "hakuna shida ya kupumua",
+              "hakuna makohozi yenye rangi au mengi kuliko kawaida",
+              "hakuna koo kuuma"
+            ],
+            "contradicting_symptoms": [
+              "kikohozi",
+              "hakuna mafua au pua kuziba",
+              "hakuna homa"
+            ],
+            "explanation": "Mfumo huu unalingana kwa kiasi na taarifa ulizotoa. Dalili hizi zinaweza pia kutokana na hali nyingine.",
+            "evidence_note": "Sababu hizi ni mahusiano yaliyojifunzwa katika wagonjwa wa kuigiza, si uthibitisho wa kitabibu."
+          },
+          {
+            "rank": 3,
+            "condition": "Acute laryngitis",
+            "display_name": "Voice Box Inflammation (Laryngitis)",
+            "description": "Short-term inflammation of the voice box and vocal cords that may cause hoarseness, a weak voice, sore throat or cough.",
+            "model_confidence_percent": 18.85,
+            "supporting_symptoms": [
+              "hakuna mafua au pua kuziba",
+              "hakuna shida ya kupumua",
+              "hakuna makohozi yenye rangi au mengi kuliko kawaida",
+              "hakuna koo kuuma"
+            ],
+            "contradicting_symptoms": [
+              "kikohozi",
+              "hakuna homa"
+            ],
+            "explanation": "Mfumo huu unalingana kwa kiasi na taarifa ulizotoa. Dalili hizi zinaweza pia kutokana na hali nyingine.",
+            "evidence_note": "Sababu hizi ni mahusiano yaliyojifunzwa katika wagonjwa wa kuigiza, si uthibitisho wa kitabibu."
+          }
+        ],
+        "prediction_id": "ec48e654-b140-4f5e-8ac8-f82daf7a6175",
+        "status": "prediction_complete",
+        "model_version": "v3_partial_evidence",
+        "feature_count": 34,
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "unsupported_model_features": [],
+        "confidence_explanation": "Alama ya modeli haijarekebishwa kuwa uwezekano wa kitabibu. Si uwezekano kwamba una ugonjwa huu.",
+        "health_guidance": "Dalili zikiendelea, zikizidi au zikikutia wasiwasi, tafuta tathmini ya mtaalamu wa afya. Alama ndogo haimaanishi hatari ndogo.",
+        "disclaimer": "Mfumo huu hutoa taarifa za afya tu. Hautoi utambuzi wa ugonjwa wala kuchukua nafasi ya mtaalamu wa afya.",
+        "assessment_summary": "Dalili zako zinaweza kuonekana katika hali kadhaa za mfumo wa upumuaji. Haya ni maelezo yanayowezekana, si utambuzi wa ugonjwa.",
+        "uncertainty_message": "Maelezo haya ni ya awali. Maswali na majibu yanasaidia kulinganisha dalili, lakini uchunguzi au vipimo vinaweza kuhitajika.",
+        "next_steps": [
+          "Pumzika na kunywa maji kadiri unavyoweza; fuatilia kama dalili zinaimarika au zinazidi.",
+          "Dalili zikizidi, zikiendelea au zikikutia wasiwasi, tafuta tathmini ya mtaalamu wa afya.",
+          "Ukipata shida kali ya kupumua, kushindwa kuzungumza au midomo kuwa ya buluu, tafuta huduma ya dharura mara moja."
+        ],
+        "care_level": "self_care_or_review",
+        "score_note": "Alama ni za kulinganisha mifumo katika data ya kuigiza; si uwezekano wa kitabibu uliothibitishwa.",
+        "context_note": "Modeli hii imefunzwa kwa dalili zilizoripotiwa na majibu ya ndiyo/hapana kutoka kwa wagonjwa wa kuigiza. Dalili ambazo hujataja hubaki hazijulikani. Muda na ukali husaidia ushauri, lakini si vipengele vya modeli. Matokeo hayajathibitishwa kitabibu."
+      }
+    }
+  ]
+}

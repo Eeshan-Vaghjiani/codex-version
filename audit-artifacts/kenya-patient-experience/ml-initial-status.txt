@@ -1,0 +1,34 @@
+ M inference/backend_adapter.py
+ M inference/prediction_confidence.py
+ M inference/v2_predictor.py
+ M nlp/canonical_symptoms.json
+ M nlp/english_aliases.json
+ M nlp/swahili_aliases.json
+ M nlp/symptom_mapper.py
+ M scripts/v2_feature_encoder.py
+ M tests/test_symptom_mapper.py
+ M tests/test_v2_predictor.py
+?? docs/v2_experimental_feature_schema.json
+?? inference/v3_predictor.py
+?? models/v3_partial_evidence.json
+?? reports/autonomous_audit/
+?? reports/consultation_v3/
+?? scripts/audit_saved_model_reliability.py
+?? scripts/audit_sparse_case_outputs.py
+?? scripts/audit_v2_covid_records.py
+?? scripts/audit_v3_source_priors.py
+?? scripts/compare_v2_age_sex.py
+?? scripts/compare_v2_baseline.py
+?? scripts/evaluate_v2_23class.py
+?? scripts/evaluate_v2_final_test.py
+?? scripts/evaluate_v3_consultations.py
+?? scripts/prepare_v2_covid_candidates.py
+?? scripts/train_v2_23class_smoke_test.py
+?? scripts/train_v2_final_candidate.py
+?? scripts/train_v3_partial_evidence.py
+?? tests/fixtures/
+?? tests/test_autonomous_nlp_regressions.py
+?? tests/test_model_input_integrity.py
+?? tests/test_patient_language_corpus.py
+?? tests/test_reliability_metrics.py
+?? tests/test_v3_partial_evidence.py

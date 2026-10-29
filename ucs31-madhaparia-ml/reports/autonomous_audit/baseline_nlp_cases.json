@@ -1,0 +1,583 @@
+[
+  {
+    "case": 1,
+    "input": "I have fever.",
+    "nlp": {
+      "input_text": "I have fever.",
+      "recognised_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    }
+  },
+  {
+    "case": 2,
+    "input": "Runny nose, for a few days with headache and sore throat.",
+    "nlp": {
+      "input_text": "Runny nose, for a few days with headache and sore throat.",
+      "recognised_symptoms": [
+        {
+          "code": "sore_throat",
+          "display_name": "Sore throat",
+          "features": [
+            "E_97"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "sore throat",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        },
+        {
+          "code": "runny_blocked_nose",
+          "display_name": "Runny or blocked nose",
+          "features": [
+            "E_181"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "runny nose",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        },
+        {
+          "code": "headache",
+          "display_name": "Headache",
+          "features": [
+            "E_53",
+            "E_55_@_V_89"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "headache",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "for few days",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    }
+  },
+  {
+    "case": 3,
+    "input": "I have a cough and fever.",
+    "nlp": {
+      "input_text": "I have a cough and fever.",
+      "recognised_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    }
+  },
+  {
+    "case": 4,
+    "input": "I have a cough.",
+    "nlp": {
+      "input_text": "I have a cough.",
+      "recognised_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    }
+  },
+  {
+    "case": 5,
+    "input": "I have a runny nose, sneezing and a mild cough.",
+    "nlp": {
+      "input_text": "I have a runny nose, sneezing and a mild cough.",
+      "recognised_symptoms": [
+        {
+          "code": "runny_blocked_nose",
+          "display_name": "Runny or blocked nose",
+          "features": [
+            "E_181"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "runny nose",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        },
+        {
+          "code": "sneezing",
+          "display_name": "Sneezing",
+          "features": [],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "sneezing",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "mild",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    }
+  },
+  {
+    "case": 6,
+    "input": "I have had a cough and fever for two days.",
+    "nlp": {
+      "input_text": "I have had a cough and fever for two days.",
+      "recognised_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": 2,
+          "duration_max_days": 2,
+          "confirmed": false
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "had",
+          "suggestions": []
+        },
+        {
+          "unmatched_text": "for two days",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    }
+  },
+  {
+    "case": 7,
+    "input": "I have had a cough for several weeks and have been losing weight.",
+    "nlp": {
+      "input_text": "I have had a cough for several weeks and have been losing weight.",
+      "recognised_symptoms": [
+        {
+          "code": "weight_loss",
+          "display_name": "Unintended weight loss",
+          "features": [
+            "E_162"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "losing weight",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "had for several weeks",
+          "suggestions": []
+        },
+        {
+          "unmatched_text": "been",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    }
+  },
+  {
+    "case": 8,
+    "input": "I have a cough and I am struggling to breathe.",
+    "nlp": {
+      "input_text": "I have a cough and I am struggling to breathe.",
+      "recognised_symptoms": [
+        {
+          "code": "shortness_of_breath",
+          "display_name": "Significant shortness of breath",
+          "features": [
+            "E_66"
+          ],
+          "kind": "symptom",
+          "is_red_flag": true,
+          "matched_text": "struggling to breathe",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [],
+      "has_red_flag": true,
+      "requires_confirmation": true
+    }
+  },
+  {
+    "case": 9,
+    "input": "I feel unwell.",
+    "nlp": {
+      "input_text": "I feel unwell.",
+      "recognised_symptoms": [],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "unwell",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    }
+  },
+  {
+    "case": 10,
+    "input": "I have a cough, but I do not have a fever.",
+    "nlp": {
+      "input_text": "I have a cough, but I do not have a fever.",
+      "recognised_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "absent",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "do not",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    }
+  },
+  {
+    "case": 11,
+    "input": "Nina homa na kikohozi.",
+    "nlp": {
+      "input_text": "Nina homa na kikohozi.",
+      "recognised_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "kikohozi",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        },
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "homa",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    }
+  },
+  {
+    "case": 12,
+    "input": "Nina kikohozi lakini sina homa.",
+    "nlp": {
+      "input_text": "Nina kikohozi lakini sina homa.",
+      "recognised_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "kikohozi",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "present",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        },
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "homa",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "status": "absent",
+          "reported_subject": "patient_or_unspecified",
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "sina",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    }
+  }
+]

@@ -1,0 +1,46 @@
+# ==========================================
+# IS Project 2 - ML Repository
+# ==========================================
+
+# DDXPlus raw data
+data/raw/*
+!data/raw/.gitkeep
+
+# Generated model-ready CSV files
+data/processed/*.csv
+data/processed/primary_selection_cache/
+!data/processed/.gitkeep
+
+# Generated readable datasets
+data/readable/*.csv
+data/readable/*.txt
+!data/readable/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+*.tmp

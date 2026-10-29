@@ -1,0 +1,24 @@
+,Acute COPD exacerbation / infection,Acute laryngitis,Acute pulmonary edema,Acute rhinosinusitis,Allergic rhinitis,Allergic sinusitis,Bronchiectasis,Bronchiolitis,Bronchitis,Bronchospasm / acute asthma exacerbation,COVID-19,Chronic rhinosinusitis,Croup,Epiglottitis,Influenza,Larygospasm,Pneumonia,Pulmonary neoplasm,Spontaneous pneumothorax,Tuberculosis,URTI,Viral pharyngitis,Whooping cough
+Acute COPD exacerbation / infection,810,0,0,0,0,0,540,0,0,803,0,0,0,0,0,0,0,0,0,0,0,0,0
+Acute laryngitis,0,1913,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,220,0,1076,0
+Acute pulmonary edema,0,0,1926,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,529,0,143,0,0
+Acute rhinosinusitis,0,0,0,620,0,88,0,0,0,0,0,623,0,0,0,0,0,0,0,65,0,433,0
+Allergic rhinitis,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Allergic sinusitis,0,0,0,0,13,2298,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Bronchiectasis,0,0,0,0,0,0,1673,0,0,435,0,0,0,0,0,0,0,0,0,264,0,0,0
+Bronchiolitis,0,0,0,0,0,2,0,13,0,7,0,0,10,0,0,0,0,0,0,4,0,0,0
+Bronchitis,116,1,0,0,0,98,317,9,1013,334,0,0,45,0,0,0,32,0,194,243,510,681,0
+Bronchospasm / acute asthma exacerbation,320,0,0,0,0,0,0,0,0,1902,0,0,0,0,0,0,0,0,0,0,0,0,0
+COVID-19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Chronic rhinosinusitis,0,0,0,617,0,199,0,0,0,0,0,1234,0,0,0,0,0,0,0,0,0,697,0
+Croup,0,0,0,0,0,0,0,0,0,0,0,0,323,0,0,0,0,0,0,0,0,0,0
+Epiglottitis,0,282,0,0,0,0,0,0,0,0,0,0,115,1646,0,0,0,0,133,63,0,125,0
+Influenza,0,1,0,0,0,72,0,0,0,0,0,0,11,0,1840,0,5,94,0,111,998,422,0
+Larygospasm,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Pneumonia,0,3,0,0,0,57,254,0,231,81,0,0,54,0,672,0,934,135,185,236,291,409,0
+Pulmonary neoplasm,0,0,0,0,0,0,126,0,0,88,0,0,0,0,0,0,0,1086,127,265,0,225,0
+Spontaneous pneumothorax,0,0,56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1287,0,0,0,0
+Tuberculosis,0,0,0,0,0,0,141,0,0,274,0,0,24,0,0,0,0,98,0,1543,0,0,0
+URTI,0,12,0,0,0,334,139,0,544,0,0,0,37,0,383,0,183,0,0,268,4910,1933,0
+Viral pharyngitis,0,2,0,0,0,627,0,0,0,0,0,0,48,0,0,0,0,0,0,1215,0,6263,0
+Whooping cough,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,449

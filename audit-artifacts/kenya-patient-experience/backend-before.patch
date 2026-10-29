@@ -1,0 +1,3471 @@
+diff --git a/README.md b/README.md
+index 47884fd..9cd5d64 100644
+--- a/README.md
++++ b/README.md
+@@ -1,4 +1,6 @@
+-﻿# Respiratory Health Awareness Backend
++> Current assessment model: **V3 partial evidence**. After migrations, run `python -m app.db.seed_symptom_catalog` and `python -m app.db.seed_model_version` against the intended database to initialize it. See [RespiraCare improvements](../RESPIRACARE_IMPROVEMENTS.md) for the consultation flow, measured results and limitations. Legacy model sections below are retained for provenance.
++
++# Respiratory Health Awareness Backend
+ 
+ Backend API for the **Respiratory Health Awareness and Prediction System**.
+ 
+diff --git a/app/core/database.py b/app/core/database.py
+index 09dea85..60d0406 100644
+--- a/app/core/database.py
++++ b/app/core/database.py
+@@ -40,9 +40,8 @@ def check_schema():
+     """
+     from app.db import models  # noqa: F401
+ 
+-    existing_tables = set(
+-        inspect(engine).get_table_names()
+-    )
++    inspector = inspect(engine)
++    existing_tables = set(inspector.get_table_names())
+ 
+     missing_tables = sorted(
+         set(Base.metadata.tables) - existing_tables
+@@ -55,3 +54,8 @@ def check_schema():
+             "Run: python -m alembic upgrade head"
+         )
+ 
++
++    if 'prediction_sessions' in existing_tables and 'assessment_context' not in {
++        column['name'] for column in inspector.get_columns('prediction_sessions')
++    }:
++        raise RuntimeError('The database schema is not up to date (missing assessment_context). Run: python -m alembic upgrade head')
+diff --git a/app/data/condition_information.json b/app/data/condition_information.json
+index 9ca870c..1d3f6ad 100644
+--- a/app/data/condition_information.json
++++ b/app/data/condition_information.json
+@@ -4,7 +4,7 @@
+     "short_description": "A sudden worsening of COPD symptoms such as breathlessness, cough, wheezing or increased mucus. Respiratory infections can sometimes trigger a flare-up."
+   },
+   "Acute laryngitis": {
+-    "display_name": "Acute Laryngitis",
++    "display_name": "Voice Box Inflammation (Laryngitis)",
+     "short_description": "Short-term inflammation of the voice box and vocal cords that may cause hoarseness, a weak voice, sore throat or cough."
+   },
+   "Acute pulmonary edema": {
+@@ -12,7 +12,7 @@
+     "short_description": "A sudden build-up of fluid inside the lungs that can make breathing very difficult and requires prompt medical assessment."
+   },
+   "Acute rhinosinusitis": {
+-    "display_name": "Acute Sinusitis",
++    "display_name": "Sinus Inflammation (Acute Sinusitis)",
+     "short_description": "Short-term inflammation of the nose and sinuses that may cause a blocked or runny nose, facial pressure, headache and nasal discharge."
+   },
+   "Allergic sinusitis": {
+@@ -20,11 +20,11 @@
+     "short_description": "Inflammation of the nose and sinus areas linked to allergies, which may cause congestion, nasal symptoms and facial pressure."
+   },
+   "Bronchiectasis": {
+-    "display_name": "Bronchiectasis",
++    "display_name": "Bronchiectasis (Damaged Airways)",
+     "short_description": "A long-term condition where damaged airways become widened and can trap mucus, leading to persistent cough and repeated chest infections."
+   },
+   "Bronchiolitis": {
+-    "display_name": "Bronchiolitis",
++    "display_name": "Small Airway Inflammation (Bronchiolitis)",
+     "short_description": "Inflammation of the small airways in the lungs, often caused by a viral infection and commonly affecting infants and young children."
+   },
+   "Bronchitis": {
+@@ -44,7 +44,7 @@
+     "short_description": "An upper-airway illness, most common in young children, that can cause swelling around the vocal cords, a barking cough, hoarseness and noisy breathing."
+   },
+   "Epiglottitis": {
+-    "display_name": "Epiglottitis",
++    "display_name": "Serious Throat Swelling (Epiglottitis)",
+     "short_description": "Inflammation and swelling of the tissue protecting the windpipe. It can interfere with breathing and can become a medical emergency."
+   },
+   "Influenza": {
+@@ -52,7 +52,7 @@
+     "short_description": "A contagious viral respiratory infection that can cause fever, body aches, tiredness, headache, cough and other respiratory symptoms."
+   },
+   "Larygospasm": {
+-    "display_name": "Laryngospasm (Vocal Cord Spasm)",
++    "display_name": "Sudden Vocal Cord Spasm",
+     "short_description": "A sudden involuntary tightening of the vocal cords that can temporarily make it difficult to breathe or speak."
+   },
+   "Pneumonia": {
+@@ -60,11 +60,11 @@
+     "short_description": "An infection of the lungs that may cause cough, fever or chills, chest discomfort and shortness of breath."
+   },
+   "Pulmonary neoplasm": {
+-    "display_name": "Lung Tumour / Pulmonary Neoplasm",
++    "display_name": "Lung Tumour (Abnormal Lung Growth)",
+     "short_description": "An abnormal growth of cells in lung tissue. Lung growths require proper medical assessment to determine their type and significance."
+   },
+   "Spontaneous pneumothorax": {
+-    "display_name": "Spontaneous Collapsed Lung",
++    "display_name": "Collapsed Lung (Pneumothorax)",
+     "short_description": "A condition where air collects around a lung and causes part or all of the lung to collapse, sometimes without an obvious injury."
+   },
+   "Tuberculosis": {
+@@ -72,7 +72,7 @@
+     "short_description": "An infection caused by tuberculosis bacteria. Active lung TB may cause a long-lasting cough, fever, night sweats, tiredness or weight loss."
+   },
+   "URTI": {
+-    "display_name": "Upper Respiratory Tract Infection (URTI)",
++    "display_name": "Upper Respiratory Infection (URTI)",
+     "short_description": "An infection affecting the nose, throat or other upper airways, commonly causing symptoms such as congestion, sore throat and cough."
+   },
+   "Viral pharyngitis": {
+@@ -88,7 +88,7 @@
+     "short_description": "A respiratory illness caused by the SARS-CoV-2 virus. It may cause fever, cough, sore throat, tiredness, breathing difficulties and other symptoms."
+   },
+   "Allergic rhinitis": {
+-    "display_name": "Allergic Rhinitis",
++    "display_name": "Nasal Allergies (Allergic Rhinitis)",
+     "short_description": "An allergic reaction affecting the nose, which may cause sneezing, a runny or blocked nose, itching and watery eyes."
+   }
+ }
+diff --git a/app/db/models.py b/app/db/models.py
+index f0e0674..12d6542 100644
+--- a/app/db/models.py
++++ b/app/db/models.py
+@@ -215,6 +215,10 @@ class PredictionSession(Base):
+         default=False,
+     )
+ 
++    assessment_context: Mapped[dict] = mapped_column(
++        JSONB, nullable=False, default=dict, server_default="{}",
++    )
++
+     predictions: Mapped[list] = mapped_column(
+         JSONB,
+         nullable=False,
+diff --git a/app/db/seed_model_version.py b/app/db/seed_model_version.py
+index f68e2e1..b876b07 100644
+--- a/app/db/seed_model_version.py
++++ b/app/db/seed_model_version.py
+@@ -23,7 +23,20 @@ def load_metadata():
+         return json.load(file)
+ 
+ 
+-def seed_model_version():
++def seed_model_version(version="v3_partial_evidence"):
++    if version == "v3_partial_evidence":
++        from app.db.register_v3_model_version import activate_v3_model_version
++        with SessionLocal() as db:
++            try:
++                saved = activate_v3_model_version(db)
++                db.commit()
++                print(f"Active model: {saved.version}; {saved.class_count} conditions, {saved.feature_count} partial-evidence features")
++                return
++            except Exception:
++                db.rollback()
++                raise
++    if version != "1.0":
++        raise ValueError("Unsupported model initialization version")
+     metadata = load_metadata()
+ 
+     db = SessionLocal()
+diff --git a/app/db/seed_symptom_catalog.py b/app/db/seed_symptom_catalog.py
+index 096940d..d1cbaca 100644
+--- a/app/db/seed_symptom_catalog.py
++++ b/app/db/seed_symptom_catalog.py
+@@ -1,7 +1,7 @@
+ import json
+ from pathlib import Path
+ 
+-from sqlalchemy import select
++from sqlalchemy import delete, select
+ 
+ from app.core.database import SessionLocal
+ from app.db.models import Symptom, SymptomAlias
+@@ -12,6 +12,7 @@ NLP_DIR = Path(__file__).resolve().parents[1] / "nlp"
+ CANONICAL_PATH = NLP_DIR / "canonical_symptoms.json"
+ ENGLISH_ALIASES_PATH = NLP_DIR / "english_aliases.json"
+ SWAHILI_ALIASES_PATH = NLP_DIR / "swahili_aliases.json"
++RETIRED_ALIASES_PATH = NLP_DIR / "retired_aliases.json"
+ 
+ 
+ def load_json(path: Path):
+@@ -22,6 +23,26 @@ def load_json(path: Path):
+         return json.load(file)
+ 
+ 
++def retire_managed_aliases(db) -> int:
++    """Remove only explicitly reviewed obsolete managed triples.
++
++    Unknown/custom aliases remain untouched. Callers own the transaction.
++    """
++    retirement = load_json(RETIRED_ALIASES_PATH)
++    if retirement.get("schema_version") != 1:
++        raise ValueError("Unsupported managed-alias retirement schema")
++    removed = 0
++    for item in retirement["aliases"]:
++        symptom_id = select(Symptom.id).where(Symptom.code == item["code"]).scalar_subquery()
++        result = db.execute(delete(SymptomAlias).where(
++            SymptomAlias.symptom_id == symptom_id,
++            SymptomAlias.alias == item["alias"],
++            SymptomAlias.language == item["language"],
++        ))
++        removed += result.rowcount
++    return removed
++
++
+ def seed_symptom_catalog() -> None:
+     canonical_symptoms = load_json(
+         CANONICAL_PATH
+@@ -94,6 +115,7 @@ def seed_symptom_catalog() -> None:
+             symptoms_by_code[code] = symptom
+ 
+         db.flush()
++        retire_managed_aliases(db)
+ 
+         alias_sources = (
+             ("en", english_aliases),
+@@ -194,4 +216,4 @@ def seed_symptom_catalog() -> None:
+ 
+ 
+ if __name__ == "__main__":
+-    seed_symptom_catalog()
+\ No newline at end of file
++    seed_symptom_catalog()
+diff --git a/app/main.py b/app/main.py
+index c7c3911..09eb076 100644
+--- a/app/main.py
++++ b/app/main.py
+@@ -1,13 +1,15 @@
+ from contextlib import asynccontextmanager
+ from typing import Literal
+ import uuid
++import logging
+ 
+ from fastapi import Depends, FastAPI, HTTPException, Query, Request
+ from fastapi.middleware.cors import CORSMiddleware
+ from fastapi.responses import JSONResponse
+-from pydantic import BaseModel, EmailStr, Field
+-from sqlalchemy import text
++from pydantic import BaseModel, EmailStr, Field, field_validator, ConfigDict
++from sqlalchemy import text, select
+ from sqlalchemy.orm import Session
++from sqlalchemy.exc import SQLAlchemyError
+ 
+ from app.core.auth import (
+     get_current_user,
+@@ -17,13 +19,13 @@ from app.core.config import settings
+ from app.core.database import check_schema, engine, get_db
+ from app.core.errors import ServiceNotReadyError
+ from app.core.security import create_access_token
+-from app.db.models import User
++from app.db.models import User, Symptom
+ from app.ml.model_loader import (
+     model,
+     model_features,
+     disease_classes,
+ )
+-from app.nlp.symptom_mapper import build_confirmation_output
++from app.nlp.symptom_mapper import build_confirmation_output, detect_safety_signs
+ from app.services.auth import (
+     authenticate_user,
+     create_patient_user,
+@@ -32,6 +34,8 @@ from app.services.health_guidance import (
+     enrich_predictions,
+     get_prediction_guidance,
+     get_urgent_guidance,
++    get_insufficient_guidance,
++    get_history_guidance,
+ )
+ from app.services.history import (
+     get_any_prediction_session,
+@@ -48,9 +52,17 @@ from app.ml.model_loader import V2_MODEL_VERSION
+ from app.services.v2_prediction import (
+     partition_v2_symptom_features,
+     predict_v2_single,
++    get_v2_bundle,
+ )
+ 
+ from app.services.symptom_confirmation import confirm_symptoms
++from app.services.assessment import (
++    prepare_assessment, assessment_language, MIN_RESEARCH_PRESENT_FEATURES,
++)
++
++from app.services.consultation import prepare_consultation, V3_MODEL_VERSION
++from app.services.v3_prediction import get_v3_bundle, predict_partial_evidence
++from app.services.consultation_guidance import consultation_guidance, explain_v3_candidates
+ 
+ from app.services.model_versions import (
+     get_active_model_version,
+@@ -58,9 +70,18 @@ from app.services.model_versions import (
+ 
+ @asynccontextmanager
+ async def lifespan(app: FastAPI):
+-    # Tables are created by Alembic; stop early with a clear
+-    # message if the migrations have not been applied yet.
+-    check_schema()
++    # Tables are created by Alembic. Report readiness separately so
++    # a storage outage cannot disable independent emergency guidance.
++    try:
++        check_schema()
++        app.state.database_ready = True
++    except (SQLAlchemyError, RuntimeError) as error:
++        # Keep the bundled emergency endpoint available during outages.
++        app.state.database_ready = False
++        logging.getLogger(__name__).warning(
++            "Database is not ready (%s); apply migrations or restore connectivity. Emergency mapping remains available.",
++            type(error).__name__,
++        )
+     yield
+ 
+ 
+@@ -102,6 +123,13 @@ def service_not_ready_handler(
+     )
+ 
+ 
++@app.exception_handler(SQLAlchemyError)
++def database_unavailable_handler(request: Request, error: SQLAlchemyError):
++    return JSONResponse(status_code=503, content={
++        "detail": "Database unavailable or schema not ready. Restore connectivity and apply Alembic migrations."
++    })
++
++
+ # ---------------------------------------------------------
+ # Request Models
+ # ---------------------------------------------------------
+@@ -111,6 +139,15 @@ MAX_CONFIRMED_CODES = 50
+ 
+ 
+ class SymptomTextRequest(BaseModel):
++    language: Literal["en", "sw"] | None = None
++
++    @field_validator("text", check_fields=False)
++    @classmethod
++    def meaningful_text(cls, value):
++        if not value.strip():
++            raise ValueError("Please describe your symptoms.")
++        return value
++
+     text: str = Field(
+         max_length=MAX_SYMPTOM_TEXT_LENGTH,
+     )
+@@ -125,8 +162,16 @@ class SymptomConfirmationRequest(BaseModel):
+     )
+ 
+ 
+-class PredictionRequest(BaseModel):
+-    age: int = Field(ge=0, le=120)
++class FollowUpAnswer(BaseModel):
++    model_config = ConfigDict(extra="forbid")
++    question_id: str = Field(min_length=1, max_length=80)
++    answer: str = Field(min_length=1, max_length=80)
++
++
++class PredictionRequest(SymptomTextRequest):
++    model_config = ConfigDict(extra="forbid")
++    follow_up_answers: list[FollowUpAnswer] = Field(default_factory=list, max_length=5)
++    age: int = Field(ge=0, le=120, strict=True)
+     sex: Literal["M", "F"]
+     text: str = Field(
+         max_length=MAX_SYMPTOM_TEXT_LENGTH,
+@@ -176,7 +221,7 @@ def root():
+ @app.get("/health")
+ def health_check():
+     return {
+-        "status": "ok",
++        "status": "degraded" if getattr(app.state, "database_ready", True) is False else "ok",
+         "service": settings.app_name,
+         "environment": settings.app_env,
+     }
+@@ -201,21 +246,35 @@ def database_status():
+ 
+ 
+ @app.get("/model/status")
+-def model_status():
++def model_status(db: Session = Depends(get_db)):
++    active = get_active_model_version(db)
++    if active.version == V3_MODEL_VERSION:
++        bundle = get_v3_bundle()
++        return {
++            "status": "loaded", "model_version": V3_MODEL_VERSION,
++            "model_type": bundle["model_type"], "feature_count": len(bundle["features"]),
++            "model_feature_count": len(bundle["features"]), "class_count": len(bundle["classes"]),
++            "model_class_count": len(bundle["classes"]), "clinical_validation": False,
++        }
++    if active.version == V2_MODEL_VERSION:
++        bundle = get_v2_bundle()
++        current_model, features, classes = bundle["model"], bundle["features"], bundle["classes"]
++    elif active.version == "1.0":
++        if model is None:
++            raise ServiceNotReadyError("The V1 model artifacts are unavailable or invalid. Emergency symptom guidance remains available.")
++        current_model, features, classes = model, model_features, disease_classes
++    else:
++        raise ServiceNotReadyError("The active model version is not supported.")
+     return {
+-        "status": "loaded",
+-        "model_type": type(model).__name__,
+-        "feature_count": len(model_features),
+-        "model_feature_count": int(
+-            model.n_features_in_
+-        ),
+-        "class_count": len(disease_classes),
+-        "model_class_count": len(
+-            model.classes_
+-        ),
++        "status": "loaded", "model_version": active.version,
++        "model_type": type(current_model).__name__,
++        "feature_count": len(features), "model_feature_count": int(current_model.n_features_in_),
++        "class_count": len(classes), "model_class_count": len(current_model.classes_),
++        "clinical_validation": False,
+     }
+ 
+ 
++
+ # ---------------------------------------------------------
+ # Authentication Endpoints
+ # ---------------------------------------------------------
+@@ -306,10 +365,17 @@ def map_symptoms(
+     request: SymptomTextRequest,
+     db: Session = Depends(get_db),
+ ):
+-    return build_confirmation_output(
+-        request.text,
+-        db,
+-    )
++    language = assessment_language(request.text, request.language)
++    red_flags = detect_safety_signs(request.text)
++    if red_flags:
++        return {
++            "input_text": request.text, "recognised_symptoms": red_flags,
++            "unmatched_wording": [], "has_red_flag": True,
++            "safety_status": "urgent_review", "requires_confirmation": False,
++            **get_urgent_guidance(language),
++        }
++    return build_confirmation_output(request.text, db)
++
+ 
+ 
+ @app.post("/symptoms/confirm")
+@@ -339,224 +405,151 @@ def confirm_recognised_symptoms(
+ def predict_conditions(
+     request: PredictionRequest,
+     db: Session = Depends(get_db),
+-    current_user: User = Depends(
+-        get_current_user
+-    ),
++    current_user: User = Depends(get_current_user),
+ ):
++    language = assessment_language(request.text, request.language)
++    answers = [answer.model_dump() for answer in request.follow_up_answers]
++    red_flags = detect_safety_signs(request.text)
++    active = None
+     try:
+-        confirmation = confirm_symptoms(
+-            text=request.text,
+-            confirmed_codes=request.confirmed_codes,
+-            db=db,
+-        )
+-
+-        # -------------------------------------------------
+-        # Red-flag route
+-        # -------------------------------------------------
++        if red_flags:
++            # Independent of the catalogue, confirmation checkboxes and model.
++            confirmation = {
++                "confirmed_codes": request.confirmed_codes,
++                "model_features": [], "has_red_flag": True,
++                "red_flag_symptoms": red_flags,
++                "assessment_context": {"language": language, "follow_up_answers": answers},
++            }
++        else:
++            confirmation = confirm_symptoms(request.text, request.confirmed_codes, db)
++            if confirmation["confirmed_codes"] and not confirmation["has_red_flag"]:
++                active = get_active_model_version(db)
++            if active is not None and active.version == V3_MODEL_VERSION:
++                confirmation = prepare_consultation(confirmation, answers, language, db, request.age, request.sex)
++            else:
++                confirmation = prepare_assessment(confirmation, answers, language, db)
++        context = confirmation["assessment_context"]
++        if active is not None and active.version == V3_MODEL_VERSION:
++            context["age"] = request.age
++        base = {
++            "age": request.age, "sex": request.sex,
++            "confirmed_codes": request.confirmed_codes,
++            "effective_confirmed_codes": confirmation["confirmed_codes"],
++            "model_features": confirmation["model_features"],
++            "explicitly_absent_features": confirmation.get("explicitly_absent_features", []),
++            "assessment_context": context, "follow_up_answers": answers,
++            "has_red_flag": confirmation["has_red_flag"], "predictions": [],
++        }
+ 
+-        if confirmation["has_red_flag"]:
+-            urgent_guidance = (
+-                get_urgent_guidance()
++        def persist(status, predictions, version_id=None):
++            saved = save_prediction_session(
++                db, user_id=current_user.id, age=request.age, sex=request.sex,
++                input_text=request.text, confirmed_codes=confirmation["confirmed_codes"],
++                model_features=confirmation["model_features"], status=status,
++                has_red_flag=confirmation["has_red_flag"], predictions=predictions,
++                model_version_id=version_id, assessment_context=context,
+             )
++            return str(saved.id)
+ 
+-            prediction_session = (
+-                save_prediction_session(
+-                    db,
+-                    user_id=current_user.id,
+-                    age=request.age,
+-                    sex=request.sex,
+-                    input_text=request.text,
+-                    confirmed_codes=(
+-                        confirmation[
+-                            "confirmed_codes"
+-                        ]
+-                    ),
+-                    model_features=(
+-                        confirmation[
+-                            "model_features"
+-                        ]
+-                    ),
+-                    status="urgent_review",
+-                    has_red_flag=True,
+-                    predictions=[],
+-                    model_version_id=None,
+-                )
++        if confirmation["has_red_flag"]:
++            # Saving history must never hide emergency guidance.
++            prediction_id = None
++            try:
++                prediction_id = persist("urgent_review", [])
++            except Exception:
++                logging.getLogger(__name__).exception("Could not save urgent assessment")
++                if hasattr(db, "rollback"):
++                    db.rollback()
++            return {**base, "prediction_id": prediction_id,
++                    "status": "urgent_review",
++                    "red_flag_symptoms": confirmation["red_flag_symptoms"],
++                    **get_urgent_guidance(language)}
++
++        question = confirmation.get("follow_up_question")
++        if question:
++            guidance = (consultation_guidance(context, request.age)
++                        if active is not None and active.version == V3_MODEL_VERSION
++                        else get_prediction_guidance(language, context))
++            return {**base, "status": "needs_follow_up", "follow_up_question": question, **guidance}
++
++        if not confirmation["model_features"]:
++            return {**base, "status": "insufficient_evidence", "uncertain": True,
++                    "uncertainty_reasons": ["no_supported_present_symptoms"],
++                    **get_insufficient_guidance(language, context)}
++
++        if active is None:
++            active = get_active_model_version(db)
++        if active.version == V3_MODEL_VERSION:
++            result = predict_partial_evidence(
++                confirmation["model_features"], confirmation.get("explicitly_absent_features", []),
++                request.age, request.sex,
+             )
+-
++            if not result["predictions"]:
++                return {**base, "status": "insufficient_evidence", "uncertain": True,
++                        "uncertainty_reasons": ["no_supported_present_symptoms"],
++                        **get_insufficient_guidance(language, context)}
++            catalogue = db.scalars(select(Symptom)).all()
++            enriched = explain_v3_candidates(result, confirmation, catalogue, language)
++            context["model_version"] = V3_MODEL_VERSION
++            context["uncertainty_reasons"] = result["uncertainty_reasons"]
++            guidance = consultation_guidance(context, request.age)
+             return {
+-                "prediction_id": str(
+-                    prediction_session.id
+-                ),
+-                "status": "urgent_review",
+-                "age": request.age,
+-                "sex": request.sex,
+-                "confirmed_codes": (
+-                    confirmation[
+-                        "confirmed_codes"
+-                    ]
+-                ),
+-                "model_features": (
+-                    confirmation[
+-                        "model_features"
+-                    ]
+-                ),
+-                "has_red_flag": True,
+-                "red_flag_symptoms": (
+-                    confirmation[
+-                        "red_flag_symptoms"
+-                    ]
+-                ),
+-                "predictions": [],
+-                **urgent_guidance,
++                **base, "prediction_id": persist("prediction_complete", enriched, active.id),
++                "status": "prediction_complete", "model_version": V3_MODEL_VERSION,
++                "feature_count": result["feature_count"], "predictions": enriched,
++                "uncertain": True, "uncertainty_reasons": result["uncertainty_reasons"],
++                "clinical_validation": False, "model_status": "research_partial_evidence",
++                "unsupported_model_features": result["unsupported_model_features"],
++                **guidance,
+             }
+-
+-        # -------------------------------------------------
+-        # Normal prediction route
+-        # -------------------------------------------------
+-
+-        active_model_version = (
+-            get_active_model_version(db)
+-        )
+-
+-
+-        # Choose the prediction service that matches
+-        # the active database model version.
+-        unsupported_model_features = []
+-
+-        if active_model_version.version == V2_MODEL_VERSION:
+-            partition = partition_v2_symptom_features(
+-                confirmation["model_features"]
+-            )
+-
+-            unsupported_model_features = partition[
+-                "unsupported_features"
+-            ]
+-
+-            if not partition["has_supported_features"]:
+-                raise ValueError(
+-                    "There is not enough V2-supported symptom "
+-                    "information to make a prediction. "
+-                    "Please provide at least one supported "
+-                    "confirmed symptom."
+-                )
+-
+-            prediction_result = predict_v2_single(
+-                age=request.age,
+-                sex=request.sex,
+-                symptom_features=partition[
+-                    "supported_features"
+-                ],
+-            )
+-
+-        elif active_model_version.version == "1.0":
+-            prediction_result = predict_top_conditions(
+-                age=request.age,
+-                sex=request.sex,
+-                symptom_features=confirmation[
+-                    "model_features"
+-                ],
+-                top_k=1,
+-            )
+-
++        unsupported = []
++        reason = None
++        if active.version == V2_MODEL_VERSION:
++            partition = partition_v2_symptom_features(confirmation["model_features"])
++            supported = partition["supported_features"]
++            unsupported = partition["unsupported_features"]
++            if len(supported) < MIN_RESEARCH_PRESENT_FEATURES:
++                reason = "limited_supported_evidence"
++        elif active.version == "1.0":
++            # V1 conflates unreported symptoms with absent and was evaluated on
++            # much richer simulated profiles. The application cannot reconstruct
++            # those profiles from a few confirmed symptoms.
++            reason = "v1_unknown_absent_mismatch"
+         else:
+-            raise ServiceNotReadyError(
+-                "The active model version is not supported "
+-                "by the prediction service."
+-            )
+-
+-
+-        enriched_predictions = (
+-            enrich_predictions(
+-                prediction_result[
+-                    "predictions"
+-                ]
+-            )
++            raise ServiceNotReadyError("The active model version is not supported by the prediction service.")
++
++        context["model_version"] = active.version
++        if reason:
++            context["uncertainty_reasons"] = [reason]
++            return {**base, "prediction_id": persist("insufficient_evidence", [], active.id),
++                    "model_version": active.version, "status": "insufficient_evidence",
++                    "uncertain": True, "uncertainty_reasons": [reason],
++                    "unsupported_model_features": unsupported,
++                    **get_insufficient_guidance(language, context)}
++
++        absent = partition_v2_symptom_features(
++            confirmation.get("explicitly_absent_features", [])
++        )["supported_features"]
++        result = predict_v2_single(
++            age=request.age, sex=request.sex, symptom_features=supported,
++            explicitly_absent_features=absent,
+         )
+-
+-        guidance = (
+-            get_prediction_guidance()
+-        )
+-
+-        prediction_session = (
+-            save_prediction_session(
+-                db,
+-                user_id=current_user.id,
+-                age=request.age,
+-                sex=request.sex,
+-                input_text=request.text,
+-                confirmed_codes=(
+-                    confirmation[
+-                        "confirmed_codes"
+-                    ]
+-                ),
+-                model_features=(
+-                    confirmation[
+-                        "model_features"
+-                    ]
+-                ),
+-                status="prediction_complete",
+-                has_red_flag=False,
+-                predictions=(
+-                    enriched_predictions
+-                ),
+-                model_version_id=active_model_version.id,
+-            )
+-        )
+-
++        enriched = enrich_predictions(result["predictions"])
++        reasons = list(dict.fromkeys(result.get("uncertainty_reasons", []) +
++                                     ["research_model_not_clinically_validated", "negative_evidence_not_learned"]))
++        context["uncertainty_reasons"] = reasons
+         return {
+-            "prediction_id": str(
+-                prediction_session.id
+-            ),
+-            "status": "prediction_complete",
+-            "model_version": (
+-                active_model_version.version
+-            ),
+-            "age": request.age,
+-            "sex": request.sex,
+-            "confirmed_codes": (
+-                confirmation[
+-                    "confirmed_codes"
+-                ]
+-            ),
+-            "model_features": (
+-                confirmation[
+-                    "model_features"
+-                ]
+-            ),
+-            "has_red_flag": False,
+-            "feature_count": (
+-                prediction_result[
+-                    "feature_count"
+-                ]
+-            ),
+-            "predictions": (
+-                enriched_predictions
+-            ),
+-            **(
+-                {
+-                    "uncertain": prediction_result["uncertain"],
+-                    "uncertainty_reasons": prediction_result[
+-                        "uncertainty_reasons"
+-                    ],
+-                    "uncertainty_message": prediction_result[
+-                        "uncertainty_message"
+-                    ],
+-                    "score_note": prediction_result["score_note"],
+-                    "unsupported_model_features": (
+-                        unsupported_model_features
+-                    ),
+-                }
+-                if active_model_version.version == V2_MODEL_VERSION
+-                else {}
+-            ),
+-            **guidance,
++            **base, "prediction_id": persist("prediction_complete", enriched, active.id),
++            "status": "prediction_complete", "model_version": active.version,
++            "feature_count": result["feature_count"], "predictions": enriched,
++            "uncertain": True, "uncertainty_reasons": reasons,
++            "uncertainty_message": get_insufficient_guidance(language, context)["uncertainty_message"],
++            "score_note": result["score_note"], "unsupported_model_features": unsupported,
++            "clinical_validation": False, "model_status": "research_prototype",
++            **get_prediction_guidance(language, context),
+         }
+-
+     except ValueError as error:
+-        raise HTTPException(
+-            status_code=400,
+-            detail=str(error),
+-        ) from error
++        raise HTTPException(status_code=400, detail=str(error)) from error
+ 
+ 
+ # ---------------------------------------------------------
+@@ -603,6 +596,8 @@ def get_patient_history(
+                 "predictions": (
+                     session.predictions
+                 ),
++                "assessment_context": getattr(session, "assessment_context", {}),
++                **get_history_guidance(session.status, getattr(session, "assessment_context", {})),
+                 "created_at": (
+                     session.created_at
+                 ),
+@@ -659,6 +654,8 @@ def get_admin_history(
+                 "predictions": (
+                     session.predictions
+                 ),
++                "assessment_context": getattr(session, "assessment_context", {}),
++                **get_history_guidance(session.status, getattr(session, "assessment_context", {})),
+                 "created_at": (
+                     session.created_at
+                 ),
+@@ -707,6 +704,8 @@ def get_admin_history_item(
+             session.has_red_flag
+         ),
+         "predictions": session.predictions,
++        "assessment_context": getattr(session, "assessment_context", {}),
++        **get_history_guidance(session.status, getattr(session, "assessment_context", {})),
+         "created_at": session.created_at,
+     }
+ 
+@@ -785,6 +784,8 @@ def get_patient_history_item(
+             session.has_red_flag
+         ),
+         "predictions": session.predictions,
++        "assessment_context": getattr(session, "assessment_context", {}),
++        **get_history_guidance(session.status, getattr(session, "assessment_context", {})),
+         "created_at": session.created_at,
+     }
+ 
+diff --git a/app/ml/model_loader.py b/app/ml/model_loader.py
+index f0a01ee..7b40d55 100644
+--- a/app/ml/model_loader.py
++++ b/app/ml/model_loader.py
+@@ -2,6 +2,7 @@
+ """Load and validate saved respiratory Random Forest models."""
+ 
+ import json
++import logging
+ from pathlib import Path
+ 
+ import joblib
+@@ -55,6 +56,13 @@ def load_model_bundle():
+     disease_classes = _load_json(CLASSES_PATH)
+     model_metadata = _load_json(METADATA_PATH)
+ 
++    for name, values in (("features", model_features), ("classes", disease_classes)):
++        if (not isinstance(values, list)
++                or not values
++                or not all(isinstance(value, str) and value for value in values)
++                or len(values) != len(set(values))):
++            raise ValueError(f"V1 {name} must be a non-empty list of unique names.")
++
+     feature_count = len(model_features)
+     class_count = len(disease_classes)
+ 
+@@ -83,6 +91,16 @@ def load_model_bundle():
+             f"but disease_classes.json contains {class_count}."
+         )
+ 
++    if hasattr(model, "feature_names_in_"):
++        if list(model.feature_names_in_) != model_features:
++            raise ValueError("V1 model feature order does not match model_features.json.")
++
++    if list(getattr(model, "classes_", [])) != disease_classes:
++        raise ValueError("V1 model class order does not match disease_classes.json.")
++
++    if not callable(getattr(model, "predict_proba", None)):
++        raise ValueError("Saved V1 model must support predict_proba.")
++
+     return {
+         "model": model,
+         "features": model_features,
+@@ -192,6 +210,15 @@ def load_v2_model_bundle():
+             "Saved V2 model must support predict_proba."
+         )
+ 
++    # A column in the schema is not evidence that it was learned. The saved
++    # prototype has 32 absence columns but never splits on any of them.
++    used_features = {
++        feature_names[int(index)]
++        for estimator in getattr(model, "estimators_", [])
++        for index in estimator.tree_.feature
++        if index >= 0
++    }
++
+     return {
+         "model": model,
+         "features": feature_names,
+@@ -199,11 +226,26 @@ def load_v2_model_bundle():
+         "classes": disease_classes,
+         "schema": schema,
+         "model_version": V2_MODEL_VERSION,
++        "model_status": "research_prototype",
++        "clinical_validation": False,
++        "learned_absence_features": sorted(
++            feature for feature in used_features
++            if feature.endswith("__absent")
++        ),
++        "duration_features_supported": False,
+     }
+ 
+ 
+-# Preserve existing V1 imports used throughout the backend.
+-model_bundle = load_model_bundle()
++# Keep emergency recognition and authentication available when an optional
++# research artifact is missing or corrupt. Direct loader calls still raise,
++# and no other model is activated as a fallback.
++model_readiness_error = None
++try:
++    model_bundle = load_model_bundle()
++except Exception as error:
++    model_readiness_error = f"V1 model unavailable ({type(error).__name__})."
++    logging.getLogger(__name__).error(model_readiness_error)
++    model_bundle = {"model": None, "features": [], "classes": [], "metadata": {}}
+ 
+ model = model_bundle["model"]
+ model_features = model_bundle["features"]
+diff --git a/app/nlp/canonical_symptoms.json b/app/nlp/canonical_symptoms.json
+index 009565a..54d18eb 100644
+--- a/app/nlp/canonical_symptoms.json
++++ b/app/nlp/canonical_symptoms.json
+@@ -11,9 +11,10 @@
+       "en": [
+         "fever",
+         "high temperature",
+-        "temperature",
+         "hot body",
+-        "feeling feverish"
++        "feeling feverish",
++        "feverish",
++        "my body feels very hot"
+       ],
+       "sw": [
+         "homa",
+@@ -34,7 +35,9 @@
+         "chills",
+         "shivering",
+         "shivers",
+-        "feeling cold and shaking"
++        "feeling cold and shaking",
++        "feeling shivery",
++        "shaking with chills"
+       ],
+       "sw": [
+         "baridi",
+@@ -56,11 +59,17 @@
+         "coughing",
+         "i am coughing",
+         "persistent cough",
+-        "coff"
++        "coff",
++        "keep coughing",
++        "coughs"
+       ],
+       "sw": [
+         "kikohozi",
+-        "kukohoa"
++        "kukohoa",
++        "ninakohoa",
++        "nakohoa",
++        "nikikohoa",
++        "sikohoi"
+       ]
+     }
+   },
+@@ -77,9 +86,14 @@
+         "intense coughing fits",
+         "severe coughing fits",
+         "coughing attacks",
+-        "cannot stop coughing"
++        "cannot stop coughing",
++        "can't stop coughing",
++        "repeated coughing fits"
+       ],
+-      "sw": []
++      "sw": [
++        "kikohozi cha mashambulizi",
++        "kukohoa sana bila kuacha"
++      ]
+     }
+   },
+   {
+@@ -96,12 +110,15 @@
+         "vomit after coughing",
+         "throwing up after coughing"
+       ],
+-      "sw": []
++      "sw": [
++        "kutapika baada ya kukohoa",
++        "natapika baada ya kukohoa"
++      ]
+     }
+   },
+   {
+     "code": "productive_cough",
+-    "display_name": "Coughing up coloured or more phlegm",
++    "display_name": "Coloured or increased phlegm",
+     "features": [
+       "E_77"
+     ],
+@@ -109,15 +126,21 @@
+     "is_red_flag": false,
+     "aliases": {
+       "en": [
+-        "phlegm",
+-        "mucus",
+-        "productive cough",
+-        "wet cough",
+-        "coughing up phlegm",
+-        "coughing up mucus"
++        "coloured phlegm",
++        "colored phlegm",
++        "yellow phlegm",
++        "green phlegm",
++        "yellow sputum",
++        "green sputum",
++        "more phlegm than usual",
++        "more sputum than usual",
++        "increased sputum"
+       ],
+       "sw": [
+-        "makohozi"
++        "makohozi ya kijani",
++        "makohozi ya njano",
++        "makohozi mengi kuliko kawaida",
++        "makohozi yenye rangi"
+       ]
+     }
+   },
+@@ -134,10 +157,13 @@
+         "coughing up blood",
+         "blood in cough",
+         "blood in phlegm",
+-        "bloody sputum"
++        "bloody sputum",
++        "blood in my sputum"
+       ],
+       "sw": [
+-        "kukohoa damu"
++        "kukohoa damu",
++        "nakohoa damu",
++        "ninakohoa damu"
+       ]
+     }
+   },
+@@ -156,11 +182,24 @@
+         "difficulty breathing",
+         "hard to breathe",
+         "cannot breathe",
+-        "can't breathe"
++        "can't breathe",
++        "struggling to breathe",
++        "can't catch my breath",
++        "cannot catch my breath",
++        "gasping for air",
++        "gasping",
++        "trouble breathing",
++        "unable to breathe"
+       ],
+       "sw": [
+         "kushindwa kupumua",
+-        "kupumua kwa shida"
++        "kupumua kwa shida",
++        "ninashindwa kupumua",
++        "siwezi kupumua",
++        "napumua kwa shida",
++        "ninapumua kwa shida",
++        "shida ya kupumua",
++        "nashindwa kupumua"
+       ]
+     }
+   },
+@@ -194,11 +233,15 @@
+       "en": [
+         "wheezing",
+         "wheeze",
+-        "tight chest",
+-        "whistling when breathing"
++        "whistling when breathing",
++        "whistling when breathing out",
++        "whistling sound when i breathe out",
++        "whistle when i breathe out"
+       ],
+       "sw": [
+-        "kifua kubana"
++        "sauti ya mluzi wakati wa kutoa pumzi",
++        "mluzi ninapotoa pumzi",
++        "kifua kinatoa mlio wa mluzi"
+       ]
+     }
+   },
+@@ -268,7 +311,10 @@
+         "trouble swallowing",
+         "cannot swallow"
+       ],
+-      "sw": []
++      "sw": [
++        "shida ya kumeza",
++        "kumeza kwa shida"
++      ]
+     }
+   },
+   {
+@@ -284,11 +330,17 @@
+         "sore throat",
+         "throat pain",
+         "painful throat",
+-        "throat hurts"
++        "throat hurts",
++        "my throat hurts",
++        "pain in my throat",
++        "throat is sore"
+       ],
+       "sw": [
+         "koo kuuma",
+-        "kidonda cha koo"
++        "kidonda cha koo",
++        "koo linauma",
++        "koo langu linauma",
++        "maumivu ya koo"
+       ]
+     }
+   },
+@@ -326,11 +378,18 @@
+         "runny nose",
+         "blocked nose",
+         "stuffy nose",
+-        "nasal congestion"
++        "nasal congestion",
++        "my nose is running",
++        "nose is running",
++        "nose is blocked",
++        "nose is stuffy"
+       ],
+       "sw": [
+         "mafua",
+-        "homa ya mafua"
++        "homa ya mafua",
++        "pua imeziba",
++        "pua inatiririka",
++        "pua inatoa makamasi"
+       ]
+     }
+   },
+@@ -407,8 +466,7 @@
+     "code": "headache",
+     "display_name": "Headache",
+     "features": [
+-      "E_53",
+-      "E_55_@_V_89"
++      "E_53"
+     ],
+     "kind": "symptom",
+     "is_red_flag": false,
+@@ -429,8 +487,7 @@
+     "code": "chest_pain",
+     "display_name": "Chest pain",
+     "features": [
+-      "E_53",
+-      "E_55_@_V_101"
++      "E_53"
+     ],
+     "kind": "symptom",
+     "is_red_flag": false,
+@@ -529,11 +586,15 @@
+         "tiredness",
+         "fatigue",
+         "feeling tired",
+-        "constant tiredness"
++        "constant tiredness",
++        "tired all the time",
++        "always tired"
+       ],
+       "sw": [
+         "uchovu",
+-        "kuchoka"
++        "kuchoka",
++        "nimechoka kila wakati",
++        "uchovu wa kila wakati"
+       ]
+     }
+   },
+@@ -567,9 +628,18 @@
+         "muscle aches",
+         "muscle pain",
+         "aching muscles",
+-        "body aches"
++        "body aches",
++        "my whole body aches",
++        "aching all over",
++        "all my muscles ache"
+       ],
+-      "sw": []
++      "sw": [
++        "maumivu ya misuli",
++        "misuli inauma",
++        "misuli ya mwili mzima inauma",
++        "maumivu ya misuli mwili mzima",
++        "mwili unauma"
++      ]
+     }
+   },
+   {
+@@ -585,11 +655,19 @@
+         "heavy sweating",
+         "sweating a lot",
+         "night sweats",
+-        "excessive sweating"
++        "excessive sweating",
++        "sweating at night",
++        "sweat a lot at night",
++        "wake up soaked in sweat",
++        "sweating more than usual"
+       ],
+       "sw": [
+         "kutokwa jasho",
+-        "jasho usiku"
++        "jasho usiku",
++        "kutokwa na jasho jingi",
++        "jasho jingi usiku",
++        "natokwa na jasho jingi",
++        "kutoka jasho jingi usiku"
+       ]
+     }
+   },
+@@ -606,10 +684,14 @@
+         "loss of appetite",
+         "no appetite",
+         "not hungry",
+-        "don't feel like eating"
++        "don't feel like eating",
++        "lost my appetite",
++        "not feeling hungry"
+       ],
+       "sw": [
+-        "kukosa hamu ya kula"
++        "kukosa hamu ya kula",
++        "sina hamu ya kula",
++        "hamu ya kula imepungua"
+       ]
+     }
+   },
+@@ -625,10 +707,20 @@
+       "en": [
+         "weight loss",
+         "unintended weight loss",
+-        "losing weight without trying"
++        "losing weight without trying",
++        "losing weight",
++        "lost weight",
++        "losing weight unintentionally",
++        "unintentional weight loss",
++        "lost weight without trying"
+       ],
+       "sw": [
+-        "kupungua uzito"
++        "kupungua uzito",
++        "ninapungua uzito",
++        "nimepungua uzito",
++        "kupungua uzito bila kukusudia",
++        "nimepungua uzito bila kukusudia",
++        "kupungua uzito bila sababu"
+       ]
+     }
+   },
+@@ -646,7 +738,8 @@
+         "lips are turning blue"
+       ],
+       "sw": [
+-        "midomo kuwa bluu"
++        "midomo kuwa bluu",
++        "midomo imekuwa bluu"
+       ]
+     }
+   },
+@@ -662,7 +755,9 @@
+         "feeling confused",
+         "disoriented"
+       ],
+-      "sw": []
++      "sw": [
++        "kuchanganyikiwa"
++      ]
+     }
+   },
+   {
+@@ -678,7 +773,107 @@
+         "passed out",
+         "passing out"
+       ],
+-      "sw": []
++      "sw": [
++        "kuzimia",
++        "nimezimia"
++      ]
++    }
++  },
++  {
++    "code": "sneezing",
++    "display_name": "Sneezing",
++    "features": [],
++    "kind": "symptom",
++    "is_red_flag": false,
++    "aliases": {
++      "en": [
++        "sneezing",
++        "sneeze",
++        "frequent sneezing"
++      ],
++      "sw": [
++        "kupiga chafya",
++        "napiga chafya",
++        "chafya"
++      ]
++    }
++  },
++  {
++    "code": "sputum_reported",
++    "display_name": "Phlegm or sputum reported (colour and amount unspecified)",
++    "features": [],
++    "kind": "context",
++    "is_red_flag": false,
++    "aliases": {
++      "en": [
++        "phlegm",
++        "sputum",
++        "mucus"
++      ],
++      "sw": [
++        "makohozi"
++      ]
++    }
++  },
++  {
++    "code": "chest_tightness",
++    "display_name": "Chest tightness (wheezing not confirmed)",
++    "features": [],
++    "kind": "context",
++    "is_red_flag": false,
++    "aliases": {
++      "en": [
++        "tight chest",
++        "chest tightness",
++        "my chest feels tight",
++        "chest feels tight"
++      ],
++      "sw": [
++        "kifua kubana",
++        "kifua kinabana"
++      ]
++    }
++  },
++  {
++    "code": "forehead_pain",
++    "display_name": "Pain specifically in the forehead",
++    "features": [
++      "E_53",
++      "E_55_@_V_89"
++    ],
++    "kind": "symptom",
++    "is_red_flag": false,
++    "aliases": {
++      "en": [
++        "forehead pain",
++        "pain in my forehead",
++        "my forehead hurts"
++      ],
++      "sw": [
++        "maumivu ya paji la uso",
++        "paji la uso linauma"
++      ]
++    }
++  },
++  {
++    "code": "upper_chest_pain",
++    "display_name": "Pain specifically in the upper chest",
++    "features": [
++      "E_53",
++      "E_55_@_V_101"
++    ],
++    "kind": "symptom",
++    "is_red_flag": false,
++    "aliases": {
++      "en": [
++        "upper chest pain",
++        "pain in my upper chest",
++        "my upper chest hurts"
++      ],
++      "sw": [
++        "maumivu sehemu ya juu ya kifua",
++        "sehemu ya juu ya kifua inauma"
++      ]
+     }
+   }
+-]
+\ No newline at end of file
++]
+diff --git a/app/nlp/english_aliases.json b/app/nlp/english_aliases.json
+index 8516067..40c4ee8 100644
+--- a/app/nlp/english_aliases.json
++++ b/app/nlp/english_aliases.json
+@@ -2,28 +2,35 @@
+   "fever": [
+     "fever",
+     "high temperature",
+-    "temperature",
+     "hot body",
+-    "feeling feverish"
++    "feeling feverish",
++    "feverish",
++    "my body feels very hot"
+   ],
+   "chills": [
+     "chills",
+     "shivering",
+     "shivers",
+-    "feeling cold and shaking"
++    "feeling cold and shaking",
++    "feeling shivery",
++    "shaking with chills"
+   ],
+   "cough": [
+     "cough",
+     "coughing",
+     "i am coughing",
+     "persistent cough",
+-    "coff"
++    "coff",
++    "keep coughing",
++    "coughs"
+   ],
+   "intense_coughing_fits": [
+     "intense coughing fits",
+     "severe coughing fits",
+     "coughing attacks",
+-    "cannot stop coughing"
++    "cannot stop coughing",
++    "can't stop coughing",
++    "repeated coughing fits"
+   ],
+   "vomiting_after_coughing": [
+     "vomiting after coughing",
+@@ -31,18 +38,22 @@
+     "throwing up after coughing"
+   ],
+   "productive_cough": [
+-    "phlegm",
+-    "mucus",
+-    "productive cough",
+-    "wet cough",
+-    "coughing up phlegm",
+-    "coughing up mucus"
++    "coloured phlegm",
++    "colored phlegm",
++    "yellow phlegm",
++    "green phlegm",
++    "yellow sputum",
++    "green sputum",
++    "more phlegm than usual",
++    "more sputum than usual",
++    "increased sputum"
+   ],
+   "coughing_blood": [
+     "coughing up blood",
+     "blood in cough",
+     "blood in phlegm",
+-    "bloody sputum"
++    "bloody sputum",
++    "blood in my sputum"
+   ],
+   "shortness_of_breath": [
+     "shortness of breath",
+@@ -50,7 +61,14 @@
+     "difficulty breathing",
+     "hard to breathe",
+     "cannot breathe",
+-    "can't breathe"
++    "can't breathe",
++    "struggling to breathe",
++    "can't catch my breath",
++    "cannot catch my breath",
++    "gasping for air",
++    "gasping",
++    "trouble breathing",
++    "unable to breathe"
+   ],
+   "night_breathlessness": [
+     "waking up breathless",
+@@ -61,8 +79,10 @@
+   "wheezing": [
+     "wheezing",
+     "wheeze",
+-    "tight chest",
+-    "whistling when breathing"
++    "whistling when breathing",
++    "whistling when breathing out",
++    "whistling sound when i breathe out",
++    "whistle when i breathe out"
+   ],
+   "wheeze_after_coughing": [
+     "wheezing after coughing",
+@@ -89,7 +109,10 @@
+     "sore throat",
+     "throat pain",
+     "painful throat",
+-    "throat hurts"
++    "throat hurts",
++    "my throat hurts",
++    "pain in my throat",
++    "throat is sore"
+   ],
+   "hoarse_voice": [
+     "hoarse voice",
+@@ -101,7 +124,11 @@
+     "runny nose",
+     "blocked nose",
+     "stuffy nose",
+-    "nasal congestion"
++    "nasal congestion",
++    "my nose is running",
++    "nose is running",
++    "nose is blocked",
++    "nose is stuffy"
+   ],
+   "nasal_discharge": [
+     "green nasal discharge",
+@@ -160,7 +187,9 @@
+     "tiredness",
+     "fatigue",
+     "feeling tired",
+-    "constant tiredness"
++    "constant tiredness",
++    "tired all the time",
++    "always tired"
+   ],
+   "activity_fatigue": [
+     "too tired for normal activities",
+@@ -171,24 +200,38 @@
+     "muscle aches",
+     "muscle pain",
+     "aching muscles",
+-    "body aches"
++    "body aches",
++    "my whole body aches",
++    "aching all over",
++    "all my muscles ache"
+   ],
+   "heavy_sweating": [
+     "heavy sweating",
+     "sweating a lot",
+     "night sweats",
+-    "excessive sweating"
++    "excessive sweating",
++    "sweating at night",
++    "sweat a lot at night",
++    "wake up soaked in sweat",
++    "sweating more than usual"
+   ],
+   "loss_of_appetite": [
+     "loss of appetite",
+     "no appetite",
+     "not hungry",
+-    "don't feel like eating"
++    "don't feel like eating",
++    "lost my appetite",
++    "not feeling hungry"
+   ],
+   "weight_loss": [
+     "weight loss",
+     "unintended weight loss",
+-    "losing weight without trying"
++    "losing weight without trying",
++    "losing weight",
++    "lost weight",
++    "losing weight unintentionally",
++    "unintentional weight loss",
++    "lost weight without trying"
+   ],
+   "blue_lips": [
+     "blue lips",
+@@ -206,5 +249,31 @@
+     "fainted",
+     "passed out",
+     "passing out"
++  ],
++  "sneezing": [
++    "sneezing",
++    "sneeze",
++    "frequent sneezing"
++  ],
++  "sputum_reported": [
++    "phlegm",
++    "sputum",
++    "mucus"
++  ],
++  "chest_tightness": [
++    "tight chest",
++    "chest tightness",
++    "my chest feels tight",
++    "chest feels tight"
++  ],
++  "forehead_pain": [
++    "forehead pain",
++    "pain in my forehead",
++    "my forehead hurts"
++  ],
++  "upper_chest_pain": [
++    "upper chest pain",
++    "pain in my upper chest",
++    "my upper chest hurts"
+   ]
+-}
+\ No newline at end of file
++}
+diff --git a/app/nlp/swahili_aliases.json b/app/nlp/swahili_aliases.json
+index f7c8d65..deb6a2d 100644
+--- a/app/nlp/swahili_aliases.json
++++ b/app/nlp/swahili_aliases.json
+@@ -9,24 +9,44 @@
+   ],
+   "cough": [
+     "kikohozi",
+-    "kukohoa"
++    "kukohoa",
++    "ninakohoa",
++    "nakohoa",
++    "nikikohoa",
++    "sikohoi"
+   ],
+   "productive_cough": [
+-    "makohozi"
++    "makohozi ya kijani",
++    "makohozi ya njano",
++    "makohozi mengi kuliko kawaida",
++    "makohozi yenye rangi"
+   ],
+   "coughing_blood": [
+-    "kukohoa damu"
++    "kukohoa damu",
++    "nakohoa damu",
++    "ninakohoa damu"
+   ],
+   "shortness_of_breath": [
+     "kushindwa kupumua",
+-    "kupumua kwa shida"
++    "kupumua kwa shida",
++    "ninashindwa kupumua",
++    "siwezi kupumua",
++    "napumua kwa shida",
++    "ninapumua kwa shida",
++    "shida ya kupumua",
++    "nashindwa kupumua"
+   ],
+   "wheezing": [
+-    "kifua kubana"
++    "sauti ya mluzi wakati wa kutoa pumzi",
++    "mluzi ninapotoa pumzi",
++    "kifua kinatoa mlio wa mluzi"
+   ],
+   "sore_throat": [
+     "koo kuuma",
+-    "kidonda cha koo"
++    "kidonda cha koo",
++    "koo linauma",
++    "koo langu linauma",
++    "maumivu ya koo"
+   ],
+   "hoarse_voice": [
+     "sauti imekauka",
+@@ -34,7 +54,10 @@
+   ],
+   "runny_blocked_nose": [
+     "mafua",
+-    "homa ya mafua"
++    "homa ya mafua",
++    "pua imeziba",
++    "pua inatiririka",
++    "pua inatoa makamasi"
+   ],
+   "headache": [
+     "kichwa kuuma",
+@@ -47,20 +70,79 @@
+   ],
+   "tiredness": [
+     "uchovu",
+-    "kuchoka"
++    "kuchoka",
++    "nimechoka kila wakati",
++    "uchovu wa kila wakati"
+   ],
+   "weight_loss": [
+-    "kupungua uzito"
++    "kupungua uzito",
++    "ninapungua uzito",
++    "nimepungua uzito",
++    "kupungua uzito bila kukusudia",
++    "nimepungua uzito bila kukusudia",
++    "kupungua uzito bila sababu"
+   ],
+   "loss_of_appetite": [
+-    "kukosa hamu ya kula"
++    "kukosa hamu ya kula",
++    "sina hamu ya kula",
++    "hamu ya kula imepungua"
+   ],
+   "heavy_sweating": [
+     "kutokwa jasho",
+-    "jasho usiku"
++    "jasho usiku",
++    "kutokwa na jasho jingi",
++    "jasho jingi usiku",
++    "natokwa na jasho jingi",
++    "kutoka jasho jingi usiku"
+   ],
+   "blue_lips": [
+-    "midomo kuwa bluu"
++    "midomo kuwa bluu",
++    "midomo imekuwa bluu"
++  ],
++  "sneezing": [
++    "kupiga chafya",
++    "napiga chafya",
++    "chafya"
++  ],
++  "confusion": [
++    "kuchanganyikiwa"
++  ],
++  "fainting": [
++    "kuzimia",
++    "nimezimia"
++  ],
++  "intense_coughing_fits": [
++    "kikohozi cha mashambulizi",
++    "kukohoa sana bila kuacha"
++  ],
++  "sputum_reported": [
++    "makohozi"
++  ],
++  "chest_tightness": [
++    "kifua kubana",
++    "kifua kinabana"
++  ],
++  "muscle_aches": [
++    "maumivu ya misuli",
++    "misuli inauma",
++    "misuli ya mwili mzima inauma",
++    "maumivu ya misuli mwili mzima",
++    "mwili unauma"
++  ],
++  "vomiting_after_coughing": [
++    "kutapika baada ya kukohoa",
++    "natapika baada ya kukohoa"
++  ],
++  "difficulty_swallowing": [
++    "shida ya kumeza",
++    "kumeza kwa shida"
++  ],
++  "forehead_pain": [
++    "maumivu ya paji la uso",
++    "paji la uso linauma"
++  ],
++  "upper_chest_pain": [
++    "maumivu sehemu ya juu ya kifua",
++    "sehemu ya juu ya kifua inauma"
+   ]
+ }
+-
+diff --git a/app/nlp/symptom_mapper.py b/app/nlp/symptom_mapper.py
+index 3beedb0..fa5e99d 100644
+--- a/app/nlp/symptom_mapper.py
++++ b/app/nlp/symptom_mapper.py
+@@ -13,11 +13,11 @@ from pathlib import Path
+ 
+ from sqlalchemy import select
+ from sqlalchemy.orm import Session
+-
+ from app.core.errors import ServiceNotReadyError
+ from app.db.models import Symptom, SymptomAlias
+ 
+ from rapidfuzz import fuzz, process
++from rapidfuzz.distance import DamerauLevenshtein
+ 
+ 
+ PROJECT_ROOT = Path(__file__).resolve().parents[1]
+@@ -40,6 +40,20 @@ CANONICAL_SYMPTOMS_PATH = (
+     / "canonical_symptoms.json"
+ )
+ 
++# Bundled warning-sign definitions are independent of the editable DB
++# catalogue. Cache them at import so routine DB extraction does not read JSON.
++_SAFETY_SYMPTOMS = {
++    item["code"]: item for item in json.loads(
++        CANONICAL_SYMPTOMS_PATH.read_text(encoding="utf-8")
++    ) if item["is_red_flag"]
++}
++_SAFETY_ALIAS_INDEX = tuple(sorted(
++    ({"alias": alias.lower(), "code": code, "language": language}
++     for code, item in _SAFETY_SYMPTOMS.items()
++     for language, aliases in item.get("aliases", {}).items()
++     for alias in aliases), key=lambda item: len(item["alias"]), reverse=True,
++))
++
+ FUZZY_THRESHOLD = 90
+ SUGGESTION_THRESHOLD = 70
+ 
+@@ -70,7 +84,11 @@ FILLER_WORDS = {
+     "na",
+     "lakini",
+     "kuwa",
+-    "sana",
++    "sana", "had", "been", "do", "does", "did", "not", "no", "never",
++    "without", "dont", "don't", "doesn't", "didn't", "sina", "hana",
++    "hakuna", "sipigi", "wala", "mild", "moderate", "severe", "kidogo",
++    "wastani", "kali", "kwa", "siku", "wiki", "since", "still",
++    "dry", "wet", "productive", "kikavu", "chenye", "up", "started",
+ }
+ 
+ def load_json(path):
+@@ -87,7 +105,7 @@ def normalize_text(text):
+     Convert text to lowercase and normalize whitespace.
+     """
+ 
+-    text = text.lower().strip()
++    text = text.lower().strip().replace("’", "'").replace("‘", "'")
+ 
+     text = re.sub(
+         r"\s+",
+@@ -180,7 +198,6 @@ def build_alias_index(
+ 
+     return alias_index
+ 
+-
+ def find_fuzzy_matches(
+     normalized_text,
+     alias_index,
+@@ -207,6 +224,9 @@ def find_fuzzy_matches(
+     for item in alias_index:
+         code = item["code"]
+ 
++        if code == "sputum_reported" and item["alias"] == "mucus":
++            continue  # This ambiguous noun requires exact respiratory context.
++
+         if code in matched_codes:
+             continue
+ 
+@@ -277,20 +297,19 @@ def find_fuzzy_matches(
+                     end,
+                 )
+ 
+-        is_close_transposition = (
++        # Only a single edit (including an adjacent transposition) in a
++        # sufficiently long word is eligible for automatic typo matching.
++        # Broad string similarity can silently change one symptom to another.
++        is_close_typo = (
+             best_candidate is not None
+-            and len(best_candidate) == len(alias)
+             and len(alias) >= 5
+-            and best_candidate[:2] == alias[:2]
+-            and best_score >= 80
++            and len(alias.split()) == 1
++            and best_candidate[:1] == alias[:1]
++            and DamerauLevenshtein.distance(best_candidate, alias) == 1
+         )
+-
+-        if (
+-            best_candidate is not None
+-            and (
+-                best_score >= FUZZY_THRESHOLD
+-                or is_close_transposition
+-            )
++        if best_candidate is not None and (
++            is_close_typo
++            or (len(alias.split()) > 1 and best_score >= 95)
+         ):
+             fuzzy_matches.append(
+                 {
+@@ -319,27 +338,13 @@ def find_fuzzy_matches(
+ 
+     return fuzzy_matches
+ 
+-def find_symptoms(
+-    text,
+-    db: Session | None = None,
+-):
+-    """
+-    Find canonical symptoms in English, Swahili,
+-    or mixed-language free text.
+-
+-    Exact matching is attempted first.
+-    Fuzzy matching is then used for remaining
+-    misspelled or near-matching symptom phrases.
+-    """
++def find_symptoms(text, db: Session | None = None):
++    """Find exact aliases followed by conservative typo matches."""
++    return _find_alias_matches(text, build_alias_index(db))
+ 
+-    normalized_text = normalize_text(
+-        text
+-    )
+-
+-    alias_index = build_alias_index(
+-        db
+-    )
+ 
++def _find_alias_matches(text, alias_index):
++    normalized_text = normalize_text(text)
+     matches = []
+     matched_codes = set()
+     occupied_spans = []
+@@ -362,6 +367,14 @@ def find_symptoms(
+             normalized_text,
+         ):
+             start, end = match.span()
++            if item["code"] == "sputum_reported" and alias == "mucus":
++                surrounding = normalized_text[max(0, start-40):end+45]
++                if not re.search(
++                    r"\bcough(?:ing)?\s+(?:up|with)\s+(?:\w+\s+)?mucus\b"
++                    r"|\bmucus\s+(?:from\s+(?:my|the)\s+chest|when\s+i\s+cough)\b",
++                    surrounding,
++                ):
++                    continue
+ 
+             overlaps = any(
+                 start < existing_end
+@@ -379,6 +392,7 @@ def find_symptoms(
+             code = item["code"]
+ 
+             if code in matched_codes:
++                occupied_spans.append((start, end))
+                 continue
+ 
+             matches.append(
+@@ -433,6 +447,7 @@ def find_symptoms(
+ def find_unmatched_text(
+     text,
+     matches,
++    alias_index=None,
+ ):
+     """
+     Return meaningful words or phrases that were not
+@@ -443,17 +458,33 @@ def find_unmatched_text(
+         text
+     )
+ 
+-    # Remove phrases that were already recognised.
+-    for match in matches:
+-        matched_alias = match[
+-            "matched_alias"
+-        ]
++    # Remove all recognised phrases, including alternative
++    # aliases that refer to the same canonical symptom.
++    matched_codes = {
++        match["code"] for match in matches
++    }
++
++    aliases_to_remove = {
++        normalize_text(match["matched_alias"])
++        for match in matches
++    }
++
++    if matched_codes:
++        aliases_to_remove.update(
++            item["alias"]
++            for item in (alias_index if alias_index is not None else build_alias_index())
++            if item["code"] in matched_codes
++        )
+ 
++    # Remove longer phrases first to avoid partial matches.
++    for alias in sorted(
++        aliases_to_remove,
++        key=len,
++        reverse=True
++    ):
+         pattern = (
+             r"(?<!\w)"
+-            + re.escape(
+-                matched_alias
+-            )
++            + re.escape(alias)
+             + r"(?!\w)"
+         )
+ 
+@@ -463,6 +494,8 @@ def find_unmatched_text(
+             remaining_text,
+         )
+ 
++    # Duration and severity are contextual attributes, not unmatched symptoms.
++    remaining_text = DURATION_PATTERN.sub(" ", remaining_text)
+     # Treat common English/Swahili connectors as separators.
+     remaining_text = re.sub(
+         r"\b(and|but|or|na|lakini)\b",
+@@ -527,6 +560,22 @@ def suggest_symptoms(
+     )
+ 
+     for phrase in unmatched_phrases:
++
++        # Prevent unsupported symptoms from
++        # being incorrectly suggested.
++        unsupported_terms = {
++            "sneezing",
++            "sneeze",
++            "sneezes",
++        }
++
++        if phrase.strip().lower() in unsupported_terms:
++            suggestions.append({
++                "unmatched_text": phrase,
++                "suggestions": [],
++            })
++            continue
++
+         results = process.extract(
+             phrase,
+             alias_choices,
+@@ -585,43 +634,453 @@ def suggest_symptoms(
+ 
+     return suggestions
+ 
+-def build_confirmation_output(
+-    text,
+-    db: Session | None = None,
+-):
++
++OTHER_PERSON_PATTERN = (
++    r"\b(?:my\s+(?:sister|brother|mother|father|mom|dad|son|daughter|child|friend|wife|husband)"
++    r"|(?:dada|kaka|mama|baba|mtoto|rafiki|mke|mume)\s+(?:yangu|wangu))\b"
++)
++PATIENT_REFERENCE_PATTERN = (
++    r"\b(?:i|me|myself|mimi|nina\w*|nime\w*|nakohoa|siwezi)\b"
++    r"|\bmy\s+(?:head|throat|chest|body|nose)\b"
++)
++
++
++def context_prefix(normalized, occurrence):
++    boundaries = list(re.finditer(
++        r"\b(?:but|lakini|however)\b"
++        r"|\b(?:and|na)\s+(?=(?:i\s+)?(?:am|have|feel|can|cannot|can't|was|nina\w*|sina|siwezi|nakohoa|mimi|struggling|gasping|no\s+appetite|not\s+hungry|don'?t\s+feel\s+like\s+eating)\b)"
++        r"|[.!?;]", normalized[:occurrence.end()],
++    ))
++    start = boundaries[-1].end() if boundaries else 0
++    return normalized[start:occurrence.start()]
++
++
++def infer_symptom_status(text, matched_alias):
+     """
+-    Build the structured output that can be sent to the
+-    frontend for symptom review and confirmation.
++    Determine whether a recognised symptom is
++    present, absent or unknown.
+     """
++    normalized = normalize_text(text)
+ 
+-    if db is not None:
+-        catalogue_is_empty = (
+-            db.scalar(
+-                select(SymptomAlias.id).limit(1)
++    pattern = (
++        r"(?<!\w)"
++        + re.escape(normalize_text(matched_alias))
++        + r"(?!\w)"
++    )
++
++    occurrences = list(re.finditer(pattern, normalized))
++
++    if not occurrences:
++        return "unknown"
++
++    statuses = []
++
++    for occurrence in occurrences:
++        before = normalized[:occurrence.start()]
++
++
++        after = normalized[occurrence.end():]
++
++        # Check whether a symptom belongs to another person.
++        subject_clause = re.split(
++            r"\b(?:but|however|lakini)\b|[.!?;]",
++            normalized[:occurrence.end()],
++        )[-1]
++
++        other_person = re.search(
++            OTHER_PERSON_PATTERN,
++            subject_clause,
++        )
++
++        patient_mentioned = (
++            other_person is not None
++            and re.search(
++                PATIENT_REFERENCE_PATTERN,
++                subject_clause[other_person.end():],
+             )
+-            is None
+         )
+ 
+-        if catalogue_is_empty:
+-            raise ServiceNotReadyError(
+-                "The symptom catalogue has not been "
+-                "loaded into the database. "
+-                "Run: python -m app.db.seed_symptom_catalog"
++        if other_person and not patient_mentioned:
++            denied = re.match(
++                r"\s*[,;]?\s*(?:but\s+)?not\s+me\b",
++                after,
+             )
+ 
+-    matches = find_symptoms(
+-        text,
+-        db,
++            statuses.append(
++                "absent" if denied else "unknown"
++            )
++            continue
++
++        if normalize_text(matched_alias) in {"sikohoi"}:
++            statuses.append("absent")
++            continue
++
++        # Check whether a past symptom has resolved.
++        if re.search(
++            r"\bi\s+had\s+(?:a\s+|an\s+)?$",
++            before,
++        ):
++            if re.search(
++                r"\b(?:but\s+not\s+now|not\s+anymore|no\s+longer)\b",
++                after,
++            ):
++                statuses.append("absent")
++
++            elif re.search(
++                r"\bstill\s+have\s+it\b",
++                after,
++            ):
++                statuses.append("present")
++
++            else:
++                statuses.append("unknown")
++
++            continue
++
++
++        clause = context_prefix(normalized, occurrence)
++
++        uncertain = re.search(
++            r"\b(?:not\s+sure|unsure|don'?t\s+(?:know|think)|sijui|maybe|perhaps|labda|huenda|sina\s+uhakika|may|might|could)\b|\bdo\s+i\s+have\b|\bif\s+(?:i|nina)\b",
++            clause
++        )
++
++        negations = list(re.finditer(
++            r"\b(?:no|not(?!\s+only\b)|never|without|don'?t|doesn'?t|didn'?t|sina|hana|hakuna|sipigi|sihisi|siko)\b",            clause
++        ))
++
++        if uncertain:
++            statuses.append("unknown")
++
++        elif negations:
++            last_negation = negations[-1]
++            remainder = clause[last_negation.end():]
++
++            restarted = re.search(
++                r"\b(?:i\s+have|i\s+am|nina)\b",
++                remainder
++            )
++
++            statuses.append(
++                "present" if restarted else "absent"
++            )
++
++        else:
++            statuses.append("present")
++
++    if len(set(statuses)) == 1:
++        return statuses[0]
++
++    return "unknown"
++
++
++def infer_symptom_subject(text, matched_alias):
++    """
++    Identify clear reports about another person.
++    Unclear cases remain eligible for safety review.
++    """
++    normalized = normalize_text(text)
++    alias = normalize_text(matched_alias)
++
++    pattern = (
++        r"(?<!\w)"
++        + re.escape(alias)
++        + r"(?!\w)"
++    )
++
++    occurrences = list(re.finditer(pattern, normalized))
++
++    if not occurrences:
++        return "unclear"
++
++    subjects = []
++
++    for occurrence in occurrences:
++        before = normalized[:occurrence.start()]
++
++        clause = re.split(
++            r"[.!?;]|\b(?:but|however|lakini)\b",
++            normalized[:occurrence.end()]
++        )[-1]
++
++        other_people = list(re.finditer(
++            OTHER_PERSON_PATTERN,
++            clause
++        ))
++
++        patient_references = list(re.finditer(
++            PATIENT_REFERENCE_PATTERN,
++            clause
++        ))
++
++        if (
++            other_people
++            and (
++                not patient_references
++                or other_people[-1].start()
++                > patient_references[-1].start()
++            )
++        ):
++            subjects.append("other_person")
++        else:
++            subjects.append("patient_or_unspecified")
++
++    if all(subject == "other_person" for subject in subjects):
++        return "other_person"
++
++    return "patient_or_unspecified"
++
++
++
++def infer_repeated_symptom_context(
++    text, matched_alias, code=None, alias_index=None
++):
++    """
++    Combine different phrases for the same symptom code,
++    while keeping patient and other-person reports separate.
++    """
++    normalized = normalize_text(text)
++    aliases = {normalize_text(matched_alias)}
++
++    if code is not None and alias_index is not None:
++        aliases.update(
++            item["alias"]
++            for item in alias_index
++            if item["code"] == code
++        )
++
++    def matching_aliases(fragment):
++        found = []
++        occupied = []
++
++        # Longer phrases take priority over overlapping ones.
++        for alias in sorted(aliases, key=len, reverse=True):
++            pattern = (
++                r"(?<!\w)"
++                + re.escape(alias)
++                + r"(?!\w)"
++            )
++
++            for occurrence in re.finditer(pattern, fragment):
++                overlaps = any(
++                    occurrence.start() < end
++                    and occurrence.end() > start
++                    for start, end in occupied
++                )
++
++                if overlaps:
++                    continue
++
++                found.append(alias)
++                occupied.append(occurrence.span())
++
++        return found
++
++    # Preserve existing behaviour for one symptom mention.
++    if len(matching_aliases(normalized)) < 2:
++        return (
++            infer_symptom_status(text, matched_alias),
++            infer_symptom_subject(text, matched_alias),
++        )
++
++    clauses = re.split(
++        r"\b(?:but|however|lakini)\b"
++        r"|\b(?:and|na)\s+(?=(?:i|my|am|nina|sina)\b)"
++        r"|,\s*(?=(?:i|my)\b)"
++        r"|[.!?;]",
++        normalized,
+     )
+ 
+-    alias_index = build_alias_index(
+-        db
++    mentions = []
++
++    for clause in clauses:
++        for alias in matching_aliases(clause):
++            mentions.append((
++                infer_symptom_status(clause, alias),
++                infer_symptom_subject(clause, alias),
++            ))
++
++    if not mentions:
++        return "unknown", "patient_or_unspecified"
++
++    patient_states = {
++        status
++        for status, subject in mentions
++        if subject != "other_person"
++    }
++
++    if not patient_states:
++        return "unknown", "other_person"
++
++    if len(patient_states) == 1:
++        return patient_states.pop(), "patient_or_unspecified"
++
++    # Conflicting patient reports require confirmation.
++    return "unknown", "patient_or_unspecified"
++
++
++NUMBER_WORDS = {
++    "a": 1, "an": 1, "one": 1, "two": 2, "three": 3,
++    "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8,
++    "nine": 9, "ten": 10, "moja": 1, "mbili": 2, "tatu": 3,
++    "nne": 4, "tano": 5, "sita": 6, "saba": 7, "nane": 8,
++    "tisa": 9, "kumi": 10,
++}
++QUANTITY_PATTERN = r"(?:\d+|" + "|".join(NUMBER_WORDS) + r"|a few|few|several|chache|kadhaa)"
++DURATION_PATTERN = re.compile(
++    r"\b(?:for\s+(?:(?:the\s+)?(?:last|past)\s+)?(?P<en_approx>about\s+)?(?P<en_min>" + QUANTITY_PATTERN + r")"
++    r"(?:\s*(?:-|to)\s*(?P<en_max>" + QUANTITY_PATTERN + r"))?"
++    r"\s*(?P<en_unit>days?|weeks?|months?|hours?)"
++    r"|(?P<ago_min>" + QUANTITY_PATTERN + r")\s+(?P<ago_unit>days?|weeks?|months?|hours?)\s+ago"
++    r"|(?:kwa\s+)?(?P<sw_unit>siku|wiki|miezi|saa)\s+"
++    r"(?P<sw_min>" + QUANTITY_PATTERN + r")"
++    r"(?:\s*(?:-|hadi)\s*(?P<sw_max>" + QUANTITY_PATTERN + r"))?"
++    r"|since\s+yesterday|tangu\s+jana|started\s+yesterday"
++    r"|since\s+(?:this\s+morning|last\s+night)|started\s+today|tangu\s+asubuhi)\b"
++)
++
++
++def parse_duration(fragment):
++    """Preserve vague durations without assigning invented numerical bounds."""
++    match = DURATION_PATTERN.search(fragment)
++    if match is None:
++        return None
++    raw = match.group()
++    if raw in {"since yesterday", "tangu jana", "started yesterday"}:
++        return {"duration_text": raw, "duration_min_days": 1,
++                "duration_max_days": 1, "duration_unit": "days"}
++    unit = match.group("en_unit") or match.group("sw_unit") or match.group("ago_unit")
++    if unit is None:
++        return {"duration_text": raw, "duration_min_days": None,
++                "duration_max_days": None, "duration_unit": "relative"}
++    low = match.group("en_min") or match.group("sw_min") or match.group("ago_min")
++    high = match.group("en_max") or match.group("sw_max") or low
++    def number(value):
++        return int(value) if value.isdigit() else NUMBER_WORDS.get(value)
++    minimum, maximum = number(low), number(high)
++    if match.group("en_approx"):
++        minimum = maximum = None
++    multiplier = 7 if unit.startswith("week") or unit == "wiki" else 1
++    # Months/hours cannot be exactly represented by integer days.
++    if unit.startswith(("month", "hour")) or unit in {"miezi", "saa"}:
++        minimum = maximum = None
++    if minimum is not None and maximum is not None:
++        if minimum < 1 or maximum < minimum:
++            return None
++        minimum *= multiplier
++        maximum *= multiplier
++    return {"duration_text": raw, "duration_min_days": minimum,
++            "duration_max_days": maximum, "duration_unit": unit}
++
++
++def extract_patient_attributes(text, matched_alias, code, alias_index):
++    """Extract attributes within patient clauses; conflicting reports stay unset."""
++    normalized = normalize_text(text)
++    aliases = {normalize_text(matched_alias)} | {
++        item["alias"] for item in alias_index if item["code"] == code
++    }
++    clauses = re.split(
++        r"\b(?:but|however|lakini)\b"
++        r"|\b(?:and|na)\s+(?=(?:i|my|am|nina|sina)\b)"
++        r"|,\s*(?=(?:i|my)\b)|[.!?;]", normalized,
+     )
++    durations, severities = [], set()
++    severity_values = {"mild": "mild", "moderate": "moderate", "severe": "severe",
++                       "kidogo": "mild", "wastani": "moderate", "kali": "severe"}
++    for clause in clauses:
++        for alias in sorted(aliases, key=len, reverse=True):
++            for occurrence in re.finditer(r"(?<!\w)" + re.escape(alias) + r"(?!\w)", clause):
++                if infer_symptom_subject(clause, alias) == "other_person":
++                    continue
++                if infer_symptom_status(clause, alias) != "present":
++                    continue
++                # A shared trailing duration applies to a coordinated symptom
++                # list, but never cross another subject or an earlier duration.
++                following = clause[occurrence.end():]
++                duration = parse_duration(following)
++                if duration is not None:
++                    prefix = following[:following.find(duration["duration_text"])]
++                    if not re.search(r"\b(?:with|without)\b", prefix):
++                        durations.append(duration)
++                local = clause[max(0, occurrence.start()-24):occurrence.end()]
++                local = re.split(r",|\b(?:and|na|with)\b", local)[-1]
++                values = re.findall(r"\b(?:mild|moderate|severe|kidogo|wastani|kali)\b", local)
++                if not values:
++                    suffix = re.match(r"\s+(?:(?:is|ni)\s+)?(?:(?:dry|wet|productive|kikavu)\s+)?(mild|moderate|severe|kidogo|wastani|kali)\b", following)
++                    values = [suffix.group(1)] if suffix else []
++                severities.update(severity_values[value] for value in values)
++    distinct = {tuple(sorted(value.items())) for value in durations}
++    result = dict(next(iter(distinct))) if len(distinct) == 1 else {
++        "duration_text": None, "duration_min_days": None,
++        "duration_max_days": None, "duration_unit": None,
++    }
++    result["severity"] = next(iter(severities)) if len(severities) == 1 else None
++    result.update(extract_context_attributes(normalized, aliases, code))
++    return result
++
++
++def extract_context_attributes(normalized, aliases, code):
++    contexts = []
++    for clause in re.split(r"[.!?;]|\b(?:but|however|lakini)\b", normalized):
++        for alias in aliases:
++            if not re.search(r"(?<!\w)" + re.escape(alias) + r"(?!\w)", clause):
++                continue
++            if infer_symptom_subject(clause, alias) == "other_person":
++                continue
++            if infer_symptom_status(clause, alias) == "present":
++                contexts.append(clause)
++    result = {}
++    context = " ".join(dict.fromkeys(contexts))
++    if code == "cough":
++        dry = bool(re.search(r"\b(?:dry|kikavu)\b|\b(?:no|without)\s+(?:phlegm|sputum)\b|\bbila\s+makohozi\b", context))
++        productive = bool(re.search(r"\b(?:wet|productive)\s+cough\b", context))
++        for alias in ("phlegm", "sputum", "makohozi"):
++            if re.search(r"\b" + alias + r"\b", context) and infer_symptom_status(context, alias) == "present":
++                productive = True
++        if re.search(r"\bcough(?:ing)?\s+(?:up|with)\s+(?:\w+\s+)?mucus\b", context):
++            productive = True
++        result["cough_type"] = "dry" if dry and not productive else "productive" if productive and not dry else None
++    if code == "weight_loss":
++        if re.search(r"without\s+trying|unintentional|unintended|without\s+meaning\s+to|bila\s+(?:kukusudia|sababu)", context):
++            result["weight_loss_intent"] = "unintentional"
++        elif re.search(r"on\s+purpose|intentionally|dieting|kwa\s+(?:makusudi|kukusudia)", context):
++            result["weight_loss_intent"] = "intentional"
++        else:
++            result["weight_loss_intent"] = "unspecified"
++    onset = re.search(r"\b(?:since\s+(?:this\s+morning|last\s+night)|started\s+(?:today|yesterday)|tangu\s+(?:asubuhi|jana\s+usiku))\b", context)
++    result["onset_text"] = onset.group() if onset else None
++    return result
++
++
++def extract_symptom_duration_days(text, matched_alias):
++    duration = parse_duration(normalize_text(text).split(normalize_text(matched_alias), 1)[-1])
++    return duration["duration_min_days"] if duration else None
++
++
++def extract_patient_duration_days(text, matched_alias, code, alias_index):
++    return extract_patient_attributes(text, matched_alias, code, alias_index)["duration_min_days"]
++
++
++def build_confirmation_output(text, db: Session | None = None):
++    """
++    Build the structured output that can be sent to the
++    frontend for symptom review and confirmation.
++    """
++
++    if db is not None and db.scalar(select(SymptomAlias.id).limit(1)) is None:
++        raise ServiceNotReadyError(
++            "The symptom catalogue has not been loaded into the database. "
++            "Run: python -m app.db.seed_symptom_catalog"
++        )
++    matches = find_symptoms(text, db)
++
++    alias_index = build_alias_index(db)
+ 
+     unmatched_phrases = (
+         find_unmatched_text(
+             text,
+             matches,
++            alias_index,
+         )
+     )
+ 
+@@ -632,34 +1091,14 @@ def build_confirmation_output(
+         )
+     )
+ 
+-    if db is not None:
+-        database_symptoms = db.scalars(
+-            select(Symptom)
+-        ).all()
+-
+-        canonical_index = {
+-            symptom.code: {
+-                "code": symptom.code,
+-                "display_name": (
+-                    symptom.display_name
+-                ),
+-                "features": symptom.features,
+-                "kind": symptom.kind,
+-                "is_red_flag": (
+-                    symptom.is_red_flag
+-                ),
+-            }
+-            for symptom in database_symptoms
+-        }
+-
++    if db is None:
++        canonical_index = {item["code"]: item for item in load_json(CANONICAL_SYMPTOMS_PATH)}
+     else:
+-        canonical_symptoms = load_json(
+-            CANONICAL_SYMPTOMS_PATH
+-        )
+-
+         canonical_index = {
+-            entry["code"]: entry
+-            for entry in canonical_symptoms
++            item.code: {"code": item.code, "display_name": item.display_name,
++                        "features": item.features, "kind": item.kind,
++                        "is_red_flag": item.is_red_flag}
++            for item in db.scalars(select(Symptom)).all()
+         }
+ 
+     recognised_symptoms = []
+@@ -677,15 +1116,28 @@ def build_confirmation_output(
+             code
+         ]
+ 
++        status, reported_subject = infer_repeated_symptom_context(
++            text,
++            match["matched_alias"],
++            code=code,
++            alias_index=alias_index,
++        )
++
++        attributes = extract_patient_attributes(
++            text, match["matched_alias"], code, alias_index,
++        ) if status == "present" else {
++            "duration_text": None, "duration_min_days": None,
++            "duration_max_days": None, "duration_unit": None, "severity": None,
++        }
++
+         recognised_symptoms.append(
+             {
+                 "code": code,
+                 "display_name": symptom[
+                     "display_name"
+                 ],
+-                "features": symptom[
+-                    "features"
+-                ],
++                "features": (symptom["features"] if code != "weight_loss" or status != "present"
++                             or attributes.get("weight_loss_intent") == "unintentional" else []),
+                 "kind": symptom[
+                     "kind"
+                 ],
+@@ -704,14 +1156,19 @@ def build_confirmation_output(
+                 "match_score": match[
+                     "score"
+                 ],
++
++                "status": status,
++                "reported_subject": reported_subject,
++                **attributes,
+                 "confirmed": False,
+             }
+         )
+ 
+     has_red_flag = any(
+         symptom["is_red_flag"]
+-        for symptom
+-        in recognised_symptoms
++        and symptom["status"] != "absent"
++        and symptom["reported_subject"] != "other_person"
++        for symptom in recognised_symptoms
+     )
+ 
+     return {
+@@ -721,12 +1178,38 @@ def build_confirmation_output(
+         ),
+         "unmatched_wording": suggestions,
+         "has_red_flag": has_red_flag,
++        "absent_symptoms": [item for item in recognised_symptoms if item["status"] == "absent"],
++        "uncertain_symptoms": [item for item in recognised_symptoms if item["status"] == "unknown"],
+         "requires_confirmation": (
+             bool(recognised_symptoms)
+             or bool(suggestions)
+         ),
+     }
+ 
++def detect_safety_signs(text):
++    """Check cached bundled warnings without DB, catalogue loader or ML access."""
++    flags = []
++    for match in _find_alias_matches(text, _SAFETY_ALIAS_INDEX):
++        code = match["code"]
++        status, subject = infer_repeated_symptom_context(
++            text, match["matched_alias"], code, _SAFETY_ALIAS_INDEX,
++        )
++        if status == "absent" or subject == "other_person":
++            continue
++        canonical = _SAFETY_SYMPTOMS[code]
++        flags.append({
++            "code": code, "display_name": canonical["display_name"],
++            "features": list(canonical["features"]), "kind": canonical["kind"],
++            "is_red_flag": True, "matched_text": match["matched_alias"],
++            "language": match["language"], "match_type": match["match_type"],
++            "match_score": match["score"], "status": status,
++            "reported_subject": subject, "confirmed": False,
++            "duration_min_days": None, "duration_max_days": None,
++            "duration_text": None, "duration_unit": None, "severity": None,
++        })
++    return flags
++
++
+ def main():
+     if len(sys.argv) < 2:
+         print("Usage:")
+@@ -835,4 +1318,4 @@ def main():
+ 
+ 
+ if __name__ == "__main__":
+-    main()
+\ No newline at end of file
++    main()
+diff --git a/app/services/health_guidance.py b/app/services/health_guidance.py
+index c2cbf88..b33c907 100644
+--- a/app/services/health_guidance.py
++++ b/app/services/health_guidance.py
+@@ -77,16 +77,81 @@ def enrich_predictions(
+     return enriched_predictions
+ 
+ 
+-def get_prediction_guidance() -> dict:
++def get_prediction_guidance(language="en", context=None) -> dict:
++    context = context or {}
++    states = context.get("symptom_states", {})
++    duration = context.get("duration") or {}
++    prolonged = (duration.get("min_days") or 0) > 14 or any(
++        word in str(duration.get("text", "")).lower() for word in ("weeks", "months", "wiki", "miezi")
++    )
++    assessment_advice = (
++        ("Tafuta tathmini ya mtaalamu wa afya mapema kwa kikohozi cha muda mrefu au kupungua uzito bila kukusudia. "
++         if language == "sw" else
++         "Arrange professional medical assessment promptly for prolonged cough or unexplained weight loss. ")
++        if states.get("weight_loss") == "present" or (states.get("cough") == "present" and prolonged)
++        else ""
++    )
++    if language == "sw":
++        return {
++            "confidence_explanation": "Alama ya modeli haijarekebishwa kuwa uwezekano wa kitabibu. Si uwezekano kwamba una ugonjwa huu.",
++            "health_guidance": assessment_advice + "Dalili zikiendelea, zikizidi au zikikutia wasiwasi, tafuta tathmini ya mtaalamu wa afya. Alama ndogo haimaanishi hatari ndogo.",
++            "disclaimer": "Mfumo huu hutoa taarifa za afya tu. Hautoi utambuzi wa ugonjwa wala kuchukua nafasi ya mtaalamu wa afya.",
++        }
+     return {
+         "confidence_explanation": CONFIDENCE_EXPLANATION,
+-        "health_guidance": GENERAL_GUIDANCE,
++        "health_guidance": assessment_advice + GENERAL_GUIDANCE + " A low model score does not mean low medical risk.",
+         "disclaimer": DISCLAIMER,
+     }
+ 
+ 
+-def get_urgent_guidance() -> dict:
++def get_urgent_guidance(language="en") -> dict:
++    if language == "sw":
++        return {
++            "health_guidance": "Dalili ya hatari imetambuliwa. Tafuta huduma ya matibabu ya haraka. Ikiwa unapumua kwa shida sana, unashindwa kuzungumza, au hali inazidi haraka, tafuta huduma ya dharura sasa. Usisubiri kukamilisha maswali haya.",
++            "disclaimer": get_prediction_guidance(language)["disclaimer"],
++        }
+     return {
+-        "health_guidance": URGENT_GUIDANCE,
++        "health_guidance": "A warning sign was detected. Seek urgent medical assessment. If breathing difficulty is severe, you cannot speak normally, or symptoms are rapidly worsening, seek emergency care now. Do not wait to complete this questionnaire.",
+         "disclaimer": DISCLAIMER,
+-    }
+\ No newline at end of file
++    }
++
++
++def get_insufficient_guidance(language="en", context=None) -> dict:
++    return {
++        **get_prediction_guidance(language, context),
++        "uncertainty_message": (
++            "Taarifa hizi hazitoshi kutambua ugonjwa kwa uhakika. Modeli hii ni ya utafiti na haijathibitishwa kitabibu. Tafuta tathmini ya mtaalamu wa afya kulingana na dalili zako."
++            if language == "sw" else
++            "This information cannot reliably distinguish a condition. The model is experimental and has not been clinically validated. Seek professional assessment based on your symptoms."
++        ),
++        "score_note": (
++            "Alama za modeli si uwezekano wa kitabibu uliothibitishwa."
++            if language == "sw" else
++            "Model scores are uncalibrated and are not validated clinical probabilities."
++        ),
++    }
++
++
++def get_history_guidance(status, context=None):
++    """Keep safety/uncertainty visible when revisiting current or legacy records."""
++    context = context or {}
++    language = context.get("language", "en")
++    if status == "urgent_review":
++        return get_urgent_guidance(language)
++    if context.get("model_version") == "v3_partial_evidence":
++        from app.services.consultation_guidance import consultation_guidance
++        return {
++            **consultation_guidance(context, context.get("age", 21)),
++            "uncertain": True,
++            "uncertainty_reasons": context.get("uncertainty_reasons", ["simulated_source_not_clinically_validated"]),
++            "model_version": "v3_partial_evidence", "clinical_validation": False,
++            "model_status": "research_partial_evidence",
++        }
++    return {
++        **get_insufficient_guidance(language, context),
++        "uncertain": True,
++        "uncertainty_reasons": context.get("uncertainty_reasons", ["not_clinically_validated"]),
++        "model_version": context.get("model_version", "legacy_unknown"),
++        "clinical_validation": False,
++        "model_status": "research_prototype" if context.get("model_version") == "v2_23class_prototype" else "legacy_unvalidated",
++    }
+diff --git a/app/services/history.py b/app/services/history.py
+index 3e507d2..1b8b32b 100644
+--- a/app/services/history.py
++++ b/app/services/history.py
+@@ -20,6 +20,7 @@ def save_prediction_session(
+     has_red_flag: bool,
+     predictions: list[dict],
+     model_version_id: uuid.UUID | None = None,
++    assessment_context: dict | None = None,
+ ) -> PredictionSession:
+     session = PredictionSession(
+         user_id=user_id,
+@@ -32,6 +33,7 @@ def save_prediction_session(
+         has_red_flag=has_red_flag,
+         predictions=predictions,
+         model_version_id=model_version_id,
++        assessment_context=assessment_context or {},
+     )
+ 
+     db.add(session)
+diff --git a/app/services/symptom_confirmation.py b/app/services/symptom_confirmation.py
+index 6bd7a9a..880105d 100644
+--- a/app/services/symptom_confirmation.py
++++ b/app/services/symptom_confirmation.py
+@@ -1,85 +1,44 @@
+-from app.nlp.symptom_mapper import build_confirmation_output
++"""Confirm positive suggestions without converting negation into evidence."""
+ from sqlalchemy.orm import Session
+-
+-def confirm_symptoms(
+-    text: str,
+-    confirmed_codes: list[str],
+-    db: Session,
+-):
+-    mapping_result = build_confirmation_output(
+-        text,
+-        db,
+-    )
+-
+-    recognised_symptoms = mapping_result["recognised_symptoms"]
+-
+-    recognised_by_code = {
+-        symptom["code"]: symptom
+-        for symptom in recognised_symptoms
+-    }
+-
+-    invalid_codes = [
+-        code
+-        for code in confirmed_codes
+-        if code not in recognised_by_code
+-    ]
+-
+-    if invalid_codes:
+-        raise ValueError(
+-            "The following symptom codes were not recognised "
+-            f"from the submitted text: {invalid_codes}"
+-        )
+-
+-    confirmed_code_set = set(confirmed_codes)
+-
+-    updated_symptoms = []
+-    confirmed_symptoms = []
+-    rejected_symptoms = []
+-    model_features = []
+-    red_flag_symptoms = []
+-
+-    for symptom in recognised_symptoms:
+-        symptom_result = dict(symptom)
+-
+-        is_confirmed = symptom["code"] in confirmed_code_set
+-        symptom_result["confirmed"] = is_confirmed
+-
+-        updated_symptoms.append(symptom_result)
+-
+-        if is_confirmed:
+-            confirmed_symptoms.append(symptom_result)
+-
+-            for feature in symptom.get("features", []):
+-                if feature not in model_features:
+-                    model_features.append(feature)
+-
+-            if symptom.get("is_red_flag", False):
+-                red_flag_symptoms.append(symptom_result)
+-
+-        else:
+-            rejected_symptoms.append(symptom_result)
+-
+-    has_red_flag = len(red_flag_symptoms) > 0
+-
+-    safety_status = (
+-        "urgent_review"
+-        if has_red_flag
+-        else "continue"
+-    )
+-
++from app.nlp.symptom_mapper import build_confirmation_output, detect_safety_signs
++
++
++def absent_features(symptoms):
++    # A location-specific pain denial is not a denial of all pain. E_53
++    # is shared by headache/chest pain; retain their location information.
++    return list(dict.fromkeys(feature for item in symptoms
++        for feature in item.get('features', [])
++        if not (feature == 'E_53' and item['code'] in {'headache', 'chest_pain', 'forehead_pain', 'upper_chest_pain'})))
++
++
++def confirm_symptoms(text: str, confirmed_codes: list[str], db: Session):
++    mapping = build_confirmation_output(text, db)
++    recognised = mapping['recognised_symptoms']
++    present = {item['code']: item for item in recognised
++               if item.get('status', 'present') == 'present'
++               and item.get('reported_subject') != 'other_person'}
++    if len(confirmed_codes) != len(set(confirmed_codes)):
++        raise ValueError('Duplicate confirmed symptom codes are not allowed.')
++    invalid = set(confirmed_codes) - present.keys()
++    if invalid:
++        raise ValueError('The following symptom codes were not recognised as present '
++                         f'from the submitted text: {sorted(invalid)}')
++    selected = set(confirmed_codes)
++    updated = [dict(item, confirmed=item['code'] in selected) for item in recognised]
++    confirmed = [item for item in updated if item['confirmed']]
++    absent = [item for item in updated if item.get('status') == 'absent'
++              and item.get('reported_subject') != 'other_person']
++    red_flags = detect_safety_signs(text)
++    red_flags += [item for item in confirmed if item.get('is_red_flag')
++                  and item['code'] not in {flag['code'] for flag in red_flags}]
+     return {
+-        "input_text": text,
+-        "recognised_symptoms": updated_symptoms,
+-        "confirmed_symptoms": confirmed_symptoms,
+-        "rejected_symptoms": rejected_symptoms,
+-        "confirmed_codes": [
+-            symptom["code"]
+-            for symptom in confirmed_symptoms
+-        ],
+-        "model_features": model_features,
+-        "unmatched_wording": mapping_result["unmatched_wording"],
+-        "has_red_flag": has_red_flag,
+-        "red_flag_symptoms": red_flag_symptoms,
+-        "safety_status": safety_status,
+-        "requires_confirmation": False,
+-    }
+\ No newline at end of file
++        **mapping, 'recognised_symptoms': updated, 'confirmed_symptoms': confirmed,
++        'rejected_symptoms': [item for item in updated if item['code'] in present and not item['confirmed']],
++        'absent_symptoms': absent,
++        'uncertain_symptoms': [item for item in updated if item.get('status') == 'unknown'],
++        'confirmed_codes': [item['code'] for item in confirmed],
++        'model_features': list(dict.fromkeys(feature for item in confirmed for feature in item.get('features', []))),
++        'explicitly_absent_features': absent_features(absent),
++        'has_red_flag': bool(red_flags), 'red_flag_symptoms': red_flags,
++        'safety_status': 'urgent_review' if red_flags else 'continue', 'requires_confirmation': False,
++    }
+diff --git a/app/services/v2_prediction.py b/app/services/v2_prediction.py
+index d9e0e38..06086bc 100644
+--- a/app/services/v2_prediction.py
++++ b/app/services/v2_prediction.py
+@@ -12,16 +12,21 @@ from functools import lru_cache
+ import pandas as pd
+ 
+ from app.ml.model_loader import load_v2_model_bundle
++from app.core.errors import ServiceNotReadyError
+ 
+ 
+-MIN_CONFIDENCE = 0.50
+-MIN_MARGIN = 0.10
++# No score cutoff has been clinically validated for this model.
+ 
+ 
+ @lru_cache(maxsize=1)
+ def get_v2_bundle():
+     """Load the validated V2 model once per process."""
+-    return load_v2_model_bundle()
++    try:
++        return load_v2_model_bundle()
++    except Exception as error:
++        raise ServiceNotReadyError(
++            "The V2 model artifacts are unavailable or invalid; no fallback prediction was produced."
++        ) from error
+ 
+ 
+ def build_v2_feature_frame(
+@@ -174,15 +179,10 @@ def predict_v2_single(
+     second_score = probabilities[second]
+     margin = top_score - second_score
+ 
+-    uncertainty_reasons = []
+-
+-    if top_score < MIN_CONFIDENCE:
+-        uncertainty_reasons.append("low_model_score")
+-
+-    if margin < MIN_MARGIN:
+-        uncertainty_reasons.append("close_alternative")
+-
+-    uncertain = bool(uncertainty_reasons)
++    # Saved scores are uncalibrated, and the synthetic extension classes
++    # lack independent validation. A large score cannot establish certainty.
++    uncertainty_reasons = ["research_model_not_clinically_validated"]
++    uncertain = True
+ 
+     return {
+         "model_version": bundle["model_version"],
+@@ -190,14 +190,12 @@ def predict_v2_single(
+         "active_symptom_features": list(symptom_features),
+         "predictions": [
+             {
+-                "rank": 1,
+-                "condition": classes[first],
+-                "probability": round(top_score, 6),
+-                "confidence_percent": round(
+-                    top_score * 100,
+-                    2,
+-                ),
++                "rank": rank,
++                "condition": classes[index],
++                "probability": round(probabilities[index], 6),
++                "confidence_percent": round(probabilities[index] * 100, 2),
+             }
++            for rank, index in enumerate(ranked[:3], 1)
+         ],
+         "uncertain": uncertain,
+         "uncertainty_reasons": uncertainty_reasons,
+diff --git a/tests/conftest.py b/tests/conftest.py
+index 6170927..367803c 100644
+--- a/tests/conftest.py
++++ b/tests/conftest.py
+@@ -85,7 +85,9 @@ def test_database():
+         )
+ 
+         seed_symptom_catalog()
+-        seed_model_version()
++        # Legacy suites explicitly exercise V1/V2 contracts. V3 tests activate
++        # the new default inside isolated transactions.
++        seed_model_version(version="1.0")
+ 
+         yield
+ 
+diff --git a/tests/test_basic_endpoints.py b/tests/test_basic_endpoints.py
+index 08d3f3c..e3b73ef 100644
+--- a/tests/test_basic_endpoints.py
++++ b/tests/test_basic_endpoints.py
+@@ -139,4 +139,33 @@ def test_cors_does_not_allow_unknown_origin():
+     assert (
+         "access-control-allow-origin"
+         not in response.headers
+-    )
+\ No newline at end of file
++    )
++
++def test_model_status_reflects_active_v2(monkeypatch):
++    from types import SimpleNamespace
++    monkeypatch.setattr(main_module, "get_active_model_version",
++                        lambda db: SimpleNamespace(version=main_module.V2_MODEL_VERSION))
++    response = client.get("/model/status")
++    assert response.status_code == 200
++    data = response.json()
++    assert data["model_version"] == main_module.V2_MODEL_VERSION
++    assert data["feature_count"] == data["model_feature_count"] == 66
++    assert data["class_count"] == data["model_class_count"] == 23
++    assert data["clinical_validation"] is False
++
++
++def test_invalid_active_artifact_returns_503_without_fallback(monkeypatch):
++    from types import SimpleNamespace
++    from app.services import v2_prediction
++    monkeypatch.setattr(main_module, "get_active_model_version",
++                        lambda db: SimpleNamespace(version=main_module.V2_MODEL_VERSION))
++    v2_prediction.get_v2_bundle.cache_clear()
++    def corrupt():
++        raise KeyError("Malformed artifact")
++    monkeypatch.setattr(v2_prediction, "load_v2_model_bundle", corrupt)
++    try:
++        response = client.get("/model/status")
++        assert response.status_code == 503
++        assert "no fallback" in response.json()["detail"]
++    finally:
++        v2_prediction.get_v2_bundle.cache_clear()
+diff --git a/tests/test_end_to_end.py b/tests/test_end_to_end.py
+index 964cfbb..0fcfade 100644
+--- a/tests/test_end_to_end.py
++++ b/tests/test_end_to_end.py
+@@ -10,6 +10,7 @@ import uuid
+ from fastapi.testclient import TestClient
+ 
+ from app.main import app
++from tests.assessment_helpers import finish_followups
+ 
+ 
+ client = TestClient(app)
+@@ -74,10 +75,10 @@ def test_register_login_predict_history_feedback():
+     assert set(codes) == {"fever", "cough"}
+ 
+     # Prediction is stored for the logged-in patient.
+-    response = client.post(
+-        "/predict",
++    response = finish_followups(
++        client,
+         headers=patient,
+-        json={
++        payload={
+             "age": 25,
+             "sex": "M",
+             "text": "I have fever na kikohozi",
+@@ -89,9 +90,11 @@ def test_register_login_predict_history_feedback():
+ 
+     prediction = response.json()
+ 
+-    assert prediction["status"] == "prediction_complete"
++    assert prediction["status"] == "insufficient_evidence"
+     assert prediction["model_version"] == "1.0"
+-    assert len(prediction["predictions"]) == 1
++    assert prediction["predictions"] == []
++    assert prediction["uncertain"] is True
++    assert prediction["assessment_context"]["follow_up_answers"]
+ 
+     prediction_id = prediction["prediction_id"]
+ 
+diff --git a/tests/test_prediction_validation.py b/tests/test_prediction_validation.py
+index bbe1598..8f3f940 100644
+--- a/tests/test_prediction_validation.py
++++ b/tests/test_prediction_validation.py
+@@ -7,6 +7,7 @@ from fastapi.testclient import TestClient
+ import app.main as main_module
+ from app.core.database import SessionLocal
+ from app.main import app
++from tests.assessment_helpers import finish_followups
+ 
+ 
+ client = TestClient(app)
+@@ -67,12 +68,12 @@ def mock_prediction_save(monkeypatch):
+     return saved
+ 
+ 
+-def test_normal_prediction(
++def test_v1_sparse_assessment_abstains_and_preserves_ownership(
+     mock_prediction_save,
+ ):
+-    response = client.post(
+-        "/predict",
+-        json={
++    response = finish_followups(
++        client,
++        {
+             "age": 25,
+             "sex": "M",
+             "text": "I have fever na kikohozi",
+@@ -87,11 +88,13 @@ def test_normal_prediction(
+ 
+     data = response.json()
+ 
+-    assert data["status"] == "prediction_complete"
++    # Intentional contract: V1 cannot distinguish unknown from absent evidence.
++    assert data["status"] == "insufficient_evidence"
+     assert data["model_version"] == "1.0"
+     assert data["has_red_flag"] is False
+-    assert data["feature_count"] == 198
+-    assert len(data["predictions"]) == 1
++    assert data["predictions"] == []
++    assert data["uncertain"] is True
++    assert "v1_unknown_absent_mismatch" in data["uncertainty_reasons"]
+     assert "prediction_id" in data
+ 
+     assert (
+@@ -104,13 +107,8 @@ def test_normal_prediction(
+         is not None
+     )
+ 
+-    for prediction in data["predictions"]:
+-        assert "rank" in prediction
+-        assert "condition" in prediction
+-        assert "display_name" in prediction
+-        assert "model_confidence_percent" in prediction
+-        assert "description" in prediction
+-
++    # Enriched prediction fields are checked on dense V2 research outputs in
++    # test_v2_prediction_api_unit; this V1 path must not display a candidate.
+     assert "confidence_explanation" in data
+     assert "health_guidance" in data
+     assert "disclaimer" in data
+@@ -206,7 +204,7 @@ def test_invalid_confirmed_symptom():
+     )
+ 
+ 
+-def test_prediction_requires_confirmed_model_feature():
++def test_no_confirmed_model_feature_returns_clarification():
+     response = client.post(
+         "/predict",
+         json={
+@@ -217,12 +215,11 @@ def test_prediction_requires_confirmed_model_feature():
+         },
+     )
+ 
+-    assert response.status_code == 400
+-
+-    assert (
+-        "At least one confirmed model symptom feature"
+-        in response.json()["detail"]
+-    )
++    assert response.status_code == 200
++    data = response.json()
++    assert data["status"] == "insufficient_evidence"
++    assert data["predictions"] == []
++    assert "no_supported_present_symptoms" in data["uncertainty_reasons"]
+ 
+ def test_prediction_requires_authentication():
+     app.dependency_overrides.pop(
+@@ -247,4 +244,4 @@ def test_prediction_requires_authentication():
+     assert (
+         response.json()["detail"]
+         == "Authentication required."
+-    )
+\ No newline at end of file
++    )
+diff --git a/tests/test_service_readiness.py b/tests/test_service_readiness.py
+index 1627622..9d78ff1 100644
+--- a/tests/test_service_readiness.py
++++ b/tests/test_service_readiness.py
+@@ -4,6 +4,7 @@ from types import SimpleNamespace
+ import pytest
+ from fastapi.testclient import TestClient
+ from pydantic import ValidationError
++from sqlalchemy.exc import SQLAlchemyError
+ 
+ import app.main as main_module
+ from app.core.config import Settings
+@@ -14,6 +15,7 @@ from app.main import (
+     app,
+ )
+ from app.nlp.symptom_mapper import build_confirmation_output
++from tests.assessment_helpers import finish_followups
+ 
+ 
+ client = TestClient(app)
+@@ -88,9 +90,9 @@ def test_predict_returns_503_without_active_model_version(
+         no_active_model_version,
+     )
+ 
+-    response = client.post(
+-        "/predict",
+-        json={
++    response = finish_followups(
++        client,
++        {
+             "age": 25,
+             "sex": "M",
+             "text": "I have fever and cough",
+@@ -109,6 +111,39 @@ def test_predict_returns_503_without_active_model_version(
+     )
+ 
+ 
++def test_schema_outage_preserves_emergency_mapping_at_startup(monkeypatch):
++    def unavailable_schema():
++        raise RuntimeError("Test schema unavailable")
++
++    class UnavailableDb:
++        def execute(self, statement):
++            raise SQLAlchemyError("Test database unavailable")
++
++        def scalar(self, statement):
++            raise SQLAlchemyError("Test database unavailable")
++
++    monkeypatch.setattr(main_module, "check_schema", unavailable_schema)
++    previous_ready = getattr(app.state, "database_ready", None)
++    app.dependency_overrides[main_module.get_db] = lambda: UnavailableDb()
++    try:
++        with TestClient(app) as startup_client:
++            health = startup_client.get("/health")
++            assert health.status_code == 200
++            assert health.json()["status"] == "degraded"
++            urgent = startup_client.post("/nlp/map", json={"text": "I am struggling to breathe"})
++            assert urgent.status_code == 200
++            assert urgent.json()["has_red_flag"] is True
++            assert urgent.json()["safety_status"] == "urgent_review"
++            routine = startup_client.post("/nlp/map", json={"text": "I have a cough"})
++            assert routine.status_code == 503
++    finally:
++        app.dependency_overrides.clear()
++        if previous_ready is None:
++            del app.state.database_ready
++        else:
++            app.state.database_ready = previous_ready
++
++
+ def test_symptom_text_too_long_returns_422():
+     response = client.post(
+         "/nlp/map",
+diff --git a/tests/test_symptom_catalog.py b/tests/test_symptom_catalog.py
+index dccf501..ec24d3c 100644
+--- a/tests/test_symptom_catalog.py
++++ b/tests/test_symptom_catalog.py
+@@ -27,7 +27,8 @@ def test_canonical_symptom_catalog():
+         "canonical_symptoms.json"
+     )
+ 
+-    assert len(canonical) == 36
++    assert canonical
++    assert "sneezing" in {item["code"] for item in canonical}
+ 
+     codes = [
+         symptom["code"]
+@@ -84,11 +85,13 @@ def test_symptom_alias_catalog_counts_and_codes():
+         for aliases in swahili.values()
+     )
+ 
+-    assert len(english) == 36
+-    assert len(swahili) == 17
+-
+-    assert english_count == 136
+-    assert swahili_count == 29
++    expected_english = {item["code"]: item["aliases"]["en"] for item in canonical}
++    expected_swahili = {item["code"]: item["aliases"]["sw"] for item in canonical
++                       if item["aliases"]["sw"]}
++    assert english == expected_english
++    assert swahili == expected_swahili
++    assert english_count == sum(len(item["aliases"]["en"]) for item in canonical)
++    assert swahili_count == sum(len(item["aliases"]["sw"]) for item in canonical)
+ 
+     assert set(english) == canonical_codes
+     assert set(swahili).issubset(
+@@ -192,4 +195,4 @@ def test_symptom_database_model_relationship():
+         .relationships["symptom"]
+         .back_populates
+         == "aliases"
+-    )
+\ No newline at end of file
++    )
+diff --git a/tests/test_v2_prediction_api_unit.py b/tests/test_v2_prediction_api_unit.py
+index c1225c0..1ba9c23 100644
+--- a/tests/test_v2_prediction_api_unit.py
++++ b/tests/test_v2_prediction_api_unit.py
+@@ -20,10 +20,19 @@ class TestPredictionApiRouting(unittest.TestCase):
+             version="v2_23class_prototype",
+         )
+         self.confirmation = {
+-            "confirmed_codes": ["cough"],
+-            "model_features": ["E_91"],
++            "confirmed_codes": ["cough", "fever", "runny_blocked_nose"],
++            "model_features": ["E_201", "E_91", "E_181"],
+             "has_red_flag": False,
+             "red_flag_symptoms": [],
++            # Complete enough context to exercise routing without a database
++            # follow-up lookup. Dedicated assessment tests validate replay.
++            "recognised_symptoms": [
++                {"code": "cough", "features": ["E_201"], "status": "present",
++                 "duration_text": "two days", "duration_min_days": 2, "duration_max_days": 2},
++                {"code": "fever", "features": ["E_91"], "status": "present"},
++                {"code": "runny_blocked_nose", "features": ["E_181"], "status": "present"},
++                {"code": "shortness_of_breath", "features": ["E_66"], "status": "absent"},
++            ],
+         }
+ 
+         main.app.dependency_overrides[main.get_db] = (
+@@ -112,12 +121,12 @@ class TestPredictionApiRouting(unittest.TestCase):
+             json={
+                 "age": 25,
+                 "sex": "M",
+-                "text": "I have a cough",
+-                "confirmed_codes": ["cough"],
++                "text": "I have a cough, fever and runny nose for two days but no difficulty breathing",
++                "confirmed_codes": self.confirmation["confirmed_codes"],
+             },
+         )
+ 
+-    def test_v2_returns_one_condition_and_uncertainty(self):
++    def test_v2_returns_research_condition_and_uncertainty(self):
+         response = self.request_prediction()
+ 
+         self.assertEqual(response.status_code, 200)
+@@ -131,12 +140,17 @@ class TestPredictionApiRouting(unittest.TestCase):
+         self.assertEqual(len(data["predictions"]), 1)
+         self.assertIn("uncertain", data)
+         self.assertIn("uncertainty_message", data)
++        self.assertTrue(data["uncertain"])
++        self.assertFalse(data["clinical_validation"])
++        for field in ("rank", "condition", "display_name", "model_confidence_percent", "description"):
++            self.assertIn(field, data["predictions"][0])
++        self.assertEqual(data["predictions"][0]["model_confidence_percent"], 65.)
+         self.assertEqual(
+             self.saved["model_version_id"],
+             self.model_version.id,
+         )
+ 
+-    def test_v1_still_returns_one_condition(self):
++    def test_v1_abstains_without_falling_back_to_v2(self):
+         self.model_version.version = "1.0"
+ 
+         response = self.request_prediction()
+@@ -145,23 +159,33 @@ class TestPredictionApiRouting(unittest.TestCase):
+         data = response.json()
+ 
+         self.assertEqual(data["model_version"], "1.0")
+-        self.assertEqual(data["feature_count"], 198)
+-        self.assertEqual(len(data["predictions"]), 1)
+-        self.assertNotIn("uncertain", data)
++        self.assertEqual(data["status"], "insufficient_evidence")
++        self.assertEqual(data["predictions"], [])
++        self.assertTrue(data["uncertain"])
++        self.assertIn("v1_unknown_absent_mismatch", data["uncertainty_reasons"])
++        self.mocks[3].assert_not_called()
++        self.mocks[4].assert_not_called()
+ 
+-    def test_unsupported_only_rejected(self):
++    def test_unsupported_only_abstains_without_model_call(self):
+         self.confirmation["model_features"] = [
+             "E_55_@_V_101"
+         ]
++        self.confirmation["confirmed_codes"] = ["cough"]
++        self.confirmation["recognised_symptoms"][0]["features"] = ["E_55_@_V_101"]
++        self.confirmation["recognised_symptoms"][1]["status"] = "absent"
++        self.confirmation["recognised_symptoms"][2]["status"] = "absent"
+ 
+         response = self.request_prediction()
+ 
+-        self.assertEqual(response.status_code, 400)
+-        self.assertIn(
+-            "not enough V2-supported",
+-            response.json()["detail"],
+-        )
+-        self.assertEqual(self.saved, {})
++        self.assertEqual(response.status_code, 200)
++        data = response.json()
++        self.assertEqual(data["status"], "insufficient_evidence")
++        self.assertEqual(data["predictions"], [])
++        self.assertEqual(data["unsupported_model_features"], ["E_55_@_V_101"])
++        self.assertIn("limited_supported_evidence", data["uncertainty_reasons"])
++        self.assertEqual(self.saved["status"], "insufficient_evidence")
++        self.mocks[3].assert_not_called()
++        self.mocks[4].assert_not_called()
+ 
+     def test_red_flag_bypasses_model(self):
+         self.confirmation["has_red_flag"] = True
+@@ -198,7 +222,7 @@ class TestPredictionApiRouting(unittest.TestCase):
+             "v2_23class_prototype",
+         )
+         self.assertEqual(data["feature_count"], 66)
+-        self.assertEqual(len(data["predictions"]), 1)
++        self.assertEqual(len(data["predictions"]), 3)
+ 
+         self.assertEqual(
+             data["predictions"][0]["rank"],
+@@ -215,7 +239,7 @@ class TestPredictionApiRouting(unittest.TestCase):
+         )
+         self.assertEqual(
+             len(self.saved["predictions"]),
+-            1,
++            3,
+         )
+ 
+         print(
+diff --git a/tests/test_v2_prediction_history_integration.py b/tests/test_v2_prediction_history_integration.py
+index 1031f72..36d4537 100644
+--- a/tests/test_v2_prediction_history_integration.py
++++ b/tests/test_v2_prediction_history_integration.py
+@@ -65,10 +65,11 @@ def test_v2_prediction_history_and_red_flag():
+                 json={
+                     "age": 25,
+                     "sex": "M",
+-                    "text": "I have fever na kikohozi",
++                    "text": "I have fever na kikohozi and a runny nose for two days but no difficulty breathing",
+                     "confirmed_codes": [
+                         "fever",
+                         "cough",
++                        "runny_blocked_nose",
+                     ],
+                 },
+             )
+@@ -84,8 +85,9 @@ def test_v2_prediction_history_and_red_flag():
+                 "v2_23class_prototype"
+             )
+             assert result["feature_count"] == 66
+-            assert len(result["predictions"]) == 1
+-            assert "uncertain" in result
++            assert len(result["predictions"]) == 3
++            assert result["uncertain"] is True
++            assert result["clinical_validation"] is False
+ 
+             prediction_id = uuid.UUID(
+                 result["prediction_id"]
+@@ -106,7 +108,8 @@ def test_v2_prediction_history_and_red_flag():
+                 assert saved.status == (
+                     "prediction_complete"
+                 )
+-                assert len(saved.predictions) == 1
++                assert len(saved.predictions) == 3
++                assert saved.assessment_context["symptom_states"]["cough"] == "present"
+                 assert saved.has_red_flag is False
+ 
+             # ------------------------------------------
+@@ -127,7 +130,18 @@ def test_v2_prediction_history_and_red_flag():
+             ]
+ 
+             assert len(matching) == 1
+-            assert len(matching[0]["predictions"]) == 1
++            assert len(matching[0]["predictions"]) == 3
++            assert matching[0]["uncertain"] is True
++            assert matching[0]["clinical_validation"] is False
++            assert matching[0]["model_version"] == result["model_version"]
++            assert matching[0]["score_note"]
++            detail_response = client.get(f"/history/{prediction_id}")
++            assert detail_response.status_code == 200
++            detail = detail_response.json()
++            for key in ("predictions", "assessment_context", "uncertain", "uncertainty_reasons", "model_version", "health_guidance", "disclaimer"):
++                assert detail[key] == result[key]
++            assert detail["score_note"]
++
+ 
+             # ------------------------------------------
+             # 4. Red-flag case must bypass V2
+diff --git a/tests/test_v2_prediction_service.py b/tests/test_v2_prediction_service.py
+index e94f842..e62ebdf 100644
+--- a/tests/test_v2_prediction_service.py
++++ b/tests/test_v2_prediction_service.py
+@@ -100,7 +100,7 @@ class TestV2PredictionService(unittest.TestCase):
+                 symptom_features=[],
+             )
+ 
+-    def test_only_one_prediction_returned(self):
++    def test_ranked_research_candidates_preserve_uncertainty(self):
+         result = predict_v2_single(
+             age=25,
+             sex="M",
+@@ -117,7 +117,7 @@ class TestV2PredictionService(unittest.TestCase):
+         )
+         self.assertEqual(
+             len(result["predictions"]),
+-            1,
++            3,
+         )
+         self.assertEqual(
+             result["predictions"][0]["rank"],
+@@ -127,6 +127,13 @@ class TestV2PredictionService(unittest.TestCase):
+             result["uncertain"],
+             bool,
+         )
++        self.assertTrue(result["uncertain"])
++        self.assertIn("research_model_not_clinically_validated", result["uncertainty_reasons"])
++        self.assertEqual([p["rank"] for p in result["predictions"]], [1, 2, 3])
++        scores = [p["probability"] for p in result["predictions"]]
++        self.assertEqual(scores, sorted(scores, reverse=True))
++        for prediction in result["predictions"]:
++            self.assertAlmostEqual(prediction["confidence_percent"], prediction["probability"] * 100, delta=.006)
+         self.assertIn(
+             "uncertainty_message",
+             result,

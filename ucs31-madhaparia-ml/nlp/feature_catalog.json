@@ -1,0 +1,3138 @@
+[
+  {
+    "canonical_id": "E_2",
+    "canonical_name": "Are you infected with the human immunodeficiency virus (HIV)?",
+    "ddxplus_evidence": "E_2",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_2"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_4",
+    "canonical_name": "Have you or any member of your family ever had croup?",
+    "ddxplus_evidence": "E_4",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_4"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_5",
+    "canonical_name": "Have you ever had fluid in your lungs?",
+    "ddxplus_evidence": "E_5",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_5"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_8",
+    "canonical_name": "Do you currently undergo dialysis?",
+    "ddxplus_evidence": "E_8",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_8"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_14",
+    "canonical_name": "Do you have chest pain even at rest?",
+    "ddxplus_evidence": "E_14",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_14"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_17",
+    "canonical_name": "Are you of Asian descent?",
+    "ddxplus_evidence": "E_17",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_17"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_18",
+    "canonical_name": "Do you have cystic fibrosis?",
+    "ddxplus_evidence": "E_18",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_18"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_20",
+    "canonical_name": "Do you have Rheumatoid Arthritis?",
+    "ddxplus_evidence": "E_20",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_20"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_21",
+    "canonical_name": "Have you ever had a spontaneous pneumothorax?",
+    "ddxplus_evidence": "E_21",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_21"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_23",
+    "canonical_name": "Do you ever temporarily stop breathing while you’re asleep?",
+    "ddxplus_evidence": "E_23",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_23"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_31",
+    "canonical_name": "Do you have severe Chronic Obstructive Pulmonary Disease (COPD)?",
+    "ddxplus_evidence": "E_31",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_31"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_32",
+    "canonical_name": "Do you have a decrease in appetite?",
+    "ddxplus_evidence": "E_32",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_32"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_33",
+    "canonical_name": "Do you have pain that improves when you lean forward?",
+    "ddxplus_evidence": "E_33",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_33"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_40",
+    "canonical_name": "Have you been in contact with someone who has had pertussis (whoooping cough)?",
+    "ddxplus_evidence": "E_40",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_40"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_41",
+    "canonical_name": "Have you been in contact with a person with similar symptoms in the past 2 weeks?",
+    "ddxplus_evidence": "E_41",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_41"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_44",
+    "canonical_name": "Do you take corticosteroids?",
+    "ddxplus_evidence": "E_44",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_44"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_45",
+    "canonical_name": "Have you been coughing up blood?",
+    "ddxplus_evidence": "E_45",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_45"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_46",
+    "canonical_name": "Have you had 2 or more asthma attacks in the past year?",
+    "ddxplus_evidence": "E_46",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_46"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_47",
+    "canonical_name": "Do you suffer from Crohn’s disease or ulcerative colitis (UC)?",
+    "ddxplus_evidence": "E_47",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_47"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_48",
+    "canonical_name": "Do you live with 4 or more people?",
+    "ddxplus_evidence": "E_48",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_48"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_49",
+    "canonical_name": "Do you attend or work in a daycare?",
+    "ddxplus_evidence": "E_49",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_49"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_50",
+    "canonical_name": "Have you had significantly increased sweating?",
+    "ddxplus_evidence": "E_50",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_50"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_53",
+    "canonical_name": "Do you have pain somewhere, related to your reason for consulting?",
+    "ddxplus_evidence": "E_53",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_53"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_54_@_V_11",
+    "canonical_name": "Characterize your pain:: NA",
+    "ddxplus_evidence": "E_54",
+    "ddxplus_value": "V_11",
+    "value_meaning": "NA",
+    "model_features": [
+      "E_54_@_V_11"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_54_@_V_71",
+    "canonical_name": "Characterize your pain:: heartbreaking",
+    "ddxplus_evidence": "E_54",
+    "ddxplus_value": "V_71",
+    "value_meaning": "heartbreaking",
+    "model_features": [
+      "E_54_@_V_71"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_54_@_V_154",
+    "canonical_name": "Characterize your pain:: tedious",
+    "ddxplus_evidence": "E_54",
+    "ddxplus_value": "V_154",
+    "value_meaning": "tedious",
+    "model_features": [
+      "E_54_@_V_154"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_54_@_V_161",
+    "canonical_name": "Characterize your pain:: sensitive",
+    "ddxplus_evidence": "E_54",
+    "ddxplus_value": "V_161",
+    "value_meaning": "sensitive",
+    "model_features": [
+      "E_54_@_V_161"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_54_@_V_179",
+    "canonical_name": "Characterize your pain:: a knife stroke",
+    "ddxplus_evidence": "E_54",
+    "ddxplus_value": "V_179",
+    "value_meaning": "a knife stroke",
+    "model_features": [
+      "E_54_@_V_179"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_54_@_V_180",
+    "canonical_name": "Characterize your pain:: tugging",
+    "ddxplus_evidence": "E_54",
+    "ddxplus_value": "V_180",
+    "value_meaning": "tugging",
+    "model_features": [
+      "E_54_@_V_180"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_54_@_V_181",
+    "canonical_name": "Characterize your pain:: burning",
+    "ddxplus_evidence": "E_54",
+    "ddxplus_value": "V_181",
+    "value_meaning": "burning",
+    "model_features": [
+      "E_54_@_V_181"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_54_@_V_183",
+    "canonical_name": "Characterize your pain:: heavy",
+    "ddxplus_evidence": "E_54",
+    "ddxplus_value": "V_183",
+    "value_meaning": "heavy",
+    "model_features": [
+      "E_54_@_V_183"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_54_@_V_191",
+    "canonical_name": "Characterize your pain:: violent",
+    "ddxplus_evidence": "E_54",
+    "ddxplus_value": "V_191",
+    "value_meaning": "violent",
+    "model_features": [
+      "E_54_@_V_191"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_54_@_V_192",
+    "canonical_name": "Characterize your pain:: sharp",
+    "ddxplus_evidence": "E_54",
+    "ddxplus_value": "V_192",
+    "value_meaning": "sharp",
+    "model_features": [
+      "E_54_@_V_192"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_54_@_V_198",
+    "canonical_name": "Characterize your pain:: exhausting",
+    "ddxplus_evidence": "E_54",
+    "ddxplus_value": "V_198",
+    "value_meaning": "exhausting",
+    "model_features": [
+      "E_54_@_V_198"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_123",
+    "canonical_name": "Do you feel pain somewhere?: nowhere",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_123",
+    "value_meaning": "nowhere",
+    "model_features": [
+      "E_55_@_V_123"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_20",
+    "canonical_name": "Do you feel pain somewhere?: tonsil(R)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_20",
+    "value_meaning": "tonsil(R)",
+    "model_features": [
+      "E_55_@_V_20"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_21",
+    "canonical_name": "Do you feel pain somewhere?: tonsil(L)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_21",
+    "value_meaning": "tonsil(L)",
+    "model_features": [
+      "E_55_@_V_21"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_25",
+    "canonical_name": "Do you feel pain somewhere?: back of head",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_25",
+    "value_meaning": "back of head",
+    "model_features": [
+      "E_55_@_V_25"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_26",
+    "canonical_name": "Do you feel pain somewhere?: back of the neck",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_26",
+    "value_meaning": "back of the neck",
+    "model_features": [
+      "E_55_@_V_26"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_29",
+    "canonical_name": "Do you feel pain somewhere?: lower chest",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_29",
+    "value_meaning": "lower chest",
+    "model_features": [
+      "E_55_@_V_29"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_32",
+    "canonical_name": "Do you feel pain somewhere?: mouth",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_32",
+    "value_meaning": "mouth",
+    "model_features": [
+      "E_55_@_V_32"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_33",
+    "canonical_name": "Do you feel pain somewhere?: thyroid cartilage",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_33",
+    "value_meaning": "thyroid cartilage",
+    "model_features": [
+      "E_55_@_V_33"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_34",
+    "canonical_name": "Do you feel pain somewhere?: ankle(R)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_34",
+    "value_meaning": "ankle(R)",
+    "model_features": [
+      "E_55_@_V_34"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_35",
+    "canonical_name": "Do you feel pain somewhere?: ankle(L)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_35",
+    "value_meaning": "ankle(L)",
+    "model_features": [
+      "E_55_@_V_35"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_53",
+    "canonical_name": "Do you feel pain somewhere?: side of the neck(R)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_53",
+    "value_meaning": "side of the neck(R)",
+    "model_features": [
+      "E_55_@_V_53"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_54",
+    "canonical_name": "Do you feel pain somewhere?: side of the neck(L)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_54",
+    "value_meaning": "side of the neck(L)",
+    "model_features": [
+      "E_55_@_V_54"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_55",
+    "canonical_name": "Do you feel pain somewhere?: side of the chest(R)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_55",
+    "value_meaning": "side of the chest(R)",
+    "model_features": [
+      "E_55_@_V_55"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_56",
+    "canonical_name": "Do you feel pain somewhere?: side of the chest(L)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_56",
+    "value_meaning": "side of the chest(L)",
+    "model_features": [
+      "E_55_@_V_56"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_62",
+    "canonical_name": "Do you feel pain somewhere?: top of the head",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_62",
+    "value_meaning": "top of the head",
+    "model_features": [
+      "E_55_@_V_62"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_89",
+    "canonical_name": "Do you feel pain somewhere?: forehead",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_89",
+    "value_meaning": "forehead",
+    "model_features": [
+      "E_55_@_V_89"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_101",
+    "canonical_name": "Do you feel pain somewhere?: upper chest",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_101",
+    "value_meaning": "upper chest",
+    "model_features": [
+      "E_55_@_V_101"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_108",
+    "canonical_name": "Do you feel pain somewhere?: cheek(R)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_108",
+    "value_meaning": "cheek(R)",
+    "model_features": [
+      "E_55_@_V_108"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_109",
+    "canonical_name": "Do you feel pain somewhere?: cheek(L)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_109",
+    "value_meaning": "cheek(L)",
+    "model_features": [
+      "E_55_@_V_109"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_119",
+    "canonical_name": "Do you feel pain somewhere?: calf(R)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_119",
+    "value_meaning": "calf(R)",
+    "model_features": [
+      "E_55_@_V_119"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_120",
+    "canonical_name": "Do you feel pain somewhere?: calf(L)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_120",
+    "value_meaning": "calf(L)",
+    "model_features": [
+      "E_55_@_V_120"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_122",
+    "canonical_name": "Do you feel pain somewhere?: nose",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_122",
+    "value_meaning": "nose",
+    "model_features": [
+      "E_55_@_V_122"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_124",
+    "canonical_name": "Do you feel pain somewhere?: occiput",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_124",
+    "value_meaning": "occiput",
+    "model_features": [
+      "E_55_@_V_124"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_125",
+    "canonical_name": "Do you feel pain somewhere?: eye(R)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_125",
+    "value_meaning": "eye(R)",
+    "model_features": [
+      "E_55_@_V_125"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_126",
+    "canonical_name": "Do you feel pain somewhere?: eye(L)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_126",
+    "value_meaning": "eye(L)",
+    "model_features": [
+      "E_55_@_V_126"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_137",
+    "canonical_name": "Do you feel pain somewhere?: palace",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_137",
+    "value_meaning": "palace",
+    "model_features": [
+      "E_55_@_V_137"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_148",
+    "canonical_name": "Do you feel pain somewhere?: pharynx",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_148",
+    "value_meaning": "pharynx",
+    "model_features": [
+      "E_55_@_V_148"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_159",
+    "canonical_name": "Do you feel pain somewhere?: breast(R)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_159",
+    "value_meaning": "breast(R)",
+    "model_features": [
+      "E_55_@_V_159"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_160",
+    "canonical_name": "Do you feel pain somewhere?: breast(L)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_160",
+    "value_meaning": "breast(L)",
+    "model_features": [
+      "E_55_@_V_160"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_163",
+    "canonical_name": "Do you feel pain somewhere?: under the jaw",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_163",
+    "value_meaning": "under the jaw",
+    "model_features": [
+      "E_55_@_V_163"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_166",
+    "canonical_name": "Do you feel pain somewhere?: temple(R)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_166",
+    "value_meaning": "temple(R)",
+    "model_features": [
+      "E_55_@_V_166"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_167",
+    "canonical_name": "Do you feel pain somewhere?: temple(L)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_167",
+    "value_meaning": "temple(L)",
+    "model_features": [
+      "E_55_@_V_167"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_170",
+    "canonical_name": "Do you feel pain somewhere?: posterior chest wall(R)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_170",
+    "value_meaning": "posterior chest wall(R)",
+    "model_features": [
+      "E_55_@_V_170"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_171",
+    "canonical_name": "Do you feel pain somewhere?: posterior chest wall(L)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_171",
+    "value_meaning": "posterior chest wall(L)",
+    "model_features": [
+      "E_55_@_V_171"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_172",
+    "canonical_name": "Do you feel pain somewhere?: tibia(R)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_172",
+    "value_meaning": "tibia(R)",
+    "model_features": [
+      "E_55_@_V_172"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_173",
+    "canonical_name": "Do you feel pain somewhere?: tibia(L)",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_173",
+    "value_meaning": "tibia(L)",
+    "model_features": [
+      "E_55_@_V_173"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_174",
+    "canonical_name": "Do you feel pain somewhere?: trachea",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_174",
+    "value_meaning": "trachea",
+    "model_features": [
+      "E_55_@_V_174"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_55_@_V_197",
+    "canonical_name": "Do you feel pain somewhere?: epigastric",
+    "ddxplus_evidence": "E_55",
+    "ddxplus_value": "V_197",
+    "value_meaning": "epigastric",
+    "model_features": [
+      "E_55_@_V_197"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_56",
+    "canonical_name": "How intense is the pain?",
+    "ddxplus_evidence": "E_56",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_56"
+    ],
+    "data_type": "C",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_123",
+    "canonical_name": "Does the pain radiate to another location?: nowhere",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_123",
+    "value_meaning": "nowhere",
+    "model_features": [
+      "E_57_@_V_123"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_25",
+    "canonical_name": "Does the pain radiate to another location?: back of head",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_25",
+    "value_meaning": "back of head",
+    "model_features": [
+      "E_57_@_V_25"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_30",
+    "canonical_name": "Does the pain radiate to another location?: biceps(R)",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_30",
+    "value_meaning": "biceps(R)",
+    "model_features": [
+      "E_57_@_V_30"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_31",
+    "canonical_name": "Does the pain radiate to another location?: biceps(L)",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_31",
+    "value_meaning": "biceps(L)",
+    "model_features": [
+      "E_57_@_V_31"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_89",
+    "canonical_name": "Does the pain radiate to another location?: forehead",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_89",
+    "value_meaning": "forehead",
+    "model_features": [
+      "E_57_@_V_89"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_118",
+    "canonical_name": "Does the pain radiate to another location?: chin",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_118",
+    "value_meaning": "chin",
+    "model_features": [
+      "E_57_@_V_118"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_121",
+    "canonical_name": "Does the pain radiate to another location?: jaw",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_121",
+    "value_meaning": "jaw",
+    "model_features": [
+      "E_57_@_V_121"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_122",
+    "canonical_name": "Does the pain radiate to another location?: nose",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_122",
+    "value_meaning": "nose",
+    "model_features": [
+      "E_57_@_V_122"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_127",
+    "canonical_name": "Does the pain radiate to another location?: scapula(R)",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_127",
+    "value_meaning": "scapula(R)",
+    "model_features": [
+      "E_57_@_V_127"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_128",
+    "canonical_name": "Does the pain radiate to another location?: scapula(L)",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_128",
+    "value_meaning": "scapula(L)",
+    "model_features": [
+      "E_57_@_V_128"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_166",
+    "canonical_name": "Does the pain radiate to another location?: temple(R)",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_166",
+    "value_meaning": "temple(R)",
+    "model_features": [
+      "E_57_@_V_166"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_167",
+    "canonical_name": "Does the pain radiate to another location?: temple(L)",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_167",
+    "value_meaning": "temple(L)",
+    "model_features": [
+      "E_57_@_V_167"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_177",
+    "canonical_name": "Does the pain radiate to another location?: triceps(R)",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_177",
+    "value_meaning": "triceps(R)",
+    "model_features": [
+      "E_57_@_V_177"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_178",
+    "canonical_name": "Does the pain radiate to another location?: triceps(L)",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_178",
+    "value_meaning": "triceps(L)",
+    "model_features": [
+      "E_57_@_V_178"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_194",
+    "canonical_name": "Does the pain radiate to another location?: shoulder(R)",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_194",
+    "value_meaning": "shoulder(R)",
+    "model_features": [
+      "E_57_@_V_194"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_57_@_V_195",
+    "canonical_name": "Does the pain radiate to another location?: shoulder(L)",
+    "ddxplus_evidence": "E_57",
+    "ddxplus_value": "V_195",
+    "value_meaning": "shoulder(L)",
+    "model_features": [
+      "E_57_@_V_195"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_58",
+    "canonical_name": "How precisely is the pain located?",
+    "ddxplus_evidence": "E_58",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_58"
+    ],
+    "data_type": "C",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_59",
+    "canonical_name": "How fast did the pain appear?",
+    "ddxplus_evidence": "E_59",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_59"
+    ],
+    "data_type": "C",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_61",
+    "canonical_name": "Are you currently using intravenous drugs?",
+    "ddxplus_evidence": "E_61",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_61"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_62",
+    "canonical_name": "Do you regularly take stimulant drugs?",
+    "ddxplus_evidence": "E_62",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_62"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_65",
+    "canonical_name": "Do you have difficulty swallowing, or have a feeling of discomfort/blockage when swallowing?",
+    "ddxplus_evidence": "E_65",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_65"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_66",
+    "canonical_name": "Are you experiencing shortness of breath or difficulty breathing in a significant way?",
+    "ddxplus_evidence": "E_66",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_66"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_67",
+    "canonical_name": "Do you have bouts of choking or shortness of breath that wake you up at night?",
+    "ddxplus_evidence": "E_67",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_67"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_69",
+    "canonical_name": "Do you have diabetes?",
+    "ddxplus_evidence": "E_69",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_69"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_70",
+    "canonical_name": "Are you significantly overweight compared to people of the same height as you?",
+    "ddxplus_evidence": "E_70",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_70"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_72",
+    "canonical_name": "Have you had one or several flare ups of chronic obstructive pulmonary disease (COPD) in the past year?",
+    "ddxplus_evidence": "E_72",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_72"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_77",
+    "canonical_name": "Do you have a cough that produces colored or more abundant sputum than usual?",
+    "ddxplus_evidence": "E_77",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_77"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_78",
+    "canonical_name": "Do you drink alcohol excessively or do you have an addiction to alcohol?",
+    "ddxplus_evidence": "E_78",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_78"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_79",
+    "canonical_name": "Do you smoke cigarettes?",
+    "ddxplus_evidence": "E_79",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_79"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_86",
+    "canonical_name": "Do you have any close family members who suffer from allergies (any type), hay fever or eczema?",
+    "ddxplus_evidence": "E_86",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_86"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_87",
+    "canonical_name": "Do you have any family members who have asthma?",
+    "ddxplus_evidence": "E_87",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_87"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_88",
+    "canonical_name": "Do you feel so tired that you are unable to do your usual activities or are you stuck in your bed all day long?",
+    "ddxplus_evidence": "E_88",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_88"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_89",
+    "canonical_name": "Do you constantly feel fatigued or do you have non-restful sleep?",
+    "ddxplus_evidence": "E_89",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_89"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_91",
+    "canonical_name": "Do you have a fever (either felt or measured with a thermometer)?",
+    "ddxplus_evidence": "E_91",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_91"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_94",
+    "canonical_name": "Have you had chills or shivers?",
+    "ddxplus_evidence": "E_94",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_94"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_95",
+    "canonical_name": "Do you have Parkinson’s disease?",
+    "ddxplus_evidence": "E_95",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_95"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_97",
+    "canonical_name": "Do you have a sore throat?",
+    "ddxplus_evidence": "E_97",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_97"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_101",
+    "canonical_name": "Have you been hospitalized for an asthma attack in the past year?",
+    "ddxplus_evidence": "E_101",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_101"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_103",
+    "canonical_name": "Have you lost your sense of smell?",
+    "ddxplus_evidence": "E_103",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_103"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_104",
+    "canonical_name": "Do you have high blood pressure or do you take medications to treat high blood pressure?",
+    "ddxplus_evidence": "E_104",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_104"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_105",
+    "canonical_name": "Have you ever had a heart attack or do you have angina (chest pain)?",
+    "ddxplus_evidence": "E_105",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_105"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_106",
+    "canonical_name": "Do you have heart failure?",
+    "ddxplus_evidence": "E_106",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_106"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_107",
+    "canonical_name": "Have you ever had a stroke?",
+    "ddxplus_evidence": "E_107",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_107"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_112",
+    "canonical_name": "Do you wheeze while inhaling or is your breathing noisy after coughing spells?",
+    "ddxplus_evidence": "E_112",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_112"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_116",
+    "canonical_name": "Have you had a cold in the last 2 weeks?",
+    "ddxplus_evidence": "E_116",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_116"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_118",
+    "canonical_name": "Have you ever had pneumonia?",
+    "ddxplus_evidence": "E_118",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_118"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_119",
+    "canonical_name": "Have you been diagnosed with chronic sinusitis?",
+    "ddxplus_evidence": "E_119",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_119"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_120",
+    "canonical_name": "Do you have polyps in your nose?",
+    "ddxplus_evidence": "E_120",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_120"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_121",
+    "canonical_name": "Do you have a deviated nasal septum?",
+    "ddxplus_evidence": "E_121",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_121"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_123",
+    "canonical_name": "Do you have a chronic obstructive pulmonary disease (COPD)?",
+    "ddxplus_evidence": "E_123",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_123"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_124",
+    "canonical_name": "Do you have asthma or have you ever had to use a bronchodilator in the past?",
+    "ddxplus_evidence": "E_124",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_124"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_125",
+    "canonical_name": "Have you ever been diagnosed with gastroesophageal reflux?",
+    "ddxplus_evidence": "E_125",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_125"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_129",
+    "canonical_name": "Do you have any lesions, redness or problems on your skin that you believe are related to the condition you are consulting for?",
+    "ddxplus_evidence": "E_129",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_129"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_130_@_V_156",
+    "canonical_name": "What color is the rash?: pink",
+    "ddxplus_evidence": "E_130",
+    "ddxplus_value": "V_156",
+    "value_meaning": "pink",
+    "model_features": [
+      "E_130_@_V_156"
+    ],
+    "data_type": "C",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_131_@_V_12",
+    "canonical_name": "Do your lesions peel off?: Y",
+    "ddxplus_evidence": "E_131",
+    "ddxplus_value": "V_12",
+    "value_meaning": "Y",
+    "model_features": [
+      "E_131_@_V_12"
+    ],
+    "data_type": "C",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_132",
+    "canonical_name": "Is the rash swollen?",
+    "ddxplus_evidence": "E_132",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_132"
+    ],
+    "data_type": "C",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_123",
+    "canonical_name": "Where is the affected region located?: nowhere",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_123",
+    "value_meaning": "nowhere",
+    "model_features": [
+      "E_133_@_V_123"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_26",
+    "canonical_name": "Where is the affected region located?: back of the neck",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_26",
+    "value_meaning": "back of the neck",
+    "model_features": [
+      "E_133_@_V_26"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_38",
+    "canonical_name": "Where is the affected region located?: cervical spine",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_38",
+    "value_meaning": "cervical spine",
+    "model_features": [
+      "E_133_@_V_38"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_39",
+    "canonical_name": "Where is the affected region located?: thoracic spine",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_39",
+    "value_meaning": "thoracic spine",
+    "model_features": [
+      "E_133_@_V_39"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_40",
+    "canonical_name": "Where is the affected region located?: lumbar spine",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_40",
+    "value_meaning": "lumbar spine",
+    "model_features": [
+      "E_133_@_V_40"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_41",
+    "canonical_name": "Where is the affected region located?: commissure(R)",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_41",
+    "value_meaning": "commissure(R)",
+    "model_features": [
+      "E_133_@_V_41"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_42",
+    "canonical_name": "Where is the affected region located?: commissure(L)",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_42",
+    "value_meaning": "commissure(L)",
+    "model_features": [
+      "E_133_@_V_42"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_53",
+    "canonical_name": "Where is the affected region located?: side of the neck(R)",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_53",
+    "value_meaning": "side of the neck(R)",
+    "model_features": [
+      "E_133_@_V_53"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_54",
+    "canonical_name": "Where is the affected region located?: side of the neck(L)",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_54",
+    "value_meaning": "side of the neck(L)",
+    "model_features": [
+      "E_133_@_V_54"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_82",
+    "canonical_name": "Where is the affected region located?: buttock(R)",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_82",
+    "value_meaning": "buttock(R)",
+    "model_features": [
+      "E_133_@_V_82"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_83",
+    "canonical_name": "Where is the affected region located?: buttock(L)",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_83",
+    "value_meaning": "buttock(L)",
+    "model_features": [
+      "E_133_@_V_83"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_84",
+    "canonical_name": "Where is the affected region located?: flank(R)",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_84",
+    "value_meaning": "flank(R)",
+    "model_features": [
+      "E_133_@_V_84"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_85",
+    "canonical_name": "Where is the affected region located?: flank(L)",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_85",
+    "value_meaning": "flank(L)",
+    "model_features": [
+      "E_133_@_V_85"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_89",
+    "canonical_name": "Where is the affected region located?: forehead",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_89",
+    "value_meaning": "forehead",
+    "model_features": [
+      "E_133_@_V_89"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_170",
+    "canonical_name": "Where is the affected region located?: posterior chest wall(R)",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_170",
+    "value_meaning": "posterior chest wall(R)",
+    "model_features": [
+      "E_133_@_V_170"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_171",
+    "canonical_name": "Where is the affected region located?: posterior chest wall(L)",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_171",
+    "value_meaning": "posterior chest wall(L)",
+    "model_features": [
+      "E_133_@_V_171"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_187",
+    "canonical_name": "Where is the affected region located?: belly",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_187",
+    "value_meaning": "belly",
+    "model_features": [
+      "E_133_@_V_187"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_194",
+    "canonical_name": "Where is the affected region located?: shoulder(R)",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_194",
+    "value_meaning": "shoulder(R)",
+    "model_features": [
+      "E_133_@_V_194"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_133_@_V_195",
+    "canonical_name": "Where is the affected region located?: shoulder(L)",
+    "ddxplus_evidence": "E_133",
+    "ddxplus_value": "V_195",
+    "value_meaning": "shoulder(L)",
+    "model_features": [
+      "E_133_@_V_195"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_134",
+    "canonical_name": "How intense is the pain caused by the rash?",
+    "ddxplus_evidence": "E_134",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_134"
+    ],
+    "data_type": "C",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_135_@_V_12",
+    "canonical_name": "Is the lesion (or are the lesions) larger than 1cm?: Y",
+    "ddxplus_evidence": "E_135",
+    "ddxplus_value": "V_12",
+    "value_meaning": "Y",
+    "model_features": [
+      "E_135_@_V_12"
+    ],
+    "data_type": "C",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_136",
+    "canonical_name": "How severe is the itching?",
+    "ddxplus_evidence": "E_136",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_136"
+    ],
+    "data_type": "C",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_142",
+    "canonical_name": "Does your mother suffer from asthma?",
+    "ddxplus_evidence": "E_142",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_142"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_144",
+    "canonical_name": "Do you have diffuse (widespread) muscle pain?",
+    "ddxplus_evidence": "E_144",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_144"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_151",
+    "canonical_name": "Do you have swelling in one or more areas of your body?",
+    "ddxplus_evidence": "E_151",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_151"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_152_@_V_123",
+    "canonical_name": "Where is the swelling located?: nowhere",
+    "ddxplus_evidence": "E_152",
+    "ddxplus_value": "V_123",
+    "value_meaning": "nowhere",
+    "model_features": [
+      "E_152_@_V_123"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_152_@_V_34",
+    "canonical_name": "Where is the swelling located?: ankle(R)",
+    "ddxplus_evidence": "E_152",
+    "ddxplus_value": "V_34",
+    "value_meaning": "ankle(R)",
+    "model_features": [
+      "E_152_@_V_34"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_152_@_V_35",
+    "canonical_name": "Where is the swelling located?: ankle(L)",
+    "ddxplus_evidence": "E_152",
+    "ddxplus_value": "V_35",
+    "value_meaning": "ankle(L)",
+    "model_features": [
+      "E_152_@_V_35"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_152_@_V_119",
+    "canonical_name": "Where is the swelling located?: calf(R)",
+    "ddxplus_evidence": "E_152",
+    "ddxplus_value": "V_119",
+    "value_meaning": "calf(R)",
+    "model_features": [
+      "E_152_@_V_119"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_152_@_V_120",
+    "canonical_name": "Where is the swelling located?: calf(L)",
+    "ddxplus_evidence": "E_152",
+    "ddxplus_value": "V_120",
+    "value_meaning": "calf(L)",
+    "model_features": [
+      "E_152_@_V_120"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_152_@_V_172",
+    "canonical_name": "Where is the swelling located?: tibia(R)",
+    "ddxplus_evidence": "E_152",
+    "ddxplus_value": "V_172",
+    "value_meaning": "tibia(R)",
+    "model_features": [
+      "E_152_@_V_172"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_152_@_V_173",
+    "canonical_name": "Where is the swelling located?: tibia(L)",
+    "ddxplus_evidence": "E_152",
+    "ddxplus_value": "V_173",
+    "value_meaning": "tibia(L)",
+    "model_features": [
+      "E_152_@_V_173"
+    ],
+    "data_type": "M",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_161",
+    "canonical_name": "Have you recently had a loss of appetite or do you get full more quickly then usually?",
+    "ddxplus_evidence": "E_161",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_161"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_162",
+    "canonical_name": "Have you had an involuntary weight loss over the last 3 months?",
+    "ddxplus_evidence": "E_162",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_162"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_165",
+    "canonical_name": "Have any of your family members ever had a pneumothorax?",
+    "ddxplus_evidence": "E_165",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_165"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_166",
+    "canonical_name": "Did you vomit after coughing?",
+    "ddxplus_evidence": "E_166",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_166"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_169",
+    "canonical_name": "Is your nose or the back of your throat itchy?",
+    "ddxplus_evidence": "E_169",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_169"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_170",
+    "canonical_name": "Do you have severe itching in one or both eyes?",
+    "ddxplus_evidence": "E_170",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_170"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_175",
+    "canonical_name": "Have you noticed any new fatigue, generalized and vague discomfort, diffuse (widespread) muscle aches or a change in your general well-being related to your consultation today?",
+    "ddxplus_evidence": "E_175",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_175"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_181",
+    "canonical_name": "Do you have nasal congestion or a clear runny nose?",
+    "ddxplus_evidence": "E_181",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_181"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_182",
+    "canonical_name": "Do you have greenish or yellowish nasal discharge?",
+    "ddxplus_evidence": "E_182",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_182"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_183",
+    "canonical_name": "Do you live in a rural area?",
+    "ddxplus_evidence": "E_183",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_183"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_190",
+    "canonical_name": "Have you noticed that you produce more saliva than usual?",
+    "ddxplus_evidence": "E_190",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_190"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_191",
+    "canonical_name": "Are you a former smoker?",
+    "ddxplus_evidence": "E_191",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_191"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_194",
+    "canonical_name": "Have you noticed a high pitched sound when breathing in?",
+    "ddxplus_evidence": "E_194",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_194"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_195",
+    "canonical_name": "Do you live in the suburbs?",
+    "ddxplus_evidence": "E_195",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_195"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_196",
+    "canonical_name": "Have you had surgery within the last month?",
+    "ddxplus_evidence": "E_196",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_196"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_198",
+    "canonical_name": "Do you work in agriculture?",
+    "ddxplus_evidence": "E_198",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_198"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_199",
+    "canonical_name": "Do you work in construction?",
+    "ddxplus_evidence": "E_199",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_199"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_200",
+    "canonical_name": "Do you work in the mining sector?",
+    "ddxplus_evidence": "E_200",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_200"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_201",
+    "canonical_name": "Do you have a cough?",
+    "ddxplus_evidence": "E_201",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_201"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_202",
+    "canonical_name": "Does the person have a whooping cough?",
+    "ddxplus_evidence": "E_202",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_202"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_203",
+    "canonical_name": "Do you have intense coughing fits?",
+    "ddxplus_evidence": "E_203",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_203"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_204_@_V_4",
+    "canonical_name": "Have you traveled out of the country in the last 4 weeks?: North America",
+    "ddxplus_evidence": "E_204",
+    "ddxplus_value": "V_4",
+    "value_meaning": "North America",
+    "model_features": [
+      "E_204_@_V_4"
+    ],
+    "data_type": "C",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_207",
+    "canonical_name": "Do you live in in a big city?",
+    "ddxplus_evidence": "E_207",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_207"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_208",
+    "canonical_name": "Is your BMI less than 18.5, or are you underweight?",
+    "ddxplus_evidence": "E_208",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_208"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_209",
+    "canonical_name": "Are your vaccinations up to date?",
+    "ddxplus_evidence": "E_209",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_209"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_212",
+    "canonical_name": "Have you noticed that the tone of your voice has become deeper, softer or hoarse?",
+    "ddxplus_evidence": "E_212",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_212"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_214",
+    "canonical_name": "Have you noticed a wheezing sound when you exhale?",
+    "ddxplus_evidence": "E_214",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_214"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_217",
+    "canonical_name": "Are your symptoms worse when lying down and alleviated while sitting up?",
+    "ddxplus_evidence": "E_217",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_217"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_218",
+    "canonical_name": "Do you have symptoms that are increased with physical exertion but alleviated with rest?",
+    "ddxplus_evidence": "E_218",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_218"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_219",
+    "canonical_name": "Are your symptoms more prominent at night?",
+    "ddxplus_evidence": "E_219",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_219"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_220",
+    "canonical_name": "Do you have pain that is increased when you breathe in deeply?",
+    "ddxplus_evidence": "E_220",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_220"
+    ],
+    "data_type": "B",
+    "is_antecedent": false,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_222",
+    "canonical_name": "Are you exposed to secondhand cigarette smoke on a daily basis?",
+    "ddxplus_evidence": "E_222",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_222"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_224",
+    "canonical_name": "Do you have family members who have had lung cancer?",
+    "ddxplus_evidence": "E_224",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_224"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_226",
+    "canonical_name": "Are you more likely to develop common allergies than the general population?",
+    "ddxplus_evidence": "E_226",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_226"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  },
+  {
+    "canonical_id": "E_227",
+    "canonical_name": "Are you immunosuppressed?",
+    "ddxplus_evidence": "E_227",
+    "ddxplus_value": null,
+    "value_meaning": null,
+    "model_features": [
+      "E_227"
+    ],
+    "data_type": "B",
+    "is_antecedent": true,
+    "aliases": {
+      "en": [],
+      "sw": []
+    }
+  }
+]

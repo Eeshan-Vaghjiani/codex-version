@@ -1,0 +1,123 @@
+{
+  "input": {
+    "age": 0,
+    "sex": "F",
+    "text": "I feel tired",
+    "confirmed_codes": [
+      "tiredness"
+    ],
+    "follow_up_answers": [
+      {
+        "question_id": "general_duration",
+        "answer": "unknown"
+      },
+      {
+        "question_id": "fever",
+        "answer": "yes"
+      },
+      {
+        "question_id": "cough",
+        "answer": "no"
+      }
+    ]
+  },
+  "result": {
+    "age": 0,
+    "sex": "F",
+    "confirmed_codes": [
+      "tiredness"
+    ],
+    "effective_confirmed_codes": [
+      "tiredness",
+      "fever"
+    ],
+    "model_features": [
+      "E_91"
+    ],
+    "explicitly_absent_features": [],
+    "assessment_context": {
+      "language": "en",
+      "symptom_states": {
+        "tiredness": "present",
+        "fever": "present"
+      },
+      "symptom_durations": {
+        "_general": {
+          "text": "unknown",
+          "min_days": null,
+          "max_days": null,
+          "source": "follow_up",
+          "symptom_code": "_general"
+        }
+      },
+      "duration": {
+        "text": "unknown",
+        "min_days": null,
+        "max_days": null,
+        "source": "follow_up",
+        "symptom_code": "_general"
+      },
+      "severity": {},
+      "cough_type": null,
+      "onset_text": null,
+      "weight_loss_intent": null,
+      "fatigue_pattern": "unspecified",
+      "follow_up_answers": [
+        {
+          "question_id": "general_duration",
+          "answer": "unknown"
+        },
+        {
+          "question_id": "fever",
+          "answer": "yes"
+        }
+      ],
+      "questions_asked": [
+        "general_duration",
+        "fever"
+      ],
+      "model_version": "v3_partial_evidence",
+      "context_note": "This app considers a limited set of respiratory conditions. An examination or tests may be needed.",
+      "age": 0
+    },
+    "follow_up_answers": [
+      {
+        "question_id": "general_duration",
+        "answer": "unknown"
+      },
+      {
+        "question_id": "fever",
+        "answer": "yes"
+      }
+    ],
+    "has_red_flag": true,
+    "predictions": [],
+    "primary_prediction": null,
+    "clinical_validation": false,
+    "uncertain": true,
+    "prediction_id": "097e362d-9378-4f47-b284-c9b81683f8c0",
+    "status": "urgent_review",
+    "decision": {
+      "status": "urgent_review",
+      "reasons": [
+        "reported_warning_sign"
+      ],
+      "policy_version": "kenya_single_primary_v1"
+    },
+    "red_flag_symptoms": [
+      {
+        "code": "infant_fever",
+        "display_name": "Fever in a baby: prompt clinical assessment needed",
+        "features": [],
+        "kind": "safety",
+        "is_red_flag": true,
+        "matched_text": "fever",
+        "status": "present",
+        "reported_subject": "patient_or_unspecified",
+        "confirmed": false
+      }
+    ],
+    "health_guidance": "Fever in a baby needs prompt medical assessment, especially under three months. Do not wait to complete more questions.",
+    "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional."
+  }
+}

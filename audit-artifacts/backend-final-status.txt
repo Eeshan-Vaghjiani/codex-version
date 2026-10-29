@@ -1,0 +1,28 @@
+ M app/core/database.py
+ M app/data/condition_information.json
+ M app/db/models.py
+ M app/main.py
+ M app/ml/model_loader.py
+ M app/nlp/canonical_symptoms.json
+ M app/nlp/english_aliases.json
+ M app/nlp/swahili_aliases.json
+ M app/nlp/symptom_mapper.py
+ M app/services/health_guidance.py
+ M app/services/history.py
+ M app/services/symptom_confirmation.py
+ M app/services/v2_prediction.py
+ M tests/test_basic_endpoints.py
+ M tests/test_end_to_end.py
+ M tests/test_prediction_validation.py
+ M tests/test_service_readiness.py
+ M tests/test_symptom_catalog.py
+ M tests/test_v2_prediction_api_unit.py
+ M tests/test_v2_prediction_history_integration.py
+ M tests/test_v2_prediction_service.py
+?? alembic/versions/d42ea86c5170_store_assessment_context.py
+?? app/services/assessment.py
+?? docs/
+?? scripts/
+?? tests/assessment_helpers.py
+?? tests/test_assessment_safety_regressions.py
+?? tests/test_model_bundle_integrity.py

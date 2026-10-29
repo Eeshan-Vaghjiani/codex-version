@@ -1,0 +1,1739 @@
+{
+  "note": "No clinical reference labels or reviewed triage outcomes. Counts describe label emission and abstention, not unsupported-disease errors, diagnostic accuracy, or safety. Explicit feature mapping is specified; this bypasses free-text NLP and API clinical scope/emergency gates. Mild severity is not an input learned by V3. Use separate full-application tests for mappings, urgency, and the primary display.",
+  "cases": [
+    {
+      "input_description": "Headache alone",
+      "present": [
+        "E_53",
+        "E_55_@_V_89"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "assessment_complete",
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "URTI",
+            "raw_relative_score": 0.507628668810463,
+            "supporting_features": [
+              "E_55_@_V_89",
+              "E_53"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 2,
+            "condition": "Influenza",
+            "raw_relative_score": 0.1973045300439439,
+            "supporting_features": [
+              "E_55_@_V_89",
+              "E_53"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 3,
+            "condition": "Chronic rhinosinusitis",
+            "raw_relative_score": 0.18360762862206292,
+            "supporting_features": [
+              "E_55_@_V_89",
+              "E_53"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          }
+        ],
+        "uncertain": true,
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "present_features": [
+          "E_53",
+          "E_55_@_V_89"
+        ],
+        "explicitly_absent_features": [],
+        "unmentioned_features": [
+          "E_103",
+          "E_112",
+          "E_14",
+          "E_144",
+          "E_161",
+          "E_162",
+          "E_166",
+          "E_169",
+          "E_170",
+          "E_181",
+          "E_182",
+          "E_190",
+          "E_194",
+          "E_201",
+          "E_203",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_220",
+          "E_45",
+          "E_50",
+          "E_55_@_V_101",
+          "E_65",
+          "E_66",
+          "E_67",
+          "E_77",
+          "E_88",
+          "E_89",
+          "E_91",
+          "E_94",
+          "E_97"
+        ],
+        "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "uncertain",
+        "primary_prediction": null,
+        "reasons": [
+          "non_specific_input"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 2,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 32,
+        "diagnostics": {
+          "evidence_bucket": "2:0",
+          "respiratory_scope_supported": false,
+          "policy_reason": "no_supported_respiratory_anchor"
+        }
+      }
+    },
+    {
+      "input_description": "Tiredness alone",
+      "present": [
+        "E_89"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "assessment_complete",
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Pulmonary neoplasm",
+            "raw_relative_score": 0.9999808763041373,
+            "supporting_features": [
+              "E_89"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 2,
+            "condition": "Whooping cough",
+            "raw_relative_score": 3.059808782537371e-06,
+            "supporting_features": [],
+            "supporting_absent_features": [],
+            "contradicting_features": [
+              "E_89"
+            ],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 3,
+            "condition": "Spontaneous pneumothorax",
+            "raw_relative_score": 1.950725613057727e-06,
+            "supporting_features": [],
+            "supporting_absent_features": [],
+            "contradicting_features": [
+              "E_89"
+            ],
+            "contradicting_absent_features": []
+          }
+        ],
+        "uncertain": true,
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "present_features": [
+          "E_89"
+        ],
+        "explicitly_absent_features": [],
+        "unmentioned_features": [
+          "E_103",
+          "E_112",
+          "E_14",
+          "E_144",
+          "E_161",
+          "E_162",
+          "E_166",
+          "E_169",
+          "E_170",
+          "E_181",
+          "E_182",
+          "E_190",
+          "E_194",
+          "E_201",
+          "E_203",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_220",
+          "E_45",
+          "E_50",
+          "E_53",
+          "E_55_@_V_101",
+          "E_55_@_V_89",
+          "E_65",
+          "E_66",
+          "E_67",
+          "E_77",
+          "E_88",
+          "E_91",
+          "E_94",
+          "E_97"
+        ],
+        "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "uncertain",
+        "primary_prediction": null,
+        "reasons": [
+          "non_specific_input"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 1,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 33,
+        "diagnostics": {
+          "evidence_bucket": "1:0",
+          "respiratory_scope_supported": false,
+          "policy_reason": "no_supported_respiratory_anchor"
+        }
+      }
+    },
+    {
+      "input_description": "Headache and tiredness",
+      "present": [
+        "E_53",
+        "E_55_@_V_89",
+        "E_89"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "assessment_complete",
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Acute rhinosinusitis",
+            "raw_relative_score": 0.36894737747987005,
+            "supporting_features": [
+              "E_55_@_V_89",
+              "E_53"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [
+              "E_89"
+            ],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 2,
+            "condition": "Pulmonary neoplasm",
+            "raw_relative_score": 0.2352560493854689,
+            "supporting_features": [
+              "E_89",
+              "E_53"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [
+              "E_55_@_V_89"
+            ],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 3,
+            "condition": "Chronic rhinosinusitis",
+            "raw_relative_score": 0.22102423928604842,
+            "supporting_features": [
+              "E_55_@_V_89",
+              "E_53"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [
+              "E_89"
+            ],
+            "contradicting_absent_features": []
+          }
+        ],
+        "uncertain": true,
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "present_features": [
+          "E_53",
+          "E_55_@_V_89",
+          "E_89"
+        ],
+        "explicitly_absent_features": [],
+        "unmentioned_features": [
+          "E_103",
+          "E_112",
+          "E_14",
+          "E_144",
+          "E_161",
+          "E_162",
+          "E_166",
+          "E_169",
+          "E_170",
+          "E_181",
+          "E_182",
+          "E_190",
+          "E_194",
+          "E_201",
+          "E_203",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_220",
+          "E_45",
+          "E_50",
+          "E_55_@_V_101",
+          "E_65",
+          "E_66",
+          "E_67",
+          "E_77",
+          "E_88",
+          "E_91",
+          "E_94",
+          "E_97"
+        ],
+        "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "uncertain",
+        "primary_prediction": null,
+        "reasons": [
+          "non_specific_input"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 3,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 31,
+        "diagnostics": {
+          "evidence_bucket": "3:0",
+          "respiratory_scope_supported": false,
+          "policy_reason": "no_supported_respiratory_anchor"
+        }
+      }
+    },
+    {
+      "input_description": "Mild fever and headache",
+      "present": [
+        "E_91",
+        "E_53",
+        "E_55_@_V_89"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "assessment_complete",
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "URTI",
+            "raw_relative_score": 0.644746995540589,
+            "supporting_features": [
+              "E_55_@_V_89",
+              "E_91",
+              "E_53"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 2,
+            "condition": "Influenza",
+            "raw_relative_score": 0.29973992442005704,
+            "supporting_features": [
+              "E_55_@_V_89",
+              "E_91",
+              "E_53"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 3,
+            "condition": "Acute rhinosinusitis",
+            "raw_relative_score": 0.05551289197294892,
+            "supporting_features": [
+              "E_55_@_V_89",
+              "E_53"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [
+              "E_91"
+            ],
+            "contradicting_absent_features": []
+          }
+        ],
+        "uncertain": true,
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "present_features": [
+          "E_53",
+          "E_55_@_V_89",
+          "E_91"
+        ],
+        "explicitly_absent_features": [],
+        "unmentioned_features": [
+          "E_103",
+          "E_112",
+          "E_14",
+          "E_144",
+          "E_161",
+          "E_162",
+          "E_166",
+          "E_169",
+          "E_170",
+          "E_181",
+          "E_182",
+          "E_190",
+          "E_194",
+          "E_201",
+          "E_203",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_220",
+          "E_45",
+          "E_50",
+          "E_55_@_V_101",
+          "E_65",
+          "E_66",
+          "E_67",
+          "E_77",
+          "E_88",
+          "E_89",
+          "E_94",
+          "E_97"
+        ],
+        "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "uncertain",
+        "primary_prediction": null,
+        "reasons": [
+          "non_specific_input"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 3,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 31,
+        "diagnostics": {
+          "evidence_bucket": "3:0",
+          "respiratory_scope_supported": false,
+          "policy_reason": "no_supported_respiratory_anchor"
+        }
+      }
+    },
+    {
+      "input_description": "Cough and sore throat",
+      "present": [
+        "E_201",
+        "E_97"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "assessment_complete",
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "URTI",
+            "raw_relative_score": 0.6858299800355044,
+            "supporting_features": [
+              "E_97",
+              "E_201"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 2,
+            "condition": "Bronchitis",
+            "raw_relative_score": 0.16021283220013177,
+            "supporting_features": [
+              "E_97",
+              "E_201"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 3,
+            "condition": "Influenza",
+            "raw_relative_score": 0.15395686542646242,
+            "supporting_features": [
+              "E_97",
+              "E_201"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          }
+        ],
+        "uncertain": true,
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "present_features": [
+          "E_201",
+          "E_97"
+        ],
+        "explicitly_absent_features": [],
+        "unmentioned_features": [
+          "E_103",
+          "E_112",
+          "E_14",
+          "E_144",
+          "E_161",
+          "E_162",
+          "E_166",
+          "E_169",
+          "E_170",
+          "E_181",
+          "E_182",
+          "E_190",
+          "E_194",
+          "E_203",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_220",
+          "E_45",
+          "E_50",
+          "E_53",
+          "E_55_@_V_101",
+          "E_55_@_V_89",
+          "E_65",
+          "E_66",
+          "E_67",
+          "E_77",
+          "E_88",
+          "E_89",
+          "E_91",
+          "E_94"
+        ],
+        "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "uncertain",
+        "primary_prediction": null,
+        "reasons": [
+          "ambiguous_model_rank"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 2,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 32,
+        "diagnostics": {
+          "evidence_bucket": "2:0",
+          "respiratory_scope_supported": true,
+          "source_relative_top_score": 0.6858299800355044,
+          "source_relative_top_two_gap": 0.5256171478353726,
+          "supporting_present_count": 2,
+          "supporting_absent_count": 0,
+          "policy_bucket_enabled": true,
+          "policy_reason": "source_validation_bound_met"
+        }
+      }
+    },
+    {
+      "input_description": "Fever, cough, sore throat, body aches",
+      "present": [
+        "E_91",
+        "E_201",
+        "E_97",
+        "E_144"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "assessment_complete",
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "URTI",
+            "raw_relative_score": 0.7521717699671768,
+            "supporting_features": [
+              "E_97",
+              "E_144",
+              "E_91",
+              "E_201"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 2,
+            "condition": "Influenza",
+            "raw_relative_score": 0.2478281809286565,
+            "supporting_features": [
+              "E_144",
+              "E_97",
+              "E_91",
+              "E_201"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 3,
+            "condition": "Pneumonia",
+            "raw_relative_score": 3.310372309821049e-08,
+            "supporting_features": [
+              "E_144",
+              "E_91",
+              "E_201"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [
+              "E_97"
+            ],
+            "contradicting_absent_features": []
+          }
+        ],
+        "uncertain": true,
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "present_features": [
+          "E_144",
+          "E_201",
+          "E_91",
+          "E_97"
+        ],
+        "explicitly_absent_features": [],
+        "unmentioned_features": [
+          "E_103",
+          "E_112",
+          "E_14",
+          "E_161",
+          "E_162",
+          "E_166",
+          "E_169",
+          "E_170",
+          "E_181",
+          "E_182",
+          "E_190",
+          "E_194",
+          "E_203",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_220",
+          "E_45",
+          "E_50",
+          "E_53",
+          "E_55_@_V_101",
+          "E_55_@_V_89",
+          "E_65",
+          "E_66",
+          "E_67",
+          "E_77",
+          "E_88",
+          "E_89",
+          "E_94"
+        ],
+        "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "uncertain",
+        "primary_prediction": null,
+        "reasons": [
+          "ambiguous_model_rank"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 4,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 30,
+        "diagnostics": {
+          "evidence_bucket": "4:0",
+          "respiratory_scope_supported": true,
+          "source_relative_top_score": 0.7521717699671768,
+          "source_relative_top_two_gap": 0.5043435890385204,
+          "supporting_present_count": 4,
+          "supporting_absent_count": 0,
+          "policy_bucket_enabled": false,
+          "policy_reason": "source_validation_bound_not_met"
+        }
+      }
+    },
+    {
+      "input_description": "Fever alone",
+      "present": [
+        "E_91"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "assessment_complete",
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "URTI",
+            "raw_relative_score": 0.31632650397199846,
+            "supporting_features": [
+              "E_91"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 2,
+            "condition": "Viral pharyngitis",
+            "raw_relative_score": 0.2035612335925269,
+            "supporting_features": [
+              "E_91"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 3,
+            "condition": "Influenza",
+            "raw_relative_score": 0.10904582564492259,
+            "supporting_features": [
+              "E_91"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          }
+        ],
+        "uncertain": true,
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "present_features": [
+          "E_91"
+        ],
+        "explicitly_absent_features": [],
+        "unmentioned_features": [
+          "E_103",
+          "E_112",
+          "E_14",
+          "E_144",
+          "E_161",
+          "E_162",
+          "E_166",
+          "E_169",
+          "E_170",
+          "E_181",
+          "E_182",
+          "E_190",
+          "E_194",
+          "E_201",
+          "E_203",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_220",
+          "E_45",
+          "E_50",
+          "E_53",
+          "E_55_@_V_101",
+          "E_55_@_V_89",
+          "E_65",
+          "E_66",
+          "E_67",
+          "E_77",
+          "E_88",
+          "E_89",
+          "E_94",
+          "E_97"
+        ],
+        "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "uncertain",
+        "primary_prediction": null,
+        "reasons": [
+          "non_specific_input"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 1,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 33,
+        "diagnostics": {
+          "evidence_bucket": "1:0",
+          "respiratory_scope_supported": false,
+          "policy_reason": "no_supported_respiratory_anchor"
+        }
+      }
+    },
+    {
+      "input_description": "Cough alone",
+      "present": [
+        "E_201"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "assessment_complete",
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "URTI",
+            "raw_relative_score": 0.20683806299546717,
+            "supporting_features": [
+              "E_201"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 2,
+            "condition": "Viral pharyngitis",
+            "raw_relative_score": 0.1783146692465677,
+            "supporting_features": [],
+            "supporting_absent_features": [],
+            "contradicting_features": [
+              "E_201"
+            ],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 3,
+            "condition": "Bronchitis",
+            "raw_relative_score": 0.08750697333713879,
+            "supporting_features": [
+              "E_201"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          }
+        ],
+        "uncertain": true,
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "present_features": [
+          "E_201"
+        ],
+        "explicitly_absent_features": [],
+        "unmentioned_features": [
+          "E_103",
+          "E_112",
+          "E_14",
+          "E_144",
+          "E_161",
+          "E_162",
+          "E_166",
+          "E_169",
+          "E_170",
+          "E_181",
+          "E_182",
+          "E_190",
+          "E_194",
+          "E_203",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_220",
+          "E_45",
+          "E_50",
+          "E_53",
+          "E_55_@_V_101",
+          "E_55_@_V_89",
+          "E_65",
+          "E_66",
+          "E_67",
+          "E_77",
+          "E_88",
+          "E_89",
+          "E_91",
+          "E_94",
+          "E_97"
+        ],
+        "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "uncertain",
+        "primary_prediction": null,
+        "reasons": [
+          "non_specific_input"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 1,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 33,
+        "diagnostics": {
+          "evidence_bucket": "1:0",
+          "respiratory_scope_supported": true,
+          "source_relative_top_score": 0.20683806299546717,
+          "source_relative_top_two_gap": 0.028523393748899478,
+          "supporting_present_count": 1,
+          "supporting_absent_count": 0,
+          "policy_bucket_enabled": false,
+          "policy_reason": "source_validation_bound_not_met"
+        }
+      }
+    },
+    {
+      "input_description": "Sore throat alone",
+      "present": [
+        "E_97"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "assessment_complete",
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "URTI",
+            "raw_relative_score": 0.742391462038367,
+            "supporting_features": [
+              "E_97"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 2,
+            "condition": "Influenza",
+            "raw_relative_score": 0.1309818938298425,
+            "supporting_features": [
+              "E_97"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 3,
+            "condition": "Bronchitis",
+            "raw_relative_score": 0.12662606869868584,
+            "supporting_features": [
+              "E_97"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          }
+        ],
+        "uncertain": true,
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "present_features": [
+          "E_97"
+        ],
+        "explicitly_absent_features": [],
+        "unmentioned_features": [
+          "E_103",
+          "E_112",
+          "E_14",
+          "E_144",
+          "E_161",
+          "E_162",
+          "E_166",
+          "E_169",
+          "E_170",
+          "E_181",
+          "E_182",
+          "E_190",
+          "E_194",
+          "E_201",
+          "E_203",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_220",
+          "E_45",
+          "E_50",
+          "E_53",
+          "E_55_@_V_101",
+          "E_55_@_V_89",
+          "E_65",
+          "E_66",
+          "E_67",
+          "E_77",
+          "E_88",
+          "E_89",
+          "E_91",
+          "E_94"
+        ],
+        "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "uncertain",
+        "primary_prediction": null,
+        "reasons": [
+          "non_specific_input"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 1,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 33,
+        "diagnostics": {
+          "evidence_bucket": "1:0",
+          "respiratory_scope_supported": true,
+          "source_relative_top_score": 0.742391462038367,
+          "source_relative_top_two_gap": 0.6114095682085245,
+          "supporting_present_count": 1,
+          "supporting_absent_count": 0,
+          "policy_bucket_enabled": false,
+          "policy_reason": "source_validation_bound_not_met"
+        }
+      }
+    },
+    {
+      "input_description": "Body aches alone",
+      "present": [
+        "E_144"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "assessment_complete",
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "URTI",
+            "raw_relative_score": 0.5833753514527393,
+            "supporting_features": [
+              "E_144"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 2,
+            "condition": "Pneumonia",
+            "raw_relative_score": 0.21030277101638148,
+            "supporting_features": [
+              "E_144"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 3,
+            "condition": "Influenza",
+            "raw_relative_score": 0.20632122218700272,
+            "supporting_features": [
+              "E_144"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          }
+        ],
+        "uncertain": true,
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "present_features": [
+          "E_144"
+        ],
+        "explicitly_absent_features": [],
+        "unmentioned_features": [
+          "E_103",
+          "E_112",
+          "E_14",
+          "E_161",
+          "E_162",
+          "E_166",
+          "E_169",
+          "E_170",
+          "E_181",
+          "E_182",
+          "E_190",
+          "E_194",
+          "E_201",
+          "E_203",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_220",
+          "E_45",
+          "E_50",
+          "E_53",
+          "E_55_@_V_101",
+          "E_55_@_V_89",
+          "E_65",
+          "E_66",
+          "E_67",
+          "E_77",
+          "E_88",
+          "E_89",
+          "E_91",
+          "E_94",
+          "E_97"
+        ],
+        "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "uncertain",
+        "primary_prediction": null,
+        "reasons": [
+          "non_specific_input"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 1,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 33,
+        "diagnostics": {
+          "evidence_bucket": "1:0",
+          "respiratory_scope_supported": false,
+          "policy_reason": "no_supported_respiratory_anchor"
+        }
+      }
+    },
+    {
+      "input_description": "Itchy nose and itchy eyes",
+      "present": [
+        "E_169",
+        "E_170"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "assessment_complete",
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Allergic sinusitis",
+            "raw_relative_score": 0.9999999999952565,
+            "supporting_features": [
+              "E_169",
+              "E_170"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 2,
+            "condition": "Bronchiolitis",
+            "raw_relative_score": 2.213863203902305e-12,
+            "supporting_features": [],
+            "supporting_absent_features": [],
+            "contradicting_features": [
+              "E_169",
+              "E_170"
+            ],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 3,
+            "condition": "Whooping cough",
+            "raw_relative_score": 1.4546470401907177e-12,
+            "supporting_features": [],
+            "supporting_absent_features": [],
+            "contradicting_features": [
+              "E_169",
+              "E_170"
+            ],
+            "contradicting_absent_features": []
+          }
+        ],
+        "uncertain": true,
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "present_features": [
+          "E_169",
+          "E_170"
+        ],
+        "explicitly_absent_features": [],
+        "unmentioned_features": [
+          "E_103",
+          "E_112",
+          "E_14",
+          "E_144",
+          "E_161",
+          "E_162",
+          "E_166",
+          "E_181",
+          "E_182",
+          "E_190",
+          "E_194",
+          "E_201",
+          "E_203",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_220",
+          "E_45",
+          "E_50",
+          "E_53",
+          "E_55_@_V_101",
+          "E_55_@_V_89",
+          "E_65",
+          "E_66",
+          "E_67",
+          "E_77",
+          "E_88",
+          "E_89",
+          "E_91",
+          "E_94",
+          "E_97"
+        ],
+        "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "eligible",
+        "primary_prediction": {
+          "condition": "Allergic sinusitis",
+          "supporting_features": [
+            "E_169",
+            "E_170"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        },
+        "reasons": [
+          "source_validation_selection_rule_met",
+          "not_clinically_validated"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 2,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 32,
+        "diagnostics": {
+          "evidence_bucket": "2:0",
+          "respiratory_scope_supported": true,
+          "source_relative_top_score": 0.9999999999952565,
+          "source_relative_top_two_gap": 0.9999999999930426,
+          "supporting_present_count": 2,
+          "supporting_absent_count": 0,
+          "policy_bucket_enabled": true,
+          "policy_reason": "source_validation_bound_met"
+        }
+      }
+    },
+    {
+      "input_description": "Coughing fits and vomiting after cough",
+      "present": [
+        "E_203",
+        "E_166"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "assessment_complete",
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Whooping cough",
+            "raw_relative_score": 0.9999999999779987,
+            "supporting_features": [
+              "E_203",
+              "E_166"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 2,
+            "condition": "Bronchiolitis",
+            "raw_relative_score": 1.4765804629243862e-11,
+            "supporting_features": [],
+            "supporting_absent_features": [],
+            "contradicting_features": [
+              "E_166",
+              "E_203"
+            ],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 3,
+            "condition": "Spontaneous pneumothorax",
+            "raw_relative_score": 1.7230169780707333e-12,
+            "supporting_features": [],
+            "supporting_absent_features": [],
+            "contradicting_features": [
+              "E_166",
+              "E_203"
+            ],
+            "contradicting_absent_features": []
+          }
+        ],
+        "uncertain": true,
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "present_features": [
+          "E_166",
+          "E_203"
+        ],
+        "explicitly_absent_features": [],
+        "unmentioned_features": [
+          "E_103",
+          "E_112",
+          "E_14",
+          "E_144",
+          "E_161",
+          "E_162",
+          "E_169",
+          "E_170",
+          "E_181",
+          "E_182",
+          "E_190",
+          "E_194",
+          "E_201",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_220",
+          "E_45",
+          "E_50",
+          "E_53",
+          "E_55_@_V_101",
+          "E_55_@_V_89",
+          "E_65",
+          "E_66",
+          "E_67",
+          "E_77",
+          "E_88",
+          "E_89",
+          "E_91",
+          "E_94",
+          "E_97"
+        ],
+        "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "eligible",
+        "primary_prediction": {
+          "condition": "Whooping cough",
+          "supporting_features": [
+            "E_203",
+            "E_166"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        },
+        "reasons": [
+          "source_validation_selection_rule_met",
+          "not_clinically_validated"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 2,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 32,
+        "diagnostics": {
+          "evidence_bucket": "2:0",
+          "respiratory_scope_supported": true,
+          "source_relative_top_score": 0.9999999999779987,
+          "source_relative_top_two_gap": 0.9999999999632329,
+          "supporting_present_count": 2,
+          "supporting_absent_count": 0,
+          "policy_bucket_enabled": true,
+          "policy_reason": "source_validation_bound_met"
+        }
+      }
+    },
+    {
+      "input_description": "Empty evidence",
+      "present": [],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "insufficient_evidence",
+        "predictions": [],
+        "uncertain": true,
+        "clinical_validation": false,
+        "uncertainty_reasons": [
+          "no_supported_present_symptoms"
+        ]
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "no_information",
+        "primary_prediction": null,
+        "reasons": [
+          "insufficient_evidence"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 0,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 34,
+        "diagnostics": {
+          "evidence_bucket": "0:0"
+        }
+      }
+    },
+    {
+      "input_description": "Explicit no fever; no positive symptom",
+      "present": [],
+      "absent": [
+        "E_91"
+      ],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "insufficient_evidence",
+        "predictions": [],
+        "uncertain": true,
+        "clinical_validation": false,
+        "uncertainty_reasons": [
+          "no_supported_present_symptoms"
+        ]
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "no_information",
+        "primary_prediction": null,
+        "reasons": [
+          "insufficient_evidence"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 0,
+        "supported_absent_count": 1,
+        "supported_unmentioned_count": 33,
+        "diagnostics": {
+          "evidence_bucket": "0:1"
+        }
+      }
+    },
+    {
+      "input_description": "Unsupported native feature",
+      "present": [
+        "not_a_model_feature"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "status": "invalid",
+        "error": "Unsupported model features: ['not_a_model_feature']"
+      },
+      "improved": {
+        "status": "invalid",
+        "error": "Unsupported model features: ['not_a_model_feature']"
+      }
+    },
+    {
+      "input_description": "Contradictory fever",
+      "present": [
+        "E_91"
+      ],
+      "absent": [
+        "E_91"
+      ],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "status": "invalid",
+        "error": "Evidence cannot be both present and absent"
+      },
+      "improved": {
+        "status": "invalid",
+        "error": "Evidence cannot be both present and absent"
+      }
+    },
+    {
+      "input_description": "Potential emergency: breathlessness and chest pain",
+      "present": [
+        "E_66",
+        "E_53",
+        "E_55_@_V_101"
+      ],
+      "absent": [],
+      "age": 25,
+      "sex": "F",
+      "ground_truth": null,
+      "type": "handcrafted native-feature software-behavior probe",
+      "original": {
+        "model_version": "v3_partial_evidence",
+        "status": "assessment_complete",
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "Acute pulmonary edema",
+            "raw_relative_score": 0.41601006656436207,
+            "supporting_features": [
+              "E_55_@_V_101",
+              "E_66",
+              "E_53"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 2,
+            "condition": "Bronchitis",
+            "raw_relative_score": 0.2543204654199068,
+            "supporting_features": [
+              "E_55_@_V_101",
+              "E_66",
+              "E_53"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          },
+          {
+            "rank": 3,
+            "condition": "Pneumonia",
+            "raw_relative_score": 0.17985517725552608,
+            "supporting_features": [
+              "E_55_@_V_101",
+              "E_66",
+              "E_53"
+            ],
+            "supporting_absent_features": [],
+            "contradicting_features": [],
+            "contradicting_absent_features": []
+          }
+        ],
+        "uncertain": true,
+        "clinical_validation": false,
+        "model_status": "research_partial_evidence",
+        "uncertainty_reasons": [
+          "simulated_source_not_clinically_validated",
+          "incomplete_symptom_history"
+        ],
+        "present_features": [
+          "E_53",
+          "E_55_@_V_101",
+          "E_66"
+        ],
+        "explicitly_absent_features": [],
+        "unmentioned_features": [
+          "E_103",
+          "E_112",
+          "E_14",
+          "E_144",
+          "E_161",
+          "E_162",
+          "E_166",
+          "E_169",
+          "E_170",
+          "E_181",
+          "E_182",
+          "E_190",
+          "E_194",
+          "E_201",
+          "E_203",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_220",
+          "E_45",
+          "E_50",
+          "E_55_@_V_89",
+          "E_65",
+          "E_67",
+          "E_77",
+          "E_88",
+          "E_89",
+          "E_91",
+          "E_94",
+          "E_97"
+        ],
+        "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+      },
+      "improved": {
+        "policy_version": "v3_selective_primary_v1",
+        "scope_policy_version": "v3_respiratory_scope_v1",
+        "model_version": "v3_partial_evidence",
+        "status": "uncertain",
+        "primary_prediction": null,
+        "reasons": [
+          "ambiguous_model_rank"
+        ],
+        "clinical_validation": false,
+        "supported_present_count": 3,
+        "supported_absent_count": 0,
+        "supported_unmentioned_count": 31,
+        "diagnostics": {
+          "evidence_bucket": "3:0",
+          "respiratory_scope_supported": true,
+          "source_relative_top_score": 0.41601006656436207,
+          "source_relative_top_two_gap": 0.16168960114445524,
+          "supporting_present_count": 3,
+          "supporting_absent_count": 0,
+          "policy_bucket_enabled": true,
+          "policy_reason": "source_validation_bound_met"
+        }
+      }
+    }
+  ]
+}

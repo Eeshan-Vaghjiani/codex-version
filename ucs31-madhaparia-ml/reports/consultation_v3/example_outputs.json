@@ -1,0 +1,542 @@
+{
+  "note": "Native-feature observations before follow-ups, not clinical ground truth or final API assessments",
+  "cases": {
+    "cough": {
+      "model_version": "v3_partial_evidence",
+      "status": "assessment_complete",
+      "predictions": [
+        {
+          "rank": 1,
+          "condition": "URTI",
+          "raw_relative_score": 0.20683806299546717,
+          "supporting_features": [
+            "E_201"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        },
+        {
+          "rank": 2,
+          "condition": "Viral pharyngitis",
+          "raw_relative_score": 0.1783146692465677,
+          "supporting_features": [],
+          "supporting_absent_features": [],
+          "contradicting_features": [
+            "E_201"
+          ],
+          "contradicting_absent_features": []
+        },
+        {
+          "rank": 3,
+          "condition": "Bronchitis",
+          "raw_relative_score": 0.08750697333713879,
+          "supporting_features": [
+            "E_201"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        }
+      ],
+      "uncertain": true,
+      "clinical_validation": false,
+      "model_status": "research_partial_evidence",
+      "uncertainty_reasons": [
+        "simulated_source_not_clinically_validated",
+        "incomplete_symptom_history"
+      ],
+      "present_features": [
+        "E_201"
+      ],
+      "explicitly_absent_features": [],
+      "unmentioned_features": [
+        "E_103",
+        "E_112",
+        "E_14",
+        "E_144",
+        "E_161",
+        "E_162",
+        "E_166",
+        "E_169",
+        "E_170",
+        "E_181",
+        "E_182",
+        "E_190",
+        "E_194",
+        "E_203",
+        "E_212",
+        "E_214",
+        "E_217",
+        "E_218",
+        "E_220",
+        "E_45",
+        "E_50",
+        "E_53",
+        "E_55_@_V_101",
+        "E_55_@_V_89",
+        "E_65",
+        "E_66",
+        "E_67",
+        "E_77",
+        "E_88",
+        "E_89",
+        "E_91",
+        "E_94",
+        "E_97"
+      ],
+      "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+    },
+    "fever": {
+      "model_version": "v3_partial_evidence",
+      "status": "assessment_complete",
+      "predictions": [
+        {
+          "rank": 1,
+          "condition": "URTI",
+          "raw_relative_score": 0.31632650397199846,
+          "supporting_features": [
+            "E_91"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        },
+        {
+          "rank": 2,
+          "condition": "Viral pharyngitis",
+          "raw_relative_score": 0.2035612335925269,
+          "supporting_features": [
+            "E_91"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        },
+        {
+          "rank": 3,
+          "condition": "Influenza",
+          "raw_relative_score": 0.10904582564492259,
+          "supporting_features": [
+            "E_91"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        }
+      ],
+      "uncertain": true,
+      "clinical_validation": false,
+      "model_status": "research_partial_evidence",
+      "uncertainty_reasons": [
+        "simulated_source_not_clinically_validated",
+        "incomplete_symptom_history"
+      ],
+      "present_features": [
+        "E_91"
+      ],
+      "explicitly_absent_features": [],
+      "unmentioned_features": [
+        "E_103",
+        "E_112",
+        "E_14",
+        "E_144",
+        "E_161",
+        "E_162",
+        "E_166",
+        "E_169",
+        "E_170",
+        "E_181",
+        "E_182",
+        "E_190",
+        "E_194",
+        "E_201",
+        "E_203",
+        "E_212",
+        "E_214",
+        "E_217",
+        "E_218",
+        "E_220",
+        "E_45",
+        "E_50",
+        "E_53",
+        "E_55_@_V_101",
+        "E_55_@_V_89",
+        "E_65",
+        "E_66",
+        "E_67",
+        "E_77",
+        "E_88",
+        "E_89",
+        "E_94",
+        "E_97"
+      ],
+      "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+    },
+    "cough_fever": {
+      "model_version": "v3_partial_evidence",
+      "status": "assessment_complete",
+      "predictions": [
+        {
+          "rank": 1,
+          "condition": "URTI",
+          "raw_relative_score": 0.32403959547351213,
+          "supporting_features": [
+            "E_91",
+            "E_201"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        },
+        {
+          "rank": 2,
+          "condition": "Viral pharyngitis",
+          "raw_relative_score": 0.1738432935382219,
+          "supporting_features": [
+            "E_91"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [
+            "E_201"
+          ],
+          "contradicting_absent_features": []
+        },
+        {
+          "rank": 3,
+          "condition": "Influenza",
+          "raw_relative_score": 0.14212675567072214,
+          "supporting_features": [
+            "E_91",
+            "E_201"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        }
+      ],
+      "uncertain": true,
+      "clinical_validation": false,
+      "model_status": "research_partial_evidence",
+      "uncertainty_reasons": [
+        "simulated_source_not_clinically_validated",
+        "incomplete_symptom_history"
+      ],
+      "present_features": [
+        "E_201",
+        "E_91"
+      ],
+      "explicitly_absent_features": [],
+      "unmentioned_features": [
+        "E_103",
+        "E_112",
+        "E_14",
+        "E_144",
+        "E_161",
+        "E_162",
+        "E_166",
+        "E_169",
+        "E_170",
+        "E_181",
+        "E_182",
+        "E_190",
+        "E_194",
+        "E_203",
+        "E_212",
+        "E_214",
+        "E_217",
+        "E_218",
+        "E_220",
+        "E_45",
+        "E_50",
+        "E_53",
+        "E_55_@_V_101",
+        "E_55_@_V_89",
+        "E_65",
+        "E_66",
+        "E_67",
+        "E_77",
+        "E_88",
+        "E_89",
+        "E_94",
+        "E_97"
+      ],
+      "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+    },
+    "cough_no_fever": {
+      "model_version": "v3_partial_evidence",
+      "status": "assessment_complete",
+      "predictions": [
+        {
+          "rank": 1,
+          "condition": "Viral pharyngitis",
+          "raw_relative_score": 0.15749276276194954,
+          "supporting_features": [],
+          "supporting_absent_features": [],
+          "contradicting_features": [
+            "E_201"
+          ],
+          "contradicting_absent_features": [
+            "E_91"
+          ]
+        },
+        {
+          "rank": 2,
+          "condition": "Chronic rhinosinusitis",
+          "raw_relative_score": 0.13457649007805741,
+          "supporting_features": [
+            "E_201"
+          ],
+          "supporting_absent_features": [
+            "E_91"
+          ],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        },
+        {
+          "rank": 3,
+          "condition": "Allergic sinusitis",
+          "raw_relative_score": 0.10836288517729355,
+          "supporting_features": [],
+          "supporting_absent_features": [
+            "E_91"
+          ],
+          "contradicting_features": [
+            "E_201"
+          ],
+          "contradicting_absent_features": []
+        }
+      ],
+      "uncertain": true,
+      "clinical_validation": false,
+      "model_status": "research_partial_evidence",
+      "uncertainty_reasons": [
+        "simulated_source_not_clinically_validated",
+        "incomplete_symptom_history"
+      ],
+      "present_features": [
+        "E_201"
+      ],
+      "explicitly_absent_features": [
+        "E_91"
+      ],
+      "unmentioned_features": [
+        "E_103",
+        "E_112",
+        "E_14",
+        "E_144",
+        "E_161",
+        "E_162",
+        "E_166",
+        "E_169",
+        "E_170",
+        "E_181",
+        "E_182",
+        "E_190",
+        "E_194",
+        "E_203",
+        "E_212",
+        "E_214",
+        "E_217",
+        "E_218",
+        "E_220",
+        "E_45",
+        "E_50",
+        "E_53",
+        "E_55_@_V_101",
+        "E_55_@_V_89",
+        "E_65",
+        "E_66",
+        "E_67",
+        "E_77",
+        "E_88",
+        "E_89",
+        "E_94",
+        "E_97"
+      ],
+      "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+    },
+    "runny_nose_sore_throat_generic_pain": {
+      "model_version": "v3_partial_evidence",
+      "status": "assessment_complete",
+      "predictions": [
+        {
+          "rank": 1,
+          "condition": "URTI",
+          "raw_relative_score": 0.8258482004862148,
+          "supporting_features": [
+            "E_97",
+            "E_181",
+            "E_53"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        },
+        {
+          "rank": 2,
+          "condition": "Influenza",
+          "raw_relative_score": 0.10837724849408571,
+          "supporting_features": [
+            "E_97",
+            "E_181",
+            "E_53"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        },
+        {
+          "rank": 3,
+          "condition": "Bronchitis",
+          "raw_relative_score": 0.06577450365665598,
+          "supporting_features": [
+            "E_97",
+            "E_53",
+            "E_181"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        }
+      ],
+      "uncertain": true,
+      "clinical_validation": false,
+      "model_status": "research_partial_evidence",
+      "uncertainty_reasons": [
+        "simulated_source_not_clinically_validated",
+        "incomplete_symptom_history"
+      ],
+      "present_features": [
+        "E_181",
+        "E_53",
+        "E_97"
+      ],
+      "explicitly_absent_features": [],
+      "unmentioned_features": [
+        "E_103",
+        "E_112",
+        "E_14",
+        "E_144",
+        "E_161",
+        "E_162",
+        "E_166",
+        "E_169",
+        "E_170",
+        "E_182",
+        "E_190",
+        "E_194",
+        "E_201",
+        "E_203",
+        "E_212",
+        "E_214",
+        "E_217",
+        "E_218",
+        "E_220",
+        "E_45",
+        "E_50",
+        "E_55_@_V_101",
+        "E_55_@_V_89",
+        "E_65",
+        "E_66",
+        "E_67",
+        "E_77",
+        "E_88",
+        "E_89",
+        "E_91",
+        "E_94"
+      ],
+      "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+    },
+    "cough_weight_loss": {
+      "model_version": "v3_partial_evidence",
+      "status": "assessment_complete",
+      "predictions": [
+        {
+          "rank": 1,
+          "condition": "Tuberculosis",
+          "raw_relative_score": 0.7468577838528144,
+          "supporting_features": [
+            "E_162",
+            "E_201"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        },
+        {
+          "rank": 2,
+          "condition": "Pulmonary neoplasm",
+          "raw_relative_score": 0.2531404905720653,
+          "supporting_features": [
+            "E_162",
+            "E_201"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [],
+          "contradicting_absent_features": []
+        },
+        {
+          "rank": 3,
+          "condition": "Acute rhinosinusitis",
+          "raw_relative_score": 2.8647277502763827e-07,
+          "supporting_features": [
+            "E_201"
+          ],
+          "supporting_absent_features": [],
+          "contradicting_features": [
+            "E_162"
+          ],
+          "contradicting_absent_features": []
+        }
+      ],
+      "uncertain": true,
+      "clinical_validation": false,
+      "model_status": "research_partial_evidence",
+      "uncertainty_reasons": [
+        "simulated_source_not_clinically_validated",
+        "incomplete_symptom_history"
+      ],
+      "present_features": [
+        "E_162",
+        "E_201"
+      ],
+      "explicitly_absent_features": [],
+      "unmentioned_features": [
+        "E_103",
+        "E_112",
+        "E_14",
+        "E_144",
+        "E_161",
+        "E_166",
+        "E_169",
+        "E_170",
+        "E_181",
+        "E_182",
+        "E_190",
+        "E_194",
+        "E_203",
+        "E_212",
+        "E_214",
+        "E_217",
+        "E_218",
+        "E_220",
+        "E_45",
+        "E_50",
+        "E_53",
+        "E_55_@_V_101",
+        "E_55_@_V_89",
+        "E_65",
+        "E_66",
+        "E_67",
+        "E_77",
+        "E_88",
+        "E_89",
+        "E_91",
+        "E_94",
+        "E_97"
+      ],
+      "score_note": "Dataset-relative model ranking scores, not validated clinical probabilities. Unmentioned symptoms were not treated as absent."
+    }
+  }
+}

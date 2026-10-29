@@ -1,0 +1,16 @@
+{
+  "model": "23-condition V2 research prototype",
+  "dataset": "DDXPlus validation",
+  "validation_records": 55808,
+  "true_conditions": 21,
+  "prediction_classes": 23,
+  "accuracy": 0.8933665424311926,
+  "macro_precision_21": 0.8747783828359988,
+  "macro_recall_21": 0.878742788300722,
+  "macro_f1_21": 0.8642440547040405,
+  "false_positive_covid19": 0,
+  "false_positive_allergic_rhinitis": 660,
+  "allergic_sinusitis_to_rhinitis": 660,
+  "new_condition_sensitivity_evaluated": false,
+  "clinical_validation": false
+}

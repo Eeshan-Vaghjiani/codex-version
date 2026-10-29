@@ -1,0 +1,94 @@
+{
+  "Acute COPD exacerbation / infection": {
+    "display_name": "COPD Flare-Up / Possible Infection",
+    "short_description": "A sudden worsening of COPD symptoms such as breathlessness, cough, wheezing or increased mucus. Respiratory infections can sometimes trigger a flare-up."
+  },
+  "Acute laryngitis": {
+    "display_name": "Voice Box Inflammation (Laryngitis)",
+    "short_description": "Short-term inflammation of the voice box and vocal cords that may cause hoarseness, a weak voice, sore throat or cough."
+  },
+  "Acute pulmonary edema": {
+    "display_name": "Sudden Fluid Build-Up in the Lungs",
+    "short_description": "A sudden build-up of fluid inside the lungs that can make breathing very difficult and requires prompt medical assessment."
+  },
+  "Acute rhinosinusitis": {
+    "display_name": "Sinus Inflammation (Acute Sinusitis)",
+    "short_description": "Short-term inflammation of the nose and sinuses that may cause a blocked or runny nose, facial pressure, headache and nasal discharge."
+  },
+  "Allergic sinusitis": {
+    "display_name": "Allergy-Related Sinus Inflammation",
+    "short_description": "Inflammation of the nose and sinus areas linked to allergies, which may cause congestion, nasal symptoms and facial pressure."
+  },
+  "Bronchiectasis": {
+    "display_name": "Bronchiectasis (Damaged Airways)",
+    "short_description": "A long-term condition where damaged airways become widened and can trap mucus, leading to persistent cough and repeated chest infections."
+  },
+  "Bronchiolitis": {
+    "display_name": "Small Airway Inflammation (Bronchiolitis)",
+    "short_description": "Inflammation of the small airways in the lungs, often caused by a viral infection and commonly affecting infants and young children."
+  },
+  "Bronchitis": {
+    "display_name": "Bronchitis",
+    "short_description": "Inflammation of the main airways leading to the lungs, commonly causing cough and sometimes increased mucus."
+  },
+  "Bronchospasm / acute asthma exacerbation": {
+    "display_name": "Asthma Flare-Up / Airway Spasm",
+    "short_description": "A sudden narrowing of the airways that may cause wheezing, coughing, chest tightness and shortness of breath."
+  },
+  "Chronic rhinosinusitis": {
+    "display_name": "Chronic Sinusitis",
+    "short_description": "Long-lasting inflammation of the nose and sinuses that may cause ongoing congestion, facial pressure, nasal discharge or reduced sense of smell."
+  },
+  "Croup": {
+    "display_name": "Croup",
+    "short_description": "An upper-airway illness, most common in young children, that can cause swelling around the vocal cords, a barking cough, hoarseness and noisy breathing."
+  },
+  "Epiglottitis": {
+    "display_name": "Serious Throat Swelling (Epiglottitis)",
+    "short_description": "Inflammation and swelling of the tissue protecting the windpipe. It can interfere with breathing and can become a medical emergency."
+  },
+  "Influenza": {
+    "display_name": "Influenza (Flu)",
+    "short_description": "A contagious viral respiratory infection that can cause fever, body aches, tiredness, headache, cough and other respiratory symptoms."
+  },
+  "Larygospasm": {
+    "display_name": "Sudden Vocal Cord Spasm",
+    "short_description": "A sudden involuntary tightening of the vocal cords that can temporarily make it difficult to breathe or speak."
+  },
+  "Pneumonia": {
+    "display_name": "Pneumonia",
+    "short_description": "An infection of the lungs that may cause cough, fever or chills, chest discomfort and shortness of breath."
+  },
+  "Pulmonary neoplasm": {
+    "display_name": "Lung Tumour (Abnormal Lung Growth)",
+    "short_description": "An abnormal growth of cells in lung tissue. Lung growths require proper medical assessment to determine their type and significance."
+  },
+  "Spontaneous pneumothorax": {
+    "display_name": "Collapsed Lung (Pneumothorax)",
+    "short_description": "A condition where air collects around a lung and causes part or all of the lung to collapse, sometimes without an obvious injury."
+  },
+  "Tuberculosis": {
+    "display_name": "Tuberculosis (TB)",
+    "short_description": "An infection caused by tuberculosis bacteria. Active lung TB may cause a long-lasting cough, fever, night sweats, tiredness or weight loss."
+  },
+  "URTI": {
+    "display_name": "Upper Respiratory Infection (URTI)",
+    "short_description": "An infection affecting the nose, throat or other upper airways, commonly causing symptoms such as congestion, sore throat and cough."
+  },
+  "Viral pharyngitis": {
+    "display_name": "Viral Sore Throat",
+    "short_description": "Inflammation of the throat caused by a virus, commonly resulting in soreness, discomfort or pain when swallowing."
+  },
+  "Whooping cough": {
+    "display_name": "Whooping Cough (Pertussis)",
+    "short_description": "A highly contagious bacterial respiratory infection that can cause repeated severe coughing fits and may last for several weeks."
+  },
+  "COVID-19": {
+    "display_name": "COVID-19",
+    "short_description": "A respiratory illness caused by the SARS-CoV-2 virus. It may cause fever, cough, sore throat, tiredness, breathing difficulties and other symptoms."
+  },
+  "Allergic rhinitis": {
+    "display_name": "Nasal Allergies (Allergic Rhinitis)",
+    "short_description": "An allergic reaction affecting the nose, which may cause sneezing, a runny or blocked nose, itching and watery eyes."
+  }
+}

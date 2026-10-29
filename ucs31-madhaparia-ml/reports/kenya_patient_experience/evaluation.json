@@ -1,0 +1,4239 @@
+{
+  "model_unchanged": true,
+  "model_sha256": "ae709ef5ddf6dd7a101fe426b610c3e83ef58aa93cb895ca13e7500220dc889c",
+  "policy_sha256": "f065c078632ce183e010c3444a32de5a81d3312f7c698b59fac373dd8aaf0df5",
+  "splits": {
+    "training_records": 443075,
+    "original_tuning_records": 26477,
+    "original_reporting_validation_records": 26445,
+    "independent_profile_counts": {
+      "tuning": 26432,
+      "calibration": 13507,
+      "validation": 12905,
+      "test": 53387
+    },
+    "unique_source_profiles": {
+      "tuning": 26432,
+      "calibration": 13507,
+      "validation": 12905,
+      "test": 53273
+    },
+    "source_training_overlap_removed_from_validation": 2886,
+    "source_train_or_validation_overlap_removed_from_test": 3430,
+    "policy": "V3 retained unchanged. Original signature-even tuning selects thresholds. Previously reporting-only signature%4==1 source profiles validate selected risk bounds; signature%4==3 profiles report validation. Test excludes every source training/validation signature. Tuning/calibration/reporting-validation use first label-blind row per complete-198-feature signature; matched test retains all prior 53,386 records and reports unique-profile count.",
+    "source_hash_fingerprint": {
+      "train.csv": {
+        "bytes": 803922339,
+        "mtime_ns": 1790235408564956200
+      },
+      "validate.csv": {
+        "bytes": 101333269,
+        "mtime_ns": 1790235436689309700
+      },
+      "test.csv": {
+        "bytes": 103180907,
+        "mtime_ns": 1790235460449459200
+      },
+      "signature_features": [
+        "AGE",
+        "SEX_M",
+        "E_2",
+        "E_4",
+        "E_5",
+        "E_8",
+        "E_14",
+        "E_17",
+        "E_18",
+        "E_20",
+        "E_21",
+        "E_23",
+        "E_31",
+        "E_32",
+        "E_33",
+        "E_40",
+        "E_41",
+        "E_44",
+        "E_45",
+        "E_46",
+        "E_47",
+        "E_48",
+        "E_49",
+        "E_50",
+        "E_53",
+        "E_54_@_V_11",
+        "E_54_@_V_71",
+        "E_54_@_V_154",
+        "E_54_@_V_161",
+        "E_54_@_V_179",
+        "E_54_@_V_180",
+        "E_54_@_V_181",
+        "E_54_@_V_183",
+        "E_54_@_V_191",
+        "E_54_@_V_192",
+        "E_54_@_V_198",
+        "E_55_@_V_123",
+        "E_55_@_V_20",
+        "E_55_@_V_21",
+        "E_55_@_V_25",
+        "E_55_@_V_26",
+        "E_55_@_V_29",
+        "E_55_@_V_32",
+        "E_55_@_V_33",
+        "E_55_@_V_34",
+        "E_55_@_V_35",
+        "E_55_@_V_53",
+        "E_55_@_V_54",
+        "E_55_@_V_55",
+        "E_55_@_V_56",
+        "E_55_@_V_62",
+        "E_55_@_V_89",
+        "E_55_@_V_101",
+        "E_55_@_V_108",
+        "E_55_@_V_109",
+        "E_55_@_V_119",
+        "E_55_@_V_120",
+        "E_55_@_V_122",
+        "E_55_@_V_124",
+        "E_55_@_V_125",
+        "E_55_@_V_126",
+        "E_55_@_V_137",
+        "E_55_@_V_148",
+        "E_55_@_V_159",
+        "E_55_@_V_160",
+        "E_55_@_V_163",
+        "E_55_@_V_166",
+        "E_55_@_V_167",
+        "E_55_@_V_170",
+        "E_55_@_V_171",
+        "E_55_@_V_172",
+        "E_55_@_V_173",
+        "E_55_@_V_174",
+        "E_55_@_V_197",
+        "E_56",
+        "E_57_@_V_123",
+        "E_57_@_V_25",
+        "E_57_@_V_30",
+        "E_57_@_V_31",
+        "E_57_@_V_89",
+        "E_57_@_V_118",
+        "E_57_@_V_121",
+        "E_57_@_V_122",
+        "E_57_@_V_127",
+        "E_57_@_V_128",
+        "E_57_@_V_166",
+        "E_57_@_V_167",
+        "E_57_@_V_177",
+        "E_57_@_V_178",
+        "E_57_@_V_194",
+        "E_57_@_V_195",
+        "E_58",
+        "E_59",
+        "E_61",
+        "E_62",
+        "E_65",
+        "E_66",
+        "E_67",
+        "E_69",
+        "E_70",
+        "E_72",
+        "E_77",
+        "E_78",
+        "E_79",
+        "E_86",
+        "E_87",
+        "E_88",
+        "E_89",
+        "E_91",
+        "E_94",
+        "E_95",
+        "E_97",
+        "E_101",
+        "E_103",
+        "E_104",
+        "E_105",
+        "E_106",
+        "E_107",
+        "E_112",
+        "E_116",
+        "E_118",
+        "E_119",
+        "E_120",
+        "E_121",
+        "E_123",
+        "E_124",
+        "E_125",
+        "E_129",
+        "E_130_@_V_156",
+        "E_131_@_V_12",
+        "E_132",
+        "E_133_@_V_123",
+        "E_133_@_V_26",
+        "E_133_@_V_38",
+        "E_133_@_V_39",
+        "E_133_@_V_40",
+        "E_133_@_V_41",
+        "E_133_@_V_42",
+        "E_133_@_V_53",
+        "E_133_@_V_54",
+        "E_133_@_V_82",
+        "E_133_@_V_83",
+        "E_133_@_V_84",
+        "E_133_@_V_85",
+        "E_133_@_V_89",
+        "E_133_@_V_170",
+        "E_133_@_V_171",
+        "E_133_@_V_187",
+        "E_133_@_V_194",
+        "E_133_@_V_195",
+        "E_134",
+        "E_135_@_V_12",
+        "E_136",
+        "E_142",
+        "E_144",
+        "E_151",
+        "E_152_@_V_123",
+        "E_152_@_V_34",
+        "E_152_@_V_35",
+        "E_152_@_V_119",
+        "E_152_@_V_120",
+        "E_152_@_V_172",
+        "E_152_@_V_173",
+        "E_161",
+        "E_162",
+        "E_165",
+        "E_166",
+        "E_169",
+        "E_170",
+        "E_175",
+        "E_181",
+        "E_182",
+        "E_183",
+        "E_190",
+        "E_191",
+        "E_194",
+        "E_195",
+        "E_196",
+        "E_198",
+        "E_199",
+        "E_200",
+        "E_201",
+        "E_202",
+        "E_203",
+        "E_204_@_V_4",
+        "E_207",
+        "E_208",
+        "E_209",
+        "E_212",
+        "E_214",
+        "E_217",
+        "E_218",
+        "E_219",
+        "E_220",
+        "E_222",
+        "E_224",
+        "E_226",
+        "E_227"
+      ]
+    }
+  },
+  "policy": {
+    "policy_version": "v3_selective_primary_v1",
+    "model_version": "v3_partial_evidence",
+    "model_sha256": "ae709ef5ddf6dd7a101fe426b610c3e83ef58aa93cb895ca13e7500220dc889c",
+    "feature_order": [
+      "E_103",
+      "E_112",
+      "E_14",
+      "E_144",
+      "E_161",
+      "E_162",
+      "E_166",
+      "E_169",
+      "E_170",
+      "E_181",
+      "E_182",
+      "E_190",
+      "E_194",
+      "E_201",
+      "E_203",
+      "E_212",
+      "E_214",
+      "E_217",
+      "E_218",
+      "E_220",
+      "E_45",
+      "E_50",
+      "E_53",
+      "E_65",
+      "E_66",
+      "E_67",
+      "E_77",
+      "E_88",
+      "E_89",
+      "E_91",
+      "E_94",
+      "E_97",
+      "E_55_@_V_89",
+      "E_55_@_V_101"
+    ],
+    "class_order": [
+      "Acute COPD exacerbation / infection",
+      "Acute laryngitis",
+      "Acute pulmonary edema",
+      "Acute rhinosinusitis",
+      "Allergic sinusitis",
+      "Bronchiectasis",
+      "Bronchiolitis",
+      "Bronchitis",
+      "Bronchospasm / acute asthma exacerbation",
+      "Chronic rhinosinusitis",
+      "Croup",
+      "Epiglottitis",
+      "Influenza",
+      "Larygospasm",
+      "Pneumonia",
+      "Pulmonary neoplasm",
+      "Spontaneous pneumothorax",
+      "Tuberculosis",
+      "URTI",
+      "Viral pharyngitis",
+      "Whooping cough"
+    ],
+    "selection_method": "Tuning maximum coverage under exploratory exact-binomial bound; one frozen threshold per exact evidence-count bucket independently checked on unique source-validation profiles. Disabled on failure, no retuning.",
+    "target_source_selective_error": 0.1,
+    "familywise_delta": 0.05,
+    "candidate_bucket_count": 48,
+    "per_bucket_delta": 0.0010416666666666667,
+    "maximum_present_count": 8,
+    "maximum_absent_count": 5,
+    "clinical_validation": false,
+    "limitations": [
+      "90% target is a predeclared research engineering risk budget, not a medical standard or patient probability.",
+      "Clopper-Pearson bounds assume independent exchangeable source profiles and the same randomized sparse-evidence reporting scheme.",
+      "Source grouping, label ambiguity, nonrandom real reporting, Kenyan prevalence, missing classes and distribution shift preclude a clinical guarantee.",
+      "Same source can appear in different buckets; within each calibration bucket there is one masked view per unique complete source profile. Bonferroni does not require independence across buckets.",
+      "Prior reporting validation was used to inspect V3 but never fit it; a new deterministic source split isolates policy-bound checks and reporting validation.",
+      "Primary eligibility must be combined with clinical scope, free-text mapping ambiguity and warning-sign gates; uncertainty never rules out illness."
+    ],
+    "buckets": {
+      "1:0": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 1,
+        "absent_count": 0,
+        "minimum_relative_score": 0.7513082983492799,
+        "tuning_accepted": 2096,
+        "tuning_errors": 167,
+        "tuning_cases": 26432,
+        "tuning_accuracy": 0.920324427480916,
+        "tuning_risk_upper_bound_exploratory": 0.09008586018973375,
+        "calibration_cases": 13507,
+        "calibration_accepted": 1146,
+        "calibration_errors": 89,
+        "source_validation_risk_upper_bound": 0.1049453915023058,
+        "source_validation_accuracy": 0.9223385689354275
+      },
+      "1:1": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 1,
+        "absent_count": 1,
+        "minimum_relative_score": 0.78751818428416,
+        "tuning_accepted": 2349,
+        "tuning_errors": 210,
+        "tuning_cases": 26432,
+        "tuning_accuracy": 0.9106002554278416,
+        "tuning_risk_upper_bound_exploratory": 0.09967991459805445,
+        "calibration_cases": 13507,
+        "calibration_accepted": 1256,
+        "calibration_errors": 93,
+        "source_validation_risk_upper_bound": 0.09949894764362538,
+        "source_validation_accuracy": 0.9259554140127388
+      },
+      "1:2": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 1,
+        "absent_count": 2,
+        "minimum_relative_score": 0.7907916600349476,
+        "tuning_accepted": 2660,
+        "tuning_errors": 240,
+        "tuning_cases": 26432,
+        "tuning_accuracy": 0.9097744360902256,
+        "tuning_risk_upper_bound_exploratory": 0.09988876568282971,
+        "calibration_cases": 13507,
+        "calibration_accepted": 1442,
+        "calibration_errors": 119,
+        "source_validation_risk_upper_bound": 0.10714014089903942,
+        "source_validation_accuracy": 0.9174757281553398
+      },
+      "1:3": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 1,
+        "absent_count": 3,
+        "minimum_relative_score": 0.8055554783791392,
+        "tuning_accepted": 2952,
+        "tuning_errors": 268,
+        "tuning_cases": 26432,
+        "tuning_accuracy": 0.9092140921409214,
+        "tuning_risk_upper_bound_exploratory": 0.09995678133562658,
+        "calibration_cases": 13507,
+        "calibration_accepted": 1573,
+        "calibration_errors": 127,
+        "source_validation_risk_upper_bound": 0.10400783197832217,
+        "source_validation_accuracy": 0.919262555626192
+      },
+      "1:4": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 1,
+        "absent_count": 4,
+        "minimum_relative_score": 0.8095399959076809,
+        "tuning_accepted": 3148,
+        "tuning_errors": 286,
+        "tuning_cases": 26432,
+        "tuning_accuracy": 0.909148665819568,
+        "tuning_risk_upper_bound_exploratory": 0.09972010263189734,
+        "calibration_cases": 13507,
+        "calibration_accepted": 1687,
+        "calibration_errors": 131,
+        "source_validation_risk_upper_bound": 0.09970586852373706,
+        "source_validation_accuracy": 0.9223473621813871
+      },
+      "1:5": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 1,
+        "absent_count": 5,
+        "minimum_relative_score": 0.8192595620104851,
+        "tuning_accepted": 3345,
+        "tuning_errors": 305,
+        "tuning_cases": 26432,
+        "tuning_accuracy": 0.9088191330343797,
+        "tuning_risk_upper_bound_exploratory": 0.09978456457724759,
+        "calibration_cases": 13507,
+        "calibration_accepted": 1796,
+        "calibration_errors": 144,
+        "source_validation_risk_upper_bound": 0.10176645561128363,
+        "source_validation_accuracy": 0.9198218262806236
+      },
+      "2:0": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 2,
+        "absent_count": 0,
+        "minimum_relative_score": 0.7142002007342286,
+        "tuning_accepted": 7826,
+        "tuning_errors": 728,
+        "tuning_cases": 26114,
+        "tuning_accuracy": 0.9069767441860466,
+        "tuning_risk_upper_bound_exploratory": 0.09860068581009934,
+        "calibration_cases": 13356,
+        "calibration_accepted": 4036,
+        "calibration_errors": 333,
+        "source_validation_risk_upper_bound": 0.09665906607237462,
+        "source_validation_accuracy": 0.9174925668979187
+      },
+      "2:1": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 2,
+        "absent_count": 1,
+        "minimum_relative_score": 0.728668693993671,
+        "tuning_accepted": 8159,
+        "tuning_errors": 771,
+        "tuning_cases": 26114,
+        "tuning_accuracy": 0.9055031253830126,
+        "tuning_risk_upper_bound_exploratory": 0.09999268146693069,
+        "calibration_cases": 13356,
+        "calibration_accepted": 4210,
+        "calibration_errors": 360,
+        "source_validation_risk_upper_bound": 0.09955816822315859,
+        "source_validation_accuracy": 0.9144893111638955
+      },
+      "2:2": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 2,
+        "absent_count": 2,
+        "minimum_relative_score": 0.7304519787238755,
+        "tuning_accepted": 8655,
+        "tuning_errors": 819,
+        "tuning_cases": 26114,
+        "tuning_accuracy": 0.9053726169844021,
+        "tuning_risk_upper_bound_exploratory": 0.09996173811417168,
+        "calibration_cases": 13356,
+        "calibration_accepted": 4474,
+        "calibration_errors": 382,
+        "source_validation_risk_upper_bound": 0.0989774696985584,
+        "source_validation_accuracy": 0.9146177916852928
+      },
+      "2:3": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 2,
+        "absent_count": 3,
+        "minimum_relative_score": 0.7349572362573611,
+        "tuning_accepted": 9176,
+        "tuning_errors": 870,
+        "tuning_cases": 26114,
+        "tuning_accuracy": 0.9051874455100262,
+        "tuning_risk_upper_bound_exploratory": 0.09999311861397787,
+        "calibration_cases": 13356,
+        "calibration_accepted": 4734,
+        "calibration_errors": 414,
+        "source_validation_risk_upper_bound": 0.10078212919416764,
+        "source_validation_accuracy": 0.9125475285171103
+      },
+      "2:4": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 2,
+        "absent_count": 4,
+        "minimum_relative_score": 0.7421520112398919,
+        "tuning_accepted": 9586,
+        "tuning_errors": 910,
+        "tuning_cases": 26114,
+        "tuning_accuracy": 0.9050698935948258,
+        "tuning_risk_upper_bound_exploratory": 0.09999817129058196,
+        "calibration_cases": 13356,
+        "calibration_accepted": 4990,
+        "calibration_errors": 455,
+        "source_validation_risk_upper_bound": 0.10437649789985225,
+        "source_validation_accuracy": 0.908817635270541
+      },
+      "2:5": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 2,
+        "absent_count": 5,
+        "minimum_relative_score": 0.7471800893406405,
+        "tuning_accepted": 9992,
+        "tuning_errors": 949,
+        "tuning_cases": 26114,
+        "tuning_accuracy": 0.9050240192153723,
+        "tuning_risk_upper_bound_exploratory": 0.09993813395368047,
+        "calibration_cases": 13356,
+        "calibration_accepted": 5193,
+        "calibration_errors": 477,
+        "source_validation_risk_upper_bound": 0.1048151346877673,
+        "source_validation_accuracy": 0.9081455805892548
+      },
+      "3:0": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 3,
+        "absent_count": 0,
+        "minimum_relative_score": 0.6502867993067657,
+        "tuning_accepted": 13929,
+        "tuning_errors": 1333,
+        "tuning_cases": 23568,
+        "tuning_accuracy": 0.9043003805011128,
+        "tuning_risk_upper_bound_exploratory": 0.09989818991461683,
+        "calibration_cases": 12029,
+        "calibration_accepted": 7013,
+        "calibration_errors": 605,
+        "source_validation_risk_upper_bound": 0.0970553538001785,
+        "source_validation_accuracy": 0.9137316412377015
+      },
+      "3:1": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 3,
+        "absent_count": 1,
+        "minimum_relative_score": 0.6566704618587349,
+        "tuning_accepted": 14179,
+        "tuning_errors": 1358,
+        "tuning_cases": 23568,
+        "tuning_accuracy": 0.9042245574441075,
+        "tuning_risk_upper_bound_exploratory": 0.09993738988997415,
+        "calibration_cases": 12029,
+        "calibration_accepted": 7197,
+        "calibration_errors": 628,
+        "source_validation_risk_upper_bound": 0.09795255720991018,
+        "source_validation_accuracy": 0.9127414200361261
+      },
+      "3:2": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 3,
+        "absent_count": 2,
+        "minimum_relative_score": 0.6604639067701277,
+        "tuning_accepted": 14615,
+        "tuning_errors": 1401,
+        "tuning_cases": 23568,
+        "tuning_accuracy": 0.9041395826205952,
+        "tuning_risk_upper_bound_exploratory": 0.09995994525792243,
+        "calibration_cases": 12029,
+        "calibration_accepted": 7424,
+        "calibration_errors": 659,
+        "source_validation_risk_upper_bound": 0.09936528617799485,
+        "source_validation_accuracy": 0.9112338362068966
+      },
+      "3:3": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 3,
+        "absent_count": 3,
+        "minimum_relative_score": 0.6672902357533131,
+        "tuning_accepted": 14953,
+        "tuning_errors": 1434,
+        "tuning_cases": 23568,
+        "tuning_accuracy": 0.9040995118036514,
+        "tuning_risk_upper_bound_exploratory": 0.0999530890325536,
+        "calibration_cases": 12029,
+        "calibration_accepted": 7634,
+        "calibration_errors": 685,
+        "source_validation_risk_upper_bound": 0.10022445731812143,
+        "source_validation_accuracy": 0.9102698454283469
+      },
+      "3:4": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 3,
+        "absent_count": 4,
+        "minimum_relative_score": 0.6748137150044725,
+        "tuning_accepted": 15287,
+        "tuning_errors": 1467,
+        "tuning_cases": 23568,
+        "tuning_accuracy": 0.9040361091123177,
+        "tuning_risk_upper_bound_exploratory": 0.09997211926048319,
+        "calibration_cases": 12029,
+        "calibration_accepted": 7809,
+        "calibration_errors": 685,
+        "source_validation_risk_upper_bound": 0.09799111849329353,
+        "source_validation_accuracy": 0.9122807017543859
+      },
+      "3:5": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 3,
+        "absent_count": 5,
+        "minimum_relative_score": 0.6783936091912579,
+        "tuning_accepted": 15725,
+        "tuning_errors": 1510,
+        "tuning_cases": 23568,
+        "tuning_accuracy": 0.9039745627980922,
+        "tuning_risk_upper_bound_exploratory": 0.09997729789198012,
+        "calibration_cases": 12029,
+        "calibration_accepted": 8013,
+        "calibration_errors": 714,
+        "source_validation_risk_upper_bound": 0.09930794653942605,
+        "source_validation_accuracy": 0.9108947959565705
+      },
+      "4:0": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 4,
+        "absent_count": 0,
+        "minimum_relative_score": 0.5832682456297781,
+        "tuning_accepted": 16021,
+        "tuning_errors": 1533,
+        "tuning_cases": 18388,
+        "tuning_accuracy": 0.9043130890705948,
+        "tuning_risk_upper_bound_exploratory": 0.09959529537582855,
+        "calibration_cases": 9406,
+        "calibration_accepted": 8203,
+        "calibration_errors": 757,
+        "source_validation_risk_upper_bound": 0.102513658315921,
+        "source_validation_accuracy": 0.9077166890162136
+      },
+      "4:1": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 4,
+        "absent_count": 1,
+        "minimum_relative_score": 0.5892438430470082,
+        "tuning_accepted": 16164,
+        "tuning_errors": 1551,
+        "tuning_cases": 18388,
+        "tuning_accuracy": 0.9040460282108389,
+        "tuning_risk_upper_bound_exploratory": 0.09984935593368861,
+        "calibration_cases": 9406,
+        "calibration_accepted": 8317,
+        "calibration_errors": 779,
+        "source_validation_risk_upper_bound": 0.10388497246464343,
+        "source_validation_accuracy": 0.9063364193819887
+      },
+      "4:2": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 4,
+        "absent_count": 2,
+        "minimum_relative_score": 0.5896696068960516,
+        "tuning_accepted": 16314,
+        "tuning_errors": 1568,
+        "tuning_cases": 18388,
+        "tuning_accuracy": 0.9038862326835846,
+        "tuning_risk_upper_bound_exploratory": 0.09999360939303178,
+        "calibration_cases": 9406,
+        "calibration_accepted": 8389,
+        "calibration_errors": 783,
+        "source_validation_risk_upper_bound": 0.10349720959486083,
+        "source_validation_accuracy": 0.9066634879008225
+      },
+      "4:3": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 4,
+        "absent_count": 3,
+        "minimum_relative_score": 0.5896712691845234,
+        "tuning_accepted": 16468,
+        "tuning_errors": 1582,
+        "tuning_cases": 18388,
+        "tuning_accuracy": 0.9039349040563517,
+        "tuning_risk_upper_bound_exploratory": 0.09992551115954064,
+        "calibration_cases": 9406,
+        "calibration_accepted": 8482,
+        "calibration_errors": 795,
+        "source_validation_risk_upper_bound": 0.10384855112630216,
+        "source_validation_accuracy": 0.9062721056354633
+      },
+      "4:4": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 4,
+        "absent_count": 4,
+        "minimum_relative_score": 0.5878852540232783,
+        "tuning_accepted": 16645,
+        "tuning_errors": 1600,
+        "tuning_cases": 18388,
+        "tuning_accuracy": 0.9038750375488135,
+        "tuning_risk_upper_bound_exploratory": 0.09996539064174988,
+        "calibration_cases": 9406,
+        "calibration_accepted": 8574,
+        "calibration_errors": 808,
+        "source_validation_risk_upper_bound": 0.10432574950010405,
+        "source_validation_accuracy": 0.9057616048518777
+      },
+      "4:5": {
+        "enabled": false,
+        "reason": "source_validation_bound_not_met",
+        "present_count": 4,
+        "absent_count": 5,
+        "minimum_relative_score": 0.5823666016499812,
+        "tuning_accepted": 16831,
+        "tuning_errors": 1618,
+        "tuning_cases": 18388,
+        "tuning_accuracy": 0.9038678628720813,
+        "tuning_risk_upper_bound_exploratory": 0.09995095268321433,
+        "calibration_cases": 9406,
+        "calibration_accepted": 8666,
+        "calibration_errors": 816,
+        "source_validation_risk_upper_bound": 0.10418927093515222,
+        "source_validation_accuracy": 0.9058389106854373
+      },
+      "5:0": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 5,
+        "absent_count": 0,
+        "minimum_relative_score": 0.5001980109849027,
+        "tuning_accepted": 13412,
+        "tuning_errors": 1050,
+        "tuning_cases": 13412,
+        "tuning_accuracy": 0.9217118997912317,
+        "tuning_risk_upper_bound_exploratory": 0.0822087709439725,
+        "calibration_cases": 6816,
+        "calibration_accepted": 6816,
+        "calibration_errors": 490,
+        "source_validation_risk_upper_bound": 0.08201662468107687,
+        "source_validation_accuracy": 0.9281103286384976
+      },
+      "5:1": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 5,
+        "absent_count": 1,
+        "minimum_relative_score": 0.3938350937118037,
+        "tuning_accepted": 13412,
+        "tuning_errors": 1062,
+        "tuning_cases": 13412,
+        "tuning_accuracy": 0.9208171786459887,
+        "tuning_risk_upper_bound_exploratory": 0.08312321554778261,
+        "calibration_cases": 6816,
+        "calibration_accepted": 6813,
+        "calibration_errors": 496,
+        "source_validation_risk_upper_bound": 0.08298645749710078,
+        "source_validation_accuracy": 0.9271980038162336
+      },
+      "5:2": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 5,
+        "absent_count": 2,
+        "minimum_relative_score": 0.3554912014342544,
+        "tuning_accepted": 13412,
+        "tuning_errors": 1057,
+        "tuning_cases": 13412,
+        "tuning_accuracy": 0.9211899791231732,
+        "tuning_risk_upper_bound_exploratory": 0.08274221461864667,
+        "calibration_cases": 6816,
+        "calibration_accepted": 6816,
+        "calibration_errors": 486,
+        "source_validation_risk_upper_bound": 0.08139405428353819,
+        "source_validation_accuracy": 0.9286971830985915
+      },
+      "5:3": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 5,
+        "absent_count": 3,
+        "minimum_relative_score": 0.3554905851543586,
+        "tuning_accepted": 13412,
+        "tuning_errors": 1049,
+        "tuning_cases": 13412,
+        "tuning_accuracy": 0.9217864598866686,
+        "tuning_risk_upper_bound_exploratory": 0.08213256064633574,
+        "calibration_cases": 6816,
+        "calibration_accepted": 6815,
+        "calibration_errors": 478,
+        "source_validation_risk_upper_bound": 0.08016004523242876,
+        "source_validation_accuracy": 0.9298606016140866
+      },
+      "5:4": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 5,
+        "absent_count": 4,
+        "minimum_relative_score": 0.3554899725603142,
+        "tuning_accepted": 13412,
+        "tuning_errors": 1036,
+        "tuning_cases": 13412,
+        "tuning_accuracy": 0.9227557411273486,
+        "tuning_risk_upper_bound_exploratory": 0.08114173359807783,
+        "calibration_cases": 6816,
+        "calibration_accepted": 6815,
+        "calibration_errors": 472,
+        "source_validation_risk_upper_bound": 0.07922512646803234,
+        "source_validation_accuracy": 0.9307410124724872
+      },
+      "5:5": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 5,
+        "absent_count": 5,
+        "minimum_relative_score": 0.375777893143326,
+        "tuning_accepted": 13412,
+        "tuning_errors": 1016,
+        "tuning_cases": 13412,
+        "tuning_accuracy": 0.9242469430360871,
+        "tuning_risk_upper_bound_exploratory": 0.07961704127481618,
+        "calibration_cases": 6816,
+        "calibration_accepted": 6814,
+        "calibration_errors": 466,
+        "source_validation_risk_upper_bound": 0.07830119609100333,
+        "source_validation_accuracy": 0.9316113883181685
+      },
+      "6:0": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 6,
+        "absent_count": 0,
+        "minimum_relative_score": 0.5013179736799999,
+        "tuning_accepted": 9149,
+        "tuning_errors": 363,
+        "tuning_cases": 9149,
+        "tuning_accuracy": 0.9603235326265166,
+        "tuning_risk_upper_bound_exploratory": 0.043198271870707024,
+        "calibration_cases": 4708,
+        "calibration_accepted": 4708,
+        "calibration_errors": 168,
+        "source_validation_risk_upper_bound": 0.04478794702847363,
+        "source_validation_accuracy": 0.9643160577740018
+      },
+      "6:1": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 6,
+        "absent_count": 1,
+        "minimum_relative_score": 0.5013178438649107,
+        "tuning_accepted": 9149,
+        "tuning_errors": 382,
+        "tuning_cases": 9149,
+        "tuning_accuracy": 0.9582468029292819,
+        "tuning_risk_upper_bound_exploratory": 0.045357412843896015,
+        "calibration_cases": 4708,
+        "calibration_accepted": 4706,
+        "calibration_errors": 186,
+        "source_validation_risk_upper_bound": 0.04904190907504202,
+        "source_validation_accuracy": 0.9604759881002976
+      },
+      "6:2": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 6,
+        "absent_count": 2,
+        "minimum_relative_score": 0.5013177140498211,
+        "tuning_accepted": 9149,
+        "tuning_errors": 383,
+        "tuning_cases": 9149,
+        "tuning_accuracy": 0.9581375013662695,
+        "tuning_risk_upper_bound_exploratory": 0.045470986370601506,
+        "calibration_cases": 4708,
+        "calibration_accepted": 4706,
+        "calibration_errors": 186,
+        "source_validation_risk_upper_bound": 0.04904190907504202,
+        "source_validation_accuracy": 0.9604759881002976
+      },
+      "6:3": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 6,
+        "absent_count": 3,
+        "minimum_relative_score": 0.5001041123791846,
+        "tuning_accepted": 9149,
+        "tuning_errors": 381,
+        "tuning_cases": 9149,
+        "tuning_accuracy": 0.9583561044922942,
+        "tuning_risk_upper_bound_exploratory": 0.04524383291848275,
+        "calibration_cases": 4708,
+        "calibration_accepted": 4708,
+        "calibration_errors": 185,
+        "source_validation_risk_upper_bound": 0.048786605979754406,
+        "source_validation_accuracy": 0.9607051826677995
+      },
+      "6:4": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 6,
+        "absent_count": 4,
+        "minimum_relative_score": 0.5001052302902076,
+        "tuning_accepted": 9149,
+        "tuning_errors": 395,
+        "tuning_cases": 9149,
+        "tuning_accuracy": 0.9568258826101214,
+        "tuning_risk_upper_bound_exploratory": 0.04683337814138752,
+        "calibration_cases": 4708,
+        "calibration_accepted": 4708,
+        "calibration_errors": 191,
+        "source_validation_risk_upper_bound": 0.05019303772086963,
+        "source_validation_accuracy": 0.9594307561597282
+      },
+      "6:5": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 6,
+        "absent_count": 5,
+        "minimum_relative_score": 0.5001063482012311,
+        "tuning_accepted": 9149,
+        "tuning_errors": 394,
+        "tuning_cases": 9149,
+        "tuning_accuracy": 0.9569351841731337,
+        "tuning_risk_upper_bound_exploratory": 0.04671987957776493,
+        "calibration_cases": 4708,
+        "calibration_accepted": 4708,
+        "calibration_errors": 194,
+        "source_validation_risk_upper_bound": 0.05089536518430575,
+        "source_validation_accuracy": 0.9587935429056924
+      },
+      "7:0": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 7,
+        "absent_count": 0,
+        "minimum_relative_score": 0.5013041086679545,
+        "tuning_accepted": 5359,
+        "tuning_errors": 49,
+        "tuning_cases": 5359,
+        "tuning_accuracy": 0.9908565030789326,
+        "tuning_risk_upper_bound_exploratory": 0.011586966345726753,
+        "calibration_cases": 2717,
+        "calibration_accepted": 2717,
+        "calibration_errors": 27,
+        "source_validation_risk_upper_bound": 0.01728566667411025,
+        "source_validation_accuracy": 0.9900625690099374
+      },
+      "7:1": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 7,
+        "absent_count": 1,
+        "minimum_relative_score": 0.5013039788527428,
+        "tuning_accepted": 5359,
+        "tuning_errors": 55,
+        "tuning_cases": 5359,
+        "tuning_accuracy": 0.9897368912110468,
+        "tuning_risk_upper_bound_exploratory": 0.012831053475317416,
+        "calibration_cases": 2717,
+        "calibration_accepted": 2717,
+        "calibration_errors": 34,
+        "source_validation_risk_upper_bound": 0.020549469333460812,
+        "source_validation_accuracy": 0.9874861980125138
+      },
+      "7:2": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 7,
+        "absent_count": 2,
+        "minimum_relative_score": 0.5013038490375308,
+        "tuning_accepted": 5359,
+        "tuning_errors": 63,
+        "tuning_cases": 5359,
+        "tuning_accuracy": 0.988244075387199,
+        "tuning_risk_upper_bound_exploratory": 0.01447948679568983,
+        "calibration_cases": 2717,
+        "calibration_accepted": 2717,
+        "calibration_errors": 36,
+        "source_validation_risk_upper_bound": 0.021468444513726124,
+        "source_validation_accuracy": 0.9867500920132499
+      },
+      "7:3": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 7,
+        "absent_count": 3,
+        "minimum_relative_score": 0.5013037192223172,
+        "tuning_accepted": 5359,
+        "tuning_errors": 66,
+        "tuning_cases": 5359,
+        "tuning_accuracy": 0.9876842694532562,
+        "tuning_risk_upper_bound_exploratory": 0.015095009121998104,
+        "calibration_cases": 2717,
+        "calibration_accepted": 2717,
+        "calibration_errors": 38,
+        "source_validation_risk_upper_bound": 0.022382291842775372,
+        "source_validation_accuracy": 0.986013986013986
+      },
+      "7:4": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 7,
+        "absent_count": 4,
+        "minimum_relative_score": 0.501618041495552,
+        "tuning_accepted": 5359,
+        "tuning_errors": 68,
+        "tuning_cases": 5359,
+        "tuning_accuracy": 0.9873110654972943,
+        "tuning_risk_upper_bound_exploratory": 0.015504634997183176,
+        "calibration_cases": 2717,
+        "calibration_accepted": 2717,
+        "calibration_errors": 39,
+        "source_validation_risk_upper_bound": 0.02283741459840427,
+        "source_validation_accuracy": 0.9856459330143541
+      },
+      "7:5": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 7,
+        "absent_count": 5,
+        "minimum_relative_score": 0.5016205136844515,
+        "tuning_accepted": 5359,
+        "tuning_errors": 65,
+        "tuning_cases": 5359,
+        "tuning_accuracy": 0.9878708714312372,
+        "tuning_risk_upper_bound_exploratory": 0.014889982724562982,
+        "calibration_cases": 2717,
+        "calibration_accepted": 2717,
+        "calibration_errors": 44,
+        "source_validation_risk_upper_bound": 0.025096687092467946,
+        "source_validation_accuracy": 0.9838056680161943
+      },
+      "8:0": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 8,
+        "absent_count": 0,
+        "minimum_relative_score": 0.6230930435634874,
+        "tuning_accepted": 2818,
+        "tuning_errors": 10,
+        "tuning_cases": 2818,
+        "tuning_accuracy": 0.9964513839602555,
+        "tuning_risk_upper_bound_exploratory": 0.00601180483787291,
+        "calibration_cases": 1444,
+        "calibration_accepted": 1444,
+        "calibration_errors": 3,
+        "source_validation_risk_upper_bound": 0.008978848855647986,
+        "source_validation_accuracy": 0.9979224376731302
+      },
+      "8:1": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 8,
+        "absent_count": 1,
+        "minimum_relative_score": 0.5516796584437517,
+        "tuning_accepted": 2818,
+        "tuning_errors": 12,
+        "tuning_cases": 2818,
+        "tuning_accuracy": 0.9957416607523066,
+        "tuning_risk_upper_bound_exploratory": 0.006890309549757818,
+        "calibration_cases": 1444,
+        "calibration_accepted": 1444,
+        "calibration_errors": 3,
+        "source_validation_risk_upper_bound": 0.008978848855647986,
+        "source_validation_accuracy": 0.9979224376731302
+      },
+      "8:2": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 8,
+        "absent_count": 2,
+        "minimum_relative_score": 0.514911508327388,
+        "tuning_accepted": 2818,
+        "tuning_errors": 12,
+        "tuning_cases": 2818,
+        "tuning_accuracy": 0.9957416607523066,
+        "tuning_risk_upper_bound_exploratory": 0.006890309549757818,
+        "calibration_cases": 1444,
+        "calibration_accepted": 1444,
+        "calibration_errors": 3,
+        "source_validation_risk_upper_bound": 0.008978848855647986,
+        "source_validation_accuracy": 0.9979224376731302
+      },
+      "8:3": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 8,
+        "absent_count": 3,
+        "minimum_relative_score": 0.5149144309294557,
+        "tuning_accepted": 2818,
+        "tuning_errors": 12,
+        "tuning_cases": 2818,
+        "tuning_accuracy": 0.9957416607523066,
+        "tuning_risk_upper_bound_exploratory": 0.006890309549757818,
+        "calibration_cases": 1444,
+        "calibration_accepted": 1444,
+        "calibration_errors": 3,
+        "source_validation_risk_upper_bound": 0.008978848855647986,
+        "source_validation_accuracy": 0.9979224376731302
+      },
+      "8:4": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 8,
+        "absent_count": 4,
+        "minimum_relative_score": 0.5149173535305028,
+        "tuning_accepted": 2818,
+        "tuning_errors": 13,
+        "tuning_cases": 2818,
+        "tuning_accuracy": 0.9953867991483322,
+        "tuning_risk_upper_bound_exploratory": 0.007324500513664398,
+        "calibration_cases": 1444,
+        "calibration_accepted": 1444,
+        "calibration_errors": 3,
+        "source_validation_risk_upper_bound": 0.008978848855647986,
+        "source_validation_accuracy": 0.9979224376731302
+      },
+      "8:5": {
+        "enabled": true,
+        "reason": "source_validation_bound_met",
+        "present_count": 8,
+        "absent_count": 5,
+        "minimum_relative_score": 0.5149202761305304,
+        "tuning_accepted": 2818,
+        "tuning_errors": 13,
+        "tuning_cases": 2818,
+        "tuning_accuracy": 0.9953867991483322,
+        "tuning_risk_upper_bound_exploratory": 0.007324500513664398,
+        "calibration_cases": 1444,
+        "calibration_accepted": 1444,
+        "calibration_errors": 4,
+        "source_validation_risk_upper_bound": 0.010169657475366927,
+        "source_validation_accuracy": 0.997229916897507
+      }
+    }
+  },
+  "respiratory_scope": {
+    "required_present_anchor_features": [
+      "E_103",
+      "E_112",
+      "E_166",
+      "E_169",
+      "E_181",
+      "E_182",
+      "E_190",
+      "E_194",
+      "E_201",
+      "E_203",
+      "E_212",
+      "E_214",
+      "E_217",
+      "E_220",
+      "E_45",
+      "E_65",
+      "E_66",
+      "E_67",
+      "E_77",
+      "E_97"
+    ],
+    "note": "Fixed complaint-domain filter added independently of test outcomes; not triage or a disease exclusion rule. The original per-bucket bound checks concern pre-scope selection, not automatically the filtered subset. Scoped results below are empirical observations; no clinical or inherited selected-risk guarantee is claimed."
+  },
+  "baseline": {
+    "baseline": "Current V3 before this request; not V1/V2",
+    "model_sha256": "ae709ef5ddf6dd7a101fe426b610c3e83ef58aa93cb895ca13e7500220dc889c",
+    "splits": {
+      "training_records": 443075,
+      "original_tuning_records": 26477,
+      "original_reporting_validation_records": 26445,
+      "independent_profile_counts": {
+        "tuning": 26432,
+        "calibration": 13507,
+        "validation": 12905,
+        "test": 53387
+      },
+      "unique_source_profiles": {
+        "tuning": 26432,
+        "calibration": 13507,
+        "validation": 12905,
+        "test": 53273
+      },
+      "source_training_overlap_removed_from_validation": 2886,
+      "source_train_or_validation_overlap_removed_from_test": 3430,
+      "policy": "V3 retained unchanged. Original signature-even tuning selects thresholds. Previously reporting-only signature%4==1 source profiles validate selected risk bounds; signature%4==3 profiles report validation. Test excludes every source training/validation signature. Tuning/calibration/reporting-validation use first label-blind row per complete-198-feature signature; matched test retains all prior 53,386 records and reports unique-profile count.",
+      "source_hash_fingerprint": {
+        "train.csv": {
+          "bytes": 803922339,
+          "mtime_ns": 1790235408564956200
+        },
+        "validate.csv": {
+          "bytes": 101333269,
+          "mtime_ns": 1790235436689309700
+        },
+        "test.csv": {
+          "bytes": 103180907,
+          "mtime_ns": 1790235460449459200
+        },
+        "signature_features": [
+          "AGE",
+          "SEX_M",
+          "E_2",
+          "E_4",
+          "E_5",
+          "E_8",
+          "E_14",
+          "E_17",
+          "E_18",
+          "E_20",
+          "E_21",
+          "E_23",
+          "E_31",
+          "E_32",
+          "E_33",
+          "E_40",
+          "E_41",
+          "E_44",
+          "E_45",
+          "E_46",
+          "E_47",
+          "E_48",
+          "E_49",
+          "E_50",
+          "E_53",
+          "E_54_@_V_11",
+          "E_54_@_V_71",
+          "E_54_@_V_154",
+          "E_54_@_V_161",
+          "E_54_@_V_179",
+          "E_54_@_V_180",
+          "E_54_@_V_181",
+          "E_54_@_V_183",
+          "E_54_@_V_191",
+          "E_54_@_V_192",
+          "E_54_@_V_198",
+          "E_55_@_V_123",
+          "E_55_@_V_20",
+          "E_55_@_V_21",
+          "E_55_@_V_25",
+          "E_55_@_V_26",
+          "E_55_@_V_29",
+          "E_55_@_V_32",
+          "E_55_@_V_33",
+          "E_55_@_V_34",
+          "E_55_@_V_35",
+          "E_55_@_V_53",
+          "E_55_@_V_54",
+          "E_55_@_V_55",
+          "E_55_@_V_56",
+          "E_55_@_V_62",
+          "E_55_@_V_89",
+          "E_55_@_V_101",
+          "E_55_@_V_108",
+          "E_55_@_V_109",
+          "E_55_@_V_119",
+          "E_55_@_V_120",
+          "E_55_@_V_122",
+          "E_55_@_V_124",
+          "E_55_@_V_125",
+          "E_55_@_V_126",
+          "E_55_@_V_137",
+          "E_55_@_V_148",
+          "E_55_@_V_159",
+          "E_55_@_V_160",
+          "E_55_@_V_163",
+          "E_55_@_V_166",
+          "E_55_@_V_167",
+          "E_55_@_V_170",
+          "E_55_@_V_171",
+          "E_55_@_V_172",
+          "E_55_@_V_173",
+          "E_55_@_V_174",
+          "E_55_@_V_197",
+          "E_56",
+          "E_57_@_V_123",
+          "E_57_@_V_25",
+          "E_57_@_V_30",
+          "E_57_@_V_31",
+          "E_57_@_V_89",
+          "E_57_@_V_118",
+          "E_57_@_V_121",
+          "E_57_@_V_122",
+          "E_57_@_V_127",
+          "E_57_@_V_128",
+          "E_57_@_V_166",
+          "E_57_@_V_167",
+          "E_57_@_V_177",
+          "E_57_@_V_178",
+          "E_57_@_V_194",
+          "E_57_@_V_195",
+          "E_58",
+          "E_59",
+          "E_61",
+          "E_62",
+          "E_65",
+          "E_66",
+          "E_67",
+          "E_69",
+          "E_70",
+          "E_72",
+          "E_77",
+          "E_78",
+          "E_79",
+          "E_86",
+          "E_87",
+          "E_88",
+          "E_89",
+          "E_91",
+          "E_94",
+          "E_95",
+          "E_97",
+          "E_101",
+          "E_103",
+          "E_104",
+          "E_105",
+          "E_106",
+          "E_107",
+          "E_112",
+          "E_116",
+          "E_118",
+          "E_119",
+          "E_120",
+          "E_121",
+          "E_123",
+          "E_124",
+          "E_125",
+          "E_129",
+          "E_130_@_V_156",
+          "E_131_@_V_12",
+          "E_132",
+          "E_133_@_V_123",
+          "E_133_@_V_26",
+          "E_133_@_V_38",
+          "E_133_@_V_39",
+          "E_133_@_V_40",
+          "E_133_@_V_41",
+          "E_133_@_V_42",
+          "E_133_@_V_53",
+          "E_133_@_V_54",
+          "E_133_@_V_82",
+          "E_133_@_V_83",
+          "E_133_@_V_84",
+          "E_133_@_V_85",
+          "E_133_@_V_89",
+          "E_133_@_V_170",
+          "E_133_@_V_171",
+          "E_133_@_V_187",
+          "E_133_@_V_194",
+          "E_133_@_V_195",
+          "E_134",
+          "E_135_@_V_12",
+          "E_136",
+          "E_142",
+          "E_144",
+          "E_151",
+          "E_152_@_V_123",
+          "E_152_@_V_34",
+          "E_152_@_V_35",
+          "E_152_@_V_119",
+          "E_152_@_V_120",
+          "E_152_@_V_172",
+          "E_152_@_V_173",
+          "E_161",
+          "E_162",
+          "E_165",
+          "E_166",
+          "E_169",
+          "E_170",
+          "E_175",
+          "E_181",
+          "E_182",
+          "E_183",
+          "E_190",
+          "E_191",
+          "E_194",
+          "E_195",
+          "E_196",
+          "E_198",
+          "E_199",
+          "E_200",
+          "E_201",
+          "E_202",
+          "E_203",
+          "E_204_@_V_4",
+          "E_207",
+          "E_208",
+          "E_209",
+          "E_212",
+          "E_214",
+          "E_217",
+          "E_218",
+          "E_219",
+          "E_220",
+          "E_222",
+          "E_224",
+          "E_226",
+          "E_227"
+        ]
+      }
+    },
+    "test": {
+      "1_positive_0_negative": {
+        "cases": 53386,
+        "accepted_cases": 53386,
+        "underlying_top1_accuracy": 0.3659573670999888,
+        "underlying_top3_accuracy": 0.6843554489941183,
+        "underlying_macro_precision": 0.5244002420213653,
+        "underlying_macro_recall": 0.3121058602294228,
+        "underlying_macro_f1": 0.33209197472697793,
+        "coverage": 1.0,
+        "abstention_rate": 0.0,
+        "selective_accuracy": 0.3659573670999888,
+        "correct_primary_per_all_cases": 0.3659573670999888,
+        "macro_precision_including_abstention": 0.5244002420213653,
+        "macro_recall_including_abstention": 0.3121058602294228,
+        "macro_f1_including_abstention": 0.33209197472697793,
+        "macro_specificity_on_accepted": 0.9648414940935647,
+        "accepted_macro_precision": 0.5244002420213653,
+        "accepted_macro_recall": 0.3121058602294228,
+        "accepted_macro_f1": 0.33209197472697793,
+        "underlying_log_loss": 1.639579939187367,
+        "underlying_multiclass_brier": 0.7143465227064514,
+        "underlying_top_label_ece_10_equal_width_bins": 0.04165440577456817,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.1,
+            "count": 7129,
+            "accuracy": 0.13143498386870528,
+            "mean_score": 0.17634605430433395
+          },
+          {
+            "lower": 0.2,
+            "count": 15199,
+            "accuracy": 0.20231594183827883,
+            "mean_score": 0.23671847828789863
+          },
+          {
+            "lower": 0.30000000000000004,
+            "count": 10945,
+            "accuracy": 0.25052535404294196,
+            "mean_score": 0.34012953161240983
+          },
+          {
+            "lower": 0.4,
+            "count": 2717,
+            "accuracy": 0.4398233345601767,
+            "mean_score": 0.4433231944008039
+          },
+          {
+            "lower": 0.5,
+            "count": 7570,
+            "accuracy": 0.5272126816380449,
+            "mean_score": 0.540538739845109
+          },
+          {
+            "lower": 0.6000000000000001,
+            "count": 3008,
+            "accuracy": 0.6037234042553191,
+            "mean_score": 0.6485255117940348
+          },
+          {
+            "lower": 0.7000000000000001,
+            "count": 2875,
+            "accuracy": 0.6914782608695652,
+            "mean_score": 0.7396922341353455
+          },
+          {
+            "lower": 0.8,
+            "count": 860,
+            "accuracy": 0.8255813953488372,
+            "mean_score": 0.8418157190661627
+          },
+          {
+            "lower": 0.9,
+            "count": 3083,
+            "accuracy": 1.0,
+            "mean_score": 0.99926681812424
+          }
+        ],
+        "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+      },
+      "2_positive_0_negative": {
+        "cases": 53386,
+        "accepted_cases": 53386,
+        "underlying_top1_accuracy": 0.5334357322144383,
+        "underlying_top3_accuracy": 0.8688794815120069,
+        "underlying_macro_precision": 0.7195868466155824,
+        "underlying_macro_recall": 0.49387277072949104,
+        "underlying_macro_f1": 0.519041968713334,
+        "coverage": 1.0,
+        "abstention_rate": 0.0,
+        "selective_accuracy": 0.5334357322144383,
+        "correct_primary_per_all_cases": 0.5334357322144383,
+        "macro_precision_including_abstention": 0.7195868466155824,
+        "macro_recall_including_abstention": 0.49387277072949104,
+        "macro_f1_including_abstention": 0.519041968713334,
+        "macro_specificity_on_accepted": 0.9745821376070654,
+        "accepted_macro_precision": 0.7195868466155824,
+        "accepted_macro_recall": 0.49387277072949104,
+        "accepted_macro_f1": 0.519041968713334,
+        "underlying_log_loss": 1.00571629415525,
+        "underlying_multiclass_brier": 0.5205323043928253,
+        "underlying_top_label_ece_10_equal_width_bins": 0.05103113346896995,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.1,
+            "count": 1,
+            "accuracy": 0.0,
+            "mean_score": 0.16231767823092597
+          },
+          {
+            "lower": 0.2,
+            "count": 6734,
+            "accuracy": 0.15963765963765963,
+            "mean_score": 0.2465636833261319
+          },
+          {
+            "lower": 0.30000000000000004,
+            "count": 8582,
+            "accuracy": 0.2078769517594966,
+            "mean_score": 0.34167056252435885
+          },
+          {
+            "lower": 0.4,
+            "count": 6725,
+            "accuracy": 0.31687732342007435,
+            "mean_score": 0.4369715478108222
+          },
+          {
+            "lower": 0.5,
+            "count": 9143,
+            "accuracy": 0.539757191293886,
+            "mean_score": 0.5438603767612277
+          },
+          {
+            "lower": 0.6000000000000001,
+            "count": 5449,
+            "accuracy": 0.6331436960910258,
+            "mean_score": 0.6528978960759251
+          },
+          {
+            "lower": 0.7000000000000001,
+            "count": 4547,
+            "accuracy": 0.744886738508907,
+            "mean_score": 0.7412754191527638
+          },
+          {
+            "lower": 0.8,
+            "count": 3190,
+            "accuracy": 0.84858934169279,
+            "mean_score": 0.8423038238576153
+          },
+          {
+            "lower": 0.9,
+            "count": 9015,
+            "accuracy": 0.9993344425956738,
+            "mean_score": 0.9994839680658889
+          }
+        ],
+        "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+      },
+      "3_positive_0_negative": {
+        "cases": 53386,
+        "accepted_cases": 53386,
+        "underlying_top1_accuracy": 0.6603791256134567,
+        "underlying_top3_accuracy": 0.9483385157157307,
+        "underlying_macro_precision": 0.8324543883756674,
+        "underlying_macro_recall": 0.6360258110625672,
+        "underlying_macro_f1": 0.6655907295826987,
+        "coverage": 1.0,
+        "abstention_rate": 0.0,
+        "selective_accuracy": 0.6603791256134567,
+        "correct_primary_per_all_cases": 0.6603791256134567,
+        "macro_precision_including_abstention": 0.8324543883756674,
+        "macro_recall_including_abstention": 0.6360258110625672,
+        "macro_f1_including_abstention": 0.6655907295826987,
+        "macro_specificity_on_accepted": 0.9816793560211379,
+        "accepted_macro_precision": 0.8324543883756674,
+        "accepted_macro_recall": 0.6360258110625672,
+        "accepted_macro_f1": 0.6655907295826987,
+        "underlying_log_loss": 0.6712740439260767,
+        "underlying_multiclass_brier": 0.3797427019139898,
+        "underlying_top_label_ece_10_equal_width_bins": 0.06566804834652366,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.1,
+            "count": 1,
+            "accuracy": 0.0,
+            "mean_score": 0.16231767823092597
+          },
+          {
+            "lower": 0.2,
+            "count": 1625,
+            "accuracy": 0.168,
+            "mean_score": 0.25331631943540306
+          },
+          {
+            "lower": 0.30000000000000004,
+            "count": 5720,
+            "accuracy": 0.1473776223776224,
+            "mean_score": 0.3616690435401565
+          },
+          {
+            "lower": 0.4,
+            "count": 4670,
+            "accuracy": 0.24432548179871522,
+            "mean_score": 0.4519216897815375
+          },
+          {
+            "lower": 0.5,
+            "count": 8770,
+            "accuracy": 0.49293044469783354,
+            "mean_score": 0.5403743358523095
+          },
+          {
+            "lower": 0.6000000000000001,
+            "count": 7194,
+            "accuracy": 0.6834862385321101,
+            "mean_score": 0.6538919048840145
+          },
+          {
+            "lower": 0.7000000000000001,
+            "count": 5769,
+            "accuracy": 0.7906049575316346,
+            "mean_score": 0.7443633596264045
+          },
+          {
+            "lower": 0.8,
+            "count": 4600,
+            "accuracy": 0.9045652173913044,
+            "mean_score": 0.845097390962813
+          },
+          {
+            "lower": 0.9,
+            "count": 15037,
+            "accuracy": 0.9999334973731462,
+            "mean_score": 0.9997720602273199
+          }
+        ],
+        "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+      },
+      "3_positive_3_negative": {
+        "cases": 53386,
+        "accepted_cases": 53386,
+        "underlying_top1_accuracy": 0.7268946914921515,
+        "underlying_top3_accuracy": 0.964878432547859,
+        "underlying_macro_precision": 0.8271675877393585,
+        "underlying_macro_recall": 0.7090046777719773,
+        "underlying_macro_f1": 0.7378212792571934,
+        "coverage": 1.0,
+        "abstention_rate": 0.0,
+        "selective_accuracy": 0.7268946914921515,
+        "correct_primary_per_all_cases": 0.7268946914921515,
+        "macro_precision_including_abstention": 0.8271675877393585,
+        "macro_recall_including_abstention": 0.7090046777719773,
+        "macro_f1_including_abstention": 0.7378212792571934,
+        "macro_specificity_on_accepted": 0.9853810748174423,
+        "accepted_macro_precision": 0.8271675877393585,
+        "accepted_macro_recall": 0.7090046777719773,
+        "accepted_macro_f1": 0.7378212792571934,
+        "underlying_log_loss": 0.5971468670084068,
+        "underlying_multiclass_brier": 0.33735998499312975,
+        "underlying_top_label_ece_10_equal_width_bins": 0.0210019095680525,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.1,
+            "count": 34,
+            "accuracy": 0.17647058823529413,
+            "mean_score": 0.1862543159261725
+          },
+          {
+            "lower": 0.2,
+            "count": 851,
+            "accuracy": 0.23149236192714454,
+            "mean_score": 0.261547904570393
+          },
+          {
+            "lower": 0.30000000000000004,
+            "count": 3072,
+            "accuracy": 0.3141276041666667,
+            "mean_score": 0.35714871177036356
+          },
+          {
+            "lower": 0.4,
+            "count": 4898,
+            "accuracy": 0.35381788485095955,
+            "mean_score": 0.4501990158750001
+          },
+          {
+            "lower": 0.5,
+            "count": 7945,
+            "accuracy": 0.4986784140969163,
+            "mean_score": 0.545626789700817
+          },
+          {
+            "lower": 0.6000000000000001,
+            "count": 6475,
+            "accuracy": 0.6444787644787645,
+            "mean_score": 0.6483383925282926
+          },
+          {
+            "lower": 0.7000000000000001,
+            "count": 5597,
+            "accuracy": 0.7561193496515991,
+            "mean_score": 0.7477325906407497
+          },
+          {
+            "lower": 0.8,
+            "count": 5298,
+            "accuracy": 0.8554171385428464,
+            "mean_score": 0.8485980241288141
+          },
+          {
+            "lower": 0.9,
+            "count": 19216,
+            "accuracy": 0.9890716069941715,
+            "mean_score": 0.9895919085247656
+          }
+        ],
+        "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+      },
+      "8_positive_0_negative": {
+        "cases": 53386,
+        "accepted_cases": 53386,
+        "underlying_top1_accuracy": 0.7812160491514629,
+        "underlying_top3_accuracy": 0.9703292998164312,
+        "underlying_macro_precision": 0.888839433072149,
+        "underlying_macro_recall": 0.740746147636386,
+        "underlying_macro_f1": 0.7602094552451225,
+        "coverage": 1.0,
+        "abstention_rate": 0.0,
+        "selective_accuracy": 0.7812160491514629,
+        "correct_primary_per_all_cases": 0.7812160491514629,
+        "macro_precision_including_abstention": 0.888839433072149,
+        "macro_recall_including_abstention": 0.740746147636386,
+        "macro_f1_including_abstention": 0.7602094552451225,
+        "macro_specificity_on_accepted": 0.9883162125603152,
+        "accepted_macro_precision": 0.888839433072149,
+        "accepted_macro_recall": 0.740746147636386,
+        "accepted_macro_f1": 0.7602094552451225,
+        "underlying_log_loss": 0.42493292478314304,
+        "underlying_multiclass_brier": 0.239872401998631,
+        "underlying_top_label_ece_10_equal_width_bins": 0.08378238620532928,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.1,
+            "count": 1,
+            "accuracy": 0.0,
+            "mean_score": 0.16231767823092597
+          },
+          {
+            "lower": 0.2,
+            "count": 1479,
+            "accuracy": 0.13793103448275862,
+            "mean_score": 0.24922067166305958
+          },
+          {
+            "lower": 0.30000000000000004,
+            "count": 2787,
+            "accuracy": 0.050950843200574095,
+            "mean_score": 0.3585913304563383
+          },
+          {
+            "lower": 0.4,
+            "count": 2615,
+            "accuracy": 0.0910133843212237,
+            "mean_score": 0.45425116494531564
+          },
+          {
+            "lower": 0.5,
+            "count": 5805,
+            "accuracy": 0.4399655469422911,
+            "mean_score": 0.5432433981299793
+          },
+          {
+            "lower": 0.6000000000000001,
+            "count": 4953,
+            "accuracy": 0.7536846355743994,
+            "mean_score": 0.6493929964336642
+          },
+          {
+            "lower": 0.7000000000000001,
+            "count": 6545,
+            "accuracy": 0.8893812070282658,
+            "mean_score": 0.7535982079505972
+          },
+          {
+            "lower": 0.8,
+            "count": 4230,
+            "accuracy": 0.9557919621749409,
+            "mean_score": 0.8389477012691622
+          },
+          {
+            "lower": 0.9,
+            "count": 24971,
+            "accuracy": 1.0,
+            "mean_score": 0.9999298955919819
+          }
+        ],
+        "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+      },
+      "8_positive_5_negative": {
+        "cases": 53386,
+        "accepted_cases": 53386,
+        "underlying_top1_accuracy": 0.855823624171131,
+        "underlying_top3_accuracy": 0.9851459184055745,
+        "underlying_macro_precision": 0.8949059317910375,
+        "underlying_macro_recall": 0.8318079687403545,
+        "underlying_macro_f1": 0.8490533573075364,
+        "coverage": 1.0,
+        "abstention_rate": 0.0,
+        "selective_accuracy": 0.855823624171131,
+        "correct_primary_per_all_cases": 0.855823624171131,
+        "macro_precision_including_abstention": 0.8949059317910375,
+        "macro_recall_including_abstention": 0.8318079687403545,
+        "macro_f1_including_abstention": 0.8490533573075364,
+        "macro_specificity_on_accepted": 0.9924173802608409,
+        "accepted_macro_precision": 0.8949059317910375,
+        "accepted_macro_recall": 0.8318079687403545,
+        "accepted_macro_f1": 0.8490533573075364,
+        "underlying_log_loss": 0.3345742999899532,
+        "underlying_multiclass_brier": 0.18735482605607573,
+        "underlying_top_label_ece_10_equal_width_bins": 0.018983642979409937,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.1,
+            "count": 13,
+            "accuracy": 0.3076923076923077,
+            "mean_score": 0.18476996436073673
+          },
+          {
+            "lower": 0.2,
+            "count": 478,
+            "accuracy": 0.22594142259414227,
+            "mean_score": 0.26008889562729187
+          },
+          {
+            "lower": 0.30000000000000004,
+            "count": 1330,
+            "accuracy": 0.36165413533834584,
+            "mean_score": 0.35599695885784427
+          },
+          {
+            "lower": 0.4,
+            "count": 2281,
+            "accuracy": 0.4002630425252082,
+            "mean_score": 0.45401577583826014
+          },
+          {
+            "lower": 0.5,
+            "count": 4603,
+            "accuracy": 0.5092331088420595,
+            "mean_score": 0.5479522431941536
+          },
+          {
+            "lower": 0.6000000000000001,
+            "count": 4234,
+            "accuracy": 0.6740670760510156,
+            "mean_score": 0.6461679911995258
+          },
+          {
+            "lower": 0.7000000000000001,
+            "count": 4586,
+            "accuracy": 0.8081116441343218,
+            "mean_score": 0.7529839580846175
+          },
+          {
+            "lower": 0.8,
+            "count": 4191,
+            "accuracy": 0.8964447625864949,
+            "mean_score": 0.849982145887763
+          },
+          {
+            "lower": 0.9,
+            "count": 31670,
+            "accuracy": 0.9953268077044521,
+            "mean_score": 0.9914898340187162
+          }
+        ],
+        "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+      }
+    },
+    "validation": {
+      "1_positive_0_negative": {
+        "cases": 12905,
+        "accepted_cases": 12905,
+        "underlying_top1_accuracy": 0.3618752421542038,
+        "underlying_top3_accuracy": 0.6858581944982565,
+        "underlying_macro_precision": 0.5237652446914872,
+        "underlying_macro_recall": 0.3135419823031102,
+        "underlying_macro_f1": 0.33036613753120153,
+        "coverage": 1.0,
+        "abstention_rate": 0.0,
+        "selective_accuracy": 0.3618752421542038,
+        "correct_primary_per_all_cases": 0.3618752421542038,
+        "macro_precision_including_abstention": 0.5237652446914872,
+        "macro_recall_including_abstention": 0.3135419823031102,
+        "macro_f1_including_abstention": 0.33036613753120153,
+        "macro_specificity_on_accepted": 0.9647039772360073,
+        "accepted_macro_precision": 0.5237652446914872,
+        "accepted_macro_recall": 0.3135419823031102,
+        "accepted_macro_f1": 0.33036613753120153,
+        "underlying_log_loss": 1.637973481626563,
+        "underlying_multiclass_brier": 0.7149722586210381,
+        "underlying_top_label_ece_10_equal_width_bins": 0.04789678033922186,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.1,
+            "count": 1651,
+            "accuracy": 0.11811023622047244,
+            "mean_score": 0.1765754543770231
+          },
+          {
+            "lower": 0.2,
+            "count": 3654,
+            "accuracy": 0.19813902572523262,
+            "mean_score": 0.23825584540824088
+          },
+          {
+            "lower": 0.30000000000000004,
+            "count": 2651,
+            "accuracy": 0.24405884571859676,
+            "mean_score": 0.3407885526938612
+          },
+          {
+            "lower": 0.4,
+            "count": 673,
+            "accuracy": 0.40713224368499257,
+            "mean_score": 0.4412302694871797
+          },
+          {
+            "lower": 0.5,
+            "count": 1941,
+            "accuracy": 0.5378670788253478,
+            "mean_score": 0.5397952340377533
+          },
+          {
+            "lower": 0.6000000000000001,
+            "count": 677,
+            "accuracy": 0.5553914327917282,
+            "mean_score": 0.6492585994947292
+          },
+          {
+            "lower": 0.7000000000000001,
+            "count": 713,
+            "accuracy": 0.7138849929873773,
+            "mean_score": 0.7390011996489965
+          },
+          {
+            "lower": 0.8,
+            "count": 226,
+            "accuracy": 0.8053097345132744,
+            "mean_score": 0.8462653368600755
+          },
+          {
+            "lower": 0.9,
+            "count": 719,
+            "accuracy": 1.0,
+            "mean_score": 0.9983836595022804
+          }
+        ],
+        "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+      },
+      "2_positive_0_negative": {
+        "cases": 12905,
+        "accepted_cases": 12905,
+        "underlying_top1_accuracy": 0.5323518016272762,
+        "underlying_top3_accuracy": 0.8688105385509493,
+        "underlying_macro_precision": 0.7105821779020148,
+        "underlying_macro_recall": 0.500001538454917,
+        "underlying_macro_f1": 0.5222623157801228,
+        "coverage": 1.0,
+        "abstention_rate": 0.0,
+        "selective_accuracy": 0.5323518016272762,
+        "correct_primary_per_all_cases": 0.5323518016272762,
+        "macro_precision_including_abstention": 0.7105821779020148,
+        "macro_recall_including_abstention": 0.500001538454917,
+        "macro_f1_including_abstention": 0.5222623157801228,
+        "macro_specificity_on_accepted": 0.9745840931635629,
+        "accepted_macro_precision": 0.7105821779020148,
+        "accepted_macro_recall": 0.500001538454917,
+        "accepted_macro_f1": 0.5222623157801228,
+        "underlying_log_loss": 1.0043206485036802,
+        "underlying_multiclass_brier": 0.5202553104782678,
+        "underlying_top_label_ece_10_equal_width_bins": 0.05366916562418259,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.1,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.2,
+            "count": 1563,
+            "accuracy": 0.13691618682021753,
+            "mean_score": 0.24673843524105546
+          },
+          {
+            "lower": 0.30000000000000004,
+            "count": 2089,
+            "accuracy": 0.2144566778362853,
+            "mean_score": 0.34103937032977366
+          },
+          {
+            "lower": 0.4,
+            "count": 1567,
+            "accuracy": 0.29738353541799617,
+            "mean_score": 0.4373990456390571
+          },
+          {
+            "lower": 0.5,
+            "count": 2272,
+            "accuracy": 0.5413732394366197,
+            "mean_score": 0.543400968691246
+          },
+          {
+            "lower": 0.6000000000000001,
+            "count": 1342,
+            "accuracy": 0.6356184798807749,
+            "mean_score": 0.6548698196779823
+          },
+          {
+            "lower": 0.7000000000000001,
+            "count": 1156,
+            "accuracy": 0.7448096885813149,
+            "mean_score": 0.7417702288840722
+          },
+          {
+            "lower": 0.8,
+            "count": 748,
+            "accuracy": 0.8462566844919787,
+            "mean_score": 0.8437009297583069
+          },
+          {
+            "lower": 0.9,
+            "count": 2168,
+            "accuracy": 0.9986162361623616,
+            "mean_score": 0.99919060891967
+          }
+        ],
+        "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+      },
+      "3_positive_0_negative": {
+        "cases": 12905,
+        "accepted_cases": 12905,
+        "underlying_top1_accuracy": 0.6645486245641224,
+        "underlying_top3_accuracy": 0.9494769469197986,
+        "underlying_macro_precision": 0.8329704013632904,
+        "underlying_macro_recall": 0.6497505716620406,
+        "underlying_macro_f1": 0.6737614120008686,
+        "coverage": 1.0,
+        "abstention_rate": 0.0,
+        "selective_accuracy": 0.6645486245641224,
+        "correct_primary_per_all_cases": 0.6645486245641224,
+        "macro_precision_including_abstention": 0.8329704013632904,
+        "macro_recall_including_abstention": 0.6497505716620406,
+        "macro_f1_including_abstention": 0.6737614120008686,
+        "macro_specificity_on_accepted": 0.9819303615607121,
+        "accepted_macro_precision": 0.8329704013632904,
+        "accepted_macro_recall": 0.6497505716620406,
+        "accepted_macro_f1": 0.6737614120008686,
+        "underlying_log_loss": 0.660688803628722,
+        "underlying_multiclass_brier": 0.3744854147949259,
+        "underlying_top_label_ece_10_equal_width_bins": 0.0695017655347815,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.1,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.2,
+            "count": 375,
+            "accuracy": 0.16533333333333333,
+            "mean_score": 0.25507400187627605
+          },
+          {
+            "lower": 0.30000000000000004,
+            "count": 1302,
+            "accuracy": 0.14055299539170507,
+            "mean_score": 0.3620019104855637
+          },
+          {
+            "lower": 0.4,
+            "count": 1086,
+            "accuracy": 0.22191528545119704,
+            "mean_score": 0.4518413645177967
+          },
+          {
+            "lower": 0.5,
+            "count": 2112,
+            "accuracy": 0.48295454545454547,
+            "mean_score": 0.5409834770411438
+          },
+          {
+            "lower": 0.6000000000000001,
+            "count": 1831,
+            "accuracy": 0.6892408519934462,
+            "mean_score": 0.65406048419801
+          },
+          {
+            "lower": 0.7000000000000001,
+            "count": 1351,
+            "accuracy": 0.8060695780903034,
+            "mean_score": 0.7446846538767927
+          },
+          {
+            "lower": 0.8,
+            "count": 1160,
+            "accuracy": 0.8913793103448275,
+            "mean_score": 0.8449459053974553
+          },
+          {
+            "lower": 0.9,
+            "count": 3688,
+            "accuracy": 0.9991865509761388,
+            "mean_score": 0.9995865468840772
+          }
+        ],
+        "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+      },
+      "3_positive_3_negative": {
+        "cases": 12905,
+        "accepted_cases": 12905,
+        "underlying_top1_accuracy": 0.7264626113909337,
+        "underlying_top3_accuracy": 0.9650523053080201,
+        "underlying_macro_precision": 0.8143509413552398,
+        "underlying_macro_recall": 0.7104784147966958,
+        "underlying_macro_f1": 0.7309458739031642,
+        "coverage": 1.0,
+        "abstention_rate": 0.0,
+        "selective_accuracy": 0.7264626113909337,
+        "correct_primary_per_all_cases": 0.7264626113909337,
+        "macro_precision_including_abstention": 0.8143509413552398,
+        "macro_recall_including_abstention": 0.7104784147966958,
+        "macro_f1_including_abstention": 0.7309458739031642,
+        "macro_specificity_on_accepted": 0.9853900074572719,
+        "accepted_macro_precision": 0.8143509413552398,
+        "accepted_macro_recall": 0.7104784147966958,
+        "accepted_macro_f1": 0.7309458739031642,
+        "underlying_log_loss": 0.587346997074855,
+        "underlying_multiclass_brier": 0.33300208197458975,
+        "underlying_top_label_ece_10_equal_width_bins": 0.028224612938156673,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.1,
+            "count": 7,
+            "accuracy": 0.2857142857142857,
+            "mean_score": 0.18372501744694716
+          },
+          {
+            "lower": 0.2,
+            "count": 205,
+            "accuracy": 0.13658536585365855,
+            "mean_score": 0.26007903707683855
+          },
+          {
+            "lower": 0.30000000000000004,
+            "count": 693,
+            "accuracy": 0.329004329004329,
+            "mean_score": 0.3571396625954632
+          },
+          {
+            "lower": 0.4,
+            "count": 1115,
+            "accuracy": 0.32466367713004485,
+            "mean_score": 0.4501670912083254
+          },
+          {
+            "lower": 0.5,
+            "count": 1908,
+            "accuracy": 0.47379454926624737,
+            "mean_score": 0.5455658411219841
+          },
+          {
+            "lower": 0.6000000000000001,
+            "count": 1513,
+            "accuracy": 0.650363516192994,
+            "mean_score": 0.6497850177763094
+          },
+          {
+            "lower": 0.7000000000000001,
+            "count": 1393,
+            "accuracy": 0.7609475951184493,
+            "mean_score": 0.7476156930307679
+          },
+          {
+            "lower": 0.8,
+            "count": 1374,
+            "accuracy": 0.8384279475982532,
+            "mean_score": 0.8492210468344185
+          },
+          {
+            "lower": 0.9,
+            "count": 4697,
+            "accuracy": 0.9910581222056631,
+            "mean_score": 0.9894489123507496
+          }
+        ],
+        "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+      },
+      "8_positive_0_negative": {
+        "cases": 12905,
+        "accepted_cases": 12905,
+        "underlying_top1_accuracy": 0.790623789228981,
+        "underlying_top3_accuracy": 0.971793878341728,
+        "underlying_macro_precision": 0.8922116053165106,
+        "underlying_macro_recall": 0.7559603382378666,
+        "underlying_macro_f1": 0.7693675500761411,
+        "coverage": 1.0,
+        "abstention_rate": 0.0,
+        "selective_accuracy": 0.790623789228981,
+        "correct_primary_per_all_cases": 0.790623789228981,
+        "macro_precision_including_abstention": 0.8922116053165106,
+        "macro_recall_including_abstention": 0.7559603382378666,
+        "macro_f1_including_abstention": 0.7693675500761411,
+        "macro_specificity_on_accepted": 0.9888527319720453,
+        "accepted_macro_precision": 0.8922116053165106,
+        "accepted_macro_recall": 0.7559603382378666,
+        "accepted_macro_f1": 0.7693675500761411,
+        "underlying_log_loss": 0.4063142317527801,
+        "underlying_multiclass_brier": 0.22973122401754376,
+        "underlying_top_label_ece_10_equal_width_bins": 0.08529150827779197,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.1,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.2,
+            "count": 335,
+            "accuracy": 0.13432835820895522,
+            "mean_score": 0.25032990748336775
+          },
+          {
+            "lower": 0.30000000000000004,
+            "count": 612,
+            "accuracy": 0.0457516339869281,
+            "mean_score": 0.3598537518251238
+          },
+          {
+            "lower": 0.4,
+            "count": 627,
+            "accuracy": 0.0861244019138756,
+            "mean_score": 0.45439985052270143
+          },
+          {
+            "lower": 0.5,
+            "count": 1352,
+            "accuracy": 0.4275147928994083,
+            "mean_score": 0.5455615954375972
+          },
+          {
+            "lower": 0.6000000000000001,
+            "count": 1165,
+            "accuracy": 0.7665236051502146,
+            "mean_score": 0.6498282068796316
+          },
+          {
+            "lower": 0.7000000000000001,
+            "count": 1585,
+            "accuracy": 0.905993690851735,
+            "mean_score": 0.7556249391257368
+          },
+          {
+            "lower": 0.8,
+            "count": 1020,
+            "accuracy": 0.9411764705882353,
+            "mean_score": 0.8392851447960212
+          },
+          {
+            "lower": 0.9,
+            "count": 6209,
+            "accuracy": 1.0,
+            "mean_score": 0.9998592119322529
+          }
+        ],
+        "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+      },
+      "8_positive_5_negative": {
+        "cases": 12905,
+        "accepted_cases": 12905,
+        "underlying_top1_accuracy": 0.8604416892677257,
+        "underlying_top3_accuracy": 0.9848120883378535,
+        "underlying_macro_precision": 0.8875459455376206,
+        "underlying_macro_recall": 0.8304979071982195,
+        "underlying_macro_f1": 0.8434976291532964,
+        "coverage": 1.0,
+        "abstention_rate": 0.0,
+        "selective_accuracy": 0.8604416892677257,
+        "correct_primary_per_all_cases": 0.8604416892677257,
+        "macro_precision_including_abstention": 0.8875459455376206,
+        "macro_recall_including_abstention": 0.8304979071982195,
+        "macro_f1_including_abstention": 0.8434976291532964,
+        "macro_specificity_on_accepted": 0.9926851960396602,
+        "accepted_macro_precision": 0.8875459455376206,
+        "accepted_macro_recall": 0.8304979071982195,
+        "accepted_macro_f1": 0.8434976291532964,
+        "underlying_log_loss": 0.31914669293170644,
+        "underlying_multiclass_brier": 0.17919743354668957,
+        "underlying_top_label_ece_10_equal_width_bins": 0.02105897954623825,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "count": 0,
+            "accuracy": null,
+            "mean_score": null
+          },
+          {
+            "lower": 0.1,
+            "count": 2,
+            "accuracy": 0.0,
+            "mean_score": 0.1831875557877618
+          },
+          {
+            "lower": 0.2,
+            "count": 112,
+            "accuracy": 0.25892857142857145,
+            "mean_score": 0.2597673912025501
+          },
+          {
+            "lower": 0.30000000000000004,
+            "count": 290,
+            "accuracy": 0.33793103448275863,
+            "mean_score": 0.35603058015326083
+          },
+          {
+            "lower": 0.4,
+            "count": 525,
+            "accuracy": 0.3923809523809524,
+            "mean_score": 0.4547753505767134
+          },
+          {
+            "lower": 0.5,
+            "count": 1042,
+            "accuracy": 0.4836852207293666,
+            "mean_score": 0.5474409199409582
+          },
+          {
+            "lower": 0.6000000000000001,
+            "count": 989,
+            "accuracy": 0.6693629929221436,
+            "mean_score": 0.6459051781372452
+          },
+          {
+            "lower": 0.7000000000000001,
+            "count": 1057,
+            "accuracy": 0.8211920529801324,
+            "mean_score": 0.7534696160066988
+          },
+          {
+            "lower": 0.8,
+            "count": 1041,
+            "accuracy": 0.8904899135446686,
+            "mean_score": 0.849711361579423
+          },
+          {
+            "lower": 0.9,
+            "count": 7847,
+            "accuracy": 0.9952848222250542,
+            "mean_score": 0.9915084013070932
+          }
+        ],
+        "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+      }
+    },
+    "clinical_validation": false
+  },
+  "scope_policy": {
+    "scope_policy_version": "v3_respiratory_scope_v1",
+    "base_policy_sha256": "f065c078632ce183e010c3444a32de5a81d3312f7c698b59fac373dd8aaf0df5",
+    "model_sha256": "ae709ef5ddf6dd7a101fe426b610c3e83ef58aa93cb895ca13e7500220dc889c",
+    "required_present_anchor_features": [
+      "E_103",
+      "E_112",
+      "E_166",
+      "E_169",
+      "E_181",
+      "E_182",
+      "E_190",
+      "E_194",
+      "E_201",
+      "E_203",
+      "E_212",
+      "E_214",
+      "E_217",
+      "E_220",
+      "E_45",
+      "E_65",
+      "E_66",
+      "E_67",
+      "E_77",
+      "E_97"
+    ],
+    "clinical_validation": false,
+    "thresholds_changed": false,
+    "decision_source": "Only the independent unique-source-profile calibration partition; no reporting-validation/test labels used. Respiratory anchors fixed from supported complaint domain before scoped calibration review.",
+    "disabled_buckets": {
+      "1:4": {
+        "disabled": true,
+        "reason": "scoped_source_validation_bound_not_met",
+        "scoped_source_validation_risk_upper_bound": 0.10423359130943184,
+        "accepted_source_profiles_before_override": 1054,
+        "errors_before_override": 80
+      }
+    },
+    "note": "Additional rejection only. Existing score thresholds and original enabled/disabled policy retained. Bound interpretation remains simulated-source and reporting-mechanism dependent; application mapping, severity and emergency gates need separate validation."
+  },
+  "scope_policy_sha256": "e9bd6f189a54291cb5a968ea739f6c69206be25bc42e81ee3e120e776d9de9a6",
+  "scoped_calibration_diagnostics": {
+    "1:1": {
+      "accepted_source_profiles": 771,
+      "errors": 50,
+      "accuracy": 0.9351491569390402,
+      "descriptive_risk_upper_bound": 0.09669635196393532
+    },
+    "1:4": {
+      "accepted_source_profiles": 1054,
+      "errors": 80,
+      "accuracy": 0.9240986717267552,
+      "descriptive_risk_upper_bound": 0.10423359130943184
+    },
+    "2:0": {
+      "accepted_source_profiles": 3382,
+      "errors": 265,
+      "accuracy": 0.9216439976345357,
+      "descriptive_risk_upper_bound": 0.0935696013868841
+    },
+    "2:1": {
+      "accepted_source_profiles": 3508,
+      "errors": 282,
+      "accuracy": 0.919612314709236,
+      "descriptive_risk_upper_bound": 0.09546763497289494
+    },
+    "2:2": {
+      "accepted_source_profiles": 3745,
+      "errors": 310,
+      "accuracy": 0.9172229639519359,
+      "descriptive_risk_upper_bound": 0.09752103760794116
+    },
+    "3:0": {
+      "accepted_source_profiles": 6494,
+      "errors": 561,
+      "accuracy": 0.9136125654450262,
+      "descriptive_risk_upper_bound": 0.09762293847734713
+    },
+    "3:1": {
+      "accepted_source_profiles": 6638,
+      "errors": 574,
+      "accuracy": 0.9135281711358842,
+      "descriptive_risk_upper_bound": 0.097583911710854
+    },
+    "3:2": {
+      "accepted_source_profiles": 6839,
+      "errors": 604,
+      "accuracy": 0.9116829945898524,
+      "descriptive_risk_upper_bound": 0.09935570277175478
+    },
+    "3:4": {
+      "accepted_source_profiles": 7195,
+      "errors": 628,
+      "accuracy": 0.9127171646977067,
+      "descriptive_risk_upper_bound": 0.09797962504401361
+    },
+    "3:5": {
+      "accepted_source_profiles": 7381,
+      "errors": 657,
+      "accuracy": 0.9109876710472835,
+      "descriptive_risk_upper_bound": 0.09965606914796522
+    },
+    "5:0": {
+      "accepted_source_profiles": 6690,
+      "errors": 487,
+      "accuracy": 0.9272047832585949,
+      "descriptive_risk_upper_bound": 0.0830770870419198
+    },
+    "5:1": {
+      "accepted_source_profiles": 6687,
+      "errors": 491,
+      "accuracy": 0.9265739494541648,
+      "descriptive_risk_upper_bound": 0.08374857992071373
+    },
+    "5:2": {
+      "accepted_source_profiles": 6690,
+      "errors": 480,
+      "accuracy": 0.9282511210762332,
+      "descriptive_risk_upper_bound": 0.0819668681557757
+    },
+    "5:3": {
+      "accepted_source_profiles": 6689,
+      "errors": 474,
+      "accuracy": 0.9291373897443564,
+      "descriptive_risk_upper_bound": 0.08102682235713972
+    },
+    "5:4": {
+      "accepted_source_profiles": 6689,
+      "errors": 467,
+      "accuracy": 0.930183883988638,
+      "descriptive_risk_upper_bound": 0.07991532009904906
+    },
+    "5:5": {
+      "accepted_source_profiles": 6688,
+      "errors": 459,
+      "accuracy": 0.9313696172248804,
+      "descriptive_risk_upper_bound": 0.07865596700327054
+    },
+    "6:0": {
+      "accepted_source_profiles": 4649,
+      "errors": 168,
+      "accuracy": 0.9638631963863197,
+      "descriptive_risk_upper_bound": 0.045353621245351104
+    },
+    "6:1": {
+      "accepted_source_profiles": 4647,
+      "errors": 186,
+      "accuracy": 0.959974176888315,
+      "descriptive_risk_upper_bound": 0.04966142895438969
+    },
+    "6:2": {
+      "accepted_source_profiles": 4647,
+      "errors": 186,
+      "accuracy": 0.959974176888315,
+      "descriptive_risk_upper_bound": 0.04966142895438969
+    },
+    "6:3": {
+      "accepted_source_profiles": 4649,
+      "errors": 185,
+      "accuracy": 0.9602064960206496,
+      "descriptive_risk_upper_bound": 0.04940264495978615
+    },
+    "6:4": {
+      "accepted_source_profiles": 4649,
+      "errors": 191,
+      "accuracy": 0.9589158958915895,
+      "descriptive_risk_upper_bound": 0.05082678709722756
+    },
+    "6:5": {
+      "accepted_source_profiles": 4649,
+      "errors": 194,
+      "accuracy": 0.9582705958270595,
+      "descriptive_risk_upper_bound": 0.05153795776757739
+    },
+    "7:0": {
+      "accepted_source_profiles": 2695,
+      "errors": 27,
+      "accuracy": 0.9899814471243042,
+      "descriptive_risk_upper_bound": 0.017426245009772905
+    },
+    "7:1": {
+      "accepted_source_profiles": 2695,
+      "errors": 34,
+      "accuracy": 0.9873840445269016,
+      "descriptive_risk_upper_bound": 0.020716530250819137
+    },
+    "7:2": {
+      "accepted_source_profiles": 2695,
+      "errors": 36,
+      "accuracy": 0.9866419294990724,
+      "descriptive_risk_upper_bound": 0.021642959424794654
+    },
+    "7:3": {
+      "accepted_source_profiles": 2695,
+      "errors": 38,
+      "accuracy": 0.9858998144712431,
+      "descriptive_risk_upper_bound": 0.02256421806584439
+    },
+    "7:4": {
+      "accepted_source_profiles": 2695,
+      "errors": 39,
+      "accuracy": 0.9855287569573283,
+      "descriptive_risk_upper_bound": 0.023023031473452915
+    },
+    "7:5": {
+      "accepted_source_profiles": 2695,
+      "errors": 44,
+      "accuracy": 0.9836734693877551,
+      "descriptive_risk_upper_bound": 0.025300620881545097
+    },
+    "8:0": {
+      "accepted_source_profiles": 1439,
+      "errors": 3,
+      "accuracy": 0.9979152189020153,
+      "descriptive_risk_upper_bound": 0.009009938584478015
+    },
+    "8:1": {
+      "accepted_source_profiles": 1439,
+      "errors": 3,
+      "accuracy": 0.9979152189020153,
+      "descriptive_risk_upper_bound": 0.009009938584478015
+    },
+    "8:2": {
+      "accepted_source_profiles": 1439,
+      "errors": 3,
+      "accuracy": 0.9979152189020153,
+      "descriptive_risk_upper_bound": 0.009009938584478015
+    },
+    "8:3": {
+      "accepted_source_profiles": 1439,
+      "errors": 3,
+      "accuracy": 0.9979152189020153,
+      "descriptive_risk_upper_bound": 0.009009938584478015
+    },
+    "8:4": {
+      "accepted_source_profiles": 1439,
+      "errors": 3,
+      "accuracy": 0.9979152189020153,
+      "descriptive_risk_upper_bound": 0.009009938584478015
+    },
+    "8:5": {
+      "accepted_source_profiles": 1439,
+      "errors": 4,
+      "accuracy": 0.9972202918693537,
+      "descriptive_risk_upper_bound": 0.010204861456604427
+    }
+  },
+  "model_only_improved_test": {
+    "1_positive_0_negative": {
+      "cases": 53386,
+      "accepted_cases": 0,
+      "underlying_top1_accuracy": 0.3659573670999888,
+      "underlying_top3_accuracy": 0.6843554489941183,
+      "underlying_macro_precision": 0.5244002420213653,
+      "underlying_macro_recall": 0.3121058602294228,
+      "underlying_macro_f1": 0.33209197472697793,
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "selective_accuracy": null,
+      "correct_primary_per_all_cases": 0.0,
+      "macro_precision_including_abstention": 0.0,
+      "macro_recall_including_abstention": 0.0,
+      "macro_f1_including_abstention": 0.0,
+      "macro_specificity_on_accepted": null,
+      "accepted_macro_precision": null,
+      "accepted_macro_recall": null,
+      "accepted_macro_f1": null,
+      "underlying_log_loss": 1.639579939187367,
+      "underlying_multiclass_brier": 0.7143465227064514,
+      "underlying_top_label_ece_10_equal_width_bins": 0.04165440577456817,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 7129,
+          "accuracy": 0.13143498386870528,
+          "mean_score": 0.17634605430433395
+        },
+        {
+          "lower": 0.2,
+          "count": 15199,
+          "accuracy": 0.20231594183827883,
+          "mean_score": 0.23671847828789863
+        },
+        {
+          "lower": 0.3,
+          "count": 10945,
+          "accuracy": 0.25052535404294196,
+          "mean_score": 0.34012953161240983
+        },
+        {
+          "lower": 0.4,
+          "count": 2717,
+          "accuracy": 0.4398233345601767,
+          "mean_score": 0.4433231944008039
+        },
+        {
+          "lower": 0.5,
+          "count": 7570,
+          "accuracy": 0.5272126816380449,
+          "mean_score": 0.540538739845109
+        },
+        {
+          "lower": 0.6,
+          "count": 3008,
+          "accuracy": 0.6037234042553191,
+          "mean_score": 0.6485255117940348
+        },
+        {
+          "lower": 0.7,
+          "count": 2875,
+          "accuracy": 0.6914782608695652,
+          "mean_score": 0.7396922341353455
+        },
+        {
+          "lower": 0.8,
+          "count": 860,
+          "accuracy": 0.8255813953488372,
+          "mean_score": 0.8418157190661627
+        },
+        {
+          "lower": 0.9,
+          "count": 3083,
+          "accuracy": 1.0,
+          "mean_score": 0.99926681812424
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "2_positive_0_negative": {
+      "cases": 53386,
+      "accepted_cases": 15861,
+      "underlying_top1_accuracy": 0.5334357322144383,
+      "underlying_top3_accuracy": 0.8688794815120069,
+      "underlying_macro_precision": 0.7195868466155824,
+      "underlying_macro_recall": 0.49387277072949104,
+      "underlying_macro_f1": 0.519041968713334,
+      "coverage": 0.29710036339115126,
+      "abstention_rate": 0.7028996366088488,
+      "selective_accuracy": 0.9121745161086943,
+      "correct_primary_per_all_cases": 0.2710073802120406,
+      "macro_precision_including_abstention": 0.7599369363816316,
+      "macro_recall_including_abstention": 0.27914471339957503,
+      "macro_f1_including_abstention": 0.36671946775774117,
+      "macro_specificity_on_accepted": 0.9951429247559673,
+      "accepted_macro_precision": 0.7599369363816316,
+      "accepted_macro_recall": 0.6979729146978999,
+      "accepted_macro_f1": 0.7150853619657532,
+      "underlying_log_loss": 1.00571629415525,
+      "underlying_multiclass_brier": 0.5205323043928253,
+      "underlying_top_label_ece_10_equal_width_bins": 0.05103113346896995,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 1,
+          "accuracy": 0.0,
+          "mean_score": 0.16231767823092597
+        },
+        {
+          "lower": 0.2,
+          "count": 6734,
+          "accuracy": 0.15963765963765963,
+          "mean_score": 0.2465636833261319
+        },
+        {
+          "lower": 0.3,
+          "count": 8582,
+          "accuracy": 0.2078769517594966,
+          "mean_score": 0.34167056252435885
+        },
+        {
+          "lower": 0.4,
+          "count": 6725,
+          "accuracy": 0.31687732342007435,
+          "mean_score": 0.4369715478108222
+        },
+        {
+          "lower": 0.5,
+          "count": 9143,
+          "accuracy": 0.539757191293886,
+          "mean_score": 0.5438603767612277
+        },
+        {
+          "lower": 0.6,
+          "count": 5449,
+          "accuracy": 0.6331436960910258,
+          "mean_score": 0.6528978960759251
+        },
+        {
+          "lower": 0.7,
+          "count": 4547,
+          "accuracy": 0.744886738508907,
+          "mean_score": 0.7412754191527638
+        },
+        {
+          "lower": 0.8,
+          "count": 3190,
+          "accuracy": 0.84858934169279,
+          "mean_score": 0.8423038238576153
+        },
+        {
+          "lower": 0.9,
+          "count": 9015,
+          "accuracy": 0.9993344425956738,
+          "mean_score": 0.9994839680658889
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "3_positive_0_negative": {
+      "cases": 53386,
+      "accepted_cases": 29089,
+      "underlying_top1_accuracy": 0.6603791256134567,
+      "underlying_top3_accuracy": 0.9483385157157307,
+      "underlying_macro_precision": 0.8324543883756674,
+      "underlying_macro_recall": 0.6360258110625672,
+      "underlying_macro_f1": 0.6655907295826987,
+      "coverage": 0.5448806803281759,
+      "abstention_rate": 0.45511931967182406,
+      "selective_accuracy": 0.9108597751727457,
+      "correct_primary_per_all_cases": 0.49630989397969505,
+      "macro_precision_including_abstention": 0.8088275710821117,
+      "macro_recall_including_abstention": 0.4545362848125142,
+      "macro_f1_including_abstention": 0.5477101280712441,
+      "macro_specificity_on_accepted": 0.995070117153109,
+      "accepted_macro_precision": 0.8088275710821117,
+      "accepted_macro_recall": 0.7464197121787983,
+      "accepted_macro_f1": 0.7639007035852198,
+      "underlying_log_loss": 0.6712740439260767,
+      "underlying_multiclass_brier": 0.3797427019139898,
+      "underlying_top_label_ece_10_equal_width_bins": 0.06566804834652366,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 1,
+          "accuracy": 0.0,
+          "mean_score": 0.16231767823092597
+        },
+        {
+          "lower": 0.2,
+          "count": 1625,
+          "accuracy": 0.168,
+          "mean_score": 0.25331631943540306
+        },
+        {
+          "lower": 0.3,
+          "count": 5720,
+          "accuracy": 0.1473776223776224,
+          "mean_score": 0.3616690435401565
+        },
+        {
+          "lower": 0.4,
+          "count": 4670,
+          "accuracy": 0.24432548179871522,
+          "mean_score": 0.4519216897815375
+        },
+        {
+          "lower": 0.5,
+          "count": 8770,
+          "accuracy": 0.49293044469783354,
+          "mean_score": 0.5403743358523095
+        },
+        {
+          "lower": 0.6,
+          "count": 7194,
+          "accuracy": 0.6834862385321101,
+          "mean_score": 0.6538919048840145
+        },
+        {
+          "lower": 0.7,
+          "count": 5769,
+          "accuracy": 0.7906049575316346,
+          "mean_score": 0.7443633596264045
+        },
+        {
+          "lower": 0.8,
+          "count": 4600,
+          "accuracy": 0.9045652173913044,
+          "mean_score": 0.845097390962813
+        },
+        {
+          "lower": 0.9,
+          "count": 15037,
+          "accuracy": 0.9999334973731462,
+          "mean_score": 0.9997720602273199
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "3_positive_3_negative": {
+      "cases": 53386,
+      "accepted_cases": 0,
+      "underlying_top1_accuracy": 0.7268946914921515,
+      "underlying_top3_accuracy": 0.964878432547859,
+      "underlying_macro_precision": 0.8271675877393585,
+      "underlying_macro_recall": 0.7090046777719773,
+      "underlying_macro_f1": 0.7378212792571934,
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "selective_accuracy": null,
+      "correct_primary_per_all_cases": 0.0,
+      "macro_precision_including_abstention": 0.0,
+      "macro_recall_including_abstention": 0.0,
+      "macro_f1_including_abstention": 0.0,
+      "macro_specificity_on_accepted": null,
+      "accepted_macro_precision": null,
+      "accepted_macro_recall": null,
+      "accepted_macro_f1": null,
+      "underlying_log_loss": 0.5971468670084068,
+      "underlying_multiclass_brier": 0.33735998499312975,
+      "underlying_top_label_ece_10_equal_width_bins": 0.0210019095680525,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 34,
+          "accuracy": 0.17647058823529413,
+          "mean_score": 0.1862543159261725
+        },
+        {
+          "lower": 0.2,
+          "count": 851,
+          "accuracy": 0.23149236192714454,
+          "mean_score": 0.261547904570393
+        },
+        {
+          "lower": 0.3,
+          "count": 3072,
+          "accuracy": 0.3141276041666667,
+          "mean_score": 0.35714871177036356
+        },
+        {
+          "lower": 0.4,
+          "count": 4898,
+          "accuracy": 0.35381788485095955,
+          "mean_score": 0.4501990158750001
+        },
+        {
+          "lower": 0.5,
+          "count": 7945,
+          "accuracy": 0.4986784140969163,
+          "mean_score": 0.545626789700817
+        },
+        {
+          "lower": 0.6,
+          "count": 6475,
+          "accuracy": 0.6444787644787645,
+          "mean_score": 0.6483383925282926
+        },
+        {
+          "lower": 0.7,
+          "count": 5597,
+          "accuracy": 0.7561193496515991,
+          "mean_score": 0.7477325906407497
+        },
+        {
+          "lower": 0.8,
+          "count": 5298,
+          "accuracy": 0.8554171385428464,
+          "mean_score": 0.8485980241288141
+        },
+        {
+          "lower": 0.9,
+          "count": 19216,
+          "accuracy": 0.9890716069941715,
+          "mean_score": 0.9895919085247656
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "8_positive_0_negative": {
+      "cases": 53386,
+      "accepted_cases": 32687,
+      "underlying_top1_accuracy": 0.7812160491514629,
+      "underlying_top3_accuracy": 0.9703292998164312,
+      "underlying_macro_precision": 0.888839433072149,
+      "underlying_macro_recall": 0.740746147636386,
+      "underlying_macro_f1": 0.7602094552451225,
+      "coverage": 0.6122766268310044,
+      "abstention_rate": 0.38772337316899563,
+      "selective_accuracy": 0.9553033315997186,
+      "correct_primary_per_all_cases": 0.5849099014722962,
+      "macro_precision_including_abstention": 0.879933962271491,
+      "macro_recall_including_abstention": 0.4989338154549565,
+      "macro_f1_including_abstention": 0.590056001690567,
+      "macro_specificity_on_accepted": 0.9975922853886872,
+      "accepted_macro_precision": 0.879933962271491,
+      "accepted_macro_recall": 0.8244641912425974,
+      "accepted_macro_f1": 0.8428298658210145,
+      "underlying_log_loss": 0.42493292478314304,
+      "underlying_multiclass_brier": 0.239872401998631,
+      "underlying_top_label_ece_10_equal_width_bins": 0.08378238620532928,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 1,
+          "accuracy": 0.0,
+          "mean_score": 0.16231767823092597
+        },
+        {
+          "lower": 0.2,
+          "count": 1479,
+          "accuracy": 0.13793103448275862,
+          "mean_score": 0.24922067166305958
+        },
+        {
+          "lower": 0.3,
+          "count": 2787,
+          "accuracy": 0.050950843200574095,
+          "mean_score": 0.3585913304563383
+        },
+        {
+          "lower": 0.4,
+          "count": 2615,
+          "accuracy": 0.0910133843212237,
+          "mean_score": 0.45425116494531564
+        },
+        {
+          "lower": 0.5,
+          "count": 5805,
+          "accuracy": 0.4399655469422911,
+          "mean_score": 0.5432433981299793
+        },
+        {
+          "lower": 0.6,
+          "count": 4953,
+          "accuracy": 0.7536846355743994,
+          "mean_score": 0.6493929964336642
+        },
+        {
+          "lower": 0.7,
+          "count": 6545,
+          "accuracy": 0.8893812070282658,
+          "mean_score": 0.7535982079505972
+        },
+        {
+          "lower": 0.8,
+          "count": 4230,
+          "accuracy": 0.9557919621749409,
+          "mean_score": 0.8389477012691622
+        },
+        {
+          "lower": 0.9,
+          "count": 24971,
+          "accuracy": 1.0,
+          "mean_score": 0.9999298955919819
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "8_positive_5_negative": {
+      "cases": 53386,
+      "accepted_cases": 32921,
+      "underlying_top1_accuracy": 0.855823624171131,
+      "underlying_top3_accuracy": 0.9851459184055745,
+      "underlying_macro_precision": 0.8949059317910375,
+      "underlying_macro_recall": 0.8318079687403545,
+      "underlying_macro_f1": 0.8490533573075364,
+      "coverage": 0.6166597984490316,
+      "abstention_rate": 0.38334020155096843,
+      "selective_accuracy": 0.9513684274475259,
+      "correct_primary_per_all_cases": 0.5866706627205635,
+      "macro_precision_including_abstention": 0.9126381202213126,
+      "macro_recall_including_abstention": 0.48049667867422585,
+      "macro_f1_including_abstention": 0.584785158306025,
+      "macro_specificity_on_accepted": 0.9974077941293654,
+      "accepted_macro_precision": 0.9126381202213126,
+      "accepted_macro_recall": 0.8865491086617041,
+      "accepted_macro_f1": 0.8922512543234281,
+      "underlying_log_loss": 0.3345742999899532,
+      "underlying_multiclass_brier": 0.18735482605607573,
+      "underlying_top_label_ece_10_equal_width_bins": 0.018983642979409937,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 13,
+          "accuracy": 0.3076923076923077,
+          "mean_score": 0.18476996436073673
+        },
+        {
+          "lower": 0.2,
+          "count": 478,
+          "accuracy": 0.22594142259414227,
+          "mean_score": 0.26008889562729187
+        },
+        {
+          "lower": 0.3,
+          "count": 1330,
+          "accuracy": 0.36165413533834584,
+          "mean_score": 0.35599695885784427
+        },
+        {
+          "lower": 0.4,
+          "count": 2281,
+          "accuracy": 0.4002630425252082,
+          "mean_score": 0.45401577583826014
+        },
+        {
+          "lower": 0.5,
+          "count": 4603,
+          "accuracy": 0.5092331088420595,
+          "mean_score": 0.5479522431941536
+        },
+        {
+          "lower": 0.6,
+          "count": 4234,
+          "accuracy": 0.6740670760510156,
+          "mean_score": 0.6461679911995258
+        },
+        {
+          "lower": 0.7,
+          "count": 4586,
+          "accuracy": 0.8081116441343218,
+          "mean_score": 0.7529839580846175
+        },
+        {
+          "lower": 0.8,
+          "count": 4191,
+          "accuracy": 0.8964447625864949,
+          "mean_score": 0.849982145887763
+        },
+        {
+          "lower": 0.9,
+          "count": 31670,
+          "accuracy": 0.9953268077044521,
+          "mean_score": 0.9914898340187162
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    }
+  },
+  "improved_validation": {
+    "1_positive_0_negative": {
+      "cases": 12905,
+      "accepted_cases": 0,
+      "underlying_top1_accuracy": 0.3618752421542038,
+      "underlying_top3_accuracy": 0.6858581944982565,
+      "underlying_macro_precision": 0.5237652446914872,
+      "underlying_macro_recall": 0.3135419823031102,
+      "underlying_macro_f1": 0.33036613753120153,
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "selective_accuracy": null,
+      "correct_primary_per_all_cases": 0.0,
+      "macro_precision_including_abstention": 0.0,
+      "macro_recall_including_abstention": 0.0,
+      "macro_f1_including_abstention": 0.0,
+      "macro_specificity_on_accepted": null,
+      "accepted_macro_precision": null,
+      "accepted_macro_recall": null,
+      "accepted_macro_f1": null,
+      "underlying_log_loss": 1.637973481626563,
+      "underlying_multiclass_brier": 0.7149722586210381,
+      "underlying_top_label_ece_10_equal_width_bins": 0.04789678033922186,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 1651,
+          "accuracy": 0.11811023622047244,
+          "mean_score": 0.1765754543770231
+        },
+        {
+          "lower": 0.2,
+          "count": 3654,
+          "accuracy": 0.19813902572523262,
+          "mean_score": 0.23825584540824088
+        },
+        {
+          "lower": 0.3,
+          "count": 2651,
+          "accuracy": 0.24405884571859676,
+          "mean_score": 0.3407885526938612
+        },
+        {
+          "lower": 0.4,
+          "count": 673,
+          "accuracy": 0.40713224368499257,
+          "mean_score": 0.4412302694871797
+        },
+        {
+          "lower": 0.5,
+          "count": 1941,
+          "accuracy": 0.5378670788253478,
+          "mean_score": 0.5397952340377533
+        },
+        {
+          "lower": 0.6,
+          "count": 677,
+          "accuracy": 0.5553914327917282,
+          "mean_score": 0.6492585994947292
+        },
+        {
+          "lower": 0.7,
+          "count": 713,
+          "accuracy": 0.7138849929873773,
+          "mean_score": 0.7390011996489965
+        },
+        {
+          "lower": 0.8,
+          "count": 226,
+          "accuracy": 0.8053097345132744,
+          "mean_score": 0.8462653368600755
+        },
+        {
+          "lower": 0.9,
+          "count": 719,
+          "accuracy": 1.0,
+          "mean_score": 0.9983836595022804
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "2_positive_0_negative": {
+      "cases": 12905,
+      "accepted_cases": 3246,
+      "underlying_top1_accuracy": 0.5323518016272762,
+      "underlying_top3_accuracy": 0.8688105385509493,
+      "underlying_macro_precision": 0.7105821779020148,
+      "underlying_macro_recall": 0.500001538454917,
+      "underlying_macro_f1": 0.5222623157801228,
+      "coverage": 0.2515304145679969,
+      "abstention_rate": 0.7484695854320031,
+      "selective_accuracy": 0.9134319162045594,
+      "correct_primary_per_all_cases": 0.22975590856257264,
+      "macro_precision_including_abstention": 0.7586045629209952,
+      "macro_recall_including_abstention": 0.24611483752941887,
+      "macro_f1_including_abstention": 0.32954942544463867,
+      "macro_specificity_on_accepted": 0.9951861575355714,
+      "accepted_macro_precision": 0.7586045629209952,
+      "accepted_macro_recall": 0.6994338848975742,
+      "accepted_macro_f1": 0.71495620465237,
+      "underlying_log_loss": 1.0043206485036802,
+      "underlying_multiclass_brier": 0.5202553104782678,
+      "underlying_top_label_ece_10_equal_width_bins": 0.05366916562418259,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.2,
+          "count": 1563,
+          "accuracy": 0.13691618682021753,
+          "mean_score": 0.24673843524105546
+        },
+        {
+          "lower": 0.3,
+          "count": 2089,
+          "accuracy": 0.2144566778362853,
+          "mean_score": 0.34103937032977366
+        },
+        {
+          "lower": 0.4,
+          "count": 1567,
+          "accuracy": 0.29738353541799617,
+          "mean_score": 0.4373990456390571
+        },
+        {
+          "lower": 0.5,
+          "count": 2272,
+          "accuracy": 0.5413732394366197,
+          "mean_score": 0.543400968691246
+        },
+        {
+          "lower": 0.6,
+          "count": 1342,
+          "accuracy": 0.6356184798807749,
+          "mean_score": 0.6548698196779823
+        },
+        {
+          "lower": 0.7,
+          "count": 1156,
+          "accuracy": 0.7448096885813149,
+          "mean_score": 0.7417702288840722
+        },
+        {
+          "lower": 0.8,
+          "count": 748,
+          "accuracy": 0.8462566844919787,
+          "mean_score": 0.8437009297583069
+        },
+        {
+          "lower": 0.9,
+          "count": 2168,
+          "accuracy": 0.9986162361623616,
+          "mean_score": 0.99919060891967
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "3_positive_0_negative": {
+      "cases": 12905,
+      "accepted_cases": 6586,
+      "underlying_top1_accuracy": 0.6645486245641224,
+      "underlying_top3_accuracy": 0.9494769469197986,
+      "underlying_macro_precision": 0.8329704013632904,
+      "underlying_macro_recall": 0.6497505716620406,
+      "underlying_macro_f1": 0.6737614120008686,
+      "coverage": 0.5103448275862069,
+      "abstention_rate": 0.4896551724137931,
+      "selective_accuracy": 0.9111752201639842,
+      "correct_primary_per_all_cases": 0.4650135606354126,
+      "macro_precision_including_abstention": 0.8111149726930992,
+      "macro_recall_including_abstention": 0.44432401564925716,
+      "macro_f1_including_abstention": 0.5433594740290696,
+      "macro_specificity_on_accepted": 0.9951234926003663,
+      "accepted_macro_precision": 0.8111149726930992,
+      "accepted_macro_recall": 0.7568130641252642,
+      "accepted_macro_f1": 0.7705651528995933,
+      "underlying_log_loss": 0.660688803628722,
+      "underlying_multiclass_brier": 0.3744854147949259,
+      "underlying_top_label_ece_10_equal_width_bins": 0.0695017655347815,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.2,
+          "count": 375,
+          "accuracy": 0.16533333333333333,
+          "mean_score": 0.25507400187627605
+        },
+        {
+          "lower": 0.3,
+          "count": 1302,
+          "accuracy": 0.14055299539170507,
+          "mean_score": 0.3620019104855637
+        },
+        {
+          "lower": 0.4,
+          "count": 1086,
+          "accuracy": 0.22191528545119704,
+          "mean_score": 0.4518413645177967
+        },
+        {
+          "lower": 0.5,
+          "count": 2112,
+          "accuracy": 0.48295454545454547,
+          "mean_score": 0.5409834770411438
+        },
+        {
+          "lower": 0.6,
+          "count": 1831,
+          "accuracy": 0.6892408519934462,
+          "mean_score": 0.65406048419801
+        },
+        {
+          "lower": 0.7,
+          "count": 1351,
+          "accuracy": 0.8060695780903034,
+          "mean_score": 0.7446846538767927
+        },
+        {
+          "lower": 0.8,
+          "count": 1160,
+          "accuracy": 0.8913793103448275,
+          "mean_score": 0.8449459053974553
+        },
+        {
+          "lower": 0.9,
+          "count": 3688,
+          "accuracy": 0.9991865509761388,
+          "mean_score": 0.9995865468840772
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "3_positive_3_negative": {
+      "cases": 12905,
+      "accepted_cases": 0,
+      "underlying_top1_accuracy": 0.7264626113909337,
+      "underlying_top3_accuracy": 0.9650523053080201,
+      "underlying_macro_precision": 0.8143509413552398,
+      "underlying_macro_recall": 0.7104784147966958,
+      "underlying_macro_f1": 0.7309458739031642,
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "selective_accuracy": null,
+      "correct_primary_per_all_cases": 0.0,
+      "macro_precision_including_abstention": 0.0,
+      "macro_recall_including_abstention": 0.0,
+      "macro_f1_including_abstention": 0.0,
+      "macro_specificity_on_accepted": null,
+      "accepted_macro_precision": null,
+      "accepted_macro_recall": null,
+      "accepted_macro_f1": null,
+      "underlying_log_loss": 0.587346997074855,
+      "underlying_multiclass_brier": 0.33300208197458975,
+      "underlying_top_label_ece_10_equal_width_bins": 0.028224612938156673,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 7,
+          "accuracy": 0.2857142857142857,
+          "mean_score": 0.18372501744694716
+        },
+        {
+          "lower": 0.2,
+          "count": 205,
+          "accuracy": 0.13658536585365855,
+          "mean_score": 0.26007903707683855
+        },
+        {
+          "lower": 0.3,
+          "count": 693,
+          "accuracy": 0.329004329004329,
+          "mean_score": 0.3571396625954632
+        },
+        {
+          "lower": 0.4,
+          "count": 1115,
+          "accuracy": 0.32466367713004485,
+          "mean_score": 0.4501670912083254
+        },
+        {
+          "lower": 0.5,
+          "count": 1908,
+          "accuracy": 0.47379454926624737,
+          "mean_score": 0.5455658411219841
+        },
+        {
+          "lower": 0.6,
+          "count": 1513,
+          "accuracy": 0.650363516192994,
+          "mean_score": 0.6497850177763094
+        },
+        {
+          "lower": 0.7,
+          "count": 1393,
+          "accuracy": 0.7609475951184493,
+          "mean_score": 0.7476156930307679
+        },
+        {
+          "lower": 0.8,
+          "count": 1374,
+          "accuracy": 0.8384279475982532,
+          "mean_score": 0.8492210468344185
+        },
+        {
+          "lower": 0.9,
+          "count": 4697,
+          "accuracy": 0.9910581222056631,
+          "mean_score": 0.9894489123507496
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "8_positive_0_negative": {
+      "cases": 12905,
+      "accepted_cases": 7982,
+      "underlying_top1_accuracy": 0.790623789228981,
+      "underlying_top3_accuracy": 0.971793878341728,
+      "underlying_macro_precision": 0.8922116053165106,
+      "underlying_macro_recall": 0.7559603382378666,
+      "underlying_macro_f1": 0.7693675500761411,
+      "coverage": 0.6185199535063929,
+      "abstention_rate": 0.3814800464936071,
+      "selective_accuracy": 0.9591581057379103,
+      "correct_primary_per_all_cases": 0.5932584269662922,
+      "macro_precision_including_abstention": 0.8825061304976064,
+      "macro_recall_including_abstention": 0.5112320561145263,
+      "macro_f1_including_abstention": 0.6070817652564111,
+      "macro_specificity_on_accepted": 0.9977975067590541,
+      "accepted_macro_precision": 0.8825061304976064,
+      "accepted_macro_recall": 0.8277433510559943,
+      "accepted_macro_f1": 0.8435509747279671,
+      "underlying_log_loss": 0.4063142317527801,
+      "underlying_multiclass_brier": 0.22973122401754376,
+      "underlying_top_label_ece_10_equal_width_bins": 0.08529150827779197,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.2,
+          "count": 335,
+          "accuracy": 0.13432835820895522,
+          "mean_score": 0.25032990748336775
+        },
+        {
+          "lower": 0.3,
+          "count": 612,
+          "accuracy": 0.0457516339869281,
+          "mean_score": 0.3598537518251238
+        },
+        {
+          "lower": 0.4,
+          "count": 627,
+          "accuracy": 0.0861244019138756,
+          "mean_score": 0.45439985052270143
+        },
+        {
+          "lower": 0.5,
+          "count": 1352,
+          "accuracy": 0.4275147928994083,
+          "mean_score": 0.5455615954375972
+        },
+        {
+          "lower": 0.6,
+          "count": 1165,
+          "accuracy": 0.7665236051502146,
+          "mean_score": 0.6498282068796316
+        },
+        {
+          "lower": 0.7,
+          "count": 1585,
+          "accuracy": 0.905993690851735,
+          "mean_score": 0.7556249391257368
+        },
+        {
+          "lower": 0.8,
+          "count": 1020,
+          "accuracy": 0.9411764705882353,
+          "mean_score": 0.8392851447960212
+        },
+        {
+          "lower": 0.9,
+          "count": 6209,
+          "accuracy": 1.0,
+          "mean_score": 0.9998592119322529
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "8_positive_5_negative": {
+      "cases": 12905,
+      "accepted_cases": 8011,
+      "underlying_top1_accuracy": 0.8604416892677257,
+      "underlying_top3_accuracy": 0.9848120883378535,
+      "underlying_macro_precision": 0.8875459455376206,
+      "underlying_macro_recall": 0.8304979071982195,
+      "underlying_macro_f1": 0.8434976291532964,
+      "coverage": 0.6207671445176288,
+      "abstention_rate": 0.3792328554823712,
+      "selective_accuracy": 0.9528148795406316,
+      "correct_primary_per_all_cases": 0.5914761720263464,
+      "macro_precision_including_abstention": 0.9180695556841998,
+      "macro_recall_including_abstention": 0.48868238056636837,
+      "macro_f1_including_abstention": 0.5973688446495858,
+      "macro_specificity_on_accepted": 0.9974672701913357,
+      "accepted_macro_precision": 0.9180695556841998,
+      "accepted_macro_recall": 0.8737696187190693,
+      "accepted_macro_f1": 0.8866114693621779,
+      "underlying_log_loss": 0.31914669293170644,
+      "underlying_multiclass_brier": 0.17919743354668957,
+      "underlying_top_label_ece_10_equal_width_bins": 0.02105897954623825,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 2,
+          "accuracy": 0.0,
+          "mean_score": 0.1831875557877618
+        },
+        {
+          "lower": 0.2,
+          "count": 112,
+          "accuracy": 0.25892857142857145,
+          "mean_score": 0.2597673912025501
+        },
+        {
+          "lower": 0.3,
+          "count": 290,
+          "accuracy": 0.33793103448275863,
+          "mean_score": 0.35603058015326083
+        },
+        {
+          "lower": 0.4,
+          "count": 525,
+          "accuracy": 0.3923809523809524,
+          "mean_score": 0.4547753505767134
+        },
+        {
+          "lower": 0.5,
+          "count": 1042,
+          "accuracy": 0.4836852207293666,
+          "mean_score": 0.5474409199409582
+        },
+        {
+          "lower": 0.6,
+          "count": 989,
+          "accuracy": 0.6693629929221436,
+          "mean_score": 0.6459051781372452
+        },
+        {
+          "lower": 0.7,
+          "count": 1057,
+          "accuracy": 0.8211920529801324,
+          "mean_score": 0.7534696160066988
+        },
+        {
+          "lower": 0.8,
+          "count": 1041,
+          "accuracy": 0.8904899135446686,
+          "mean_score": 0.849711361579423
+        },
+        {
+          "lower": 0.9,
+          "count": 7847,
+          "accuracy": 0.9952848222250542,
+          "mean_score": 0.9915084013070932
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    }
+  },
+  "improved_test": {
+    "1_positive_0_negative": {
+      "cases": 53386,
+      "accepted_cases": 0,
+      "underlying_top1_accuracy": 0.3659573670999888,
+      "underlying_top3_accuracy": 0.6843554489941183,
+      "underlying_macro_precision": 0.5244002420213653,
+      "underlying_macro_recall": 0.3121058602294228,
+      "underlying_macro_f1": 0.33209197472697793,
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "selective_accuracy": null,
+      "correct_primary_per_all_cases": 0.0,
+      "macro_precision_including_abstention": 0.0,
+      "macro_recall_including_abstention": 0.0,
+      "macro_f1_including_abstention": 0.0,
+      "macro_specificity_on_accepted": null,
+      "accepted_macro_precision": null,
+      "accepted_macro_recall": null,
+      "accepted_macro_f1": null,
+      "underlying_log_loss": 1.639579939187367,
+      "underlying_multiclass_brier": 0.7143465227064514,
+      "underlying_top_label_ece_10_equal_width_bins": 0.04165440577456817,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 7129,
+          "accuracy": 0.13143498386870528,
+          "mean_score": 0.17634605430433395
+        },
+        {
+          "lower": 0.2,
+          "count": 15199,
+          "accuracy": 0.20231594183827883,
+          "mean_score": 0.23671847828789863
+        },
+        {
+          "lower": 0.3,
+          "count": 10945,
+          "accuracy": 0.25052535404294196,
+          "mean_score": 0.34012953161240983
+        },
+        {
+          "lower": 0.4,
+          "count": 2717,
+          "accuracy": 0.4398233345601767,
+          "mean_score": 0.4433231944008039
+        },
+        {
+          "lower": 0.5,
+          "count": 7570,
+          "accuracy": 0.5272126816380449,
+          "mean_score": 0.540538739845109
+        },
+        {
+          "lower": 0.6,
+          "count": 3008,
+          "accuracy": 0.6037234042553191,
+          "mean_score": 0.6485255117940348
+        },
+        {
+          "lower": 0.7,
+          "count": 2875,
+          "accuracy": 0.6914782608695652,
+          "mean_score": 0.7396922341353455
+        },
+        {
+          "lower": 0.8,
+          "count": 860,
+          "accuracy": 0.8255813953488372,
+          "mean_score": 0.8418157190661627
+        },
+        {
+          "lower": 0.9,
+          "count": 3083,
+          "accuracy": 1.0,
+          "mean_score": 0.99926681812424
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "2_positive_0_negative": {
+      "cases": 53386,
+      "accepted_cases": 13290,
+      "underlying_top1_accuracy": 0.5334357322144383,
+      "underlying_top3_accuracy": 0.8688794815120069,
+      "underlying_macro_precision": 0.7195868466155824,
+      "underlying_macro_recall": 0.49387277072949104,
+      "underlying_macro_f1": 0.519041968713334,
+      "coverage": 0.24894167010077548,
+      "abstention_rate": 0.7510583298992245,
+      "selective_accuracy": 0.9144469525959368,
+      "correct_primary_per_all_cases": 0.22764395159779718,
+      "macro_precision_including_abstention": 0.756838035834001,
+      "macro_recall_including_abstention": 0.2374514312186681,
+      "macro_f1_including_abstention": 0.31905897547896234,
+      "macro_specificity_on_accepted": 0.9952474733162189,
+      "accepted_macro_precision": 0.756838035834001,
+      "accepted_macro_recall": 0.6817699665425534,
+      "accepted_macro_f1": 0.7010341049936999,
+      "underlying_log_loss": 1.00571629415525,
+      "underlying_multiclass_brier": 0.5205323043928253,
+      "underlying_top_label_ece_10_equal_width_bins": 0.05103113346896995,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 1,
+          "accuracy": 0.0,
+          "mean_score": 0.16231767823092597
+        },
+        {
+          "lower": 0.2,
+          "count": 6734,
+          "accuracy": 0.15963765963765963,
+          "mean_score": 0.2465636833261319
+        },
+        {
+          "lower": 0.3,
+          "count": 8582,
+          "accuracy": 0.2078769517594966,
+          "mean_score": 0.34167056252435885
+        },
+        {
+          "lower": 0.4,
+          "count": 6725,
+          "accuracy": 0.31687732342007435,
+          "mean_score": 0.4369715478108222
+        },
+        {
+          "lower": 0.5,
+          "count": 9143,
+          "accuracy": 0.539757191293886,
+          "mean_score": 0.5438603767612277
+        },
+        {
+          "lower": 0.6,
+          "count": 5449,
+          "accuracy": 0.6331436960910258,
+          "mean_score": 0.6528978960759251
+        },
+        {
+          "lower": 0.7,
+          "count": 4547,
+          "accuracy": 0.744886738508907,
+          "mean_score": 0.7412754191527638
+        },
+        {
+          "lower": 0.8,
+          "count": 3190,
+          "accuracy": 0.84858934169279,
+          "mean_score": 0.8423038238576153
+        },
+        {
+          "lower": 0.9,
+          "count": 9015,
+          "accuracy": 0.9993344425956738,
+          "mean_score": 0.9994839680658889
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "3_positive_0_negative": {
+      "cases": 53386,
+      "accepted_cases": 26821,
+      "underlying_top1_accuracy": 0.6603791256134567,
+      "underlying_top3_accuracy": 0.9483385157157307,
+      "underlying_macro_precision": 0.8324543883756674,
+      "underlying_macro_recall": 0.6360258110625672,
+      "underlying_macro_f1": 0.6655907295826987,
+      "coverage": 0.5023976323380661,
+      "abstention_rate": 0.49760236766193383,
+      "selective_accuracy": 0.912195667573916,
+      "correct_primary_per_all_cases": 0.45828494361817707,
+      "macro_precision_including_abstention": 0.8083470894078162,
+      "macro_recall_including_abstention": 0.42592909303509546,
+      "macro_f1_including_abstention": 0.5242438824143006,
+      "macro_specificity_on_accepted": 0.995181821222595,
+      "accepted_macro_precision": 0.8083470894078162,
+      "accepted_macro_recall": 0.7431128899180186,
+      "accepted_macro_f1": 0.7612549262725408,
+      "underlying_log_loss": 0.6712740439260767,
+      "underlying_multiclass_brier": 0.3797427019139898,
+      "underlying_top_label_ece_10_equal_width_bins": 0.06566804834652366,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 1,
+          "accuracy": 0.0,
+          "mean_score": 0.16231767823092597
+        },
+        {
+          "lower": 0.2,
+          "count": 1625,
+          "accuracy": 0.168,
+          "mean_score": 0.25331631943540306
+        },
+        {
+          "lower": 0.3,
+          "count": 5720,
+          "accuracy": 0.1473776223776224,
+          "mean_score": 0.3616690435401565
+        },
+        {
+          "lower": 0.4,
+          "count": 4670,
+          "accuracy": 0.24432548179871522,
+          "mean_score": 0.4519216897815375
+        },
+        {
+          "lower": 0.5,
+          "count": 8770,
+          "accuracy": 0.49293044469783354,
+          "mean_score": 0.5403743358523095
+        },
+        {
+          "lower": 0.6,
+          "count": 7194,
+          "accuracy": 0.6834862385321101,
+          "mean_score": 0.6538919048840145
+        },
+        {
+          "lower": 0.7,
+          "count": 5769,
+          "accuracy": 0.7906049575316346,
+          "mean_score": 0.7443633596264045
+        },
+        {
+          "lower": 0.8,
+          "count": 4600,
+          "accuracy": 0.9045652173913044,
+          "mean_score": 0.845097390962813
+        },
+        {
+          "lower": 0.9,
+          "count": 15037,
+          "accuracy": 0.9999334973731462,
+          "mean_score": 0.9997720602273199
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "3_positive_3_negative": {
+      "cases": 53386,
+      "accepted_cases": 0,
+      "underlying_top1_accuracy": 0.7268946914921515,
+      "underlying_top3_accuracy": 0.964878432547859,
+      "underlying_macro_precision": 0.8271675877393585,
+      "underlying_macro_recall": 0.7090046777719773,
+      "underlying_macro_f1": 0.7378212792571934,
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "selective_accuracy": null,
+      "correct_primary_per_all_cases": 0.0,
+      "macro_precision_including_abstention": 0.0,
+      "macro_recall_including_abstention": 0.0,
+      "macro_f1_including_abstention": 0.0,
+      "macro_specificity_on_accepted": null,
+      "accepted_macro_precision": null,
+      "accepted_macro_recall": null,
+      "accepted_macro_f1": null,
+      "underlying_log_loss": 0.5971468670084068,
+      "underlying_multiclass_brier": 0.33735998499312975,
+      "underlying_top_label_ece_10_equal_width_bins": 0.0210019095680525,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 34,
+          "accuracy": 0.17647058823529413,
+          "mean_score": 0.1862543159261725
+        },
+        {
+          "lower": 0.2,
+          "count": 851,
+          "accuracy": 0.23149236192714454,
+          "mean_score": 0.261547904570393
+        },
+        {
+          "lower": 0.3,
+          "count": 3072,
+          "accuracy": 0.3141276041666667,
+          "mean_score": 0.35714871177036356
+        },
+        {
+          "lower": 0.4,
+          "count": 4898,
+          "accuracy": 0.35381788485095955,
+          "mean_score": 0.4501990158750001
+        },
+        {
+          "lower": 0.5,
+          "count": 7945,
+          "accuracy": 0.4986784140969163,
+          "mean_score": 0.545626789700817
+        },
+        {
+          "lower": 0.6,
+          "count": 6475,
+          "accuracy": 0.6444787644787645,
+          "mean_score": 0.6483383925282926
+        },
+        {
+          "lower": 0.7,
+          "count": 5597,
+          "accuracy": 0.7561193496515991,
+          "mean_score": 0.7477325906407497
+        },
+        {
+          "lower": 0.8,
+          "count": 5298,
+          "accuracy": 0.8554171385428464,
+          "mean_score": 0.8485980241288141
+        },
+        {
+          "lower": 0.9,
+          "count": 19216,
+          "accuracy": 0.9890716069941715,
+          "mean_score": 0.9895919085247656
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "8_positive_0_negative": {
+      "cases": 53386,
+      "accepted_cases": 32506,
+      "underlying_top1_accuracy": 0.7812160491514629,
+      "underlying_top3_accuracy": 0.9703292998164312,
+      "underlying_macro_precision": 0.888839433072149,
+      "underlying_macro_recall": 0.740746147636386,
+      "underlying_macro_f1": 0.7602094552451225,
+      "coverage": 0.6088862248529577,
+      "abstention_rate": 0.3911137751470423,
+      "selective_accuracy": 0.9557004860641113,
+      "correct_primary_per_all_cases": 0.5819128610497134,
+      "macro_precision_including_abstention": 0.8804298985009608,
+      "macro_recall_including_abstention": 0.4957532708180767,
+      "macro_f1_including_abstention": 0.5879420232795437,
+      "macro_specificity_on_accepted": 0.9976098461899358,
+      "accepted_macro_precision": 0.8804298985009608,
+      "accepted_macro_recall": 0.8257589723191217,
+      "accepted_macro_f1": 0.8437454548645988,
+      "underlying_log_loss": 0.42493292478314304,
+      "underlying_multiclass_brier": 0.239872401998631,
+      "underlying_top_label_ece_10_equal_width_bins": 0.08378238620532928,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 1,
+          "accuracy": 0.0,
+          "mean_score": 0.16231767823092597
+        },
+        {
+          "lower": 0.2,
+          "count": 1479,
+          "accuracy": 0.13793103448275862,
+          "mean_score": 0.24922067166305958
+        },
+        {
+          "lower": 0.3,
+          "count": 2787,
+          "accuracy": 0.050950843200574095,
+          "mean_score": 0.3585913304563383
+        },
+        {
+          "lower": 0.4,
+          "count": 2615,
+          "accuracy": 0.0910133843212237,
+          "mean_score": 0.45425116494531564
+        },
+        {
+          "lower": 0.5,
+          "count": 5805,
+          "accuracy": 0.4399655469422911,
+          "mean_score": 0.5432433981299793
+        },
+        {
+          "lower": 0.6,
+          "count": 4953,
+          "accuracy": 0.7536846355743994,
+          "mean_score": 0.6493929964336642
+        },
+        {
+          "lower": 0.7,
+          "count": 6545,
+          "accuracy": 0.8893812070282658,
+          "mean_score": 0.7535982079505972
+        },
+        {
+          "lower": 0.8,
+          "count": 4230,
+          "accuracy": 0.9557919621749409,
+          "mean_score": 0.8389477012691622
+        },
+        {
+          "lower": 0.9,
+          "count": 24971,
+          "accuracy": 1.0,
+          "mean_score": 0.9999298955919819
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    },
+    "8_positive_5_negative": {
+      "cases": 53386,
+      "accepted_cases": 32755,
+      "underlying_top1_accuracy": 0.855823624171131,
+      "underlying_top3_accuracy": 0.9851459184055745,
+      "underlying_macro_precision": 0.8949059317910375,
+      "underlying_macro_recall": 0.8318079687403545,
+      "underlying_macro_f1": 0.8490533573075364,
+      "coverage": 0.613550369010602,
+      "abstention_rate": 0.386449630989398,
+      "selective_accuracy": 0.9513662036330331,
+      "correct_primary_per_all_cases": 0.583711085303263,
+      "macro_precision_including_abstention": 0.9127499506614315,
+      "macro_recall_including_abstention": 0.477387048479072,
+      "macro_f1_including_abstention": 0.5826981101719597,
+      "macro_specificity_on_accepted": 0.9974064182559881,
+      "accepted_macro_precision": 0.9127499506614315,
+      "accepted_macro_recall": 0.8869650789431288,
+      "accepted_macro_f1": 0.8925185772937938,
+      "underlying_log_loss": 0.3345742999899532,
+      "underlying_multiclass_brier": 0.18735482605607573,
+      "underlying_top_label_ece_10_equal_width_bins": 0.018983642979409937,
+      "reliability_bins": [
+        {
+          "lower": 0.0,
+          "count": 0,
+          "accuracy": null,
+          "mean_score": null
+        },
+        {
+          "lower": 0.1,
+          "count": 13,
+          "accuracy": 0.3076923076923077,
+          "mean_score": 0.18476996436073673
+        },
+        {
+          "lower": 0.2,
+          "count": 478,
+          "accuracy": 0.22594142259414227,
+          "mean_score": 0.26008889562729187
+        },
+        {
+          "lower": 0.3,
+          "count": 1330,
+          "accuracy": 0.36165413533834584,
+          "mean_score": 0.35599695885784427
+        },
+        {
+          "lower": 0.4,
+          "count": 2281,
+          "accuracy": 0.4002630425252082,
+          "mean_score": 0.45401577583826014
+        },
+        {
+          "lower": 0.5,
+          "count": 4603,
+          "accuracy": 0.5092331088420595,
+          "mean_score": 0.5479522431941536
+        },
+        {
+          "lower": 0.6,
+          "count": 4234,
+          "accuracy": 0.6740670760510156,
+          "mean_score": 0.6461679911995258
+        },
+        {
+          "lower": 0.7,
+          "count": 4586,
+          "accuracy": 0.8081116441343218,
+          "mean_score": 0.7529839580846175
+        },
+        {
+          "lower": 0.8,
+          "count": 4191,
+          "accuracy": 0.8964447625864949,
+          "mean_score": 0.849982145887763
+        },
+        {
+          "lower": 0.9,
+          "count": 31670,
+          "accuracy": 0.9953268077044521,
+          "mean_score": 0.9914898340187162
+        }
+      ],
+      "probability_note": "All probability metrics describe the unchanged source-relative V3 distribution on simulated data; no clinical or Kenyan-population probability interpretation."
+    }
+  },
+  "clinical_validation": false
+}

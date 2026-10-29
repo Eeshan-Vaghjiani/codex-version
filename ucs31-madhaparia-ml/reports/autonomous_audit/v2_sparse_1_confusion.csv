@@ -1,0 +1,24 @@
+,Acute COPD exacerbation / infection,Acute laryngitis,Acute pulmonary edema,Acute rhinosinusitis,Allergic rhinitis,Allergic sinusitis,Bronchiectasis,Bronchiolitis,Bronchitis,Bronchospasm / acute asthma exacerbation,COVID-19,Chronic rhinosinusitis,Croup,Epiglottitis,Influenza,Larygospasm,Pneumonia,Pulmonary neoplasm,Spontaneous pneumothorax,Tuberculosis,URTI,Viral pharyngitis,Whooping cough
+Acute COPD exacerbation / infection,114,0,0,0,0,0,799,0,563,209,0,0,0,0,0,0,0,0,0,468,0,0,0
+Acute laryngitis,0,841,0,0,0,0,0,0,0,0,0,0,77,101,0,0,0,0,0,1047,0,1151,0
+Acute pulmonary edema,0,0,1293,0,0,0,275,0,0,166,0,0,0,0,238,0,0,0,6,0,49,571,0
+Acute rhinosinusitis,0,0,0,382,0,115,0,0,0,0,0,350,20,0,0,0,0,0,0,496,0,466,0
+Allergic rhinitis,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Allergic sinusitis,0,0,0,0,623,1243,0,0,0,0,0,0,93,0,0,0,0,0,0,452,0,0,0
+Bronchiectasis,0,0,0,0,0,0,1194,0,0,198,0,0,0,0,0,0,0,0,0,1062,0,0,0
+Bronchiolitis,0,0,0,0,0,0,0,6,0,3,0,0,22,0,0,0,0,0,0,5,0,0,0
+Bronchitis,40,0,0,0,0,257,784,7,271,164,0,0,126,0,0,0,0,0,0,920,302,723,0
+Bronchospasm / acute asthma exacerbation,82,0,0,0,0,0,418,17,623,322,0,0,110,0,0,0,0,0,0,650,0,0,0
+COVID-19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Chronic rhinosinusitis,0,0,0,442,0,309,0,0,0,0,0,642,24,0,0,0,0,0,0,618,0,712,0
+Croup,0,0,0,0,0,0,0,0,0,0,0,0,269,0,0,74,0,0,0,0,0,0,0
+Epiglottitis,0,264,0,0,0,0,195,0,0,49,0,0,182,637,0,356,0,0,0,223,0,458,0
+Influenza,0,0,0,0,0,266,0,0,0,0,0,0,99,0,1369,0,0,81,0,733,467,539,0
+Larygospasm,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,785,0,0,0,0,0,0,0
+Pneumonia,0,0,0,0,0,167,582,0,0,95,0,0,127,0,701,0,5,71,241,902,158,493,0
+Pulmonary neoplasm,0,0,0,0,0,0,130,0,0,153,0,0,0,0,118,0,0,550,0,635,0,332,0
+Spontaneous pneumothorax,0,0,160,0,0,0,140,0,0,69,0,0,16,0,0,0,2,0,556,0,0,400,0
+Tuberculosis,0,0,0,0,0,0,200,0,0,98,0,0,107,0,0,0,0,121,0,1554,0,0,0
+URTI,0,0,0,0,0,1096,604,0,0,0,0,0,301,0,1213,0,0,0,0,2024,1850,1655,0
+Viral pharyngitis,0,0,0,0,0,1577,0,0,0,0,0,0,258,0,0,0,0,0,0,3760,0,2739,0
+Whooping cough,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,549

@@ -1,0 +1,1357 @@
+..FF..............................................F..................... [ 46%]
+..F....FF..................FFF....F...F......FF......................F.F [ 92%]
+FFF....F...                                                              [100%]
+================================== FAILURES ===================================
+_______________________ test_admin_can_view_all_history _______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024F1A3269D0>
+
+    def test_admin_can_view_all_history(
+        monkeypatch,
+    ):
+        app.dependency_overrides[
+            main_module.get_current_user
+        ] = make_admin
+    
+        prediction_one = make_prediction()
+    
+        prediction_two = make_prediction(
+            user_id=uuid.uuid4(),
+        )
+    
+        monkeypatch.setattr(
+            main_module,
+            "list_all_prediction_sessions",
+            lambda db, limit: [
+                prediction_one,
+                prediction_two,
+            ],
+        )
+    
+>       response = client.get(
+            "/admin/history"
+        )
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_admin_access.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\httpx\_client.py:1053: in get
+    return self.request(
+.venv\Lib\site-packages\starlette\testclient.py:463: in request
+    return super().request(
+.venv\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\testclient.py:360: in handle_request
+    raise exc
+.venv\Lib\site-packages\starlette\testclient.py:357: in handle_request
+    portal.call(self.app, scope, receive, send)
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\applications.py:1216: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\fastapi\telemetry\_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\cors.py:91: in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+.venv\Lib\site-packages\starlette\middleware\cors.py:149: in simple_response
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:676: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2786: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1310: in handle
+    await super().handle(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:282: in handle
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:165: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:151: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\routing.py:727: in app
+    raw_response = await run_endpoint_function(
+.venv\Lib\site-packages\fastapi\routing.py:362: in run_endpoint_function
+    return await run_in_threadpool(
+.venv\Lib\site-packages\starlette\concurrency.py:34: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\to_thread.py:65: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py:2706: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py:1100: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\telemetry\_api.py:244: in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+app\main.py:557: in get_admin_history
+    "history": [
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+.0 = <list_iterator object at 0x0000024F1A403EB0>
+
+        "history": [
+            {
+                "prediction_id": str(
+                    session.id
+                ),
+                "user_id": (
+                    str(session.user_id)
+                    if session.user_id
+                    else None
+                ),
+                "age": session.age,
+                "sex": session.sex,
+                "input_text": (
+                    session.input_text
+                ),
+                "confirmed_codes": (
+                    session.confirmed_codes
+                ),
+                "status": session.status,
+                "has_red_flag": (
+                    session.has_red_flag
+                ),
+                "predictions": (
+                    session.predictions
+                ),
+>               "assessment_context": session.assessment_context,
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+                "created_at": (
+                    session.created_at
+                ),
+            }
+            for session in sessions
+        ],
+    }
+E   AttributeError: 'types.SimpleNamespace' object has no attribute 'assessment_context'
+
+app\main.py:582: AttributeError
+_____________________ test_admin_can_view_any_prediction ______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024F1C8623D0>
+
+    def test_admin_can_view_any_prediction(
+        monkeypatch,
+    ):
+        app.dependency_overrides[
+            main_module.get_current_user
+        ] = make_admin
+    
+        prediction_id = uuid.uuid4()
+    
+        prediction = make_prediction(
+            prediction_id=prediction_id,
+            user_id=uuid.uuid4(),
+        )
+    
+        monkeypatch.setattr(
+            main_module,
+            "get_any_prediction_session",
+            lambda db, prediction_id: prediction,
+        )
+    
+>       response = client.get(
+            f"/admin/history/{prediction_id}"
+        )
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_admin_access.py:182: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\httpx\_client.py:1053: in get
+    return self.request(
+.venv\Lib\site-packages\starlette\testclient.py:463: in request
+    return super().request(
+.venv\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\testclient.py:360: in handle_request
+    raise exc
+.venv\Lib\site-packages\starlette\testclient.py:357: in handle_request
+    portal.call(self.app, scope, receive, send)
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\applications.py:1216: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\fastapi\telemetry\_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\cors.py:91: in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+.venv\Lib\site-packages\starlette\middleware\cors.py:149: in simple_response
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:676: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2786: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1310: in handle
+    await super().handle(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:282: in handle
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:165: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:151: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\routing.py:727: in app
+    raw_response = await run_endpoint_function(
+.venv\Lib\site-packages\fastapi\routing.py:362: in run_endpoint_function
+    return await run_in_threadpool(
+.venv\Lib\site-packages\starlette\concurrency.py:34: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\to_thread.py:65: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py:2706: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py:1100: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\telemetry\_api.py:244: in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+prediction_id = UUID('793b903f-9bbd-456b-b406-e7dc0bc6e884')
+db = <object object at 0x0000024F1EC67F70>
+current_admin = namespace(id=UUID('68a46c7e-43d8-4f8f-98a8-c39c2618ffb9'), email='admin@example.com', role='admin')
+
+    @app.get("/admin/history/{prediction_id}")
+    def get_admin_history_item(
+        prediction_id: uuid.UUID,
+        db: Session = Depends(get_db),
+        current_admin: User = Depends(
+            require_admin
+        ),
+    ):
+        session = get_any_prediction_session(
+            db,
+            prediction_id=prediction_id,
+        )
+    
+        if session is None:
+            raise HTTPException(
+                status_code=404,
+                detail=(
+                    "Prediction session was not found."
+                ),
+            )
+    
+        return {
+            "prediction_id": str(session.id),
+            "user_id": (
+                str(session.user_id)
+                if session.user_id
+                else None
+            ),
+            "age": session.age,
+            "sex": session.sex,
+            "input_text": session.input_text,
+            "confirmed_codes": (
+                session.confirmed_codes
+            ),
+            "status": session.status,
+            "has_red_flag": (
+                session.has_red_flag
+            ),
+            "predictions": session.predictions,
+>           "assessment_context": session.assessment_context,
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+            "created_at": session.created_at,
+        }
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'assessment_context'
+
+app\main.py:631: AttributeError
+___________________ test_empty_text_requests_clarification ____________________
+
+flow = namespace(client=<starlette.testclient.TestClient object at 0x0000024F1B985D10>, db=<sqlalchemy.orm.session.Session object at 0x0000024F1B984F90>, saved=[], version=namespace(id=UUID('adc8458a-9f93-47f3-904d-b2cb41cd8d65'), version='1.0'))
+
+    def test_empty_text_requests_clarification(flow):
+        response = flow.client.post("/predict", json=request("", []))
+>       assert response.status_code == 200
+E       assert 422 == 200
+E        +  where 422 = <Response [422 Unprocessable Entity]>.status_code
+
+tests\test_assessment_safety_regressions.py:273: AssertionError
+________________ test_register_login_predict_history_feedback _________________
+
+    def test_register_login_predict_history_feedback():
+        patient = register_and_login(
+            f"patient-{uuid.uuid4().hex}@example.com"
+        )
+    
+        other_patient = register_and_login(
+            f"other-{uuid.uuid4().hex}@example.com"
+        )
+    
+        # Symptom mapping uses the seeded database catalogue.
+        response = client.post(
+            "/nlp/map",
+            json={
+                "text": "I have fever na kikohozi"
+            },
+        )
+    
+        assert response.status_code == 200
+    
+        codes = [
+            symptom["code"]
+            for symptom
+            in response.json()["recognised_symptoms"]
+        ]
+    
+        assert set(codes) == {"fever", "cough"}
+    
+        # Prediction is stored for the logged-in patient.
+        response = client.post(
+            "/predict",
+            headers=patient,
+            json={
+                "age": 25,
+                "sex": "M",
+                "text": "I have fever na kikohozi",
+                "confirmed_codes": codes,
+            },
+        )
+    
+        assert response.status_code == 200
+    
+        prediction = response.json()
+    
+>       assert prediction["status"] == "prediction_complete"
+E       AssertionError: assert 'needs_follow_up' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + needs_follow_up
+
+tests\test_end_to_end.py:92: AssertionError
+______________________ test_patient_can_view_own_history ______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024F1A365750>
+authenticated_patient = namespace(id=UUID('2bb88019-293b-4e4e-af5b-c475f7aa087d'), email='patient@example.com', role='patient')
+
+    def test_patient_can_view_own_history(
+        monkeypatch,
+        authenticated_patient,
+    ):
+        fake_prediction = make_fake_prediction()
+    
+        captured = {}
+    
+        def fake_list_prediction_sessions(
+            db,
+            user_id,
+            limit,
+        ):
+            captured["user_id"] = user_id
+            captured["limit"] = limit
+    
+            return [fake_prediction]
+    
+        monkeypatch.setattr(
+            main_module,
+            "list_prediction_sessions",
+            fake_list_prediction_sessions,
+        )
+    
+>       response = client.get("/history")
+                   ^^^^^^^^^^^^^^^^^^^^^^
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_history_feedback.py:125: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\httpx\_client.py:1053: in get
+    return self.request(
+.venv\Lib\site-packages\starlette\testclient.py:463: in request
+    return super().request(
+.venv\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\testclient.py:360: in handle_request
+    raise exc
+.venv\Lib\site-packages\starlette\testclient.py:357: in handle_request
+    portal.call(self.app, scope, receive, send)
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\applications.py:1216: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\fastapi\telemetry\_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\cors.py:91: in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+.venv\Lib\site-packages\starlette\middleware\cors.py:149: in simple_response
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:676: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2786: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1310: in handle
+    await super().handle(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:282: in handle
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:165: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:151: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\routing.py:727: in app
+    raw_response = await run_endpoint_function(
+.venv\Lib\site-packages\fastapi\routing.py:362: in run_endpoint_function
+    return await run_in_threadpool(
+.venv\Lib\site-packages\starlette\concurrency.py:34: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\to_thread.py:65: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py:2706: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py:1100: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\telemetry\_api.py:244: in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+app\main.py:505: in get_patient_history
+    "history": [
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+.0 = <list_iterator object at 0x0000024F1A3D27A0>
+
+        "history": [
+            {
+                "prediction_id": str(
+                    session.id
+                ),
+                "age": session.age,
+                "sex": session.sex,
+                "input_text": (
+                    session.input_text
+                ),
+                "confirmed_codes": (
+                    session.confirmed_codes
+                ),
+                "status": session.status,
+                "has_red_flag": (
+                    session.has_red_flag
+                ),
+                "predictions": (
+                    session.predictions
+                ),
+>               "assessment_context": session.assessment_context,
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+                "created_at": (
+                    session.created_at
+                ),
+            }
+            for session in sessions
+        ],
+    }
+E   AttributeError: 'types.SimpleNamespace' object has no attribute 'assessment_context'
+
+app\main.py:525: AttributeError
+___________________ test_patient_can_view_own_history_item ____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024F1DF7DA90>
+authenticated_patient = namespace(id=UUID('2bb88019-293b-4e4e-af5b-c475f7aa087d'), email='patient@example.com', role='patient')
+
+    def test_patient_can_view_own_history_item(
+        monkeypatch,
+        authenticated_patient,
+    ):
+        prediction_id = uuid.uuid4()
+    
+        fake_prediction = make_fake_prediction(
+            prediction_id=prediction_id,
+        )
+    
+        captured = {}
+    
+        def fake_get_prediction_session(
+            db,
+            prediction_id,
+            user_id,
+        ):
+            captured["prediction_id"] = (
+                prediction_id
+            )
+            captured["user_id"] = user_id
+    
+            return fake_prediction
+    
+        monkeypatch.setattr(
+            main_module,
+            "get_prediction_session",
+            fake_get_prediction_session,
+        )
+    
+>       response = client.get(
+            f"/history/{prediction_id}"
+        )
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_history_feedback.py:176: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\httpx\_client.py:1053: in get
+    return self.request(
+.venv\Lib\site-packages\starlette\testclient.py:463: in request
+    return super().request(
+.venv\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\testclient.py:360: in handle_request
+    raise exc
+.venv\Lib\site-packages\starlette\testclient.py:357: in handle_request
+    portal.call(self.app, scope, receive, send)
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\applications.py:1216: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\fastapi\telemetry\_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\cors.py:91: in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+.venv\Lib\site-packages\starlette\middleware\cors.py:149: in simple_response
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:676: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2786: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1310: in handle
+    await super().handle(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:282: in handle
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:165: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:151: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\routing.py:727: in app
+    raw_response = await run_endpoint_function(
+.venv\Lib\site-packages\fastapi\routing.py:362: in run_endpoint_function
+    return await run_in_threadpool(
+.venv\Lib\site-packages\starlette\concurrency.py:34: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\to_thread.py:65: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py:2706: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py:1100: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\telemetry\_api.py:244: in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+prediction_id = UUID('a267cc2f-b454-4852-99d3-b94fac2a2e38')
+db = <object object at 0x0000024F1ED10D90>
+current_user = namespace(id=UUID('2bb88019-293b-4e4e-af5b-c475f7aa087d'), email='patient@example.com', role='patient')
+
+    @app.get("/history/{prediction_id}")
+    def get_patient_history_item(
+        prediction_id: uuid.UUID,
+        db: Session = Depends(get_db),
+        current_user: User = Depends(
+            get_current_user
+        ),
+    ):
+        session = get_prediction_session(
+            db,
+            prediction_id=prediction_id,
+            user_id=current_user.id,
+        )
+    
+        if session is None:
+            raise HTTPException(
+                status_code=404,
+                detail=(
+                    "Prediction session was not found."
+                ),
+            )
+    
+        return {
+            "prediction_id": str(session.id),
+            "age": session.age,
+            "sex": session.sex,
+            "input_text": session.input_text,
+            "confirmed_codes": (
+                session.confirmed_codes
+            ),
+            "status": session.status,
+            "has_red_flag": (
+                session.has_red_flag
+            ),
+            "predictions": session.predictions,
+>           "assessment_context": session.assessment_context,
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+            "created_at": session.created_at,
+        }
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'assessment_context'
+
+app\main.py:710: AttributeError
+___________________ test_nlp_endpoint_uses_database_catalog ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024F1C906C50>
+
+    def test_nlp_endpoint_uses_database_catalog(
+        monkeypatch,
+    ):
+        def fail_json_load(*args, **kwargs):
+            raise AssertionError(
+                "JSON catalogue should not be used "
+                "by the API."
+            )
+    
+        monkeypatch.setattr(
+            symptom_mapper,
+            "load_json",
+            fail_json_load,
+        )
+    
+>       response = client.post(
+            "/nlp/map",
+            json={
+                "text": "I have fever na kikohozi"
+            },
+        )
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_nlp_confirmation.py:221: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\httpx\_client.py:1144: in post
+    return self.request(
+.venv\Lib\site-packages\starlette\testclient.py:463: in request
+    return super().request(
+.venv\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\testclient.py:360: in handle_request
+    raise exc
+.venv\Lib\site-packages\starlette\testclient.py:357: in handle_request
+    portal.call(self.app, scope, receive, send)
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\applications.py:1216: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\fastapi\telemetry\_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\cors.py:91: in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+.venv\Lib\site-packages\starlette\middleware\cors.py:149: in simple_response
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:676: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2786: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1310: in handle
+    await super().handle(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:282: in handle
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:165: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:151: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\routing.py:727: in app
+    raw_response = await run_endpoint_function(
+.venv\Lib\site-packages\fastapi\routing.py:362: in run_endpoint_function
+    return await run_in_threadpool(
+.venv\Lib\site-packages\starlette\concurrency.py:34: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\to_thread.py:65: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py:2706: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py:1100: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\telemetry\_api.py:244: in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+app\main.py:332: in map_symptoms
+    red_flags = detect_safety_signs(request.text)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app\nlp\symptom_mapper.py:1118: in detect_safety_signs
+    result = build_confirmation_output(text)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app\nlp\symptom_mapper.py:1002: in build_confirmation_output
+    matches = find_symptoms(text, db)
+              ^^^^^^^^^^^^^^^^^^^^^^^
+app\nlp\symptom_mapper.py:337: in find_symptoms
+    alias_index = build_alias_index(db)
+                  ^^^^^^^^^^^^^^^^^^^^^
+app\nlp\symptom_mapper.py:141: in build_alias_index
+    english_aliases = load_json(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (WindowsPath('C:/Users/krish/OneDrive/Desktop/IS codex/ucs31-madhaparia-backend/app/nlp/english_aliases.json'),)
+kwargs = {}
+
+    def fail_json_load(*args, **kwargs):
+>       raise AssertionError(
+            "JSON catalogue should not be used "
+            "by the API."
+        )
+E       AssertionError: JSON catalogue should not be used by the API.
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_nlp_confirmation.py:210: AssertionError
+______________ test_confirmation_endpoint_uses_database_catalog _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024F1C026210>
+
+    def test_confirmation_endpoint_uses_database_catalog(
+        monkeypatch,
+    ):
+        def fail_json_load(*args, **kwargs):
+            raise AssertionError(
+                "JSON catalogue should not be used "
+                "by the API."
+            )
+    
+        monkeypatch.setattr(
+            symptom_mapper,
+            "load_json",
+            fail_json_load,
+        )
+    
+>       response = client.post(
+            "/symptoms/confirm",
+            json={
+                "text": "I have fever and cough",
+                "confirmed_codes": [
+                    "fever",
+                    "cough",
+                ],
+            },
+        )
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_nlp_confirmation.py:257: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\httpx\_client.py:1144: in post
+    return self.request(
+.venv\Lib\site-packages\starlette\testclient.py:463: in request
+    return super().request(
+.venv\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\testclient.py:360: in handle_request
+    raise exc
+.venv\Lib\site-packages\starlette\testclient.py:357: in handle_request
+    portal.call(self.app, scope, receive, send)
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\applications.py:1216: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\fastapi\telemetry\_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\cors.py:91: in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+.venv\Lib\site-packages\starlette\middleware\cors.py:149: in simple_response
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:676: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2786: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1310: in handle
+    await super().handle(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:282: in handle
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:165: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:151: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\routing.py:727: in app
+    raw_response = await run_endpoint_function(
+.venv\Lib\site-packages\fastapi\routing.py:362: in run_endpoint_function
+    return await run_in_threadpool(
+.venv\Lib\site-packages\starlette\concurrency.py:34: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\to_thread.py:65: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py:2706: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+..\..\IS-Project-2\ucs31-madhaparia-backend\.venv\Lib\site-packages\anyio\_backends\_asyncio.py:1100: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\telemetry\_api.py:244: in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+app\main.py:350: in confirm_recognised_symptoms
+    return confirm_symptoms(
+app\services\symptom_confirmation.py:7: in confirm_symptoms
+    mapping = build_confirmation_output(text, db)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app\nlp\symptom_mapper.py:1007: in build_confirmation_output
+    find_unmatched_text(
+app\nlp\symptom_mapper.py:457: in find_unmatched_text
+    for item in build_alias_index()
+                ^^^^^^^^^^^^^^^^^^^
+app\nlp\symptom_mapper.py:141: in build_alias_index
+    english_aliases = load_json(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (WindowsPath('C:/Users/krish/OneDrive/Desktop/IS codex/ucs31-madhaparia-backend/app/nlp/english_aliases.json'),)
+kwargs = {}
+
+    def fail_json_load(*args, **kwargs):
+>       raise AssertionError(
+            "JSON catalogue should not be used "
+            "by the API."
+        )
+E       AssertionError: JSON catalogue should not be used by the API.
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_nlp_confirmation.py:246: AssertionError
+___________________________ test_normal_prediction ____________________________
+
+mock_prediction_save = {}
+
+    def test_normal_prediction(
+        mock_prediction_save,
+    ):
+        response = client.post(
+            "/predict",
+            json={
+                "age": 25,
+                "sex": "M",
+                "text": "I have fever na kikohozi",
+                "confirmed_codes": [
+                    "fever",
+                    "cough",
+                ],
+            },
+        )
+    
+        assert response.status_code == 200
+    
+        data = response.json()
+    
+>       assert data["status"] == "prediction_complete"
+E       AssertionError: assert 'needs_follow_up' == 'prediction_complete'
+E         
+E         - prediction_complete
+E         + needs_follow_up
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_prediction_validation.py:90: AssertionError
+______________ test_prediction_requires_confirmed_model_feature _______________
+
+    def test_prediction_requires_confirmed_model_feature():
+        response = client.post(
+            "/predict",
+            json={
+                "age": 25,
+                "sex": "M",
+                "text": "I have fever",
+                "confirmed_codes": [],
+            },
+        )
+    
+>       assert response.status_code == 400
+E       assert 200 == 400
+E        +  where 200 = <Response [200 OK]>.status_code
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_prediction_validation.py:220: AssertionError
+____________ test_predict_returns_503_without_active_model_version ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000024F1BFA1C10>
+authenticated_patient = None
+
+    def test_predict_returns_503_without_active_model_version(
+        monkeypatch,
+        authenticated_patient,
+    ):
+        def no_active_model_version(db):
+            raise ServiceNotReadyError(
+                "No active machine-learning "
+                "model version is configured."
+            )
+    
+        monkeypatch.setattr(
+            main_module,
+            "get_active_model_version",
+            no_active_model_version,
+        )
+    
+        response = client.post(
+            "/predict",
+            json={
+                "age": 25,
+                "sex": "M",
+                "text": "I have fever and cough",
+                "confirmed_codes": [
+                    "fever",
+                    "cough",
+                ],
+            },
+        )
+    
+>       assert response.status_code == 503
+E       assert 200 == 503
+E        +  where 200 = <Response [200 OK]>.status_code
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_service_readiness.py:104: AssertionError
+_______________________ test_canonical_symptom_catalog ________________________
+
+    def test_canonical_symptom_catalog():
+        canonical = load_json(
+            "canonical_symptoms.json"
+        )
+    
+>       assert len(canonical) == 36
+E       AssertionError: assert 37 == 36
+E        +  where 37 = len([{'code': 'fever', 'display_name': 'Fever', 'features': ['E_91'], 'kind': 'symptom', ...}, {'code': 'chills', 'display...tive_cough', 'display_name': 'Coughing up coloured or more phlegm', 'features': ['E_77'], 'kind': 'symptom', ...}, ...])
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_symptom_catalog.py:30: AssertionError
+_________________ test_symptom_alias_catalog_counts_and_codes _________________
+
+    def test_symptom_alias_catalog_counts_and_codes():
+        canonical = load_json(
+            "canonical_symptoms.json"
+        )
+    
+        english = load_json(
+            "english_aliases.json"
+        )
+    
+        swahili = load_json(
+            "swahili_aliases.json"
+        )
+    
+        canonical_codes = {
+            symptom["code"]
+            for symptom in canonical
+        }
+    
+        english_count = sum(
+            len(aliases)
+            for aliases in english.values()
+        )
+    
+        swahili_count = sum(
+            len(aliases)
+            for aliases in swahili.values()
+        )
+    
+>       assert len(english) == 36
+E       AssertionError: assert 37 == 36
+E        +  where 37 = len({'fever': ['fever', 'high temperature', 'temperature', 'hot body', 'feeling feverish'], 'chills': ['chills', 'shiverin...nse_coughing_fits': ['intense coughing fits', 'severe coughing fits', 'coughing attacks', 'cannot stop coughing'], ...})
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_symptom_catalog.py:87: AssertionError
+___________ TestPredictionApiRouting.test_real_v2_model_through_api ___________
+
+self = <tests.test_v2_prediction_api_unit.TestPredictionApiRouting testMethod=test_real_v2_model_through_api>
+
+    def test_real_v2_model_through_api(self):
+        # Use the real V2 predictor, not the mocked result.
+        # Database access and prediction history remain mocked.
+        self.mocks[3].side_effect = predict_v2_single
+    
+        response = self.request_prediction()
+    
+        self.assertEqual(response.status_code, 200)
+    
+        data = response.json()
+    
+        self.assertEqual(
+>           data["model_version"],
+            ^^^^^^^^^^^^^^^^^^^^^
+            "v2_23class_prototype",
+        )
+E       KeyError: 'model_version'
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_v2_prediction_api_unit.py:197: KeyError
+___________ TestPredictionApiRouting.test_unsupported_only_rejected ___________
+
+self = <tests.test_v2_prediction_api_unit.TestPredictionApiRouting testMethod=test_unsupported_only_rejected>
+
+    def test_unsupported_only_rejected(self):
+        self.confirmation["model_features"] = [
+            "E_55_@_V_101"
+        ]
+    
+        response = self.request_prediction()
+    
+>       self.assertEqual(response.status_code, 400)
+E       AssertionError: 200 != 400
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_v2_prediction_api_unit.py:159: AssertionError
+________ TestPredictionApiRouting.test_v1_still_returns_one_condition _________
+
+self = <tests.test_v2_prediction_api_unit.TestPredictionApiRouting testMethod=test_v1_still_returns_one_condition>
+
+    def test_v1_still_returns_one_condition(self):
+        self.model_version.version = "1.0"
+    
+        response = self.request_prediction()
+    
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+    
+>       self.assertEqual(data["model_version"], "1.0")
+                         ^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'model_version'
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_v2_prediction_api_unit.py:147: KeyError
+___ TestPredictionApiRouting.test_v2_returns_one_condition_and_uncertainty ____
+
+self = <tests.test_v2_prediction_api_unit.TestPredictionApiRouting testMethod=test_v2_returns_one_condition_and_uncertainty>
+
+    def test_v2_returns_one_condition_and_uncertainty(self):
+        response = self.request_prediction()
+    
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+    
+        self.assertEqual(
+>           data["model_version"],
+            ^^^^^^^^^^^^^^^^^^^^^
+            "v2_23class_prototype",
+        )
+E       KeyError: 'model_version'
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_v2_prediction_api_unit.py:127: KeyError
+___________________ test_v2_prediction_history_and_red_flag ___________________
+
+    def test_v2_prediction_history_and_red_flag():
+        # The pytest test schema is prepared by conftest.py.
+        # Register and activate V2 only inside that schema.
+        with SessionLocal() as db:
+            user = User(
+                email=f"v2-test-{uuid.uuid4().hex}@example.com",
+                password_hash="test-only-not-a-real-password",
+                role="patient",
+            )
+    
+            db.add(user)
+            db.flush()
+    
+            user_id = user.id
+    
+            register_v2_model_version(db)
+            v2 = activate_v2_model_version(db)
+    
+            v2_id = v2.id
+    
+            db.commit()
+    
+        # Use the real database dependency and real prediction
+        # service. Override only authentication with the test user.
+        app.dependency_overrides[
+            main_module.get_current_user
+        ] = lambda: SimpleNamespace(
+            id=user_id,
+            role="patient",
+        )
+    
+        try:
+            with TestClient(app) as client:
+    
+                # ------------------------------------------
+                # 1. Normal V2 prediction
+                # ------------------------------------------
+                response = client.post(
+                    "/predict",
+                    json={
+                        "age": 25,
+                        "sex": "M",
+                        "text": "I have fever na kikohozi",
+                        "confirmed_codes": [
+                            "fever",
+                            "cough",
+                        ],
+                    },
+                )
+    
+                assert response.status_code == 200, (
+                    response.text
+                )
+    
+                result = response.json()
+    
+>               assert result["status"] == "prediction_complete"
+E               AssertionError: assert 'needs_follow_up' == 'prediction_complete'
+E                 
+E                 - prediction_complete
+E                 + needs_follow_up
+
+tests\test_v2_prediction_history_integration.py:82: AssertionError
+__________ TestV2PredictionService.test_only_one_prediction_returned __________
+
+self = <tests.test_v2_prediction_service.TestV2PredictionService testMethod=test_only_one_prediction_returned>
+
+    def test_only_one_prediction_returned(self):
+        result = predict_v2_single(
+            age=25,
+            sex="M",
+            symptom_features=["E_91", "E_201"],
+        )
+    
+        self.assertEqual(
+            result["model_version"],
+            "v2_23class_prototype",
+        )
+        self.assertEqual(
+            result["feature_count"],
+            66,
+        )
+>       self.assertEqual(
+            len(result["predictions"]),
+            1,
+        )
+E       AssertionError: 3 != 1
+
+..\..\IS-Project-2\ucs31-madhaparia-backend\tests\test_v2_prediction_service.py:118: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\krish\OneDrive\Desktop\IS codex\ucs31-madhaparia-backend\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_admin_access.py::test_admin_can_view_all_history - Attribut...
+FAILED tests/test_admin_access.py::test_admin_can_view_any_prediction - Attri...
+FAILED tests/test_assessment_safety_regressions.py::test_empty_text_requests_clarification
+FAILED tests/test_end_to_end.py::test_register_login_predict_history_feedback
+FAILED tests/test_history_feedback.py::test_patient_can_view_own_history - At...
+FAILED tests/test_history_feedback.py::test_patient_can_view_own_history_item
+FAILED tests/test_nlp_confirmation.py::test_nlp_endpoint_uses_database_catalog
+FAILED tests/test_nlp_confirmation.py::test_confirmation_endpoint_uses_database_catalog
+FAILED tests/test_prediction_validation.py::test_normal_prediction - Assertio...
+FAILED tests/test_prediction_validation.py::test_prediction_requires_confirmed_model_feature
+FAILED tests/test_service_readiness.py::test_predict_returns_503_without_active_model_version
+FAILED tests/test_symptom_catalog.py::test_canonical_symptom_catalog - Assert...
+FAILED tests/test_symptom_catalog.py::test_symptom_alias_catalog_counts_and_codes
+FAILED tests/test_v2_prediction_api_unit.py::TestPredictionApiRouting::test_real_v2_model_through_api
+FAILED tests/test_v2_prediction_api_unit.py::TestPredictionApiRouting::test_unsupported_only_rejected
+FAILED tests/test_v2_prediction_api_unit.py::TestPredictionApiRouting::test_v1_still_returns_one_condition
+FAILED tests/test_v2_prediction_api_unit.py::TestPredictionApiRouting::test_v2_returns_one_condition_and_uncertainty
+FAILED tests/test_v2_prediction_history_integration.py::test_v2_prediction_history_and_red_flag
+FAILED tests/test_v2_prediction_service.py::TestV2PredictionService::test_only_one_prediction_returned
+19 failed, 136 passed, 1 warning in 181.19s (0:03:01)

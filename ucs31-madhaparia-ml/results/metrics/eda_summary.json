@@ -1,0 +1,20 @@
+{
+  "total_patients": 555700,
+  "train_patients": 443075,
+  "validation_patients": 55808,
+  "test_patients": 56817,
+  "diseases": 21,
+  "model_features": 797,
+  "evidence_features": 795,
+  "largest_class": "URTI",
+  "largest_class_count": 64368,
+  "smallest_class": "Bronchiolitis",
+  "smallest_class_count": 261,
+  "imbalance_ratio": 246.62,
+  "mean_age": 39.63,
+  "median_age": 39.0,
+  "female_percentage": 51.15,
+  "male_percentage": 48.85,
+  "unused_training_features": 599,
+  "rare_training_features": 7
+}

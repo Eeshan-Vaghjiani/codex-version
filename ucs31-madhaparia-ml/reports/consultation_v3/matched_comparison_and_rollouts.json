@@ -1,0 +1,251 @@
+{
+  "methodology": "Identical original source groups, native 34-feature sparse masks; V1 cannot encode explicit negative evidence; V2 ignores its negative columns and the two native pain-location categories. No classes removed from legacy predictions.",
+  "matched_test": {
+    "1_positive_0_negative": {
+      "v1": {
+        "cases": 53386,
+        "accuracy": 0.0806578503727569,
+        "top3_recall": 0.16736597609860263,
+        "macro_f1_21_classes": 0.08171482129258363,
+        "log_loss": 13.49639910145675
+      },
+      "v2": {
+        "cases": 53386,
+        "accuracy": 0.2753718203274267,
+        "top3_recall": 0.6413666504326977,
+        "macro_f1_21_classes": 0.3136207923768887,
+        "log_loss": 2.147869652029171
+      },
+      "v3": {
+        "cases": 53386,
+        "accuracy": 0.3659573670999888,
+        "top3_recall": 0.6843554489941183,
+        "macro_f1_21_classes": 0.33209197472697793,
+        "log_loss": 1.639579939187367
+      }
+    },
+    "2_positive_0_negative": {
+      "v1": {
+        "cases": 53386,
+        "accuracy": 0.19211029108755104,
+        "top3_recall": 0.36917918555426515,
+        "macro_f1_21_classes": 0.20602639999289762,
+        "log_loss": 7.215991459649669
+      },
+      "v2": {
+        "cases": 53386,
+        "accuracy": 0.5733338328400704,
+        "top3_recall": 0.8662008766343237,
+        "macro_f1_21_classes": 0.5937016434862523,
+        "log_loss": 1.4351377328337827
+      },
+      "v3": {
+        "cases": 53386,
+        "accuracy": 0.5334357322144383,
+        "top3_recall": 0.8688794815120069,
+        "macro_f1_21_classes": 0.519041968713334,
+        "log_loss": 1.00571629415525
+      }
+    },
+    "3_positive_0_negative": {
+      "v1": {
+        "cases": 53386,
+        "accuracy": 0.21554340089161952,
+        "top3_recall": 0.5124564492563594,
+        "macro_f1_21_classes": 0.252079123201023,
+        "log_loss": 4.0344027435507135
+      },
+      "v2": {
+        "cases": 53386,
+        "accuracy": 0.7530064061739032,
+        "top3_recall": 0.9614318360618889,
+        "macro_f1_21_classes": 0.7545058288957116,
+        "log_loss": 1.010229615661377
+      },
+      "v3": {
+        "cases": 53386,
+        "accuracy": 0.6603791256134567,
+        "top3_recall": 0.9483385157157307,
+        "macro_f1_21_classes": 0.6655907295826987,
+        "log_loss": 0.6712740439260767
+      }
+    },
+    "3_positive_3_negative": {
+      "v1": {
+        "cases": 53386,
+        "accuracy": 0.21554340089161952,
+        "top3_recall": 0.5124564492563594,
+        "macro_f1_21_classes": 0.252079123201023,
+        "log_loss": 4.0344027435507135
+      },
+      "v2": {
+        "cases": 53386,
+        "accuracy": 0.7530064061739032,
+        "top3_recall": 0.9614318360618889,
+        "macro_f1_21_classes": 0.7545058288957116,
+        "log_loss": 1.010229615661377
+      },
+      "v3": {
+        "cases": 53386,
+        "accuracy": 0.7268946914921515,
+        "top3_recall": 0.964878432547859,
+        "macro_f1_21_classes": 0.7378212792571934,
+        "log_loss": 0.5971468670084068
+      }
+    }
+  },
+  "question_rollout": {
+    "validation": {
+      "sample_size": 2000,
+      "initial_plus_0_to_3_questions": [
+        {
+          "cases": 2000,
+          "accuracy": 0.356,
+          "top3_recall": 0.675,
+          "macro_f1_21_classes": 0.3234082571361786,
+          "log_loss": 1.6713951496504738
+        },
+        {
+          "cases": 2000,
+          "accuracy": 0.5075,
+          "top3_recall": 0.7525,
+          "macro_f1_21_classes": 0.41519381580716425,
+          "log_loss": 1.3694581495118596
+        },
+        {
+          "cases": 2000,
+          "accuracy": 0.587,
+          "top3_recall": 0.849,
+          "macro_f1_21_classes": 0.5150137374129548,
+          "log_loss": 1.150176603804559
+        },
+        {
+          "cases": 2000,
+          "accuracy": 0.621,
+          "top3_recall": 0.877,
+          "macro_f1_21_classes": 0.5528475758248634,
+          "log_loss": 0.9785555327983841
+        }
+      ],
+      "question_counts": {
+        "E_97": 1300,
+        "E_77": 1566,
+        "E_214": 587,
+        "E_181": 871,
+        "E_144": 490,
+        "E_201": 322,
+        "E_91": 398,
+        "E_50": 211,
+        "E_162": 255
+      },
+      "limitations": "Synthetic source yes/no truth; no emergency stop used in classification experiment, so this is not triage validation or a clinical interview evaluation."
+    },
+    "test": {
+      "sample_size": 2000,
+      "initial_plus_0_to_3_questions": [
+        {
+          "cases": 2000,
+          "accuracy": 0.362,
+          "top3_recall": 0.701,
+          "macro_f1_21_classes": 0.32401039804262133,
+          "log_loss": 1.6271575070198094
+        },
+        {
+          "cases": 2000,
+          "accuracy": 0.53,
+          "top3_recall": 0.78,
+          "macro_f1_21_classes": 0.4618606806997356,
+          "log_loss": 1.3029390588508831
+        },
+        {
+          "cases": 2000,
+          "accuracy": 0.6015,
+          "top3_recall": 0.8575,
+          "macro_f1_21_classes": 0.569874070125008,
+          "log_loss": 1.1052018646280652
+        },
+        {
+          "cases": 2000,
+          "accuracy": 0.6165,
+          "top3_recall": 0.885,
+          "macro_f1_21_classes": 0.5819778560487509,
+          "log_loss": 0.9554235002236586
+        }
+      ],
+      "question_counts": {
+        "E_77": 1561,
+        "E_97": 1270,
+        "E_214": 615,
+        "E_144": 477,
+        "E_50": 216,
+        "E_201": 319,
+        "E_181": 858,
+        "E_91": 428,
+        "E_162": 256
+      },
+      "limitations": "Synthetic source yes/no truth; no emergency stop used in classification experiment, so this is not triage validation or a clinical interview evaluation."
+    }
+  },
+  "validation_question_stop_policies": {
+    "0.0": {
+      "cases": 2000,
+      "accuracy": 0.621,
+      "top3_recall": 0.877,
+      "macro_f1_21_classes": 0.5528475758248634,
+      "log_loss": 0.9785555327983841,
+      "mean_model_questions": 3.0,
+      "question_count_distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 2000
+      },
+      "policy_note": "Question utility in nats; not a clinical certainty or triage threshold. Selected on validation only."
+    },
+    "0.01": {
+      "cases": 2000,
+      "accuracy": 0.621,
+      "top3_recall": 0.877,
+      "macro_f1_21_classes": 0.5528475758248634,
+      "log_loss": 0.9793832603073186,
+      "mean_model_questions": 2.6185,
+      "question_count_distribution": {
+        "0": 112,
+        "1": 147,
+        "2": 133,
+        "3": 1608
+      },
+      "policy_note": "Question utility in nats; not a clinical certainty or triage threshold. Selected on validation only."
+    },
+    "0.02": {
+      "cases": 2000,
+      "accuracy": 0.62,
+      "top3_recall": 0.877,
+      "macro_f1_21_classes": 0.5522519431983216,
+      "log_loss": 0.9813022405139422,
+      "mean_model_questions": 2.5945,
+      "question_count_distribution": {
+        "0": 112,
+        "1": 194,
+        "2": 87,
+        "3": 1607
+      },
+      "policy_note": "Question utility in nats; not a clinical certainty or triage threshold. Selected on validation only."
+    },
+    "0.05": {
+      "cases": 2000,
+      "accuracy": 0.622,
+      "top3_recall": 0.877,
+      "macro_f1_21_classes": 0.5514154594532921,
+      "log_loss": 0.9846650858346079,
+      "mean_model_questions": 2.5005,
+      "question_count_distribution": {
+        "0": 132,
+        "1": 196,
+        "2": 211,
+        "3": 1461
+      },
+      "policy_note": "Question utility in nats; not a clinical certainty or triage threshold. Selected on validation only."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "heads_unchanged": {
+    "backend": "e8eb7e4c49a34337f38b6f463265b7869e1565f2",
+    "ml": "1addf3abe7d8db7daeae26a9d78f90bf86d49c11",
+    "frontend": "2c079ad5cae2d5eed12e14e8387a8f3146cfe2ff"
+  },
+  "preserved_hashes": {
+    "ucs31-madhaparia-backend/app/data/condition_information.json": "21a5120d15422622bb92a83886f48691328b49d37d00de83aa971ba963e1404c",
+    "ucs31-madhaparia-backend/app/ml/artifacts/v3_partial_evidence.json": "ae709ef5ddf6dd7a101fe426b610c3e83ef58aa93cb895ca13e7500220dc889c",
+    "ucs31-madhaparia-ml/models/v3_partial_evidence.json": "ae709ef5ddf6dd7a101fe426b610c3e83ef58aa93cb895ca13e7500220dc889c"
+  },
+  "backend_tests_passed": 282,
+  "ml_tests_passed": 369,
+  "ml_subtests_passed": 5,
+  "frontend_unit_tests_passed": 114,
+  "browser_full_journeys_passed": 14,
+  "browser_affected_urgent_reruns_passed": 2,
+  "report_file_links_valid": true,
+  "clinical_validation": false
+}

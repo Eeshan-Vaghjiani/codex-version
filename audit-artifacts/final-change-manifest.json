@@ -1,0 +1,907 @@
+{
+  "backend": {
+    "head": "e8eb7e4c49a34337f38b6f463265b7869e1565f2",
+    "branch": "feature/v2-friendly-condition-names",
+    "changes": [
+      {
+        "status": " M",
+        "path": "app/core/database.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "app/data/condition_information.json",
+        "preexisting": true
+      },
+      {
+        "status": " M",
+        "path": "app/db/models.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "app/main.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "app/ml/model_loader.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "app/nlp/canonical_symptoms.json",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "app/nlp/english_aliases.json",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "app/nlp/swahili_aliases.json",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "app/nlp/symptom_mapper.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "app/services/health_guidance.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "app/services/history.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "app/services/symptom_confirmation.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "app/services/v2_prediction.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "tests/test_basic_endpoints.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "tests/test_end_to_end.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "tests/test_prediction_validation.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "tests/test_service_readiness.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "tests/test_symptom_catalog.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "tests/test_v2_prediction_api_unit.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "tests/test_v2_prediction_history_integration.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "tests/test_v2_prediction_service.py",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "alembic/versions/d42ea86c5170_store_assessment_context.py",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "app/services/assessment.py",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "docs/",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "scripts/",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "tests/assessment_helpers.py",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "tests/test_assessment_safety_regressions.py",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "tests/test_model_bundle_integrity.py",
+        "preexisting": false
+      }
+    ],
+    "files": [
+      {
+        "path": "alembic/versions/d42ea86c5170_store_assessment_context.py",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "app/core/database.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "app/data/condition_information.json",
+        "kind": "modified",
+        "preexisting": true
+      },
+      {
+        "path": "app/db/models.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "app/main.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "app/ml/model_loader.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "app/nlp/canonical_symptoms.json",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "app/nlp/english_aliases.json",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "app/nlp/swahili_aliases.json",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "app/nlp/symptom_mapper.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "app/services/assessment.py",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "app/services/health_guidance.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "app/services/history.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "app/services/symptom_confirmation.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "app/services/v2_prediction.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "docs/assessment-contract.md",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "scripts/audit_local_case_journeys.py",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "tests/assessment_helpers.py",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_assessment_safety_regressions.py",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_basic_endpoints.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_end_to_end.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_model_bundle_integrity.py",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_prediction_validation.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_service_readiness.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_symptom_catalog.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_v2_prediction_api_unit.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_v2_prediction_history_integration.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_v2_prediction_service.py",
+        "kind": "modified",
+        "preexisting": false
+      }
+    ]
+  },
+  "ml": {
+    "head": "1addf3abe7d8db7daeae26a9d78f90bf86d49c11",
+    "branch": "main",
+    "changes": [
+      {
+        "status": " M",
+        "path": "inference/backend_adapter.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "inference/prediction_confidence.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "inference/v2_predictor.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "nlp/canonical_symptoms.json",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "nlp/english_aliases.json",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "nlp/swahili_aliases.json",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "nlp/symptom_mapper.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "scripts/v2_feature_encoder.py",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "tests/test_v2_predictor.py",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "docs/v2_experimental_feature_schema.json",
+        "preexisting": true
+      },
+      {
+        "status": "??",
+        "path": "reports/autonomous_audit/",
+        "preexisting": true
+      },
+      {
+        "status": "??",
+        "path": "scripts/audit_saved_model_reliability.py",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "scripts/audit_sparse_case_outputs.py",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "scripts/audit_v2_covid_records.py",
+        "preexisting": true
+      },
+      {
+        "status": "??",
+        "path": "scripts/compare_v2_age_sex.py",
+        "preexisting": true
+      },
+      {
+        "status": "??",
+        "path": "scripts/compare_v2_baseline.py",
+        "preexisting": true
+      },
+      {
+        "status": "??",
+        "path": "scripts/evaluate_v2_23class.py",
+        "preexisting": true
+      },
+      {
+        "status": "??",
+        "path": "scripts/evaluate_v2_final_test.py",
+        "preexisting": true
+      },
+      {
+        "status": "??",
+        "path": "scripts/prepare_v2_covid_candidates.py",
+        "preexisting": true
+      },
+      {
+        "status": "??",
+        "path": "scripts/train_v2_23class_smoke_test.py",
+        "preexisting": true
+      },
+      {
+        "status": "??",
+        "path": "scripts/train_v2_final_candidate.py",
+        "preexisting": true
+      },
+      {
+        "status": "??",
+        "path": "tests/test_autonomous_nlp_regressions.py",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "tests/test_model_input_integrity.py",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "tests/test_reliability_metrics.py",
+        "preexisting": false
+      }
+    ],
+    "files": [
+      {
+        "path": "docs/v2_experimental_feature_schema.json",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "inference/backend_adapter.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "inference/prediction_confidence.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "inference/v2_predictor.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "nlp/canonical_symptoms.json",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "nlp/english_aliases.json",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "nlp/swahili_aliases.json",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "nlp/symptom_mapper.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "reports/autonomous_audit/MODEL_AUDIT.md",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/api_validation_summary.json",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/baseline_model_cases.json",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/baseline_nlp_cases.json",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/demographic_case_outputs.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/ml_final_tests.xml",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/model_reliability.json",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/nlp_baseline.json",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/nlp_case_comparison.json",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/nlp_validation_summary.json",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v1_full_confusion.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v1_full_no_exact_train_overlap_confusion.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v1_full_no_exact_train_overlap_per_class.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v1_full_per_class.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v1_sparse_1_confusion.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v1_sparse_1_per_class.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v1_sparse_2_confusion.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v1_sparse_2_per_class.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v1_sparse_3_confusion.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v1_sparse_3_per_class.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v2_full_confusion.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v2_full_no_exact_train_overlap_confusion.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v2_full_no_exact_train_overlap_per_class.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v2_full_per_class.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v2_sparse_1_confusion.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v2_sparse_1_per_class.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v2_sparse_2_confusion.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v2_sparse_2_per_class.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v2_sparse_3_confusion.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "reports/autonomous_audit/v2_sparse_3_per_class.csv",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "scripts/audit_saved_model_reliability.py",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "scripts/audit_sparse_case_outputs.py",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "scripts/audit_v2_covid_records.py",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "scripts/compare_v2_age_sex.py",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "scripts/compare_v2_baseline.py",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "scripts/evaluate_v2_23class.py",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "scripts/evaluate_v2_final_test.py",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "scripts/prepare_v2_covid_candidates.py",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "scripts/train_v2_23class_smoke_test.py",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "scripts/train_v2_final_candidate.py",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "scripts/v2_feature_encoder.py",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_autonomous_nlp_regressions.py",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_model_input_integrity.py",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_reliability_metrics.py",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "tests/test_v2_predictor.py",
+        "kind": "modified",
+        "preexisting": false
+      }
+    ]
+  },
+  "frontend": {
+    "head": "2c079ad5cae2d5eed12e14e8387a8f3146cfe2ff",
+    "branch": "feature/issue-38-final-ui-testing",
+    "changes": [
+      {
+        "status": " M",
+        "path": ".gitignore",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "package-lock.json",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "package.json",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "src/pages/AdminHistoryDetailPage.jsx",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "src/pages/PatientHistoryDetailPage.jsx",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "src/pages/PatientHistoryPage.jsx",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "src/pages/PredictionPage.jsx",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "src/pages/SymptomConfirmationPage.jsx",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "src/pages/SymptomInputPage.jsx",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "src/pages/__tests__/AdminHistoryDetailPage.test.jsx",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "src/pages/__tests__/PatientHistoryDetailPage.test.jsx",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "src/pages/__tests__/PredictionPage.test.jsx",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "src/pages/__tests__/SymptomConfirmationPage.test.jsx",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "src/pages/__tests__/SymptomInputPage.test.jsx",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "src/services/__tests__/predictions.test.js",
+        "preexisting": false
+      },
+      {
+        "status": " M",
+        "path": "src/services/predictions.js",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "docs/autonomous-audit.md",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "e2e/",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "playwright.config.js",
+        "preexisting": false
+      },
+      {
+        "status": "??",
+        "path": "public/images/",
+        "preexisting": true
+      },
+      {
+        "status": "??",
+        "path": "src/pages/__tests__/AssessmentFollowUp.test.jsx",
+        "preexisting": false
+      }
+    ],
+    "files": [
+      {
+        "path": ".gitignore",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "docs/autonomous-audit.md",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "e2e/assessment.pw.js",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "e2e/research-v2.pw.js",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "package-lock.json",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "package.json",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "playwright.config.js",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "public/images/respiracare-logo.jpeg",
+        "kind": "untracked",
+        "preexisting": true
+      },
+      {
+        "path": "src/pages/AdminHistoryDetailPage.jsx",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "src/pages/PatientHistoryDetailPage.jsx",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "src/pages/PatientHistoryPage.jsx",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "src/pages/PredictionPage.jsx",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "src/pages/SymptomConfirmationPage.jsx",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "src/pages/SymptomInputPage.jsx",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "src/pages/__tests__/AdminHistoryDetailPage.test.jsx",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "src/pages/__tests__/AssessmentFollowUp.test.jsx",
+        "kind": "untracked",
+        "preexisting": false
+      },
+      {
+        "path": "src/pages/__tests__/PatientHistoryDetailPage.test.jsx",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "src/pages/__tests__/PredictionPage.test.jsx",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "src/pages/__tests__/SymptomConfirmationPage.test.jsx",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "src/pages/__tests__/SymptomInputPage.test.jsx",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "src/services/__tests__/predictions.test.js",
+        "kind": "modified",
+        "preexisting": false
+      },
+      {
+        "path": "src/services/predictions.js",
+        "kind": "modified",
+        "preexisting": false
+      }
+    ]
+  },
+  "preserved_condition_information_sha256": "21a5120d15422622bb92a83886f48691328b49d37d00de83aa971ba963e1404c"
+}

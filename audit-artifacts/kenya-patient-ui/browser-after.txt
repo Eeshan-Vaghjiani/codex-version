@@ -1,0 +1,65 @@
+
+> ucs31-madhaparia-frontend@0.0.0 test:e2e
+> playwright test
+
+
+Running 14 tests using 1 worker
+
+(node:9752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   1 e2e\consultation-v3.pw.js:81:3 › single-primary policy: informative coughing fits (2.6s)
+(node:22744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  2 e2e\consultation-v3.pw.js:81:3 › single-primary policy: English cough and fever (10.8s)
+  ok  3 e2e\consultation-v3.pw.js:81:3 › single-primary policy: Swahili cough and fever (7.2s)
+  ok  4 e2e\consultation-v3.pw.js:81:3 › single-primary policy: English negation (7.4s)
+  ok  5 e2e\consultation-v3.pw.js:81:3 › single-primary policy: Swahili negation (5.6s)
+  ok  6 e2e\consultation-v3.pw.js:81:3 › single-primary policy: cough alone (7.0s)
+  ok  7 e2e\consultation-v3.pw.js:81:3 › single-primary policy: fever alone (5.7s)
+  ok  8 e2e\consultation-v3.pw.js:81:3 › single-primary policy: headache and tiredness (7.0s)
+  ok  9 e2e\consultation-v3.pw.js:81:3 › single-primary policy: fever cough sore throat body aches (5.2s)
+  ok 10 e2e\consultation-v3.pw.js:141:3 › emergency guidance precedes the consultation: I am struggling to breathe. (2.9s)
+  ok 11 e2e\consultation-v3.pw.js:141:3 › emergency guidance precedes the consultation: Nashindwa kupumua. (2.2s)
+  ok 12 e2e\consultation-v3.pw.js:155:1 › vague input asks for symptoms without inventing a possible disease (2.6s)
+  ok 13 e2e\consultation-v3.pw.js:166:1 › an old abstention cache cannot replace a new consultation (3.3s)
+  ok 14 e2e\consultation-v3.pw.js:181:1 › empty symptom descriptions stay on the form with a readable correction (2.1s)
+
+
+  1) e2e\consultation-v3.pw.js:81:3 › single-primary policy: informative coughing fits ─────────────
+
+    Error: apiRequestContext.post: connect ECONNREFUSED 127.0.0.1:8000
+    Call log:
+      - → POST http://127.0.0.1:8000/auth/register
+        - user-agent: Playwright/1.64.1 (x64; windows 10.0) node/22.23
+        - accept: */*
+        - accept-encoding: gzip,deflate,br
+        - content-type: application/json
+        - content-length: 87
+
+
+       8 |   const email = `consult-${Date.now()}-${testInfo.testId.slice(-6)}@example.com`
+       9 |   const password = 'Audit-test-only-2026!'
+    > 10 |   const registered = await request.post(`${apiURL}/auth/register`, { data: { email, password } })
+         |                                    ^
+      11 |   expect(registered.ok(), await registered.text()).toBe(true)
+      12 |   await page.goto('/login')
+      13 |   await page.getByLabel('Email address').fill(email)
+        at C:\Users\krish\OneDrive\Desktop\IS codex\ucs31-madhaparia-frontend\e2e\consultation-v3.pw.js:10:36
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\consultation-v3.pw.js-sing-cc7e6-y-informative-coughing-fits\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\consultation-v3.pw.js-sing-cc7e6-y-informative-coughing-fits\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\consultation-v3.pw.js-sing-cc7e6-y-informative-coughing-fits\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\consultation-v3.pw.js-sing-cc7e6-y-informative-coughing-fits\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    e2e\consultation-v3.pw.js:81:3 › single-primary policy: informative coughing fits ──────────────
+  13 passed (1.4m)

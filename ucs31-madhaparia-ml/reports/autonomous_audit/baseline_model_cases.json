@@ -1,0 +1,3556 @@
+{
+  "purpose": "Raw frozen-model observations, not clinical diagnoses or expected labels",
+  "demographics": "Only AGE and SEX_M vary within each case/version; identical extracted symptom vectors",
+  "v1_absence_limitation": "V1 has no independent explicit-absence features; zeros conflate unmentioned and absent",
+  "v2_absence_feature_importance_sum": 0.0,
+  "v2_demographic_feature_importance": {
+    "AGE": 0.09173240262996464,
+    "SEX_M": 0.002282553903005612
+  },
+  "cases": [
+    {
+      "case": 1,
+      "input": "I have fever.",
+      "nlp": {
+        "input_text": "I have fever.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "requires_confirmation": true
+      },
+      "present_features": [
+        "E_91"
+      ],
+      "absent_features": [],
+      "observations": [
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Croup",
+              "raw_score": 0.6425
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1975
+            },
+            {
+              "condition": "Whooping cough",
+              "raw_score": 0.0525
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Croup",
+              "raw_score": 0.665
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1775
+            },
+            {
+              "condition": "Whooping cough",
+              "raw_score": 0.06
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Croup",
+              "raw_score": 0.3725
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.3125
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0775
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Croup",
+              "raw_score": 0.3875
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.295
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0825
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Croup",
+              "raw_score": 0.3575
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.3075
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.08
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Croup",
+              "raw_score": 0.3675
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.2975
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0825
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Croup",
+              "raw_score": 0.26976590171757003
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.09125555799719116
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.0714401915509881
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Croup",
+              "raw_score": 0.2626870953265611
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.0922528614572844
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.07337228341137512
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1275078801781478
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.08480585118796348
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08210814235943771
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1321491573522832
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.0866508540063815
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08117756851473983
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.12683031008326398
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.0855397048564134
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08152446533097302
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.13007985162189503
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.08763159313321374
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08111062229199761
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        }
+      ]
+    },
+    {
+      "case": 2,
+      "input": "Runny nose, for a few days with headache and sore throat.",
+      "nlp": {
+        "input_text": "Runny nose, for a few days with headache and sore throat.",
+        "recognised_symptoms": [
+          {
+            "code": "sore_throat",
+            "display_name": "Sore throat",
+            "features": [
+              "E_97"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "sore throat",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          },
+          {
+            "code": "runny_blocked_nose",
+            "display_name": "Runny or blocked nose",
+            "features": [
+              "E_181"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "runny nose",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          },
+          {
+            "code": "headache",
+            "display_name": "Headache",
+            "features": [
+              "E_53",
+              "E_55_@_V_89"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "headache",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [
+          {
+            "unmatched_text": "for few days",
+            "suggestions": []
+          }
+        ],
+        "has_red_flag": false,
+        "requires_confirmation": true
+      },
+      "present_features": [
+        "E_181",
+        "E_53",
+        "E_55_@_V_89",
+        "E_97"
+      ],
+      "absent_features": [],
+      "observations": [
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.255
+            },
+            {
+              "condition": "URTI",
+              "raw_score": 0.2475
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.2175
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.305
+            },
+            {
+              "condition": "URTI",
+              "raw_score": 0.24
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.1775
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.455
+            },
+            {
+              "condition": "URTI",
+              "raw_score": 0.245
+            },
+            {
+              "condition": "Chronic rhinosinusitis",
+              "raw_score": 0.1125
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.485
+            },
+            {
+              "condition": "URTI",
+              "raw_score": 0.24
+            },
+            {
+              "condition": "Chronic rhinosinusitis",
+              "raw_score": 0.12
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.4575
+            },
+            {
+              "condition": "URTI",
+              "raw_score": 0.2525
+            },
+            {
+              "condition": "Chronic rhinosinusitis",
+              "raw_score": 0.1175
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.485
+            },
+            {
+              "condition": "URTI",
+              "raw_score": 0.2525
+            },
+            {
+              "condition": "Chronic rhinosinusitis",
+              "raw_score": 0.1225
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "URTI",
+              "raw_score": 0.3543837871548911
+            },
+            {
+              "condition": "Bronchitis",
+              "raw_score": 0.16151153478681174
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.11993367472800891
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "URTI",
+              "raw_score": 0.3788556194712626
+            },
+            {
+              "condition": "Bronchitis",
+              "raw_score": 0.14611062435644379
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.12127340248270634
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "URTI",
+              "raw_score": 0.3646507628440409
+            },
+            {
+              "condition": "Bronchitis",
+              "raw_score": 0.1567344417621168
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.1198198164985054
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "URTI",
+              "raw_score": 0.36857320014276396
+            },
+            {
+              "condition": "Bronchitis",
+              "raw_score": 0.1405817346005844
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.12274304992765879
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "URTI",
+              "raw_score": 0.3814175794180713
+            },
+            {
+              "condition": "Bronchitis",
+              "raw_score": 0.15602074463503493
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.11210733369183687
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "URTI",
+              "raw_score": 0.3952631712018093
+            },
+            {
+              "condition": "Bronchitis",
+              "raw_score": 0.14370004222971205
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.1066592586194523
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        }
+      ]
+    },
+    {
+      "case": 3,
+      "input": "I have a cough and fever.",
+      "nlp": {
+        "input_text": "I have a cough and fever.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "requires_confirmation": true
+      },
+      "present_features": [
+        "E_201",
+        "E_91"
+      ],
+      "absent_features": [],
+      "observations": [
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.955
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.0325
+            },
+            {
+              "condition": "Bronchitis",
+              "raw_score": 0.005
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.935
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.045
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0075
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.9975
+            },
+            {
+              "condition": "Whooping cough",
+              "raw_score": 0.0025
+            },
+            {
+              "condition": "Acute COPD exacerbation / infection",
+              "raw_score": 0.0
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.9675
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.015
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.005
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.9925
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0025
+            },
+            {
+              "condition": "Larygospasm",
+              "raw_score": 0.0025
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.97
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0175
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0025
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1729109689373769
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.08863395890104643
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08343072161424615
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1741675964720903
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.08768857131922439
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08344427725383739
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.16181567221484855
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.08990109429517447
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.07756952740271424
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1645441880916987
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.09079639005525347
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.07478747539832058
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.16085481763576065
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.08977643771903379
+            },
+            {
+              "condition": "Acute laryngitis",
+              "raw_score": 0.07723866318616869
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1622672372379007
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.09122101992519581
+            },
+            {
+              "condition": "Acute laryngitis",
+              "raw_score": 0.07524715726838198
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        }
+      ]
+    },
+    {
+      "case": 4,
+      "input": "I have a cough.",
+      "nlp": {
+        "input_text": "I have a cough.",
+        "recognised_symptoms": [
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "requires_confirmation": true
+      },
+      "present_features": [
+        "E_201"
+      ],
+      "absent_features": [],
+      "observations": [
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.6175
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0975
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.085
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.655
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.095
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.08
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.6275
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.1375
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.1
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.65
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.135
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.095
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.625
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.125
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.095
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.625
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.13
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0925
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.12134868566499594
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.08316994324123175
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08294390589157796
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.12330993597013867
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08380907390450014
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.08072541380154763
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.11085349699289958
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.07274166958395376
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.07083752558794751
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.11122782820379776
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.07377231833593044
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.07199336776194233
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.11051909967551428
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.07373775260630627
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.07056154812621643
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.11096907024720676
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.07430089318073947
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.07201979128791194
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        }
+      ]
+    },
+    {
+      "case": 5,
+      "input": "I have a runny nose, sneezing and a mild cough.",
+      "nlp": {
+        "input_text": "I have a runny nose, sneezing and a mild cough.",
+        "recognised_symptoms": [
+          {
+            "code": "runny_blocked_nose",
+            "display_name": "Runny or blocked nose",
+            "features": [
+              "E_181"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "runny nose",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          },
+          {
+            "code": "sneezing",
+            "display_name": "Sneezing",
+            "features": [],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "sneezing",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [
+          {
+            "unmatched_text": "mild",
+            "suggestions": []
+          }
+        ],
+        "has_red_flag": false,
+        "requires_confirmation": true
+      },
+      "present_features": [
+        "E_181",
+        "E_201"
+      ],
+      "absent_features": [],
+      "observations": [
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.555
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1375
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.13
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.56
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1525
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.1275
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.685
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.14
+            },
+            {
+              "condition": "Bronchiolitis",
+              "raw_score": 0.075
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.6975
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1475
+            },
+            {
+              "condition": "Bronchiolitis",
+              "raw_score": 0.0725
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.6875
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1275
+            },
+            {
+              "condition": "Bronchiolitis",
+              "raw_score": 0.0725
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.71
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.13
+            },
+            {
+              "condition": "Bronchiolitis",
+              "raw_score": 0.07
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.17422284040817732
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.10760030164678293
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.0940834968475967
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.18074987494694544
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.11220434911329995
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.09488451716096723
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.14814200676288458
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.13468064413200864
+            },
+            {
+              "condition": "URTI",
+              "raw_score": 0.09156259446406688
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.1508635225412052
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.13828451240521397
+            },
+            {
+              "condition": "URTI",
+              "raw_score": 0.09205140442645204
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.14976549828544616
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.13506574708742902
+            },
+            {
+              "condition": "URTI",
+              "raw_score": 0.09142750007421183
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.15244402410550698
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.137407137784072
+            },
+            {
+              "condition": "URTI",
+              "raw_score": 0.0916609642214397
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        }
+      ]
+    },
+    {
+      "case": 6,
+      "input": "I have had a cough and fever for two days.",
+      "nlp": {
+        "input_text": "I have had a cough and fever for two days.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": 2,
+            "duration_max_days": 2,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [
+          {
+            "unmatched_text": "had",
+            "suggestions": []
+          },
+          {
+            "unmatched_text": "for two days",
+            "suggestions": []
+          }
+        ],
+        "has_red_flag": false,
+        "requires_confirmation": true
+      },
+      "present_features": [
+        "E_201",
+        "E_91"
+      ],
+      "absent_features": [],
+      "observations": [
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.955
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.0325
+            },
+            {
+              "condition": "Bronchitis",
+              "raw_score": 0.005
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.935
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.045
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0075
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.9975
+            },
+            {
+              "condition": "Whooping cough",
+              "raw_score": 0.0025
+            },
+            {
+              "condition": "Acute COPD exacerbation / infection",
+              "raw_score": 0.0
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.9675
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.015
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.005
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.9925
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0025
+            },
+            {
+              "condition": "Larygospasm",
+              "raw_score": 0.0025
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.97
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0175
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0025
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.17291096893737687
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.08863395890104643
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08343072161424614
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.17416759647209032
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.08768857131922442
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.0834442772538374
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.16181567221484852
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.08990109429517451
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.07756952740271425
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.16454418809169868
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.0907963900552535
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.07478747539832058
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.16085481763576065
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.08977643771903376
+            },
+            {
+              "condition": "Acute laryngitis",
+              "raw_score": 0.07723866318616872
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.16226723723790076
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.09122101992519584
+            },
+            {
+              "condition": "Acute laryngitis",
+              "raw_score": 0.07524715726838199
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        }
+      ]
+    },
+    {
+      "case": 7,
+      "input": "I have had a cough for several weeks and have been losing weight.",
+      "nlp": {
+        "input_text": "I have had a cough for several weeks and have been losing weight.",
+        "recognised_symptoms": [
+          {
+            "code": "weight_loss",
+            "display_name": "Unintended weight loss",
+            "features": [
+              "E_162"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "losing weight",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [
+          {
+            "unmatched_text": "had for several weeks",
+            "suggestions": []
+          },
+          {
+            "unmatched_text": "been",
+            "suggestions": []
+          }
+        ],
+        "has_red_flag": false,
+        "requires_confirmation": true
+      },
+      "present_features": [
+        "E_162",
+        "E_201"
+      ],
+      "absent_features": [],
+      "observations": [
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.8125
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0475
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0425
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.8325
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0425
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.04
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.8175
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0625
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.055
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.825
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0575
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.055
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.8225
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0525
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.045
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.82
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0525
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.04
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.6773505890172916
+            },
+            {
+              "condition": "Pulmonary neoplasm",
+              "raw_score": 0.04885472820107755
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.02792318434530984
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.6939834827389787
+            },
+            {
+              "condition": "Pulmonary neoplasm",
+              "raw_score": 0.04879968454501185
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.026555573808049546
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.6917710233247171
+            },
+            {
+              "condition": "Pulmonary neoplasm",
+              "raw_score": 0.0748891752170766
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.02316970109071272
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.6968472978905409
+            },
+            {
+              "condition": "Pulmonary neoplasm",
+              "raw_score": 0.07158360197461539
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.02164042486978482
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.5591887598599847
+            },
+            {
+              "condition": "Pulmonary neoplasm",
+              "raw_score": 0.20807232756208763
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.022726570410098977
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.5078252878094542
+            },
+            {
+              "condition": "Pulmonary neoplasm",
+              "raw_score": 0.2605191975174837
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.021690897493291148
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        }
+      ]
+    },
+    {
+      "case": 8,
+      "input": "I have a cough and I am struggling to breathe.",
+      "nlp": {
+        "input_text": "I have a cough and I am struggling to breathe.",
+        "recognised_symptoms": [
+          {
+            "code": "shortness_of_breath",
+            "display_name": "Significant shortness of breath",
+            "features": [
+              "E_66"
+            ],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "struggling to breathe",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": true,
+        "requires_confirmation": true
+      },
+      "present_features": [
+        "E_201",
+        "E_66"
+      ],
+      "absent_features": [],
+      "observations": [
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.6425
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.115
+            },
+            {
+              "condition": "Bronchospasm / acute asthma exacerbation",
+              "raw_score": 0.115
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.7075
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.1
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0975
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.7325
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.1875
+            },
+            {
+              "condition": "Bronchospasm / acute asthma exacerbation",
+              "raw_score": 0.0775
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.8025
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.15
+            },
+            {
+              "condition": "Bronchospasm / acute asthma exacerbation",
+              "raw_score": 0.0375
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.7925
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.1575
+            },
+            {
+              "condition": "Bronchospasm / acute asthma exacerbation",
+              "raw_score": 0.0325
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.7675
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.145
+            },
+            {
+              "condition": "Bronchospasm / acute asthma exacerbation",
+              "raw_score": 0.05
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Bronchospasm / acute asthma exacerbation",
+              "raw_score": 0.2649309372115428
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.15806824163622857
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.12913268008587217
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Bronchospasm / acute asthma exacerbation",
+              "raw_score": 0.2510369953443623
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1706717785613359
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.13095666933108668
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Bronchospasm / acute asthma exacerbation",
+              "raw_score": 0.2034121465559087
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.15236696267914523
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.14925023412170543
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Bronchospasm / acute asthma exacerbation",
+              "raw_score": 0.20232670470408604
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.1583110184423266
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1449041836940383
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Bronchospasm / acute asthma exacerbation",
+              "raw_score": 0.18812399742221295
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.14953853762782174
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.1420777086414061
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Bronchospasm / acute asthma exacerbation",
+              "raw_score": 0.18925703947186878
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.15536724815196878
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.14066308121319257
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        }
+      ]
+    },
+    {
+      "case": 9,
+      "input": "I feel unwell.",
+      "nlp": {
+        "input_text": "I feel unwell.",
+        "recognised_symptoms": [],
+        "unmatched_wording": [
+          {
+            "unmatched_text": "unwell",
+            "suggestions": []
+          }
+        ],
+        "has_red_flag": false,
+        "requires_confirmation": true
+      },
+      "present_features": [],
+      "absent_features": [],
+      "observations": [
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Croup",
+              "raw_score": 0.3325
+            },
+            {
+              "condition": "Larygospasm",
+              "raw_score": 0.1725
+            },
+            {
+              "condition": "Whooping cough",
+              "raw_score": 0.16
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Croup",
+              "raw_score": 0.315
+            },
+            {
+              "condition": "Larygospasm",
+              "raw_score": 0.1725
+            },
+            {
+              "condition": "Whooping cough",
+              "raw_score": 0.1525
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Whooping cough",
+              "raw_score": 0.1825
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.18
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.1775
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.205
+            },
+            {
+              "condition": "Whooping cough",
+              "raw_score": 0.1775
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.165
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.185
+            },
+            {
+              "condition": "Whooping cough",
+              "raw_score": 0.185
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.1575
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.2125
+            },
+            {
+              "condition": "Whooping cough",
+              "raw_score": 0.1825
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.155
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Croup",
+              "raw_score": 0.1882594214006657
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.0761935551820615
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.07458860119563433
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Croup",
+              "raw_score": 0.18408518718418104
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.07733855298525462
+            },
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.07430764847413553
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.08526295921727271
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.07470586952229755
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.06673144158592884
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.08749485598505226
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.07387194265831795
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.06821432411207645
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.0850170181871379
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.07362603522423726
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.0666315572650178
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.08724891495491746
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.07279210836025767
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.06811443979116542
+            }
+          ],
+          "ordinary_inference_should_be_skipped": true
+        }
+      ]
+    },
+    {
+      "case": 10,
+      "input": "I have a cough, but I do not have a fever.",
+      "nlp": {
+        "input_text": "I have a cough, but I do not have a fever.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [
+          {
+            "unmatched_text": "do not",
+            "suggestions": []
+          }
+        ],
+        "has_red_flag": false,
+        "requires_confirmation": true
+      },
+      "present_features": [
+        "E_201"
+      ],
+      "absent_features": [
+        "E_91"
+      ],
+      "observations": [
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.6175
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0975
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.085
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.655
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.095
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.08
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.6275
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.1375
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.1
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.65
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.135
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.095
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.625
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.125
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.095
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.625
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.13
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0925
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.12134868566499594
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.08316994324123174
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08294390589157795
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.12330993597013867
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08380907390450013
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.08072541380154763
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.11085349699289956
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.07274166958395376
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.07083752558794751
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.11122782820379779
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.07377231833593044
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.07199336776194233
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.11051909967551428
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.07373775260630627
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.07056154812621643
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.11096907024720676
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.07430089318073947
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.07201979128791194
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        }
+      ]
+    },
+    {
+      "case": 11,
+      "input": "Nina homa na kikohozi.",
+      "nlp": {
+        "input_text": "Nina homa na kikohozi.",
+        "recognised_symptoms": [
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "kikohozi",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          },
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "homa",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "requires_confirmation": true
+      },
+      "present_features": [
+        "E_201",
+        "E_91"
+      ],
+      "absent_features": [],
+      "observations": [
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.955
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.0325
+            },
+            {
+              "condition": "Bronchitis",
+              "raw_score": 0.005
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.935
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.045
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0075
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.9975
+            },
+            {
+              "condition": "Whooping cough",
+              "raw_score": 0.0025
+            },
+            {
+              "condition": "Acute COPD exacerbation / infection",
+              "raw_score": 0.0
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.9675
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.015
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.005
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.9925
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0025
+            },
+            {
+              "condition": "Larygospasm",
+              "raw_score": 0.0025
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.97
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0175
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0025
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.17291096893737684
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.08863395890104643
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08343072161424614
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.17416759647209035
+            },
+            {
+              "condition": "Croup",
+              "raw_score": 0.0876885713192244
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08344427725383739
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.16181567221484855
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.08990109429517451
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.07756952740271425
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.16454418809169868
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.09079639005525351
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.07478747539832056
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.16085481763576065
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.08977643771903379
+            },
+            {
+              "condition": "Acute laryngitis",
+              "raw_score": 0.07723866318616869
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.16226723723790076
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.09122101992519581
+            },
+            {
+              "condition": "Acute laryngitis",
+              "raw_score": 0.07524715726838198
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        }
+      ]
+    },
+    {
+      "case": 12,
+      "input": "Nina kikohozi lakini sina homa.",
+      "nlp": {
+        "input_text": "Nina kikohozi lakini sina homa.",
+        "recognised_symptoms": [
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "kikohozi",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          },
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "homa",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [
+          {
+            "unmatched_text": "sina",
+            "suggestions": []
+          }
+        ],
+        "has_red_flag": false,
+        "requires_confirmation": true
+      },
+      "present_features": [
+        "E_201"
+      ],
+      "absent_features": [
+        "E_91"
+      ],
+      "observations": [
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.6175
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.0975
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.085
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.655
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.095
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.08
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.6275
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.1375
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.1
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.65
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.135
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.095
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.625
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.125
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.095
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v1",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.625
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.13
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.0925
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.12134868566499594
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.08316994324123177
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08294390589157795
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 5,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.12330993597013867
+            },
+            {
+              "condition": "Influenza",
+              "raw_score": 0.08380907390450013
+            },
+            {
+              "condition": "Allergic sinusitis",
+              "raw_score": 0.08072541380154763
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.11085349699289958
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.07274166958395376
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.07083752558794751
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 21,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.11122782820379779
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.07377231833593044
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.07199336776194233
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "M",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.11051909967551428
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.07373775260630627
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.07056154812621644
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        },
+        {
+          "version": "v2",
+          "age": 65,
+          "sex": "F",
+          "top_3": [
+            {
+              "condition": "Tuberculosis",
+              "raw_score": 0.11096907024720676
+            },
+            {
+              "condition": "Bronchiectasis",
+              "raw_score": 0.07430089318073947
+            },
+            {
+              "condition": "Viral pharyngitis",
+              "raw_score": 0.07201979128791194
+            }
+          ],
+          "ordinary_inference_should_be_skipped": false
+        }
+      ]
+    }
+  ]
+}

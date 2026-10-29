@@ -1,0 +1,41 @@
+Evidence,Patients,Percentage,Label
+E_53,72154,16.284827625119902,"Do you have pain somewhere, related to your reason for consulting?"
+E_201,65267,14.73046323985781,Do you have a cough?
+E_181,39764,8.974552840941149,Do you have nasal congestion or a clear runny nose?
+E_91,33681,7.601647576595385,Do you have a fever (either felt or measured with a thermometer)?
+E_66,31130,7.0258985499069,Are you experiencing shortness of breath or difficulty breathing in a significant way?
+E_45,20606,4.650679907464876,Have you been coughing up blood?
+E_77,20508,4.628561755910399,Do you have a cough that produces colored or more abundant sputum than usual?
+E_214,14688,3.3150143880832816,Have you noticed a wheezing sound when you exhale?
+E_194,13653,3.0814196242171192,Have you noticed a high pitched sound when breathing in?
+E_97,13066,2.9489364103142806,Do you have a sore throat?
+E_50,11068,2.4979969531117754,Have you had significantly increased sweating?
+E_144,10413,2.3501664503752187,Do you have diffuse (widespread) muscle pain?
+E_212,9426,2.1274050668622695,"Have you noticed that the tone of your voice has become deeper, softer or hoarse?"
+E_169,6976,1.5744512780003388,Is your nose or the back of your throat itchy?
+E_103,6963,1.5715172374880098,Have you lost your sense of smell?
+E_182,6413,1.447384754274107,Do you have greenish or yellowish nasal discharge?
+E_170,6013,1.357106584663996,Do you have severe itching in one or both eyes?
+E_129,5514,1.2444845680753822,"Do you have any lesions, redness or problems on your skin that you believe are related to the condition you are consulting for?"
+E_161,5275,1.1905433617333407,Have you recently had a loss of appetite or do you get full more quickly then usually?
+E_162,4762,1.0747616092083734,Have you had an involuntary weight loss over the last 3 months?
+E_219,4385,0.9896744343508436,Are your symptoms more prominent at night?
+E_94,4054,0.9149692489984765,Have you had chills or shivers?
+E_220,3898,0.8797607628505332,Do you have pain that is increased when you breathe in deeply?
+E_218,3776,0.8522259211194493,Do you have symptoms that are increased with physical exertion but alleviated with rest?
+E_175,3566,0.804829882074141,"Have you noticed any new fatigue, generalized and vague discomfort, diffuse (widespread) muscle aches or a change in your general well-being related to your consultation today?"
+E_166,3040,0.6861140890368448,Did you vomit after coughing?
+E_151,3006,0.6784404446199853,Do you have swelling in one or more areas of your body?
+E_88,2638,0.5953845285786831,Do you feel so tired that you are unable to do your usual activities or are you stuck in your bed all day long?
+E_190,2472,0.557919088190487,Have you noticed that you produce more saliva than usual?
+E_217,2262,0.5105230491451787,Are your symptoms worse when lying down and alleviated while sitting up?
+E_67,2222,0.5014952321841675,Do you have bouts of choking or shortness of breath that wake you up at night?
+E_65,2089,0.4714777407888055,"Do you have difficulty swallowing, or have a feeling of discomfort/blockage when swallowing?"
+E_33,1707,0.3852620888111493,Do you have pain that improves when you lean forward?
+E_203,1600,0.3611126784404446,Do you have intense coughing fits?
+E_89,1592,0.3593071150482424,Do you constantly feel fatigued or do you have non-restful sleep?
+E_14,1491,0.3365118772216893,Do you have chest pain even at rest?
+E_112,1430,0.3227444563561474,Do you wheeze while inhaling or is your breathing noisy after coughing spells?
+E_202,454,0.10246572250747615,Does the person have a whooping cough?
+E_23,30,0.006770862720758337,Do you ever temporarily stop breathing while you’re asleep?
+E_32,23,0.005190994752581391,Do you have a decrease in appetite?

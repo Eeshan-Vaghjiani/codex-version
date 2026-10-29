@@ -1,0 +1,28 @@
+ M .gitignore
+ M package-lock.json
+ M package.json
+ M src/pages/AdminHistoryDetailPage.jsx
+ M src/pages/HomePage.jsx
+ M src/pages/PatientDashboardPage.jsx
+ M src/pages/PatientHistoryDetailPage.jsx
+ M src/pages/PatientHistoryPage.jsx
+ M src/pages/PredictionPage.jsx
+ M src/pages/SymptomConfirmationPage.jsx
+ M src/pages/SymptomInputPage.jsx
+ M src/pages/__tests__/AdminHistoryDetailPage.test.jsx
+ M src/pages/__tests__/PatientHistoryDetailPage.test.jsx
+ M src/pages/__tests__/PredictionPage.test.jsx
+ M src/pages/__tests__/SymptomConfirmationPage.test.jsx
+ M src/pages/__tests__/SymptomInputPage.test.jsx
+ M src/services/__tests__/predictions.test.js
+ M src/services/predictions.js
+ M src/styles/global.css
+?? capture-baseline.mjs
+?? docs/autonomous-audit.md
+?? docs/consultation-v3-validation.md
+?? e2e/
+?? playwright.config.js
+?? public/images/
+?? src/components/PossibleExplanations.jsx
+?? src/components/__tests__/PossibleExplanations.test.jsx
+?? src/pages/__tests__/AssessmentFollowUp.test.jsx

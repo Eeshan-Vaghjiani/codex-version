@@ -1,0 +1,37 @@
+{
+  "version": "draft-1",
+  "status": "reference_only_not_validated_training_data",
+  "conditions": [
+    {
+      "name": "COVID-19",
+      "possible_features": [
+        "E_91",
+        "E_94",
+        "E_97",
+        "E_201",
+        "E_181",
+        "E_103",
+        "E_89",
+        "E_144",
+        "E_66"
+      ],
+      "nlp_only_symptoms": [
+        "sneezing"
+      ],
+      "source": "https://www.who.int/news-room/fact-sheets/detail/coronavirus-disease-%28covid-19%29"
+    },
+    {
+      "name": "Allergic rhinitis",
+      "possible_features": [
+        "E_181",
+        "E_169",
+        "E_170",
+        "E_201"
+      ],
+      "nlp_only_symptoms": [
+        "sneezing"
+      ],
+      "source": "https://www.nhs.uk/conditions/allergic-rhinitis/"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+import{T as e,Z as t,t as n}from"./SeriesRegistry-D9skVCBF.js";import"./indicators.src-kbldC8eu.js";import"./tema.src-BmvCzl6v.js";var{tema:r}=n.seriesTypes,i=class extends r{getTemaPoint(t,n,r,i){if(i>n)return[t[i-3],r.prevLevel3===0?null:e(r.level3-r.prevLevel3)/r.prevLevel3*100]}};i.defaultOptions=t(r.defaultOptions),n.registerSeriesType(`trix`,i);

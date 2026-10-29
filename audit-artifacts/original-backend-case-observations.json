@@ -1,0 +1,1370 @@
+[
+  {
+    "case": 1,
+    "input": "I have fever.",
+    "mapping": {
+      "input_text": "I have fever.",
+      "recognised_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    },
+    "confirmation": {
+      "input_text": "I have fever.",
+      "recognised_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "confirmed_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "rejected_symptoms": [],
+      "confirmed_codes": [
+        "fever"
+      ],
+      "model_features": [
+        "E_91"
+      ],
+      "unmatched_wording": [],
+      "has_red_flag": false,
+      "red_flag_symptoms": [],
+      "safety_status": "continue",
+      "requires_confirmation": false
+    },
+    "prediction": {
+      "rank": 1,
+      "condition": "Croup",
+      "probability": 0.3725,
+      "confidence_percent": 37.25
+    }
+  },
+  {
+    "case": 2,
+    "input": "Runny nose, for a few days with headache and sore throat.",
+    "mapping": {
+      "input_text": "Runny nose, for a few days with headache and sore throat.",
+      "recognised_symptoms": [
+        {
+          "code": "sore_throat",
+          "display_name": "Sore throat",
+          "features": [
+            "E_97"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "sore throat",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        },
+        {
+          "code": "runny_blocked_nose",
+          "display_name": "Runny or blocked nose",
+          "features": [
+            "E_181"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "runny nose",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        },
+        {
+          "code": "headache",
+          "display_name": "Headache",
+          "features": [
+            "E_53",
+            "E_55_@_V_89"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "headache",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "for few days",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    },
+    "confirmation": {
+      "input_text": "Runny nose, for a few days with headache and sore throat.",
+      "recognised_symptoms": [
+        {
+          "code": "sore_throat",
+          "display_name": "Sore throat",
+          "features": [
+            "E_97"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "sore throat",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "runny_blocked_nose",
+          "display_name": "Runny or blocked nose",
+          "features": [
+            "E_181"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "runny nose",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "headache",
+          "display_name": "Headache",
+          "features": [
+            "E_53",
+            "E_55_@_V_89"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "headache",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "confirmed_symptoms": [
+        {
+          "code": "sore_throat",
+          "display_name": "Sore throat",
+          "features": [
+            "E_97"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "sore throat",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "runny_blocked_nose",
+          "display_name": "Runny or blocked nose",
+          "features": [
+            "E_181"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "runny nose",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "headache",
+          "display_name": "Headache",
+          "features": [
+            "E_53",
+            "E_55_@_V_89"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "headache",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "rejected_symptoms": [],
+      "confirmed_codes": [
+        "sore_throat",
+        "runny_blocked_nose",
+        "headache"
+      ],
+      "model_features": [
+        "E_97",
+        "E_181",
+        "E_53",
+        "E_55_@_V_89"
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "for few days",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "red_flag_symptoms": [],
+      "safety_status": "continue",
+      "requires_confirmation": false
+    },
+    "prediction": {
+      "rank": 1,
+      "condition": "Allergic sinusitis",
+      "probability": 0.455,
+      "confidence_percent": 45.5
+    }
+  },
+  {
+    "case": 3,
+    "input": "I have a cough and fever.",
+    "mapping": {
+      "input_text": "I have a cough and fever.",
+      "recognised_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    },
+    "confirmation": {
+      "input_text": "I have a cough and fever.",
+      "recognised_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "confirmed_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "rejected_symptoms": [],
+      "confirmed_codes": [
+        "fever",
+        "cough"
+      ],
+      "model_features": [
+        "E_91",
+        "E_201"
+      ],
+      "unmatched_wording": [],
+      "has_red_flag": false,
+      "red_flag_symptoms": [],
+      "safety_status": "continue",
+      "requires_confirmation": false
+    },
+    "prediction": {
+      "rank": 1,
+      "condition": "Tuberculosis",
+      "probability": 0.9975,
+      "confidence_percent": 99.75
+    }
+  },
+  {
+    "case": 4,
+    "input": "I have a cough.",
+    "mapping": {
+      "input_text": "I have a cough.",
+      "recognised_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    },
+    "confirmation": {
+      "input_text": "I have a cough.",
+      "recognised_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "confirmed_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "rejected_symptoms": [],
+      "confirmed_codes": [
+        "cough"
+      ],
+      "model_features": [
+        "E_201"
+      ],
+      "unmatched_wording": [],
+      "has_red_flag": false,
+      "red_flag_symptoms": [],
+      "safety_status": "continue",
+      "requires_confirmation": false
+    },
+    "prediction": {
+      "rank": 1,
+      "condition": "Tuberculosis",
+      "probability": 0.6275,
+      "confidence_percent": 62.75
+    }
+  },
+  {
+    "case": 5,
+    "input": "I have a runny nose, sneezing and a mild cough.",
+    "mapping": {
+      "input_text": "I have a runny nose, sneezing and a mild cough.",
+      "recognised_symptoms": [
+        {
+          "code": "runny_blocked_nose",
+          "display_name": "Runny or blocked nose",
+          "features": [
+            "E_181"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "runny nose",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "sneezing",
+          "suggestions": [
+            {
+              "code": "wheezing",
+              "suggested_alias": "wheezing",
+              "language": "en",
+              "score": 75.0
+            }
+          ]
+        },
+        {
+          "unmatched_text": "mild",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    },
+    "confirmation": {
+      "input_text": "I have a runny nose, sneezing and a mild cough.",
+      "recognised_symptoms": [
+        {
+          "code": "runny_blocked_nose",
+          "display_name": "Runny or blocked nose",
+          "features": [
+            "E_181"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "runny nose",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "confirmed_symptoms": [
+        {
+          "code": "runny_blocked_nose",
+          "display_name": "Runny or blocked nose",
+          "features": [
+            "E_181"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "runny nose",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "rejected_symptoms": [],
+      "confirmed_codes": [
+        "runny_blocked_nose",
+        "cough"
+      ],
+      "model_features": [
+        "E_181",
+        "E_201"
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "sneezing",
+          "suggestions": [
+            {
+              "code": "wheezing",
+              "suggested_alias": "wheezing",
+              "language": "en",
+              "score": 75.0
+            }
+          ]
+        },
+        {
+          "unmatched_text": "mild",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "red_flag_symptoms": [],
+      "safety_status": "continue",
+      "requires_confirmation": false
+    },
+    "prediction": {
+      "rank": 1,
+      "condition": "Allergic sinusitis",
+      "probability": 0.685,
+      "confidence_percent": 68.5
+    }
+  },
+  {
+    "case": 6,
+    "input": "I have had a cough and fever for two days.",
+    "mapping": {
+      "input_text": "I have had a cough and fever for two days.",
+      "recognised_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "had",
+          "suggestions": []
+        },
+        {
+          "unmatched_text": "for two days",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    },
+    "confirmation": {
+      "input_text": "I have had a cough and fever for two days.",
+      "recognised_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "confirmed_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "rejected_symptoms": [],
+      "confirmed_codes": [
+        "fever",
+        "cough"
+      ],
+      "model_features": [
+        "E_91",
+        "E_201"
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "had",
+          "suggestions": []
+        },
+        {
+          "unmatched_text": "for two days",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "red_flag_symptoms": [],
+      "safety_status": "continue",
+      "requires_confirmation": false
+    },
+    "prediction": {
+      "rank": 1,
+      "condition": "Tuberculosis",
+      "probability": 0.9975,
+      "confidence_percent": 99.75
+    }
+  },
+  {
+    "case": 7,
+    "input": "I have had a cough for several weeks and have been losing weight.",
+    "mapping": {
+      "input_text": "I have had a cough for several weeks and have been losing weight.",
+      "recognised_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "had for several weeks",
+          "suggestions": []
+        },
+        {
+          "unmatched_text": "been losing weight",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    },
+    "confirmation": {
+      "input_text": "I have had a cough for several weeks and have been losing weight.",
+      "recognised_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "confirmed_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "rejected_symptoms": [],
+      "confirmed_codes": [
+        "cough"
+      ],
+      "model_features": [
+        "E_201"
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "had for several weeks",
+          "suggestions": []
+        },
+        {
+          "unmatched_text": "been losing weight",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "red_flag_symptoms": [],
+      "safety_status": "continue",
+      "requires_confirmation": false
+    },
+    "prediction": {
+      "rank": 1,
+      "condition": "Tuberculosis",
+      "probability": 0.6275,
+      "confidence_percent": 62.75
+    }
+  },
+  {
+    "case": 8,
+    "input": "I have a cough and I am struggling to breathe.",
+    "mapping": {
+      "input_text": "I have a cough and I am struggling to breathe.",
+      "recognised_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "struggling to breathe",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    },
+    "confirmation": {
+      "input_text": "I have a cough and I am struggling to breathe.",
+      "recognised_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "confirmed_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "rejected_symptoms": [],
+      "confirmed_codes": [
+        "cough"
+      ],
+      "model_features": [
+        "E_201"
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "struggling to breathe",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "red_flag_symptoms": [],
+      "safety_status": "continue",
+      "requires_confirmation": false
+    },
+    "prediction": {
+      "rank": 1,
+      "condition": "Tuberculosis",
+      "probability": 0.6275,
+      "confidence_percent": 62.75
+    }
+  },
+  {
+    "case": 9,
+    "input": "I feel unwell.",
+    "mapping": {
+      "input_text": "I feel unwell.",
+      "recognised_symptoms": [],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "unwell",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    },
+    "confirmation": {
+      "input_text": "I feel unwell.",
+      "recognised_symptoms": [],
+      "confirmed_symptoms": [],
+      "rejected_symptoms": [],
+      "confirmed_codes": [],
+      "model_features": [],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "unwell",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "red_flag_symptoms": [],
+      "safety_status": "continue",
+      "requires_confirmation": false
+    },
+    "prediction": null
+  },
+  {
+    "case": 10,
+    "input": "I have a cough, but I do not have a fever.",
+    "mapping": {
+      "input_text": "I have a cough, but I do not have a fever.",
+      "recognised_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "do not",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    },
+    "confirmation": {
+      "input_text": "I have a cough, but I do not have a fever.",
+      "recognised_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "confirmed_symptoms": [
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "fever",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "cough",
+          "language": "en",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "rejected_symptoms": [],
+      "confirmed_codes": [
+        "fever",
+        "cough"
+      ],
+      "model_features": [
+        "E_91",
+        "E_201"
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "do not",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "red_flag_symptoms": [],
+      "safety_status": "continue",
+      "requires_confirmation": false
+    },
+    "prediction": {
+      "rank": 1,
+      "condition": "Tuberculosis",
+      "probability": 0.9975,
+      "confidence_percent": 99.75
+    }
+  },
+  {
+    "case": 11,
+    "input": "Nina homa na kikohozi.",
+    "mapping": {
+      "input_text": "Nina homa na kikohozi.",
+      "recognised_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "kikohozi",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        },
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "homa",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    },
+    "confirmation": {
+      "input_text": "Nina homa na kikohozi.",
+      "recognised_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "kikohozi",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "homa",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "confirmed_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "kikohozi",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "homa",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "rejected_symptoms": [],
+      "confirmed_codes": [
+        "cough",
+        "fever"
+      ],
+      "model_features": [
+        "E_201",
+        "E_91"
+      ],
+      "unmatched_wording": [],
+      "has_red_flag": false,
+      "red_flag_symptoms": [],
+      "safety_status": "continue",
+      "requires_confirmation": false
+    },
+    "prediction": {
+      "rank": 1,
+      "condition": "Tuberculosis",
+      "probability": 0.9975,
+      "confidence_percent": 99.75
+    }
+  },
+  {
+    "case": 12,
+    "input": "Nina kikohozi lakini sina homa.",
+    "mapping": {
+      "input_text": "Nina kikohozi lakini sina homa.",
+      "recognised_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "kikohozi",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        },
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "homa",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": false
+        }
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "sina",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "requires_confirmation": true
+    },
+    "confirmation": {
+      "input_text": "Nina kikohozi lakini sina homa.",
+      "recognised_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "kikohozi",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "homa",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "confirmed_symptoms": [
+        {
+          "code": "cough",
+          "display_name": "Cough",
+          "features": [
+            "E_201"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "kikohozi",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        },
+        {
+          "code": "fever",
+          "display_name": "Fever",
+          "features": [
+            "E_91"
+          ],
+          "kind": "symptom",
+          "is_red_flag": false,
+          "matched_text": "homa",
+          "language": "sw",
+          "match_type": "exact",
+          "match_score": 100.0,
+          "confirmed": true
+        }
+      ],
+      "rejected_symptoms": [],
+      "confirmed_codes": [
+        "cough",
+        "fever"
+      ],
+      "model_features": [
+        "E_201",
+        "E_91"
+      ],
+      "unmatched_wording": [
+        {
+          "unmatched_text": "sina",
+          "suggestions": []
+        }
+      ],
+      "has_red_flag": false,
+      "red_flag_symptoms": [],
+      "safety_status": "continue",
+      "requires_confirmation": false
+    },
+    "prediction": {
+      "rank": 1,
+      "condition": "Tuberculosis",
+      "probability": 0.9975,
+      "confidence_percent": 99.75
+    }
+  }
+]

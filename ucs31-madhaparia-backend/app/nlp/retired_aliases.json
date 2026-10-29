@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "provenance": "Explicit retired managed aliases reviewed against tracked original HEAD and consultation-v3 source backup; custom database aliases are not enumerated or removed.",
+  "aliases": [
+    {
+      "code": "fever",
+      "language": "en",
+      "alias": "temperature",
+      "reason": "An unspecified temperature measurement does not establish fever (E91)."
+    },
+    {
+      "code": "productive_cough",
+      "language": "en",
+      "alias": "coughing up colored phlegm",
+      "reason": "Generic sputum does not establish E77 colour/amount; full cough phrases now use separate cough and qualified sputum aliases."
+    },
+    {
+      "code": "productive_cough",
+      "language": "en",
+      "alias": "coughing up coloured phlegm",
+      "reason": "Generic sputum does not establish E77 colour/amount; full cough phrases now use separate cough and qualified sputum aliases."
+    },
+    {
+      "code": "productive_cough",
+      "language": "en",
+      "alias": "coughing up mucus",
+      "reason": "Generic sputum does not establish E77 colour/amount; full cough phrases now use separate cough and qualified sputum aliases."
+    },
+    {
+      "code": "productive_cough",
+      "language": "en",
+      "alias": "coughing up phlegm",
+      "reason": "Generic sputum does not establish E77 colour/amount; full cough phrases now use separate cough and qualified sputum aliases."
+    },
+    {
+      "code": "productive_cough",
+      "language": "en",
+      "alias": "mucus",
+      "reason": "Generic sputum does not establish E77 colour/amount; full cough phrases now use separate cough and qualified sputum aliases."
+    },
+    {
+      "code": "productive_cough",
+      "language": "en",
+      "alias": "phlegm",
+      "reason": "Generic sputum does not establish E77 colour/amount; full cough phrases now use separate cough and qualified sputum aliases."
+    },
+    {
+      "code": "productive_cough",
+      "language": "en",
+      "alias": "productive cough",
+      "reason": "Generic sputum does not establish E77 colour/amount; full cough phrases now use separate cough and qualified sputum aliases."
+    },
+    {
+      "code": "productive_cough",
+      "language": "en",
+      "alias": "wet cough",
+      "reason": "Generic sputum does not establish E77 colour/amount; full cough phrases now use separate cough and qualified sputum aliases."
+    },
+    {
+      "code": "productive_cough",
+      "language": "sw",
+      "alias": "makohozi",
+      "reason": "Generic sputum does not establish E77 colour/amount; full cough phrases now use separate cough and qualified sputum aliases."
+    },
+    {
+      "code": "wheezing",
+      "language": "en",
+      "alias": "tight chest",
+      "reason": "Chest tightness does not establish an expiratory wheezing sound (E214)."
+    },
+    {
+      "code": "wheezing",
+      "language": "sw",
+      "alias": "kifua kubana",
+      "reason": "Chest tightness does not establish an expiratory wheezing sound (E214)."
+    }
+  ]
+}

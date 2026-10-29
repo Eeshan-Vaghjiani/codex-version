@@ -1,0 +1,10 @@
+?? docs/v2_experimental_feature_schema.json
+?? reports/autonomous_audit/
+?? scripts/audit_v2_covid_records.py
+?? scripts/compare_v2_age_sex.py
+?? scripts/compare_v2_baseline.py
+?? scripts/evaluate_v2_23class.py
+?? scripts/evaluate_v2_final_test.py
+?? scripts/prepare_v2_covid_candidates.py
+?? scripts/train_v2_23class_smoke_test.py
+?? scripts/train_v2_final_candidate.py

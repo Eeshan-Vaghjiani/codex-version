@@ -1,0 +1,17 @@
+
+> ucs31-madhaparia-frontend@0.0.0 test
+> vitest run
+
+
+ RUN  v5.0.3 C:/Users/krish/OneDrive/Desktop/IS codex/ucs31-madhaparia-frontend
+
+
+ Test Files  20 passed (20)
+      Tests  114 passed (114)
+   Start at  20:45:40
+   Duration  22.03s (environment 60%, tests 14%, setup 14%, import 6%, transform 5%, worker 1%)
+
+Environment  jsdom was created 20 times · 119.22s total, 60% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+

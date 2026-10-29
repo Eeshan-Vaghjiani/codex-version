@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="18" skipped="0" tests="44" time="28.075" timestamp="2026-10-28T20:10:51.782601+03:00" hostname="KRISHNA"><testcase classname="tests.test_kenya_patient_experience" name="test_patient_terminology_exactly_covers_active_source_classes" time="2.173" /><testcase classname="tests.test_kenya_patient_experience" name="test_terminology_preserves_diagnostic_distinctions_and_model_keys" time="0.002" /><testcase classname="tests.test_kenya_patient_experience" name="test_eligible_selector_maps_one_localized_possibility_without_private_scores[Influenza-en]" time="0.003" /><testcase classname="tests.test_kenya_patient_experience" name="test_eligible_selector_maps_one_localized_possibility_without_private_scores[Influenza-sw]" time="0.002" /><testcase classname="tests.test_kenya_patient_experience" name="test_eligible_selector_maps_one_localized_possibility_without_private_scores[URTI-en]" time="0.003" /><testcase classname="tests.test_kenya_patient_experience" name="test_eligible_selector_maps_one_localized_possibility_without_private_scores[URTI-sw]" time="0.002" /><testcase classname="tests.test_kenya_patient_experience" name="test_input_guards_do_not_turn_eligible_pattern_into_reassurance[unsupported_wording]" time="0.002" /><testcase classname="tests.test_kenya_patient_experience" name="test_input_guards_do_not_turn_eligible_pattern_into_reassurance[reported_severity]" time="0.001" /><testcase classname="tests.test_kenya_patient_experience" name="test_nonspecific_nonrespiratory_symptoms_do_not_force_disease[I have a headache]" time="0.101"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E80D8E690&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E80D8DF50&gt;, saved=[], user=namespace(id=UUID('c9413cc6-55b1-4028-966e-71bbccf6e47b'), role='patient'))
+text = 'I have a headache'
+
+    @pytest.mark.parametrize("text", [
+        "I have a headache", "I feel tired", "I have headache and tiredness",
+        "I have mild fever and headache", "I have body aches and tiredness",
+        "Nina maumivu ya kichwa na uchovu",
+        "My head hurts and I feel tired", "I have hedache and tiredness",
+    ])
+    def test_nonspecific_nonrespiratory_symptoms_do_not_force_disease(kenya_flow, text):
+&gt;       data, _, asked = finish_assessment(
+            kenya_flow, patient_payload(kenya_flow, text), cough_answer="no")
+
+tests\test_kenya_patient_experience.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_kenya_patient_experience.py:109: in finish_assessment
+    assert_single_primary_contract(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['headache'], 'effective_confirmed_codes': ['headache'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_nonspecific_nonrespiratory_symptoms_do_not_force_disease[I feel tired]" time="0.049"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E80DFFE90&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E80DFF890&gt;, saved=[], user=namespace(id=UUID('f6c73374-798f-4198-afd6-493713c729da'), role='patient'))
+text = 'I feel tired'
+
+    @pytest.mark.parametrize("text", [
+        "I have a headache", "I feel tired", "I have headache and tiredness",
+        "I have mild fever and headache", "I have body aches and tiredness",
+        "Nina maumivu ya kichwa na uchovu",
+        "My head hurts and I feel tired", "I have hedache and tiredness",
+    ])
+    def test_nonspecific_nonrespiratory_symptoms_do_not_force_disease(kenya_flow, text):
+&gt;       data, _, asked = finish_assessment(
+            kenya_flow, patient_payload(kenya_flow, text), cough_answer="no")
+
+tests\test_kenya_patient_experience.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_kenya_patient_experience.py:109: in finish_assessment
+    assert_single_primary_contract(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['tiredness'], 'effective_confirmed_codes': ['tiredness'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_nonspecific_nonrespiratory_symptoms_do_not_force_disease[I have headache and tiredness]" time="0.043"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E81941910&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E81941710&gt;, saved=[], user=namespace(id=UUID('191fec98-f69e-457d-999c-e62c47c29728'), role='patient'))
+text = 'I have headache and tiredness'
+
+    @pytest.mark.parametrize("text", [
+        "I have a headache", "I feel tired", "I have headache and tiredness",
+        "I have mild fever and headache", "I have body aches and tiredness",
+        "Nina maumivu ya kichwa na uchovu",
+        "My head hurts and I feel tired", "I have hedache and tiredness",
+    ])
+    def test_nonspecific_nonrespiratory_symptoms_do_not_force_disease(kenya_flow, text):
+&gt;       data, _, asked = finish_assessment(
+            kenya_flow, patient_payload(kenya_flow, text), cough_answer="no")
+
+tests\test_kenya_patient_experience.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_kenya_patient_experience.py:109: in finish_assessment
+    assert_single_primary_contract(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['tiredness', 'headache'], 'effective_confirmed_codes': ['tiredness', 'headache'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_nonspecific_nonrespiratory_symptoms_do_not_force_disease[I have mild fever and headache]" time="0.044"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E8194BB10&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E81949590&gt;, saved=[], user=namespace(id=UUID('409cfa86-7446-4555-9723-25edc64ee981'), role='patient'))
+text = 'I have mild fever and headache'
+
+    @pytest.mark.parametrize("text", [
+        "I have a headache", "I feel tired", "I have headache and tiredness",
+        "I have mild fever and headache", "I have body aches and tiredness",
+        "Nina maumivu ya kichwa na uchovu",
+        "My head hurts and I feel tired", "I have hedache and tiredness",
+    ])
+    def test_nonspecific_nonrespiratory_symptoms_do_not_force_disease(kenya_flow, text):
+&gt;       data, _, asked = finish_assessment(
+            kenya_flow, patient_payload(kenya_flow, text), cough_answer="no")
+
+tests\test_kenya_patient_experience.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_kenya_patient_experience.py:109: in finish_assessment
+    assert_single_primary_contract(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['headache', 'fever'], 'effective_confirmed_codes': ['headache', 'fever'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_nonspecific_nonrespiratory_symptoms_do_not_force_disease[I have body aches and tiredness]" time="0.044"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E80DFE090&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E80DFEF50&gt;, saved=[], user=namespace(id=UUID('ff354d00-77d7-40b9-bb92-a6a13ddef6b8'), role='patient'))
+text = 'I have body aches and tiredness'
+
+    @pytest.mark.parametrize("text", [
+        "I have a headache", "I feel tired", "I have headache and tiredness",
+        "I have mild fever and headache", "I have body aches and tiredness",
+        "Nina maumivu ya kichwa na uchovu",
+        "My head hurts and I feel tired", "I have hedache and tiredness",
+    ])
+    def test_nonspecific_nonrespiratory_symptoms_do_not_force_disease(kenya_flow, text):
+&gt;       data, _, asked = finish_assessment(
+            kenya_flow, patient_payload(kenya_flow, text), cough_answer="no")
+
+tests\test_kenya_patient_experience.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_kenya_patient_experience.py:109: in finish_assessment
+    assert_single_primary_contract(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['muscle_aches', 'tiredness'], 'effective_confirmed_codes': ['muscle_aches', 'tiredness'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_nonspecific_nonrespiratory_symptoms_do_not_force_disease[Nina maumivu ya kichwa na uchovu]" time="0.041"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E80E8DD50&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E80DFE450&gt;, saved=[], user=namespace(id=UUID('1e0b0f69-7a32-4dc5-89d2-c2aed685c593'), role='patient'))
+text = 'Nina maumivu ya kichwa na uchovu'
+
+    @pytest.mark.parametrize("text", [
+        "I have a headache", "I feel tired", "I have headache and tiredness",
+        "I have mild fever and headache", "I have body aches and tiredness",
+        "Nina maumivu ya kichwa na uchovu",
+        "My head hurts and I feel tired", "I have hedache and tiredness",
+    ])
+    def test_nonspecific_nonrespiratory_symptoms_do_not_force_disease(kenya_flow, text):
+&gt;       data, _, asked = finish_assessment(
+            kenya_flow, patient_payload(kenya_flow, text), cough_answer="no")
+
+tests\test_kenya_patient_experience.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_kenya_patient_experience.py:109: in finish_assessment
+    assert_single_primary_contract(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['headache', 'tiredness'], 'effective_confirmed_codes': ['headache', 'tiredness'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_nonspecific_nonrespiratory_symptoms_do_not_force_disease[My head hurts and I feel tired]" time="0.043"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E80E507D0&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E80E51090&gt;, saved=[], user=namespace(id=UUID('7a2ecfff-ba95-45e5-95fa-0533bebd30f6'), role='patient'))
+text = 'My head hurts and I feel tired'
+
+    @pytest.mark.parametrize("text", [
+        "I have a headache", "I feel tired", "I have headache and tiredness",
+        "I have mild fever and headache", "I have body aches and tiredness",
+        "Nina maumivu ya kichwa na uchovu",
+        "My head hurts and I feel tired", "I have hedache and tiredness",
+    ])
+    def test_nonspecific_nonrespiratory_symptoms_do_not_force_disease(kenya_flow, text):
+&gt;       data, _, asked = finish_assessment(
+            kenya_flow, patient_payload(kenya_flow, text), cough_answer="no")
+
+tests\test_kenya_patient_experience.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_kenya_patient_experience.py:109: in finish_assessment
+    assert_single_primary_contract(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['headache', 'tiredness'], 'effective_confirmed_codes': ['headache', 'tiredness'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_nonspecific_nonrespiratory_symptoms_do_not_force_disease[I have hedache and tiredness]" time="0.041"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E80DFCDD0&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E80E51750&gt;, saved=[], user=namespace(id=UUID('d6a22eb6-33aa-4ccc-bad0-5eefcdb2d7c8'), role='patient'))
+text = 'I have hedache and tiredness'
+
+    @pytest.mark.parametrize("text", [
+        "I have a headache", "I feel tired", "I have headache and tiredness",
+        "I have mild fever and headache", "I have body aches and tiredness",
+        "Nina maumivu ya kichwa na uchovu",
+        "My head hurts and I feel tired", "I have hedache and tiredness",
+    ])
+    def test_nonspecific_nonrespiratory_symptoms_do_not_force_disease(kenya_flow, text):
+&gt;       data, _, asked = finish_assessment(
+            kenya_flow, patient_payload(kenya_flow, text), cough_answer="no")
+
+tests\test_kenya_patient_experience.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_kenya_patient_experience.py:109: in finish_assessment
+    assert_single_primary_contract(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['tiredness', 'headache'], 'effective_confirmed_codes': ['tiredness', 'headache'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_headache_and_tiredness_get_relevant_duration_question" time="0.041"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E81941810&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E819405D0&gt;, saved=[], user=namespace(id=UUID('d5f463fc-96b8-46cc-aaaf-f11e236c3664'), role='patient'))
+
+    def test_headache_and_tiredness_get_relevant_duration_question(kenya_flow):
+&gt;       data, _, asked = finish_assessment(kenya_flow,
+            patient_payload(kenya_flow, "I have headache and tiredness"), cough_answer="no")
+
+tests\test_kenya_patient_experience.py:229: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_kenya_patient_experience.py:109: in finish_assessment
+    assert_single_primary_contract(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['tiredness', 'headache'], 'effective_confirmed_codes': ['tiredness', 'headache'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_respiratory_patterns_return_at_most_one_qualified_possibility[I have cough and sore throat]" time="0.042"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E80E0F710&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E80E0C390&gt;, saved=[], user=namespace(id=UUID('9af79285-9ea9-4672-8792-27d196352d0d'), role='patient'))
+text = 'I have cough and sore throat'
+
+    @pytest.mark.parametrize("text", [
+        "I have cough and sore throat",
+        "I have fever, cough, sore throat and body aches for two days",
+        "I have a runny nose, sneezing, a cough and sore throat for two days",
+        "Nina homa na kikohozi kwa siku mbili",
+    ])
+    def test_respiratory_patterns_return_at_most_one_qualified_possibility(kenya_flow, text):
+&gt;       data, _, _ = finish_assessment(kenya_flow, patient_payload(kenya_flow, text))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_kenya_patient_experience.py:243: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_kenya_patient_experience.py:109: in finish_assessment
+    assert_single_primary_contract(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['sore_throat', 'cough'], 'effective_confirmed_codes': ['sore_throat', 'cough'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_respiratory_patterns_return_at_most_one_qualified_possibility[I have fever, cough, sore throat and body aches for two days]" time="0.049"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E80E1E610&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E80E1EF50&gt;, saved=[], user=namespace(id=UUID('2fbdadff-162a-4ed0-a669-ef15e2391d3e'), role='patient'))
+text = 'I have fever, cough, sore throat and body aches for two days'
+
+    @pytest.mark.parametrize("text", [
+        "I have cough and sore throat",
+        "I have fever, cough, sore throat and body aches for two days",
+        "I have a runny nose, sneezing, a cough and sore throat for two days",
+        "Nina homa na kikohozi kwa siku mbili",
+    ])
+    def test_respiratory_patterns_return_at_most_one_qualified_possibility(kenya_flow, text):
+&gt;       data, _, _ = finish_assessment(kenya_flow, patient_payload(kenya_flow, text))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_kenya_patient_experience.py:243: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_kenya_patient_experience.py:109: in finish_assessment
+    assert_single_primary_contract(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['sore_throat', 'muscle_aches', 'fever', 'cough'], 'effective_confirmed_codes': ['sore_throat', 'muscle_aches', 'fever', 'cough'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_respiratory_patterns_return_at_most_one_qualified_possibility[I have a runny nose, sneezing, a cough and sore throat for two days]" time="0.051"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E81B835D0&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E81B81B10&gt;, saved=[], user=namespace(id=UUID('8b2d1b2d-71bf-4642-9ac6-8d065865ebf7'), role='patient'))
+text = 'I have a runny nose, sneezing, a cough and sore throat for two days'
+
+    @pytest.mark.parametrize("text", [
+        "I have cough and sore throat",
+        "I have fever, cough, sore throat and body aches for two days",
+        "I have a runny nose, sneezing, a cough and sore throat for two days",
+        "Nina homa na kikohozi kwa siku mbili",
+    ])
+    def test_respiratory_patterns_return_at_most_one_qualified_possibility(kenya_flow, text):
+&gt;       data, _, _ = finish_assessment(kenya_flow, patient_payload(kenya_flow, text))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_kenya_patient_experience.py:243: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_kenya_patient_experience.py:109: in finish_assessment
+    assert_single_primary_contract(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['sore_throat', 'runny_blocked_nose', 'sneezing', 'cough'], 'effective_confirmed_codes': ['sore_throat', 'runny_blocked_nose', 'sneezing', 'cough'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_respiratory_patterns_return_at_most_one_qualified_possibility[Nina homa na kikohozi kwa siku mbili]" time="0.042"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E81948FD0&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E81948E10&gt;, saved=[], user=namespace(id=UUID('89886c62-eade-4b69-9359-4fdde422372e'), role='patient'))
+text = 'Nina homa na kikohozi kwa siku mbili'
+
+    @pytest.mark.parametrize("text", [
+        "I have cough and sore throat",
+        "I have fever, cough, sore throat and body aches for two days",
+        "I have a runny nose, sneezing, a cough and sore throat for two days",
+        "Nina homa na kikohozi kwa siku mbili",
+    ])
+    def test_respiratory_patterns_return_at_most_one_qualified_possibility(kenya_flow, text):
+&gt;       data, _, _ = finish_assessment(kenya_flow, patient_payload(kenya_flow, text))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_kenya_patient_experience.py:243: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_kenya_patient_experience.py:109: in finish_assessment
+    assert_single_primary_contract(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['cough', 'fever'], 'effective_confirmed_codes': ['cough', 'fever'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_reported_danger_signs_precede_model_and_followup[I have a severe sudden headache]" time="0.029"><failure message="AssertionError: assert 'insufficient_evidence' == 'urgent_review'&#10;  &#10;  - urgent_review&#10;  + insufficient_evidence">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E80E8EBD0&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E80E8F810&gt;, saved=[], user=namespace(id=UUID('6550f3d5-7247-4760-8c1a-cdafa4c4de66'), role='patient'))
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000015E80E8EF10&gt;
+text = 'I have a severe sudden headache'
+
+    @pytest.mark.parametrize("text", [
+        "I have a severe sudden headache",
+        "I have a headache, fever and a stiff neck",
+        "I have severe crushing chest pressure",
+        "I am gasping for air",
+        "Siwezi kupumua",
+    ])
+    def test_reported_danger_signs_precede_model_and_followup(kenya_flow, monkeypatch, text):
+        def unavailable(*args, **kwargs):
+            raise AssertionError("Warning guidance must precede routine inference")
+        monkeypatch.setattr(main, "get_active_model_version", unavailable)
+        monkeypatch.setattr(main, "predict_partial_evidence", unavailable)
+        response = kenya_flow.client.post("/predict", json={
+            "age": 24, "sex": "F", "text": text, "confirmed_codes": []})
+        assert response.status_code == 200, response.text
+        data = response.json()
+&gt;       assert data["status"] == "urgent_review"
+E       AssertionError: assert 'insufficient_evidence' == 'urgent_review'
+E         
+E         - urgent_review
+E         + insufficient_evidence
+
+tests\test_kenya_patient_experience.py:269: AssertionError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_reported_danger_signs_precede_model_and_followup[I have a headache, fever and a stiff neck]" time="0.011" /><testcase classname="tests.test_kenya_patient_experience" name="test_reported_danger_signs_precede_model_and_followup[I have severe crushing chest pressure]" time="0.010" /><testcase classname="tests.test_kenya_patient_experience" name="test_reported_danger_signs_precede_model_and_followup[I am gasping for air]" time="0.010" /><testcase classname="tests.test_kenya_patient_experience" name="test_reported_danger_signs_precede_model_and_followup[Siwezi kupumua]" time="0.010" /><testcase classname="tests.test_kenya_patient_experience" name="test_infant_fever_receives_care_advice_without_guessing_months" time="0.023" /><testcase classname="tests.test_kenya_patient_experience" name="test_denied_danger_signs_are_not_positive_emergencies[I have a cough but no difficulty breathing]" time="0.042"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E81948590&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E81948610&gt;, saved=[], user=namespace(id=UUID('434d3fd2-29a6-4381-b08e-2f0ff79a8ae3'), role='patient'))
+text = 'I have a cough but no difficulty breathing'
+
+    @pytest.mark.parametrize("text", [
+        "I have a cough but no difficulty breathing",
+        "I have a cough but no stiff neck or severe sudden headache",
+        "Nina kikohozi lakini sina shida ya kupumua",
+    ])
+    def test_denied_danger_signs_are_not_positive_emergencies(kenya_flow, text):
+        response = kenya_flow.client.post("/predict", json=patient_payload(kenya_flow, text))
+        assert response.status_code == 200, response.text
+        data = response.json()
+        assert data["status"] != "urgent_review"
+&gt;       assert_single_primary_contract(data)
+
+tests\test_kenya_patient_experience.py:297: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['cough'], 'effective_confirmed_codes': ['cough'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_denied_danger_signs_are_not_positive_emergencies[I have a cough but no stiff neck or severe sudden headache]" time="0.032"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E80E43790&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E80E43B10&gt;, saved=[], user=namespace(id=UUID('433e1f5d-337e-4a72-b11e-bad3c20fcd7f'), role='patient'))
+text = 'I have a cough but no stiff neck or severe sudden headache'
+
+    @pytest.mark.parametrize("text", [
+        "I have a cough but no difficulty breathing",
+        "I have a cough but no stiff neck or severe sudden headache",
+        "Nina kikohozi lakini sina shida ya kupumua",
+    ])
+    def test_denied_danger_signs_are_not_positive_emergencies(kenya_flow, text):
+        response = kenya_flow.client.post("/predict", json=patient_payload(kenya_flow, text))
+        assert response.status_code == 200, response.text
+        data = response.json()
+        assert data["status"] != "urgent_review"
+&gt;       assert_single_primary_contract(data)
+
+tests\test_kenya_patient_experience.py:297: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['cough'], 'effective_confirmed_codes': ['cough'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_denied_danger_signs_are_not_positive_emergencies[Nina kikohozi lakini sina shida ya kupumua]" time="0.047"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E80E9B8D0&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E80E9BE10&gt;, saved=[], user=namespace(id=UUID('58b8bf6d-921f-4b9a-96fc-4bc4d38ea058'), role='patient'))
+text = 'Nina kikohozi lakini sina shida ya kupumua'
+
+    @pytest.mark.parametrize("text", [
+        "I have a cough but no difficulty breathing",
+        "I have a cough but no stiff neck or severe sudden headache",
+        "Nina kikohozi lakini sina shida ya kupumua",
+    ])
+    def test_denied_danger_signs_are_not_positive_emergencies(kenya_flow, text):
+        response = kenya_flow.client.post("/predict", json=patient_payload(kenya_flow, text))
+        assert response.status_code == 200, response.text
+        data = response.json()
+        assert data["status"] != "urgent_review"
+&gt;       assert_single_primary_contract(data)
+
+tests\test_kenya_patient_experience.py:297: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['cough'], 'effective_confirmed_codes': ['cough'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_exactly_fourteen_day_cough_prompts_professional_assessment_advice" time="0.043" /><testcase classname="tests.test_kenya_patient_experience" name="test_invalid_requests_never_save_or_generate_predictions[body0]" time="0.364" /><testcase classname="tests.test_kenya_patient_experience" name="test_invalid_requests_never_save_or_generate_predictions[body1]" time="0.011" /><testcase classname="tests.test_kenya_patient_experience" name="test_invalid_requests_never_save_or_generate_predictions[body2]" time="0.011" /><testcase classname="tests.test_kenya_patient_experience" name="test_invalid_requests_never_save_or_generate_predictions[body3]" time="0.015" /><testcase classname="tests.test_kenya_patient_experience" name="test_invalid_requests_never_save_or_generate_predictions[body4]" time="0.014" /><testcase classname="tests.test_kenya_patient_experience" name="test_invalid_requests_never_save_or_generate_predictions[body5]" time="0.014" /><testcase classname="tests.test_kenya_patient_experience" name="test_unsupported_text_does_not_fabricate_a_supported_disease[My ankle is itchy and my fingernail is cracked]" time="0.055" /><testcase classname="tests.test_kenya_patient_experience" name="test_unsupported_text_does_not_fabricate_a_supported_disease[I feel unwell]" time="0.043" /><testcase classname="tests.test_kenya_patient_experience" name="test_conflicting_fever_reports_stay_unknown_and_do_not_invent_both_states" time="0.063"><failure message="KeyError: 'clinical_validation'">kenya_flow = namespace(client=&lt;starlette.testclient.TestClient object at 0x0000015E81BB2090&gt;, db=&lt;sqlalchemy.orm.session.Session object at 0x0000015E81BB11D0&gt;, saved=[], user=namespace(id=UUID('5460bd58-15d4-4c79-8766-a070f3b790cc'), role='patient'))
+
+    def test_conflicting_fever_reports_stay_unknown_and_do_not_invent_both_states(kenya_flow):
+        body = patient_payload(kenya_flow, "I have a cough and fever, but I have no fever")
+        assert "fever" not in body["confirmed_codes"]
+        response = kenya_flow.client.post("/predict", json=body)
+        assert response.status_code == 200, response.text
+        data = response.json()
+        assert data["assessment_context"]["symptom_states"]["fever"] == "unknown"
+        assert "E_91" not in data["model_features"]
+        assert "E_91" not in data["explicitly_absent_features"]
+&gt;       assert_single_primary_contract(data)
+
+tests\test_kenya_patient_experience.py:343: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = {'age': 24, 'sex': 'F', 'confirmed_codes': ['cough'], 'effective_confirmed_codes': ['cough'], ...}
+
+    def assert_single_primary_contract(data):
+        assert "primary_prediction" in data
+        primary = data["primary_prediction"]
+        assert data["predictions"] == ([] if primary is None else [primary])
+        assert len(data["predictions"]) &lt;= 1
+&gt;       assert data["clinical_validation"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'clinical_validation'
+
+tests\test_kenya_patient_experience.py:52: KeyError</failure></testcase><testcase classname="tests.test_kenya_patient_experience" name="test_confirming_an_unsupported_code_is_rejected" time="0.027" /><testcase classname="tests.test_kenya_patient_experience" name="test_legacy_patient_history_is_reassessment_required_without_db_mutation" time="0.075" /><testcase classname="tests.test_kenya_patient_experience" name="test_patient_identity_cannot_access_raw_admin_audit_history[/admin/history]" time="0.011" /><testcase classname="tests.test_kenya_patient_experience" name="test_patient_identity_cannot_access_raw_admin_audit_history[/admin/history/965036ab-1bbf-4c3f-a69f-4e3945448273]" time="0.086" /></testsuite></testsuites>

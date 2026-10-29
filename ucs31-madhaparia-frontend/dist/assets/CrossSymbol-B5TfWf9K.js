@@ -1,0 +1,1 @@
+import{it as e,pt as t}from"./SeriesRegistry-D9skVCBF.js";var{composed:n}=t,r;(function(t){function r(t){e(n,`Series.CrossSymbol`)&&(t.prototype.symbols.cross=i)}t.compose=r;function i(e,t,n,r){return[[`M`,e,t],[`L`,e+n,t+r],[`M`,e+n,t],[`L`,e,t+r],[`Z`]]}})(r||={});var i=r;export{i as t};

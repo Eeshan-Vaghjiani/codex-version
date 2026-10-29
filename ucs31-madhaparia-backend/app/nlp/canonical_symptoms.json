@@ -1,0 +1,882 @@
+[
+  {
+    "code": "fever",
+    "display_name": "Fever",
+    "features": [
+      "E_91"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "fever",
+        "high temperature",
+        "hot body",
+        "feeling feverish",
+        "feverish",
+        "my body feels very hot"
+      ],
+      "sw": [
+        "homa",
+        "joto mwilini"
+      ]
+    }
+  },
+  {
+    "code": "chills",
+    "display_name": "Chills / shivering",
+    "features": [
+      "E_94"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "chills",
+        "shivering",
+        "shivers",
+        "feeling cold and shaking",
+        "feeling shivery",
+        "shaking with chills"
+      ],
+      "sw": [
+        "baridi",
+        "kutetemeka"
+      ]
+    }
+  },
+  {
+    "code": "cough",
+    "display_name": "Cough",
+    "features": [
+      "E_201"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "cough",
+        "coughing",
+        "i am coughing",
+        "persistent cough",
+        "coff",
+        "keep coughing",
+        "coughs"
+      ],
+      "sw": [
+        "kikohozi",
+        "kukohoa",
+        "ninakohoa",
+        "nakohoa",
+        "nikikohoa",
+        "sikohoi"
+      ]
+    }
+  },
+  {
+    "code": "intense_coughing_fits",
+    "display_name": "Intense coughing fits",
+    "features": [
+      "E_203"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "intense coughing fits",
+        "severe coughing fits",
+        "coughing attacks",
+        "cannot stop coughing",
+        "can't stop coughing",
+        "repeated coughing fits"
+      ],
+      "sw": [
+        "kikohozi cha mashambulizi",
+        "kukohoa sana bila kuacha"
+      ]
+    }
+  },
+  {
+    "code": "vomiting_after_coughing",
+    "display_name": "Vomiting after coughing",
+    "features": [
+      "E_166"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "vomiting after coughing",
+        "vomit after coughing",
+        "throwing up after coughing"
+      ],
+      "sw": [
+        "kutapika baada ya kukohoa",
+        "natapika baada ya kukohoa"
+      ]
+    }
+  },
+  {
+    "code": "productive_cough",
+    "display_name": "Coloured or increased phlegm",
+    "features": [
+      "E_77"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "coloured phlegm",
+        "colored phlegm",
+        "yellow phlegm",
+        "green phlegm",
+        "yellow sputum",
+        "green sputum",
+        "more phlegm than usual",
+        "more sputum than usual",
+        "increased sputum"
+      ],
+      "sw": [
+        "makohozi ya kijani",
+        "makohozi ya njano",
+        "makohozi mengi kuliko kawaida",
+        "makohozi yenye rangi"
+      ]
+    }
+  },
+  {
+    "code": "coughing_blood",
+    "display_name": "Coughing up blood",
+    "features": [
+      "E_45"
+    ],
+    "kind": "symptom",
+    "is_red_flag": true,
+    "aliases": {
+      "en": [
+        "coughing up blood",
+        "blood in cough",
+        "blood in phlegm",
+        "bloody sputum",
+        "blood in my sputum"
+      ],
+      "sw": [
+        "kukohoa damu",
+        "nakohoa damu",
+        "ninakohoa damu"
+      ]
+    }
+  },
+  {
+    "code": "shortness_of_breath",
+    "display_name": "Significant shortness of breath",
+    "features": [
+      "E_66"
+    ],
+    "kind": "symptom",
+    "is_red_flag": true,
+    "aliases": {
+      "en": [
+        "shortness of breath",
+        "breathless",
+        "difficulty breathing",
+        "hard to breathe",
+        "cannot breathe",
+        "can't breathe",
+        "struggling to breathe",
+        "can't catch my breath",
+        "cannot catch my breath",
+        "gasping for air",
+        "gasping",
+        "trouble breathing",
+        "unable to breathe"
+      ],
+      "sw": [
+        "kushindwa kupumua",
+        "kupumua kwa shida",
+        "ninashindwa kupumua",
+        "siwezi kupumua",
+        "napumua kwa shida",
+        "ninapumua kwa shida",
+        "shida ya kupumua",
+        "nashindwa kupumua"
+      ]
+    }
+  },
+  {
+    "code": "night_breathlessness",
+    "display_name": "Woken at night by choking or breathlessness",
+    "features": [
+      "E_67"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "waking up breathless",
+        "breathless at night",
+        "choking at night",
+        "waking up choking"
+      ],
+      "sw": []
+    }
+  },
+  {
+    "code": "wheezing",
+    "display_name": "Wheezing when breathing out",
+    "features": [
+      "E_214"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "wheezing",
+        "wheeze",
+        "whistling when breathing",
+        "whistling when breathing out",
+        "whistling sound when i breathe out",
+        "whistle when i breathe out"
+      ],
+      "sw": [
+        "sauti ya mluzi wakati wa kutoa pumzi",
+        "mluzi ninapotoa pumzi",
+        "kifua kinatoa mlio wa mluzi"
+      ]
+    }
+  },
+  {
+    "code": "wheeze_after_coughing",
+    "display_name": "Noisy breathing or wheeze after coughing",
+    "features": [
+      "E_112"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "wheezing after coughing",
+        "wheeze after coughing",
+        "noisy breathing after coughing"
+      ],
+      "sw": []
+    }
+  },
+  {
+    "code": "stridor",
+    "display_name": "High-pitched sound when breathing in",
+    "features": [
+      "E_194"
+    ],
+    "kind": "symptom",
+    "is_red_flag": true,
+    "aliases": {
+      "en": [
+        "stridor",
+        "high pitched breathing sound",
+        "high pitched sound when breathing in"
+      ],
+      "sw": []
+    }
+  },
+  {
+    "code": "drooling",
+    "display_name": "Drooling or more saliva than usual",
+    "features": [
+      "E_190"
+    ],
+    "kind": "symptom",
+    "is_red_flag": true,
+    "aliases": {
+      "en": [
+        "drooling",
+        "too much saliva",
+        "more saliva than usual"
+      ],
+      "sw": []
+    }
+  },
+  {
+    "code": "difficulty_swallowing",
+    "display_name": "Difficulty swallowing",
+    "features": [
+      "E_65"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "difficulty swallowing",
+        "hard to swallow",
+        "trouble swallowing",
+        "cannot swallow"
+      ],
+      "sw": [
+        "shida ya kumeza",
+        "kumeza kwa shida"
+      ]
+    }
+  },
+  {
+    "code": "sore_throat",
+    "display_name": "Sore throat",
+    "features": [
+      "E_97"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "sore throat",
+        "throat pain",
+        "painful throat",
+        "throat hurts",
+        "my throat hurts",
+        "pain in my throat",
+        "throat is sore"
+      ],
+      "sw": [
+        "koo kuuma",
+        "kidonda cha koo",
+        "koo linauma",
+        "koo langu linauma",
+        "maumivu ya koo"
+      ]
+    }
+  },
+  {
+    "code": "hoarse_voice",
+    "display_name": "Hoarse or changed voice",
+    "features": [
+      "E_212"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "hoarse voice",
+        "changed voice",
+        "lost my voice",
+        "rough voice"
+      ],
+      "sw": [
+        "sauti imekauka",
+        "sauti imekwaruza"
+      ]
+    }
+  },
+  {
+    "code": "runny_blocked_nose",
+    "display_name": "Runny or blocked nose",
+    "features": [
+      "E_181"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "runny nose",
+        "blocked nose",
+        "stuffy nose",
+        "nasal congestion",
+        "my nose is running",
+        "nose is running",
+        "nose is blocked",
+        "nose is stuffy"
+      ],
+      "sw": [
+        "mafua",
+        "homa ya mafua",
+        "pua imeziba",
+        "pua inatiririka",
+        "pua inatoa makamasi"
+      ]
+    }
+  },
+  {
+    "code": "nasal_discharge",
+    "display_name": "Green or yellow nasal discharge",
+    "features": [
+      "E_182"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "green nasal discharge",
+        "yellow nasal discharge",
+        "green mucus from nose",
+        "yellow mucus from nose"
+      ],
+      "sw": []
+    }
+  },
+  {
+    "code": "loss_of_smell",
+    "display_name": "Loss of smell",
+    "features": [
+      "E_103"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "loss of smell",
+        "cannot smell",
+        "can't smell",
+        "lost sense of smell"
+      ],
+      "sw": []
+    }
+  },
+  {
+    "code": "itchy_nose_throat",
+    "display_name": "Itchy nose or throat",
+    "features": [
+      "E_169"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "itchy nose",
+        "itchy throat",
+        "itchy nose or throat"
+      ],
+      "sw": []
+    }
+  },
+  {
+    "code": "itchy_eyes",
+    "display_name": "Itchy eyes",
+    "features": [
+      "E_170"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "itchy eyes",
+        "eyes are itchy"
+      ],
+      "sw": []
+    }
+  },
+  {
+    "code": "headache",
+    "display_name": "Headache",
+    "features": [
+      "E_53"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "headache",
+        "head pain",
+        "my head hurts"
+      ],
+      "sw": [
+        "kichwa kuuma",
+        "kuumwa na kichwa",
+        "maumivu ya kichwa"
+      ]
+    }
+  },
+  {
+    "code": "chest_pain",
+    "display_name": "Chest pain",
+    "features": [
+      "E_53"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "chest pain",
+        "chest hurts",
+        "pain in chest"
+      ],
+      "sw": [
+        "kifua kuuma",
+        "maumivu ya kifua"
+      ]
+    }
+  },
+  {
+    "code": "chest_pain_at_rest",
+    "display_name": "Chest pain even at rest",
+    "features": [
+      "E_14"
+    ],
+    "kind": "symptom",
+    "is_red_flag": true,
+    "aliases": {
+      "en": [
+        "chest pain at rest",
+        "chest hurts while resting",
+        "chest pain even when resting"
+      ],
+      "sw": []
+    }
+  },
+  {
+    "code": "pain_deep_breath",
+    "display_name": "Pain when breathing in deeply",
+    "features": [
+      "E_220"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "pain when breathing deeply",
+        "pain on deep breath",
+        "chest pain when taking a deep breath"
+      ],
+      "sw": []
+    }
+  },
+  {
+    "code": "worse_lying_down",
+    "display_name": "Worse lying down, better sitting up",
+    "features": [
+      "E_217"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "worse when lying down",
+        "better when sitting up",
+        "breathing worse lying down"
+      ],
+      "sw": []
+    }
+  },
+  {
+    "code": "worse_with_exertion",
+    "display_name": "Worse with exertion, better with rest",
+    "features": [
+      "E_218"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "worse with exercise",
+        "worse with exertion",
+        "symptoms worse when active",
+        "better with rest"
+      ],
+      "sw": []
+    }
+  },
+  {
+    "code": "tiredness",
+    "display_name": "Constant tiredness",
+    "features": [
+      "E_89"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "tired",
+        "tiredness",
+        "fatigue",
+        "feeling tired",
+        "constant tiredness",
+        "tired all the time",
+        "always tired"
+      ],
+      "sw": [
+        "uchovu",
+        "kuchoka",
+        "nimechoka kila wakati",
+        "uchovu wa kila wakati"
+      ]
+    }
+  },
+  {
+    "code": "activity_fatigue",
+    "display_name": "Too tired for usual activities",
+    "features": [
+      "E_88"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "too tired for normal activities",
+        "too tired to do usual activities",
+        "exhausted doing normal activities"
+      ],
+      "sw": []
+    }
+  },
+  {
+    "code": "muscle_aches",
+    "display_name": "Muscle aches",
+    "features": [
+      "E_144"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "muscle aches",
+        "muscle pain",
+        "aching muscles",
+        "body aches",
+        "my whole body aches",
+        "aching all over",
+        "all my muscles ache",
+        "muscles ache",
+        "my muscles ache",
+        "widespread muscle aches"
+      ],
+      "sw": [
+        "maumivu ya misuli",
+        "misuli inauma",
+        "misuli ya mwili mzima inauma",
+        "maumivu ya misuli mwili mzima",
+        "mwili unauma"
+      ]
+    }
+  },
+  {
+    "code": "heavy_sweating",
+    "display_name": "Heavy sweating",
+    "features": [
+      "E_50"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "heavy sweating",
+        "sweating a lot",
+        "night sweats",
+        "excessive sweating",
+        "sweating at night",
+        "sweat a lot at night",
+        "wake up soaked in sweat",
+        "sweating more than usual"
+      ],
+      "sw": [
+        "kutokwa jasho",
+        "jasho usiku",
+        "kutokwa na jasho jingi",
+        "jasho jingi usiku",
+        "natokwa na jasho jingi",
+        "kutoka jasho jingi usiku"
+      ]
+    }
+  },
+  {
+    "code": "loss_of_appetite",
+    "display_name": "Loss of appetite",
+    "features": [
+      "E_161"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "loss of appetite",
+        "no appetite",
+        "not hungry",
+        "don't feel like eating",
+        "lost my appetite",
+        "not feeling hungry"
+      ],
+      "sw": [
+        "kukosa hamu ya kula",
+        "sina hamu ya kula",
+        "hamu ya kula imepungua"
+      ]
+    }
+  },
+  {
+    "code": "weight_loss",
+    "display_name": "Unintended weight loss",
+    "features": [
+      "E_162"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "weight loss",
+        "unintended weight loss",
+        "losing weight without trying",
+        "losing weight",
+        "lost weight",
+        "losing weight unintentionally",
+        "unintentional weight loss",
+        "lost weight without trying"
+      ],
+      "sw": [
+        "kupungua uzito",
+        "ninapungua uzito",
+        "nimepungua uzito",
+        "kupungua uzito bila kukusudia",
+        "nimepungua uzito bila kukusudia",
+        "kupungua uzito bila sababu"
+      ]
+    }
+  },
+  {
+    "code": "blue_lips",
+    "display_name": "Blue lips or face",
+    "features": [],
+    "kind": "symptom",
+    "is_red_flag": true,
+    "aliases": {
+      "en": [
+        "blue lips",
+        "blue face",
+        "lips turning blue",
+        "lips are turning blue"
+      ],
+      "sw": [
+        "midomo kuwa bluu",
+        "midomo imekuwa bluu"
+      ]
+    }
+  },
+  {
+    "code": "confusion",
+    "display_name": "Confusion",
+    "features": [],
+    "kind": "symptom",
+    "is_red_flag": true,
+    "aliases": {
+      "en": [
+        "confusion",
+        "feeling confused",
+        "disoriented"
+      ],
+      "sw": [
+        "kuchanganyikiwa"
+      ]
+    }
+  },
+  {
+    "code": "fainting",
+    "display_name": "Fainting",
+    "features": [],
+    "kind": "symptom",
+    "is_red_flag": true,
+    "aliases": {
+      "en": [
+        "fainting",
+        "fainted",
+        "passed out",
+        "passing out"
+      ],
+      "sw": [
+        "kuzimia",
+        "nimezimia"
+      ]
+    }
+  },
+  {
+    "code": "sneezing",
+    "display_name": "Sneezing",
+    "features": [],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "sneezing",
+        "sneeze",
+        "frequent sneezing"
+      ],
+      "sw": [
+        "kupiga chafya",
+        "napiga chafya",
+        "chafya"
+      ]
+    }
+  },
+  {
+    "code": "sputum_reported",
+    "display_name": "Phlegm or sputum reported (colour and amount unspecified)",
+    "features": [],
+    "kind": "context",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "phlegm",
+        "sputum",
+        "mucus"
+      ],
+      "sw": [
+        "makohozi"
+      ]
+    }
+  },
+  {
+    "code": "chest_tightness",
+    "display_name": "Chest tightness (wheezing not confirmed)",
+    "features": [],
+    "kind": "context",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "tight chest",
+        "chest tightness",
+        "my chest feels tight",
+        "chest feels tight"
+      ],
+      "sw": [
+        "kifua kubana",
+        "kifua kinabana"
+      ]
+    }
+  },
+  {
+    "code": "forehead_pain",
+    "display_name": "Pain specifically in the forehead",
+    "features": [
+      "E_53",
+      "E_55_@_V_89"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "forehead pain",
+        "pain in my forehead",
+        "my forehead hurts"
+      ],
+      "sw": [
+        "maumivu ya paji la uso",
+        "paji la uso linauma"
+      ]
+    }
+  },
+  {
+    "code": "upper_chest_pain",
+    "display_name": "Pain specifically in the upper chest",
+    "features": [
+      "E_53",
+      "E_55_@_V_101"
+    ],
+    "kind": "symptom",
+    "is_red_flag": false,
+    "aliases": {
+      "en": [
+        "upper chest pain",
+        "pain in my upper chest",
+        "my upper chest hurts"
+      ],
+      "sw": [
+        "maumivu sehemu ya juu ya kifua",
+        "sehemu ya juu ya kifua inauma"
+      ]
+    }
+  }
+]

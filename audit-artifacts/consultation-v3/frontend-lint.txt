@@ -1,0 +1,4 @@
+
+> ucs31-madhaparia-frontend@0.0.0 lint
+> oxlint
+

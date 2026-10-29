@@ -1,0 +1,796 @@
+Feature,Active_Patients,Percentage,Label,Evidence_Code,Kind
+E_53,321145,72.48095694859786,"Do you have pain somewhere, related to your reason for consulting?",E_53,Symptom
+E_56,321145,72.48095694859786,How intense is the pain?,E_56,Symptom
+E_58,316843,71.51001523444113,How precisely is the pain located?,E_58,Symptom
+E_59,274417,61.93466117474469,How fast did the pain appear?,E_59,Symptom
+E_201,274343,61.91795971336681,Do you have a cough?,E_201,Symptom
+E_57_@_V_123,271104,61.186932234948934,Does the pain radiate to another location? — nowhere,E_57,Symptom
+E_79,206480,46.60159115273938,Do you smoke cigarettes?,E_79,History
+E_181,174704,39.429893358912146,Do you have nasal congestion or a clear runny nose?,E_181,Symptom
+E_91,171212,38.64176493821588,Do you have a fever (either felt or measured with a thermometer)?,E_91,Symptom
+E_54_@_V_161,148804,33.584381876657446,Characterize your pain: — sensitive,E_54,Symptom
+E_66,133342,30.094679230378603,Are you experiencing shortness of breath or difficulty breathing in a significant way?,E_66,Symptom
+E_54_@_V_181,117656,26.554420809118096,Characterize your pain: — burning,E_54,Symptom
+E_124,105099,23.72036336963268,Do you have asthma or have you ever had to use a bronchodilator in the past?,E_124,History
+E_48,99971,22.562997235231055,Do you live with 4 or more people?,E_48,History
+E_49,98263,22.17750945099588,Do you attend or work in a daycare?,E_49,History
+E_77,97982,22.114089036844778,Do you have a cough that produces colored or more abundant sputum than usual?,E_77,Symptom
+E_55_@_V_148,96836,21.85544208091181,Do you feel pain somewhere? — pharynx,E_55,Symptom
+E_41,91463,20.64278056762399,Have you been in contact with a person with similar symptoms in the past 2 weeks?,E_41,History
+E_45,83505,18.846696383230828,Have you been coughing up blood?,E_45,Symptom
+E_55_@_V_89,79116,17.856119167183884,Do you feel pain somewhere? — forehead,E_55,Symptom
+E_55_@_V_20,78697,17.761552784517292,Do you feel pain somewhere? — tonsil(R),E_55,Symptom
+E_55_@_V_21,78654,17.751847881284206,Do you feel pain somewhere? — tonsil(L),E_55,Symptom
+E_55_@_V_137,78378,17.68955594425323,Do you feel pain somewhere? — palace,E_55,Symptom
+E_97,77684,17.532923319979687,Do you have a sore throat?,E_97,Symptom
+E_144,74243,16.756305365908705,Do you have diffuse (widespread) muscle pain?,E_144,Symptom
+E_123,72719,16.412345539694183,Do you have a chronic obstructive pulmonary disease (COPD)?,E_123,History
+E_50,71111,16.049427297861534,Have you had significantly increased sweating?,E_50,Symptom
+E_222,70030,15.80545054449021,Are you exposed to secondhand cigarette smoke on a daily basis?,E_222,History
+E_227,65306,14.739265361394798,Are you immunosuppressed?,E_227,History
+E_54_@_V_183,65136,14.7008971393105,Characterize your pain: — heavy,E_54,Symptom
+E_55_@_V_33,61362,13.849122609039103,Do you feel pain somewhere? — thyroid cartilage,E_55,Symptom
+E_226,61190,13.810302996106754,Are you more likely to develop common allergies than the general population?,E_226,History
+E_55_@_V_109,60829,13.728826948033628,Do you feel pain somewhere? — cheek(L),E_55,Symptom
+E_55_@_V_108,60703,13.700389324606444,Do you feel pain somewhere? — cheek(R),E_55,Symptom
+E_116,58569,13.2187552897365,Have you had a cold in the last 2 weeks?,E_116,History
+E_118,57137,12.895559442532303,Have you ever had pneumonia?,E_118,History
+E_55_@_V_62,53412,12.054843988038142,Do you feel pain somewhere? — top of the head,E_55,Symptom
+E_54_@_V_154,52379,11.821700615020031,Characterize your pain: — tedious,E_54,Symptom
+E_55_@_V_163,52369,11.819443660779777,Do you feel pain somewhere? — under the jaw,E_55,Symptom
+E_54_@_V_192,52102,11.759182982565028,Characterize your pain: — sharp,E_54,Symptom
+E_54_@_V_179,49272,11.12046493257349,Characterize your pain: — a knife stroke,E_54,Symptom
+E_130_@_V_156,48786,11.010776956497207,What color is the rash? — pink,E_130,Symptom
+E_129,48786,11.010776956497207,"Do you have any lesions, redness or problems on your skin that you believe are related to the condition you are consulting for?",E_129,Symptom
+E_214,47685,10.762286294645376,Have you noticed a wheezing sound when you exhale?,E_214,Symptom
+E_55_@_V_124,46541,10.504090729560458,Do you feel pain somewhere? — occiput,E_55,Symptom
+E_209,44710,10.090842408170174,Are your vaccinations up to date?,E_209,History
+E_125,44446,10.031258816227501,Have you ever been diagnosed with gastroesophageal reflux?,E_125,History
+E_55_@_V_171,43926,9.913897195734355,Do you feel pain somewhere? — posterior chest wall(L),E_55,Symptom
+E_55_@_V_170,43650,9.85160525870338,Do you feel pain somewhere? — posterior chest wall(R),E_55,Symptom
+E_161,42163,9.51599616317779,Have you recently had a loss of appetite or do you get full more quickly then usually?,E_161,Symptom
+E_55_@_V_166,41553,9.378321954522372,Do you feel pain somewhere? — temple(R),E_55,Symptom
+E_132,41337,9.329571742932911,Is the rash swollen?,E_132,Symptom
+E_134,41176,9.293234779664843,How intense is the pain caused by the rash?,E_134,Symptom
+E_55_@_V_55,40838,9.216949726344298,Do you feel pain somewhere? — side of the chest(R),E_55,Symptom
+E_55_@_V_56,40810,9.21063025447159,Do you feel pain somewhere? — side of the chest(L),E_55,Symptom
+E_136,40779,9.203633696326808,How severe is the itching?,E_136,Symptom
+E_106,36108,8.149410370704734,Do you have heart failure?,E_106,History
+E_78,35840,8.08892399706596,Do you drink alcohol excessively or do you have an addiction to alcohol?,E_78,History
+E_94,35377,7.984427015742256,Have you had chills or shivers?,E_94,Symptom
+E_55_@_V_159,34665,7.823731873836258,Do you feel pain somewhere? — breast(R),E_55,Symptom
+E_55_@_V_29,33835,7.636404671895278,Do you feel pain somewhere? — lower chest,E_55,Symptom
+E_212,33827,7.634599108503075,"Have you noticed that the tone of your voice has become deeper, softer or hoarse?",E_212,Symptom
+E_55_@_V_167,33736,7.614060824916775,Do you feel pain somewhere? — temple(L),E_55,Symptom
+E_55_@_V_160,32381,7.308243525362523,Do you feel pain somewhere? — breast(L),E_55,Symptom
+E_219,31660,7.145517124640298,Are your symptoms more prominent at night?,E_219,Symptom
+E_120,31092,7.01732212379394,Do you have polyps in your nose?,E_120,History
+E_55_@_V_26,31047,7.007165829712802,Do you feel pain somewhere? — back of the neck,E_55,Symptom
+E_175,29279,6.6081363200361105,"Have you noticed any new fatigue, generalized and vague discomfort, diffuse (widespread) muscle aches or a change in your general well-being related to your consultation today?",E_175,Symptom
+E_207,27889,6.294419680640975,Do you live in in a big city?,E_207,History
+E_55_@_V_53,27425,6.189697003893246,Do you feel pain somewhere? — side of the neck(R),E_55,Symptom
+E_103,27394,6.182700445748463,Have you lost your sense of smell?,E_103,Symptom
+E_55_@_V_101,27180,6.134401625007053,Do you feel pain somewhere? — upper chest,E_55,Symptom
+E_87,26740,6.035095638435931,Do you have any family members who have asthma?,E_87,History
+E_54_@_V_198,26521,5.985668340574395,Characterize your pain: — exhausting,E_54,Symptom
+E_194,26451,5.969869660892625,Have you noticed a high pitched sound when breathing in?,E_194,Symptom
+E_208,26172,5.906900637589573,"Is your BMI less than 18.5, or are you underweight?",E_208,History
+E_131_@_V_12,25588,5.7750945099588105,Do your lesions peel off? — Y,E_131,Symptom
+E_55_@_V_122,25364,5.724538734977148,Do you feel pain somewhere? — nose,E_55,Symptom
+E_55_@_V_32,25274,5.704226146814873,Do you feel pain somewhere? — mouth,E_55,Symptom
+E_182,24743,5.584381876657451,Do you have greenish or yellowish nasal discharge?,E_182,Symptom
+E_104,24538,5.538114314732269,Do you have high blood pressure or do you take medications to treat high blood pressure?,E_104,History
+E_121,23436,5.289397957456413,Do you have a deviated nasal septum?,E_121,History
+E_57_@_V_167,23266,5.251029735372115,Does the pain radiate to another location? — temple(L),E_57,Symptom
+E_57_@_V_122,23262,5.250126953676014,Does the pain radiate to another location? — nose,E_57,Symptom
+E_57_@_V_25,23226,5.242001918411105,Does the pain radiate to another location? — back of head,E_57,Symptom
+E_57_@_V_166,23207,5.237713705354624,Does the pain radiate to another location? — temple(R),E_57,Symptom
+E_57_@_V_89,23203,5.236810923658522,Does the pain radiate to another location? — forehead,E_57,Symptom
+E_135_@_V_12,23198,5.235682446538396,Is the lesion (or are the lesions) larger than 1cm? — Y,E_135,Symptom
+E_220,22758,5.136376459967274,Do you have pain that is increased when you breathe in deeply?,E_220,Symptom
+E_169,21655,4.887434407267393,Is your nose or the back of your throat itchy?,E_169,Symptom
+E_69,21625,4.880663544546635,Do you have diabetes?,E_69,History
+E_55_@_V_54,21135,4.770072786774248,Do you feel pain somewhere? — side of the neck(L),E_55,Symptom
+E_162,20928,4.723353834001016,Have you had an involuntary weight loss over the last 3 months?,E_162,Symptom
+E_88,20847,4.705072504654968,Do you feel so tired that you are unable to do your usual activities or are you stuck in your bed all day long?,E_88,Symptom
+E_218,20194,4.557693392766462,Do you have symptoms that are increased with physical exertion but alleviated with rest?,E_218,Symptom
+E_55_@_V_125,19523,4.4062517632455,Do you feel pain somewhere? — eye(R),E_55,Symptom
+E_170,19093,4.30920273091463,Do you have severe itching in one or both eyes?,E_170,Symptom
+E_151,19026,4.294081137504937,Do you have swelling in one or more areas of your body?,E_151,Symptom
+E_55_@_V_25,18300,4.130226259662585,Do you feel pain somewhere? — back of head,E_55,Symptom
+E_86,18152,4.096823336906844,"Do you have any close family members who suffer from allergies (any type), hay fever or eczema?",E_86,History
+E_133_@_V_26,17353,3.9164926931106474,Where is the affected region located? — back of the neck,E_133,Symptom
+E_95,16795,3.7905546465045425,Do you have Parkinson’s disease?,E_95,History
+E_133_@_V_53,16170,3.6494950064887433,Where is the affected region located? — side of the neck(R),E_133,Symptom
+E_133_@_V_54,15734,3.5510918016137225,Where is the affected region located? — side of the neck(L),E_133,Symptom
+E_5,15726,3.5492862382215202,Have you ever had fluid in your lungs?,E_5,History
+E_105,15558,3.5113694069852737,Have you ever had a heart attack or do you have angina (chest pain)?,E_105,History
+E_46,15405,3.4768380071094054,Have you had 2 or more asthma attacks in the past year?,E_46,History
+E_107,15093,3.406421034813519,Have you ever had a stroke?,E_107,History
+E_18,14989,3.38294871071489,Do you have cystic fibrosis?,E_18,History
+E_119,14706,3.3190769057157365,Have you been diagnosed with chronic sinusitis?,E_119,History
+E_217,14455,3.262427354285392,Are your symptoms worse when lying down and alleviated while sitting up?,E_217,Symptom
+E_204_@_V_4,14444,3.2599447046211134,Have you traveled out of the country in the last 4 weeks? — North America,E_204,History
+E_190,14350,3.2387293347627377,Have you noticed that you produce more saliva than usual?,E_190,Symptom
+E_101,14263,3.219093832872538,Have you been hospitalized for an asthma attack in the past year?,E_101,History
+E_8,14232,3.212097274727755,Do you currently undergo dialysis?,E_8,History
+E_67,14099,3.182079783332393,Do you have bouts of choking or shortness of breath that wake you up at night?,E_67,Symptom
+E_72,12822,2.893866726852113,Have you had one or several flare ups of chronic obstructive pulmonary disease (COPD) in the past year?,E_72,History
+E_196,12806,2.8902556000677087,Have you had surgery within the last month?,E_196,History
+E_152_@_V_172,12781,2.884613214467077,Where is the swelling located? — tibia(R),E_152,Symptom
+E_20,12765,2.8810020876826723,Do you have Rheumatoid Arthritis?,E_20,History
+E_152_@_V_119,12745,2.8764881792021666,Where is the swelling located? — calf(R),E_152,Symptom
+E_152_@_V_35,12739,2.875134006658015,Where is the swelling located? — ankle(L),E_152,Symptom
+E_152_@_V_120,12656,2.856401286463917,Where is the swelling located? — calf(L),E_152,Symptom
+E_152_@_V_34,12649,2.8548214184957397,Where is the swelling located? — ankle(R),E_152,Symptom
+E_47,12642,2.853241550527563,Do you suffer from Crohn’s disease or ulcerative colitis (UC)?,E_47,History
+E_65,12539,2.8299949218529594,"Do you have difficulty swallowing, or have a feeling of discomfort/blockage when swallowing?",E_65,Symptom
+E_55_@_V_126,11939,2.694577667437793,Do you feel pain somewhere? — eye(L),E_55,Symptom
+E_31,11766,2.6555323590814197,Do you have severe Chronic Obstructive Pulmonary Disease (COPD)?,E_31,History
+E_191,11572,2.6117474468205155,Are you a former smoker?,E_191,History
+E_200,11182,2.523726231450657,Do you work in the mining sector?,E_200,History
+E_152_@_V_173,11002,2.4831010551261072,Where is the swelling located? — tibia(L),E_152,Symptom
+E_55_@_V_174,10913,2.4630141623878576,Do you feel pain somewhere? — trachea,E_55,Symptom
+E_133_@_V_89,10502,2.3702533431134687,Where is the affected region located? — forehead,E_133,Symptom
+E_33,10463,2.3614512215764827,Do you have pain that improves when you lean forward?,E_33,Symptom
+E_62,10365,2.3393330700220054,Do you regularly take stimulant drugs?,E_62,History
+E_198,10310,2.326919821700615,Do you work in agriculture?,E_198,History
+E_57_@_V_30,10016,2.2605653670371835,Does the pain radiate to another location? — biceps(R),E_57,Symptom
+E_54_@_V_180,9992,2.2551486768605766,Characterize your pain: — tugging,E_54,Symptom
+E_57_@_V_31,9951,2.2458951644755403,Does the pain radiate to another location? — biceps(L),E_57,Symptom
+E_57_@_V_195,9936,2.242509733115161,Does the pain radiate to another location? — shoulder(L),E_57,Symptom
+E_199,9921,2.239124301754782,Do you work in construction?,E_199,History
+E_2,9908,2.2361902612424536,Are you infected with the human immunodeficiency virus (HIV)?,E_2,History
+E_57_@_V_194,9894,2.2330305253060994,Does the pain radiate to another location? — shoulder(R),E_57,Symptom
+E_57_@_V_121,9825,2.217457541048355,Does the pain radiate to another location? — jaw,E_57,Symptom
+E_57_@_V_118,9637,2.1750268013316028,Does the pain radiate to another location? — chin,E_57,Symptom
+E_224,9544,2.154037126897252,Do you have family members who have had lung cancer?,E_224,History
+E_61,9324,2.104384133611691,Are you currently using intravenous drugs?,E_61,History
+E_44,8776,1.9807030412458386,Do you take corticosteroids?,E_44,History
+E_89,8701,1.963775884443943,Do you constantly feel fatigued or do you have non-restful sleep?,E_89,Symptom
+E_21,8593,1.939400778649213,Have you ever had a spontaneous pneumothorax?,E_21,History
+E_57_@_V_127,8563,1.9326299159284546,Does the pain radiate to another location? — scapula(R),E_57,Symptom
+E_54_@_V_71,7619,1.719573435648592,Characterize your pain: — heartbreaking,E_54,Symptom
+E_54_@_V_191,7601,1.7155109180161374,Characterize your pain: — violent,E_54,Symptom
+E_57_@_V_128,7292,1.6457710319923262,Does the pain radiate to another location? — scapula(L),E_57,Symptom
+E_165,6745,1.5223156350504994,Have any of your family members ever had a pneumothorax?,E_165,History
+E_133_@_V_42,6739,1.5209614625063477,Where is the affected region located? — commissure(L),E_133,Symptom
+E_133_@_V_41,6735,1.5200586808102465,Where is the affected region located? — commissure(R),E_133,Symptom
+E_133_@_V_38,6719,1.5164475540258422,Where is the affected region located? — cervical spine,E_133,Symptom
+E_55_@_V_34,6677,1.5069683462167804,Do you feel pain somewhere? — ankle(R),E_55,Symptom
+E_133_@_V_39,6629,1.496134965863567,Where is the affected region located? — thoracic spine,E_133,Symptom
+E_133_@_V_195,6583,1.4857529763584043,Where is the affected region located? — shoulder(L),E_133,Symptom
+E_133_@_V_40,6577,1.4843988038142526,Where is the affected region located? — lumbar spine,E_133,Symptom
+E_133_@_V_194,6561,1.4807876770298483,Where is the affected region located? — shoulder(R),E_133,Symptom
+E_133_@_V_82,6403,1.4451278000338543,Where is the affected region located? — buttock(R),E_133,Symptom
+E_133_@_V_83,6225,1.404954014557355,Where is the affected region located? — buttock(L),E_133,Symptom
+E_133_@_V_84,6113,1.3796761270665239,Where is the affected region located? — flank(R),E_133,Symptom
+E_166,5922,1.3365683010776956,Did you vomit after coughing?,E_166,Symptom
+E_133_@_V_85,5821,1.3137730632511426,Where is the affected region located? — flank(L),E_133,Symptom
+E_57_@_V_177,5810,1.3112904135868646,Does the pain radiate to another location? — triceps(R),E_57,Symptom
+E_14,5784,1.3054223325622072,Do you have chest pain even at rest?,E_14,Symptom
+E_55_@_V_35,4870,1.0991367150031033,Do you feel pain somewhere? — ankle(L),E_55,Symptom
+E_133_@_V_170,4781,1.0790498222648537,Where is the affected region located? — posterior chest wall(R),E_133,Symptom
+E_57_@_V_178,4455,1.005473114032613,Does the pain radiate to another location? — triceps(L),E_57,Symptom
+E_133_@_V_171,4388,0.9903515206229193,Where is the affected region located? — posterior chest wall(L),E_133,Symptom
+E_40,4013,0.9057157366134402,Have you been in contact with someone who has had pertussis (whoooping cough)?,E_40,History
+E_133_@_V_187,3981,0.8984934830446313,Where is the affected region located? — belly,E_133,Symptom
+E_203,3843,0.8673475145291429,Do you have intense coughing fits?,E_203,Symptom
+E_133_@_V_123,3787,0.8547085707837274,Where is the affected region located? — nowhere,E_133,Symptom
+E_112,3501,0.7901596795124979,Do you wheeze while inhaling or is your breathing noisy after coughing spells?,E_112,Symptom
+E_55_@_V_119,3230,0.7289962196016476,Do you feel pain somewhere? — calf(R),E_55,Symptom
+E_70,3084,0.696044687693957,Are you significantly overweight compared to people of the same height as you?,E_70,History
+E_55_@_V_123,2970,0.6703154093550754,Do you feel pain somewhere? — nowhere,E_55,Symptom
+E_54_@_V_11,2970,0.6703154093550754,Characterize your pain: — NA,E_54,Symptom
+E_4,2239,0.5053320543925972,Have you or any member of your family ever had croup?,E_4,History
+E_17,2136,0.48208542571799357,Are you of Asian descent?,E_17,History
+E_55_@_V_120,2102,0.47441178130113415,Do you feel pain somewhere? — calf(L),E_55,Symptom
+E_202,2077,0.4687693957005022,Does the person have a whooping cough?,E_202,Symptom
+E_55_@_V_172,1294,0.2920498786887096,Do you feel pain somewhere? — tibia(R),E_55,Symptom
+E_55_@_V_173,792,0.17875077582802007,Do you feel pain somewhere? — tibia(L),E_55,Symptom
+E_55_@_V_197,260,0.05868081024657225,Do you feel pain somewhere? — epigastric,E_55,Symptom
+E_32,151,0.03408000902781696,Do you have a decrease in appetite?,E_32,Symptom
+E_183,148,0.03340292275574113,Do you live in a rural area?,E_183,History
+E_142,147,0.033177227331715846,Does your mother suffer from asthma?,E_142,History
+E_23,144,0.03250014105964001,Do you ever temporarily stop breathing while you’re asleep?,E_23,Symptom
+E_195,144,0.03250014105964001,Do you live in the suburbs?,E_195,History
+E_152_@_V_123,16,0.0036111267844044464,Where is the swelling located? — nowhere,E_152,Symptom
+E_152_@_V_189,0,0.0,Where is the swelling located? — vermilion(L),E_152,Symptom
+E_152_@_V_188,0,0.0,Where is the swelling located? — vermilion(R),E_152,Symptom
+E_152_@_V_187,0,0.0,Where is the swelling located? — belly,E_152,Symptom
+E_204_@_V_3,0,0.0,Have you traveled out of the country in the last 4 weeks? — Central America,E_204,History
+E_55_@_V_152,0,0.0,Do you feel pain somewhere? — thumb(L),E_55,Symptom
+E_55_@_V_151,0,0.0,Do you feel pain somewhere? — thumb(R),E_55,Symptom
+E_55_@_V_150,0,0.0,Do you feel pain somewhere? — sole(L),E_55,Symptom
+E_55_@_V_149,0,0.0,Do you feel pain somewhere? — sole(R),E_55,Symptom
+E_55_@_V_147,0,0.0,Do you feel pain somewhere? — labia minora(L),E_55,Symptom
+E_55_@_V_146,0,0.0,Do you feel pain somewhere? — labia minora(R),E_55,Symptom
+E_55_@_V_145,0,0.0,Do you feel pain somewhere? — little toe (4)(L),E_55,Symptom
+E_55_@_V_144,0,0.0,Do you feel pain somewhere? — little toe (4)(R),E_55,Symptom
+E_55_@_V_143,0,0.0,Do you feel pain somewhere? — palm(L),E_55,Symptom
+E_55_@_V_142,0,0.0,Do you feel pain somewhere? — palm(R),E_55,Symptom
+E_55_@_V_141,0,0.0,Do you feel pain somewhere? — vaginal wall(L),E_55,Symptom
+E_55_@_V_140,0,0.0,Do you feel pain somewhere? — vaginal wall(R),E_55,Symptom
+E_55_@_V_139,0,0.0,Do you feel pain somewhere? — vaginal wall,E_55,Symptom
+E_55_@_V_136,0,0.0,Do you feel pain somewhere? — toe (3)(L),E_55,Symptom
+E_55_@_V_135,0,0.0,Do you feel pain somewhere? — toe (3)(R),E_55,Symptom
+E_55_@_V_134,0,0.0,Do you feel pain somewhere? — toe (2)(L),E_55,Symptom
+E_55_@_V_186,0,0.0,Do you feel pain somewhere? — vagina,E_55,Symptom
+E_55_@_V_185,0,0.0,Do you feel pain somewhere? — urethra,E_55,Symptom
+E_55_@_V_178,0,0.0,Do you feel pain somewhere? — triceps(L),E_55,Symptom
+E_55_@_V_177,0,0.0,Do you feel pain somewhere? — triceps(R),E_55,Symptom
+E_55_@_V_176,0,0.0,Do you feel pain somewhere? — trapezius(L),E_55,Symptom
+E_55_@_V_175,0,0.0,Do you feel pain somewhere? — trapezius(R),E_55,Symptom
+E_55_@_V_169,0,0.0,Do you feel pain somewhere? — testicle(L),E_55,Symptom
+E_55_@_V_168,0,0.0,Do you feel pain somewhere? — testicle(R),E_55,Symptom
+E_55_@_V_165,0,0.0,Do you feel pain somewhere? — heel(L),E_55,Symptom
+E_55_@_V_164,0,0.0,Do you feel pain somewhere? — heel(R),E_55,Symptom
+E_55_@_V_162,0,0.0,Do you feel pain somewhere? — under the tongue,E_55,Symptom
+E_55_@_V_158,0,0.0,Do you feel pain somewhere? — scrotum,E_55,Symptom
+E_55_@_V_155,0,0.0,Do you feel pain somewhere? — penis,E_55,Symptom
+E_55_@_V_153,0,0.0,Do you feel pain somewhere? — pubis,E_55,Symptom
+E_55_@_V_81,0,0.0,Do you feel pain somewhere? — palmar face of the wrist(L),E_55,Symptom
+E_55_@_V_80,0,0.0,Do you feel pain somewhere? — palmar face of the wrist(R),E_55,Symptom
+E_55_@_V_79,0,0.0,Do you feel pain somewhere? — palmar side of the forearm(L),E_55,Symptom
+E_55_@_V_78,0,0.0,Do you feel pain somewhere? — palmar side of the forearm(R),E_55,Symptom
+E_55_@_V_77,0,0.0,Do you feel pain somewhere? — dorsal aspect of the hand(L),E_55,Symptom
+E_55_@_V_128,0,0.0,Do you feel pain somewhere? — scapula(L),E_55,Symptom
+E_55_@_V_127,0,0.0,Do you feel pain somewhere? — scapula(R),E_55,Symptom
+E_57_@_V_15,0,0.0,Does the pain radiate to another location? — iliac wing(L),E_57,Symptom
+E_57_@_V_14,0,0.0,Does the pain radiate to another location? — iliac wing(R),E_57,Symptom
+E_55_@_V_195,0,0.0,Do you feel pain somewhere? — shoulder(L),E_55,Symptom
+E_55_@_V_194,0,0.0,Do you feel pain somewhere? — shoulder(R),E_55,Symptom
+E_55_@_V_190,0,0.0,Do you feel pain somewhere? — vulval vestibule,E_55,Symptom
+E_55_@_V_189,0,0.0,Do you feel pain somewhere? — vermilion(L),E_55,Symptom
+E_55_@_V_188,0,0.0,Do you feel pain somewhere? — vermilion(R),E_55,Symptom
+E_55_@_V_187,0,0.0,Do you feel pain somewhere? — belly,E_55,Symptom
+E_57_@_V_22,0,0.0,Does the pain radiate to another location? — anus,E_57,Symptom
+E_57_@_V_21,0,0.0,Does the pain radiate to another location? — tonsil(L),E_57,Symptom
+E_57_@_V_20,0,0.0,Does the pain radiate to another location? — tonsil(R),E_57,Symptom
+E_57_@_V_19,0,0.0,Does the pain radiate to another location? — axilla(L),E_57,Symptom
+E_57_@_V_18,0,0.0,Does the pain radiate to another location? — axilla(R),E_57,Symptom
+E_57_@_V_17,0,0.0,Does the pain radiate to another location? — groin(L),E_57,Symptom
+E_57_@_V_16,0,0.0,Does the pain radiate to another location? — groin(R),E_57,Symptom
+E_55_@_V_92,0,0.0,Do you feel pain somewhere? — knee(R),E_55,Symptom
+E_55_@_V_91,0,0.0,Do you feel pain somewhere? — upper gum,E_55,Symptom
+E_55_@_V_90,0,0.0,Do you feel pain somewhere? — lower gum,E_55,Symptom
+E_55_@_V_88,0,0.0,Do you feel pain somewhere? — iliac fossa(L),E_55,Symptom
+E_55_@_V_87,0,0.0,Do you feel pain somewhere? — iliac fossa(R),E_55,Symptom
+E_55_@_V_85,0,0.0,Do you feel pain somewhere? — flank(L),E_55,Symptom
+E_55_@_V_84,0,0.0,Do you feel pain somewhere? — flank(R),E_55,Symptom
+E_55_@_V_83,0,0.0,Do you feel pain somewhere? — buttock(L),E_55,Symptom
+E_55_@_V_82,0,0.0,Do you feel pain somewhere? — buttock(R),E_55,Symptom
+E_57_@_V_41,0,0.0,Does the pain radiate to another location? — commissure(R),E_57,Symptom
+E_57_@_V_40,0,0.0,Does the pain radiate to another location? — lumbar spine,E_57,Symptom
+E_57_@_V_39,0,0.0,Does the pain radiate to another location? — thoracic spine,E_57,Symptom
+E_57_@_V_38,0,0.0,Does the pain radiate to another location? — cervical spine,E_57,Symptom
+E_57_@_V_37,0,0.0,Does the pain radiate to another location? — coccyx,E_57,Symptom
+E_57_@_V_36,0,0.0,Does the pain radiate to another location? — clitoris,E_57,Symptom
+E_57_@_V_35,0,0.0,Does the pain radiate to another location? — ankle(L),E_57,Symptom
+E_57_@_V_34,0,0.0,Does the pain radiate to another location? — ankle(R),E_57,Symptom
+E_57_@_V_33,0,0.0,Does the pain radiate to another location? — thyroid cartilage,E_57,Symptom
+E_57_@_V_32,0,0.0,Does the pain radiate to another location? — mouth,E_57,Symptom
+E_57_@_V_29,0,0.0,Does the pain radiate to another location? — lower chest,E_57,Symptom
+E_57_@_V_28,0,0.0,Does the pain radiate to another location? — forearm(L),E_57,Symptom
+E_57_@_V_27,0,0.0,Does the pain radiate to another location? — forearm(R),E_57,Symptom
+E_57_@_V_26,0,0.0,Does the pain radiate to another location? — back of the neck,E_57,Symptom
+E_57_@_V_24,0,0.0,Does the pain radiate to another location? — posterior aspect of the ankle(L),E_57,Symptom
+E_57_@_V_23,0,0.0,Does the pain radiate to another location? — posterior aspect of the ankle(R),E_57,Symptom
+E_57_@_V_57,0,0.0,Does the pain radiate to another location? — lower teeth(R),E_57,Symptom
+E_57_@_V_56,0,0.0,Does the pain radiate to another location? — side of the chest(L),E_57,Symptom
+E_57_@_V_55,0,0.0,Does the pain radiate to another location? — side of the chest(R),E_57,Symptom
+E_57_@_V_54,0,0.0,Does the pain radiate to another location? — side of the neck(L),E_57,Symptom
+E_57_@_V_53,0,0.0,Does the pain radiate to another location? — side of the neck(R),E_57,Symptom
+E_57_@_V_52,0,0.0,Does the pain radiate to another location? — thigh(L),E_57,Symptom
+E_57_@_V_51,0,0.0,Does the pain radiate to another location? — thigh(R),E_57,Symptom
+E_57_@_V_50,0,0.0,Does the pain radiate to another location? — iliac crest(L),E_57,Symptom
+E_57_@_V_49,0,0.0,Does the pain radiate to another location? — iliac crest(R),E_57,Symptom
+E_57_@_V_48,0,0.0,Does the pain radiate to another location? — popliteal fossa(L),E_57,Symptom
+E_57_@_V_47,0,0.0,Does the pain radiate to another location? — popliteal fossa(R),E_57,Symptom
+E_57_@_V_46,0,0.0,Does the pain radiate to another location? — elbow(L),E_57,Symptom
+E_57_@_V_45,0,0.0,Does the pain radiate to another location? — elbow(R),E_57,Symptom
+E_57_@_V_44,0,0.0,Does the pain radiate to another location? — lateral side of the foot(L),E_57,Symptom
+E_57_@_V_43,0,0.0,Does the pain radiate to another location? — lateral side of the foot(R),E_57,Symptom
+E_57_@_V_42,0,0.0,Does the pain radiate to another location? — commissure(L),E_57,Symptom
+E_57_@_V_74,0,0.0,Does the pain radiate to another location? — dorsal aspect of the wrist(R),E_57,Symptom
+E_57_@_V_73,0,0.0,Does the pain radiate to another location? — dorsal aspect of the foot(L),E_57,Symptom
+E_57_@_V_72,0,0.0,Does the pain radiate to another location? — dorsal aspect of the foot(R),E_57,Symptom
+E_57_@_V_70,0,0.0,Does the pain radiate to another location? — finger (middle)(L),E_57,Symptom
+E_57_@_V_69,0,0.0,Does the pain radiate to another location? — finger (middle)(R),E_57,Symptom
+E_57_@_V_68,0,0.0,Does the pain radiate to another location? — finger (index)(L),E_57,Symptom
+E_57_@_V_67,0,0.0,Does the pain radiate to another location? — finger (index)(R),E_57,Symptom
+E_57_@_V_66,0,0.0,Does the pain radiate to another location? — finger (little finger)(L),E_57,Symptom
+E_57_@_V_65,0,0.0,Does the pain radiate to another location? — finger (little finger)(R),E_57,Symptom
+E_57_@_V_64,0,0.0,Does the pain radiate to another location? — finger (ring finger)(L),E_57,Symptom
+E_57_@_V_63,0,0.0,Does the pain radiate to another location? — finger (ring finger)(R),E_57,Symptom
+E_57_@_V_62,0,0.0,Does the pain radiate to another location? — top of the head,E_57,Symptom
+E_57_@_V_61,0,0.0,Does the pain radiate to another location? — above the tongue,E_57,Symptom
+E_57_@_V_60,0,0.0,Does the pain radiate to another location? — upper teeth(L),E_57,Symptom
+E_57_@_V_59,0,0.0,Does the pain radiate to another location? — upper teeth(R),E_57,Symptom
+E_57_@_V_58,0,0.0,Does the pain radiate to another location? — lower teeth(L),E_57,Symptom
+E_57_@_V_92,0,0.0,Does the pain radiate to another location? — knee(R),E_57,Symptom
+E_57_@_V_91,0,0.0,Does the pain radiate to another location? — upper gum,E_57,Symptom
+E_57_@_V_90,0,0.0,Does the pain radiate to another location? — lower gum,E_57,Symptom
+E_57_@_V_88,0,0.0,Does the pain radiate to another location? — iliac fossa(L),E_57,Symptom
+E_57_@_V_87,0,0.0,Does the pain radiate to another location? — iliac fossa(R),E_57,Symptom
+E_57_@_V_85,0,0.0,Does the pain radiate to another location? — flank(L),E_57,Symptom
+E_57_@_V_84,0,0.0,Does the pain radiate to another location? — flank(R),E_57,Symptom
+E_57_@_V_83,0,0.0,Does the pain radiate to another location? — buttock(L),E_57,Symptom
+E_57_@_V_82,0,0.0,Does the pain radiate to another location? — buttock(R),E_57,Symptom
+E_57_@_V_81,0,0.0,Does the pain radiate to another location? — palmar face of the wrist(L),E_57,Symptom
+E_57_@_V_80,0,0.0,Does the pain radiate to another location? — palmar face of the wrist(R),E_57,Symptom
+E_57_@_V_79,0,0.0,Does the pain radiate to another location? — palmar side of the forearm(L),E_57,Symptom
+E_57_@_V_78,0,0.0,Does the pain radiate to another location? — palmar side of the forearm(R),E_57,Symptom
+E_57_@_V_77,0,0.0,Does the pain radiate to another location? — dorsal aspect of the hand(L),E_57,Symptom
+E_57_@_V_76,0,0.0,Does the pain radiate to another location? — dorsal aspect of the hand(R),E_57,Symptom
+E_57_@_V_75,0,0.0,Does the pain radiate to another location? — dorsal aspect of the wrist(L),E_57,Symptom
+E_57_@_V_109,0,0.0,Does the pain radiate to another location? — cheek(L),E_57,Symptom
+E_57_@_V_108,0,0.0,Does the pain radiate to another location? — cheek(R),E_57,Symptom
+E_57_@_V_106,0,0.0,Does the pain radiate to another location? — ischio jambier(L),E_57,Symptom
+E_57_@_V_105,0,0.0,Does the pain radiate to another location? — ischio jambier(R),E_57,Symptom
+E_57_@_V_104,0,0.0,Does the pain radiate to another location? — hypochondrium(L),E_57,Symptom
+E_57_@_V_103,0,0.0,Does the pain radiate to another location? — hypochondrium(R),E_57,Symptom
+E_57_@_V_102,0,0.0,Does the pain radiate to another location? — hymen,E_57,Symptom
+E_57_@_V_101,0,0.0,Does the pain radiate to another location? — upper chest,E_57,Symptom
+E_57_@_V_100,0,0.0,Does the pain radiate to another location? — hip(L),E_57,Symptom
+E_57_@_V_99,0,0.0,Does the pain radiate to another location? — hip(R),E_57,Symptom
+E_57_@_V_98,0,0.0,Does the pain radiate to another location? — big toe(L),E_57,Symptom
+E_57_@_V_97,0,0.0,Does the pain radiate to another location? — big toe(R),E_57,Symptom
+E_57_@_V_96,0,0.0,Does the pain radiate to another location? — labia majora(L),E_57,Symptom
+E_57_@_V_95,0,0.0,Does the pain radiate to another location? — labia majora(R),E_57,Symptom
+E_57_@_V_94,0,0.0,Does the pain radiate to another location? — glans,E_57,Symptom
+E_57_@_V_93,0,0.0,Does the pain radiate to another location? — knee(L),E_57,Symptom
+E_57_@_V_132,0,0.0,Does the pain radiate to another location? — toe (1)(L),E_57,Symptom
+E_57_@_V_131,0,0.0,Does the pain radiate to another location? — toe (1)(R),E_57,Symptom
+E_57_@_V_130,0,0.0,Does the pain radiate to another location? — ear(L),E_57,Symptom
+E_57_@_V_129,0,0.0,Does the pain radiate to another location? — ear(R),E_57,Symptom
+E_57_@_V_126,0,0.0,Does the pain radiate to another location? — eye(L),E_57,Symptom
+E_57_@_V_125,0,0.0,Does the pain radiate to another location? — eye(R),E_57,Symptom
+E_57_@_V_124,0,0.0,Does the pain radiate to another location? — occiput,E_57,Symptom
+E_57_@_V_120,0,0.0,Does the pain radiate to another location? — calf(L),E_57,Symptom
+E_57_@_V_119,0,0.0,Does the pain radiate to another location? — calf(R),E_57,Symptom
+E_57_@_V_117,0,0.0,Does the pain radiate to another location? — upper lip(R),E_57,Symptom
+E_57_@_V_116,0,0.0,Does the pain radiate to another location? — bottom lip(R),E_57,Symptom
+E_57_@_V_115,0,0.0,Does the pain radiate to another location? — uvula,E_57,Symptom
+E_57_@_V_114,0,0.0,Does the pain radiate to another location? — renal fossa(L),E_57,Symptom
+E_57_@_V_113,0,0.0,Does the pain radiate to another location? — renal fossa(R),E_57,Symptom
+E_57_@_V_111,0,0.0,Does the pain radiate to another location? — internal cheek(L),E_57,Symptom
+E_57_@_V_110,0,0.0,Does the pain radiate to another location? — internal cheek(R),E_57,Symptom
+E_57_@_V_149,0,0.0,Does the pain radiate to another location? — sole(R),E_57,Symptom
+E_57_@_V_148,0,0.0,Does the pain radiate to another location? — pharynx,E_57,Symptom
+E_57_@_V_147,0,0.0,Does the pain radiate to another location? — labia minora(L),E_57,Symptom
+E_57_@_V_146,0,0.0,Does the pain radiate to another location? — labia minora(R),E_57,Symptom
+E_57_@_V_145,0,0.0,Does the pain radiate to another location? — little toe (4)(L),E_57,Symptom
+E_57_@_V_144,0,0.0,Does the pain radiate to another location? — little toe (4)(R),E_57,Symptom
+E_57_@_V_143,0,0.0,Does the pain radiate to another location? — palm(L),E_57,Symptom
+E_57_@_V_142,0,0.0,Does the pain radiate to another location? — palm(R),E_57,Symptom
+E_57_@_V_141,0,0.0,Does the pain radiate to another location? — vaginal wall(L),E_57,Symptom
+E_57_@_V_140,0,0.0,Does the pain radiate to another location? — vaginal wall(R),E_57,Symptom
+E_57_@_V_139,0,0.0,Does the pain radiate to another location? — vaginal wall,E_57,Symptom
+E_57_@_V_137,0,0.0,Does the pain radiate to another location? — palace,E_57,Symptom
+E_57_@_V_136,0,0.0,Does the pain radiate to another location? — toe (3)(L),E_57,Symptom
+E_57_@_V_135,0,0.0,Does the pain radiate to another location? — toe (3)(R),E_57,Symptom
+E_57_@_V_134,0,0.0,Does the pain radiate to another location? — toe (2)(L),E_57,Symptom
+E_57_@_V_133,0,0.0,Does the pain radiate to another location? — toe (2)(R),E_57,Symptom
+E_55_@_V_70,0,0.0,Do you feel pain somewhere? — finger (middle)(L),E_55,Symptom
+E_55_@_V_69,0,0.0,Do you feel pain somewhere? — finger (middle)(R),E_55,Symptom
+E_55_@_V_68,0,0.0,Do you feel pain somewhere? — finger (index)(L),E_55,Symptom
+E_55_@_V_67,0,0.0,Do you feel pain somewhere? — finger (index)(R),E_55,Symptom
+E_55_@_V_66,0,0.0,Do you feel pain somewhere? — finger (little finger)(L),E_55,Symptom
+E_55_@_V_65,0,0.0,Do you feel pain somewhere? — finger (little finger)(R),E_55,Symptom
+E_55_@_V_64,0,0.0,Do you feel pain somewhere? — finger (ring finger)(L),E_55,Symptom
+E_55_@_V_63,0,0.0,Do you feel pain somewhere? — finger (ring finger)(R),E_55,Symptom
+E_55_@_V_61,0,0.0,Do you feel pain somewhere? — above the tongue,E_55,Symptom
+E_55_@_V_60,0,0.0,Do you feel pain somewhere? — upper teeth(L),E_55,Symptom
+E_57_@_V_158,0,0.0,Does the pain radiate to another location? — scrotum,E_57,Symptom
+E_57_@_V_155,0,0.0,Does the pain radiate to another location? — penis,E_57,Symptom
+E_57_@_V_153,0,0.0,Does the pain radiate to another location? — pubis,E_57,Symptom
+E_57_@_V_152,0,0.0,Does the pain radiate to another location? — thumb(L),E_57,Symptom
+E_57_@_V_151,0,0.0,Does the pain radiate to another location? — thumb(R),E_57,Symptom
+E_57_@_V_150,0,0.0,Does the pain radiate to another location? — sole(L),E_57,Symptom
+E_57_@_V_172,0,0.0,Does the pain radiate to another location? — tibia(R),E_57,Symptom
+E_57_@_V_171,0,0.0,Does the pain radiate to another location? — posterior chest wall(L),E_57,Symptom
+E_57_@_V_170,0,0.0,Does the pain radiate to another location? — posterior chest wall(R),E_57,Symptom
+E_57_@_V_169,0,0.0,Does the pain radiate to another location? — testicle(L),E_57,Symptom
+E_57_@_V_168,0,0.0,Does the pain radiate to another location? — testicle(R),E_57,Symptom
+E_57_@_V_165,0,0.0,Does the pain radiate to another location? — heel(L),E_57,Symptom
+E_57_@_V_164,0,0.0,Does the pain radiate to another location? — heel(R),E_57,Symptom
+E_57_@_V_163,0,0.0,Does the pain radiate to another location? — under the jaw,E_57,Symptom
+E_57_@_V_162,0,0.0,Does the pain radiate to another location? — under the tongue,E_57,Symptom
+E_57_@_V_160,0,0.0,Does the pain radiate to another location? — breast(L),E_57,Symptom
+E_57_@_V_159,0,0.0,Does the pain radiate to another location? — breast(R),E_57,Symptom
+E_55_@_V_76,0,0.0,Do you feel pain somewhere? — dorsal aspect of the hand(R),E_55,Symptom
+E_55_@_V_75,0,0.0,Do you feel pain somewhere? — dorsal aspect of the wrist(L),E_55,Symptom
+E_55_@_V_74,0,0.0,Do you feel pain somewhere? — dorsal aspect of the wrist(R),E_55,Symptom
+E_55_@_V_73,0,0.0,Do you feel pain somewhere? — dorsal aspect of the foot(L),E_55,Symptom
+E_55_@_V_72,0,0.0,Do you feel pain somewhere? — dorsal aspect of the foot(R),E_55,Symptom
+E_55_@_V_46,0,0.0,Do you feel pain somewhere? — elbow(L),E_55,Symptom
+E_55_@_V_45,0,0.0,Do you feel pain somewhere? — elbow(R),E_55,Symptom
+E_55_@_V_44,0,0.0,Do you feel pain somewhere? — lateral side of the foot(L),E_55,Symptom
+E_57_@_V_197,0,0.0,Does the pain radiate to another location? — epigastric,E_57,Symptom
+E_57_@_V_190,0,0.0,Does the pain radiate to another location? — vulval vestibule,E_57,Symptom
+E_57_@_V_189,0,0.0,Does the pain radiate to another location? — vermilion(L),E_57,Symptom
+E_57_@_V_188,0,0.0,Does the pain radiate to another location? — vermilion(R),E_57,Symptom
+E_57_@_V_187,0,0.0,Does the pain radiate to another location? — belly,E_57,Symptom
+E_57_@_V_186,0,0.0,Does the pain radiate to another location? — vagina,E_57,Symptom
+E_57_@_V_185,0,0.0,Does the pain radiate to another location? — urethra,E_57,Symptom
+E_57_@_V_176,0,0.0,Does the pain radiate to another location? — trapezius(L),E_57,Symptom
+E_57_@_V_175,0,0.0,Does the pain radiate to another location? — trapezius(R),E_57,Symptom
+E_57_@_V_174,0,0.0,Does the pain radiate to another location? — trachea,E_57,Symptom
+E_57_@_V_173,0,0.0,Does the pain radiate to another location? — tibia(L),E_57,Symptom
+E_55_@_V_31,0,0.0,Do you feel pain somewhere? — biceps(L),E_55,Symptom
+E_55_@_V_30,0,0.0,Do you feel pain somewhere? — biceps(R),E_55,Symptom
+E_55_@_V_28,0,0.0,Do you feel pain somewhere? — forearm(L),E_55,Symptom
+E_55_@_V_59,0,0.0,Do you feel pain somewhere? — upper teeth(R),E_55,Symptom
+E_55_@_V_58,0,0.0,Do you feel pain somewhere? — lower teeth(L),E_55,Symptom
+E_55_@_V_57,0,0.0,Do you feel pain somewhere? — lower teeth(R),E_55,Symptom
+E_55_@_V_52,0,0.0,Do you feel pain somewhere? — thigh(L),E_55,Symptom
+E_55_@_V_51,0,0.0,Do you feel pain somewhere? — thigh(R),E_55,Symptom
+E_55_@_V_50,0,0.0,Do you feel pain somewhere? — iliac crest(L),E_55,Symptom
+E_55_@_V_49,0,0.0,Do you feel pain somewhere? — iliac crest(R),E_55,Symptom
+E_55_@_V_48,0,0.0,Do you feel pain somewhere? — popliteal fossa(L),E_55,Symptom
+E_55_@_V_47,0,0.0,Do you feel pain somewhere? — popliteal fossa(R),E_55,Symptom
+E_133_@_V_16,0,0.0,Where is the affected region located? — groin(R),E_133,Symptom
+E_133_@_V_15,0,0.0,Where is the affected region located? — iliac wing(L),E_133,Symptom
+E_133_@_V_14,0,0.0,Where is the affected region located? — iliac wing(R),E_133,Symptom
+E_130_@_V_157,0,0.0,What color is the rash? — red,E_130,Symptom
+E_130_@_V_138,0,0.0,What color is the rash? — pale,E_130,Symptom
+E_130_@_V_107,0,0.0,What color is the rash? — yellow,E_130,Symptom
+E_130_@_V_86,0,0.0,What color is the rash? — dark,E_130,Symptom
+E_55_@_V_43,0,0.0,Do you feel pain somewhere? — lateral side of the foot(R),E_55,Symptom
+E_55_@_V_42,0,0.0,Do you feel pain somewhere? — commissure(L),E_55,Symptom
+E_55_@_V_41,0,0.0,Do you feel pain somewhere? — commissure(R),E_55,Symptom
+E_55_@_V_40,0,0.0,Do you feel pain somewhere? — lumbar spine,E_55,Symptom
+E_55_@_V_39,0,0.0,Do you feel pain somewhere? — thoracic spine,E_55,Symptom
+E_55_@_V_38,0,0.0,Do you feel pain somewhere? — cervical spine,E_55,Symptom
+E_55_@_V_37,0,0.0,Do you feel pain somewhere? — coccyx,E_55,Symptom
+E_55_@_V_36,0,0.0,Do you feel pain somewhere? — clitoris,E_55,Symptom
+E_133_@_V_33,0,0.0,Where is the affected region located? — thyroid cartilage,E_133,Symptom
+E_133_@_V_32,0,0.0,Where is the affected region located? — mouth,E_133,Symptom
+E_133_@_V_31,0,0.0,Where is the affected region located? — biceps(L),E_133,Symptom
+E_133_@_V_30,0,0.0,Where is the affected region located? — biceps(R),E_133,Symptom
+E_133_@_V_29,0,0.0,Where is the affected region located? — lower chest,E_133,Symptom
+E_133_@_V_28,0,0.0,Where is the affected region located? — forearm(L),E_133,Symptom
+E_133_@_V_27,0,0.0,Where is the affected region located? — forearm(R),E_133,Symptom
+E_133_@_V_25,0,0.0,Where is the affected region located? — back of head,E_133,Symptom
+E_133_@_V_24,0,0.0,Where is the affected region located? — posterior aspect of the ankle(L),E_133,Symptom
+E_133_@_V_23,0,0.0,Where is the affected region located? — posterior aspect of the ankle(R),E_133,Symptom
+E_133_@_V_22,0,0.0,Where is the affected region located? — anus,E_133,Symptom
+E_133_@_V_21,0,0.0,Where is the affected region located? — tonsil(L),E_133,Symptom
+E_133_@_V_20,0,0.0,Where is the affected region located? — tonsil(R),E_133,Symptom
+E_133_@_V_19,0,0.0,Where is the affected region located? — axilla(L),E_133,Symptom
+E_133_@_V_18,0,0.0,Where is the affected region located? — axilla(R),E_133,Symptom
+E_133_@_V_17,0,0.0,Where is the affected region located? — groin(L),E_133,Symptom
+E_133_@_V_51,0,0.0,Where is the affected region located? — thigh(R),E_133,Symptom
+E_133_@_V_50,0,0.0,Where is the affected region located? — iliac crest(L),E_133,Symptom
+E_133_@_V_49,0,0.0,Where is the affected region located? — iliac crest(R),E_133,Symptom
+E_133_@_V_48,0,0.0,Where is the affected region located? — popliteal fossa(L),E_133,Symptom
+E_133_@_V_47,0,0.0,Where is the affected region located? — popliteal fossa(R),E_133,Symptom
+E_133_@_V_46,0,0.0,Where is the affected region located? — elbow(L),E_133,Symptom
+E_133_@_V_45,0,0.0,Where is the affected region located? — elbow(R),E_133,Symptom
+E_133_@_V_44,0,0.0,Where is the affected region located? — lateral side of the foot(L),E_133,Symptom
+E_133_@_V_43,0,0.0,Where is the affected region located? — lateral side of the foot(R),E_133,Symptom
+E_133_@_V_37,0,0.0,Where is the affected region located? — coccyx,E_133,Symptom
+E_133_@_V_36,0,0.0,Where is the affected region located? — clitoris,E_133,Symptom
+E_133_@_V_35,0,0.0,Where is the affected region located? — ankle(L),E_133,Symptom
+E_133_@_V_34,0,0.0,Where is the affected region located? — ankle(R),E_133,Symptom
+E_133_@_V_69,0,0.0,Where is the affected region located? — finger (middle)(R),E_133,Symptom
+E_133_@_V_68,0,0.0,Where is the affected region located? — finger (index)(L),E_133,Symptom
+E_133_@_V_67,0,0.0,Where is the affected region located? — finger (index)(R),E_133,Symptom
+E_133_@_V_66,0,0.0,Where is the affected region located? — finger (little finger)(L),E_133,Symptom
+E_133_@_V_65,0,0.0,Where is the affected region located? — finger (little finger)(R),E_133,Symptom
+E_133_@_V_64,0,0.0,Where is the affected region located? — finger (ring finger)(L),E_133,Symptom
+E_133_@_V_63,0,0.0,Where is the affected region located? — finger (ring finger)(R),E_133,Symptom
+E_133_@_V_62,0,0.0,Where is the affected region located? — top of the head,E_133,Symptom
+E_133_@_V_61,0,0.0,Where is the affected region located? — above the tongue,E_133,Symptom
+E_133_@_V_60,0,0.0,Where is the affected region located? — upper teeth(L),E_133,Symptom
+E_133_@_V_59,0,0.0,Where is the affected region located? — upper teeth(R),E_133,Symptom
+E_133_@_V_58,0,0.0,Where is the affected region located? — lower teeth(L),E_133,Symptom
+E_133_@_V_57,0,0.0,Where is the affected region located? — lower teeth(R),E_133,Symptom
+E_133_@_V_56,0,0.0,Where is the affected region located? — side of the chest(L),E_133,Symptom
+E_133_@_V_55,0,0.0,Where is the affected region located? — side of the chest(R),E_133,Symptom
+E_133_@_V_52,0,0.0,Where is the affected region located? — thigh(L),E_133,Symptom
+E_133_@_V_87,0,0.0,Where is the affected region located? — iliac fossa(R),E_133,Symptom
+E_204_@_V_0,0,0.0,Have you traveled out of the country in the last 4 weeks? — North Africa,E_204,History
+E_204_@_V_1,0,0.0,Have you traveled out of the country in the last 4 weeks? — West Africa,E_204,History
+E_152_@_V_176,0,0.0,Where is the swelling located? — trapezius(L),E_152,Symptom
+E_152_@_V_177,0,0.0,Where is the swelling located? — triceps(R),E_152,Symptom
+E_133_@_V_81,0,0.0,Where is the affected region located? — palmar face of the wrist(L),E_133,Symptom
+E_133_@_V_80,0,0.0,Where is the affected region located? — palmar face of the wrist(R),E_133,Symptom
+E_133_@_V_79,0,0.0,Where is the affected region located? — palmar side of the forearm(L),E_133,Symptom
+E_133_@_V_78,0,0.0,Where is the affected region located? — palmar side of the forearm(R),E_133,Symptom
+E_133_@_V_77,0,0.0,Where is the affected region located? — dorsal aspect of the hand(L),E_133,Symptom
+E_133_@_V_76,0,0.0,Where is the affected region located? — dorsal aspect of the hand(R),E_133,Symptom
+E_133_@_V_75,0,0.0,Where is the affected region located? — dorsal aspect of the wrist(L),E_133,Symptom
+E_133_@_V_74,0,0.0,Where is the affected region located? — dorsal aspect of the wrist(R),E_133,Symptom
+E_133_@_V_73,0,0.0,Where is the affected region located? — dorsal aspect of the foot(L),E_133,Symptom
+E_133_@_V_72,0,0.0,Where is the affected region located? — dorsal aspect of the foot(R),E_133,Symptom
+E_133_@_V_70,0,0.0,Where is the affected region located? — finger (middle)(L),E_133,Symptom
+E_133_@_V_104,0,0.0,Where is the affected region located? — hypochondrium(L),E_133,Symptom
+E_133_@_V_103,0,0.0,Where is the affected region located? — hypochondrium(R),E_133,Symptom
+E_133_@_V_102,0,0.0,Where is the affected region located? — hymen,E_133,Symptom
+E_133_@_V_101,0,0.0,Where is the affected region located? — upper chest,E_133,Symptom
+E_133_@_V_100,0,0.0,Where is the affected region located? — hip(L),E_133,Symptom
+E_133_@_V_99,0,0.0,Where is the affected region located? — hip(R),E_133,Symptom
+E_133_@_V_98,0,0.0,Where is the affected region located? — big toe(L),E_133,Symptom
+E_133_@_V_97,0,0.0,Where is the affected region located? — big toe(R),E_133,Symptom
+E_133_@_V_96,0,0.0,Where is the affected region located? — labia majora(L),E_133,Symptom
+E_133_@_V_95,0,0.0,Where is the affected region located? — labia majora(R),E_133,Symptom
+E_133_@_V_94,0,0.0,Where is the affected region located? — glans,E_133,Symptom
+E_133_@_V_93,0,0.0,Where is the affected region located? — knee(L),E_133,Symptom
+E_133_@_V_92,0,0.0,Where is the affected region located? — knee(R),E_133,Symptom
+E_133_@_V_91,0,0.0,Where is the affected region located? — upper gum,E_133,Symptom
+E_133_@_V_90,0,0.0,Where is the affected region located? — lower gum,E_133,Symptom
+E_133_@_V_88,0,0.0,Where is the affected region located? — iliac fossa(L),E_133,Symptom
+E_133_@_V_122,0,0.0,Where is the affected region located? — nose,E_133,Symptom
+E_133_@_V_121,0,0.0,Where is the affected region located? — jaw,E_133,Symptom
+E_133_@_V_120,0,0.0,Where is the affected region located? — calf(L),E_133,Symptom
+E_133_@_V_119,0,0.0,Where is the affected region located? — calf(R),E_133,Symptom
+E_133_@_V_118,0,0.0,Where is the affected region located? — chin,E_133,Symptom
+E_133_@_V_117,0,0.0,Where is the affected region located? — upper lip(R),E_133,Symptom
+E_133_@_V_116,0,0.0,Where is the affected region located? — bottom lip(R),E_133,Symptom
+E_133_@_V_115,0,0.0,Where is the affected region located? — uvula,E_133,Symptom
+E_133_@_V_114,0,0.0,Where is the affected region located? — renal fossa(L),E_133,Symptom
+E_133_@_V_113,0,0.0,Where is the affected region located? — renal fossa(R),E_133,Symptom
+E_133_@_V_111,0,0.0,Where is the affected region located? — internal cheek(L),E_133,Symptom
+E_133_@_V_110,0,0.0,Where is the affected region located? — internal cheek(R),E_133,Symptom
+E_133_@_V_109,0,0.0,Where is the affected region located? — cheek(L),E_133,Symptom
+E_133_@_V_108,0,0.0,Where is the affected region located? — cheek(R),E_133,Symptom
+E_133_@_V_106,0,0.0,Where is the affected region located? — ischio jambier(L),E_133,Symptom
+E_133_@_V_105,0,0.0,Where is the affected region located? — ischio jambier(R),E_133,Symptom
+E_133_@_V_140,0,0.0,Where is the affected region located? — vaginal wall(R),E_133,Symptom
+E_133_@_V_139,0,0.0,Where is the affected region located? — vaginal wall,E_133,Symptom
+E_133_@_V_137,0,0.0,Where is the affected region located? — palace,E_133,Symptom
+E_133_@_V_136,0,0.0,Where is the affected region located? — toe (3)(L),E_133,Symptom
+E_133_@_V_135,0,0.0,Where is the affected region located? — toe (3)(R),E_133,Symptom
+E_133_@_V_134,0,0.0,Where is the affected region located? — toe (2)(L),E_133,Symptom
+E_133_@_V_133,0,0.0,Where is the affected region located? — toe (2)(R),E_133,Symptom
+E_133_@_V_132,0,0.0,Where is the affected region located? — toe (1)(L),E_133,Symptom
+E_133_@_V_131,0,0.0,Where is the affected region located? — toe (1)(R),E_133,Symptom
+E_133_@_V_130,0,0.0,Where is the affected region located? — ear(L),E_133,Symptom
+E_133_@_V_129,0,0.0,Where is the affected region located? — ear(R),E_133,Symptom
+E_133_@_V_128,0,0.0,Where is the affected region located? — scapula(L),E_133,Symptom
+E_133_@_V_127,0,0.0,Where is the affected region located? — scapula(R),E_133,Symptom
+E_133_@_V_126,0,0.0,Where is the affected region located? — eye(L),E_133,Symptom
+E_133_@_V_125,0,0.0,Where is the affected region located? — eye(R),E_133,Symptom
+E_133_@_V_124,0,0.0,Where is the affected region located? — occiput,E_133,Symptom
+E_133_@_V_159,0,0.0,Where is the affected region located? — breast(R),E_133,Symptom
+E_133_@_V_158,0,0.0,Where is the affected region located? — scrotum,E_133,Symptom
+E_133_@_V_155,0,0.0,Where is the affected region located? — penis,E_133,Symptom
+E_133_@_V_153,0,0.0,Where is the affected region located? — pubis,E_133,Symptom
+E_133_@_V_152,0,0.0,Where is the affected region located? — thumb(L),E_133,Symptom
+E_133_@_V_151,0,0.0,Where is the affected region located? — thumb(R),E_133,Symptom
+E_133_@_V_150,0,0.0,Where is the affected region located? — sole(L),E_133,Symptom
+E_133_@_V_149,0,0.0,Where is the affected region located? — sole(R),E_133,Symptom
+E_133_@_V_148,0,0.0,Where is the affected region located? — pharynx,E_133,Symptom
+E_133_@_V_147,0,0.0,Where is the affected region located? — labia minora(L),E_133,Symptom
+E_133_@_V_146,0,0.0,Where is the affected region located? — labia minora(R),E_133,Symptom
+E_133_@_V_145,0,0.0,Where is the affected region located? — little toe (4)(L),E_133,Symptom
+E_133_@_V_144,0,0.0,Where is the affected region located? — little toe (4)(R),E_133,Symptom
+E_133_@_V_143,0,0.0,Where is the affected region located? — palm(L),E_133,Symptom
+E_133_@_V_142,0,0.0,Where is the affected region located? — palm(R),E_133,Symptom
+E_133_@_V_141,0,0.0,Where is the affected region located? — vaginal wall(L),E_133,Symptom
+E_133_@_V_176,0,0.0,Where is the affected region located? — trapezius(L),E_133,Symptom
+E_133_@_V_175,0,0.0,Where is the affected region located? — trapezius(R),E_133,Symptom
+E_133_@_V_174,0,0.0,Where is the affected region located? — trachea,E_133,Symptom
+E_133_@_V_173,0,0.0,Where is the affected region located? — tibia(L),E_133,Symptom
+E_133_@_V_172,0,0.0,Where is the affected region located? — tibia(R),E_133,Symptom
+E_152_@_V_178,0,0.0,Where is the swelling located? — triceps(L),E_152,Symptom
+E_152_@_V_185,0,0.0,Where is the swelling located? — urethra,E_152,Symptom
+E_133_@_V_169,0,0.0,Where is the affected region located? — testicle(L),E_133,Symptom
+E_133_@_V_168,0,0.0,Where is the affected region located? — testicle(R),E_133,Symptom
+E_133_@_V_167,0,0.0,Where is the affected region located? — temple(L),E_133,Symptom
+E_133_@_V_166,0,0.0,Where is the affected region located? — temple(R),E_133,Symptom
+E_133_@_V_165,0,0.0,Where is the affected region located? — heel(L),E_133,Symptom
+E_133_@_V_164,0,0.0,Where is the affected region located? — heel(R),E_133,Symptom
+E_133_@_V_163,0,0.0,Where is the affected region located? — under the jaw,E_133,Symptom
+E_133_@_V_162,0,0.0,Where is the affected region located? — under the tongue,E_133,Symptom
+E_133_@_V_160,0,0.0,Where is the affected region located? — breast(L),E_133,Symptom
+E_55_@_V_17,0,0.0,Do you feel pain somewhere? — groin(L),E_55,Symptom
+E_55_@_V_16,0,0.0,Do you feel pain somewhere? — groin(R),E_55,Symptom
+E_55_@_V_15,0,0.0,Do you feel pain somewhere? — iliac wing(L),E_55,Symptom
+E_55_@_V_14,0,0.0,Do you feel pain somewhere? — iliac wing(R),E_55,Symptom
+E_55_@_V_114,0,0.0,Do you feel pain somewhere? — renal fossa(L),E_55,Symptom
+E_133_@_V_197,0,0.0,Where is the affected region located? — epigastric,E_133,Symptom
+E_55_@_V_133,0,0.0,Do you feel pain somewhere? — toe (2)(R),E_55,Symptom
+E_152_@_V_167,0,0.0,Where is the swelling located? — temple(L),E_152,Symptom
+E_133_@_V_190,0,0.0,Where is the affected region located? — vulval vestibule,E_133,Symptom
+E_133_@_V_189,0,0.0,Where is the affected region located? — vermilion(L),E_133,Symptom
+E_133_@_V_188,0,0.0,Where is the affected region located? — vermilion(R),E_133,Symptom
+E_55_@_V_105,0,0.0,Do you feel pain somewhere? — ischio jambier(R),E_55,Symptom
+E_133_@_V_186,0,0.0,Where is the affected region located? — vagina,E_133,Symptom
+E_133_@_V_185,0,0.0,Where is the affected region located? — urethra,E_133,Symptom
+E_133_@_V_178,0,0.0,Where is the affected region located? — triceps(L),E_133,Symptom
+E_133_@_V_177,0,0.0,Where is the affected region located? — triceps(R),E_133,Symptom
+E_152_@_V_21,0,0.0,Where is the swelling located? — tonsil(L),E_152,Symptom
+E_152_@_V_20,0,0.0,Where is the swelling located? — tonsil(R),E_152,Symptom
+E_152_@_V_19,0,0.0,Where is the swelling located? — axilla(L),E_152,Symptom
+E_152_@_V_18,0,0.0,Where is the swelling located? — axilla(R),E_152,Symptom
+E_152_@_V_17,0,0.0,Where is the swelling located? — groin(L),E_152,Symptom
+E_152_@_V_16,0,0.0,Where is the swelling located? — groin(R),E_152,Symptom
+E_152_@_V_15,0,0.0,Where is the swelling located? — iliac wing(L),E_152,Symptom
+E_152_@_V_14,0,0.0,Where is the swelling located? — iliac wing(R),E_152,Symptom
+E_152_@_V_186,0,0.0,Where is the swelling located? — vagina,E_152,Symptom
+E_204_@_V_7,0,0.0,Have you traveled out of the country in the last 4 weeks? — South East Asia,E_204,History
+E_55_@_V_27,0,0.0,Do you feel pain somewhere? — forearm(R),E_55,Symptom
+E_55_@_V_24,0,0.0,Do you feel pain somewhere? — posterior aspect of the ankle(L),E_55,Symptom
+E_55_@_V_23,0,0.0,Do you feel pain somewhere? — posterior aspect of the ankle(R),E_55,Symptom
+E_55_@_V_22,0,0.0,Do you feel pain somewhere? — anus,E_55,Symptom
+E_55_@_V_19,0,0.0,Do you feel pain somewhere? — axilla(L),E_55,Symptom
+E_55_@_V_18,0,0.0,Do you feel pain somewhere? — axilla(R),E_55,Symptom
+E_152_@_V_39,0,0.0,Where is the swelling located? — thoracic spine,E_152,Symptom
+E_152_@_V_38,0,0.0,Where is the swelling located? — cervical spine,E_152,Symptom
+E_152_@_V_37,0,0.0,Where is the swelling located? — coccyx,E_152,Symptom
+E_152_@_V_36,0,0.0,Where is the swelling located? — clitoris,E_152,Symptom
+E_152_@_V_33,0,0.0,Where is the swelling located? — thyroid cartilage,E_152,Symptom
+E_152_@_V_32,0,0.0,Where is the swelling located? — mouth,E_152,Symptom
+E_152_@_V_31,0,0.0,Where is the swelling located? — biceps(L),E_152,Symptom
+E_152_@_V_30,0,0.0,Where is the swelling located? — biceps(R),E_152,Symptom
+E_152_@_V_29,0,0.0,Where is the swelling located? — lower chest,E_152,Symptom
+E_152_@_V_28,0,0.0,Where is the swelling located? — forearm(L),E_152,Symptom
+E_152_@_V_27,0,0.0,Where is the swelling located? — forearm(R),E_152,Symptom
+E_152_@_V_26,0,0.0,Where is the swelling located? — back of the neck,E_152,Symptom
+E_152_@_V_25,0,0.0,Where is the swelling located? — back of head,E_152,Symptom
+E_152_@_V_24,0,0.0,Where is the swelling located? — posterior aspect of the ankle(L),E_152,Symptom
+E_152_@_V_23,0,0.0,Where is the swelling located? — posterior aspect of the ankle(R),E_152,Symptom
+E_152_@_V_22,0,0.0,Where is the swelling located? — anus,E_152,Symptom
+E_152_@_V_55,0,0.0,Where is the swelling located? — side of the chest(R),E_152,Symptom
+E_55_@_V_132,0,0.0,Do you feel pain somewhere? — toe (1)(L),E_55,Symptom
+E_152_@_V_53,0,0.0,Where is the swelling located? — side of the neck(R),E_152,Symptom
+E_152_@_V_52,0,0.0,Where is the swelling located? — thigh(L),E_152,Symptom
+E_152_@_V_51,0,0.0,Where is the swelling located? — thigh(R),E_152,Symptom
+E_152_@_V_50,0,0.0,Where is the swelling located? — iliac crest(L),E_152,Symptom
+E_152_@_V_49,0,0.0,Where is the swelling located? — iliac crest(R),E_152,Symptom
+E_152_@_V_48,0,0.0,Where is the swelling located? — popliteal fossa(L),E_152,Symptom
+E_152_@_V_47,0,0.0,Where is the swelling located? — popliteal fossa(R),E_152,Symptom
+E_152_@_V_46,0,0.0,Where is the swelling located? — elbow(L),E_152,Symptom
+E_152_@_V_45,0,0.0,Where is the swelling located? — elbow(R),E_152,Symptom
+E_152_@_V_44,0,0.0,Where is the swelling located? — lateral side of the foot(L),E_152,Symptom
+E_152_@_V_43,0,0.0,Where is the swelling located? — lateral side of the foot(R),E_152,Symptom
+E_152_@_V_42,0,0.0,Where is the swelling located? — commissure(L),E_152,Symptom
+E_152_@_V_41,0,0.0,Where is the swelling located? — commissure(R),E_152,Symptom
+E_152_@_V_40,0,0.0,Where is the swelling located? — lumbar spine,E_152,Symptom
+E_152_@_V_72,0,0.0,Where is the swelling located? — dorsal aspect of the foot(R),E_152,Symptom
+E_152_@_V_70,0,0.0,Where is the swelling located? — finger (middle)(L),E_152,Symptom
+E_152_@_V_69,0,0.0,Where is the swelling located? — finger (middle)(R),E_152,Symptom
+E_152_@_V_68,0,0.0,Where is the swelling located? — finger (index)(L),E_152,Symptom
+E_152_@_V_67,0,0.0,Where is the swelling located? — finger (index)(R),E_152,Symptom
+E_152_@_V_66,0,0.0,Where is the swelling located? — finger (little finger)(L),E_152,Symptom
+E_152_@_V_65,0,0.0,Where is the swelling located? — finger (little finger)(R),E_152,Symptom
+E_152_@_V_64,0,0.0,Where is the swelling located? — finger (ring finger)(L),E_152,Symptom
+E_152_@_V_63,0,0.0,Where is the swelling located? — finger (ring finger)(R),E_152,Symptom
+E_152_@_V_62,0,0.0,Where is the swelling located? — top of the head,E_152,Symptom
+E_152_@_V_61,0,0.0,Where is the swelling located? — above the tongue,E_152,Symptom
+E_152_@_V_60,0,0.0,Where is the swelling located? — upper teeth(L),E_152,Symptom
+E_152_@_V_59,0,0.0,Where is the swelling located? — upper teeth(R),E_152,Symptom
+E_152_@_V_58,0,0.0,Where is the swelling located? — lower teeth(L),E_152,Symptom
+E_152_@_V_57,0,0.0,Where is the swelling located? — lower teeth(R),E_152,Symptom
+E_152_@_V_56,0,0.0,Where is the swelling located? — side of the chest(L),E_152,Symptom
+E_152_@_V_89,0,0.0,Where is the swelling located? — forehead,E_152,Symptom
+E_152_@_V_88,0,0.0,Where is the swelling located? — iliac fossa(L),E_152,Symptom
+E_152_@_V_87,0,0.0,Where is the swelling located? — iliac fossa(R),E_152,Symptom
+E_152_@_V_85,0,0.0,Where is the swelling located? — flank(L),E_152,Symptom
+E_152_@_V_84,0,0.0,Where is the swelling located? — flank(R),E_152,Symptom
+E_152_@_V_83,0,0.0,Where is the swelling located? — buttock(L),E_152,Symptom
+E_152_@_V_82,0,0.0,Where is the swelling located? — buttock(R),E_152,Symptom
+E_152_@_V_81,0,0.0,Where is the swelling located? — palmar face of the wrist(L),E_152,Symptom
+E_152_@_V_80,0,0.0,Where is the swelling located? — palmar face of the wrist(R),E_152,Symptom
+E_152_@_V_79,0,0.0,Where is the swelling located? — palmar side of the forearm(L),E_152,Symptom
+E_152_@_V_78,0,0.0,Where is the swelling located? — palmar side of the forearm(R),E_152,Symptom
+E_152_@_V_77,0,0.0,Where is the swelling located? — dorsal aspect of the hand(L),E_152,Symptom
+E_152_@_V_76,0,0.0,Where is the swelling located? — dorsal aspect of the hand(R),E_152,Symptom
+E_152_@_V_75,0,0.0,Where is the swelling located? — dorsal aspect of the wrist(L),E_152,Symptom
+E_152_@_V_74,0,0.0,Where is the swelling located? — dorsal aspect of the wrist(R),E_152,Symptom
+E_152_@_V_73,0,0.0,Where is the swelling located? — dorsal aspect of the foot(L),E_152,Symptom
+E_152_@_V_105,0,0.0,Where is the swelling located? — ischio jambier(R),E_152,Symptom
+E_152_@_V_104,0,0.0,Where is the swelling located? — hypochondrium(L),E_152,Symptom
+E_152_@_V_103,0,0.0,Where is the swelling located? — hypochondrium(R),E_152,Symptom
+E_152_@_V_102,0,0.0,Where is the swelling located? — hymen,E_152,Symptom
+E_152_@_V_101,0,0.0,Where is the swelling located? — upper chest,E_152,Symptom
+E_152_@_V_100,0,0.0,Where is the swelling located? — hip(L),E_152,Symptom
+E_152_@_V_99,0,0.0,Where is the swelling located? — hip(R),E_152,Symptom
+E_152_@_V_98,0,0.0,Where is the swelling located? — big toe(L),E_152,Symptom
+E_152_@_V_97,0,0.0,Where is the swelling located? — big toe(R),E_152,Symptom
+E_152_@_V_96,0,0.0,Where is the swelling located? — labia majora(L),E_152,Symptom
+E_152_@_V_95,0,0.0,Where is the swelling located? — labia majora(R),E_152,Symptom
+E_152_@_V_94,0,0.0,Where is the swelling located? — glans,E_152,Symptom
+E_152_@_V_93,0,0.0,Where is the swelling located? — knee(L),E_152,Symptom
+E_152_@_V_92,0,0.0,Where is the swelling located? — knee(R),E_152,Symptom
+E_152_@_V_91,0,0.0,Where is the swelling located? — upper gum,E_152,Symptom
+E_152_@_V_90,0,0.0,Where is the swelling located? — lower gum,E_152,Symptom
+E_152_@_V_126,0,0.0,Where is the swelling located? — eye(L),E_152,Symptom
+E_152_@_V_125,0,0.0,Where is the swelling located? — eye(R),E_152,Symptom
+E_152_@_V_124,0,0.0,Where is the swelling located? — occiput,E_152,Symptom
+E_152_@_V_122,0,0.0,Where is the swelling located? — nose,E_152,Symptom
+E_152_@_V_121,0,0.0,Where is the swelling located? — jaw,E_152,Symptom
+E_152_@_V_118,0,0.0,Where is the swelling located? — chin,E_152,Symptom
+E_152_@_V_117,0,0.0,Where is the swelling located? — upper lip(R),E_152,Symptom
+E_152_@_V_116,0,0.0,Where is the swelling located? — bottom lip(R),E_152,Symptom
+E_152_@_V_115,0,0.0,Where is the swelling located? — uvula,E_152,Symptom
+E_152_@_V_114,0,0.0,Where is the swelling located? — renal fossa(L),E_152,Symptom
+E_152_@_V_113,0,0.0,Where is the swelling located? — renal fossa(R),E_152,Symptom
+E_152_@_V_111,0,0.0,Where is the swelling located? — internal cheek(L),E_152,Symptom
+E_152_@_V_110,0,0.0,Where is the swelling located? — internal cheek(R),E_152,Symptom
+E_152_@_V_109,0,0.0,Where is the swelling located? — cheek(L),E_152,Symptom
+E_152_@_V_108,0,0.0,Where is the swelling located? — cheek(R),E_152,Symptom
+E_152_@_V_106,0,0.0,Where is the swelling located? — ischio jambier(L),E_152,Symptom
+E_152_@_V_54,0,0.0,Where is the swelling located? — side of the neck(L),E_152,Symptom
+E_152_@_V_142,0,0.0,Where is the swelling located? — palm(R),E_152,Symptom
+E_152_@_V_141,0,0.0,Where is the swelling located? — vaginal wall(L),E_152,Symptom
+E_152_@_V_140,0,0.0,Where is the swelling located? — vaginal wall(R),E_152,Symptom
+E_152_@_V_139,0,0.0,Where is the swelling located? — vaginal wall,E_152,Symptom
+E_152_@_V_137,0,0.0,Where is the swelling located? — palace,E_152,Symptom
+E_152_@_V_136,0,0.0,Where is the swelling located? — toe (3)(L),E_152,Symptom
+E_152_@_V_135,0,0.0,Where is the swelling located? — toe (3)(R),E_152,Symptom
+E_152_@_V_134,0,0.0,Where is the swelling located? — toe (2)(L),E_152,Symptom
+E_152_@_V_133,0,0.0,Where is the swelling located? — toe (2)(R),E_152,Symptom
+E_152_@_V_132,0,0.0,Where is the swelling located? — toe (1)(L),E_152,Symptom
+E_152_@_V_131,0,0.0,Where is the swelling located? — toe (1)(R),E_152,Symptom
+E_152_@_V_130,0,0.0,Where is the swelling located? — ear(L),E_152,Symptom
+E_152_@_V_129,0,0.0,Where is the swelling located? — ear(R),E_152,Symptom
+E_152_@_V_128,0,0.0,Where is the swelling located? — scapula(L),E_152,Symptom
+E_152_@_V_127,0,0.0,Where is the swelling located? — scapula(R),E_152,Symptom
+E_152_@_V_163,0,0.0,Where is the swelling located? — under the jaw,E_152,Symptom
+E_152_@_V_162,0,0.0,Where is the swelling located? — under the tongue,E_152,Symptom
+E_152_@_V_160,0,0.0,Where is the swelling located? — breast(L),E_152,Symptom
+E_152_@_V_159,0,0.0,Where is the swelling located? — breast(R),E_152,Symptom
+E_152_@_V_158,0,0.0,Where is the swelling located? — scrotum,E_152,Symptom
+E_152_@_V_155,0,0.0,Where is the swelling located? — penis,E_152,Symptom
+E_152_@_V_153,0,0.0,Where is the swelling located? — pubis,E_152,Symptom
+E_152_@_V_152,0,0.0,Where is the swelling located? — thumb(L),E_152,Symptom
+E_152_@_V_151,0,0.0,Where is the swelling located? — thumb(R),E_152,Symptom
+E_152_@_V_150,0,0.0,Where is the swelling located? — sole(L),E_152,Symptom
+E_152_@_V_149,0,0.0,Where is the swelling located? — sole(R),E_152,Symptom
+E_152_@_V_148,0,0.0,Where is the swelling located? — pharynx,E_152,Symptom
+E_152_@_V_147,0,0.0,Where is the swelling located? — labia minora(L),E_152,Symptom
+E_152_@_V_146,0,0.0,Where is the swelling located? — labia minora(R),E_152,Symptom
+E_152_@_V_145,0,0.0,Where is the swelling located? — little toe (4)(L),E_152,Symptom
+E_152_@_V_144,0,0.0,Where is the swelling located? — little toe (4)(R),E_152,Symptom
+E_55_@_V_113,0,0.0,Do you feel pain somewhere? — renal fossa(R),E_55,Symptom
+E_55_@_V_111,0,0.0,Do you feel pain somewhere? — internal cheek(L),E_55,Symptom
+E_55_@_V_110,0,0.0,Do you feel pain somewhere? — internal cheek(R),E_55,Symptom
+E_55_@_V_106,0,0.0,Do you feel pain somewhere? — ischio jambier(L),E_55,Symptom
+E_55_@_V_131,0,0.0,Do you feel pain somewhere? — toe (1)(R),E_55,Symptom
+E_204_@_V_2,0,0.0,Have you traveled out of the country in the last 4 weeks? — South Africa,E_204,History
+E_55_@_V_96,0,0.0,Do you feel pain somewhere? — labia majora(L),E_55,Symptom
+E_55_@_V_95,0,0.0,Do you feel pain somewhere? — labia majora(R),E_55,Symptom
+E_55_@_V_94,0,0.0,Do you feel pain somewhere? — glans,E_55,Symptom
+E_55_@_V_130,0,0.0,Do you feel pain somewhere? — ear(L),E_55,Symptom
+E_204_@_V_13,0,0.0,Have you traveled out of the country in the last 4 weeks? — Oceania,E_204,History
+E_204_@_V_9,0,0.0,Have you traveled out of the country in the last 4 weeks? — Europe,E_204,History
+E_204_@_V_8,0,0.0,Have you traveled out of the country in the last 4 weeks? — Caraibes,E_204,History
+E_152_@_V_166,0,0.0,Where is the swelling located? — temple(R),E_152,Symptom
+E_152_@_V_165,0,0.0,Where is the swelling located? — heel(L),E_152,Symptom
+E_152_@_V_164,0,0.0,Where is the swelling located? — heel(R),E_152,Symptom
+E_55_@_V_129,0,0.0,Do you feel pain somewhere? — ear(R),E_55,Symptom
+E_55_@_V_104,0,0.0,Do you feel pain somewhere? — hypochondrium(L),E_55,Symptom
+E_55_@_V_103,0,0.0,Do you feel pain somewhere? — hypochondrium(R),E_55,Symptom
+E_55_@_V_102,0,0.0,Do you feel pain somewhere? — hymen,E_55,Symptom
+E_55_@_V_100,0,0.0,Do you feel pain somewhere? — hip(L),E_55,Symptom
+E_55_@_V_99,0,0.0,Do you feel pain somewhere? — hip(R),E_55,Symptom
+E_55_@_V_98,0,0.0,Do you feel pain somewhere? — big toe(L),E_55,Symptom
+E_55_@_V_97,0,0.0,Do you feel pain somewhere? — big toe(R),E_55,Symptom
+E_55_@_V_121,0,0.0,Do you feel pain somewhere? — jaw,E_55,Symptom
+E_55_@_V_93,0,0.0,Do you feel pain somewhere? — knee(L),E_55,Symptom
+E_152_@_V_197,0,0.0,Where is the swelling located? — epigastric,E_152,Symptom
+E_55_@_V_118,0,0.0,Do you feel pain somewhere? — chin,E_55,Symptom
+E_55_@_V_117,0,0.0,Do you feel pain somewhere? — upper lip(R),E_55,Symptom
+E_55_@_V_116,0,0.0,Do you feel pain somewhere? — bottom lip(R),E_55,Symptom
+E_55_@_V_115,0,0.0,Do you feel pain somewhere? — uvula,E_55,Symptom
+E_204_@_V_6,0,0.0,Have you traveled out of the country in the last 4 weeks? — Asia,E_204,History
+E_204_@_V_5,0,0.0,Have you traveled out of the country in the last 4 weeks? — South America,E_204,History
+E_152_@_V_195,0,0.0,Where is the swelling located? — shoulder(L),E_152,Symptom
+E_54_@_V_196,0,0.0,Characterize your pain: — scary,E_54,Symptom
+E_54_@_V_193,0,0.0,Characterize your pain: — sickening,E_54,Symptom
+E_152_@_V_194,0,0.0,Where is the swelling located? — shoulder(R),E_152,Symptom
+E_54_@_V_184,0,0.0,Characterize your pain: — a pulse,E_54,Symptom
+E_54_@_V_182,0,0.0,Characterize your pain: — a cramp,E_54,Symptom
+E_152_@_V_190,0,0.0,Where is the swelling located? — vulval vestibule,E_152,Symptom
+E_54_@_V_112,0,0.0,Characterize your pain: — haunting,E_54,Symptom
+E_152_@_V_175,0,0.0,Where is the swelling located? — trapezius(R),E_152,Symptom
+E_152_@_V_174,0,0.0,Where is the swelling located? — trachea,E_152,Symptom
+E_152_@_V_171,0,0.0,Where is the swelling located? — posterior chest wall(L),E_152,Symptom
+E_152_@_V_170,0,0.0,Where is the swelling located? — posterior chest wall(R),E_152,Symptom
+E_152_@_V_169,0,0.0,Where is the swelling located? — testicle(L),E_152,Symptom
+E_152_@_V_168,0,0.0,Where is the swelling located? — testicle(R),E_152,Symptom
+E_152_@_V_143,0,0.0,Where is the swelling located? — palm(L),E_152,Symptom

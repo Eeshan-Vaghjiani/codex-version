@@ -1,0 +1,37 @@
+{
+  "model_name": "Random Forest",
+  "model_version": "1.0",
+  "purpose": "Respiratory health awareness and prediction system",
+  "number_of_diseases": 21,
+  "number_of_model_features": 198,
+  "training_samples": 443075,
+  "validation_samples": 55808,
+  "test_samples": 56817,
+  "random_state": 42,
+  "model_parameters": {
+    "n_estimators": 400,
+    "max_depth": null,
+    "min_samples_leaf": 1,
+    "class_weight": null
+  },
+  "validation_metrics": {
+    "accuracy": 0.9938539277522935,
+    "macro_precision": 0.9947372766905114,
+    "macro_recall": 0.9915937442923085,
+    "macro_f1": 0.9926634637257763,
+    "weighted_f1": 0.9937470047343206,
+    "top3_accuracy": 1.0,
+    "log_loss": 0.023589690235875566
+  },
+  "test_metrics": {
+    "accuracy": 0.9944206839502262,
+    "macro_precision": 0.9951525561021215,
+    "macro_recall": 0.9922198684726269,
+    "macro_f1": 0.9932958633652214,
+    "weighted_f1": 0.9943360632624996,
+    "top3_accuracy": 1.0,
+    "log_loss": 0.02245881495763016
+  },
+  "model_file": "respiratory_random_forest_v1.joblib",
+  "model_size_mb": 52.778987884521484
+}

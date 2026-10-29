@@ -1,0 +1,1887 @@
+{
+  "purpose": "Observed software behavior; no diagnostic ground truth or clinical validation",
+  "demographics": {
+    "age": 21,
+    "sex": "M"
+  },
+  "cases": [
+    {
+      "case": 1,
+      "input": "I have fever.",
+      "mapping": {
+        "input_text": "I have fever.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "cough"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have fever.",
+        "confirmed_codes": [
+          "fever"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "cough",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "fever"
+        ],
+        "effective_confirmed_codes": [
+          "fever"
+        ],
+        "model_features": [
+          "E_91"
+        ],
+        "explicitly_absent_features": [
+          "E_66",
+          "E_201"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "fever": "present",
+            "shortness_of_breath": "absent",
+            "cough": "absent"
+          },
+          "duration": null,
+          "symptom_durations": {},
+          "severity": {},
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "cough",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "cough"
+          ],
+          "context_note": "Duration and severity are retained for guidance, not used by the model. V1 has no negative-evidence encoding; V2 has absence columns but was not trained on negative evidence. A no answer is recorded; it does not supply learned negative evidence to either saved model.",
+          "lossy_feature_note": null
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "cough",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "prediction_id": "b877b2a4-8f97-4c50-b40b-4ed084d37de4",
+        "model_version": "v2_23class_prototype",
+        "status": "insufficient_evidence",
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "limited_supported_evidence"
+        ],
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "uncertainty_message": "This information cannot reliably distinguish a condition. The model is experimental and has not been clinically validated. Seek professional assessment based on your symptoms.",
+        "score_note": "Model scores are uncalibrated and are not validated clinical probabilities."
+      }
+    },
+    {
+      "case": 2,
+      "input": "Runny nose, for a few days with headache and sore throat.",
+      "mapping": {
+        "input_text": "Runny nose, for a few days with headache and sore throat.",
+        "recognised_symptoms": [
+          {
+            "code": "sore_throat",
+            "display_name": "Sore throat",
+            "features": [
+              "E_97"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "sore throat",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          },
+          {
+            "code": "runny_blocked_nose",
+            "display_name": "Runny or blocked nose",
+            "features": [
+              "E_181"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "runny nose",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": null,
+            "duration_min_days": null,
+            "duration_text": "for a few days",
+            "duration_unit": "days",
+            "severity": null,
+            "confirmed": false
+          },
+          {
+            "code": "headache",
+            "display_name": "Headache",
+            "features": [
+              "E_53",
+              "E_55_@_V_89"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "headache",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "cough",
+        "fever"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "Runny nose, for a few days with headache and sore throat.",
+        "confirmed_codes": [
+          "sore_throat",
+          "runny_blocked_nose",
+          "headache"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "cough",
+            "answer": "no"
+          },
+          {
+            "question_id": "fever",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "sore_throat",
+          "runny_blocked_nose",
+          "headache"
+        ],
+        "effective_confirmed_codes": [
+          "sore_throat",
+          "runny_blocked_nose",
+          "headache"
+        ],
+        "model_features": [
+          "E_97",
+          "E_181",
+          "E_53",
+          "E_55_@_V_89"
+        ],
+        "explicitly_absent_features": [
+          "E_66",
+          "E_201",
+          "E_91"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "sore_throat": "present",
+            "runny_blocked_nose": "present",
+            "headache": "present",
+            "shortness_of_breath": "absent",
+            "cough": "absent",
+            "fever": "absent"
+          },
+          "duration": null,
+          "symptom_durations": {
+            "runny_blocked_nose": {
+              "text": "for a few days",
+              "min_days": null,
+              "max_days": null,
+              "symptom_code": "runny_blocked_nose"
+            }
+          },
+          "severity": {},
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "cough",
+              "answer": "no"
+            },
+            {
+              "question_id": "fever",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "cough",
+            "fever"
+          ],
+          "context_note": "Duration and severity are retained for guidance, not used by the model. V1 has no negative-evidence encoding; V2 has absence columns but was not trained on negative evidence. A no answer is recorded; it does not supply learned negative evidence to either saved model.",
+          "lossy_feature_note": "Location-specific pain cannot be fully represented by the V2 model."
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "cough",
+            "answer": "no"
+          },
+          {
+            "question_id": "fever",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [
+          {
+            "rank": 1,
+            "condition": "URTI",
+            "display_name": "Upper Respiratory Infection (URTI)",
+            "model_confidence_percent": 36.47,
+            "description": "An infection affecting the nose, throat or other upper airways, commonly causing symptoms such as congestion, sore throat and cough."
+          },
+          {
+            "rank": 2,
+            "condition": "Bronchitis",
+            "display_name": "Bronchitis",
+            "model_confidence_percent": 15.67,
+            "description": "Inflammation of the main airways leading to the lungs, commonly causing cough and sometimes increased mucus."
+          },
+          {
+            "rank": 3,
+            "condition": "Viral pharyngitis",
+            "display_name": "Viral Sore Throat",
+            "model_confidence_percent": 11.98,
+            "description": "Inflammation of the throat caused by a virus, commonly resulting in soreness, discomfort or pain when swallowing."
+          }
+        ],
+        "prediction_id": "8fe70c3a-4a72-4bf4-99c8-378c2b044ca7",
+        "status": "prediction_complete",
+        "model_version": "v2_23class_prototype",
+        "feature_count": 66,
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "research_model_not_clinically_validated",
+          "negative_evidence_not_learned"
+        ],
+        "uncertainty_message": "This information cannot reliably distinguish a condition. The model is experimental and has not been clinically validated. Seek professional assessment based on your symptoms.",
+        "score_note": "The confidence score is uncalibrated. It is not a clinically validated probability that you have this condition.",
+        "unsupported_model_features": [
+          "E_55_@_V_89"
+        ],
+        "clinical_validation": false,
+        "model_status": "research_prototype",
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional."
+      }
+    },
+    {
+      "case": 3,
+      "input": "I have a cough and fever.",
+      "mapping": {
+        "input_text": "I have a cough and fever.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "symptom_duration"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have a cough and fever.",
+        "confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "model_features": [
+          "E_91",
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "fever": "present",
+            "cough": "present",
+            "shortness_of_breath": "absent"
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "severity": {},
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration"
+          ],
+          "context_note": "Duration and severity are retained for guidance, not used by the model. V1 has no negative-evidence encoding; V2 has absence columns but was not trained on negative evidence. A no answer is recorded; it does not supply learned negative evidence to either saved model.",
+          "lossy_feature_note": null
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "prediction_id": "15b2314a-20ff-48b7-839d-7ae0fd9c1519",
+        "model_version": "v2_23class_prototype",
+        "status": "insufficient_evidence",
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "limited_supported_evidence"
+        ],
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "uncertainty_message": "This information cannot reliably distinguish a condition. The model is experimental and has not been clinically validated. Seek professional assessment based on your symptoms.",
+        "score_note": "Model scores are uncalibrated and are not validated clinical probabilities."
+      }
+    },
+    {
+      "case": 4,
+      "input": "I have a cough.",
+      "mapping": {
+        "input_text": "I have a cough.",
+        "recognised_symptoms": [
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "symptom_duration",
+        "fever"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have a cough.",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "fever",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "cough"
+        ],
+        "model_features": [
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66",
+          "E_91"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "cough": "present",
+            "shortness_of_breath": "absent",
+            "fever": "absent"
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "severity": {},
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "fever",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration",
+            "fever"
+          ],
+          "context_note": "Duration and severity are retained for guidance, not used by the model. V1 has no negative-evidence encoding; V2 has absence columns but was not trained on negative evidence. A no answer is recorded; it does not supply learned negative evidence to either saved model.",
+          "lossy_feature_note": null
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "fever",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "prediction_id": "6e4d6c80-8de7-40e9-9d92-24688d490bd3",
+        "model_version": "v2_23class_prototype",
+        "status": "insufficient_evidence",
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "limited_supported_evidence"
+        ],
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "uncertainty_message": "This information cannot reliably distinguish a condition. The model is experimental and has not been clinically validated. Seek professional assessment based on your symptoms.",
+        "score_note": "Model scores are uncalibrated and are not validated clinical probabilities."
+      }
+    },
+    {
+      "case": 5,
+      "input": "I have a runny nose, sneezing and a mild cough.",
+      "mapping": {
+        "input_text": "I have a runny nose, sneezing and a mild cough.",
+        "recognised_symptoms": [
+          {
+            "code": "runny_blocked_nose",
+            "display_name": "Runny or blocked nose",
+            "features": [
+              "E_181"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "runny nose",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          },
+          {
+            "code": "sneezing",
+            "display_name": "Sneezing",
+            "features": [],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "sneezing",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": "mild",
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "symptom_duration",
+        "fever"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have a runny nose, sneezing and a mild cough.",
+        "confirmed_codes": [
+          "runny_blocked_nose",
+          "sneezing",
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "fever",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "runny_blocked_nose",
+          "sneezing",
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "runny_blocked_nose",
+          "sneezing",
+          "cough"
+        ],
+        "model_features": [
+          "E_181",
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66",
+          "E_91"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "runny_blocked_nose": "present",
+            "sneezing": "present",
+            "cough": "present",
+            "shortness_of_breath": "absent",
+            "fever": "absent"
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "severity": {
+            "cough": "mild"
+          },
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            },
+            {
+              "question_id": "fever",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration",
+            "fever"
+          ],
+          "context_note": "Duration and severity are retained for guidance, not used by the model. V1 has no negative-evidence encoding; V2 has absence columns but was not trained on negative evidence. A no answer is recorded; it does not supply learned negative evidence to either saved model.",
+          "lossy_feature_note": null
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          },
+          {
+            "question_id": "fever",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "prediction_id": "d0b3b8ed-b721-4e64-a8ed-efe64a6072b6",
+        "model_version": "v2_23class_prototype",
+        "status": "insufficient_evidence",
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "limited_supported_evidence"
+        ],
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "uncertainty_message": "This information cannot reliably distinguish a condition. The model is experimental and has not been clinically validated. Seek professional assessment based on your symptoms.",
+        "score_note": "Model scores are uncalibrated and are not validated clinical probabilities."
+      }
+    },
+    {
+      "case": 6,
+      "input": "I have had a cough and fever for two days.",
+      "mapping": {
+        "input_text": "I have had a cough and fever for two days.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": 2,
+            "duration_min_days": 2,
+            "duration_text": "for two days",
+            "duration_unit": "days",
+            "severity": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": 2,
+            "duration_min_days": 2,
+            "duration_text": "for two days",
+            "duration_unit": "days",
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have had a cough and fever for two days.",
+        "confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "fever",
+          "cough"
+        ],
+        "model_features": [
+          "E_91",
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "fever": "present",
+            "cough": "present",
+            "shortness_of_breath": "absent"
+          },
+          "duration": {
+            "text": "for two days",
+            "min_days": 2,
+            "max_days": 2,
+            "symptom_code": "cough"
+          },
+          "symptom_durations": {
+            "fever": {
+              "text": "for two days",
+              "min_days": 2,
+              "max_days": 2,
+              "symptom_code": "fever"
+            },
+            "cough": {
+              "text": "for two days",
+              "min_days": 2,
+              "max_days": 2,
+              "symptom_code": "cough"
+            }
+          },
+          "severity": {},
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty"
+          ],
+          "context_note": "Duration and severity are retained for guidance, not used by the model. V1 has no negative-evidence encoding; V2 has absence columns but was not trained on negative evidence. A no answer is recorded; it does not supply learned negative evidence to either saved model.",
+          "lossy_feature_note": null
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "prediction_id": "cacb18ae-70e7-48b4-a5ae-9f16470220cd",
+        "model_version": "v2_23class_prototype",
+        "status": "insufficient_evidence",
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "limited_supported_evidence"
+        ],
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "uncertainty_message": "This information cannot reliably distinguish a condition. The model is experimental and has not been clinically validated. Seek professional assessment based on your symptoms.",
+        "score_note": "Model scores are uncalibrated and are not validated clinical probabilities."
+      }
+    },
+    {
+      "case": 7,
+      "input": "I have had a cough for several weeks and have been losing weight.",
+      "mapping": {
+        "input_text": "I have had a cough for several weeks and have been losing weight.",
+        "recognised_symptoms": [
+          {
+            "code": "weight_loss",
+            "display_name": "Unintended weight loss",
+            "features": [
+              "E_162"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "losing weight",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_max_days": null,
+            "duration_min_days": null,
+            "duration_text": "for several weeks",
+            "duration_unit": "weeks",
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "fever"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have had a cough for several weeks and have been losing weight.",
+        "confirmed_codes": [
+          "weight_loss",
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "fever",
+            "answer": "no"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "weight_loss",
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "weight_loss",
+          "cough"
+        ],
+        "model_features": [
+          "E_162",
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_66",
+          "E_91"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "weight_loss": "present",
+            "cough": "present",
+            "shortness_of_breath": "absent",
+            "fever": "absent"
+          },
+          "duration": {
+            "text": "for several weeks",
+            "min_days": null,
+            "max_days": null,
+            "symptom_code": "cough"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "for several weeks",
+              "min_days": null,
+              "max_days": null,
+              "symptom_code": "cough"
+            }
+          },
+          "severity": {},
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "fever",
+              "answer": "no"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "fever"
+          ],
+          "context_note": "Duration and severity are retained for guidance, not used by the model. V1 has no negative-evidence encoding; V2 has absence columns but was not trained on negative evidence. A no answer is recorded; it does not supply learned negative evidence to either saved model.",
+          "lossy_feature_note": null
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "fever",
+            "answer": "no"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "prediction_id": "b7488e92-307a-476f-bf27-d6413addaab1",
+        "model_version": "v2_23class_prototype",
+        "status": "insufficient_evidence",
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "limited_supported_evidence"
+        ],
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Arrange professional medical assessment promptly for prolonged cough or unexplained weight loss. Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "uncertainty_message": "This information cannot reliably distinguish a condition. The model is experimental and has not been clinically validated. Seek professional assessment based on your symptoms.",
+        "score_note": "Model scores are uncalibrated and are not validated clinical probabilities."
+      }
+    },
+    {
+      "case": 8,
+      "input": "I have a cough and I am struggling to breathe.",
+      "mapping": {
+        "input_text": "I have a cough and I am struggling to breathe.",
+        "recognised_symptoms": [
+          {
+            "code": "shortness_of_breath",
+            "display_name": "Significant shortness of breath",
+            "features": [
+              "E_66"
+            ],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "struggling to breathe",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "confirmed": false,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_text": null,
+            "duration_unit": null,
+            "severity": null
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": true,
+        "safety_status": "urgent_review",
+        "requires_confirmation": false,
+        "health_guidance": "A warning sign was detected. Seek urgent medical assessment. If breathing difficulty is severe, you cannot speak normally, or symptoms are rapidly worsening, seek emergency care now. Do not wait to complete this questionnaire.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional."
+      },
+      "questions": [],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have a cough and I am struggling to breathe.",
+        "confirmed_codes": [
+          "shortness_of_breath"
+        ],
+        "follow_up_answers": []
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "shortness_of_breath"
+        ],
+        "effective_confirmed_codes": [
+          "shortness_of_breath"
+        ],
+        "model_features": [],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "follow_up_answers": []
+        },
+        "follow_up_answers": [],
+        "has_red_flag": true,
+        "predictions": [],
+        "prediction_id": "edc51455-c393-4d39-b28f-684c506ee4a4",
+        "status": "urgent_review",
+        "red_flag_symptoms": [
+          {
+            "code": "shortness_of_breath",
+            "display_name": "Significant shortness of breath",
+            "features": [
+              "E_66"
+            ],
+            "kind": "symptom",
+            "is_red_flag": true,
+            "matched_text": "struggling to breathe",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "confirmed": false,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_text": null,
+            "duration_unit": null,
+            "severity": null
+          }
+        ],
+        "health_guidance": "A warning sign was detected. Seek urgent medical assessment. If breathing difficulty is severe, you cannot speak normally, or symptoms are rapidly worsening, seek emergency care now. Do not wait to complete this questionnaire.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional."
+      }
+    },
+    {
+      "case": 9,
+      "input": "I feel unwell.",
+      "mapping": {
+        "input_text": "I feel unwell.",
+        "recognised_symptoms": [],
+        "unmatched_wording": [
+          {
+            "unmatched_text": "unwell",
+            "suggestions": []
+          }
+        ],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I feel unwell.",
+        "confirmed_codes": [],
+        "follow_up_answers": []
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [],
+        "effective_confirmed_codes": [],
+        "model_features": [],
+        "explicitly_absent_features": [],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {},
+          "duration": null,
+          "symptom_durations": {},
+          "severity": {},
+          "follow_up_answers": [],
+          "questions_asked": [],
+          "context_note": "Duration and severity are retained for guidance, not used by the model. V1 has no negative-evidence encoding; V2 has absence columns but was not trained on negative evidence. A no answer is recorded; it does not supply learned negative evidence to either saved model.",
+          "lossy_feature_note": null
+        },
+        "follow_up_answers": [],
+        "has_red_flag": false,
+        "predictions": [],
+        "status": "insufficient_evidence",
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "no_supported_present_symptoms"
+        ],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "uncertainty_message": "This information cannot reliably distinguish a condition. The model is experimental and has not been clinically validated. Seek professional assessment based on your symptoms.",
+        "score_note": "Model scores are uncalibrated and are not validated clinical probabilities."
+      }
+    },
+    {
+      "case": 10,
+      "input": "I have a cough, but I do not have a fever.",
+      "mapping": {
+        "input_text": "I have a cough, but I do not have a fever.",
+        "recognised_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          },
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "cough",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "fever",
+            "language": "en",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "symptom_duration"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "I have a cough, but I do not have a fever.",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "cough"
+        ],
+        "model_features": [
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_91",
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "en",
+          "symptom_states": {
+            "fever": "absent",
+            "cough": "present",
+            "shortness_of_breath": "absent"
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "severity": {},
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration"
+          ],
+          "context_note": "Duration and severity are retained for guidance, not used by the model. V1 has no negative-evidence encoding; V2 has absence columns but was not trained on negative evidence. A no answer is recorded; it does not supply learned negative evidence to either saved model.",
+          "lossy_feature_note": null
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "prediction_id": "91fead17-b75e-48a5-88a5-9e08ee5594ec",
+        "model_version": "v2_23class_prototype",
+        "status": "insufficient_evidence",
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "limited_supported_evidence"
+        ],
+        "unsupported_model_features": [],
+        "confidence_explanation": "The model confidence shows how strongly the submitted symptom pattern matched each condition in the trained model. It is not the probability that you have that condition and it is not a medical diagnosis.",
+        "health_guidance": "Use these results as general health-awareness information. If symptoms persist, worsen, become severe, or concern you, consider seeking assessment from a healthcare professional. A low model score does not mean low medical risk.",
+        "disclaimer": "This system provides health-awareness information only. It does not provide a medical diagnosis and should not replace assessment by a qualified healthcare professional.",
+        "uncertainty_message": "This information cannot reliably distinguish a condition. The model is experimental and has not been clinically validated. Seek professional assessment based on your symptoms.",
+        "score_note": "Model scores are uncalibrated and are not validated clinical probabilities."
+      }
+    },
+    {
+      "case": 11,
+      "input": "Nina homa na kikohozi.",
+      "mapping": {
+        "input_text": "Nina homa na kikohozi.",
+        "recognised_symptoms": [
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "kikohozi",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          },
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "homa",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "symptom_duration"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "Nina homa na kikohozi.",
+        "confirmed_codes": [
+          "cough",
+          "fever"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "cough",
+          "fever"
+        ],
+        "effective_confirmed_codes": [
+          "cough",
+          "fever"
+        ],
+        "model_features": [
+          "E_201",
+          "E_91"
+        ],
+        "explicitly_absent_features": [
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "sw",
+          "symptom_states": {
+            "cough": "present",
+            "fever": "present",
+            "shortness_of_breath": "absent"
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "severity": {},
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration"
+          ],
+          "context_note": "Muda na ukali wa dalili huhifadhiwa kwa ushauri; modeli hazitumii taarifa hizi. Modeli hizi hazijafunzwa kutumia ushahidi wa kutokuwepo kwa dalili. Jibu la hapana huhifadhiwa lakini halitoi ushahidi hasi uliofunzwa kwa modeli.",
+          "lossy_feature_note": null
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "prediction_id": "bbd9f648-6763-45ed-8d52-807afe1da077",
+        "model_version": "v2_23class_prototype",
+        "status": "insufficient_evidence",
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "limited_supported_evidence"
+        ],
+        "unsupported_model_features": [],
+        "confidence_explanation": "Alama ya modeli haijarekebishwa kuwa uwezekano wa kitabibu. Si uwezekano kwamba una ugonjwa huu.",
+        "health_guidance": "Dalili zikiendelea, zikizidi au zikikutia wasiwasi, tafuta tathmini ya mtaalamu wa afya. Alama ndogo haimaanishi hatari ndogo.",
+        "disclaimer": "Mfumo huu hutoa taarifa za afya tu. Hautoi utambuzi wa ugonjwa wala kuchukua nafasi ya mtaalamu wa afya.",
+        "uncertainty_message": "Taarifa hizi hazitoshi kutambua ugonjwa kwa uhakika. Modeli hii ni ya utafiti na haijathibitishwa kitabibu. Tafuta tathmini ya mtaalamu wa afya kulingana na dalili zako.",
+        "score_note": "Alama za modeli si uwezekano wa kitabibu uliothibitishwa."
+      }
+    },
+    {
+      "case": 12,
+      "input": "Nina kikohozi lakini sina homa.",
+      "mapping": {
+        "input_text": "Nina kikohozi lakini sina homa.",
+        "recognised_symptoms": [
+          {
+            "code": "cough",
+            "display_name": "Cough",
+            "features": [
+              "E_201"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "kikohozi",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "present",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          },
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "homa",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "unmatched_wording": [],
+        "has_red_flag": false,
+        "absent_symptoms": [
+          {
+            "code": "fever",
+            "display_name": "Fever",
+            "features": [
+              "E_91"
+            ],
+            "kind": "symptom",
+            "is_red_flag": false,
+            "matched_text": "homa",
+            "language": "sw",
+            "match_type": "exact",
+            "match_score": 100.0,
+            "status": "absent",
+            "reported_subject": "patient_or_unspecified",
+            "duration_text": null,
+            "duration_min_days": null,
+            "duration_max_days": null,
+            "duration_unit": null,
+            "severity": null,
+            "confirmed": false
+          }
+        ],
+        "uncertain_symptoms": [],
+        "requires_confirmation": true
+      },
+      "questions": [
+        "breathing_difficulty",
+        "symptom_duration"
+      ],
+      "request": {
+        "age": 21,
+        "sex": "M",
+        "text": "Nina kikohozi lakini sina homa.",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          }
+        ]
+      },
+      "result": {
+        "age": 21,
+        "sex": "M",
+        "confirmed_codes": [
+          "cough"
+        ],
+        "effective_confirmed_codes": [
+          "cough"
+        ],
+        "model_features": [
+          "E_201"
+        ],
+        "explicitly_absent_features": [
+          "E_91",
+          "E_66"
+        ],
+        "assessment_context": {
+          "language": "sw",
+          "symptom_states": {
+            "cough": "present",
+            "fever": "absent",
+            "shortness_of_breath": "absent"
+          },
+          "duration": {
+            "text": "unknown",
+            "min_days": null,
+            "max_days": null,
+            "source": "follow_up",
+            "symptom_code": "cough"
+          },
+          "symptom_durations": {
+            "cough": {
+              "text": "unknown",
+              "min_days": null,
+              "max_days": null,
+              "source": "follow_up",
+              "symptom_code": "cough"
+            }
+          },
+          "severity": {},
+          "follow_up_answers": [
+            {
+              "question_id": "breathing_difficulty",
+              "answer": "no"
+            },
+            {
+              "question_id": "symptom_duration",
+              "answer": "unknown"
+            }
+          ],
+          "questions_asked": [
+            "breathing_difficulty",
+            "symptom_duration"
+          ],
+          "context_note": "Muda na ukali wa dalili huhifadhiwa kwa ushauri; modeli hazitumii taarifa hizi. Modeli hizi hazijafunzwa kutumia ushahidi wa kutokuwepo kwa dalili. Jibu la hapana huhifadhiwa lakini halitoi ushahidi hasi uliofunzwa kwa modeli.",
+          "lossy_feature_note": null
+        },
+        "follow_up_answers": [
+          {
+            "question_id": "breathing_difficulty",
+            "answer": "no"
+          },
+          {
+            "question_id": "symptom_duration",
+            "answer": "unknown"
+          }
+        ],
+        "has_red_flag": false,
+        "predictions": [],
+        "prediction_id": "6638af65-113f-4b8c-b96f-7d89a21a6997",
+        "model_version": "v2_23class_prototype",
+        "status": "insufficient_evidence",
+        "uncertain": true,
+        "uncertainty_reasons": [
+          "limited_supported_evidence"
+        ],
+        "unsupported_model_features": [],
+        "confidence_explanation": "Alama ya modeli haijarekebishwa kuwa uwezekano wa kitabibu. Si uwezekano kwamba una ugonjwa huu.",
+        "health_guidance": "Dalili zikiendelea, zikizidi au zikikutia wasiwasi, tafuta tathmini ya mtaalamu wa afya. Alama ndogo haimaanishi hatari ndogo.",
+        "disclaimer": "Mfumo huu hutoa taarifa za afya tu. Hautoi utambuzi wa ugonjwa wala kuchukua nafasi ya mtaalamu wa afya.",
+        "uncertainty_message": "Taarifa hizi hazitoshi kutambua ugonjwa kwa uhakika. Modeli hii ni ya utafiti na haijathibitishwa kitabibu. Tafuta tathmini ya mtaalamu wa afya kulingana na dalili zako.",
+        "score_note": "Alama za modeli si uwezekano wa kitabibu uliothibitishwa."
+      }
+    }
+  ]
+}

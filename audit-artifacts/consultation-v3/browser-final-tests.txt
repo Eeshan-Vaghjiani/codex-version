@@ -1,0 +1,19 @@
+[WebServer] (node:22100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 10 tests using 1 worker
+
+(node:16808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 e2e\consultation-v3.pw.js:78:3 › useful tentative consultation: English cough and fever (8.5s)
+  ok  2 e2e\consultation-v3.pw.js:78:3 › useful tentative consultation: Swahili cough and fever (5.8s)
+  ok  3 e2e\consultation-v3.pw.js:78:3 › useful tentative consultation: English negation (5.7s)
+  ok  4 e2e\consultation-v3.pw.js:78:3 › useful tentative consultation: Swahili negation (6.1s)
+  ok  5 e2e\consultation-v3.pw.js:78:3 › useful tentative consultation: cough alone (5.6s)
+  ok  6 e2e\consultation-v3.pw.js:78:3 › useful tentative consultation: fever alone (6.1s)
+  ok  7 e2e\consultation-v3.pw.js:131:3 › emergency guidance precedes the consultation: I am struggling to breathe. (2.5s)
+  ok  8 e2e\consultation-v3.pw.js:131:3 › emergency guidance precedes the consultation: Nashindwa kupumua. (2.7s)
+  ok  9 e2e\consultation-v3.pw.js:139:1 › vague input asks for symptoms without inventing a possible disease (2.6s)
+  ok 10 e2e\consultation-v3.pw.js:146:1 › an old abstention cache cannot replace a new consultation (3.9s)
+
+  10 passed (55.1s)

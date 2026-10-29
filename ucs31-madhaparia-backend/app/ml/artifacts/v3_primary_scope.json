@@ -1,0 +1,40 @@
+{
+  "scope_policy_version": "v3_respiratory_scope_v1",
+  "base_policy_sha256": "f065c078632ce183e010c3444a32de5a81d3312f7c698b59fac373dd8aaf0df5",
+  "model_sha256": "ae709ef5ddf6dd7a101fe426b610c3e83ef58aa93cb895ca13e7500220dc889c",
+  "required_present_anchor_features": [
+    "E_103",
+    "E_112",
+    "E_166",
+    "E_169",
+    "E_181",
+    "E_182",
+    "E_190",
+    "E_194",
+    "E_201",
+    "E_203",
+    "E_212",
+    "E_214",
+    "E_217",
+    "E_220",
+    "E_45",
+    "E_65",
+    "E_66",
+    "E_67",
+    "E_77",
+    "E_97"
+  ],
+  "clinical_validation": false,
+  "thresholds_changed": false,
+  "decision_source": "Only the independent unique-source-profile calibration partition; no reporting-validation/test labels used. Respiratory anchors fixed from supported complaint domain before scoped calibration review.",
+  "disabled_buckets": {
+    "1:4": {
+      "disabled": true,
+      "reason": "scoped_source_validation_bound_not_met",
+      "scoped_source_validation_risk_upper_bound": 0.10423359130943184,
+      "accepted_source_profiles_before_override": 1054,
+      "errors_before_override": 80
+    }
+  },
+  "note": "Additional rejection only. Existing score thresholds and original enabled/disabled policy retained. Bound interpretation remains simulated-source and reporting-mechanism dependent; application mapping, severity and emergency gates need separate validation."
+}

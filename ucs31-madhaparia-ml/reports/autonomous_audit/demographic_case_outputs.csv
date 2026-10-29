@@ -1,0 +1,145 @@
+case,version,age,sex,top_condition,raw_score
+1,v1,5,M,Croup,0.6425
+1,v1,5,F,Croup,0.665
+1,v1,21,M,Croup,0.3725
+1,v1,21,F,Croup,0.3875
+1,v1,65,M,Croup,0.3575
+1,v1,65,F,Croup,0.3675
+1,v2,5,M,Croup,0.26976590171757003
+1,v2,5,F,Croup,0.2626870953265611
+1,v2,21,M,Tuberculosis,0.1275078801781478
+1,v2,21,F,Tuberculosis,0.1321491573522832
+1,v2,65,M,Tuberculosis,0.12683031008326398
+1,v2,65,F,Tuberculosis,0.13007985162189503
+2,v1,5,M,Allergic sinusitis,0.255
+2,v1,5,F,Allergic sinusitis,0.305
+2,v1,21,M,Allergic sinusitis,0.455
+2,v1,21,F,Allergic sinusitis,0.485
+2,v1,65,M,Allergic sinusitis,0.4575
+2,v1,65,F,Allergic sinusitis,0.485
+2,v2,5,M,URTI,0.3543837871548911
+2,v2,5,F,URTI,0.3788556194712626
+2,v2,21,M,URTI,0.3646507628440409
+2,v2,21,F,URTI,0.36857320014276396
+2,v2,65,M,URTI,0.3814175794180713
+2,v2,65,F,URTI,0.3952631712018093
+3,v1,5,M,Tuberculosis,0.955
+3,v1,5,F,Tuberculosis,0.935
+3,v1,21,M,Tuberculosis,0.9975
+3,v1,21,F,Tuberculosis,0.9675
+3,v1,65,M,Tuberculosis,0.9925
+3,v1,65,F,Tuberculosis,0.97
+3,v2,5,M,Tuberculosis,0.1729109689373769
+3,v2,5,F,Tuberculosis,0.1741675964720903
+3,v2,21,M,Tuberculosis,0.16181567221484855
+3,v2,21,F,Tuberculosis,0.1645441880916987
+3,v2,65,M,Tuberculosis,0.16085481763576065
+3,v2,65,F,Tuberculosis,0.1622672372379007
+4,v1,5,M,Tuberculosis,0.6175
+4,v1,5,F,Tuberculosis,0.655
+4,v1,21,M,Tuberculosis,0.6275
+4,v1,21,F,Tuberculosis,0.65
+4,v1,65,M,Tuberculosis,0.625
+4,v1,65,F,Tuberculosis,0.625
+4,v2,5,M,Tuberculosis,0.12134868566499594
+4,v2,5,F,Tuberculosis,0.12330993597013867
+4,v2,21,M,Tuberculosis,0.11085349699289958
+4,v2,21,F,Tuberculosis,0.11122782820379776
+4,v2,65,M,Tuberculosis,0.11051909967551428
+4,v2,65,F,Tuberculosis,0.11096907024720676
+5,v1,5,M,Allergic sinusitis,0.555
+5,v1,5,F,Allergic sinusitis,0.56
+5,v1,21,M,Allergic sinusitis,0.685
+5,v1,21,F,Allergic sinusitis,0.6975
+5,v1,65,M,Allergic sinusitis,0.6875
+5,v1,65,F,Allergic sinusitis,0.71
+5,v2,5,M,Allergic sinusitis,0.17422284040817732
+5,v2,5,F,Allergic sinusitis,0.18074987494694544
+5,v2,21,M,Allergic sinusitis,0.14814200676288458
+5,v2,21,F,Allergic sinusitis,0.1508635225412052
+5,v2,65,M,Allergic sinusitis,0.14976549828544616
+5,v2,65,F,Allergic sinusitis,0.15244402410550698
+6,v1,5,M,Tuberculosis,0.955
+6,v1,5,F,Tuberculosis,0.935
+6,v1,21,M,Tuberculosis,0.9975
+6,v1,21,F,Tuberculosis,0.9675
+6,v1,65,M,Tuberculosis,0.9925
+6,v1,65,F,Tuberculosis,0.97
+6,v2,5,M,Tuberculosis,0.17291096893737687
+6,v2,5,F,Tuberculosis,0.17416759647209032
+6,v2,21,M,Tuberculosis,0.16181567221484852
+6,v2,21,F,Tuberculosis,0.16454418809169868
+6,v2,65,M,Tuberculosis,0.16085481763576065
+6,v2,65,F,Tuberculosis,0.16226723723790076
+7,v1,5,M,Tuberculosis,0.8125
+7,v1,5,F,Tuberculosis,0.8325
+7,v1,21,M,Tuberculosis,0.8175
+7,v1,21,F,Tuberculosis,0.825
+7,v1,65,M,Tuberculosis,0.8225
+7,v1,65,F,Tuberculosis,0.82
+7,v2,5,M,Tuberculosis,0.6773505890172916
+7,v2,5,F,Tuberculosis,0.6939834827389787
+7,v2,21,M,Tuberculosis,0.6917710233247171
+7,v2,21,F,Tuberculosis,0.6968472978905409
+7,v2,65,M,Tuberculosis,0.5591887598599847
+7,v2,65,F,Tuberculosis,0.5078252878094542
+8,v1,5,M,Tuberculosis,0.6425
+8,v1,5,F,Tuberculosis,0.7075
+8,v1,21,M,Tuberculosis,0.7325
+8,v1,21,F,Tuberculosis,0.8025
+8,v1,65,M,Tuberculosis,0.7925
+8,v1,65,F,Tuberculosis,0.7675
+8,v2,5,M,Bronchospasm / acute asthma exacerbation,0.2649309372115428
+8,v2,5,F,Bronchospasm / acute asthma exacerbation,0.2510369953443623
+8,v2,21,M,Bronchospasm / acute asthma exacerbation,0.2034121465559087
+8,v2,21,F,Bronchospasm / acute asthma exacerbation,0.20232670470408604
+8,v2,65,M,Bronchospasm / acute asthma exacerbation,0.18812399742221295
+8,v2,65,F,Bronchospasm / acute asthma exacerbation,0.18925703947186878
+9,v1,5,M,Croup,0.3325
+9,v1,5,F,Croup,0.315
+9,v1,21,M,Whooping cough,0.1825
+9,v1,21,F,Allergic sinusitis,0.205
+9,v1,65,M,Allergic sinusitis,0.185
+9,v1,65,F,Allergic sinusitis,0.2125
+9,v2,5,M,Croup,0.1882594214006657
+9,v2,5,F,Croup,0.18408518718418104
+9,v2,21,M,Tuberculosis,0.08526295921727271
+9,v2,21,F,Tuberculosis,0.08749485598505226
+9,v2,65,M,Tuberculosis,0.0850170181871379
+9,v2,65,F,Tuberculosis,0.08724891495491746
+10,v1,5,M,Tuberculosis,0.6175
+10,v1,5,F,Tuberculosis,0.655
+10,v1,21,M,Tuberculosis,0.6275
+10,v1,21,F,Tuberculosis,0.65
+10,v1,65,M,Tuberculosis,0.625
+10,v1,65,F,Tuberculosis,0.625
+10,v2,5,M,Tuberculosis,0.12134868566499594
+10,v2,5,F,Tuberculosis,0.12330993597013867
+10,v2,21,M,Tuberculosis,0.11085349699289956
+10,v2,21,F,Tuberculosis,0.11122782820379779
+10,v2,65,M,Tuberculosis,0.11051909967551428
+10,v2,65,F,Tuberculosis,0.11096907024720676
+11,v1,5,M,Tuberculosis,0.955
+11,v1,5,F,Tuberculosis,0.935
+11,v1,21,M,Tuberculosis,0.9975
+11,v1,21,F,Tuberculosis,0.9675
+11,v1,65,M,Tuberculosis,0.9925
+11,v1,65,F,Tuberculosis,0.97
+11,v2,5,M,Tuberculosis,0.17291096893737684
+11,v2,5,F,Tuberculosis,0.17416759647209035
+11,v2,21,M,Tuberculosis,0.16181567221484855
+11,v2,21,F,Tuberculosis,0.16454418809169868
+11,v2,65,M,Tuberculosis,0.16085481763576065
+11,v2,65,F,Tuberculosis,0.16226723723790076
+12,v1,5,M,Tuberculosis,0.6175
+12,v1,5,F,Tuberculosis,0.655
+12,v1,21,M,Tuberculosis,0.6275
+12,v1,21,F,Tuberculosis,0.65
+12,v1,65,M,Tuberculosis,0.625
+12,v1,65,F,Tuberculosis,0.625
+12,v2,5,M,Tuberculosis,0.12134868566499594
+12,v2,5,F,Tuberculosis,0.12330993597013867
+12,v2,21,M,Tuberculosis,0.11085349699289958
+12,v2,21,F,Tuberculosis,0.11122782820379779
+12,v2,65,M,Tuberculosis,0.11051909967551428
+12,v2,65,F,Tuberculosis,0.11096907024720676

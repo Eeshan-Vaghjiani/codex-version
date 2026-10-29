@@ -1,0 +1,1 @@
+import{pt as e}from"./SeriesRegistry-D9skVCBF.js";import{r as t,t as n}from"./TreemapSeries-Cz1t3NTp.js";var r=e;r.Breadcrumbs=r.Breadcrumbs||t,r.Breadcrumbs.compose(r.Chart,r.defaultOptions),n.compose(r.Series);

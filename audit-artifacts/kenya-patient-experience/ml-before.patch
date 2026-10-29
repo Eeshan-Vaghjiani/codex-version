@@ -1,0 +1,1601 @@
+diff --git a/inference/backend_adapter.py b/inference/backend_adapter.py
+index e2c3098..62ccdd7 100644
+--- a/inference/backend_adapter.py
++++ b/inference/backend_adapter.py
+@@ -7,6 +7,9 @@ Converts confirmed DDXPlus evidence codes into the saved
+ Important:
+ - Rejected NLP suggestions are NOT explicit symptom absences.
+ - Unreported symptoms remain unknown.
++- The frozen prototype never learned a split on an absence column. Explicit
++  absences are preserved for state integrity but do not affect its raw scores.
++- Duration and severity are not supported model inputs.
+ - The backend must perform red-flag checks before prediction.
+ - Model outputs are not medical diagnoses.
+ """
+diff --git a/inference/prediction_confidence.py b/inference/prediction_confidence.py
+index aacddcb..64d4e9b 100644
+--- a/inference/prediction_confidence.py
++++ b/inference/prediction_confidence.py
+@@ -24,6 +24,9 @@ def assess_prediction(
+     if len(classes) < 2 or len(classes) != len(scores):
+         raise ValueError("Classes and scores must have matching lengths >= 2.")
+ 
++    if len(classes) != len(set(classes)) or any(not label for label in classes):
++        raise ValueError("Classes must have unique non-empty labels.")
++
+     if not 0 <= min_confidence <= 1:
+         raise ValueError("min_confidence must be between 0 and 1.")
+ 
+diff --git a/inference/v2_predictor.py b/inference/v2_predictor.py
+index 9bc72c2..fa637d6 100644
+--- a/inference/v2_predictor.py
++++ b/inference/v2_predictor.py
+@@ -30,7 +30,9 @@ def load_v2_resources():
+ 
+     feature_names = schema["feature_names"]
+ 
+-    if len(feature_names) != 66:
++    if (len(feature_names) != 66
++            or not all(isinstance(name, str) and name for name in feature_names)
++            or len(set(feature_names)) != 66):
+         raise ValueError("Expected exactly 66 V2 features.")
+ 
+     if model.n_features_in_ != len(feature_names):
+@@ -39,6 +41,12 @@ def load_v2_resources():
+     if len(model.classes_) != 23:
+         raise ValueError("Expected exactly 23 prediction classes.")
+ 
++    if len(set(str(label) for label in model.classes_)) != 23:
++        raise ValueError("Model classes must be unique.")
++
++    if not callable(getattr(model, "predict_proba", None)):
++        raise ValueError("Saved model must support predict_proba.")
++
+     if hasattr(model, "feature_names_in_"):
+         if list(model.feature_names_in_) != feature_names:
+             raise ValueError("Model feature order does not match schema.")
+@@ -89,6 +97,8 @@ def predict_v2(feature_values):
+         if feature == "AGE":
+             if value < 0:
+                 raise ValueError("AGE must be non-negative.")
++            if value > 120:
++                raise ValueError("AGE must not exceed 120.")
+         elif value not in (0.0, 1.0):
+             raise ValueError(
+                 f"{feature} must be encoded as 0 or 1."
+@@ -122,4 +132,26 @@ def predict_v2(feature_values):
+ 
+     result["model_version"] = "v2_23class_prototype"
+ 
++    # Score separation alone cannot establish clinical certainty. The frozen
++    # research artifact has no independent real-patient validation, including
++    # for its two synthetic extension classes. Keep its raw scores unchanged.
++    result["model_score_ambiguous"] = result["uncertain"]
++    result["uncertain"] = True
++    result["uncertainty_reasons"].append("not_clinically_validated")
++    result["model_status"] = "research_prototype"
++    result["clinical_validation"] = False
++    result["message"] = (
++        "This experimental model suggests a condition pattern, but cannot "
++        "establish a diagnosis or rule out serious illness."
++    )
++    used_features = {
++        feature_names[int(index)]
++        for estimator in getattr(model, "estimators_", [])
++        for index in estimator.tree_.feature if index >= 0
++    }
++    result["learned_absence_features"] = sorted(
++        feature for feature in used_features if feature.endswith("__absent")
++    )
++    result["duration_features_supported"] = False
++
+     return result
+diff --git a/nlp/canonical_symptoms.json b/nlp/canonical_symptoms.json
+index a72c9f0..54d18eb 100644
+--- a/nlp/canonical_symptoms.json
++++ b/nlp/canonical_symptoms.json
+@@ -11,9 +11,10 @@
+       "en": [
+         "fever",
+         "high temperature",
+-        "temperature",
+         "hot body",
+-        "feeling feverish"
++        "feeling feverish",
++        "feverish",
++        "my body feels very hot"
+       ],
+       "sw": [
+         "homa",
+@@ -34,7 +35,9 @@
+         "chills",
+         "shivering",
+         "shivers",
+-        "feeling cold and shaking"
++        "feeling cold and shaking",
++        "feeling shivery",
++        "shaking with chills"
+       ],
+       "sw": [
+         "baridi",
+@@ -56,11 +59,17 @@
+         "coughing",
+         "i am coughing",
+         "persistent cough",
+-        "coff"
++        "coff",
++        "keep coughing",
++        "coughs"
+       ],
+       "sw": [
+         "kikohozi",
+-        "kukohoa"
++        "kukohoa",
++        "ninakohoa",
++        "nakohoa",
++        "nikikohoa",
++        "sikohoi"
+       ]
+     }
+   },
+@@ -77,9 +86,14 @@
+         "intense coughing fits",
+         "severe coughing fits",
+         "coughing attacks",
+-        "cannot stop coughing"
++        "cannot stop coughing",
++        "can't stop coughing",
++        "repeated coughing fits"
+       ],
+-      "sw": []
++      "sw": [
++        "kikohozi cha mashambulizi",
++        "kukohoa sana bila kuacha"
++      ]
+     }
+   },
+   {
+@@ -96,12 +110,15 @@
+         "vomit after coughing",
+         "throwing up after coughing"
+       ],
+-      "sw": []
++      "sw": [
++        "kutapika baada ya kukohoa",
++        "natapika baada ya kukohoa"
++      ]
+     }
+   },
+   {
+     "code": "productive_cough",
+-    "display_name": "Coughing up coloured or more phlegm",
++    "display_name": "Coloured or increased phlegm",
+     "features": [
+       "E_77"
+     ],
+@@ -109,15 +126,21 @@
+     "is_red_flag": false,
+     "aliases": {
+       "en": [
+-        "phlegm",
+-        "mucus",
+-        "productive cough",
+-        "wet cough",
+-        "coughing up phlegm",
+-        "coughing up mucus"
++        "coloured phlegm",
++        "colored phlegm",
++        "yellow phlegm",
++        "green phlegm",
++        "yellow sputum",
++        "green sputum",
++        "more phlegm than usual",
++        "more sputum than usual",
++        "increased sputum"
+       ],
+       "sw": [
+-        "makohozi"
++        "makohozi ya kijani",
++        "makohozi ya njano",
++        "makohozi mengi kuliko kawaida",
++        "makohozi yenye rangi"
+       ]
+     }
+   },
+@@ -134,10 +157,13 @@
+         "coughing up blood",
+         "blood in cough",
+         "blood in phlegm",
+-        "bloody sputum"
++        "bloody sputum",
++        "blood in my sputum"
+       ],
+       "sw": [
+-        "kukohoa damu"
++        "kukohoa damu",
++        "nakohoa damu",
++        "ninakohoa damu"
+       ]
+     }
+   },
+@@ -156,11 +182,24 @@
+         "difficulty breathing",
+         "hard to breathe",
+         "cannot breathe",
+-        "can't breathe"
++        "can't breathe",
++        "struggling to breathe",
++        "can't catch my breath",
++        "cannot catch my breath",
++        "gasping for air",
++        "gasping",
++        "trouble breathing",
++        "unable to breathe"
+       ],
+       "sw": [
+         "kushindwa kupumua",
+-        "kupumua kwa shida"
++        "kupumua kwa shida",
++        "ninashindwa kupumua",
++        "siwezi kupumua",
++        "napumua kwa shida",
++        "ninapumua kwa shida",
++        "shida ya kupumua",
++        "nashindwa kupumua"
+       ]
+     }
+   },
+@@ -194,11 +233,15 @@
+       "en": [
+         "wheezing",
+         "wheeze",
+-        "tight chest",
+-        "whistling when breathing"
++        "whistling when breathing",
++        "whistling when breathing out",
++        "whistling sound when i breathe out",
++        "whistle when i breathe out"
+       ],
+       "sw": [
+-        "kifua kubana"
++        "sauti ya mluzi wakati wa kutoa pumzi",
++        "mluzi ninapotoa pumzi",
++        "kifua kinatoa mlio wa mluzi"
+       ]
+     }
+   },
+@@ -268,7 +311,10 @@
+         "trouble swallowing",
+         "cannot swallow"
+       ],
+-      "sw": []
++      "sw": [
++        "shida ya kumeza",
++        "kumeza kwa shida"
++      ]
+     }
+   },
+   {
+@@ -284,11 +330,17 @@
+         "sore throat",
+         "throat pain",
+         "painful throat",
+-        "throat hurts"
++        "throat hurts",
++        "my throat hurts",
++        "pain in my throat",
++        "throat is sore"
+       ],
+       "sw": [
+         "koo kuuma",
+-        "kidonda cha koo"
++        "kidonda cha koo",
++        "koo linauma",
++        "koo langu linauma",
++        "maumivu ya koo"
+       ]
+     }
+   },
+@@ -326,11 +378,18 @@
+         "runny nose",
+         "blocked nose",
+         "stuffy nose",
+-        "nasal congestion"
++        "nasal congestion",
++        "my nose is running",
++        "nose is running",
++        "nose is blocked",
++        "nose is stuffy"
+       ],
+       "sw": [
+         "mafua",
+-        "homa ya mafua"
++        "homa ya mafua",
++        "pua imeziba",
++        "pua inatiririka",
++        "pua inatoa makamasi"
+       ]
+     }
+   },
+@@ -407,8 +466,7 @@
+     "code": "headache",
+     "display_name": "Headache",
+     "features": [
+-      "E_53",
+-      "E_55_@_V_89"
++      "E_53"
+     ],
+     "kind": "symptom",
+     "is_red_flag": false,
+@@ -429,8 +487,7 @@
+     "code": "chest_pain",
+     "display_name": "Chest pain",
+     "features": [
+-      "E_53",
+-      "E_55_@_V_101"
++      "E_53"
+     ],
+     "kind": "symptom",
+     "is_red_flag": false,
+@@ -529,11 +586,15 @@
+         "tiredness",
+         "fatigue",
+         "feeling tired",
+-        "constant tiredness"
++        "constant tiredness",
++        "tired all the time",
++        "always tired"
+       ],
+       "sw": [
+         "uchovu",
+-        "kuchoka"
++        "kuchoka",
++        "nimechoka kila wakati",
++        "uchovu wa kila wakati"
+       ]
+     }
+   },
+@@ -567,9 +628,18 @@
+         "muscle aches",
+         "muscle pain",
+         "aching muscles",
+-        "body aches"
++        "body aches",
++        "my whole body aches",
++        "aching all over",
++        "all my muscles ache"
+       ],
+-      "sw": []
++      "sw": [
++        "maumivu ya misuli",
++        "misuli inauma",
++        "misuli ya mwili mzima inauma",
++        "maumivu ya misuli mwili mzima",
++        "mwili unauma"
++      ]
+     }
+   },
+   {
+@@ -585,11 +655,19 @@
+         "heavy sweating",
+         "sweating a lot",
+         "night sweats",
+-        "excessive sweating"
++        "excessive sweating",
++        "sweating at night",
++        "sweat a lot at night",
++        "wake up soaked in sweat",
++        "sweating more than usual"
+       ],
+       "sw": [
+         "kutokwa jasho",
+-        "jasho usiku"
++        "jasho usiku",
++        "kutokwa na jasho jingi",
++        "jasho jingi usiku",
++        "natokwa na jasho jingi",
++        "kutoka jasho jingi usiku"
+       ]
+     }
+   },
+@@ -606,10 +684,14 @@
+         "loss of appetite",
+         "no appetite",
+         "not hungry",
+-        "don't feel like eating"
++        "don't feel like eating",
++        "lost my appetite",
++        "not feeling hungry"
+       ],
+       "sw": [
+-        "kukosa hamu ya kula"
++        "kukosa hamu ya kula",
++        "sina hamu ya kula",
++        "hamu ya kula imepungua"
+       ]
+     }
+   },
+@@ -625,10 +707,20 @@
+       "en": [
+         "weight loss",
+         "unintended weight loss",
+-        "losing weight without trying"
++        "losing weight without trying",
++        "losing weight",
++        "lost weight",
++        "losing weight unintentionally",
++        "unintentional weight loss",
++        "lost weight without trying"
+       ],
+       "sw": [
+-        "kupungua uzito"
++        "kupungua uzito",
++        "ninapungua uzito",
++        "nimepungua uzito",
++        "kupungua uzito bila kukusudia",
++        "nimepungua uzito bila kukusudia",
++        "kupungua uzito bila sababu"
+       ]
+     }
+   },
+@@ -646,7 +738,8 @@
+         "lips are turning blue"
+       ],
+       "sw": [
+-        "midomo kuwa bluu"
++        "midomo kuwa bluu",
++        "midomo imekuwa bluu"
+       ]
+     }
+   },
+@@ -662,7 +755,9 @@
+         "feeling confused",
+         "disoriented"
+       ],
+-      "sw": []
++      "sw": [
++        "kuchanganyikiwa"
++      ]
+     }
+   },
+   {
+@@ -678,7 +773,10 @@
+         "passed out",
+         "passing out"
+       ],
+-      "sw": []
++      "sw": [
++        "kuzimia",
++        "nimezimia"
++      ]
+     }
+   },
+   {
+@@ -699,5 +797,83 @@
+         "chafya"
+       ]
+     }
++  },
++  {
++    "code": "sputum_reported",
++    "display_name": "Phlegm or sputum reported (colour and amount unspecified)",
++    "features": [],
++    "kind": "context",
++    "is_red_flag": false,
++    "aliases": {
++      "en": [
++        "phlegm",
++        "sputum",
++        "mucus"
++      ],
++      "sw": [
++        "makohozi"
++      ]
++    }
++  },
++  {
++    "code": "chest_tightness",
++    "display_name": "Chest tightness (wheezing not confirmed)",
++    "features": [],
++    "kind": "context",
++    "is_red_flag": false,
++    "aliases": {
++      "en": [
++        "tight chest",
++        "chest tightness",
++        "my chest feels tight",
++        "chest feels tight"
++      ],
++      "sw": [
++        "kifua kubana",
++        "kifua kinabana"
++      ]
++    }
++  },
++  {
++    "code": "forehead_pain",
++    "display_name": "Pain specifically in the forehead",
++    "features": [
++      "E_53",
++      "E_55_@_V_89"
++    ],
++    "kind": "symptom",
++    "is_red_flag": false,
++    "aliases": {
++      "en": [
++        "forehead pain",
++        "pain in my forehead",
++        "my forehead hurts"
++      ],
++      "sw": [
++        "maumivu ya paji la uso",
++        "paji la uso linauma"
++      ]
++    }
++  },
++  {
++    "code": "upper_chest_pain",
++    "display_name": "Pain specifically in the upper chest",
++    "features": [
++      "E_53",
++      "E_55_@_V_101"
++    ],
++    "kind": "symptom",
++    "is_red_flag": false,
++    "aliases": {
++      "en": [
++        "upper chest pain",
++        "pain in my upper chest",
++        "my upper chest hurts"
++      ],
++      "sw": [
++        "maumivu sehemu ya juu ya kifua",
++        "sehemu ya juu ya kifua inauma"
++      ]
++    }
+   }
+ ]
+diff --git a/nlp/english_aliases.json b/nlp/english_aliases.json
+index 11098ba..40c4ee8 100644
+--- a/nlp/english_aliases.json
++++ b/nlp/english_aliases.json
+@@ -2,28 +2,35 @@
+   "fever": [
+     "fever",
+     "high temperature",
+-    "temperature",
+     "hot body",
+-    "feeling feverish"
++    "feeling feverish",
++    "feverish",
++    "my body feels very hot"
+   ],
+   "chills": [
+     "chills",
+     "shivering",
+     "shivers",
+-    "feeling cold and shaking"
++    "feeling cold and shaking",
++    "feeling shivery",
++    "shaking with chills"
+   ],
+   "cough": [
+     "cough",
+     "coughing",
+     "i am coughing",
+     "persistent cough",
+-    "coff"
++    "coff",
++    "keep coughing",
++    "coughs"
+   ],
+   "intense_coughing_fits": [
+     "intense coughing fits",
+     "severe coughing fits",
+     "coughing attacks",
+-    "cannot stop coughing"
++    "cannot stop coughing",
++    "can't stop coughing",
++    "repeated coughing fits"
+   ],
+   "vomiting_after_coughing": [
+     "vomiting after coughing",
+@@ -31,12 +38,15 @@
+     "throwing up after coughing"
+   ],
+   "productive_cough": [
+-    "phlegm",
+-    "mucus",
+-    "productive cough",
+-    "wet cough",
+-    "coughing up phlegm",
+-    "coughing up mucus"
++    "coloured phlegm",
++    "colored phlegm",
++    "yellow phlegm",
++    "green phlegm",
++    "yellow sputum",
++    "green sputum",
++    "more phlegm than usual",
++    "more sputum than usual",
++    "increased sputum"
+   ],
+   "coughing_blood": [
+     "coughing up blood",
+@@ -53,7 +63,12 @@
+     "cannot breathe",
+     "can't breathe",
+     "struggling to breathe",
+-    "can't catch my breath"
++    "can't catch my breath",
++    "cannot catch my breath",
++    "gasping for air",
++    "gasping",
++    "trouble breathing",
++    "unable to breathe"
+   ],
+   "night_breathlessness": [
+     "waking up breathless",
+@@ -64,8 +79,10 @@
+   "wheezing": [
+     "wheezing",
+     "wheeze",
+-    "tight chest",
+-    "whistling when breathing"
++    "whistling when breathing",
++    "whistling when breathing out",
++    "whistling sound when i breathe out",
++    "whistle when i breathe out"
+   ],
+   "wheeze_after_coughing": [
+     "wheezing after coughing",
+@@ -92,7 +109,10 @@
+     "sore throat",
+     "throat pain",
+     "painful throat",
+-    "throat hurts"
++    "throat hurts",
++    "my throat hurts",
++    "pain in my throat",
++    "throat is sore"
+   ],
+   "hoarse_voice": [
+     "hoarse voice",
+@@ -104,7 +124,11 @@
+     "runny nose",
+     "blocked nose",
+     "stuffy nose",
+-    "nasal congestion"
++    "nasal congestion",
++    "my nose is running",
++    "nose is running",
++    "nose is blocked",
++    "nose is stuffy"
+   ],
+   "nasal_discharge": [
+     "green nasal discharge",
+@@ -163,7 +187,9 @@
+     "tiredness",
+     "fatigue",
+     "feeling tired",
+-    "constant tiredness"
++    "constant tiredness",
++    "tired all the time",
++    "always tired"
+   ],
+   "activity_fatigue": [
+     "too tired for normal activities",
+@@ -174,25 +200,38 @@
+     "muscle aches",
+     "muscle pain",
+     "aching muscles",
+-    "body aches"
++    "body aches",
++    "my whole body aches",
++    "aching all over",
++    "all my muscles ache"
+   ],
+   "heavy_sweating": [
+     "heavy sweating",
+     "sweating a lot",
+     "night sweats",
+-    "excessive sweating"
++    "excessive sweating",
++    "sweating at night",
++    "sweat a lot at night",
++    "wake up soaked in sweat",
++    "sweating more than usual"
+   ],
+   "loss_of_appetite": [
+     "loss of appetite",
+     "no appetite",
+     "not hungry",
+-    "don't feel like eating"
++    "don't feel like eating",
++    "lost my appetite",
++    "not feeling hungry"
+   ],
+   "weight_loss": [
+     "weight loss",
+     "unintended weight loss",
+     "losing weight without trying",
+-    "losing weight"
++    "losing weight",
++    "lost weight",
++    "losing weight unintentionally",
++    "unintentional weight loss",
++    "lost weight without trying"
+   ],
+   "blue_lips": [
+     "blue lips",
+@@ -211,5 +250,30 @@
+     "passed out",
+     "passing out"
+   ],
+-  "sneezing": ["sneezing", "sneeze", "frequent sneezing"]
+-}
+\ No newline at end of file
++  "sneezing": [
++    "sneezing",
++    "sneeze",
++    "frequent sneezing"
++  ],
++  "sputum_reported": [
++    "phlegm",
++    "sputum",
++    "mucus"
++  ],
++  "chest_tightness": [
++    "tight chest",
++    "chest tightness",
++    "my chest feels tight",
++    "chest feels tight"
++  ],
++  "forehead_pain": [
++    "forehead pain",
++    "pain in my forehead",
++    "my forehead hurts"
++  ],
++  "upper_chest_pain": [
++    "upper chest pain",
++    "pain in my upper chest",
++    "my upper chest hurts"
++  ]
++}
+diff --git a/nlp/swahili_aliases.json b/nlp/swahili_aliases.json
+index 7770f8c..deb6a2d 100644
+--- a/nlp/swahili_aliases.json
++++ b/nlp/swahili_aliases.json
+@@ -9,25 +9,44 @@
+   ],
+   "cough": [
+     "kikohozi",
+-    "kukohoa"
++    "kukohoa",
++    "ninakohoa",
++    "nakohoa",
++    "nikikohoa",
++    "sikohoi"
+   ],
+   "productive_cough": [
+-    "makohozi"
++    "makohozi ya kijani",
++    "makohozi ya njano",
++    "makohozi mengi kuliko kawaida",
++    "makohozi yenye rangi"
+   ],
+   "coughing_blood": [
+-    "kukohoa damu"
++    "kukohoa damu",
++    "nakohoa damu",
++    "ninakohoa damu"
+   ],
+   "shortness_of_breath": [
+     "kushindwa kupumua",
+     "kupumua kwa shida",
+-    "ninashindwa kupumua"
++    "ninashindwa kupumua",
++    "siwezi kupumua",
++    "napumua kwa shida",
++    "ninapumua kwa shida",
++    "shida ya kupumua",
++    "nashindwa kupumua"
+   ],
+   "wheezing": [
+-    "kifua kubana"
++    "sauti ya mluzi wakati wa kutoa pumzi",
++    "mluzi ninapotoa pumzi",
++    "kifua kinatoa mlio wa mluzi"
+   ],
+   "sore_throat": [
+     "koo kuuma",
+-    "kidonda cha koo"
++    "kidonda cha koo",
++    "koo linauma",
++    "koo langu linauma",
++    "maumivu ya koo"
+   ],
+   "hoarse_voice": [
+     "sauti imekauka",
+@@ -35,7 +54,10 @@
+   ],
+   "runny_blocked_nose": [
+     "mafua",
+-    "homa ya mafua"
++    "homa ya mafua",
++    "pua imeziba",
++    "pua inatiririka",
++    "pua inatoa makamasi"
+   ],
+   "headache": [
+     "kichwa kuuma",
+@@ -48,21 +70,79 @@
+   ],
+   "tiredness": [
+     "uchovu",
+-    "kuchoka"
++    "kuchoka",
++    "nimechoka kila wakati",
++    "uchovu wa kila wakati"
+   ],
+   "weight_loss": [
+-    "kupungua uzito"
++    "kupungua uzito",
++    "ninapungua uzito",
++    "nimepungua uzito",
++    "kupungua uzito bila kukusudia",
++    "nimepungua uzito bila kukusudia",
++    "kupungua uzito bila sababu"
+   ],
+   "loss_of_appetite": [
+-    "kukosa hamu ya kula"
++    "kukosa hamu ya kula",
++    "sina hamu ya kula",
++    "hamu ya kula imepungua"
+   ],
+   "heavy_sweating": [
+     "kutokwa jasho",
+-    "jasho usiku"
++    "jasho usiku",
++    "kutokwa na jasho jingi",
++    "jasho jingi usiku",
++    "natokwa na jasho jingi",
++    "kutoka jasho jingi usiku"
+   ],
+   "blue_lips": [
+-    "midomo kuwa bluu"
++    "midomo kuwa bluu",
++    "midomo imekuwa bluu"
++  ],
++  "sneezing": [
++    "kupiga chafya",
++    "napiga chafya",
++    "chafya"
++  ],
++  "confusion": [
++    "kuchanganyikiwa"
++  ],
++  "fainting": [
++    "kuzimia",
++    "nimezimia"
++  ],
++  "intense_coughing_fits": [
++    "kikohozi cha mashambulizi",
++    "kukohoa sana bila kuacha"
++  ],
++  "sputum_reported": [
++    "makohozi"
+   ],
+-  "sneezing": ["kupiga chafya", "napiga chafya", "chafya"]
++  "chest_tightness": [
++    "kifua kubana",
++    "kifua kinabana"
++  ],
++  "muscle_aches": [
++    "maumivu ya misuli",
++    "misuli inauma",
++    "misuli ya mwili mzima inauma",
++    "maumivu ya misuli mwili mzima",
++    "mwili unauma"
++  ],
++  "vomiting_after_coughing": [
++    "kutapika baada ya kukohoa",
++    "natapika baada ya kukohoa"
++  ],
++  "difficulty_swallowing": [
++    "shida ya kumeza",
++    "kumeza kwa shida"
++  ],
++  "forehead_pain": [
++    "maumivu ya paji la uso",
++    "paji la uso linauma"
++  ],
++  "upper_chest_pain": [
++    "maumivu sehemu ya juu ya kifua",
++    "sehemu ya juu ya kifua inauma"
++  ]
+ }
+-
+diff --git a/nlp/symptom_mapper.py b/nlp/symptom_mapper.py
+index 8ec4517..e3de851 100644
+--- a/nlp/symptom_mapper.py
++++ b/nlp/symptom_mapper.py
+@@ -12,6 +12,7 @@ import sys
+ from pathlib import Path
+ 
+ from rapidfuzz import fuzz, process
++from rapidfuzz.distance import DamerauLevenshtein
+ 
+ 
+ PROJECT_ROOT = Path(__file__).resolve().parents[1]
+@@ -34,6 +35,20 @@ CANONICAL_SYMPTOMS_PATH = (
+     / "canonical_symptoms.json"
+ )
+ 
++# Bundled warning-sign definitions are independent of the editable DB
++# catalogue. Cache them at import so routine DB extraction does not read JSON.
++_SAFETY_SYMPTOMS = {
++    item["code"]: item for item in json.loads(
++        CANONICAL_SYMPTOMS_PATH.read_text(encoding="utf-8")
++    ) if item["is_red_flag"]
++}
++_SAFETY_ALIAS_INDEX = tuple(sorted(
++    ({"alias": alias.lower(), "code": code, "language": language}
++     for code, item in _SAFETY_SYMPTOMS.items()
++     for language, aliases in item.get("aliases", {}).items()
++     for alias in aliases), key=lambda item: len(item["alias"]), reverse=True,
++))
++
+ FUZZY_THRESHOLD = 90
+ SUGGESTION_THRESHOLD = 70
+ 
+@@ -64,7 +79,11 @@ FILLER_WORDS = {
+     "na",
+     "lakini",
+     "kuwa",
+-    "sana",
++    "sana", "had", "been", "do", "does", "did", "not", "no", "never",
++    "without", "dont", "don't", "doesn't", "didn't", "sina", "hana",
++    "hakuna", "sipigi", "wala", "mild", "moderate", "severe", "kidogo",
++    "wastani", "kali", "kwa", "siku", "wiki", "since", "still",
++    "dry", "wet", "productive", "kikavu", "chenye", "up", "started",
+ }
+ 
+ def load_json(path):
+@@ -81,7 +100,7 @@ def normalize_text(text):
+     Convert text to lowercase and normalize whitespace.
+     """
+ 
+-    text = text.lower().strip()
++    text = text.lower().strip().replace("’", "'").replace("‘", "'")
+ 
+     text = re.sub(
+         r"\s+",
+@@ -165,6 +184,9 @@ def find_fuzzy_matches(
+     for item in alias_index:
+         code = item["code"]
+ 
++        if code == "sputum_reported" and item["alias"] == "mucus":
++            continue  # This ambiguous noun requires exact respiratory context.
++
+         if code in matched_codes:
+             continue
+ 
+@@ -235,20 +257,19 @@ def find_fuzzy_matches(
+                     end,
+                 )
+ 
+-        is_close_transposition = (
++        # Only a single edit (including an adjacent transposition) in a
++        # sufficiently long word is eligible for automatic typo matching.
++        # Broad string similarity can silently change one symptom to another.
++        is_close_typo = (
+             best_candidate is not None
+-            and len(best_candidate) == len(alias)
+             and len(alias) >= 5
+-            and best_candidate[:2] == alias[:2]
+-            and best_score >= 80
++            and len(alias.split()) == 1
++            and best_candidate[:1] == alias[:1]
++            and DamerauLevenshtein.distance(best_candidate, alias) == 1
+         )
+-
+-        if (
+-            best_candidate is not None
+-            and (
+-                best_score >= FUZZY_THRESHOLD
+-                or is_close_transposition
+-            )
++        if best_candidate is not None and (
++            is_close_typo
++            or (len(alias.split()) > 1 and best_score >= 95)
+         ):
+             fuzzy_matches.append(
+                 {
+@@ -278,21 +299,12 @@ def find_fuzzy_matches(
+     return fuzzy_matches
+ 
+ def find_symptoms(text):
+-    """
+-    Find canonical symptoms in English, Swahili,
+-    or mixed-language free text.
+-
+-    Exact matching is attempted first.
+-    Fuzzy matching is then used for remaining
+-    misspelled or near-matching symptom phrases.
+-    """
+-
+-    normalized_text = normalize_text(
+-        text
+-    )
++    """Find exact aliases followed by conservative typo matches."""
++    return _find_alias_matches(text, build_alias_index())
+ 
+-    alias_index = build_alias_index()
+ 
++def _find_alias_matches(text, alias_index):
++    normalized_text = normalize_text(text)
+     matches = []
+     matched_codes = set()
+     occupied_spans = []
+@@ -315,6 +327,14 @@ def find_symptoms(text):
+             normalized_text,
+         ):
+             start, end = match.span()
++            if item["code"] == "sputum_reported" and alias == "mucus":
++                surrounding = normalized_text[max(0, start-40):end+45]
++                if not re.search(
++                    r"\bcough(?:ing)?\s+(?:up|with)\s+(?:\w+\s+)?mucus\b"
++                    r"|\bmucus\s+(?:from\s+(?:my|the)\s+chest|when\s+i\s+cough)\b",
++                    surrounding,
++                ):
++                    continue
+ 
+             overlaps = any(
+                 start < existing_end
+@@ -387,6 +407,7 @@ def find_symptoms(text):
+ def find_unmatched_text(
+     text,
+     matches,
++    alias_index=None,
+ ):
+     """
+     Return meaningful words or phrases that were not
+@@ -411,7 +432,7 @@ def find_unmatched_text(
+     if matched_codes:
+         aliases_to_remove.update(
+             item["alias"]
+-            for item in build_alias_index()
++            for item in (alias_index if alias_index is not None else build_alias_index())
+             if item["code"] in matched_codes
+         )
+ 
+@@ -433,6 +454,8 @@ def find_unmatched_text(
+             remaining_text,
+         )
+ 
++    # Duration and severity are contextual attributes, not unmatched symptoms.
++    remaining_text = DURATION_PATTERN.sub(" ", remaining_text)
+     # Treat common English/Swahili connectors as separators.
+     remaining_text = re.sub(
+         r"\b(and|but|or|na|lakini)\b",
+@@ -572,6 +595,26 @@ def suggest_symptoms(
+     return suggestions
+ 
+ 
++OTHER_PERSON_PATTERN = (
++    r"\b(?:my\s+(?:sister|brother|mother|father|mom|dad|son|daughter|child|friend|wife|husband)"
++    r"|(?:dada|kaka|mama|baba|mtoto|rafiki|mke|mume)\s+(?:yangu|wangu))\b"
++)
++PATIENT_REFERENCE_PATTERN = (
++    r"\b(?:i|me|myself|mimi|nina\w*|nime\w*|nakohoa|siwezi)\b"
++    r"|\bmy\s+(?:head|throat|chest|body|nose)\b"
++)
++
++
++def context_prefix(normalized, occurrence):
++    boundaries = list(re.finditer(
++        r"\b(?:but|lakini|however)\b"
++        r"|\b(?:and|na)\s+(?=(?:i\s+)?(?:am|have|feel|can|cannot|can't|was|nina\w*|sina|siwezi|nakohoa|mimi|struggling|gasping|no\s+appetite|not\s+hungry|don'?t\s+feel\s+like\s+eating)\b)"
++        r"|[.!?;]", normalized[:occurrence.end()],
++    ))
++    start = boundaries[-1].end() if boundaries else 0
++    return normalized[start:occurrence.start()]
++
++
+ def infer_symptom_status(text, matched_alias):
+     """
+     Determine whether a recognised symptom is
+@@ -601,19 +644,18 @@ def infer_symptom_status(text, matched_alias):
+         # Check whether a symptom belongs to another person.
+         subject_clause = re.split(
+             r"\b(?:but|however|lakini)\b|[.!?;]",
+-            before,
++            normalized[:occurrence.end()],
+         )[-1]
+ 
+         other_person = re.search(
+-            r"\bmy\s+(?:sister|brother|mother|father|"
+-            r"mom|dad|son|daughter|child|friend|wife|husband)\b",
++            OTHER_PERSON_PATTERN,
+             subject_clause,
+         )
+ 
+         patient_mentioned = (
+             other_person is not None
+             and re.search(
+-                r"\b(?:i|me|myself)\b",
++                PATIENT_REFERENCE_PATTERN,
+                 subject_clause[other_person.end():],
+             )
+         )
+@@ -629,6 +671,10 @@ def infer_symptom_status(text, matched_alias):
+             )
+             continue
+ 
++        if normalize_text(matched_alias) in {"sikohoi"}:
++            statuses.append("absent")
++            continue
++
+         # Check whether a past symptom has resolved.
+         if re.search(
+             r"\bi\s+had\s+(?:a\s+|an\s+)?$",
+@@ -652,22 +698,15 @@ def infer_symptom_status(text, matched_alias):
+             continue
+ 
+ 
+-        clause = re.split(
+-            r"\b(?:but|lakini|however)\b"
+-            r"|\b(?:and|na)\s+(?=(?:i\s+)?"
+-            r"(?:am|have|feel|can|cannot|can't|was|nina|sina)\b)"
+-            r"|[.!?;]",
+-            before
+-        )[-1]
+-
++        clause = context_prefix(normalized, occurrence)
+ 
+         uncertain = re.search(
+-            r"\b(?:not\s+sure|unsure|don'?t\s+know|sijui|maybe|perhaps)\b",
++            r"\b(?:not\s+sure|unsure|don'?t\s+(?:know|think)|sijui|maybe|perhaps|labda|huenda|sina\s+uhakika|may|might|could)\b|\bdo\s+i\s+have\b|\bif\s+(?:i|nina)\b",
+             clause
+         )
+ 
+         negations = list(re.finditer(
+-            r"\b(?:no|not|never|without|don'?t|doesn'?t|didn'?t|sina|hana|hakuna|sipigi)\b",            clause
++            r"\b(?:no|not(?!\s+only\b)|never|without|don'?t|doesn'?t|didn'?t|sina|hana|hakuna|sipigi|sihisi|siko)\b",            clause
+         ))
+ 
+         if uncertain:
+@@ -721,18 +760,16 @@ def infer_symptom_subject(text, matched_alias):
+ 
+         clause = re.split(
+             r"[.!?;]|\b(?:but|however|lakini)\b",
+-            before
++            normalized[:occurrence.end()]
+         )[-1]
+ 
+         other_people = list(re.finditer(
+-            r"\bmy\s+(?:sister|brother|mother|father|"
+-            r"mom|dad|son|daughter|child|friend|"
+-            r"wife|husband)\b",
++            OTHER_PERSON_PATTERN,
+             clause
+         ))
+ 
+         patient_references = list(re.finditer(
+-            r"\b(?:i|me|myself)\b",
++            PATIENT_REFERENCE_PATTERN,
+             clause
+         ))
+ 
+@@ -842,129 +879,147 @@ def infer_repeated_symptom_context(
+     return "unknown", "patient_or_unspecified"
+ 
+ 
+-def extract_symptom_duration_days(text, matched_alias):
+-    """
+-    Extract a clear symptom duration in days.
+-    Returns None when duration is not understood.
+-    """
+-    normalized = normalize_text(text)
+-    alias = normalize_text(matched_alias)
+-
+-    pattern = (
+-        r"(?<!\w)"
+-        + re.escape(alias)
+-        + r"(?!\w)"
+-    )
+-
+-    number_words = {
+-        "a": 1, "an": 1,
+-        "one": 1, "two": 2, "three": 3,
+-        "four": 4, "five": 5, "six": 6,
+-        "seven": 7, "eight": 8,
+-        "nine": 9, "ten": 10,
+-    }
+-
+-    for occurrence in re.finditer(pattern, normalized):
+-        following = normalized[occurrence.end():]
+-
+-        # Only inspect wording associated with this symptom.
+-        local_text = re.split(
+-            r"[,;.!?]|\b(?:and|but|lakini|na)\b",
+-            following,
+-            maxsplit=1,
+-        )[0][:80]
+-
+-        duration_match = re.search(
+-            r"\bfor\s+"
+-            r"(\d+|one|two|three|four|five|six|seven|eight|nine|ten|a|an)"
+-            r"\s+(days?|weeks?)\b",
+-            local_text,
+-        )
+-
+-        if duration_match:
+-            quantity_text = duration_match.group(1)
+-            unit = duration_match.group(2)
+-
+-            if quantity_text.isdigit():
+-                quantity = int(quantity_text)
+-            else:
+-                quantity = number_words[quantity_text]
+-
+-            if quantity < 1:
+-                continue
+-
+-            if unit.startswith("week"):
+-                return quantity * 7
+-
+-            return quantity
+-
+-        if re.search(
+-            r"^\s+since\s+yesterday\b",
+-            local_text,
+-        ):
+-            return 1
+-
+-    return None
++NUMBER_WORDS = {
++    "a": 1, "an": 1, "one": 1, "two": 2, "three": 3,
++    "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8,
++    "nine": 9, "ten": 10, "moja": 1, "mbili": 2, "tatu": 3,
++    "nne": 4, "tano": 5, "sita": 6, "saba": 7, "nane": 8,
++    "tisa": 9, "kumi": 10,
++}
++QUANTITY_PATTERN = r"(?:\d+|" + "|".join(NUMBER_WORDS) + r"|a few|few|several|chache|kadhaa)"
++DURATION_PATTERN = re.compile(
++    r"\b(?:for\s+(?:(?:the\s+)?(?:last|past)\s+)?(?P<en_approx>about\s+)?(?P<en_min>" + QUANTITY_PATTERN + r")"
++    r"(?:\s*(?:-|to)\s*(?P<en_max>" + QUANTITY_PATTERN + r"))?"
++    r"\s*(?P<en_unit>days?|weeks?|months?|hours?)"
++    r"|(?P<ago_min>" + QUANTITY_PATTERN + r")\s+(?P<ago_unit>days?|weeks?|months?|hours?)\s+ago"
++    r"|(?:kwa\s+)?(?P<sw_unit>siku|wiki|miezi|saa)\s+"
++    r"(?P<sw_min>" + QUANTITY_PATTERN + r")"
++    r"(?:\s*(?:-|hadi)\s*(?P<sw_max>" + QUANTITY_PATTERN + r"))?"
++    r"|since\s+yesterday|tangu\s+jana|started\s+yesterday"
++    r"|since\s+(?:this\s+morning|last\s+night)|started\s+today|tangu\s+asubuhi)\b"
++)
+ 
+ 
+-def extract_patient_duration_days(
+-    text, matched_alias, code, alias_index
+-):
+-    """
+-    Extract symptom duration from patient statements only.
+-    Return None if patient durations conflict or are unclear.
+-    """
++def parse_duration(fragment):
++    """Preserve vague durations without assigning invented numerical bounds."""
++    match = DURATION_PATTERN.search(fragment)
++    if match is None:
++        return None
++    raw = match.group()
++    if raw in {"since yesterday", "tangu jana", "started yesterday"}:
++        return {"duration_text": raw, "duration_min_days": 1,
++                "duration_max_days": 1, "duration_unit": "days"}
++    unit = match.group("en_unit") or match.group("sw_unit") or match.group("ago_unit")
++    if unit is None:
++        return {"duration_text": raw, "duration_min_days": None,
++                "duration_max_days": None, "duration_unit": "relative"}
++    low = match.group("en_min") or match.group("sw_min") or match.group("ago_min")
++    high = match.group("en_max") or match.group("sw_max") or low
++    def number(value):
++        return int(value) if value.isdigit() else NUMBER_WORDS.get(value)
++    minimum, maximum = number(low), number(high)
++    if match.group("en_approx"):
++        minimum = maximum = None
++    multiplier = 7 if unit.startswith("week") or unit == "wiki" else 1
++    # Months/hours cannot be exactly represented by integer days.
++    if unit.startswith(("month", "hour")) or unit in {"miezi", "saa"}:
++        minimum = maximum = None
++    if minimum is not None and maximum is not None:
++        if minimum < 1 or maximum < minimum:
++            return None
++        minimum *= multiplier
++        maximum *= multiplier
++    return {"duration_text": raw, "duration_min_days": minimum,
++            "duration_max_days": maximum, "duration_unit": unit}
++
++
++def extract_patient_attributes(text, matched_alias, code, alias_index):
++    """Extract attributes within patient clauses; conflicting reports stay unset."""
+     normalized = normalize_text(text)
+-
+-    aliases = {normalize_text(matched_alias)}
+-    aliases.update(
+-        item["alias"]
+-        for item in alias_index
+-        if item["code"] == code
+-    )
+-
++    aliases = {normalize_text(matched_alias)} | {
++        item["alias"] for item in alias_index if item["code"] == code
++    }
+     clauses = re.split(
+         r"\b(?:but|however|lakini)\b"
+         r"|\b(?:and|na)\s+(?=(?:i|my|am|nina|sina)\b)"
+-        r"|,\s*(?=(?:i|my)\b)"
+-        r"|[.!?;]",
+-        normalized,
++        r"|,\s*(?=(?:i|my)\b)|[.!?;]", normalized,
+     )
++    durations, severities = [], set()
++    severity_values = {"mild": "mild", "moderate": "moderate", "severe": "severe",
++                       "kidogo": "mild", "wastani": "moderate", "kali": "severe"}
++    for clause in clauses:
++        for alias in sorted(aliases, key=len, reverse=True):
++            for occurrence in re.finditer(r"(?<!\w)" + re.escape(alias) + r"(?!\w)", clause):
++                if infer_symptom_subject(clause, alias) == "other_person":
++                    continue
++                if infer_symptom_status(clause, alias) != "present":
++                    continue
++                # A shared trailing duration applies to a coordinated symptom
++                # list, but never cross another subject or an earlier duration.
++                following = clause[occurrence.end():]
++                duration = parse_duration(following)
++                if duration is not None:
++                    prefix = following[:following.find(duration["duration_text"])]
++                    if not re.search(r"\b(?:with|without)\b", prefix):
++                        durations.append(duration)
++                local = clause[max(0, occurrence.start()-24):occurrence.end()]
++                local = re.split(r",|\b(?:and|na|with)\b", local)[-1]
++                values = re.findall(r"\b(?:mild|moderate|severe|kidogo|wastani|kali)\b", local)
++                if not values:
++                    suffix = re.match(r"\s+(?:(?:is|ni)\s+)?(?:(?:dry|wet|productive|kikavu)\s+)?(mild|moderate|severe|kidogo|wastani|kali)\b", following)
++                    values = [suffix.group(1)] if suffix else []
++                severities.update(severity_values[value] for value in values)
++    distinct = {tuple(sorted(value.items())) for value in durations}
++    result = dict(next(iter(distinct))) if len(distinct) == 1 else {
++        "duration_text": None, "duration_min_days": None,
++        "duration_max_days": None, "duration_unit": None,
++    }
++    result["severity"] = next(iter(severities)) if len(severities) == 1 else None
++    result.update(extract_context_attributes(normalized, aliases, code))
++    return result
+ 
+-    durations = set()
+ 
+-    for clause in clauses:
++def extract_context_attributes(normalized, aliases, code):
++    contexts = []
++    for clause in re.split(r"[.!?;]|\b(?:but|however|lakini)\b", normalized):
+         for alias in aliases:
+-            pattern = (
+-                r"(?<!\w)"
+-                + re.escape(alias)
+-                + r"(?!\w)"
+-            )
+-
+-            if not re.search(pattern, clause):
++            if not re.search(r"(?<!\w)" + re.escape(alias) + r"(?!\w)", clause):
+                 continue
+-
+-            if infer_symptom_subject(
+-                clause, alias
+-            ) == "other_person":
++            if infer_symptom_subject(clause, alias) == "other_person":
+                 continue
++            if infer_symptom_status(clause, alias) == "present":
++                contexts.append(clause)
++    result = {}
++    context = " ".join(dict.fromkeys(contexts))
++    if code == "cough":
++        dry = bool(re.search(r"\b(?:dry|kikavu)\b|\b(?:no|without)\s+(?:phlegm|sputum)\b|\bbila\s+makohozi\b", context))
++        productive = bool(re.search(r"\b(?:wet|productive)\s+cough\b", context))
++        for alias in ("phlegm", "sputum", "makohozi"):
++            if re.search(r"\b" + alias + r"\b", context) and infer_symptom_status(context, alias) == "present":
++                productive = True
++        if re.search(r"\bcough(?:ing)?\s+(?:up|with)\s+(?:\w+\s+)?mucus\b", context):
++            productive = True
++        result["cough_type"] = "dry" if dry and not productive else "productive" if productive and not dry else None
++    if code == "weight_loss":
++        if re.search(r"without\s+trying|unintentional|unintended|without\s+meaning\s+to|bila\s+(?:kukusudia|sababu)", context):
++            result["weight_loss_intent"] = "unintentional"
++        elif re.search(r"on\s+purpose|intentionally|dieting|kwa\s+(?:makusudi|kukusudia)", context):
++            result["weight_loss_intent"] = "intentional"
++        else:
++            result["weight_loss_intent"] = "unspecified"
++    onset = re.search(r"\b(?:since\s+(?:this\s+morning|last\s+night)|started\s+(?:today|yesterday)|tangu\s+(?:asubuhi|jana\s+usiku))\b", context)
++    result["onset_text"] = onset.group() if onset else None
++    return result
+ 
+-            if infer_symptom_status(
+-                clause, alias
+-            ) != "present":
+-                continue
+ 
+-            days = extract_symptom_duration_days(
+-                clause, alias
+-            )
++def extract_symptom_duration_days(text, matched_alias):
++    duration = parse_duration(normalize_text(text).split(normalize_text(matched_alias), 1)[-1])
++    return duration["duration_min_days"] if duration else None
+ 
+-            if days is not None:
+-                durations.add(days)
+ 
+-    if len(durations) == 1:
+-        return next(iter(durations))
++def extract_patient_duration_days(text, matched_alias, code, alias_index):
++    return extract_patient_attributes(text, matched_alias, code, alias_index)["duration_min_days"]
+ 
+-    return None
+ 
+ def build_confirmation_output(text):
+     """
+@@ -982,6 +1037,7 @@ def build_confirmation_output(text):
+         find_unmatched_text(
+             text,
+             matches,
++            alias_index,
+         )
+     )
+ 
+@@ -1023,15 +1079,12 @@ def build_confirmation_output(text):
+             alias_index=alias_index,
+         )
+ 
+-        duration_days = None
+-
+-        if status == "present":
+-            duration_days = extract_patient_duration_days(
+-                text,
+-                match["matched_alias"],
+-                code,
+-                alias_index,
+-            )
++        attributes = extract_patient_attributes(
++            text, match["matched_alias"], code, alias_index,
++        ) if status == "present" else {
++            "duration_text": None, "duration_min_days": None,
++            "duration_max_days": None, "duration_unit": None, "severity": None,
++        }
+ 
+         recognised_symptoms.append(
+             {
+@@ -1039,9 +1092,8 @@ def build_confirmation_output(text):
+                 "display_name": symptom[
+                     "display_name"
+                 ],
+-                "features": symptom[
+-                    "features"
+-                ],
++                "features": (symptom["features"] if code != "weight_loss" or status != "present"
++                             or attributes.get("weight_loss_intent") == "unintentional" else []),
+                 "kind": symptom[
+                     "kind"
+                 ],
+@@ -1063,8 +1115,7 @@ def build_confirmation_output(text):
+ 
+                 "status": status,
+                 "reported_subject": reported_subject,
+-                "duration_min_days": duration_days,
+-                "duration_max_days": duration_days,
++                **attributes,
+                 "confirmed": False,
+             }
+         )
+@@ -1083,12 +1134,38 @@ def build_confirmation_output(text):
+         ),
+         "unmatched_wording": suggestions,
+         "has_red_flag": has_red_flag,
++        "absent_symptoms": [item for item in recognised_symptoms if item["status"] == "absent"],
++        "uncertain_symptoms": [item for item in recognised_symptoms if item["status"] == "unknown"],
+         "requires_confirmation": (
+             bool(recognised_symptoms)
+             or bool(suggestions)
+         ),
+     }
+ 
++def detect_safety_signs(text):
++    """Check cached bundled warnings without DB, catalogue loader or ML access."""
++    flags = []
++    for match in _find_alias_matches(text, _SAFETY_ALIAS_INDEX):
++        code = match["code"]
++        status, subject = infer_repeated_symptom_context(
++            text, match["matched_alias"], code, _SAFETY_ALIAS_INDEX,
++        )
++        if status == "absent" or subject == "other_person":
++            continue
++        canonical = _SAFETY_SYMPTOMS[code]
++        flags.append({
++            "code": code, "display_name": canonical["display_name"],
++            "features": list(canonical["features"]), "kind": canonical["kind"],
++            "is_red_flag": True, "matched_text": match["matched_alias"],
++            "language": match["language"], "match_type": match["match_type"],
++            "match_score": match["score"], "status": status,
++            "reported_subject": subject, "confirmed": False,
++            "duration_min_days": None, "duration_max_days": None,
++            "duration_text": None, "duration_unit": None, "severity": None,
++        })
++    return flags
++
++
+ def main():
+     if len(sys.argv) < 2:
+         print("Usage:")
+@@ -1197,4 +1274,4 @@ def main():
+ 
+ 
+ if __name__ == "__main__":
+-    main()
+\ No newline at end of file
++    main()
+diff --git a/scripts/v2_feature_encoder.py b/scripts/v2_feature_encoder.py
+index e11d215..436d7ca 100644
+--- a/scripts/v2_feature_encoder.py
++++ b/scripts/v2_feature_encoder.py
+@@ -78,11 +78,18 @@ def encode_v2_record(record, symptom_features):
+     if present | absent | unknown != expected:
+         raise ValueError("Missing or unsupported symptom codes")
+ 
+-    age = float(record["age"])
++    if isinstance(record["age"], bool):
++        raise ValueError("Age must be a number, not a boolean")
++    try:
++        age = float(record["age"])
++    except (TypeError, ValueError):
++        raise ValueError("Age must be a number") from None
+ 
+     if not 0 <= age <= 120:
+         raise ValueError("Age outside supported range")
+ 
++    if not isinstance(record["sex"], str):
++        raise ValueError("Unsupported sex value")
+     sex = record["sex"].strip().upper()
+ 
+     if sex not in ("M", "F"):
+diff --git a/tests/test_symptom_mapper.py b/tests/test_symptom_mapper.py
+index 9bb653c..0ec8eb3 100644
+--- a/tests/test_symptom_mapper.py
++++ b/tests/test_symptom_mapper.py
+@@ -94,7 +94,6 @@ class TestSymptomMapper(unittest.TestCase):
+             symptoms["headache"]["features"],
+             [
+                 "E_53",
+-                "E_55_@_V_89",
+             ],
+         )
+ 
+@@ -307,4 +306,4 @@ class TestSymptomMapper(unittest.TestCase):
+ 
+ 
+ if __name__ == "__main__":
+-    unittest.main()
+\ No newline at end of file
++    unittest.main()
+diff --git a/tests/test_v2_predictor.py b/tests/test_v2_predictor.py
+index 4597f4b..b083244 100644
+--- a/tests/test_v2_predictor.py
++++ b/tests/test_v2_predictor.py
+@@ -49,6 +49,11 @@ def test_v2_prediction(sample_features):
+     assert isinstance(result["uncertain"], bool)
+     assert result["model_version"] == "v2_23class_prototype"
+     assert "uncalibrated" in result["score_note"]
++    assert result["uncertain"] is True
++    assert result["clinical_validation"] is False
++    assert "not_clinically_validated" in result["uncertainty_reasons"]
++    assert result["learned_absence_features"] == []
++    assert result["duration_features_supported"] is False
+ 
+ 
+ def test_missing_feature_rejected(sample_features):

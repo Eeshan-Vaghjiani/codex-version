@@ -1,0 +1,94 @@
+{
+  "evaluation_source": "DDXPlus validation split",
+  "patient_count": 55808,
+  "true_condition_count": 21,
+  "same_patients_for_all_tests": true,
+  "maximum_reported_symptoms": [
+    1,
+    2,
+    3
+  ],
+  "random_seed": 20261021,
+  "disclosure_counts": {
+    "1": {
+      "1": 55808
+    },
+    "2": {
+      "2": 54674,
+      "1": 1134
+    },
+    "3": {
+      "3": 48935,
+      "2": 5739,
+      "1": 1134
+    }
+  },
+  "results": {
+    "1": {
+      "V1": {
+        "accuracy": 0.10835364105504587,
+        "macro_precision": 0.10965467799344497,
+        "macro_recall": 0.2270926418479484,
+        "macro_f1": 0.10691106766867478,
+        "extra_class_predictions": {}
+      },
+      "V2": {
+        "accuracy": 0.2975379873853211,
+        "macro_precision": 0.4755580371719319,
+        "macro_recall": 0.38173858472033995,
+        "macro_f1": 0.34620422305325615,
+        "extra_class_predictions": {
+          "Allergic rhinitis": 574
+        }
+      }
+    },
+    "2": {
+      "V1": {
+        "accuracy": 0.22138403096330275,
+        "macro_precision": 0.33194526394543755,
+        "macro_recall": 0.35283980361058637,
+        "macro_f1": 0.2296123941946599,
+        "extra_class_predictions": {}
+      },
+      "V2": {
+        "accuracy": 0.6076906536697247,
+        "macro_precision": 0.6585560905734366,
+        "macro_recall": 0.6456081706608273,
+        "macro_f1": 0.6162271549622611,
+        "extra_class_predictions": {
+          "Allergic rhinitis": 15
+        }
+      }
+    },
+    "3": {
+      "V1": {
+        "accuracy": 0.24256379013761467,
+        "macro_precision": 0.46058753093790933,
+        "macro_recall": 0.4114983496221395,
+        "macro_f1": 0.2721777784224192,
+        "extra_class_predictions": {}
+      },
+      "V2": {
+        "accuracy": 0.7806586869266054,
+        "macro_precision": 0.7890091865668432,
+        "macro_recall": 0.7974076609671459,
+        "macro_f1": 0.7751702068466999,
+        "extra_class_predictions": {
+          "Allergic rhinitis": 331
+        }
+      }
+    }
+  },
+  "limitations": [
+    "All cases are simulated DDXPlus records.",
+    "Tests disclose up to 1, 2, or 3 positive evidence codes.",
+    "Not every patient has three supported evidence codes.",
+    "Evidence codes are not equivalent to verified NLP extraction.",
+    "Age and sex are included for both models.",
+    "Unreported evidence is encoded as zero for both models.",
+    "The models were trained on different feature representations.",
+    "Different selected symptom subsets may change the results.",
+    "COVID-19 and allergic rhinitis have no ground-truth cases.",
+    "This does not establish real-world or clinical performance."
+  ]
+}

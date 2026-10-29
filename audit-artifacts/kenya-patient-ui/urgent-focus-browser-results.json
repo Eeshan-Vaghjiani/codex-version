@@ -1,0 +1,202 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\krish\\OneDrive\\Desktop\\IS codex\\ucs31-madhaparia-frontend\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "-g",
+      "emergency guidance"
+    ],
+    "configFile": "C:\\Users\\krish\\OneDrive\\Desktop\\IS codex\\ucs31-madhaparia-frontend\\playwright.config.js",
+    "rootDir": "C:/Users/krish/OneDrive/Desktop/IS codex/ucs31-madhaparia-frontend/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/krish/OneDrive/Desktop/IS codex/ucs31-madhaparia-frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/krish/OneDrive/Desktop/IS codex/ucs31-madhaparia-frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/consultation-v3.pw.js"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\krish\\OneDrive\\Desktop\\IS codex\\ucs31-madhaparia-frontend\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "C:\\Users\\krish\\OneDrive\\Desktop\\IS codex\\ucs31-madhaparia-frontend\\e2e",
+        "snapshotDir": "C:\\Users\\krish\\OneDrive\\Desktop\\IS codex\\ucs31-madhaparia-frontend\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/consultation-v3.pw.js",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5173",
+          "channel": "msedge",
+          "headless": true,
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "playwright-results/live-v3-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --host 127.0.0.1",
+      "url": "http://127.0.0.1:5173",
+      "reuseExistingServer": true,
+      "env": {
+        "VITE_API_BASE_URL": "http://127.0.0.1:8000"
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "consultation-v3.pw.js",
+      "file": "consultation-v3.pw.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "emergency guidance precedes the consultation: I am struggling to breathe.",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3576,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:45:26.967Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "actual-urgent-mapping",
+                      "contentType": "application/json",
+                      "body": "ewogICJpbnB1dF90ZXh0IjogIkkgYW0gc3RydWdnbGluZyB0byBicmVhdGhlLiIsCiAgInJlY29nbmlzZWRfc3ltcHRvbXMiOiBbCiAgICB7CiAgICAgICJjb2RlIjogInNob3J0bmVzc19vZl9icmVhdGgiLAogICAgICAiZGlzcGxheV9uYW1lIjogIlNpZ25pZmljYW50IHNob3J0bmVzcyBvZiBicmVhdGgiLAogICAgICAiZmVhdHVyZXMiOiBbCiAgICAgICAgIkVfNjYiCiAgICAgIF0sCiAgICAgICJraW5kIjogInN5bXB0b20iLAogICAgICAiaXNfcmVkX2ZsYWciOiB0cnVlLAogICAgICAibWF0Y2hlZF90ZXh0IjogInN0cnVnZ2xpbmcgdG8gYnJlYXRoZSIsCiAgICAgICJsYW5ndWFnZSI6ICJlbiIsCiAgICAgICJtYXRjaF90eXBlIjogImV4YWN0IiwKICAgICAgIm1hdGNoX3Njb3JlIjogMTAwLAogICAgICAic3RhdHVzIjogInByZXNlbnQiLAogICAgICAicmVwb3J0ZWRfc3ViamVjdCI6ICJwYXRpZW50X29yX3Vuc3BlY2lmaWVkIiwKICAgICAgImNvbmZpcm1lZCI6IGZhbHNlLAogICAgICAiZHVyYXRpb25fbWluX2RheXMiOiBudWxsLAogICAgICAiZHVyYXRpb25fbWF4X2RheXMiOiBudWxsLAogICAgICAiZHVyYXRpb25fdGV4dCI6IG51bGwsCiAgICAgICJkdXJhdGlvbl91bml0IjogbnVsbCwKICAgICAgInNldmVyaXR5IjogbnVsbAogICAgfQogIF0sCiAgInVubWF0Y2hlZF93b3JkaW5nIjogW10sCiAgImhhc19yZWRfZmxhZyI6IHRydWUsCiAgInNhZmV0eV9zdGF0dXMiOiAidXJnZW50X3JldmlldyIsCiAgInJlcXVpcmVzX2NvbmZpcm1hdGlvbiI6IGZhbHNlLAogICJoZWFsdGhfZ3VpZGFuY2UiOiAiQSB3YXJuaW5nIHNpZ24gd2FzIGRldGVjdGVkLiBTZWVrIHVyZ2VudCBtZWRpY2FsIGFzc2Vzc21lbnQuIElmIGJyZWF0aGluZyBkaWZmaWN1bHR5IGlzIHNldmVyZSwgeW91IGNhbm5vdCBzcGVhayBub3JtYWxseSwgb3Igc3ltcHRvbXMgYXJlIHJhcGlkbHkgd29yc2VuaW5nLCBzZWVrIGVtZXJnZW5jeSBjYXJlIG5vdy4gRG8gbm90IHdhaXQgdG8gY29tcGxldGUgdGhpcyBxdWVzdGlvbm5haXJlLiIsCiAgImRpc2NsYWltZXIiOiAiVGhpcyBzeXN0ZW0gcHJvdmlkZXMgaGVhbHRoLWF3YXJlbmVzcyBpbmZvcm1hdGlvbiBvbmx5LiBJdCBkb2VzIG5vdCBwcm92aWRlIGEgbWVkaWNhbCBkaWFnbm9zaXMgYW5kIHNob3VsZCBub3QgcmVwbGFjZSBhc3Nlc3NtZW50IGJ5IGEgcXVhbGlmaWVkIGhlYWx0aGNhcmUgcHJvZmVzc2lvbmFsLiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a1d347d44899c0c26d0-4b8b6b6044fa6b358b05",
+          "file": "consultation-v3.pw.js",
+          "line": 143,
+          "column": 3
+        },
+        {
+          "title": "emergency guidance precedes the consultation: Nashindwa kupumua.",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3088,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:45:31.108Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "actual-urgent-mapping",
+                      "contentType": "application/json",
+                      "body": "ewogICJpbnB1dF90ZXh0IjogIk5hc2hpbmR3YSBrdXB1bXVhLiIsCiAgInJlY29nbmlzZWRfc3ltcHRvbXMiOiBbCiAgICB7CiAgICAgICJjb2RlIjogInNob3J0bmVzc19vZl9icmVhdGgiLAogICAgICAiZGlzcGxheV9uYW1lIjogIlNpZ25pZmljYW50IHNob3J0bmVzcyBvZiBicmVhdGgiLAogICAgICAiZmVhdHVyZXMiOiBbCiAgICAgICAgIkVfNjYiCiAgICAgIF0sCiAgICAgICJraW5kIjogInN5bXB0b20iLAogICAgICAiaXNfcmVkX2ZsYWciOiB0cnVlLAogICAgICAibWF0Y2hlZF90ZXh0IjogIm5hc2hpbmR3YSBrdXB1bXVhIiwKICAgICAgImxhbmd1YWdlIjogInN3IiwKICAgICAgIm1hdGNoX3R5cGUiOiAiZXhhY3QiLAogICAgICAibWF0Y2hfc2NvcmUiOiAxMDAsCiAgICAgICJzdGF0dXMiOiAicHJlc2VudCIsCiAgICAgICJyZXBvcnRlZF9zdWJqZWN0IjogInBhdGllbnRfb3JfdW5zcGVjaWZpZWQiLAogICAgICAiY29uZmlybWVkIjogZmFsc2UsCiAgICAgICJkdXJhdGlvbl9taW5fZGF5cyI6IG51bGwsCiAgICAgICJkdXJhdGlvbl9tYXhfZGF5cyI6IG51bGwsCiAgICAgICJkdXJhdGlvbl90ZXh0IjogbnVsbCwKICAgICAgImR1cmF0aW9uX3VuaXQiOiBudWxsLAogICAgICAic2V2ZXJpdHkiOiBudWxsCiAgICB9CiAgXSwKICAidW5tYXRjaGVkX3dvcmRpbmciOiBbXSwKICAiaGFzX3JlZF9mbGFnIjogdHJ1ZSwKICAic2FmZXR5X3N0YXR1cyI6ICJ1cmdlbnRfcmV2aWV3IiwKICAicmVxdWlyZXNfY29uZmlybWF0aW9uIjogZmFsc2UsCiAgImhlYWx0aF9ndWlkYW5jZSI6ICJEYWxpbGkgeWEgaGF0YXJpIGltZXRhbWJ1bGl3YS4gVGFmdXRhIGh1ZHVtYSB5YSBtYXRpYmFidSB5YSBoYXJha2EuIElraXdhIHVuYXB1bXVhIGt3YSBzaGlkYSBzYW5hLCB1bmFzaGluZHdhIGt1enVuZ3VtemEsIGF1IGhhbGkgaW5hemlkaSBoYXJha2EsIHRhZnV0YSBodWR1bWEgeWEgZGhhcnVyYSBzYXNhLiBVc2lzdWJpcmkga3VrYW1pbGlzaGEgbWFzd2FsaSBoYXlhLiIsCiAgImRpc2NsYWltZXIiOiAiTWZ1bW8gaHV1IGh1dG9hIHRhYXJpZmEgemEgYWZ5YSB0dS4gSGF1dG9pIHV0YW1idXppIHdhIHVnb25qd2Egd2FsYSBrdWNodWt1YSBuYWZhc2kgeWEgbXRhYWxhbXUgd2EgYWZ5YS4iCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a1d347d44899c0c26d0-af9953c737f7ad4ab592",
+          "file": "consultation-v3.pw.js",
+          "line": 143,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-28T17:45:25.665Z",
+    "duration": 9046.455999999998,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

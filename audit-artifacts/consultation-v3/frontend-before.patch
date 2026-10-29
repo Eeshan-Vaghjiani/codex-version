@@ -1,0 +1,1370 @@
+diff --git a/.gitignore b/.gitignore
+index e74f5f2..e99d50a 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -25,4 +25,7 @@ dist-ssr
+ 
+ .env
+ .env.local
+-.env.*.local
+\ No newline at end of file
++.env.*.local
++test-results/
++playwright-report/
++playwright-results/
+diff --git a/package-lock.json b/package-lock.json
+index 31b1cf6..e0d61ad 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -16,6 +16,7 @@
+         "react-router-dom": "^7.18.4"
+       },
+       "devDependencies": {
++        "@playwright/test": "^1.64.1",
+         "@testing-library/jest-dom": "^7.0.1",
+         "@testing-library/react": "^16.3.3",
+         "@types/react": "^19.2.18",
+@@ -653,6 +654,22 @@
+         "node": "^20.19.0 || >=22.12.0"
+       }
+     },
++    "node_modules/@playwright/test": {
++      "version": "1.64.1",
++      "resolved": "https://registry.npmjs.org/@playwright/test/-/test-1.64.1.tgz",
++      "integrity": "sha512-IaYGml/nSOiZWROfPtuIL7neuu9qDOZ3TNvNljUIrhDMxiGTgPjzj/g9p9RxpS2tSepPDRY+UwAaEeiKtUvIAg==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "dependencies": {
++        "playwright": "1.64.1"
++      },
++      "bin": {
++        "playwright": "cli.js"
++      },
++      "engines": {
++        "node": ">=20"
++      }
++    },
+     "node_modules/@popperjs/core": {
+       "version": "2.11.8",
+       "resolved": "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz",
+@@ -2222,6 +2239,35 @@
+         "url": "https://github.com/sponsors/jonschlinkert"
+       }
+     },
++    "node_modules/playwright": {
++      "version": "1.64.1",
++      "resolved": "https://registry.npmjs.org/playwright/-/playwright-1.64.1.tgz",
++      "integrity": "sha512-HCrVhHr5QQuwYoswEUGTb7gGp522yflbv/ST8nF4sFWGuLjQCt17Q/EubpGGSNKYn1tsTCPZxqHhHCfVURu7UA==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "dependencies": {
++        "playwright-core": "1.64.1"
++      },
++      "bin": {
++        "playwright": "cli.js"
++      },
++      "engines": {
++        "node": ">=20"
++      }
++    },
++    "node_modules/playwright-core": {
++      "version": "1.64.1",
++      "resolved": "https://registry.npmjs.org/playwright-core/-/playwright-core-1.64.1.tgz",
++      "integrity": "sha512-BC4s8y6SEVA6Q1rSxZTto8hI1KUI3xXlHGZgvGqP4IqPdI/a6FX9H29IDNz7vKo9l21b6LfYosScPL6M3xxyDQ==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "bin": {
++        "playwright-core": "cli.js"
++      },
++      "engines": {
++        "node": ">=20"
++      }
++    },
+     "node_modules/postcss": {
+       "version": "8.5.31",
+       "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.5.31.tgz",
+@@ -2550,9 +2596,9 @@
+       }
+     },
+     "node_modules/undici": {
+-      "version": "8.11.2",
+-      "resolved": "https://registry.npmjs.org/undici/-/undici-8.11.2.tgz",
+-      "integrity": "sha512-u4UB2/IrKdU6lFxumHmmo1a3fCQO5tzQllRorfoRS63txhrB7xTpSn1PftwC4qEHkOaqP95fCWW4lJzwErwzhQ==",
++      "version": "8.12.3",
++      "resolved": "https://registry.npmjs.org/undici/-/undici-8.12.3.tgz",
++      "integrity": "sha512-+fdndUTwBP86cVjihTp21hZHo7d6oj1c/47XPA3lL8mM0XHs+C4EkcjmgRsFnFk2f/UONGDy9ItBItmXsLOQHw==",
+       "dev": true,
+       "license": "MIT",
+       "engines": {
+diff --git a/package.json b/package.json
+index 38d997b..d35eea2 100644
+--- a/package.json
++++ b/package.json
+@@ -8,7 +8,8 @@
+     "build": "vite build",
+     "lint": "oxlint",
+     "preview": "vite preview",
+-    "test": "vitest run"
++    "test": "vitest run",
++    "test:e2e": "playwright test"
+   },
+   "dependencies": {
+     "@highcharts/react": "^5.4.0",
+@@ -19,6 +20,7 @@
+     "react-router-dom": "^7.18.4"
+   },
+   "devDependencies": {
++    "@playwright/test": "^1.64.1",
+     "@testing-library/jest-dom": "^7.0.1",
+     "@testing-library/react": "^16.3.3",
+     "@types/react": "^19.2.18",
+diff --git a/src/pages/AdminHistoryDetailPage.jsx b/src/pages/AdminHistoryDetailPage.jsx
+index a8ce354..6529674 100644
+--- a/src/pages/AdminHistoryDetailPage.jsx
++++ b/src/pages/AdminHistoryDetailPage.jsx
+@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
+ import { Link, useParams } from 'react-router-dom'
+ import { getAdminHistoryItem } from '../services/admin'
+ import { getApiErrorMessage } from '../services/api'
++import PossibleExplanations from '../components/PossibleExplanations'
+ 
+ function formatDate(value) {
+   if (!value) return 'Date unavailable'
+@@ -66,14 +67,14 @@ function AdminHistoryDetailPage() {
+   }
+ 
+   const urgent = session.status === 'urgent_review' || session.has_red_flag === true
+-  // Historical records may include extra predictions; display only the first.
+-  const prediction = !urgent && Array.isArray(session.predictions)
++  const abstained = ['insufficient_evidence', 'needs_follow_up'].includes(session.status)
++  const prediction = !urgent && !abstained && Array.isArray(session.predictions)
+     ? session.predictions[0] || null : null
+-  const rawConfidence = prediction?.model_confidence_percent
+-  const hasConfidence = rawConfidence != null && Number.isFinite(Number(rawConfidence))
+-  const confidenceWidth = hasConfidence
+-    ? Math.max(0, Math.min(100, Number(rawConfidence))) : 0
+   const codes = Array.isArray(session.confirmed_codes) ? session.confirmed_codes : []
++  const uncertaintyMessage = session.uncertainty_message ||
++    (session.assessment_context?.language === 'sw'
++      ? 'Matokeo haya ya modeli hayajathibitishwa kitabibu. Alama yake haiwezi kuthibitisha au kuondoa ugonjwa.'
++      : 'This saved model result has not been clinically validated. Its score is uncalibrated and cannot confirm or rule out a disease.')
+ 
+   return (
+     <section className="adm36-page" aria-labelledby="adm36-detail-title">
+@@ -111,26 +112,19 @@ function AdminHistoryDetailPage() {
+         ) : (
+           <section className="adm36-detail-panel adm36-result-panel" aria-labelledby="adm36-result-heading">
+             <p className="adm36-kicker">Stored prediction</p>
+-            <h2 id="adm36-result-heading">Saved condition pattern</h2>
+-            <p className="adm36-detail-description">Only one saved condition is displayed. This is a model result, not a medical diagnosis.</p>
++            <h2 id="adm36-result-heading">Saved possible explanations</h2>
++            <p className="adm36-detail-description">These were the possible explanations considered in this assessment, not diagnoses.</p>
+             {prediction ? (
+-              <div className="adm36-condition">
+-                <div className="adm36-condition-top">
+-                  <div><p className="adm36-kicker">Condition pattern</p><h3>{prediction.display_name}</h3></div>
+-                  {hasConfidence && <div className="adm36-confidence"><strong>{rawConfidence}%</strong><span>model confidence</span></div>}
+-                </div>
+-                {prediction.description && <p className="adm36-condition-description">{prediction.description}</p>}
+-                {hasConfidence && <div className="adm36-confidence-track" aria-hidden="true"><span style={{ width: `${confidenceWidth}%` }} /></div>}
+-                <p className="adm36-score-note">Model confidence is not the probability that the patient has this condition.</p>
+-              </div>
++              <PossibleExplanations predictions={session.predictions} language={session.assessment_context?.language} />
+             ) : <div className="adm36-empty"><p>No condition prediction was stored for this session.</p></div>}
+-            {(session.confidence_explanation || session.score_note) && <div className="adm36-info-note"><strong>About model confidence</strong>{session.confidence_explanation && <p>{session.confidence_explanation}</p>}{session.score_note && <p>{session.score_note}</p>}</div>}
+-            {session.uncertain === true && session.uncertainty_message && <div className="adm36-safety-note" role="status"><strong>Uncertainty information</strong><p>{session.uncertainty_message}</p></div>}
++            {(session.confidence_explanation || session.score_note) && <details className="adm36-info-note consultation-score-note"><summary>About the model ranking</summary>{session.confidence_explanation && <p>{session.confidence_explanation}</p>}{session.score_note && <p>{session.score_note}</p>}</details>}
++            {(session.uncertain === true || prediction || abstained) && <div className="adm36-safety-note" role="status"><strong>Uncertainty information</strong><p>{uncertaintyMessage}</p></div>}
+             {Array.isArray(session.unsupported_model_features) && session.unsupported_model_features.length > 0 && <div className="adm36-safety-note" role="note"><strong>Unsupported model features</strong><p>{session.unsupported_model_features.length} confirmed symptom detail(s) were excluded from the model calculation.</p></div>}
+             {session.health_guidance && <div className="adm36-info-note"><strong>Health guidance</strong><p>{session.health_guidance}</p></div>}
+           </section>
+         )}
+ 
++        {session.assessment_context?.context_note && <div className="adm36-safety-note" role="note" aria-label="Assessment context limitations"><p>{session.assessment_context.context_note}</p></div>}
+         <div className="adm36-session-reference"><span>Session reference</span><code>{session.prediction_id}</code></div>
+         <div className="adm36-bottom-note"><strong>Administrator access only</strong><p>{session.disclaimer || 'These historical results are for health awareness and are not medical diagnoses.'}</p></div>
+       </div>
+diff --git a/src/pages/PatientHistoryDetailPage.jsx b/src/pages/PatientHistoryDetailPage.jsx
+index 69d6467..056c331 100644
+--- a/src/pages/PatientHistoryDetailPage.jsx
++++ b/src/pages/PatientHistoryDetailPage.jsx
+@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom'
+ import { getApiErrorMessage } from '../services/api'
+ import { getPatientHistoryItem } from '../services/history'
+ import PredictionFeedback from '../components/PredictionFeedback'
++import PossibleExplanations from '../components/PossibleExplanations'
+ 
+ function formatDate(value) {
+   if (!value) return 'Date unavailable'
+@@ -84,15 +85,15 @@ function PatientHistoryDetailPage() {
+   }
+ 
+   const urgent = session.status === 'urgent_review' || session.has_red_flag === true
+-  // Older sessions may contain multiple predictions. The patient sees one.
+-  const prediction = !urgent && Array.isArray(session.predictions)
++  const abstained = ['insufficient_evidence', 'needs_follow_up'].includes(session.status)
++  const prediction = !urgent && !abstained && Array.isArray(session.predictions)
+     ? session.predictions[0] || null : null
+-  const rawConfidence = prediction?.model_confidence_percent
+-  const hasConfidence = rawConfidence != null && Number.isFinite(Number(rawConfidence))
+-  const confidenceWidth = hasConfidence
+-    ? Math.max(0, Math.min(100, Number(rawConfidence))) : 0
+   const confirmedCodes = Array.isArray(session.confirmed_codes)
+     ? session.confirmed_codes : []
++  const uncertaintyMessage = session.uncertainty_message ||
++    (session.assessment_context?.language === 'sw'
++      ? 'Matokeo haya ya modeli hayajathibitishwa kitabibu. Alama yake haiwezi kuthibitisha au kuondoa ugonjwa.'
++      : 'This saved model result has not been clinically validated. Its score is uncalibrated and cannot confirm or rule out a disease.')
+ 
+   return (
+     <section className="hist35-page" aria-labelledby="hist35-detail-title">
+@@ -159,54 +160,28 @@ function PatientHistoryDetailPage() {
+           <section className="hist35-result-section" aria-labelledby="hist35-result-title">
+             <div className="hist35-section-title">
+               <p className="hist35-kicker">Saved result</p>
+-              <h2 id="hist35-result-title">Saved condition pattern</h2>
+-              <p>The condition shown is the saved model result, not a diagnosis.</p>
++              <h2 id="hist35-result-title">Saved possible explanations</h2>
++              <p>These were the possible explanations considered in this assessment, not diagnoses.</p>
+             </div>
+ 
+             {prediction ? (
+-              <div className="hist35-condition">
+-                <div className="hist35-condition-header">
+-                  <div>
+-                    <p className="hist35-kicker">Condition pattern</p>
+-                    <h3>{prediction.display_name}</h3>
+-                  </div>
+-                  {hasConfidence && (
+-                    <div className="hist35-confidence-value">
+-                      <strong>{rawConfidence}%</strong>
+-                      <span>model confidence</span>
+-                    </div>
+-                  )}
+-                </div>
+-                {prediction.description && (
+-                  <p className="hist35-condition-description">{prediction.description}</p>
+-                )}
+-                {hasConfidence && (
+-                  <div className="hist35-confidence-visual">
+-                    <div className="hist35-confidence-track" aria-hidden="true">
+-                      <span style={{ width: `${confidenceWidth}%` }} />
+-                    </div>
+-                    <p>A model score, not the probability that you have this condition.</p>
+-                  </div>
+-                )}
+-              </div>
++              <PossibleExplanations predictions={session.predictions} language={session.assessment_context?.language} />
+             ) : (
+-              <div className="hist35-no-result">
+-                <p>No condition prediction was stored for this session.</p>
+-              </div>
++              <div className="hist35-no-result"><p>No condition prediction was stored for this session.</p></div>
+             )}
+ 
+             {(session.confidence_explanation || session.score_note) && (
+-              <div className="hist35-explanation">
+-                <h3>About model confidence</h3>
++              <details className="hist35-explanation consultation-score-note">
++                <summary>About the model ranking</summary>
+                 {session.confidence_explanation && <p>{session.confidence_explanation}</p>}
+                 {session.score_note && <p>{session.score_note}</p>}
+-              </div>
++              </details>
+             )}
+ 
+-            {session.uncertain === true && session.uncertainty_message && (
++            {(session.uncertain === true || prediction || abstained) && (
+               <div className="hist35-uncertainty" role="status">
+                 <strong>Important information about this result</strong>
+-                <p>{session.uncertainty_message}</p>
++                <p>{uncertaintyMessage}</p>
+               </div>
+             )}
+ 
+@@ -226,11 +201,18 @@ function PatientHistoryDetailPage() {
+                 <p className="hist35-kicker">Health guidance</p>
+                 <h3>What to do next</h3>
+                 <p>{session.health_guidance}</p>
++                {Array.isArray(session.next_steps) && <ul>{session.next_steps.map((step) => <li key={step}>{step}</li>)}</ul>}
+               </div>
+             )}
+           </section>
+         )}
+ 
++        {session.assessment_context?.context_note && (
++          <div className="hist35-uncertainty" role="note" aria-label="Assessment context limitations">
++            <p>{session.assessment_context.context_note}</p>
++          </div>
++        )}
++
+         <div className="hist35-reference-detail">
+           <span>Session reference</span>
+           <code>{session.prediction_id}</code>
+diff --git a/src/pages/PatientHistoryPage.jsx b/src/pages/PatientHistoryPage.jsx
+index ee00ee5..b27bdf2 100644
+--- a/src/pages/PatientHistoryPage.jsx
++++ b/src/pages/PatientHistoryPage.jsx
+@@ -190,7 +190,8 @@ function PatientHistoryPage() {
+               <div className="hist35-list">
+                 {visibleHistory.map((item) => {
+                   const urgent = isUrgentSession(item)
+-                  const topPrediction = !urgent && Array.isArray(item.predictions)
++                  const abstained = ['insufficient_evidence', 'needs_follow_up'].includes(item.status)
++                  const topPrediction = !urgent && !abstained && Array.isArray(item.predictions)
+                     ? item.predictions[0] : null
+                   const rawConfidence = topPrediction?.model_confidence_percent
+                   const hasConfidence = rawConfidence != null &&
+@@ -236,7 +237,7 @@ function PatientHistoryPage() {
+                           {hasConfidence && (
+                             <div className="hist35-preview-confidence">
+                               <strong>{rawConfidence}%</strong>
+-                              <span>model confidence</span>
++                              <span>uncalibrated model score</span>
+                             </div>
+                           )}
+                         </div>
+diff --git a/src/pages/PredictionPage.jsx b/src/pages/PredictionPage.jsx
+index a78cf24..54ea6c9 100644
+--- a/src/pages/PredictionPage.jsx
++++ b/src/pages/PredictionPage.jsx
+@@ -17,15 +17,19 @@ import {
+ 
+ import { getApiErrorMessage } from '../services/api'
+ import PredictionFeedback from '../components/PredictionFeedback'
++import PossibleExplanations from '../components/PossibleExplanations'
+ 
+ function PredictionPage() {
+   const mapping = getSavedSymptomMapping()
+   const confirmation = getSavedSymptomConfirmation()
+ 
+-  const [age, setAge] = useState('')
+-  const [sex, setSex] = useState('')
++  const [age, setAge] = useState(() =>
++    getSavedPredictionResult()?.request_context?.age?.toString() || '')
++  const [sex, setSex] = useState(() =>
++    getSavedPredictionResult()?.request_context?.sex || '')
+   const [loading, setLoading] = useState(false)
+   const [error, setError] = useState('')
++  const [followUpAnswer, setFollowUpAnswer] = useState('')
+ 
+   // Keep a saved result only when it belongs to
+   // this exact symptom description and selection.
+@@ -45,7 +49,8 @@ function PredictionPage() {
+     // An urgent confirmation must never reuse
+     // an ordinary disease prediction.
+     if (
+-      confirmation?.safety_status === 'urgent_review' &&
++      (confirmation?.safety_status === 'urgent_review' ||
++        confirmation?.has_red_flag || mapping?.has_red_flag) &&
+       saved?.status !== 'urgent_review'
+     ) {
+       return null
+@@ -59,7 +64,8 @@ function PredictionPage() {
+   }
+ 
+   const isConfirmedUrgent =
+-    confirmation.safety_status === 'urgent_review'
++    confirmation.safety_status === 'urgent_review' ||
++    confirmation.has_red_flag === true || mapping.has_red_flag === true
+ 
+   const confirmedSymptoms =
+     confirmation.confirmed_symptoms || []
+@@ -67,24 +73,29 @@ function PredictionPage() {
+   const confirmedCodes =
+     confirmation.confirmed_codes || []
+ 
+-  // The patient-facing UI always shows one condition.
+-  const prediction = Array.isArray(result?.predictions)
++  const needsFollowUp = result?.status === 'needs_follow_up'
++  const assessmentComplete = Boolean(result) && !needsFollowUp
++  const insufficientEvidence = result?.status === 'insufficient_evidence'
++  const question = needsFollowUp ? result.follow_up_question : null
++  const contextNote = result?.context_note || result?.assessment_context?.context_note
++  const duration = result?.assessment_context?.duration
++  const durationLabel = duration && ({
++    under_3_days: 'Less than 3 days / Chini ya siku 3',
++    '3_to_14_days': '3 to 14 days / Siku 3 hadi 14',
++    over_14_days: 'More than 14 days / Zaidi ya siku 14',
++    unknown: 'Not sure / Sina uhakika',
++  }[duration.text] || duration.text)
++  // An abstention or question cannot be rendered as a diagnosis, even
++  // if a malformed response includes candidate model scores.
++  const prediction = !needsFollowUp && !insufficientEvidence && Array.isArray(result?.predictions)
+     ? result.predictions[0] || null
+     : null
+ 
+-  const rawConfidence = prediction?.model_confidence_percent
+-
+-  const numericConfidence =
+-    rawConfidence == null ? NaN : Number(rawConfidence)
+-
+-  const hasConfidence = Number.isFinite(numericConfidence)
+-
+-  const confidenceWidth = hasConfidence
+-    ? Math.max(0, Math.min(100, numericConfidence))
+-    : 0
++  const swahili = result?.assessment_context?.language === 'sw'
+ 
+   const isUrgentResult =
+-    result?.status === 'urgent_review' || isConfirmedUrgent
++    result?.status === 'urgent_review' || result?.care_level === 'urgent_review' ||
++    result?.has_red_flag === true || isConfirmedUrgent
+ 
+   async function handleSubmit(event) {
+     event.preventDefault()
+@@ -114,6 +125,17 @@ function PredictionPage() {
+       return
+     }
+ 
++    const previousAnswers = result?.follow_up_answers || []
++    if (needsFollowUp && !question?.options?.some(
++      (option) => option.value === followUpAnswer,
++    )) {
++      setError('Please choose one of the listed answers. / Tafadhali chagua jibu moja.')
++      return
++    }
++    const followUpAnswers = needsFollowUp
++      ? [...previousAnswers, { question_id: question.id, answer: followUpAnswer }]
++      : []
++
+     setLoading(true)
+ 
+     try {
+@@ -124,6 +146,7 @@ function PredictionPage() {
+         sex,
+         text: mapping.input_text,
+         confirmedCodes,
++        ...(followUpAnswers.length > 0 && { followUpAnswers }),
+       })
+ 
+       // The backend is responsible for red-flag routing.
+@@ -140,7 +163,11 @@ function PredictionPage() {
+       }
+ 
+       setResult(response)
+-      savePredictionResult(response, mapping.input_text)
++      setFollowUpAnswer('')
++      savePredictionResult(response, mapping.input_text, {
++        age: numericAge,
++        sex,
++      })
+     } catch (requestError) {
+       if (requestError.response?.status === 401) {
+         setError(
+@@ -172,6 +199,7 @@ function PredictionPage() {
+     setAge('')
+     setSex('')
+     setError('')
++    setFollowUpAnswer('')
+   }
+ 
+   return (
+@@ -206,7 +234,8 @@ function PredictionPage() {
+               <div className="pred34-progress-labels">
+                 <strong>Step 3 of 3</strong>
+                 <span>
+-                  {result ? 'Assessment complete' : 'Health awareness'}
++                  {needsFollowUp ? 'A brief follow-up / Swali fupi'
++                    : result ? 'Assessment complete' : 'Health awareness'}
+                 </span>
+               </div>
+ 
+@@ -216,11 +245,11 @@ function PredictionPage() {
+                 aria-label="Assessment progress"
+                 aria-valuemin={0}
+                 aria-valuemax={3}
+-                aria-valuenow={result ? 3 : 2}
++                aria-valuenow={assessmentComplete ? 3 : 2}
+               >
+                 <span
+                   style={{
+-                    width: result ? '100%' : '66.67%',
++                    width: assessmentComplete ? '100%' : '66.67%',
+                   }}
+                 />
+               </div>
+@@ -289,12 +318,8 @@ function PredictionPage() {
+                     </strong>
+ 
+                     <p>
+-                      Your confirmed symptoms require
+-                      urgent-review handling. This page
+-                      can request the backend's safety
+-                      response, but must not generate a
+-                      disease prediction for this case.
+-                      Seek prompt medical assessment.
++                      {confirmation.health_guidance || mapping.health_guidance ||
++                        'Seek urgent medical help now if you are struggling to breathe. Do not wait to complete this form. / Tafuta huduma ya matibabu ya dharura sasa ikiwa unapata shida kubwa ya kupumua. Usisubiri kukamilisha fomu hii.'}
+                     </p>
+                   </div>
+                 )}
+@@ -318,6 +343,7 @@ function PredictionPage() {
+                           min="0"
+                           max="120"
+                           value={age}
++                          disabled={loading}
+                           placeholder="e.g. 25"
+                           onChange={(event) => {
+                             setAge(event.target.value)
+@@ -337,6 +363,7 @@ function PredictionPage() {
+                           id="prediction-sex"
+                           className="form-select"
+                           value={sex}
++                          disabled={loading}
+                           onChange={(event) => {
+                             setSex(event.target.value)
+                             setError('')
+@@ -366,8 +393,7 @@ function PredictionPage() {
+                     <p>
+                       Age and sex are part of the
+                       assessment request. For normal cases,
+-                      the trained model uses them alongside
+-                      your confirmed symptom features.
++                      their use depends on the active model.
+                       Urgent cases receive safety guidance
+                       instead of a disease prediction.
+                     </p>
+@@ -434,9 +460,9 @@ function PredictionPage() {
+                   <div>
+                     <strong>Review the result</strong>
+                     <p>
+-                      Non-urgent cases receive one
+-                      condition pattern and a model
+-                      confidence score.
++                      We may ask a short follow-up question
++                      or explain that there is insufficient
++                      information for a condition assessment.
+                     </p>
+                   </div>
+                 </div>
+@@ -488,129 +514,73 @@ function PredictionPage() {
+                   displayed for this urgent-review case.
+                 </p>
+               </section>
++            ) : needsFollowUp ? (
++              <section className="pred34-panel" aria-labelledby="follow-up-title">
++                <h2 id="follow-up-title">{question?.text || 'More information is needed'}</h2>
++                {question?.rationale && <p>{question.rationale}</p>}
++                <form onSubmit={handleSubmit}>
++                  <fieldset disabled={loading}>
++                    <legend className="visually-hidden">{question?.text}</legend>
++                    {(question?.options || []).map((option, index) => (
++                      <label className="d-block my-3" key={option.value}>
++                        <input type="radio" name="follow-up-answer"
++                          value={option.value}
++                          checked={followUpAnswer === option.value}
++                          onChange={() => { setFollowUpAnswer(option.value); setError('') }} />
++                        {' '}{/^\d+[.)]\s/.test(option.label) ? option.label : `${index + 1}. ${option.label}`}
++                      </label>
++                    ))}
++                  </fieldset>
++                  {error && <p role="alert">{error}</p>}
++                  <button className="button button-primary" type="submit" disabled={loading}>
++                    {loading ? 'Updating assessment...' : 'Continue / Endelea'}
++                  </button>
++                </form>
++                <p className="mt-3">{result.health_guidance}</p>
++              </section>
+             ) : (
+               <>
++                {result.uncertain === true && result.uncertainty_message && (
++                  <div className="pred34-uncertainty" role="status">
++                    <strong>Important information about this result</strong>
++                    <p>{result.uncertainty_message}</p>
++                  </div>
++                )}
+                 <div className="pred34-result-intro">
+                   <p className="pred34-kicker">
+                     Analysis complete
+                   </p>
+ 
+-                  <h2>Your health-awareness result</h2>
++                  <h2>{insufficientEvidence ? 'More information is needed'
++                    : swahili ? 'Hali zinazowezekana' : 'Possible explanations'}</h2>
+ 
+                   <p>
+-                    The result below describes the condition
+-                    pattern selected by the trained model.
+-                    It does not establish what illness you have.
++                    {result.assessment_summary || (insufficientEvidence
++                      ? 'Please describe the symptoms you are experiencing so we can explore relevant possibilities.'
++                      : swahili ? 'Hizi ni hali zinazoweza kueleza dalili zako; si utambuzi wa ugonjwa.'
++                        : 'These are possible explanations for your symptoms, not a diagnosis. Their order can change as more information becomes available.')}
+                   </p>
+                 </div>
+ 
+-                <div className="row g-4">
+-                  <div className="col-12 col-lg-8">
+-                    <section
+-                      className="pred34-condition-panel"
+-                      aria-labelledby="pred34-condition-title"
+-                    >
+-                      {prediction ? (
+-                        <>
+-                          <div className="pred34-condition-top">
+-                            <div>
+-                              <p className="pred34-kicker">
+-                                Condition pattern
+-                              </p>
+-
+-                              <h3 id="pred34-condition-title">
+-                                {prediction.display_name}
+-                              </h3>
+-                            </div>
+-
+-                            {hasConfidence && (
+-                              <div className="pred34-confidence-value">
+-                                <strong>
+-                                  {rawConfidence}%
+-                                </strong>
+-                                <span>
+-                                  model confidence
+-                                </span>
+-                              </div>
+-                            )}
+-                          </div>
+-
+-                          {prediction.description && (
+-                            <p className="pred34-condition-description">
+-                              {prediction.description}
+-                            </p>
+-                          )}
+-
+-                          {hasConfidence && (
+-                            <div className="pred34-confidence-visual">
+-                              <div
+-                                className="pred34-confidence-track"
+-                                aria-hidden="true"
+-                              >
+-                                <span
+-                                  style={{
+-                                    width: `${confidenceWidth}%`,
+-                                  }}
+-                                />
+-                              </div>
+-
+-                              <p>
+-                                A model score, not the
+-                                probability that you have
+-                                this condition.
+-                              </p>
+-                            </div>
+-                          )}
+-                        </>
+-                      ) : (
+-                        <div className="pred34-no-condition">
+-                          <h3 id="pred34-condition-title">
+-                            No condition result was returned
+-                          </h3>
+-                          <p>
+-                            Please review the guidance
+-                            provided with this assessment.
+-                          </p>
+-                        </div>
+-                      )}
+-                    </section>
+-                  </div>
+-
+-                  <div className="col-12 col-lg-4">
+-                    <aside className="pred34-confidence-note">
+-                      <p className="pred34-kicker">
+-                        Reading your result
+-                      </p>
+-
+-                      <h3>About model confidence</h3>
+-
+-                      <p>
+-                        {result.confidence_explanation ||
+-                          'Model confidence describes the score assigned to a condition pattern. It is not a clinical diagnosis.'}
+-                      </p>
+-
+-                      {result.score_note && (
+-                        <p>{result.score_note}</p>
+-                      )}
+-                    </aside>
+-                  </div>
+-                </div>
+-
+-                {result.uncertain === true &&
+-                  result.uncertainty_message && (
+-                    <div
+-                      className="pred34-uncertainty"
+-                      role="status"
+-                    >
+-                      <strong>
+-                        Important information about this result
+-                      </strong>
++                {prediction ? (
++                  <PossibleExplanations
++                    predictions={result.predictions}
++                    language={result.assessment_context?.language}
++                  />
++                ) : (
++                  <section className="pred34-condition-panel">
++                    <h3>{insufficientEvidence ? 'No disease prediction is supported' : 'No condition result was returned'}</h3>
++                    <p>Please review the guidance provided with this assessment.</p>
++                  </section>
++                )}
+ 
+-                      <p>
+-                        {result.uncertainty_message}
+-                      </p>
+-                    </div>
+-                  )}
++                {prediction && (result.confidence_explanation || result.score_note) && (
++                  <details className="pred34-confidence-note consultation-score-note">
++                    <summary>{swahili ? 'Jinsi ya kuelewa mpangilio huu' : 'About the model ranking'}</summary>
++                    <p>{result.confidence_explanation}</p>
++                    <p>{result.score_note}</p>
++                  </details>
++                )}
+ 
+                 {Array.isArray(
+                   result.unsupported_model_features,
+@@ -645,14 +615,30 @@ function PredictionPage() {
+                   </p>
+ 
+                   <h3 id="pred34-guidance-title">
+-                    What to do next
++                    {swahili ? 'Hatua zinazofuata' : 'What to do next'}
+                   </h3>
+ 
+                   <p>{result.health_guidance}</p>
++                  {result.care_level === 'professional_review' && (
++                    <strong>{swahili ? 'Tathmini ya mtaalamu wa afya inapendekezwa' : 'Professional review recommended'}</strong>
++                  )}
++                  {Array.isArray(result.next_steps) && result.next_steps.length > 0 && (
++                    <ul>{result.next_steps.map((step) => <li key={step}>{step}</li>)}</ul>
++                  )}
+                 </section>
+               </>
+             )}
+ 
++            {durationLabel && (
++              <p className="pred34-input-note">Duration / Muda: {durationLabel}</p>
++            )}
++
++            {contextNote && (
++              <div className="pred34-warning" role="note" aria-label="Assessment context limitations">
++                <p>{contextNote}</p>
++              </div>
++            )}
++
+             <section
+               className="pred34-disclaimer"
+               aria-label="Medical disclaimer"
+@@ -662,17 +648,17 @@ function PredictionPage() {
+               <p>{result.disclaimer}</p>
+             </section>
+ 
+-            <div className="pred34-feedback">
++            {result.prediction_id && !needsFollowUp && <div className="pred34-feedback">
+               <PredictionFeedback
+                 key={result.prediction_id}
+                 predictionId={result.prediction_id}
+               />
+-            </div>
++            </div>}
+ 
+-            <div className="pred34-reference">
++            {result.prediction_id && <div className="pred34-reference">
+               <span>Session reference</span>
+               <code>{result.prediction_id}</code>
+-            </div>
++            </div>}
+ 
+             <div className="pred34-result-actions">
+               <button
+diff --git a/src/pages/SymptomConfirmationPage.jsx b/src/pages/SymptomConfirmationPage.jsx
+index 80b5b14..1699f7b 100644
+--- a/src/pages/SymptomConfirmationPage.jsx
++++ b/src/pages/SymptomConfirmationPage.jsx
+@@ -15,9 +15,13 @@ import { getApiErrorMessage } from '../services/api'
+ function SymptomConfirmationPage() {
+   const mapping = getSavedSymptomMapping()
+   const recognised = mapping?.recognised_symptoms || []
++  const present = recognised.filter((symptom) =>
++    (!symptom.status || symptom.status === 'present') && symptom.reported_subject !== 'other_person')
++  const otherMentions = recognised.filter((symptom) =>
++    symptom.reported_subject === 'other_person' || (symptom.status && symptom.status !== 'present'))
+ 
+   const [selectedCodes, setSelectedCodes] = useState(
+-    () => recognised.map((symptom) => symptom.code),
++    () => present.map((symptom) => symptom.code),
+   )
+   const [result, setResult] = useState(null)
+   const [loading, setLoading] = useState(false)
+@@ -186,7 +190,7 @@ function SymptomConfirmationPage() {
+               className="sym33-selection-list"
+               aria-label="Select your symptoms"
+             >
+-              {recognised.map((symptom) => {
++              {present.map((symptom) => {
+                 const selected = selectedCodes.includes(
+                   symptom.code,
+                 )
+@@ -238,6 +242,18 @@ function SymptomConfirmationPage() {
+               })}
+             </div>
+ 
++            {otherMentions.length > 0 && (
++              <div className="sym33-original-description" role="note" aria-label="Absent or uncertain symptoms">
++                <strong>Absent or uncertain symptoms / Dalili zisizopo au zisizo na uhakika</strong>
++                <ul>{otherMentions.map((symptom) => (
++                  <li key={symptom.code}>{symptom.display_name}: {symptom.reported_subject === 'other_person'
++                    ? 'reported for another person / imeripotiwa kwa mtu mwingine' : symptom.status === 'absent'
++                    ? 'reported absent / haipo' : 'uncertain / hakuna uhakika'}</li>
++                ))}</ul>
++                <p>These are preserved separately and are not selected as present symptoms.</p>
++              </div>
++            )}
++
+             <p className="sym33-selection-help">
+               Select a symptom to include it, or select
+               it again to remove it. At least one symptom
+@@ -395,8 +411,9 @@ function SymptomConfirmationPage() {
+ 
+                   <p>
+                     Provide your age and sex in the next
+-                    step to continue to the preliminary
+-                    single-condition prediction.
++                    step to continue the assessment. We may
++                    ask a relevant follow-up question or
++                    explain that more evidence is needed.
+                   </p>
+                 </div>
+ 
+diff --git a/src/pages/SymptomInputPage.jsx b/src/pages/SymptomInputPage.jsx
+index 642c10b..4c01955 100644
+--- a/src/pages/SymptomInputPage.jsx
++++ b/src/pages/SymptomInputPage.jsx
+@@ -1,5 +1,5 @@
+ 
+-import { useState } from 'react'
++import { useEffect, useRef, useState } from 'react'
+ import { Link } from 'react-router-dom'
+ 
+ import {
+@@ -38,11 +38,14 @@ function SymptomInputPage() {
+   const [mapping, setMapping] = useState(null)
+   const [loading, setLoading] = useState(false)
+   const [error, setError] = useState('')
++  const requestVersion = useRef(0)
++  useEffect(() => () => { requestVersion.current += 1 }, [])
+ 
+   const recognised = mapping?.recognised_symptoms || []
+   const unmatched = mapping?.unmatched_wording || []
+ 
+   function invalidatePreviousResults() {
++    requestVersion.current += 1
+     setMapping(null)
+     clearSymptomMapping()
+     clearSymptomConfirmation()
+@@ -84,12 +87,15 @@ function SymptomInputPage() {
+ 
+     // Invalidate older results before a new analysis.
+     invalidatePreviousResults()
++    const version = requestVersion.current
+ 
+     try {
+       const result = await mapSymptoms(cleanedText)
++      if (version !== requestVersion.current) return
+       setMapping(result)
+       saveSymptomMapping(result)
+     } catch (requestError) {
++      if (version !== requestVersion.current) return
+       if (requestError.response?.status === 422) {
+         setError(
+           'Please check your symptom description and try again.',
+@@ -353,12 +359,8 @@ function SymptomInputPage() {
+                 </strong>
+ 
+                 <p>
+-                  A recognised phrase may indicate a
+-                  potentially urgent symptom. If you
+-                  are experiencing severe symptoms or
+-                  breathing difficulty, seek medical
+-                  attention promptly rather than waiting
+-                  for this assessment.
++                  {mapping.health_guidance || mapping.safety_message ||
++                    'Seek urgent medical help now if you are struggling to breathe. Do not wait to finish this assessment. / Tafuta huduma ya matibabu ya dharura sasa ikiwa unapata shida kubwa ya kupumua. Usisubiri kukamilisha tathmini hii.'}
+                 </p>
+               </div>
+             )}
+@@ -377,6 +379,12 @@ function SymptomInputPage() {
+                     <div className="sym33-recognised-main">
+                       <div className="sym33-recognised-heading">
+                         <h3>{symptom.display_name}</h3>
++                        {symptom.status && (
++                          <span>{symptom.reported_subject === 'other_person' ? 'Reported for another person / Mtu mwingine'
++                            : symptom.status === 'absent' ? 'Reported absent / Haipo'
++                            : symptom.status === 'unknown' ? 'Uncertain / Hakuna uhakika'
++                              : 'Present / Ipo'}</span>
++                        )}
+ 
+                         {symptom.is_red_flag && (
+                           <span className="sym33-warning-tag">
+@@ -391,6 +399,10 @@ function SymptomInputPage() {
+                           “{symptom.matched_text}”
+                         </strong>
+                       </p>
++                      {(symptom.duration_text || symptom.severity) && <p>
++                        {symptom.duration_text && <span>Duration: {symptom.duration_text}. </span>}
++                        {symptom.severity && <span>Severity: {symptom.severity}.</span>}
++                      </p>}
+                     </div>
+ 
+                     <div className="sym33-recognised-meta">
+@@ -470,7 +482,7 @@ function SymptomInputPage() {
+               </section>
+             )}
+ 
+-            {recognised.length > 0 && (
++            {recognised.some((symptom) => (!symptom.status || symptom.status === 'present') && symptom.reported_subject !== 'other_person') && !mapping.has_red_flag && (
+               <div className="sym33-next">
+                 <div>
+                   <p className="sym33-section-kicker">
+diff --git a/src/pages/__tests__/AdminHistoryDetailPage.test.jsx b/src/pages/__tests__/AdminHistoryDetailPage.test.jsx
+index c6bc2e9..6ccc650 100644
+--- a/src/pages/__tests__/AdminHistoryDetailPage.test.jsx
++++ b/src/pages/__tests__/AdminHistoryDetailPage.test.jsx
+@@ -44,13 +44,24 @@ describe('Admin history detail display', () => {
+   it('shows a single saved condition without ranking', async () => {
+     getAdminHistoryItem.mockResolvedValueOnce(singleSession)
+     renderAdminHistoryDetail()
+-    expect(await screen.findByRole('heading', { name: 'Saved condition pattern' }))
++    expect(await screen.findByRole('heading', { name: 'Saved possible explanations' }))
+       .toBeInTheDocument()
+     expect(screen.getByText('Tuberculosis (TB)')).toBeInTheDocument()
+     expect(screen.queryByText('Rank')).not.toBeInTheDocument()
+   })
+ 
+-  it('shows only one condition for older records containing multiple predictions', async () => {
++  it('keeps caution and context visible when legacy response metadata is missing', async () => {
++    getAdminHistoryItem.mockResolvedValueOnce({ ...singleSession,
++      assessment_context: { context_note: 'Duration remains preserved for guidance.' },
++    })
++    renderAdminHistoryDetail()
++    await screen.findByRole('heading', { name: 'Saved possible explanations' })
++    expect(screen.getByRole('status')).toHaveTextContent('has not been clinically validated')
++    expect(screen.getByRole('note', { name: 'Assessment context limitations' }))
++      .toHaveTextContent('Duration remains preserved')
++  })
++
++  it('preserves competing possibilities in older records', async () => {
+     getAdminHistoryItem.mockResolvedValueOnce({
+       ...singleSession,
+       predictions: [
+@@ -65,10 +76,10 @@ describe('Admin history detail display', () => {
+       ],
+     })
+     renderAdminHistoryDetail()
+-    expect(await screen.findByRole('heading', { name: 'Saved condition pattern' }))
++    expect(await screen.findByRole('heading', { name: 'Saved possible explanations' }))
+       .toBeInTheDocument()
+     expect(screen.getByText('Tuberculosis (TB)')).toBeInTheDocument()
+-    expect(screen.queryByText('Pneumonia')).not.toBeInTheDocument()
++    expect(screen.getByText('Pneumonia')).toBeInTheDocument()
+     expect(screen.queryByText('Rank')).not.toBeInTheDocument()
+   })
+ 
+diff --git a/src/pages/__tests__/PatientHistoryDetailPage.test.jsx b/src/pages/__tests__/PatientHistoryDetailPage.test.jsx
+index b3203ef..06b75d6 100644
+--- a/src/pages/__tests__/PatientHistoryDetailPage.test.jsx
++++ b/src/pages/__tests__/PatientHistoryDetailPage.test.jsx
+@@ -54,13 +54,24 @@ describe('Patient history detail display', () => {
+     renderHistoryDetail()
+ 
+     expect(await screen.findByRole('heading', {
+-      name: 'Saved condition pattern',
++      name: 'Saved possible explanations',
+     })).toBeInTheDocument()
+     expect(screen.getByText('Tuberculosis (TB)')).toBeInTheDocument()
+     expect(screen.queryByText('Rank')).not.toBeInTheDocument()
+   })
+ 
+-  it('shows only one condition for older records with multiple predictions', async () => {
++  it('keeps uncertainty and preserved context visible when legacy response metadata is missing', async () => {
++    getPatientHistoryItem.mockResolvedValueOnce({ ...singleSession,
++      assessment_context: { context_note: 'Negative evidence was recorded but is not learned by this model.' },
++    })
++    renderHistoryDetail()
++    await screen.findByRole('heading', { name: 'Saved possible explanations' })
++    expect(screen.getByRole('status')).toHaveTextContent('has not been clinically validated')
++    expect(screen.getByRole('note', { name: 'Assessment context limitations' }))
++      .toHaveTextContent('Negative evidence was recorded')
++  })
++
++  it('preserves competing possibilities in older records', async () => {
+     getPatientHistoryItem.mockResolvedValueOnce({
+       ...singleSession,
+       predictions: [
+@@ -77,10 +88,10 @@ describe('Patient history detail display', () => {
+     renderHistoryDetail()
+ 
+     expect(await screen.findByRole('heading', {
+-      name: 'Saved condition pattern',
++      name: 'Saved possible explanations',
+     })).toBeInTheDocument()
+     expect(screen.getByText('Tuberculosis (TB)')).toBeInTheDocument()
+-    expect(screen.queryByText('Pneumonia')).not.toBeInTheDocument()
++    expect(screen.getByText('Pneumonia')).toBeInTheDocument()
+     expect(screen.queryByText('Rank')).not.toBeInTheDocument()
+   })
+ 
+@@ -96,6 +107,6 @@ describe('Patient history detail display', () => {
+     expect(await screen.findByText(/The prediction model was bypassed/i))
+       .toBeInTheDocument()
+     expect(screen.queryByText('Tuberculosis (TB)')).not.toBeInTheDocument()
+-    expect(screen.queryByText('Saved condition pattern')).not.toBeInTheDocument()
++    expect(screen.queryByText('Saved possible explanations')).not.toBeInTheDocument()
+   })
+ })
+diff --git a/src/pages/__tests__/PredictionPage.test.jsx b/src/pages/__tests__/PredictionPage.test.jsx
+index 4b7b4f7..ba53b97 100644
+--- a/src/pages/__tests__/PredictionPage.test.jsx
++++ b/src/pages/__tests__/PredictionPage.test.jsx
+@@ -13,6 +13,7 @@ import {
+ import PredictionPage from '../PredictionPage'
+ import {
+   isPredictionForConfirmation,
++  savePredictionResult,
+ } from '../../services/predictions'
+ 
+ const OLD_TEXT = 'I have fever and cough'
+@@ -80,10 +81,7 @@ function saveState({
+   )
+ 
+   if (prediction) {
+-    sessionStorage.setItem(
+-      'respiracare_prediction_result',
+-      JSON.stringify(prediction),
+-    )
++    savePredictionResult(prediction, prediction.input_text)
+   }
+ }
+ 
+@@ -138,6 +136,16 @@ describe('isPredictionForConfirmation', () => {
+ })
+ 
+ describe('PredictionPage saved results', () => {
++  it('does not reopen a legacy TB prediction for the identical cough and fever input', () => {
++    sessionStorage.clear()
++    saveState({ text: OLD_TEXT, codes: ['cough', 'fever'], safetyStatus: 'continue' })
++    sessionStorage.setItem('respiracare_prediction_result', JSON.stringify(routinePrediction))
++    renderPredictionPage()
++    expect(screen.queryByText('Tuberculosis (TB)')).not.toBeInTheDocument()
++    expect(screen.getByLabelText('Age')).toBeInTheDocument()
++    expect(sessionStorage.getItem('respiracare_prediction_result')).toBeNull()
++  })
++
+   beforeEach(() => {
+     sessionStorage.clear()
+   })
+@@ -171,7 +179,7 @@ describe('PredictionPage saved results', () => {
+   )
+ 
+   it(
+-    'shows only the highest-confidence saved result for the same symptoms',
++    'shows the leading pattern with competing saved possibilities',
+     () => {
+       saveState({
+         text: OLD_TEXT,
+@@ -187,16 +195,16 @@ describe('PredictionPage saved results', () => {
+       ).toBeInTheDocument()
+ 
+       expect(
+-        screen.queryByText('Pneumonia'),
+-      ).not.toBeInTheDocument()
++        screen.getByText('Pneumonia'),
++      ).toBeInTheDocument()
+ 
+       expect(
+-        screen.queryByText('Bronchitis'),
+-      ).not.toBeInTheDocument()
++        screen.getByText('Bronchitis'),
++      ).toBeInTheDocument()
+ 
+       expect(
+         screen.getByText(
+-          'Your health-awareness result',
++          'Possible explanations',
+         ),
+       ).toBeInTheDocument()
+     },
+@@ -279,7 +287,7 @@ describe('PredictionPage saved results', () => {
+     ).not.toBeInTheDocument()
+   })
+ 
+-  it('keeps the existing V1 confidence display', () => {
++  it('keeps legacy score explanations in expandable ranking details', () => {
+     saveState({
+       text: OLD_TEXT,
+       codes: ['fever', 'cough'],
+@@ -290,7 +298,7 @@ describe('PredictionPage saved results', () => {
+     renderPredictionPage()
+ 
+     expect(
+-      screen.getByText('About model confidence'),
++      screen.getAllByText('About the model ranking')[0],
+     ).toBeInTheDocument()
+ 
+     expect(
+diff --git a/src/pages/__tests__/SymptomConfirmationPage.test.jsx b/src/pages/__tests__/SymptomConfirmationPage.test.jsx
+index c9069e0..0622d7f 100644
+--- a/src/pages/__tests__/SymptomConfirmationPage.test.jsx
++++ b/src/pages/__tests__/SymptomConfirmationPage.test.jsx
+@@ -69,6 +69,38 @@ describe('Symptom confirmation workflow', () => {
+     )
+   })
+ 
++  it('does not preselect absent or uncertain symptoms as present', async () => {
++    sessionStorage.setItem('respiracare_symptom_mapping', JSON.stringify({
++      ...mapping, recognised_symptoms: [
++        { ...mapping.recognised_symptoms[0], status: 'absent' },
++        { ...mapping.recognised_symptoms[1], status: 'present' },
++        { code: 'wheezing', display_name: 'Wheezing', status: 'unknown' },
++      ],
++    }))
++    api.post.mockResolvedValueOnce({ data: { confirmed_codes: ['cough'], confirmed_symptoms: [], rejected_symptoms: [] } })
++    renderConfirmationPage()
++    expect(screen.queryByRole('button', { name: /Fever/ })).not.toBeInTheDocument()
++    expect(screen.queryByRole('button', { name: /Wheezing/ })).not.toBeInTheDocument()
++    expect(screen.getByRole('note')).toHaveTextContent('Fever: reported absent')
++    fireEvent.click(screen.getByRole('button', { name: 'Confirm selected symptoms' }))
++    await waitFor(() => expect(api.post).toHaveBeenCalledWith('/symptoms/confirm', {
++      text: mapping.input_text, confirmed_codes: ['cough'],
++    }))
++  })
++
++  it('does not select symptoms reported only for another person', () => {
++    sessionStorage.setItem('respiracare_symptom_mapping', JSON.stringify({
++      ...mapping, recognised_symptoms: [
++        { ...mapping.recognised_symptoms[0], status: 'present', reported_subject: 'other_person' },
++        { ...mapping.recognised_symptoms[1], status: 'present', reported_subject: 'self' },
++      ],
++    }))
++    renderConfirmationPage()
++    expect(screen.queryByRole('button', { name: /Fever/ })).not.toBeInTheDocument()
++    expect(screen.getByRole('button', { name: /Cough/ })).toHaveAttribute('aria-pressed', 'true')
++    expect(screen.getByRole('note')).toHaveTextContent('Fever: reported for another person')
++  })
++
+   it('sends only selected symptoms to the backend', async () => {
+     api.post.mockResolvedValueOnce({
+       data: {
+diff --git a/src/pages/__tests__/SymptomInputPage.test.jsx b/src/pages/__tests__/SymptomInputPage.test.jsx
+index 30cd201..b2bbc00 100644
+--- a/src/pages/__tests__/SymptomInputPage.test.jsx
++++ b/src/pages/__tests__/SymptomInputPage.test.jsx
+@@ -1,4 +1,5 @@
+ import {
++  act,
+   fireEvent,
+   render,
+   screen,
+@@ -61,6 +62,45 @@ describe('SymptomInputPage', () => {
+     sessionStorage.clear()
+   })
+ 
++  it('ignores an analysis response when the user has changed the description', async () => {
++    let resolveRequest
++    api.post.mockImplementationOnce(() => new Promise((resolve) => { resolveRequest = resolve }))
++    analyse('I have fever')
++    fireEvent.change(screen.getByLabelText('Symptom description'), {
++      target: { value: 'Nina kikohozi' },
++    })
++    await act(async () => resolveRequest({ data: {
++      input_text: 'I have fever', recognised_symptoms: [{ code: 'fever', display_name: 'Fever' }],
++    } }))
++    expect(screen.queryByText('Fever')).not.toBeInTheDocument()
++    expect(sessionStorage.getItem('respiracare_symptom_mapping')).toBeNull()
++  })
++
++  it('shows urgent guidance before confirmation and does not offer the questionnaire', async () => {
++    api.post.mockResolvedValueOnce({ data: {
++      input_text: 'Nashindwa kupumua', has_red_flag: true,
++      health_guidance: 'Tafuta huduma ya dharura sasa.',
++      recognised_symptoms: [{ code: 'breathing_difficulty', display_name: 'Difficulty breathing', status: 'present' }],
++    } })
++    analyse('Nashindwa kupumua')
++    expect(await screen.findByRole('alert')).toHaveTextContent('Tafuta huduma ya dharura sasa.')
++    expect(screen.queryByText('Continue to confirmation')).not.toBeInTheDocument()
++  })
++
++  it('shows absent symptoms and extracted duration and severity distinctly', async () => {
++    api.post.mockResolvedValueOnce({ data: {
++      input_text: 'Mild cough for two days, no fever',
++      recognised_symptoms: [
++        { code: 'cough', display_name: 'Cough', status: 'present', duration_text: 'two days', severity: 'mild' },
++        { code: 'fever', display_name: 'Fever', status: 'absent' },
++      ],
++    } })
++    analyse('Mild cough for two days, no fever')
++    expect(await screen.findByText('Reported absent / Haipo')).toBeInTheDocument()
++    expect(screen.getByText('Duration: two days.')).toBeInTheDocument()
++    expect(screen.getByText('Severity: mild.')).toBeInTheDocument()
++  })
++
+   it(
+     'clears an older prediction result when new symptoms are analysed',
+     async () => {
+diff --git a/src/services/__tests__/predictions.test.js b/src/services/__tests__/predictions.test.js
+index c0c715f..16ff85c 100644
+--- a/src/services/__tests__/predictions.test.js
++++ b/src/services/__tests__/predictions.test.js
+@@ -71,6 +71,17 @@ describe('Prediction API integration', () => {
+     sessionStorage.clear()
+   })
+ 
++  it('preserves follow-up identifiers, answer values, and response language', async () => {
++    api.post.mockResolvedValueOnce({ data: { status: 'needs_follow_up' } })
++    await createPrediction({ ...request, language: 'sw',
++      followUpAnswers: [{ question_id: 'duration', answer: 'long' }],
++    })
++    expect(api.post).toHaveBeenCalledWith('/predict', {
++      age: 25, sex: 'M', text: request.text, confirmed_codes: request.confirmedCodes,
++      language: 'sw', follow_up_answers: [{ question_id: 'duration', answer: 'long' }],
++    })
++  })
++
+   it('sends the correct prediction request', async () => {
+     api.post.mockResolvedValueOnce({
+       data: v1Response,
+@@ -138,3 +149,24 @@ describe('Prediction API integration', () => {
+     ).rejects.toThrow('Network Error')
+   })
+ })
++
++
++describe('Assessment cache policy migration', () => {
++  beforeEach(() => sessionStorage.clear())
++
++  it('discards unversioned predictions instead of treating old model guesses as current', () => {
++    sessionStorage.setItem('respiracare_prediction_result', JSON.stringify(v1Response))
++    expect(getSavedPredictionResult()).toBeNull()
++    expect(sessionStorage.getItem('respiracare_prediction_result')).toBeNull()
++  })
++
++  it('discards a cache from a different policy while keeping fresh answers resumable', () => {
++    savePredictionResult({ status: 'needs_follow_up', follow_up_answers: [
++      { question_id: 'breathing_difficulty', answer: 'no' },
++    ] }, request.text, { age: 21, sex: 'M' })
++    expect(getSavedPredictionResult().follow_up_answers).toHaveLength(1)
++    const stale = JSON.parse(sessionStorage.getItem('respiracare_prediction_result'))
++    sessionStorage.setItem('respiracare_prediction_result', JSON.stringify({ ...stale, cache_version: 'old-policy' }))
++    expect(getSavedPredictionResult()).toBeNull()
++  })
++})
+diff --git a/src/services/predictions.js b/src/services/predictions.js
+index 915121c..d607bcd 100644
+--- a/src/services/predictions.js
++++ b/src/services/predictions.js
+@@ -1,5 +1,8 @@
+ import api from './api'
+ 
++// Invalidate browser results produced before the evidence/abstention repair.
++const PREDICTION_CACHE_VERSION = 'assessment-2026-10-27'
++
+ const PREDICTION_KEY =
+   'respiracare_prediction_result'
+ 
+@@ -8,6 +11,8 @@ export async function createPrediction({
+   sex,
+   text,
+   confirmedCodes,
++  followUpAnswers = [],
++  language,
+ }) {
+   const response = await api.post(
+     '/predict',
+@@ -16,6 +21,10 @@ export async function createPrediction({
+       sex,
+       text,
+       confirmed_codes: confirmedCodes,
++      ...(followUpAnswers.length > 0 && {
++        follow_up_answers: followUpAnswers,
++      }),
++      ...(language && { language }),
+     },
+   )
+ 
+@@ -25,6 +34,7 @@ export async function createPrediction({
+ export function savePredictionResult(
+   prediction,
+   inputText,
++  requestContext,
+ ) {
+   // The backend response does not include the
+   // symptom text, so it is stored alongside the
+@@ -35,7 +45,9 @@ export function savePredictionResult(
+     PREDICTION_KEY,
+     JSON.stringify({
+       ...prediction,
++      cache_version: PREDICTION_CACHE_VERSION,
+       input_text: inputText,
++      ...(requestContext && { request_context: requestContext }),
+     }),
+   )
+ }
+@@ -87,7 +99,12 @@ export function getSavedPredictionResult() {
+   }
+ 
+   try {
+-    return JSON.parse(stored)
++    const result = JSON.parse(stored)
++    if (result?.cache_version !== PREDICTION_CACHE_VERSION) {
++      sessionStorage.removeItem(PREDICTION_KEY)
++      return null
++    }
++    return result
+   } catch {
+     sessionStorage.removeItem(
+       PREDICTION_KEY,
+@@ -101,4 +118,4 @@ export function clearPredictionResult() {
+   sessionStorage.removeItem(
+     PREDICTION_KEY,
+   )
+-}
+\ No newline at end of file
++}
+diff --git a/src/styles/global.css b/src/styles/global.css
+index 08464ff..2c9d2ff 100644
+--- a/src/styles/global.css
++++ b/src/styles/global.css
+@@ -11752,3 +11752,34 @@ code,
+     font-size: 32px;
+   }
+ }
++.consultation-candidates {
++  display: grid;
++  gap: 18px;
++  list-style: none;
++  margin: 0;
++  padding: 0;
++}
++
++.consultation-candidate {
++  border: 1px solid var(--border);
++  border-radius: 12px;
++  padding: clamp(20px, 3vw, 30px);
++  background: var(--surface);
++}
++
++.consultation-candidate h3 {
++  margin: 0 0 14px;
++  font-size: clamp(22px, 2.5vw, 28px);
++  line-height: 1.3;
++}
++
++.consultation-candidate p,
++.consultation-evidence {
++  color: var(--text-soft);
++  line-height: 1.7;
++}
++
++.consultation-evidence ul { margin: 8px 0 14px; }
++.consultation-limitation { margin-bottom: 12px; }
++.consultation-model-details { color: var(--text-soft); font-size: 14px; }
++.consultation-model-details summary { cursor: pointer; }

@@ -1,0 +1,4 @@
+Split,Rows,Diseases,Missing_Values,Invalid_Labels,Min_Age,Max_Age,Sex_Values
+Train,443075,21,0,0,0,109,"[0, 1]"
+Validation,55808,21,0,0,0,109,"[0, 1]"
+Test,56817,21,0,0,0,109,"[0, 1]"

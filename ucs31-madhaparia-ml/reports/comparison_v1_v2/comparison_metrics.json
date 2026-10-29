@@ -1,0 +1,36 @@
+{
+  "evaluation_source": "DDXPlus validation split",
+  "same_patients_for_both_models": true,
+  "validation_scenarios": 55808,
+  "true_condition_count": 21,
+  "v1_feature_count": 198,
+  "v2_feature_count": 66,
+  "v1_prediction_classes": 21,
+  "v2_prediction_classes": 23,
+  "v1_encoding": "Original training-time evidence encoder",
+  "v2_encoding": "Present/absent symptom representation",
+  "v1": {
+    "accuracy": 0.9938539277522935,
+    "macro_precision": 0.9947372766905114,
+    "macro_recall": 0.9915937442923085,
+    "macro_f1": 0.9926634637257763
+  },
+  "v2": {
+    "accuracy": 0.8933665424311926,
+    "macro_precision": 0.8747783828359988,
+    "macro_recall": 0.878742788300722,
+    "macro_f1": 0.8642440547040405
+  },
+  "v2_extra_class_predictions": {
+    "Allergic rhinitis": 660
+  },
+  "limitations": [
+    "DDXPlus cases are simulated, not clinical patient data.",
+    "V1 and V2 use different feature representations.",
+    "V1 and V2 receive different amounts of symptom information.",
+    "True labels cover only the original 21 conditions.",
+    "COVID-19 and allergic rhinitis sensitivity cannot be evaluated.",
+    "Sparse-symptom performance has not yet been evaluated.",
+    "The results do not establish clinical performance."
+  ]
+}

@@ -1,0 +1,1229 @@
+{
+  "provenance": "Curated synthetic software utterances, not doctor transcripts or clinically labeled cases. No disease expectations are assigned.",
+  "sources": [
+    {
+      "id": "ddxplus-native",
+      "path": "nlp/feature_catalog.json",
+      "purpose": "Native feature question meanings; E77/E214/E162 distinctions."
+    },
+    {
+      "id": "nhlbi-asthma",
+      "url": "https://www.nhlbi.nih.gov/health/asthma/symptoms",
+      "purpose": "Wheezing sound and chest tightness are distinct reported symptoms."
+    },
+    {
+      "id": "ntlp-sw",
+      "url": "https://ntlp.go.tz/site/assets/files/1111/facilitator_guide_training_manual_2021_-_swahili_f1_2.pdf",
+      "purpose": "Corroborates Swahili respiratory symptom terminology; does not validate translations or diagnoses."
+    }
+  ],
+  "cases": [
+    {
+      "id": "everyday-001",
+      "category": "everyday",
+      "language": "en",
+      "purpose": "everyday",
+      "text": "I feel feverish and keep coughing.",
+      "expected_states": {
+        "fever": "present",
+        "cough": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-002",
+      "category": "everyday",
+      "language": "sw",
+      "purpose": "everyday",
+      "text": "Ninakohoa na nina homa.",
+      "expected_states": {
+        "cough": "present",
+        "fever": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-003",
+      "category": "everyday",
+      "language": "mixed",
+      "purpose": "everyday",
+      "text": "Nina homa and keep coughing.",
+      "expected_states": {
+        "fever": "present",
+        "cough": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-004",
+      "category": "everyday",
+      "language": "en",
+      "purpose": "everyday",
+      "text": "My nose is running and my throat hurts.",
+      "expected_states": {
+        "runny_blocked_nose": "present",
+        "sore_throat": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-005",
+      "category": "everyday",
+      "language": "sw",
+      "purpose": "everyday",
+      "text": "Pua imeziba na koo langu linauma.",
+      "expected_states": {
+        "runny_blocked_nose": "present",
+        "sore_throat": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-006",
+      "category": "everyday",
+      "language": "en",
+      "purpose": "everyday",
+      "text": "My whole body aches and I feel feverish.",
+      "expected_states": {
+        "muscle_aches": "present",
+        "fever": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-007",
+      "category": "everyday",
+      "language": "sw",
+      "purpose": "everyday",
+      "text": "Nina homa na misuli ya mwili mzima inauma.",
+      "expected_states": {
+        "fever": "present",
+        "muscle_aches": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-008",
+      "category": "everyday",
+      "language": "en",
+      "purpose": "everyday",
+      "text": "I wake up soaked in sweat and I am tired all the time.",
+      "expected_states": {
+        "heavy_sweating": "present",
+        "tiredness": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-009",
+      "category": "everyday",
+      "language": "sw",
+      "purpose": "everyday",
+      "text": "Natokwa na jasho jingi usiku na nina uchovu.",
+      "expected_states": {
+        "heavy_sweating": "present",
+        "tiredness": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-010",
+      "category": "everyday",
+      "language": "en",
+      "purpose": "everyday",
+      "text": "I have lost my appetite and I keep coughing.",
+      "expected_states": {
+        "loss_of_appetite": "present",
+        "cough": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-011",
+      "category": "everyday",
+      "language": "sw",
+      "purpose": "everyday",
+      "text": "Sina hamu ya kula na ninakohoa.",
+      "expected_states": {
+        "loss_of_appetite": "present",
+        "cough": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-012",
+      "category": "everyday",
+      "language": "en",
+      "purpose": "everyday",
+      "text": "I have a blocked nose and itchy eyes.",
+      "expected_states": {
+        "runny_blocked_nose": "present",
+        "itchy_eyes": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-013",
+      "category": "everyday",
+      "language": "en",
+      "purpose": "everyday",
+      "text": "I keep having repeated coughing fits.",
+      "expected_states": {
+        "intense_coughing_fits": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-014",
+      "category": "everyday",
+      "language": "sw",
+      "purpose": "everyday",
+      "text": "Natapika baada ya kukohoa.",
+      "expected_states": {
+        "vomiting_after_coughing": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "everyday-015",
+      "category": "everyday",
+      "language": "en",
+      "purpose": "everyday",
+      "text": "I have trouble swallowing and my throat is sore.",
+      "expected_states": {
+        "difficulty_swallowing": "present",
+        "sore_throat": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "negation-016",
+      "category": "negation",
+      "language": "en",
+      "purpose": "A subject embedded in a long cough alias restarts negation scope",
+      "text": "I have no fever and I am coughing.",
+      "expected_states": {
+        "fever": "absent",
+        "cough": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "negation-017",
+      "category": "negation",
+      "language": "sw",
+      "purpose": "Loss of appetite is positive despite grammatical negation inside its name",
+      "text": "Sina homa na sina hamu ya kula.",
+      "expected_states": {
+        "fever": "absent",
+        "loss_of_appetite": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "negation-018",
+      "category": "negation",
+      "language": "sw",
+      "purpose": "negation",
+      "text": "Sikohoi lakini nina homa.",
+      "expected_states": {
+        "cough": "absent",
+        "fever": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "negation-019",
+      "category": "negation",
+      "language": "mixed",
+      "purpose": "negation",
+      "text": "I have cough lakini sina homa.",
+      "expected_states": {
+        "cough": "present",
+        "fever": "absent"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "negation-020",
+      "category": "negation",
+      "language": "mixed",
+      "purpose": "negation",
+      "text": "Sina kikohozi but my throat hurts.",
+      "expected_states": {
+        "cough": "absent",
+        "sore_throat": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "negation-021",
+      "category": "negation",
+      "language": "en",
+      "purpose": "negation",
+      "text": "I do not have green phlegm, but I have a dry cough.",
+      "expected_states": {
+        "productive_cough": "absent",
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "cough_type": "dry"
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "negation-022",
+      "category": "negation",
+      "language": "sw",
+      "purpose": "negation",
+      "text": "Sina makohozi ya kijani lakini nina kikohozi kikavu.",
+      "expected_states": {
+        "productive_cough": "absent",
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "cough_type": "dry"
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "negation-023",
+      "category": "negation",
+      "language": "en",
+      "purpose": "negation",
+      "text": "I have no phlegm but I have a cough.",
+      "expected_states": {
+        "sputum_reported": "absent",
+        "cough": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "sputum_reported": []
+      }
+    },
+    {
+      "id": "negation-024",
+      "category": "negation",
+      "language": "sw",
+      "purpose": "negation",
+      "text": "Nina kifua kubana lakini sina mluzi ninapotoa pumzi.",
+      "expected_states": {
+        "chest_tightness": "present",
+        "wheezing": "absent"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "uncertainty-025",
+      "category": "uncertainty",
+      "language": "en",
+      "purpose": "uncertainty",
+      "text": "I might have fever but I definitely have a cough.",
+      "expected_states": {
+        "fever": "unknown",
+        "cough": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "uncertainty-026",
+      "category": "uncertainty",
+      "language": "sw",
+      "purpose": "uncertainty",
+      "text": "Labda nina homa lakini ninakohoa.",
+      "expected_states": {
+        "fever": "unknown",
+        "cough": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "uncertainty-027",
+      "category": "uncertainty",
+      "language": "sw",
+      "purpose": "uncertainty",
+      "text": "Sijui kama nina makohozi ya njano.",
+      "expected_states": {
+        "productive_cough": "unknown"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "uncertainty-028",
+      "category": "uncertainty",
+      "language": "en",
+      "purpose": "uncertainty",
+      "text": "Maybe I am wheezing, but my nose is running.",
+      "expected_states": {
+        "wheezing": "unknown",
+        "runny_blocked_nose": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "cough_context-029",
+      "category": "cough_context",
+      "language": "en",
+      "purpose": "cough context",
+      "text": "I have a dry cough.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "cough_type": "dry"
+        }
+      },
+      "expected_features": {
+        "cough": [
+          "E_201"
+        ]
+      }
+    },
+    {
+      "id": "cough_context-030",
+      "category": "cough_context",
+      "language": "sw",
+      "purpose": "cough context",
+      "text": "Nina kikohozi kikavu.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "cough_type": "dry"
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "cough_context-031",
+      "category": "cough_context",
+      "language": "en",
+      "purpose": "cough context",
+      "text": "I have a wet cough.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "cough_type": "productive"
+        }
+      },
+      "expected_features": {
+        "cough": [
+          "E_201"
+        ]
+      }
+    },
+    {
+      "id": "cough_context-032",
+      "category": "cough_context",
+      "language": "en",
+      "purpose": "cough context",
+      "text": "I have a productive cough.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "cough_type": "productive"
+        }
+      },
+      "expected_features": {
+        "cough": [
+          "E_201"
+        ]
+      }
+    },
+    {
+      "id": "cough_context-033",
+      "category": "cough_context",
+      "language": "en",
+      "purpose": "cough context",
+      "text": "I have cough with phlegm.",
+      "expected_states": {
+        "cough": "present",
+        "sputum_reported": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "cough_type": "productive"
+        }
+      },
+      "expected_features": {
+        "sputum_reported": []
+      }
+    },
+    {
+      "id": "cough_context-034",
+      "category": "cough_context",
+      "language": "sw",
+      "purpose": "cough context",
+      "text": "Ninakohoa makohozi.",
+      "expected_states": {
+        "cough": "present",
+        "sputum_reported": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "cough_type": "productive"
+        }
+      },
+      "expected_features": {
+        "sputum_reported": []
+      }
+    },
+    {
+      "id": "cough_context-035",
+      "category": "cough_context",
+      "language": "en",
+      "purpose": "Generic phlegm does not establish colored or increased sputum",
+      "text": "I have phlegm.",
+      "expected_states": {
+        "sputum_reported": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "sputum_reported": []
+      }
+    },
+    {
+      "id": "cough_context-036",
+      "category": "cough_context",
+      "language": "sw",
+      "purpose": "cough context",
+      "text": "Nina makohozi.",
+      "expected_states": {
+        "sputum_reported": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "sputum_reported": []
+      }
+    },
+    {
+      "id": "native_sputum-037",
+      "category": "native_sputum",
+      "language": "en",
+      "purpose": "native sputum",
+      "text": "I am coughing up yellow phlegm.",
+      "expected_states": {
+        "cough": "present",
+        "productive_cough": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "productive_cough": [
+          "E_77"
+        ]
+      }
+    },
+    {
+      "id": "native_sputum-038",
+      "category": "native_sputum",
+      "language": "sw",
+      "purpose": "native sputum",
+      "text": "Ninakohoa makohozi ya kijani.",
+      "expected_states": {
+        "cough": "present",
+        "productive_cough": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "productive_cough": [
+          "E_77"
+        ]
+      }
+    },
+    {
+      "id": "native_sputum-039",
+      "category": "native_sputum",
+      "language": "en",
+      "purpose": "native sputum",
+      "text": "I have more phlegm than usual.",
+      "expected_states": {
+        "productive_cough": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "productive_cough": [
+          "E_77"
+        ]
+      }
+    },
+    {
+      "id": "native_sputum-040",
+      "category": "native_sputum",
+      "language": "sw",
+      "purpose": "native sputum",
+      "text": "Nina makohozi mengi kuliko kawaida.",
+      "expected_states": {
+        "productive_cough": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "productive_cough": [
+          "E_77"
+        ]
+      }
+    },
+    {
+      "id": "semantic_boundary-041",
+      "category": "semantic_boundary",
+      "language": "en",
+      "purpose": "Chest tightness does not assert an exhalation wheeze sound",
+      "text": "My chest feels tight.",
+      "expected_states": {
+        "chest_tightness": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "chest_tightness": []
+      }
+    },
+    {
+      "id": "semantic_boundary-042",
+      "category": "semantic_boundary",
+      "language": "sw",
+      "purpose": "semantic boundary",
+      "text": "Kifua kinabana.",
+      "expected_states": {
+        "chest_tightness": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "chest_tightness": []
+      }
+    },
+    {
+      "id": "native_wheeze-043",
+      "category": "native_wheeze",
+      "language": "en",
+      "purpose": "native wheeze",
+      "text": "I hear a whistling sound when I breathe out.",
+      "expected_states": {
+        "wheezing": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "wheezing": [
+          "E_214"
+        ]
+      }
+    },
+    {
+      "id": "native_wheeze-044",
+      "category": "native_wheeze",
+      "language": "sw",
+      "purpose": "native wheeze",
+      "text": "Ninasikia mluzi ninapotoa pumzi.",
+      "expected_states": {
+        "wheezing": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "wheezing": [
+          "E_214"
+        ]
+      }
+    },
+    {
+      "id": "semantic_boundary-045",
+      "category": "semantic_boundary",
+      "language": "en",
+      "purpose": "Unspecified mucus does not imply sputum from the lungs",
+      "text": "I have mucus in my nose.",
+      "expected_states": {},
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "semantic_boundary-046",
+      "category": "semantic_boundary",
+      "language": "en",
+      "purpose": "A temperature measurement alone does not establish fever",
+      "text": "My temperature is 36 degrees.",
+      "expected_states": {},
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "semantic_boundary-047",
+      "category": "semantic_boundary",
+      "language": "en",
+      "purpose": "Vague malaise must not invent a supported symptom",
+      "text": "I feel unwell.",
+      "expected_states": {},
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "weight_intent-048",
+      "category": "weight_intent",
+      "language": "en",
+      "purpose": "weight intent",
+      "text": "I have been losing weight.",
+      "expected_states": {
+        "weight_loss": "present"
+      },
+      "expected_attributes": {
+        "weight_loss": {
+          "weight_loss_intent": "unspecified"
+        }
+      },
+      "expected_features": {
+        "weight_loss": []
+      }
+    },
+    {
+      "id": "weight_intent-049",
+      "category": "weight_intent",
+      "language": "sw",
+      "purpose": "weight intent",
+      "text": "Nimepungua uzito.",
+      "expected_states": {
+        "weight_loss": "present"
+      },
+      "expected_attributes": {
+        "weight_loss": {
+          "weight_loss_intent": "unspecified"
+        }
+      },
+      "expected_features": {
+        "weight_loss": []
+      }
+    },
+    {
+      "id": "weight_intent-050",
+      "category": "weight_intent",
+      "language": "en",
+      "purpose": "weight intent",
+      "text": "I lost weight without trying.",
+      "expected_states": {
+        "weight_loss": "present"
+      },
+      "expected_attributes": {
+        "weight_loss": {
+          "weight_loss_intent": "unintentional"
+        }
+      },
+      "expected_features": {
+        "weight_loss": [
+          "E_162"
+        ]
+      }
+    },
+    {
+      "id": "weight_intent-051",
+      "category": "weight_intent",
+      "language": "sw",
+      "purpose": "weight intent",
+      "text": "Nimepungua uzito bila kukusudia.",
+      "expected_states": {
+        "weight_loss": "present"
+      },
+      "expected_attributes": {
+        "weight_loss": {
+          "weight_loss_intent": "unintentional"
+        }
+      },
+      "expected_features": {
+        "weight_loss": [
+          "E_162"
+        ]
+      }
+    },
+    {
+      "id": "weight_intent-052",
+      "category": "weight_intent",
+      "language": "en",
+      "purpose": "weight intent",
+      "text": "I lost weight on purpose.",
+      "expected_states": {
+        "weight_loss": "present"
+      },
+      "expected_attributes": {
+        "weight_loss": {
+          "weight_loss_intent": "intentional"
+        }
+      },
+      "expected_features": {
+        "weight_loss": []
+      }
+    },
+    {
+      "id": "weight_intent-053",
+      "category": "weight_intent",
+      "language": "sw",
+      "purpose": "weight intent",
+      "text": "Nimepungua uzito kwa makusudi.",
+      "expected_states": {
+        "weight_loss": "present"
+      },
+      "expected_attributes": {
+        "weight_loss": {
+          "weight_loss_intent": "intentional"
+        }
+      },
+      "expected_features": {
+        "weight_loss": []
+      }
+    },
+    {
+      "id": "duration-054",
+      "category": "duration",
+      "language": "en",
+      "purpose": "duration",
+      "text": "I have a cough for the past two days.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "duration_min_days": 2,
+          "duration_max_days": 2
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "duration-055",
+      "category": "duration",
+      "language": "en",
+      "purpose": "duration",
+      "text": "I have a cough for 2days.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "duration_min_days": 2,
+          "duration_max_days": 2
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "duration-056",
+      "category": "duration",
+      "language": "en",
+      "purpose": "duration",
+      "text": "My cough started three days ago.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "duration_min_days": 3,
+          "duration_max_days": 3
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "duration-057",
+      "category": "duration",
+      "language": "en",
+      "purpose": "duration",
+      "text": "My cough started yesterday.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "duration_min_days": 1,
+          "onset_text": "started yesterday"
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "duration-058",
+      "category": "duration",
+      "language": "en",
+      "purpose": "duration",
+      "text": "I have cough since this morning.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "duration_min_days": null,
+          "onset_text": "since this morning"
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "duration-059",
+      "category": "duration",
+      "language": "sw",
+      "purpose": "duration",
+      "text": "Ninakohoa tangu asubuhi.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "duration_min_days": null,
+          "onset_text": "tangu asubuhi"
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "duration-060",
+      "category": "duration",
+      "language": "en",
+      "purpose": "duration",
+      "text": "I have cough for about two days.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "duration_min_days": null,
+          "duration_max_days": null,
+          "duration_text": "for about two days"
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "duration-061",
+      "category": "duration",
+      "language": "sw",
+      "purpose": "duration",
+      "text": "Nimekuwa nikikohoa kwa siku tatu.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "duration_min_days": 3,
+          "duration_max_days": 3
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "duration-062",
+      "category": "duration",
+      "language": "en",
+      "purpose": "duration",
+      "text": "I have cough for several weeks.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "duration_min_days": null,
+          "duration_text": "for several weeks"
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "subject-063",
+      "category": "subject",
+      "language": "en",
+      "purpose": "subject",
+      "text": "My sister has fever but I am coughing.",
+      "expected_states": {
+        "fever": "unknown",
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "fever": {
+          "reported_subject": "other_person"
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "subject-064",
+      "category": "subject",
+      "language": "sw",
+      "purpose": "subject",
+      "text": "Dada yangu ana homa lakini mimi nina kikohozi.",
+      "expected_states": {
+        "fever": "unknown",
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "fever": {
+          "reported_subject": "other_person"
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "subject-065",
+      "category": "subject",
+      "language": "sw",
+      "purpose": "subject",
+      "text": "Kaka yangu ana homa. Mimi ninakohoa.",
+      "expected_states": {
+        "fever": "unknown",
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "fever": {
+          "reported_subject": "other_person"
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "emergency-066",
+      "category": "emergency",
+      "language": "en",
+      "purpose": "emergency",
+      "text": "I have no fever and am struggling to breathe.",
+      "expected_states": {
+        "fever": "absent",
+        "shortness_of_breath": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "emergency-067",
+      "category": "emergency",
+      "language": "en",
+      "purpose": "emergency",
+      "text": "I have no fever and I am gasping.",
+      "expected_states": {
+        "fever": "absent",
+        "shortness_of_breath": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "emergency-068",
+      "category": "emergency",
+      "language": "sw",
+      "purpose": "emergency",
+      "text": "Nina kikohozi lakini siwezi kupumua.",
+      "expected_states": {
+        "cough": "present",
+        "shortness_of_breath": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "severity-069",
+      "category": "severity",
+      "language": "en",
+      "purpose": "severity",
+      "text": "I have a mild dry cough for two days.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "severity": "mild",
+          "cough_type": "dry",
+          "duration_min_days": 2
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "severity-070",
+      "category": "severity",
+      "language": "sw",
+      "purpose": "severity",
+      "text": "Nina kikohozi kikavu kidogo kwa siku mbili.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "severity": "mild",
+          "cough_type": "dry",
+          "duration_min_days": 2
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "semantic_boundary-071",
+      "category": "semantic_boundary",
+      "language": "en",
+      "purpose": "semantic boundary",
+      "text": "I have no fever and no appetite.",
+      "expected_states": {
+        "fever": "absent",
+        "loss_of_appetite": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {}
+    },
+    {
+      "id": "cough_context-072",
+      "category": "cough_context",
+      "language": "en",
+      "purpose": "cough context",
+      "text": "I am coughing up mucus.",
+      "expected_states": {
+        "cough": "present",
+        "sputum_reported": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "cough_type": "productive"
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "semantic_boundary-073",
+      "category": "semantic_boundary",
+      "language": "en",
+      "purpose": "semantic boundary",
+      "text": "I am coughing and have mucus in my nose.",
+      "expected_states": {
+        "cough": "present"
+      },
+      "expected_attributes": {
+        "cough": {
+          "cough_type": null
+        }
+      },
+      "expected_features": {}
+    },
+    {
+      "id": "location-074",
+      "category": "native_pain_location",
+      "language": "en",
+      "purpose": "Generic headache does not assert forehead location",
+      "text": "I have a headache.",
+      "expected_states": {
+        "headache": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "headache": [
+          "E_53"
+        ]
+      }
+    },
+    {
+      "id": "location-075",
+      "category": "native_pain_location",
+      "language": "en",
+      "purpose": "Generic chest pain does not assert upper-chest location",
+      "text": "I have chest pain.",
+      "expected_states": {
+        "chest_pain": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "chest_pain": [
+          "E_53"
+        ]
+      }
+    },
+    {
+      "id": "location-076",
+      "category": "native_pain_location",
+      "language": "en",
+      "purpose": "Exact native forehead location is supported",
+      "text": "My forehead hurts.",
+      "expected_states": {
+        "forehead_pain": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "forehead_pain": [
+          "E_53",
+          "E_55_@_V_89"
+        ]
+      }
+    },
+    {
+      "id": "location-077",
+      "category": "native_pain_location",
+      "language": "en",
+      "purpose": "Exact native upper-chest location is supported",
+      "text": "I have upper chest pain.",
+      "expected_states": {
+        "upper_chest_pain": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "upper_chest_pain": [
+          "E_53",
+          "E_55_@_V_101"
+        ]
+      }
+    },
+    {
+      "id": "location-078",
+      "category": "native_pain_location",
+      "language": "sw",
+      "purpose": "Exact native forehead location is supported",
+      "text": "Paji la uso linauma.",
+      "expected_states": {
+        "forehead_pain": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "forehead_pain": [
+          "E_53",
+          "E_55_@_V_89"
+        ]
+      }
+    },
+    {
+      "id": "location-079",
+      "category": "native_pain_location",
+      "language": "sw",
+      "purpose": "Exact native upper-chest location is supported",
+      "text": "Nina maumivu sehemu ya juu ya kifua.",
+      "expected_states": {
+        "upper_chest_pain": "present"
+      },
+      "expected_attributes": {},
+      "expected_features": {
+        "upper_chest_pain": [
+          "E_53",
+          "E_55_@_V_101"
+        ]
+      }
+    }
+  ]
+}

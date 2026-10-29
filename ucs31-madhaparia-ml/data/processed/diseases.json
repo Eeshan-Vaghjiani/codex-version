@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Acute COPD exacerbation / infection",
+    "icd10": "J44.1",
+    "severity": 3
+  },
+  {
+    "name": "Acute laryngitis",
+    "icd10": "J04.0",
+    "severity": 4
+  },
+  {
+    "name": "Acute pulmonary edema",
+    "icd10": "J81.0",
+    "severity": 1
+  },
+  {
+    "name": "Acute rhinosinusitis",
+    "icd10": "J01",
+    "severity": 4
+  },
+  {
+    "name": "Allergic sinusitis",
+    "icd10": "J30",
+    "severity": 4
+  },
+  {
+    "name": "Bronchiectasis",
+    "icd10": "J47",
+    "severity": 3
+  },
+  {
+    "name": "Bronchiolitis",
+    "icd10": "J21",
+    "severity": 3
+  },
+  {
+    "name": "Bronchitis",
+    "icd10": "J40",
+    "severity": 4
+  },
+  {
+    "name": "Bronchospasm / acute asthma exacerbation",
+    "icd10": "J45",
+    "severity": 3
+  },
+  {
+    "name": "Chronic rhinosinusitis",
+    "icd10": "J32",
+    "severity": 5
+  },
+  {
+    "name": "Croup",
+    "icd10": "J05.0",
+    "severity": 2
+  },
+  {
+    "name": "Epiglottitis",
+    "icd10": "J05.1",
+    "severity": 2
+  },
+  {
+    "name": "Influenza",
+    "icd10": "J11.1",
+    "severity": 3
+  },
+  {
+    "name": "Larygospasm",
+    "icd10": "J38.5",
+    "severity": 1
+  },
+  {
+    "name": "Pneumonia",
+    "icd10": "J17, J18",
+    "severity": 3
+  },
+  {
+    "name": "Pulmonary neoplasm",
+    "icd10": "C34",
+    "severity": 3
+  },
+  {
+    "name": "Spontaneous pneumothorax",
+    "icd10": "J93",
+    "severity": 2
+  },
+  {
+    "name": "Tuberculosis",
+    "icd10": "A15",
+    "severity": 3
+  },
+  {
+    "name": "URTI",
+    "icd10": "J06.9",
+    "severity": 5
+  },
+  {
+    "name": "Viral pharyngitis",
+    "icd10": "J02.9",
+    "severity": 4
+  },
+  {
+    "name": "Whooping cough",
+    "icd10": "A37",
+    "severity": 4
+  }
+]

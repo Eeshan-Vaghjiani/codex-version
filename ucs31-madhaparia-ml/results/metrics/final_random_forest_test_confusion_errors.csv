@@ -1,0 +1,5 @@
+Actual,Predicted,Count
+Acute rhinosinusitis,Chronic rhinosinusitis,280
+Acute laryngitis,Viral pharyngitis,23
+Viral pharyngitis,Acute laryngitis,8
+Chronic rhinosinusitis,Acute rhinosinusitis,6

@@ -1,0 +1,958 @@
+{
+  "methodology": {
+    "source": "frozen DDXPlus test partition",
+    "seed": 20261027,
+    "no_training_or_threshold_tuning": true,
+    "sparse_selection": "Deterministic nested random subsets; eligible source cases have at least k supported positives; all unmentioned evidence remains unknown.",
+    "v1_full": "Original 198-feature processed test data",
+    "v2_full": "All 32 supported binary positives, no invented absences",
+    "calibration": "Uncalibrated scores; 10 equal-width top-label ECE bins and unscaled multiclass Brier",
+    "limitations": [
+      "Simulated data only",
+      "Test split has previously been evaluated for V1 and may have been inspected historically; no pristine clinical holdout exists",
+      "Exact overlap removal cannot exclude near-duplicate or generator-pattern leakage",
+      "COVID-19 and allergic rhinitis lack independent test labels",
+      "Synthetic sparse inputs do not measure free-text or clinical accuracy"
+    ]
+  },
+  "artifacts_sha256": {
+    "models\\respiratory_random_forest_v1.joblib": "7d11252e334b9af6e3762d41e73ab77e7a8c48eddc93517a47ffcd80aaf22447",
+    "models\\rf_v2_23class_prototype.joblib": "cab5ef5cd88e704b2dd515e3cddeaa872633b1b20532843aa13174e6549131e8",
+    "models\\v2_feature_schema.json": "cf021c7cb03620a1758e51fc9824f9798608358b86871040e13b5e68204914bc"
+  },
+  "dataset": {
+    "training_records": 443075,
+    "unique_training_raw_inputs": 421066,
+    "duplicate_training_raw_input_records": 22009,
+    "conflicting_training_raw_input_signatures": 0,
+    "test_records": 56817,
+    "unique_test_raw_inputs": 56633,
+    "test_records_exactly_matching_training_raw_inputs": 3222,
+    "train_class_counts": {
+      "URTI": 64368,
+      "Pneumonia": 25761,
+      "Chronic rhinosinusitis": 20579,
+      "Viral pharyngitis": 61642,
+      "Allergic sinusitis": 26203,
+      "Larygospasm": 10998,
+      "Spontaneous pneumothorax": 10162,
+      "Acute pulmonary edema": 19018,
+      "Tuberculosis": 16245,
+      "Epiglottitis": 17209,
+      "Bronchitis": 26400,
+      "Acute laryngitis": 24129,
+      "Bronchiectasis": 18795,
+      "Bronchospasm / acute asthma exacerbation": 19875,
+      "Acute COPD exacerbation / infection": 17661,
+      "Influenza": 26812,
+      "Acute rhinosinusitis": 13578,
+      "Whooping cough": 6070,
+      "Pulmonary neoplasm": 14457,
+      "Croup": 2852,
+      "Bronchiolitis": 261
+    },
+    "test_class_counts": {
+      "Bronchitis": 3594,
+      "Acute laryngitis": 3217,
+      "URTI": 8743,
+      "Spontaneous pneumothorax": 1343,
+      "Larygospasm": 785,
+      "Chronic rhinosinusitis": 2747,
+      "Influenza": 3554,
+      "Pneumonia": 3542,
+      "Viral pharyngitis": 8334,
+      "Epiglottitis": 2364,
+      "Acute rhinosinusitis": 1829,
+      "Allergic sinusitis": 2411,
+      "Bronchiectasis": 2454,
+      "Acute COPD exacerbation / infection": 2153,
+      "Tuberculosis": 2080,
+      "Acute pulmonary edema": 2598,
+      "Bronchospasm / acute asthma exacerbation": 2222,
+      "Pulmonary neoplasm": 1918,
+      "Croup": 344,
+      "Whooping cough": 549,
+      "Bronchiolitis": 36
+    },
+    "supported_positive_symptom_count_distribution_test": {
+      "0": 1,
+      "1": 1269,
+      "2": 5746,
+      "3": 13291,
+      "4": 11930,
+      "5": 9298,
+      "6": 6962,
+      "7": 4504,
+      "8": 2341,
+      "9": 1116,
+      "10": 319,
+      "11": 40
+    }
+  },
+  "evaluations": {
+    "v1_full": {
+      "cases": 56817,
+      "source_classes_represented": 21,
+      "accuracy": 0.9944206839502262,
+      "macro_f1_all_model_classes": 0.9932958633652214,
+      "macro_f1_21_source_classes": 0.9932958633652214,
+      "macro_precision_21_source_classes": 0.9951525561021215,
+      "macro_recall_21_source_classes": 0.9922198684726269,
+      "log_loss": 0.02245881495763016,
+      "multiclass_brier": 0.010945056057165989,
+      "top_label_ece_10_bins": 0.00909098509248981,
+      "score_bins": [
+        {
+          "lower": 0.5,
+          "count": 105,
+          "accuracy": 0.580952380952381,
+          "mean_score": 0.5555476190476191
+        },
+        {
+          "lower": 0.6,
+          "count": 293,
+          "accuracy": 0.78839590443686,
+          "mean_score": 0.6629180887372013
+        },
+        {
+          "lower": 0.7,
+          "count": 1020,
+          "accuracy": 0.8764705882352941,
+          "mean_score": 0.7576200980392157
+        },
+        {
+          "lower": 0.8,
+          "count": 1789,
+          "accuracy": 0.9580771380659586,
+          "mean_score": 0.8525125768585802
+        },
+        {
+          "lower": 0.9,
+          "count": 53610,
+          "accuracy": 0.9998134676366349,
+          "mean_score": 0.9966982372691663
+        }
+      ],
+      "scores_at_least_0_9": 53610,
+      "errors_at_scores_at_least_0_9": 10,
+      "predicted_counts": {
+        "Bronchitis": 3594,
+        "Acute laryngitis": 3202,
+        "URTI": 8743,
+        "Spontaneous pneumothorax": 1343,
+        "Larygospasm": 785,
+        "Chronic rhinosinusitis": 3021,
+        "Influenza": 3554,
+        "Pneumonia": 3542,
+        "Viral pharyngitis": 8349,
+        "Epiglottitis": 2364,
+        "Acute rhinosinusitis": 1555,
+        "Allergic sinusitis": 2411,
+        "Bronchiectasis": 2454,
+        "Acute COPD exacerbation / infection": 2153,
+        "Tuberculosis": 2080,
+        "Acute pulmonary edema": 2598,
+        "Bronchospasm / acute asthma exacerbation": 2222,
+        "Pulmonary neoplasm": 1918,
+        "Croup": 344,
+        "Whooping cough": 549,
+        "Bronchiolitis": 36
+      }
+    },
+    "v2_full": {
+      "cases": 56817,
+      "source_classes_represented": 21,
+      "accuracy": 0.892039354418572,
+      "macro_f1_all_model_classes": 0.794143427705696,
+      "macro_f1_21_source_classes": 0.8697761351062384,
+      "macro_precision_21_source_classes": 0.8802578127126542,
+      "macro_recall_21_source_classes": 0.8822041422017248,
+      "log_loss": 0.5641165342629496,
+      "multiclass_brier": 0.26072258868461995,
+      "top_label_ece_10_bins": 0.22646209891699465,
+      "score_bins": [
+        {
+          "lower": 0.1,
+          "count": 2140,
+          "accuracy": 0.6831775700934579,
+          "mean_score": 0.17042342220156453
+        },
+        {
+          "lower": 0.2,
+          "count": 3748,
+          "accuracy": 0.8401814300960512,
+          "mean_score": 0.23590935423116438
+        },
+        {
+          "lower": 0.3,
+          "count": 2482,
+          "accuracy": 0.8058017727639001,
+          "mean_score": 0.3549405323702774
+        },
+        {
+          "lower": 0.4,
+          "count": 5530,
+          "accuracy": 0.7943942133815551,
+          "mean_score": 0.45640658258858197
+        },
+        {
+          "lower": 0.5,
+          "count": 9064,
+          "accuracy": 0.8346204766107679,
+          "mean_score": 0.5516588503218756
+        },
+        {
+          "lower": 0.6,
+          "count": 6383,
+          "accuracy": 0.9063136456211812,
+          "mean_score": 0.6485205290149395
+        },
+        {
+          "lower": 0.7,
+          "count": 6560,
+          "accuracy": 0.8954268292682926,
+          "mean_score": 0.7508161605291699
+        },
+        {
+          "lower": 0.8,
+          "count": 8517,
+          "accuracy": 0.9513913349771046,
+          "mean_score": 0.8509829087847095
+        },
+        {
+          "lower": 0.9,
+          "count": 12393,
+          "accuracy": 0.9966916807875413,
+          "mean_score": 0.9561365235532082
+        }
+      ],
+      "scores_at_least_0_9": 12393,
+      "errors_at_scores_at_least_0_9": 41,
+      "predicted_counts": {
+        "Bronchitis": 3901,
+        "Acute laryngitis": 2733,
+        "URTI": 8831,
+        "Spontaneous pneumothorax": 1379,
+        "Larygospasm": 788,
+        "Acute rhinosinusitis": 1798,
+        "Influenza": 3473,
+        "Pneumonia": 3481,
+        "Viral pharyngitis": 9243,
+        "Epiglottitis": 2393,
+        "Allergic rhinitis": 820,
+        "Bronchiectasis": 1934,
+        "Acute COPD exacerbation / infection": 2712,
+        "Tuberculosis": 2120,
+        "Acute pulmonary edema": 2563,
+        "Bronchospasm / acute asthma exacerbation": 1499,
+        "Pulmonary neoplasm": 2020,
+        "Bronchiolitis": 98,
+        "Chronic rhinosinusitis": 2549,
+        "Croup": 352,
+        "Allergic sinusitis": 1581,
+        "Whooping cough": 549
+      }
+    },
+    "v1_full_no_exact_train_overlap": {
+      "cases": 53595,
+      "source_classes_represented": 21,
+      "accuracy": 0.9940852691482415,
+      "macro_f1_all_model_classes": 0.9932958209137845,
+      "macro_f1_21_source_classes": 0.9932958209137845,
+      "macro_precision_21_source_classes": 0.9951524932228168,
+      "macro_recall_21_source_classes": 0.9922198465227451,
+      "log_loss": 0.023808563039808852,
+      "multiclass_brier": 0.011603042261404984,
+      "top_label_ece_10_bins": 0.009637093012407836,
+      "score_bins": [
+        {
+          "lower": 0.5,
+          "count": 105,
+          "accuracy": 0.580952380952381,
+          "mean_score": 0.5555476190476191
+        },
+        {
+          "lower": 0.6,
+          "count": 293,
+          "accuracy": 0.78839590443686,
+          "mean_score": 0.6629180887372013
+        },
+        {
+          "lower": 0.7,
+          "count": 1020,
+          "accuracy": 0.8764705882352941,
+          "mean_score": 0.7576200980392157
+        },
+        {
+          "lower": 0.8,
+          "count": 1789,
+          "accuracy": 0.9580771380659586,
+          "mean_score": 0.8525125768585802
+        },
+        {
+          "lower": 0.9,
+          "count": 50388,
+          "accuracy": 0.9998015400492181,
+          "mean_score": 0.996487556561086
+        }
+      ],
+      "scores_at_least_0_9": 50388,
+      "errors_at_scores_at_least_0_9": 10,
+      "predicted_counts": {
+        "Bronchitis": 3594,
+        "Acute laryngitis": 3202,
+        "URTI": 8743,
+        "Spontaneous pneumothorax": 1343,
+        "Larygospasm": 212,
+        "Chronic rhinosinusitis": 3021,
+        "Influenza": 3554,
+        "Pneumonia": 3542,
+        "Viral pharyngitis": 8345,
+        "Epiglottitis": 2364,
+        "Acute rhinosinusitis": 1555,
+        "Allergic sinusitis": 1351,
+        "Bronchiectasis": 2244,
+        "Acute COPD exacerbation / infection": 1769,
+        "Tuberculosis": 1892,
+        "Acute pulmonary edema": 2598,
+        "Bronchospasm / acute asthma exacerbation": 1793,
+        "Pulmonary neoplasm": 1895,
+        "Croup": 242,
+        "Whooping cough": 302,
+        "Bronchiolitis": 34
+      }
+    },
+    "v2_full_no_exact_train_overlap": {
+      "cases": 53595,
+      "source_classes_represented": 21,
+      "accuracy": 0.9010168859035358,
+      "macro_f1_all_model_classes": 0.7992258751584707,
+      "macro_f1_21_source_classes": 0.8753426251735631,
+      "macro_precision_21_source_classes": 0.8833167389309489,
+      "macro_recall_21_source_classes": 0.8858727247629177,
+      "log_loss": 0.5603594457826894,
+      "multiclass_brier": 0.25398656888720395,
+      "top_label_ece_10_bins": 0.2400419650761063,
+      "score_bins": [
+        {
+          "lower": 0.1,
+          "count": 2102,
+          "accuracy": 0.6788772597526166,
+          "mean_score": 0.17033088873970834
+        },
+        {
+          "lower": 0.2,
+          "count": 3721,
+          "accuracy": 0.8409029830690674,
+          "mean_score": 0.23591470234881012
+        },
+        {
+          "lower": 0.3,
+          "count": 2390,
+          "accuracy": 0.8192468619246862,
+          "mean_score": 0.3550205304687905
+        },
+        {
+          "lower": 0.4,
+          "count": 5265,
+          "accuracy": 0.8001899335232668,
+          "mean_score": 0.456034490226586
+        },
+        {
+          "lower": 0.5,
+          "count": 8638,
+          "accuracy": 0.845913405880991,
+          "mean_score": 0.5519059819331003
+        },
+        {
+          "lower": 0.6,
+          "count": 6067,
+          "accuracy": 0.9147849019284655,
+          "mean_score": 0.6480791260924929
+        },
+        {
+          "lower": 0.7,
+          "count": 5972,
+          "accuracy": 0.9231413261888815,
+          "mean_score": 0.7507440848315882
+        },
+        {
+          "lower": 0.8,
+          "count": 8013,
+          "accuracy": 0.9714214401597404,
+          "mean_score": 0.8510418679152413
+        },
+        {
+          "lower": 0.9,
+          "count": 11427,
+          "accuracy": 0.9984247834077186,
+          "mean_score": 0.957158833915425
+        }
+      ],
+      "scores_at_least_0_9": 11427,
+      "errors_at_scores_at_least_0_9": 18,
+      "predicted_counts": {
+        "Bronchitis": 3761,
+        "Acute laryngitis": 2733,
+        "URTI": 8831,
+        "Spontaneous pneumothorax": 1379,
+        "Larygospasm": 214,
+        "Acute rhinosinusitis": 1798,
+        "Influenza": 3473,
+        "Pneumonia": 3481,
+        "Viral pharyngitis": 9239,
+        "Epiglottitis": 2393,
+        "Allergic rhinitis": 388,
+        "Bronchiectasis": 1764,
+        "Acute COPD exacerbation / infection": 2236,
+        "Tuberculosis": 1923,
+        "Acute pulmonary edema": 2563,
+        "Bronchospasm / acute asthma exacerbation": 1292,
+        "Pulmonary neoplasm": 1991,
+        "Chronic rhinosinusitis": 2549,
+        "Croup": 248,
+        "Allergic sinusitis": 956,
+        "Whooping cough": 302,
+        "Bronchiolitis": 81
+      }
+    },
+    "v1_sparse_1": {
+      "cases": 56816,
+      "source_classes_represented": 21,
+      "accuracy": 0.11526682624612786,
+      "macro_f1_all_model_classes": 0.10901977997242138,
+      "macro_f1_21_source_classes": 0.10901977997242138,
+      "macro_precision_21_source_classes": 0.11261304558908154,
+      "macro_recall_21_source_classes": 0.22846194279373375,
+      "log_loss": 12.976091807274992,
+      "multiclass_brier": 1.1036156404005915,
+      "top_label_ece_10_bins": 0.31100161046184177,
+      "score_bins": [
+        {
+          "lower": 0.1,
+          "count": 18901,
+          "accuracy": 0.0,
+          "mean_score": 0.15658033966456802
+        },
+        {
+          "lower": 0.2,
+          "count": 6711,
+          "accuracy": 0.0,
+          "mean_score": 0.2369631947548801
+        },
+        {
+          "lower": 0.3,
+          "count": 5870,
+          "accuracy": 0.09080068143100511,
+          "mean_score": 0.3550864565587734
+        },
+        {
+          "lower": 0.4,
+          "count": 4772,
+          "accuracy": 0.23763621123218776,
+          "mean_score": 0.43437866722548196
+        },
+        {
+          "lower": 0.5,
+          "count": 1126,
+          "accuracy": 0.30550621669627,
+          "mean_score": 0.5666274422735347
+        },
+        {
+          "lower": 0.6,
+          "count": 10598,
+          "accuracy": 0.1888092092847707,
+          "mean_score": 0.6315469899981129
+        },
+        {
+          "lower": 0.7,
+          "count": 253,
+          "accuracy": 0.1067193675889328,
+          "mean_score": 0.7233102766798419
+        },
+        {
+          "lower": 0.8,
+          "count": 2856,
+          "accuracy": 0.344187675070028,
+          "mean_score": 0.859484418767507
+        },
+        {
+          "lower": 0.9,
+          "count": 5729,
+          "accuracy": 0.266538662942922,
+          "mean_score": 0.9675384011171234
+        }
+      ],
+      "scores_at_least_0_9": 5729,
+      "errors_at_scores_at_least_0_9": 4202,
+      "predicted_counts": {
+        "Tuberculosis": 11843,
+        "Allergic sinusitis": 22014,
+        "Croup": 12387,
+        "Bronchiectasis": 4907,
+        "Larygospasm": 1215,
+        "Whooping cough": 2598,
+        "Bronchospasm / acute asthma exacerbation": 357,
+        "Acute COPD exacerbation / infection": 1495
+      }
+    },
+    "v2_sparse_1": {
+      "cases": 56816,
+      "source_classes_represented": 21,
+      "accuracy": 0.3022212052942833,
+      "macro_f1_all_model_classes": 0.321466306087217,
+      "macro_f1_21_source_classes": 0.35208214476219,
+      "macro_precision_21_source_classes": 0.49727235007390697,
+      "macro_recall_21_source_classes": 0.38438906102928766,
+      "log_loss": 2.069894832243241,
+      "multiclass_brier": 0.7923719110052495,
+      "top_label_ece_10_bins": 0.06292395976406644,
+      "score_bins": [
+        {
+          "lower": 0.1,
+          "count": 35199,
+          "accuracy": 0.18645416062956335,
+          "mean_score": 0.14089516663130283
+        },
+        {
+          "lower": 0.2,
+          "count": 5746,
+          "accuracy": 0.3270100939784198,
+          "mean_score": 0.23840303035652138
+        },
+        {
+          "lower": 0.3,
+          "count": 5094,
+          "accuracy": 0.4733019238319592,
+          "mean_score": 0.3514496555925064
+        },
+        {
+          "lower": 0.4,
+          "count": 4907,
+          "accuracy": 0.44772773588750764,
+          "mean_score": 0.45868431167618007
+        },
+        {
+          "lower": 0.5,
+          "count": 2803,
+          "accuracy": 0.6200499464859079,
+          "mean_score": 0.5502666489291935
+        },
+        {
+          "lower": 0.6,
+          "count": 1627,
+          "accuracy": 0.8143822987092809,
+          "mean_score": 0.6260667179378927
+        },
+        {
+          "lower": 0.7,
+          "count": 154,
+          "accuracy": 0.43506493506493504,
+          "mean_score": 0.7453327745982598
+        },
+        {
+          "lower": 0.8,
+          "count": 314,
+          "accuracy": 0.9554140127388535,
+          "mean_score": 0.8572413400357176
+        },
+        {
+          "lower": 0.9,
+          "count": 972,
+          "accuracy": 0.7109053497942387,
+          "mean_score": 0.9241168820460641
+        }
+      ],
+      "scores_at_least_0_9": 972,
+      "errors_at_scores_at_least_0_9": 281,
+      "predicted_counts": {
+        "Tuberculosis": 15549,
+        "Viral pharyngitis": 10239,
+        "Bronchiectasis": 5321,
+        "Allergic sinusitis": 5030,
+        "URTI": 2826,
+        "Influenza": 3639,
+        "Larygospasm": 1215,
+        "Acute laryngitis": 1105,
+        "Chronic rhinosinusitis": 992,
+        "Epiglottitis": 738,
+        "Allergic rhinitis": 623,
+        "Bronchospasm / acute asthma exacerbation": 1526,
+        "Croup": 1831,
+        "Acute pulmonary edema": 1453,
+        "Bronchitis": 1457,
+        "Spontaneous pneumothorax": 803,
+        "Bronchiolitis": 30,
+        "Acute rhinosinusitis": 824,
+        "Pulmonary neoplasm": 823,
+        "Whooping cough": 549,
+        "Acute COPD exacerbation / infection": 236,
+        "Pneumonia": 7
+      }
+    },
+    "v1_sparse_2": {
+      "cases": 55547,
+      "source_classes_represented": 20,
+      "accuracy": 0.21615928853043367,
+      "macro_f1_all_model_classes": 0.20486451862466715,
+      "macro_f1_21_source_classes": 0.20486451862466715,
+      "macro_precision_21_source_classes": 0.31840162238295144,
+      "macro_recall_21_source_classes": 0.31440719571730297,
+      "log_loss": 6.880422716114267,
+      "multiclass_brier": 1.0428999610690048,
+      "top_label_ece_10_bins": 0.324958548616487,
+      "score_bins": [
+        {
+          "lower": 0.1,
+          "count": 9746,
+          "accuracy": 0.27488200287297354,
+          "mean_score": 0.15755104658321362
+        },
+        {
+          "lower": 0.2,
+          "count": 6868,
+          "accuracy": 0.1473500291205591,
+          "mean_score": 0.2450680693069307
+        },
+        {
+          "lower": 0.3,
+          "count": 4283,
+          "accuracy": 0.04529535372402522,
+          "mean_score": 0.34231379873920154
+        },
+        {
+          "lower": 0.4,
+          "count": 8408,
+          "accuracy": 0.10347288296860133,
+          "mean_score": 0.4437788415794481
+        },
+        {
+          "lower": 0.5,
+          "count": 6153,
+          "accuracy": 0.17974971558589306,
+          "mean_score": 0.5526060458313018
+        },
+        {
+          "lower": 0.6,
+          "count": 6186,
+          "accuracy": 0.10184287099903007,
+          "mean_score": 0.648768994503718
+        },
+        {
+          "lower": 0.7,
+          "count": 4619,
+          "accuracy": 0.3048278848235549,
+          "mean_score": 0.7459022515696039
+        },
+        {
+          "lower": 0.8,
+          "count": 3748,
+          "accuracy": 0.4007470651013874,
+          "mean_score": 0.8451587513340447
+        },
+        {
+          "lower": 0.9,
+          "count": 5536,
+          "accuracy": 0.4707369942196532,
+          "mean_score": 0.9624218750000001
+        }
+      ],
+      "scores_at_least_0_9": 5536,
+      "errors_at_scores_at_least_0_9": 2930,
+      "predicted_counts": {
+        "Tuberculosis": 16359,
+        "Croup": 10818,
+        "Bronchiectasis": 5117,
+        "Allergic sinusitis": 13293,
+        "URTI": 2155,
+        "Chronic rhinosinusitis": 1107,
+        "Whooping cough": 1015,
+        "Larygospasm": 406,
+        "Bronchospasm / acute asthma exacerbation": 715,
+        "Acute COPD exacerbation / infection": 2789,
+        "Acute laryngitis": 1171,
+        "Acute pulmonary edema": 272,
+        "Pulmonary neoplasm": 315,
+        "Bronchiolitis": 15
+      }
+    },
+    "v2_sparse_2": {
+      "cases": 55547,
+      "source_classes_represented": 20,
+      "accuracy": 0.6063873836570832,
+      "macro_f1_all_model_classes": 0.532435713647876,
+      "macro_f1_21_source_classes": 0.5831438768524355,
+      "macro_precision_21_source_classes": 0.629291302656213,
+      "macro_recall_21_source_classes": 0.6082495895120366,
+      "log_loss": 1.35081642992465,
+      "multiclass_brier": 0.5705987799008354,
+      "top_label_ece_10_bins": 0.1987815125582882,
+      "score_bins": [
+        {
+          "lower": 0.1,
+          "count": 14780,
+          "accuracy": 0.3250338294993234,
+          "mean_score": 0.1651509289715275
+        },
+        {
+          "lower": 0.2,
+          "count": 10693,
+          "accuracy": 0.5975872065837464,
+          "mean_score": 0.24448684001812906
+        },
+        {
+          "lower": 0.3,
+          "count": 5977,
+          "accuracy": 0.5557972226869667,
+          "mean_score": 0.3509646558588188
+        },
+        {
+          "lower": 0.4,
+          "count": 6276,
+          "accuracy": 0.5924155513065646,
+          "mean_score": 0.4481649784180685
+        },
+        {
+          "lower": 0.5,
+          "count": 4800,
+          "accuracy": 0.7108333333333333,
+          "mean_score": 0.5398600864802116
+        },
+        {
+          "lower": 0.6,
+          "count": 3210,
+          "accuracy": 0.8928348909657321,
+          "mean_score": 0.6599021502966015
+        },
+        {
+          "lower": 0.7,
+          "count": 4622,
+          "accuracy": 0.9320640415404586,
+          "mean_score": 0.7502090239400774
+        },
+        {
+          "lower": 0.8,
+          "count": 3989,
+          "accuracy": 0.9340686888944598,
+          "mean_score": 0.8436931279417091
+        },
+        {
+          "lower": 0.9,
+          "count": 1200,
+          "accuracy": 0.9475,
+          "mean_score": 0.9442361210201288
+        }
+      ],
+      "scores_at_least_0_9": 1200,
+      "errors_at_scores_at_least_0_9": 63,
+      "predicted_counts": {
+        "Bronchospasm / acute asthma exacerbation": 3924,
+        "Viral pharyngitis": 12264,
+        "Tuberculosis": 4497,
+        "Bronchitis": 1788,
+        "Acute pulmonary edema": 1982,
+        "URTI": 6852,
+        "Allergic sinusitis": 3775,
+        "Acute rhinosinusitis": 1237,
+        "Spontaneous pneumothorax": 2455,
+        "Influenza": 2895,
+        "Epiglottitis": 1653,
+        "Chronic rhinosinusitis": 1857,
+        "Pneumonia": 1154,
+        "Bronchiectasis": 3190,
+        "Acute laryngitis": 2214,
+        "Pulmonary neoplasm": 1413,
+        "Acute COPD exacerbation / infection": 1246,
+        "Croup": 667,
+        "Whooping cough": 449,
+        "Bronchiolitis": 22,
+        "Allergic rhinitis": 13
+      }
+    },
+    "v1_sparse_3": {
+      "cases": 49801,
+      "source_classes_represented": 20,
+      "accuracy": 0.21132105781008415,
+      "macro_f1_all_model_classes": 0.21915774649578262,
+      "macro_f1_21_source_classes": 0.21915774649578262,
+      "macro_precision_21_source_classes": 0.3739745771450059,
+      "macro_recall_21_source_classes": 0.361541959382335,
+      "log_loss": 3.8749319516135707,
+      "multiclass_brier": 0.9530890569466477,
+      "top_label_ece_10_bins": 0.3167420834922993,
+      "score_bins": [
+        {
+          "lower": 0.1,
+          "count": 4444,
+          "accuracy": 0.3238073807380738,
+          "mean_score": 0.1613276327632763
+        },
+        {
+          "lower": 0.2,
+          "count": 6461,
+          "accuracy": 0.21869679616158488,
+          "mean_score": 0.24244041170097508
+        },
+        {
+          "lower": 0.3,
+          "count": 9119,
+          "accuracy": 0.04572869832218445,
+          "mean_score": 0.3498333150564755
+        },
+        {
+          "lower": 0.4,
+          "count": 8651,
+          "accuracy": 0.05467576002774246,
+          "mean_score": 0.4429011096983008
+        },
+        {
+          "lower": 0.5,
+          "count": 5821,
+          "accuracy": 0.1066827005669129,
+          "mean_score": 0.5469768940044666
+        },
+        {
+          "lower": 0.6,
+          "count": 5251,
+          "accuracy": 0.013521234050657019,
+          "mean_score": 0.6530894115406589
+        },
+        {
+          "lower": 0.7,
+          "count": 2410,
+          "accuracy": 0.45643153526970953,
+          "mean_score": 0.7483827800829875
+        },
+        {
+          "lower": 0.8,
+          "count": 2456,
+          "accuracy": 0.3583061889250814,
+          "mean_score": 0.8501781351791531
+        },
+        {
+          "lower": 0.9,
+          "count": 5188,
+          "accuracy": 0.792212798766384,
+          "mean_score": 0.9722383384734001
+        }
+      ],
+      "scores_at_least_0_9": 5188,
+      "errors_at_scores_at_least_0_9": 1078,
+      "predicted_counts": {
+        "Tuberculosis": 15338,
+        "Bronchiectasis": 5527,
+        "Croup": 9732,
+        "Allergic sinusitis": 11323,
+        "URTI": 1455,
+        "Acute COPD exacerbation / infection": 2769,
+        "Larygospasm": 317,
+        "Bronchospasm / acute asthma exacerbation": 469,
+        "Chronic rhinosinusitis": 793,
+        "Acute pulmonary edema": 1164,
+        "Pulmonary neoplasm": 286,
+        "Influenza": 79,
+        "Whooping cough": 292,
+        "Bronchitis": 116,
+        "Bronchiolitis": 94,
+        "Acute laryngitis": 47
+      }
+    },
+    "v2_sparse_3": {
+      "cases": 49801,
+      "source_classes_represented": 20,
+      "accuracy": 0.7710889339571495,
+      "macro_f1_all_model_classes": 0.6477745512539775,
+      "macro_f1_21_source_classes": 0.7094673656591184,
+      "macro_precision_21_source_classes": 0.7519476230772936,
+      "macro_recall_21_source_classes": 0.7363022209867697,
+      "log_loss": 0.9367134438352904,
+      "multiclass_brier": 0.42386740371077725,
+      "top_label_ece_10_bins": 0.25675101739788714,
+      "score_bins": [
+        {
+          "lower": 0.1,
+          "count": 3406,
+          "accuracy": 0.48561362301820316,
+          "mean_score": 0.16574660134817604
+        },
+        {
+          "lower": 0.2,
+          "count": 8602,
+          "accuracy": 0.6474075796326436,
+          "mean_score": 0.24825845659003187
+        },
+        {
+          "lower": 0.3,
+          "count": 6671,
+          "accuracy": 0.6968970169389896,
+          "mean_score": 0.34772563468544665
+        },
+        {
+          "lower": 0.4,
+          "count": 7901,
+          "accuracy": 0.7331983293254019,
+          "mean_score": 0.45001437799395627
+        },
+        {
+          "lower": 0.5,
+          "count": 5323,
+          "accuracy": 0.7751268081908698,
+          "mean_score": 0.5456240348709893
+        },
+        {
+          "lower": 0.6,
+          "count": 3821,
+          "accuracy": 0.8790892436534938,
+          "mean_score": 0.6506681033386837
+        },
+        {
+          "lower": 0.7,
+          "count": 6118,
+          "accuracy": 0.9154952598888526,
+          "mean_score": 0.7508586325175909
+        },
+        {
+          "lower": 0.8,
+          "count": 4709,
+          "accuracy": 0.9401146740284562,
+          "mean_score": 0.8499726272706447
+        },
+        {
+          "lower": 0.9,
+          "count": 3250,
+          "accuracy": 0.9916923076923077,
+          "mean_score": 0.9392047166880438
+        }
+      ],
+      "scores_at_least_0_9": 3250,
+      "errors_at_scores_at_least_0_9": 27,
+      "predicted_counts": {
+        "Bronchitis": 3837,
+        "Viral pharyngitis": 9398,
+        "URTI": 8221,
+        "Acute pulmonary edema": 2556,
+        "Chronic rhinosinusitis": 2406,
+        "Spontaneous pneumothorax": 1266,
+        "Influenza": 3113,
+        "Epiglottitis": 2248,
+        "Acute laryngitis": 2021,
+        "Acute rhinosinusitis": 1561,
+        "Pneumonia": 2082,
+        "Tuberculosis": 2558,
+        "Allergic sinusitis": 1535,
+        "Bronchiectasis": 1175,
+        "Acute COPD exacerbation / infection": 2839,
+        "Pulmonary neoplasm": 1849,
+        "Allergic rhinitis": 376,
+        "Bronchiolitis": 116,
+        "Croup": 370,
+        "Bronchospasm / acute asthma exacerbation": 96,
+        "Whooping cough": 178
+      }
+    }
+  },
+  "majority_training_class_baseline": {
+    "class": "URTI",
+    "test_accuracy": 0.15388000070401464
+  }
+}
