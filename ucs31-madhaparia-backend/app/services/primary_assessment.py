@@ -32,6 +32,14 @@ NON_SPECIFIC_EXPLANATION = {
     'en': 'These are general symptoms. They can occur in many illnesses, including common viral infections, and do not point clearly to one respiratory condition by themselves.',
     'sw': 'Hizi ni dalili za jumla. Zinaweza kutokea katika magonjwa mengi, ikiwa ni pamoja na maambukizi ya kawaida ya virusi, na hazielekezi wazi kwa ugonjwa mmoja wa mfumo wa upumuaji.',
 }
+# Family answer for the common viral upper-respiratory cluster: a named family,
+# not a specific diagnosis, so it never claims which virus.
+FAMILY_TERM = {
+    'en': {'display_name': 'Flu-like illness / common cold',
+           'short_description': 'A viral upper-respiratory infection (cold or flu-like illness). Symptoms alone cannot confirm which virus, and it usually clears on its own.'},
+    'sw': {'display_name': 'Ugonjwa wa mafua / homa ya kawaida',
+           'short_description': 'Maambukizi ya virusi ya njia ya juu ya upumuaji (mafua au ugonjwa kama mafua). Dalili pekee haziwezi kuthibitisha virusi ni kipi, na kwa kawaida hupita yenyewe.'},
+}
 
 
 def has_respiratory_scope(features):
@@ -79,6 +87,8 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
     elif 'unsupported_information' in context.get('_decision_reasons', []):
         summary = ('Programu haijaelewa baadhi ya maelezo. Tafadhali yaeleze tena au wasiliana na mtaalamu wa afya.' if sw else
                    'Some details could not be understood by this app. Please rephrase them or contact a healthcare professional.')
+    elif primary is not None and primary.get('is_family_answer'):
+        summary = FAMILY_TERM['sw' if sw else 'en']['short_description']
     elif primary is not None:
         summary = ('Hili ni jambo linaloweza kueleza dalili zako, si utambuzi uliothibitishwa.' if sw else
                    'This is one possible explanation for your symptoms, not a confirmed diagnosis.')
@@ -120,6 +130,13 @@ def patient_guidance(context, age, decision_status='uncertain', primary=None):
             'Seek same-day clinical review. The model cannot safely separate overlapping patterns that may need treatment.')
     if viral_lines and base['care_level'] == 'self_care_or_review':
         for line in reversed(viral_lines):
+            base['next_steps'].insert(0, line)
+    if primary and primary.get('is_family_answer') and base['care_level'] == 'self_care_or_review':
+        # A family answer gets the same honest flu-like care guidance: rest,
+        # fluids, paracetamol, no antibiotics, 5-7 day review, COVID line.
+        fam_states = dict(states)
+        fam_states['flu_like'] = 'present'
+        for line in reversed(withheld_viral_guidance(fam_states, context.get('duration', {}), sw)):
             base['next_steps'].insert(0, line)
     if primary and primary.get('match_band') == 'low':
         base['uncertainty_message'] = ('Ulinganifu ni mdogo; modeli haina uhakika. Sahihisha dalili, fuatilia kwa saa 24-48 na utafute huduma mapema hali ikizidi.' if sw else
@@ -176,7 +193,27 @@ def build_primary_assessment(confirmation, age, sex):
     if any(reply.get('question_id') in {'breathing_difficulty', 'severe_chest_pain'} and reply.get('answer') == 'unknown' for reply in replies):
         chosen['status'], chosen['primary_prediction'] = 'uncertain', None
         reasons.append('safety_screen_incomplete')
-    if chosen['status'] == 'eligible' and chosen.get('primary_prediction'):
+    if chosen['status'] == 'family' and chosen.get('primary_prediction'):
+        # A family answer names a family of conditions (e.g. viral
+        # upper-respiratory), never a specific disease or which virus. It is
+        # not a V3 model match, so it carries no match percentage.
+        family = chosen['primary_prediction']
+        family_term = FAMILY_TERM['sw' if sw else 'en']
+        primary = {'condition': family['condition'], 'display_name': family_term['display_name'],
+            'short_description': family_term['short_description'], 'is_family_answer': True,
+            'family_top_condition': family['family_top_condition'],
+            'score_kind': 'family_answer', 'model_match_percent': None,
+            'explanation': ('Dalili hizi zinaendana na maambukizi ya virusi ya njia ya juu ya upumuaji. Dalili pekee haziwezi kuthibitisha ni virusi kipi, na mafua na mafua ya ndege yanaweza kuonekana hivi.' if sw else
+                'These symptoms are consistent with a viral upper-respiratory infection. Symptoms alone cannot confirm which virus, and cold and flu can look like this.'),
+            'supporting_symptoms': list(dict.fromkeys(
+                SW_SYMPTOMS.get(code, item.get('display_name', code.replace('_',' '))) if sw
+                else item.get('display_name', code.replace('_',' '))
+                for code,item in confirmation.get('_symptom_details', {}).items()
+                if context.get('symptom_states', {}).get(code) == 'present')),
+            'evidence_note': ('Matokeo haya hayajathibitishwa katika huduma za kliniki nchini Kenya.' if sw else
+                              'This assessment has not been clinically validated for patients in Kenya.'),
+        }
+    elif chosen['status'] == 'eligible' and chosen.get('primary_prediction'):
         raw = chosen['primary_prediction']
         score = chosen.get('diagnostics', {}).get('source_relative_top_score', raw.get('raw_relative_score'))
         if not isinstance(score, (int, float)) or isinstance(score, bool) or not 0 <= score <= 1:

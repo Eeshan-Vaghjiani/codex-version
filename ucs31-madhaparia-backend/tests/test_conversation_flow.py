@@ -218,3 +218,47 @@ def test_unresolved_safety_does_not_name_even_an_eligible_pattern(monkeypatch):
             {'question_id': 'severe_chest_pain', 'answer': 'unknown'}]}}, 24, 'F')
     assert result['primary_prediction'] is None
     assert {'safety_screen_incomplete', 'answers_remain_uncertain'} <= set(result['decision']['reasons'])
+
+
+@pytest.mark.parametrize('text', [
+    'I have cough, sore throat, runny nose and headache',
+    'I have a headache, sore throat, cough and runny nose for 2 days',
+])
+def test_common_cluster_gets_a_family_answer_not_a_diagnosis(v3_flow, text):
+    data, asked = advance(v3_flow, payload(v3_flow, text), {'symptom_duration': 'under_3_days'})
+    primary = data['primary_prediction']
+    assert primary is not None
+    assert primary['condition'] == 'Flu-like illness / common cold'
+    assert primary['is_family_answer'] is True
+    assert primary['score_kind'] == 'family_answer'
+    # A family answer never claims a specific virus or carries a model match %.
+    assert primary.get('model_match_percent') is None
+    assert data['status'] == 'prediction_complete'
+    summary = data['assessment_summary'].lower()
+    assert 'viral upper-respiratory' in summary
+    # It is not a confirmed diagnosis: exactly one family answer, no disease list.
+    assert [p['condition'] for p in data['predictions']] == ['Flu-like illness / common cold']
+
+
+def test_family_answer_guidance_is_actionable_and_never_antibiotics(v3_flow):
+    data, _ = advance(v3_flow, payload(v3_flow, 'I have cough, sore throat, runny nose and headache'),
+                      {'symptom_duration': 'under_3_days'})
+    advice = ' '.join(data['next_steps']).lower()
+    # It explains antibiotics do not help a viral infection; it never advises them.
+    assert 'antibiotics do not help' in advice
+    assert 'paracetamol' in advice or 'fluids' in advice or 'rest' in advice
+    # It only ever names the viral family as a possible cause, never a single diagnosis.
+    assert 'pneumonia' not in advice and 'tuberculosis' not in advice
+
+
+def test_sparse_serious_guard_never_names_serious_on_vague_input():
+    from app.ml.primary_selection import sparse_serious_guard
+    # Neoplasm on <=3 non-specific features is always withheld.
+    assert sparse_serious_guard('Pulmonary neoplasm', {'E_97', 'E_181', 'E_53'}, 0.95, 0.4) is True
+    # A specific supporting feature (coughing blood E_45) unlocks it.
+    assert sparse_serious_guard('Pulmonary neoplasm', {'E_97', 'E_181', 'E_45'}, 0.95, 0.4) is False
+    # Four present features are no longer sparse.
+    assert sparse_serious_guard('Pulmonary neoplasm', {'E_97', 'E_181', 'E_53', 'E_201'}, 0.95, 0.4) is False
+    # TB as a clear strong match on vague input is withheld; moderate is allowed.
+    assert sparse_serious_guard('Tuberculosis', {'E_97', 'E_181', 'E_53'}, 0.85, 0.30) is True
+    assert sparse_serious_guard('Tuberculosis', {'E_97', 'E_181', 'E_53'}, 0.70, 0.10) is False

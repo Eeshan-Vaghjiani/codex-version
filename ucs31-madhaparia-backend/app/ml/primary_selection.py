@@ -18,6 +18,41 @@ POLICY_VERSION = "v3_selective_primary_v1"
 SCOPE_POLICY_VERSION = "v3_respiratory_scope_v1"
 GAP_POLICY_PATH = POLICY_PATH.with_name('v3_gap_selection.json')
 DANGEROUS_ALTERNATIVES = frozenset({"Pneumonia", "Tuberculosis", "Pulmonary neoplasm", "Acute pulmonary edema"})
+# Narrow 4:0 family exception (see classify_primary): only for the viral
+# upper-respiratory family, only when the disabled 4:0 bucket's top pattern is
+# clear on its own. Conservative, unvalidated on a fresh fold - not a
+# validated clinical rule.
+VIRAL_UPPER_RESPIRATORY_FAMILY = frozenset({
+    "URTI", "Influenza", "Viral pharyngitis", "Acute rhinosinusitis",
+})
+FAMILY_MIN_SCORE = 0.75
+FAMILY_MIN_GAP = 0.20
+
+# Specific supporting features that can justify naming a serious condition on
+# sparse input: E_162 unintentional weight loss, E_45 coughing blood, E_14
+# chest pain at rest, E_66 breathing difficulty, E_50 heavy/night sweats.
+# Fever, headache, cough and tiredness alone are NOT specific.
+SPARSE_SERIOUS_FEATURES = frozenset({"E_162", "E_45", "E_14", "E_66", "E_50"})
+SPARSE_MAX_PRESENT = 3
+
+
+def sparse_serious_guard(condition, present_features, top_score, gap):
+    """True when a serious name must be withheld on sparse, non-specific input.
+
+    Pulmonary neoplasm is never named on <=3 present features without a
+    specific supporting feature. Tuberculosis is never named as STRONG (80%+
+    with a clear gap) on the same sparse, non-specific input. Does not block
+    TB at moderate on a specific pattern such as chronic cough + weight loss.
+    """
+    if len(present_features) > SPARSE_MAX_PRESENT:
+        return False
+    if present_features & SPARSE_SERIOUS_FEATURES:
+        return False
+    if condition == "Pulmonary neoplasm":
+        return True
+    if condition == "Tuberculosis" and top_score >= 0.80 and gap >= 0.15:
+        return True
+    return False
 # This is the supported respiratory scope, not a list of emergency signs or a
 # clinician-validated exclusion test. Generic fever, pain and fatigue alone
 # cannot establish that the patient's complaint belongs to these source classes.
@@ -172,6 +207,30 @@ def classify_primary(present_features, absent_features, age, sex):
     })
     gap = result["diagnostics"]["source_relative_top_two_gap"]
     gate = load_gap_policy()
+    # Narrow 4:0 family exception: the 4:0 bucket is gap-disabled because its
+    # source-validation risk bound (1.0 accepted here) sits over the target.
+    # When the top pattern is nevertheless clear (>=0.75, gap >=0.20),
+    # viral-family, and no dangerous alternative is a close second, return a
+    # FAMILY answer, not a specific disease name. A 4-symptom close case still
+    # withholds below.
+    if (result["diagnostics"]["evidence_bucket"].startswith("4:")
+            and gate is not None and not gate['buckets']['4:0']['enabled']
+            and first["condition"] in VIRAL_UPPER_RESPIRATORY_FAMILY
+            and first['raw_relative_score'] >= FAMILY_MIN_SCORE and gap >= FAMILY_MIN_GAP
+            and not (second["condition"] in DANGEROUS_ALTERNATIVES and gap < gate['minimum_relative_gap'])):
+        result["status"] = "family"
+        result["reasons"] = ["family_viral_upper_respiratory", "not_clinically_validated"]
+        result["diagnostics"]["policy_reason"] = "family_viral_upper_respiratory_4_0"
+        result["primary_prediction"] = {
+            "condition": "Flu-like illness / common cold",
+            "is_family_answer": True,
+            "family_top_condition": first["condition"],
+            "supporting_features": first["supporting_features"],
+            "supporting_absent_features": first.get("supporting_absent_features", []),
+            "contradicting_features": first.get("contradicting_features", []),
+            "contradicting_absent_features": first.get("contradicting_absent_features", []),
+        }
+        return result
     if gate is None or gap < gate['minimum_relative_gap']:
         result["reasons"] = ["gap_validation_pending" if gate is None else "close_model_rank"]
         # With no validated separation test, do not hide a potentially serious
@@ -182,6 +241,14 @@ def classify_primary(present_features, absent_features, age, sex):
     if (len(present) < gate['minimum_present_count'] or first['raw_relative_score'] < gate['minimum_relative_score']
             or not gate['buckets'][result['diagnostics']['evidence_bucket']]['enabled']):
         result['reasons'] = ['gap_source_validation_bound_not_met']
+        return result
+    # Sparse-serious guard: never let a peaked score alone name a serious
+    # condition on vague input. Sits before eligibility so a high relative
+    # score cannot bypass it.
+    if sparse_serious_guard(first["condition"], present, first['raw_relative_score'], gap):
+        result["reasons"] = ["sparse_serious_guard"]
+        result["diagnostics"]["policy_reason"] = "sparse_serious_guard"
+        result["diagnostics"]["sparse_serious_guard"] = True
         return result
     if not entry["enabled"] or first["raw_relative_score"] < entry["minimum_relative_score"]:
         result["reasons"] = ["non_specific_input" if len(present) == 1 else "ambiguous_model_rank"]
